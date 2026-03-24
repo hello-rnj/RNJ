@@ -908,7 +908,7 @@ export default function Home() {
           style={{ aspectRatio: '1518 / 1009' }}
         >
           <Image
-            src="/windmill-turbines-and-solar-battery-panels-in-gree-2026-01-08-22-51-23-utc 1 (2).svg"
+            src="/pexels-jacky-2803806-4532517 1.svg"
             alt="Background"
             width={1518}
             height={1009}
