@@ -41,7 +41,7 @@ export default function Footer() {
     <footer className="relative w-full overflow-hidden bg-[#BBCB2E] px-4 py-10 sm:px-6 md:px-8 md:py-14">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[#BBCB2E]" />
-        <Image src="/Mask group (20).svg" alt="Footer background" fill className="object-cover" />
+        <Image src="/Mask group (20).svg" alt="Arrière-plan du pied de page" fill className="object-cover" />
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1462px] flex-col gap-6 md:gap-8">
@@ -49,21 +49,21 @@ export default function Footer() {
           <div className="relative w-full max-w-[454px] rounded-[23px] bg-[#F7FCFF] p-[5px] shadow-[2px_4px_33.5px_rgba(0,0,0,0.12)]">
             <div className="flex min-h-[72px] items-center justify-between gap-3 rounded-[20px] bg-[#F7FCFF] pl-5 pr-[5px]">
               <span className="font-[Geist] text-[14px] font-medium text-[#003300] opacity-50 sm:text-[16px]">
-                Our Newsletter
+                Notre newsletter
               </span>
               <button
                 type="button"
                 className="flex h-[62px] min-w-[128px] items-center justify-center rounded-[18px] bg-[#BBCB2E] px-5 transition hover:opacity-90 sm:h-[72px] sm:min-w-[156px]"
               >
                 <span className="font-[Geist] text-[15px] font-semibold text-[#003300] sm:text-[16px]">
-                  Subscribe
+                  S&apos;abonner
                 </span>
               </button>
             </div>
           </div>
 
           <div className="relative hidden h-[49px] w-[175px] shrink-0 lg:block">
-            <Image src="/Mask group (21).svg" alt="Decorative arrows" fill className="object-contain" />
+            <Image src="/Mask group (21).svg" alt="Flèches décoratives" fill className="object-contain" />
           </div>
 
           <Link
@@ -71,7 +71,7 @@ export default function Footer() {
             className="flex min-h-[72px] w-full max-w-[345px] items-center justify-center rounded-full bg-[#BBCB2E] px-8 py-4 transition hover:opacity-90"
           >
             <span className="font-[Geist] text-[28px] font-semibold leading-none text-[#003300] sm:text-[38px] lg:text-[51.3966px]">
-              contact
+              Contact
             </span>
           </Link>
         </div>
@@ -82,7 +82,7 @@ export default function Footer() {
               <div className="flex max-w-[352px] flex-col gap-6">
                 <Image
                   src="/minimal horizontal logo white 1.svg"
-                  alt="RNJ Advisory Logo"
+                  alt="Logo RNJ Advisory"
                   width={233}
                   height={58}
                   className="h-auto w-[180px] sm:w-[233px]"
@@ -136,7 +136,7 @@ export default function Footer() {
 
                   <div className="flex items-center gap-4">
                     <div className="relative h-[22px] w-[22px]">
-                      <Image src="/Vector (18).svg" alt="Phone" fill className="object-contain" />
+                      <Image src="/Vector (18).svg" alt="Téléphone" fill className="object-contain" />
                     </div>
                     <span className="font-[Geist] text-[14px] font-medium tracking-[0.05em] text-white sm:text-[15.37px]">
                       +32 474 03 22 66
@@ -145,7 +145,7 @@ export default function Footer() {
 
                   <div className="flex items-center gap-4">
                     <div className="relative h-[15px] w-[22px]">
-                      <Image src="/Vector (18).svg" alt="Email" fill className="object-contain" />
+                      <Image src="/Vector (18).svg" alt="E-mail" fill className="object-contain" />
                     </div>
                     <span className="break-all font-[Geist] text-[14px] font-medium tracking-[0.05em] text-white sm:text-[15.37px]">
                       contact@rnj-advisory.be

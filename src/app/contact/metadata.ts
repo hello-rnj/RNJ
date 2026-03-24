@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact - Cabinet de Conseil Stratégique RNJ Advisory',
+  title: 'Contact | Cabinet de conseil stratégique RNJ Advisory',
   description:
-    "Contactez RNJ Advisory pour votre projet de conseil stratégique et réglementaire. Notre équipe d'experts vous accompagne dans l'analyse institutionnelle, la conformité et le développement économique. Adresse : Avenue Louise 500, Ixelles, Bruxelles. Téléphone : +32 474 03 22 66",
+    "Contactez RNJ Advisory pour votre projet de conseil stratégique et réglementaire. Notre équipe d'experts vous accompagne dans l'analyse institutionnelle, la conformité et le développement économique. Adresse : Avenue Louise 500, Ixelles, Bruxelles. Téléphone : +32 474 03 22 66.",
   keywords: [
     'contact RNJ Advisory',
     'conseil stratégique contact',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     canonical: '/contact',
   },
   openGraph: {
-    title: 'Contactez RNJ Advisory - Conseil Stratégique et Réglementaire',
+    title: 'Contactez RNJ Advisory | Conseil stratégique et réglementaire',
     description:
       'Prenez rendez-vous avec nos experts en conseil stratégique et conformité réglementaire pour sécuriser vos projets.',
     url: 'https://rnj-advisory.be/contact',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         url: '/og-contact.jpg',
         width: 1200,
         height: 630,
-        alt: 'Contact RNJ Advisory - Cabinet de Conseil',
+        alt: 'Contact RNJ Advisory - Cabinet de conseil',
       },
     ],
   },

@@ -71,7 +71,7 @@ export default function ContactPageClient() {
           <div className="absolute inset-0 w-full bg-[#BBCB2E]" />
           <Image
             src="/Frame 391.svg"
-            alt="Contact hero background"
+            alt="Arrière-plan de la page contact"
             fill
             className="object-cover"
             style={{ width: '100%', height: '100%' }}
@@ -127,7 +127,7 @@ export default function ContactPageClient() {
                     <input
                       name="email"
                       type="email"
-                      placeholder="Email*"
+                      placeholder="E-mail*"
                       required
                       className="h-[48px] w-full rounded-[10px] border-2 border-transparent bg-[#F0F3F0] px-4 font-[Geist] text-[14px] font-medium text-[#003300] outline-none transition-colors placeholder:opacity-40 focus:border-[#BBCB2E]"
                     />
@@ -191,7 +191,7 @@ export default function ContactPageClient() {
             </div>
 
             <h2 className="mx-auto max-w-[280px] font-['EB_Garamond'] text-[34px] leading-[0.96] text-[#003300] md:max-w-[420px] md:text-[64px] md:leading-[0.92]">
-              Votre Message A Été Envoyé
+              Votre message a été envoyé
             </h2>
 
             <p className="mx-auto mt-4 max-w-[250px] font-[Geist] text-[11px] leading-[1.45] text-[#003300] md:mt-6 md:max-w-[360px] md:text-[15px] md:leading-[22px]">

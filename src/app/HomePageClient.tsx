@@ -249,10 +249,51 @@ const whyChooseStripCards = [
 ];
 
 const faqItems = [
-  "À qui s'adressent les services de RNJ Advisory ?",
-  'Dans quels pays intervenez-vous ?',
-  'Quels types de projets accompagnez-vous ?',
-  "Comment se déroule une mission d'analyse réglementaire ?",
+  {
+    question: "À qui s'adressent les services de RNJ Advisory ?",
+    answer:
+      "Les services de RNJ Advisory s’adressent aux entrepreneurs, PME, ASBL, investisseurs, bailleurs de fonds, institutions publiques et acteurs privés souhaitant structurer, sécuriser ou développer leurs projets dans un cadre clair, conforme et durable.",
+  },
+  {
+    question: 'Dans quels pays intervenez-vous ?',
+    answer:
+      "RNJ Advisory intervient principalement en Belgique, en Europe, dans la région MENA et en Afrique subsaharienne. Nous accompagnons des projets à dimension locale, transfrontalière ou internationale, selon les enjeux réglementaires, institutionnels et stratégiques de chaque mission.",
+  },
+  {
+    question: 'Quels types de projets accompagnez-vous ?',
+    answer:
+      "Nous accompagnons des projets de création d’entreprise, de structuration d’activité, de conformité réglementaire, d’études institutionnelles, de développement stratégique, d’accompagnement juridique, de durabilité, ainsi que des projets liés à l’implantation en Belgique et aux partenariats internationaux.",
+  },
+  {
+    question: "Comment se déroule une mission d'analyse réglementaire ?",
+    answer:
+      "Chaque mission débute par une phase de cadrage afin de comprendre vos objectifs, votre secteur et votre contexte d’intervention. Nous analysons ensuite le cadre juridique et institutionnel applicable, identifions les risques, obligations et opportunités, puis formulons des recommandations structurées, concrètes et directement exploitables.",
+  },
+  {
+    question: 'Avec quels types d’organisations intervenez-vous ?',
+    answer:
+      "Nous intervenons auprès d’entrepreneurs, de PME, d’ASBL, d’entreprises en croissance, d’institutions publiques, d’organisations privées, d’investisseurs et de bailleurs de fonds. Notre accompagnement s’adapte à la taille de la structure, à son niveau de maturité et à la nature du projet.",
+  },
+  {
+    question: 'Intervenez-vous à l’international ?',
+    answer:
+      "Oui. Nous intervenons principalement en Europe, dans la région MENA et en Afrique subsaharienne, notamment dans le cadre d’études institutionnelles, de réformes réglementaires, de mise en place de projets, de conseils juridiques, d’accompagnement de porteurs de projet hors UE et d’engagement de personnel hors UE.",
+  },
+  {
+    question: 'Comment débute une mission ?',
+    answer:
+      "Chaque mission commence par un échange de cadrage destiné à clarifier vos besoins, vos priorités et le contexte du projet. À l’issue de cette étape, nous définissons le périmètre d’intervention, la méthodologie, les livrables attendus et le calendrier de réalisation.",
+  },
+  {
+    question: 'Confidentialité et sécurité des données ?',
+    answer:
+      "La confidentialité fait partie intégrante de notre méthode de travail. Les informations, documents et échanges confiés à RNJ Advisory sont traités avec la plus grande discrétion, dans un cadre sécurisé et professionnel, conformément aux exigences applicables en matière de confidentialité et de protection des données.",
+  },
+  {
+    question: 'Délais d’exécution ?',
+    answer:
+      "Les délais d’exécution varient selon la nature, la complexité et le niveau d’urgence du projet. Après la phase de cadrage, nous partageons un calendrier clair avec des étapes définies afin d’assurer une exécution rigoureuse, transparente et adaptée à vos impératifs.",
+  },
 ];
 
 const strategicFeatureIcons = [Users2, Leaf, ShieldCheck, Clock3];
@@ -658,7 +699,7 @@ function BusinessServicesSection() {
                   <PhoneCall size={16} strokeWidth={2.2} color="#003300" />
                 </div>
                 <span className="rounded-[100px] bg-white px-[15px] py-[7px] font-[Geist] text-[14px] font-semibold leading-[20px] text-[#003300]">
-                  contact us
+                  Nous contacter
                 </span>
               </button>
             </div>
@@ -705,7 +746,7 @@ function BusinessServicesSection() {
                   <PhoneCall size={19} strokeWidth={2.2} color="#003300" />
                 </div>
                 <span className="rounded-[100px] bg-white px-[17px] py-[7px] font-[Geist] text-[16px] font-semibold leading-[29px] text-[#003300]">
-                  contact us
+                  Nous contacter
                 </span>
               </button>
               </div>
@@ -806,7 +847,7 @@ function RegulationAnalysisSection() {
           <div className="relative h-[280px] w-full sm:h-[360px] md:h-[460px] lg:h-[580.66px]">
             <Image
               src="/light bulb 1 (1).svg"
-              alt="Light bulb - Analyse RÃ©glementaire"
+              alt="Ampoule - Analyse réglementaire"
               fill
               sizes="(min-width: 1024px) 364px, (min-width: 768px) 340px, (min-width: 640px) 300px, 240px"
               className="object-contain"
@@ -909,7 +950,7 @@ export default function Home() {
         >
           <Image
             src="/pexels-jacky-2803806-4532517 1.svg"
-            alt="Background"
+            alt="Arrière-plan"
             width={1518}
             height={1009}
             priority
@@ -930,7 +971,7 @@ export default function Home() {
                 </h1>
 
                 <p
-                  className="mt-4 md:mt-12 text-center font-[Geist] text-white text-[14px] md:text-[16px] font-semibold leading-[1.4] max-w-[90%] md:max-w-[814px]"
+                  className="mt-2 md:mt-8 text-center font-[Geist] text-white text-[14px] md:text-[16px] font-semibold leading-[1.4] max-w-[90%] md:max-w-[814px]"
                 >
                   RNJ Advisory s&apos;associe à des organisations visionnaires pour
                   résoudre des défis critiques, optimiser leurs opérations et créer
@@ -947,7 +988,7 @@ export default function Home() {
                   <span
                     className="text-center font-[Geist] font-semibold text-[#003300] text-[14px] md:text-[16px]"
                   >
-                    Explore Our Services
+                    Découvrir nos services
                   </span>
                 </button>
 
@@ -978,14 +1019,14 @@ export default function Home() {
                   <span
                     className="text-center font-[Geist] text-[#003300] text-[14px] md:text-[16px] font-extrabold"
                   >
-                    Contact an Advisor
+                    Contacter un conseiller
                   </span>
                 </button>
               </div>
             </div>
           </div>
 
-          <div className="absolute inset-x-0 bottom-2 sm:bottom-5 lg:bottom-[68px]">
+          <div className="absolute inset-x-0 bottom-32 sm:bottom-36 lg:bottom-[285px]">
             <div className="mx-auto w-full max-w-[1510px]">
               <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 pr-4 md:gap-5 md:px-6 xl:grid xl:grid-cols-[663px_296px_422px] xl:gap-[19px] xl:overflow-visible xl:px-0 xl:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <div
@@ -1002,7 +1043,7 @@ export default function Home() {
 
                 <div className="flex flex-col items-start gap-2 md:max-w-[336px] md:gap-3 xl:gap-[13px]">
                   <h3 className="font-[Geist] text-[19px] font-medium leading-[1.05] text-white sm:text-[24px] md:text-[26px] xl:text-[32px] md:leading-[1.05] xl:leading-[34px]">
-                    Where sustainability meets strategy.
+                    Quand la durabilité rencontre la stratégie.
                   </h3>
 
                   <p className="font-[Geist] text-[12px] font-medium leading-[1.3] text-white/60 sm:text-[14px] md:text-[15px] xl:text-[16px] xl:leading-[20px]">
@@ -1036,7 +1077,7 @@ export default function Home() {
                     10K+
                   </span>
                   <span className="font-[Geist] text-[18px] font-medium leading-[1.05] text-white/70 sm:text-[22px] md:text-[28px] xl:text-[32px] xl:leading-[42px]">
-                    Customers
+                    Clients
                   </span>
                 </div>
               </div>
@@ -1086,7 +1127,7 @@ export default function Home() {
           >
             <Image
               src="/Rectangle 4.svg"
-              alt="Rectangle 4"
+              alt=""
               fill
               className="object-cover"
             />
@@ -1121,7 +1162,7 @@ export default function Home() {
               </h2>
 
               <p
-                className="text-center text-[#003300] font-[Geist] text-[14px] md:text-[20px] lg:text-[26px] font-medium leading-[1.3] opacity-70 max-w-[90%] md:max-w-[906px] mt-4 md:mt-[90px]"
+                className="text-center text-[#003300] font-[Geist] text-[14px] md:text-[20px] lg:text-[26px] font-medium leading-[1.3] opacity-70 max-w-[90%] md:max-w-[906px] mt-2 md:mt-[56px]"
               >
                 RNJ Advisory s&apos;associe à des organisations visionnaires pour
                 résoudre des défis critiques, optimiser leurs opérations et créer
@@ -1259,9 +1300,9 @@ export default function Home() {
               <p
                 className="max-w-[320px] font-[Geist] text-[14px] font-medium leading-[1.45] text-white/80 sm:max-w-[360px] md:max-w-[615px] md:text-[19px] md:leading-[1.4] md:text-white md:opacity-70"
               >
-                RNJ Advisory partners with forward-thinking organizations to solve
-                critical challenges, optimize operations, and create sustainable
-                value in an evolving global environment.
+                RNJ Advisory accompagne des organisations ambitieuses pour relever
+                des défis complexes, optimiser leurs opérations et créer une
+                valeur durable dans un environnement en constante évolution.
               </p>
             </div>
 
@@ -1270,14 +1311,14 @@ export default function Home() {
                 type="button"
                 className="flex min-h-[74px] min-w-[90px] items-center justify-center rounded-[14px] border-2 border-white px-7 py-4 font-[Geist] text-[16px] font-semibold text-white md:min-h-0 md:rounded-[9px] md:px-6 md:text-[21px]"
               >
-                About
+                À propos
               </button>
 
               <button
                 type="button"
                 className="flex min-h-[68px] min-w-[235px] items-center justify-center rounded-[14px] bg-[#BBCB2E] px-7 py-4 font-[Geist] text-[16px] font-semibold text-[#003300] md:min-h-0 md:rounded-[9px] md:px-6 md:text-[21px]"
               >
-                Request a Consultation
+                Demander une consultation
               </button>
             </div>
           </div>
@@ -1305,15 +1346,15 @@ export default function Home() {
 
                 <div className="flex flex-col items-center gap-6 md:gap-[41px] text-center">
                   <h2 className="max-w-[95%] sm:max-w-[90%] md:max-w-[824px] font-[EB_Garamond] font-extrabold text-[#003300] text-[32px] sm:text-[44px] md:text-[70px] lg:text-[100px] leading-[1.05] md:leading-[0.9]">
-                    Independants &amp; Porteurs de Projet
+                    Indépendants &amp; porteurs de projet
                   </h2>
 
                   <p className="max-w-[95%] sm:max-w-[92%] md:max-w-[998px] font-[Geist] font-medium text-[#003300] text-[14px] sm:text-[16px] md:text-[20px] lg:text-[24px] leading-[1.5] md:leading-[1.4] opacity-50">
-                    Vous etes independant ou envisagez de lancer votre activite ?
+                    Vous êtes indépendant ou envisagez de lancer votre activité ?
                     Vous souhaitez structurer votre projet sur des bases solides,
-                    securisees et durables ? RNJ Advisory vous accompagne dans la
-                    transformation de votre idee en une activite juridiquement
-                    conforme, economiquement viable et prete a se developper.
+                    sécurisées et durables ? RNJ Advisory vous accompagne dans la
+                    transformation de votre idée en une activité juridiquement
+                    conforme, économiquement viable et prête à se développer.
                   </p>
                 </div>
 
@@ -1371,7 +1412,7 @@ export default function Home() {
                   type="button"
                   className="rounded-full bg-[#BBCB2E] px-6 py-3 font-[Geist] font-semibold text-[#003300] text-[16px] md:text-[24px]"
                 >
-                  contact
+                  Contact
                 </button>
               </div>
 
@@ -1541,8 +1582,8 @@ export default function Home() {
                   </div>
 
                   <p className="text-white/60 text-[13px] md:text-[16px] leading-[1.3] mt-4">
-                    Une expertise independante au service de decisions
-                    strategiques securisees.
+                  Une expertise indépendante au service de décisions
+                  stratégiques sécurisées.
                   </p>
 
                   <button
@@ -1557,7 +1598,7 @@ export default function Home() {
                       lineHeight: '16px',
                     }}
                   >
-                    About
+                    À propos
                   </button>
 
                   <button
@@ -1639,7 +1680,7 @@ export default function Home() {
                     className="font-[Geist] font-bold text-[#003300]"
                     style={{ fontSize: 'clamp(16px, 2.5vw, 23.6828px)', lineHeight: 'clamp(20px, 2.8vw, 25px)' }}
                   >
-                    Trustworthy
+                    Fiabilité
                   </span>
                 </div>
 
@@ -1654,7 +1695,7 @@ export default function Home() {
                     }, 150);
                   }}
                 >
-                  contact
+                  Contact
                 </button>
               </div>
 
@@ -1665,15 +1706,15 @@ export default function Home() {
                     style={{ fontSize: 'clamp(14px, 2vw, 16px)', lineHeight: 'clamp(16px, 2.4vw, 18px)', opacity: 0.49 }}
                   >
                     Nous analysons votre environnement institutionnel et
-                    reglementaire afin de securiser vos decisions et garantir la
-                    conformite de vos projets.
+                    réglementaire afin de sécuriser vos décisions et garantir la
+                    conformité de vos projets.
                   </p>
 
                   <h2
                     className="font-[EB_Garamond] font-medium text-[#003300] text-center md:text-left"
                     style={{ fontSize: 'clamp(32px, 5vw, 72.215px)', lineHeight: 'clamp(36px, 4.5vw, 57px)' }}
                   >
-                    Vous portez un projet. Nous securisons son environnement.
+                    Vous portez un projet. Nous sécurisons son environnement.
                   </h2>
                 </div>
 
@@ -1728,10 +1769,10 @@ export default function Home() {
                         opacity: 0.7 
                       }}
                     >
-                      Vous etes ressortissant hors Union europeenne et souhaitez
-                      developper votre activite en Belgique ? RNJ Advisory vous
-                      accompagne a chaque etape de votre installation afin de
-                      securiser votre projet sur les plans juridique, strategique
+                      Vous êtes ressortissant hors Union européenne et souhaitez
+                      développer votre activité en Belgique ? RNJ Advisory vous
+                      accompagne à chaque étape de votre installation afin de
+                      sécuriser votre projet sur les plans juridique, stratégique
                       et administratif.
                     </p>
                   </div>
@@ -1748,7 +1789,7 @@ export default function Home() {
                         }, 150);
                       }}
                     >
-                      About
+                      À propos
                     </button>
 
                     <button
@@ -1788,7 +1829,7 @@ export default function Home() {
                     className="font-[Geist] font-bold text-[#003300]"
                     style={{ fontSize: '20px', lineHeight: '18px', opacity: 0.65 }}
                   >
-                    Une expertise rigoureuse au service de vos dÃ©cisions
+                    Une expertise rigoureuse au service de vos décisions
                   </p>
                 </div>
 
@@ -1842,11 +1883,11 @@ export default function Home() {
                   className="mt-8 font-[Geist] font-semibold text-[#003300]"
                   style={{ fontSize: '16px', lineHeight: '18px', opacity: 0.5 }}
                 >
-                  Choisir RNJ Advisory, c&apos;est bÃ©nÃ©ficier d&apos;une approche
-                  structurÃ©e, indÃ©pendante et orientÃ©e rÃ©sultats. Nous combinons
-                  analyse juridique, comprÃ©hension institutionnelle et vision
-                  stratÃ©gique afin de vous aider Ã  anticiper les risques, assurer
-                  la conformitÃ© de vos projets et prendre des dÃ©cisions Ã©clairÃ©es.
+                  Choisir RNJ Advisory, c&apos;est bénéficier d&apos;une approche
+                  structurée, indépendante et orientée résultats. Nous combinons
+                  analyse juridique, compréhension institutionnelle et vision
+                  stratégique afin de vous aider à anticiper les risques, assurer
+                  la conformité de vos projets et prendre des décisions éclairées.
                 </p>
               </div>
 
@@ -1949,7 +1990,7 @@ export default function Home() {
                     opacity: 0.5
                   }}
                 >
-                  Choisir RNJ Advisory, c&apos;est bÃ©nÃ©ficier d&apos;une approche structurÃ©e, indÃ©pendante et orientÃ©e rÃ©sultats. Nous combinons analyse juridique, comprÃ©hension institutionnelle et vision stratÃ©gique afin de vous aider Ã  anticiper les risques, assurer la conformitÃ© de vos projets et prendre des dÃ©cisions Ã©clairÃ©es.
+                  Choisir RNJ Advisory, c&apos;est bénéficier d&apos;une approche structurée, indépendante et orientée résultats. Nous combinons analyse juridique, compréhension institutionnelle et vision stratégique afin de vous aider à anticiper les risques, assurer la conformité de vos projets et prendre des décisions éclairées.
                 </p>
               </div>
             </section>
@@ -2584,7 +2625,7 @@ export default function Home() {
                         letterSpacing: '-0.05em'
                       }}
                     >
-                      Partenaires de rÃ©fÃ©rence
+                      Partenaires de référence
                     </h3>
                     
                     {/* Partners Description */}
@@ -2604,7 +2645,7 @@ export default function Home() {
                         opacity: 0.5
                       }}
                     >
-                      Un rÃ©seau solide pour vos projets
+                      Un réseau solide pour vos projets
                     </p>
                     
                     {/* Contact Button */}
@@ -2657,7 +2698,7 @@ export default function Home() {
                           padding: '7px 18px 6px'
                         }}
                       >
-                        contact
+                        Contact
                       </span>
                     </button>
                   </div>
@@ -2693,7 +2734,7 @@ export default function Home() {
                   opacity: 0.5
                 }}
               >
-                &copy; 2026 RNJ Advisory. Tous droits rÃ©servÃ©s.
+                &copy; 2026 RNJ Advisory. Tous droits réservés.
               </p>
               </section>
               </>
@@ -2777,14 +2818,14 @@ export default function Home() {
                               <div className="flex flex-col items-start gap-1.5 sm:gap-2 md:w-[193px] md:gap-[9px]">
                                 <div className="flex flex-col items-start gap-0.5 sm:gap-1 md:gap-[3px]">
                                   <h3 className="font-[Geist] text-[18px] font-normal leading-[1] text-white sm:text-[24px] md:text-[31.2663px] md:leading-[32px]">
-                                    Tunisia
+                                    Tunisie
                                   </h3>
                                   <p className="font-[Geist] text-[18px] font-bold leading-[1] text-white sm:text-[24px] md:text-[31.2663px] md:leading-[32px]">
-                                    45 Project
+                                    45 projets
                                   </p>
                                 </div>
                                 <p className="font-[Geist] text-[11px] font-medium leading-[1.2] text-white/50 sm:text-[14px] md:text-[17.3096px] md:leading-[20px]">
-                                  Strategic &amp; Regulatory Advisory
+                                  Conseil stratégique &amp; réglementaire
                                 </p>
                               </div>
                             </div>
@@ -2837,7 +2878,7 @@ export default function Home() {
                         className="font-[Geist] font-semibold text-white"
                         style={{ fontSize: 'clamp(16px, 1.8vw, 21.3092px)' }}
                       >
-                        About
+                        À propos
                       </span>
                     </button>
                     
@@ -2858,7 +2899,7 @@ export default function Home() {
                           color: '#003300' 
                         }}
                       >
-                        <span className="hidden sm:inline">Request a Consultation</span>
+                        <span className="hidden sm:inline">Demander une consultation</span>
                         <span className="sm:hidden">Consultation</span>
                       </span>
                     </button>
@@ -2991,12 +3032,12 @@ export default function Home() {
                   <div className="flex w-full flex-col gap-[10px]">
                     {faqItems.map((item, index) => (
                       <div
-                        key={item}
+                        key={item.question}
                         className="flex w-full cursor-pointer flex-col rounded-[18px] transition-all duration-300 sm:rounded-[22px]"
                         style={{
                           backgroundColor: '#BBCB2E',
                           opacity: hoveredFaqIndex === index || expandedFaqIndex === index ? 1 : 0.5,
-                          minHeight: expandedFaqIndex === index ? '132px' : '88px',
+                          minHeight: expandedFaqIndex === index ? '160px' : '88px',
                           padding: expandedFaqIndex === index ? '22px 18px 24px 18px' : '26px 18px',
                           gap: expandedFaqIndex === index ? '15px' : '10px',
                           alignItems: expandedFaqIndex === index ? 'flex-start' : 'center',
@@ -3011,7 +3052,7 @@ export default function Home() {
                             className="pr-3 text-left font-[Geist] font-normal text-[#003300] sm:text-center"
                             style={{ fontSize: 'clamp(15px, 3.6vw, 20px)', lineHeight: 'clamp(22px, 4.8vw, 25px)' }}
                           >
-                            {item}
+                            {item.question}
                           </span>
 
                           <span 
@@ -3019,12 +3060,11 @@ export default function Home() {
                             style={{ 
                               width: '22px', 
                               height: '11px',
-                              transform: expandedFaqIndex === index ? 'rotate(180deg)' : 'rotate(0deg)',
                             }}
                           >
                             <Image
-                              src="/Vector (19).svg"
-                              alt="Expand"
+                              src={expandedFaqIndex === index ? '/Group 67.svg' : '/Vector (20).svg'}
+                              alt={expandedFaqIndex === index ? 'Réduire' : 'Développer'}
                               fill
                               className="object-contain"
                               style={{ opacity: 0.5 }}
@@ -3038,7 +3078,7 @@ export default function Home() {
                             className="max-w-full font-[Geist] font-normal text-[#003300]"
                             style={{ fontSize: 'clamp(14px, 3.2vw, 16px)', lineHeight: 'clamp(20px, 4.2vw, 22px)', marginTop: '4px' }}
                           >
-                            Réponse à la question : {item}
+                            {item.answer}
                           </p>
                         )}
                       </div>
