@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
@@ -13,15 +13,23 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#F7FCFF",
+};
+
 export const metadata: Metadata = {
   title: {
-    default: "RNJ Advisory - Cabinet de Conseil Stratégique et Réglementaire",
-    template: "%s | RNJ Advisory"
+    default: "RNJ Advisory - Cabinet de conseil stratégique et réglementaire",
+    template: "%s | RNJ Advisory",
   },
-  description: "Cabinet de conseil stratégique et réglementaire spécialisé dans l'analyse institutionnelle, la conformité réglementaire et le développement économique durable. Accompagnement des acteurs publics, entreprises privées et investisseurs.",
+  description:
+    "Cabinet de conseil stratégique et réglementaire spécialisé dans l'analyse institutionnelle, la conformité réglementaire et le développement économique durable. Accompagnement des acteurs publics, entreprises privées et investisseurs.",
   keywords: [
     "conseil stratégique",
-    "conformité réglementaire", 
+    "conformité réglementaire",
     "analyse institutionnelle",
     "développement économique",
     "acteurs publics",
@@ -30,32 +38,39 @@ export const metadata: Metadata = {
     "RNJ Advisory",
     "Tunisie",
     "Europe",
-    "Afrique du Nord"
+    "Afrique du Nord",
   ],
   authors: [{ name: "RNJ Advisory" }],
   creator: "RNJ Advisory",
   publisher: "RNJ Advisory",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "RNJ Advisory",
+  },
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://rnj-advisory.be'),
+  metadataBase: new URL("https://rnj-advisory.be"),
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   openGraph: {
-    type: 'website',
-    locale: 'fr_FR',
-    url: 'https://rnj-advisory.be',
-    title: 'RNJ Advisory - Cabinet de Conseil Stratégique et Réglementaire',
-    description: 'Cabinet de conseil stratégique et réglementaire spécialisé dans l\'analyse institutionnelle et la conformité réglementaire.',
-    siteName: 'RNJ Advisory',
+    type: "website",
+    locale: "fr_FR",
+    url: "https://rnj-advisory.be",
+    title: "RNJ Advisory - Cabinet de conseil stratégique et réglementaire",
+    description:
+      "Cabinet de conseil stratégique et réglementaire spécialisé dans l'analyse institutionnelle et la conformité réglementaire.",
+    siteName: "RNJ Advisory",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'RNJ Advisory - Cabinet de Conseil Stratégique',
-    description: 'Conseil stratégique et réglementaire pour acteurs publics, entreprises et investisseurs.',
+    card: "summary_large_image",
+    title: "RNJ Advisory - Cabinet de conseil stratégique",
+    description:
+      "Conseil stratégique et réglementaire pour acteurs publics, entreprises et investisseurs.",
   },
   robots: {
     index: true,
@@ -63,13 +78,13 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': 150,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": 150,
     },
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: "your-google-verification-code",
   },
 };
 
