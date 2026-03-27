@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 export default function Navbar() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const services = [
     'Analyse institutionnelle',
@@ -15,64 +16,60 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="absolute top-12 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-6xl">
-      <div className="bg-[#F7FCFF] rounded-3xl shadow-lg px-6 py-3 flex items-center justify-between">
-        
-        {/* Logo Section */}
-        <div className="flex items-center gap-12">
+    <nav className="absolute left-1/2 top-4 z-50 w-[95%] -translate-x-1/2 md:top-12 md:w-[90%] lg:w-[1450px]">
+      <div
+        className="flex flex-row items-center justify-between bg-[#F7FCFF] px-4 py-3 md:px-6 md:py-3.5"
+        style={{
+          boxShadow: '0px 3.23873px 28.9866px rgba(0, 51, 0, 0.25)',
+          borderRadius: '16px',
+        }}
+      >
+        <Link href="/">
           <Image
             src="/Group (2).svg"
             alt="Logo"
-            width={39}
-            height={41}
+            width={32}
+            height={34}
+            className="md:h-[41px] md:w-[39px]"
             priority
           />
-        </div>
+        </Link>
 
-        {/* Navigation Links - Frame 11 */}
-        <div className="flex items-center gap-[144px] w-[258px] h-5">
-          {/* Home */}
-          <Link 
-            href="/" 
-            className="w-12 h-5 text-[#003300] font-semibold text-[17.13px] text-center leading-[19px] hover:opacity-75 transition z-0"
+        <div className="hidden flex-row items-center gap-7 lg:flex">
+          <Link
+            href="/"
+            className="text-center font-[Geist] text-[15px] font-semibold text-[#003300] transition hover:opacity-75 md:text-[17px]"
           >
-            Home
+            Accueil
           </Link>
-          
-          {/* Insights */}
-          <button 
-            className="w-[66px] h-5 text-[#003300] font-semibold text-[17.13px] text-center leading-[19px] opacity-50 hover:opacity-75 transition z-10"
-          >
-            Insights
-          </button>
 
-          {/* Group 420 - Services with Dropdown */}
-          <div className="relative w-[94.61px] h-[20.35px]">
+          <div className="relative">
             <button
+              type="button"
               onClick={() => setIsServicesOpen(!isServicesOpen)}
-              className="flex items-center gap-[6.95px] w-full h-full text-[#003300] font-semibold text-[17.43px] leading-[19px] opacity-50 hover:opacity-75 transition"
+              className="flex items-center gap-1.5 text-center font-[Geist] text-[15px] font-semibold text-[#003300] opacity-50 transition hover:opacity-75 md:text-[17px]"
             >
-              <span className="w-[73px]">Services</span>
-              <svg 
-                width="11.81" 
-                height="5.56" 
-                viewBox="0 0 12 6" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2.7781"
+              <span>Services</span>
+              <svg
+                width="12"
+                height="6"
+                viewBox="0 0 12 6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
                 className={`transition-transform ${isServicesOpen ? 'rotate-0' : 'rotate-180'}`}
               >
-                <path d="M1 5 L6 1 L11 5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M1 5 L6 1 L11 5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
 
-            {/* Group 421 - Dropdown Menu */}
             {isServicesOpen && (
-              <div className="absolute top-full left-0 mt-2 bg-[#F7FCFF] rounded-lg shadow-lg overflow-hidden z-20 border border-[#003300]/10">
+              <div className="absolute left-0 top-full z-20 mt-2 min-w-[200px] overflow-hidden rounded-lg border border-[#003300]/10 bg-[#F7FCFF] shadow-lg">
                 {services.map((service, index) => (
                   <button
                     key={index}
-                    className="block w-full text-left px-3 py-2 text-[#003300] text-xs font-medium hover:bg-[#BBCB2E]/10 transition border-b border-[#003300]/9 last:border-b-0"
+                    type="button"
+                    className="block w-full border-b border-[#003300]/5 px-4 py-3 text-left text-sm font-medium text-[#003300] transition last:border-b-0 hover:bg-[#BBCB2E]/10"
                   >
                     {service}
                   </button>
@@ -80,19 +77,142 @@ export default function Navbar() {
               </div>
             )}
           </div>
+
+          <button
+            type="button"
+            className="text-center font-[Geist] text-[15px] font-semibold text-[#003300] opacity-50 transition hover:opacity-75 md:text-[17px]"
+          >
+            Projets
+          </button>
+
+          <button
+            type="button"
+            className="text-center font-[Geist] text-[15px] font-semibold text-[#003300] opacity-50 transition hover:opacity-75 md:text-[17px]"
+          >
+            À propos
+          </button>
         </div>
 
-        {/* Buttons Section */}
-        <div className="flex items-center gap-2.5">
-          <button className="px-4 py-2.5 border-2 border-[#003300] rounded-xl text-[#003300] font-semibold text-sm hover:bg-[#003300]/5 transition">
-            About
+        <div className="hidden flex-row items-center gap-2.5 lg:flex">
+          <button
+            type="button"
+            className="flex items-center justify-center rounded-[10px] border-[1.5px] border-[#003300] px-4 py-2.5 text-center font-[Geist] text-[14px] font-semibold text-[#003300] transition hover:bg-[#003300]/5 md:text-[15px]"
+          >
+            À propos
           </button>
-          
-          <button className="px-4 py-2.5 bg-[#BBCB2E] rounded-xl text-[#003300] font-bold text-sm hover:bg-[#BBCB2E]/90 transition">
+
+          <Link
+            href="/contact"
+            className="flex items-center justify-center rounded-[10px] bg-[#BBCB2E] px-4 py-2.5 text-center font-[Geist] text-[14px] font-extrabold text-[#003300] transition hover:bg-[#BBCB2E]/90 md:text-[15px]"
+          >
             Contact
-          </button>
+          </Link>
         </div>
+
+        <button
+          type="button"
+          className="flex flex-col items-center justify-center gap-1.5 p-2 lg:hidden"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <span
+            className={`block h-0.5 w-6 bg-[#003300] transition-transform ${
+              isMobileMenuOpen ? 'translate-y-2 rotate-45' : ''
+            }`}
+          />
+          <span
+            className={`block h-0.5 w-6 bg-[#003300] transition-opacity ${
+              isMobileMenuOpen ? 'opacity-0' : ''
+            }`}
+          />
+          <span
+            className={`block h-0.5 w-6 bg-[#003300] transition-transform ${
+              isMobileMenuOpen ? '-translate-y-2 -rotate-45' : ''
+            }`}
+          />
+        </button>
       </div>
+
+      {isMobileMenuOpen && (
+        <div
+          className="mt-2 rounded-2xl bg-[#F7FCFF] p-4 shadow-lg lg:hidden"
+          style={{ boxShadow: '0px 3px 20px rgba(0, 51, 0, 0.2)' }}
+        >
+          <div className="flex flex-col gap-4">
+            <Link
+              href="/"
+              className="border-b border-[#003300]/10 py-2 font-[Geist] text-lg font-semibold text-[#003300]"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Accueil
+            </Link>
+
+            <div>
+              <button
+                type="button"
+                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                className="flex w-full items-center justify-between border-b border-[#003300]/10 py-2 font-[Geist] text-lg font-semibold text-[#003300]"
+              >
+                <span>Services</span>
+                <svg
+                  width="12"
+                  height="6"
+                  viewBox="0 0 12 6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  className={`transition-transform ${isServicesOpen ? 'rotate-0' : 'rotate-180'}`}
+                >
+                  <path d="M1 5 L6 1 L11 5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              {isServicesOpen && (
+                <div className="mt-2 flex flex-col gap-2 pl-4">
+                  {services.map((service, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      className="py-2 text-left text-sm font-medium text-[#003300] opacity-70 hover:opacity-100"
+                    >
+                      {service}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <button
+              type="button"
+              className="border-b border-[#003300]/10 py-2 text-left font-[Geist] text-lg font-semibold text-[#003300]"
+            >
+              Projets
+            </button>
+
+            <button
+              type="button"
+              className="border-b border-[#003300]/10 py-2 text-left font-[Geist] text-lg font-semibold text-[#003300]"
+            >
+              À propos
+            </button>
+
+            <div className="mt-2 flex flex-col gap-3">
+              <button
+                type="button"
+                className="w-full rounded-xl border-[1.5px] border-[#003300] py-3 text-center font-[Geist] font-semibold text-[#003300]"
+              >
+                À propos
+              </button>
+              <Link
+                href="/contact"
+                className="w-full rounded-xl bg-[#BBCB2E] py-3 text-center font-[Geist] font-extrabold text-[#003300]"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Contact
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

@@ -1250,8 +1250,8 @@ export default function Home() {
             </div>
           </div>
 
-            <div className="absolute inset-x-0 -bottom-20 sm:-bottom-12 md:-bottom-8 lg:-bottom-4 xl:bottom-[25px] 2xl:bottom-[125px]">
-            <div className="mx-auto w-full max-w-[1510px]">
+					            <div className="absolute inset-x-0 -bottom-20 sm:-bottom-16 md:-bottom-12 lg:-bottom-10 xl:-bottom-16 2xl:-bottom-24">
+				            <div className="mx-auto w-full max-w-[1510px]">
               <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 pr-4 sm:gap-4 sm:px-5 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-6 md:pb-0 2xl:grid-cols-[663px_296px_422px] 2xl:gap-[19px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <div
                 className="flex min-h-[196px] min-w-[248px] max-w-[248px] snap-start flex-col gap-3 rounded-[26px] border border-white/15 bg-[rgba(0,0,0,0.08)] p-3 text-white shadow-[0px_5px_31.8px_rgba(0,0,0,0.27)] backdrop-blur-[10px] sm:min-h-[236px] sm:min-w-[320px] sm:max-w-[320px] sm:gap-4 sm:rounded-[34px] sm:p-4 md:col-span-2 md:min-h-[260px] md:min-w-0 md:max-w-none md:w-full md:flex-row md:items-center md:gap-6 md:rounded-[40px] md:p-4 lg:gap-8 lg:rounded-[50px] lg:p-[14px] 2xl:col-span-1 2xl:w-[663px]"
@@ -1425,8 +1425,8 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="flex flex-col items-center gap-3 md:gap-[17px] xl:gap-[17.15px]">
-                    <h3 className="text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px] xl:text-[29.0222px] xl:leading-[29px]">
+                  <div className="flex flex-col items-center gap-3 md:gap-[17px] xl:w-[372.18px] xl:gap-[17.15px]">
+                    <h3 className="max-w-[291.71px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px] xl:text-[29.0222px] xl:leading-[29px]">
                       Expertise Certifiée
                     </h3>
 
@@ -1453,8 +1453,8 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="flex flex-col items-center gap-3 md:gap-[17px] xl:gap-[17.15px]">
-                    <h3 className="text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px] xl:text-[29.0222px] xl:leading-[29px]">
+                  <div className="flex flex-col items-center gap-3 md:gap-[17px] xl:w-[372.18px] xl:gap-[17.15px]">
+                    <h3 className="max-w-[189.63px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px] xl:text-[29.0222px] xl:leading-[29px]">
                       Approche Sur-Mesure
                     </h3>
 
@@ -1481,8 +1481,8 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="flex flex-col items-center gap-3 md:gap-[17px] xl:gap-[17.15px]">
-                    <h3 className="text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px] xl:text-[29.0222px] xl:leading-[29px]">
+                  <div className="flex flex-col items-center gap-3 md:gap-[17px] xl:w-[372.18px] xl:gap-[17.15px]">
+                    <h3 className="max-w-[291.71px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px] xl:text-[29.0222px] xl:leading-[29px]">
                       Vision Durable
                     </h3>
 
@@ -3444,4 +3444,3 @@ export default function Home() {
     </main>
   );
 }
-
