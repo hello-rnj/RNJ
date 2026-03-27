@@ -1250,7 +1250,7 @@ export default function Home() {
             </div>
           </div>
 
-					            <div className="absolute inset-x-0 -bottom-20 sm:-bottom-16 md:-bottom-12 lg:-bottom-10 xl:-bottom-16 2xl:-bottom-24">
+					            <div className="absolute inset-x-0 -bottom-24 sm:-bottom-20 md:-bottom-16 lg:-bottom-14 xl:-bottom-24 2xl:-bottom-32">
 				            <div className="mx-auto w-full max-w-[1510px]">
               <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 pr-4 sm:gap-4 sm:px-5 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-6 md:pb-0 2xl:grid-cols-[663px_296px_422px] 2xl:gap-[19px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <div
