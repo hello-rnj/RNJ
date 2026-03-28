@@ -1364,39 +1364,13 @@ export default function Home() {
               className="object-cover object-center xl:hidden"
             />
             <Image
-              src="/Frame 535.svg"
+              src="/Frame 535.png"
               alt=""
-              fill
-              sizes="100vw"
-              className="hidden object-cover object-center xl:block"
+              width={1798}
+              height={1667}
+              sizes="1798px"
+              className="absolute left-[-115px] top-[-54px] hidden max-w-none xl:block"
             />
-          </div>
-
-          <div
-            className="absolute left-1/2 top-0 hidden -translate-x-1/2 xl:block"
-            style={{
-              width: '1513px',
-              height: '1667px',
-              pointerEvents: 'none',
-            }}
-          >
-            <div
-              className="absolute"
-              style={{
-                width: '1798px',
-                height: '1896.72px',
-                left: '-115px',
-                top: '-54px',
-              }}
-            >
-              {glowShapes.map((shape, index) => (
-                <div
-                  key={`${shape.left}-${shape.top}-${index}`}
-                  className="absolute rounded-full"
-                  style={shape}
-                />
-              ))}
-            </div>
           </div>
 
           <div className="relative mx-auto w-full max-w-[1510px] px-4 py-12 md:px-6 md:py-16 xl:max-w-[1526px] xl:px-0 xl:py-0">
