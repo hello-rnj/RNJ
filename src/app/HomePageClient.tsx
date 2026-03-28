@@ -1349,7 +1349,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full overflow-hidden min-h-[980px] md:min-h-[1500px] lg:min-h-[1627px] xl:max-w-[1526px]">
+        <div className="relative w-full overflow-hidden min-h-[980px] md:min-h-[1500px] lg:min-h-[1450px] xl:min-h-[1500px] 2xl:min-h-[1627px]">
           <div
             className="absolute inset-0 lg:hidden"
             style={{
@@ -1365,15 +1365,95 @@ export default function Home() {
             />
           </div>
 
-          <div className="absolute inset-0 hidden lg:block">
+          <div
+            className="absolute inset-0 hidden lg:block bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/Frame 535 (1).svg')",
+              backgroundSize: 'cover',
+            }}
+          >
+          </div>
+
+          <div
+            className="absolute hidden 2xl:block"
+            style={{
+              width: '922px',
+              height: '319.5px',
+              left: 'calc(50% - 922px/2 - 1px)',
+              top: '208px',
+            }}
+          >
             <Image
-              src="/Frame 49 (1).svg"
-              alt="Expertise reconnue et résultats prouvés"
+              src="/Frame 20.svg"
+              alt="Expertise Reconnue et Résultats Prouvés"
               fill
-              sizes="1526px"
-              className="object-cover object-center"
+              sizes="922px"
+              className="object-contain"
               priority={false}
             />
+          </div>
+
+          <div
+            className="absolute left-1/2 hidden -translate-x-1/2 2xl:block 2xl:top-[706.81px]"
+            style={{
+              width: 'min(1392px, calc(100% - 32px))',
+              aspectRatio: '1392 / 524.38',
+              filter: 'drop-shadow(0px 3.84163px 30.4449px rgba(0, 0, 0, 0.25))',
+            }}
+          >
+            <Image
+              src="/Frame 30 (1).svg"
+              alt="Expertise certifiée, approche sur-mesure et vision durable"
+              fill
+              sizes="(min-width: 1530px) 1392px, calc(100vw - 32px)"
+              className="object-contain"
+              priority={false}
+            />
+          </div>
+
+          <p
+            className="absolute left-1/2 hidden w-[calc(100%_-_32px)] max-w-[1193px] -translate-x-1/2 text-center font-[Geist] font-normal text-white opacity-50 2xl:block 2xl:top-[1369px] 2xl:text-[23.6828px] 2xl:leading-[25px]"
+          >
+            RNJ Advisory combines certified expertise, tailored strategy, and a
+            long-term sustainable vision to deliver secure, high-impact
+            decisions. Our approach ensures regulatory compliance, measurable
+            performance, and responsible growth aligned with each
+            organization&apos;s strategic objectives.
+          </p>
+
+          <div className="relative mx-auto hidden w-full max-w-[1120px] px-6 pb-16 pt-28 lg:block 2xl:hidden">
+            <div className="relative mx-auto w-full max-w-[760px] [aspect-ratio:922/319.5]">
+              <Image
+                src="/Frame 20.svg"
+                alt="Expertise Reconnue et Résultats Prouvés"
+                fill
+                sizes="(min-width: 1024px) 760px, 100vw"
+                className="object-contain"
+                priority={false}
+              />
+            </div>
+
+            <div
+              className="relative mx-auto mt-12 w-full max-w-[992px] [aspect-ratio:1392/524.38]"
+              style={{ filter: 'drop-shadow(0px 3.84163px 30.4449px rgba(0, 0, 0, 0.25))' }}
+            >
+              <Image
+                src="/Frame 30 (1).svg"
+                alt="Expertise certifiée, approche sur-mesure et vision durable"
+                fill
+                sizes="(min-width: 1024px) 992px, 100vw"
+                className="object-contain"
+                priority={false}
+              />
+            </div>
+
+            <p className="mx-auto mt-10 max-w-[900px] text-center font-[Geist] text-[18px] font-normal leading-[22px] text-white opacity-50">
+              RNJ Advisory combines certified expertise, tailored strategy, and a
+              long-term sustainable vision to deliver secure, high-impact
+              decisions. Our approach ensures regulatory compliance, measurable
+              performance, and responsible growth aligned with each
+              organization&apos;s strategic objectives.
+            </p>
           </div>
 
           <div className="relative mx-auto w-full max-w-[1510px] px-4 py-12 md:px-6 md:py-16 lg:hidden">
@@ -1520,7 +1600,7 @@ export default function Home() {
             </div>
 
             <p
-              className="mx-auto mt-10 max-w-[90%] px-4 text-center font-[Geist] text-[14px] font-normal leading-[1.4] text-white opacity-50 md:mt-12 md:max-w-[980px] md:px-0 md:text-[18px] xl:absolute xl:left-[157px] xl:top-[1369px] xl:mt-0 xl:max-w-[1193px] xl:px-0 xl:text-left xl:text-[23.6828px] xl:leading-[25px]"
+              className="mx-auto mt-10 max-w-[90%] px-4 text-center font-[Geist] text-[14px] font-normal leading-[1.4] text-white opacity-50 md:mt-12 md:max-w-[980px] md:px-0 md:text-[18px]"
             >
               RNJ Advisory conjugue expertise certifiée, approche sur mesure et
               vision durable afin d&apos;éclairer des décisions sûres, structurées
