@@ -11,120 +11,127 @@ const glowShapes = [
   {
     width: '404.34px',
     height: '423.25px',
-    left: '798.7px',
-    top: '208.27px',
+    left: '913.7px',
+    top: '262.27px',
     background: '#BBCB2E',
     filter: 'blur(160.282px)',
   },
   {
     width: '743.57px',
     height: '572.38px',
-    left: '8.93px',
-    top: '231.38px',
+    left: '123.93px',
+    top: '285.38px',
     background: '#BBCB2E',
     filter: 'blur(160.282px)',
   },
   {
     width: '534.82px',
     height: '411.69px',
-    left: '-113.95px',
-    top: '9.78px',
+    left: '1.05px',
+    top: '63.78px',
     background: '#BBCB2E',
     filter: 'blur(115.285px)',
   },
   {
     width: '881.15px',
     height: '889.55px',
-    left: '246.28px',
-    top: '-37.48px',
+    left: '361.28px',
+    top: '16.52px',
     background: '#F9FFC4',
     filter: 'blur(248.223px)',
   },
   {
     width: '742.52px',
     height: '726.76px',
-    left: '246.28px',
-    top: '-37.48px',
+    left: '361.28px',
+    top: '16.52px',
     background: '#F9FFC4',
     filter: 'blur(248.223px)',
   },
   {
     width: '467.35px',
     height: '457.9px',
-    left: '591.81px',
-    top: '339.55px',
+    left: '706.81px',
+    top: '393.55px',
     background: '#F9FFC4',
     filter: 'blur(248.223px)',
   },
   {
+    width: '276.21px',
+    height: '269.91px',
+    left: '966.21px',
+    top: '636.15px',
+    background: '#F9FFC4',
+  },
+  {
     width: '502.01px',
     height: '437.95px',
-    left: '928.93px',
-    top: '353.2px',
+    left: '1043.93px',
+    top: '407.2px',
     background: '#F9FFC4',
     filter: 'blur(248.223px)',
   },
   {
     width: '350.78px',
     height: '350.78px',
-    left: '-115px',
-    top: '125.3px',
+    left: '0px',
+    top: '179.3px',
     background: '#BBCB2E',
     filter: 'blur(306.248px)',
   },
   {
     width: '412.74px',
     height: '425.34px',
-    left: '-75.09px',
-    top: '476.08px',
+    left: '39.91px',
+    top: '530.08px',
     background: '#839705',
     filter: 'blur(318.798px)',
   },
   {
     width: '673.2px',
     height: '693.15px',
-    left: '813.41px',
-    top: '-54.29px',
+    left: '928.41px',
+    top: '-0.29px',
     background: '#003300',
     filter: 'blur(413.257px)',
   },
   {
     width: '834.94px',
     height: '859.09px',
-    left: '848.06px',
-    top: '975.99px',
+    left: '963.06px',
+    top: '1029.99px',
     background: '#F5FFA1',
     filter: 'blur(413.257px)',
   },
   {
     width: '599.68px',
     height: '617.54px',
-    left: '-79.29px',
-    top: '1224.9px',
+    left: '35.71px',
+    top: '1278.9px',
     background: '#BBCB2E',
     filter: 'blur(413.257px)',
   },
   {
     width: '673.2px',
     height: '693.15px',
-    left: '15.23px',
-    top: '582.15px',
+    left: '130.23px',
+    top: '636.15px',
     background: '#003300',
     filter: 'blur(413.257px)',
   },
   {
     width: '412.74px',
     height: '425.34px',
-    left: '1180.99px',
-    top: '126.35px',
+    left: '1295.99px',
+    top: '180.35px',
     background: '#839705',
     filter: 'blur(318.798px)',
   },
   {
     width: '169.09px',
     height: '174.34px',
-    left: '1368.98px',
-    top: '208.27px',
+    left: '1483.98px',
+    top: '262.27px',
     background: '#839705',
     filter: 'blur(158.533px)',
   },
@@ -1250,9 +1257,9 @@ export default function Home() {
             </div>
           </div>
 
-					            <div className="absolute inset-x-0 -bottom-24 sm:-bottom-20 md:-bottom-16 lg:-bottom-14 xl:-bottom-24 2xl:-bottom-32">
+					            <div className="hero-cards-wrapper absolute inset-x-0 bottom-[24px] sm:bottom-[28px] md:bottom-[32px] lg:bottom-[36px] xl:bottom-[40px] 2xl:bottom-[28px]">
 				            <div className="mx-auto w-full max-w-[1510px]">
-              <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 pr-4 sm:gap-4 sm:px-5 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-6 md:pb-0 2xl:grid-cols-[663px_296px_422px] 2xl:gap-[19px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              <div className="hero-cards-track flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 pr-4 sm:gap-4 sm:px-5 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-6 md:pb-0 2xl:grid-cols-[663px_296px_422px] 2xl:gap-[19px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <div
                 className="flex min-h-[196px] min-w-[248px] max-w-[248px] snap-start flex-col gap-3 rounded-[26px] border border-white/15 bg-[rgba(0,0,0,0.08)] p-3 text-white shadow-[0px_5px_31.8px_rgba(0,0,0,0.27)] backdrop-blur-[10px] sm:min-h-[236px] sm:min-w-[320px] sm:max-w-[320px] sm:gap-4 sm:rounded-[34px] sm:p-4 md:col-span-2 md:min-h-[260px] md:min-w-0 md:max-w-none md:w-full md:flex-row md:items-center md:gap-6 md:rounded-[40px] md:p-4 lg:gap-8 lg:rounded-[50px] lg:p-[14px] 2xl:col-span-1 2xl:w-[663px]"
               >
@@ -1326,7 +1333,7 @@ export default function Home() {
         </div>
 
         <div className="relative w-full bg-[rgba(0,0,0,0.004)] py-6 md:py-[26.2558px]">
-          <div className="mx-auto flex w-full max-w-[1536px] flex-wrap items-center justify-center gap-x-8 gap-y-6 px-4 md:gap-x-12 lg:gap-x-[112.37px]">
+          <div className="mx-auto flex w-full max-w-[1536px] flex-nowrap items-center justify-start gap-8 overflow-x-auto px-4 md:justify-center md:gap-12 md:overflow-visible md:px-0 lg:gap-[112.37px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {logoStripItems.map((logo) => (
               <div
                 key={logo.src}
@@ -1342,7 +1349,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative w-full overflow-hidden min-h-[980px] md:min-h-[1500px] xl:min-h-[1609px]">
+        <div className="relative mx-auto w-full overflow-hidden min-h-[980px] md:min-h-[1500px] xl:min-h-[1627px] xl:max-w-[1526px]">
           <div
             className="absolute inset-0"
             style={{
@@ -1366,29 +1373,38 @@ export default function Home() {
           </div>
 
           <div
-            className="absolute left-1/2 -translate-x-1/2 hidden xl:block"
+            className="absolute left-1/2 top-0 hidden -translate-x-1/2 xl:block"
             style={{
-              width: '1798px',
-              height: '1896.72px',
-              top: '-54.29px',
+              width: '1513px',
+              height: '1667px',
               pointerEvents: 'none',
             }}
           >
-            {glowShapes.map((shape, index) => (
-              <div
-                key={`${shape.left}-${shape.top}-${index}`}
-                className="absolute rounded-full"
-                style={shape}
-              />
-            ))}
+            <div
+              className="absolute"
+              style={{
+                width: '1798px',
+                height: '1896.72px',
+                left: '-115px',
+                top: '-54px',
+              }}
+            >
+              {glowShapes.map((shape, index) => (
+                <div
+                  key={`${shape.left}-${shape.top}-${index}`}
+                  className="absolute rounded-full"
+                  style={shape}
+                />
+              ))}
+            </div>
           </div>
 
-          <div className="relative xl:absolute left-0 xl:left-1/2 top-0 w-full xl:w-[1510px] xl:-translate-x-1/2 px-4 md:px-6 xl:px-0 py-12 md:py-16 xl:py-0">
+          <div className="relative mx-auto w-full max-w-[1510px] px-4 py-12 md:px-6 md:py-16 xl:max-w-[1526px] xl:px-0 xl:py-0">
             <div
-              className="flex flex-col items-center gap-6 md:gap-8 xl:gap-[35.5px] xl:absolute xl:left-1/2 xl:-translate-x-1/2 xl:top-[208px]"
+              className="flex flex-col items-center gap-6 md:gap-8 xl:absolute xl:left-1/2 xl:top-[208px] xl:w-[922px] xl:-translate-x-1/2 xl:gap-[35.5px]"
             >
                 <h2
-                  className="text-center text-[#003300] font-['EB_Garamond'] text-[36px] md:text-[62px] lg:text-[78px] xl:text-[100px] font-medium leading-[1.1] md:leading-[0.92] xl:leading-[0.85] max-w-[90%] md:max-w-[964px]"
+                  className="text-center text-[#003300] font-['EB_Garamond'] text-[36px] md:text-[62px] lg:text-[78px] xl:text-[117.641px] font-medium leading-[1.1] md:leading-[0.92] xl:leading-[98px] max-w-[90%] md:max-w-[964px] xl:max-w-[964px]"
                 >
                   <span className="whitespace-nowrap">Expertise Reconnue.</span>
                   <br />
@@ -1396,7 +1412,7 @@ export default function Home() {
                 </h2>
 
               <p
-                className="text-center text-[#003300] font-[Geist] text-[14px] md:text-[18px] lg:text-[22px] xl:text-[26px] font-medium leading-[1.3] opacity-70 max-w-[90%] md:max-w-[906px] mt-2 md:mt-4 xl:mt-[56px]"
+                className="text-center text-[#003300] font-[Geist] text-[14px] md:text-[18px] lg:text-[22px] xl:text-[25.803px] font-medium leading-[1.3] opacity-70 max-w-[90%] md:max-w-[906px] mt-2 md:mt-4 xl:mt-0 xl:leading-[29px]"
               >
                 RNJ Advisory s&apos;associe à des organisations visionnaires pour
                 résoudre des défis critiques, optimiser leurs opérations et créer
@@ -1406,15 +1422,22 @@ export default function Home() {
             </div>
 
             <div
-              className="mt-12 md:mt-16 xl:mt-0 grid w-full grid-cols-1 items-stretch justify-center gap-4 px-0 md:mx-auto md:max-w-[940px] md:grid-cols-2 md:gap-5 xl:max-w-[1392px] xl:grid-cols-3 xl:gap-[19.21px] xl:absolute xl:left-1/2 xl:-translate-x-1/2 xl:top-[706.81px]"
+              className="mt-12 grid w-full grid-cols-1 items-stretch gap-4 px-0 sm:gap-5 md:mx-auto md:mt-16 md:max-w-[940px] md:grid-cols-2 md:gap-5 lg:max-w-[1000px] lg:grid-cols-3 lg:gap-[19.21px] xl:absolute xl:left-[58px] xl:top-[706.81px] xl:mt-0 xl:w-[1392px] xl:max-w-none xl:grid-cols-3 xl:gap-[19.21px]"
               style={{
                 filter: 'drop-shadow(0px 3.84163px 30.4449px rgba(0, 0, 0, 0.25))',
               }}
             >
               <div
-                className="relative mx-auto flex h-auto w-full max-w-[320px] flex-col items-center justify-center rounded-[30px] bg-white/5 p-8 md:col-span-2 md:min-h-[420px] md:max-w-[451.19px] md:p-10 xl:col-span-1 xl:h-[524.38px] xl:max-w-[451.19px] xl:rounded-[50.4692px] xl:bg-[rgba(0,0,0,0.004)] xl:p-[75.6489px_39.366px]"
+                className="relative mx-auto flex h-full w-full max-w-[320px] flex-col items-center justify-center overflow-hidden rounded-[30px] border border-white/25 bg-[rgba(0,0,0,0.004)] p-8 shadow-[0px_12px_32px_rgba(0,0,0,0.22)] md:min-h-[420px] md:max-w-[451.19px] md:p-10 lg:max-w-[320px] lg:p-8 xl:h-[524.38px] xl:w-[451.19px] xl:max-w-[451.19px] xl:rounded-[50.4692px] xl:p-[75.6489px_39.366px]"
               >
-                <div className="flex flex-col items-center gap-6 md:gap-[46px] xl:gap-[46.43px]">
+                <Image
+                  src="/Frame 18 (3).svg"
+                  alt=""
+                  fill
+                  aria-hidden="true"
+                  className="pointer-events-none object-cover"
+                />
+                <div className="relative z-[1] flex flex-col items-center gap-6 md:gap-[46px] xl:gap-[46.43px]">
                   <div className="relative h-[70px] w-[60px] md:h-[101px] md:w-[88px]">
                     <Image
                       src="/Layer 1 (7).svg"
@@ -1425,12 +1448,12 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="flex flex-col items-center gap-3 md:gap-[17px] xl:w-[372.18px] xl:gap-[17.15px]">
+                  <div className="flex w-full max-w-[372px] flex-col items-center gap-3 md:gap-[17px] xl:max-w-[372.18px] xl:gap-[17.15px]">
                     <h3 className="max-w-[291.71px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px] xl:text-[29.0222px] xl:leading-[29px]">
                       Expertise Certifiée
                     </h3>
 
-                    <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white opacity-50 md:max-w-[372px] md:text-[20px] xl:max-w-[372.18px] xl:text-[22.7451px] xl:leading-[21px]">
+                    <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white/65 md:max-w-[372px] md:text-[20px] xl:max-w-[372.18px] xl:text-[22.7451px] xl:leading-[21px]">
                       Une maîtrise approfondie des enjeux financiers,
                       réglementaires et ESG pour des décisions
                       sécurisées et conformes.
@@ -1440,9 +1463,16 @@ export default function Home() {
               </div>
 
               <div
-                className="relative mx-auto flex h-auto w-full max-w-[320px] flex-col items-center justify-center rounded-[30px] bg-white/5 p-8 md:min-h-[420px] md:max-w-[430px] md:p-10 xl:h-[524.38px] xl:max-w-[451.19px] xl:rounded-[50.4692px] xl:bg-[rgba(0,0,0,0.004)] xl:p-[75.6489px_39.366px]"
+                className="relative mx-auto flex h-full w-full max-w-[320px] flex-col items-center justify-center overflow-hidden rounded-[30px] border border-white/25 bg-[rgba(0,0,0,0.004)] p-8 shadow-[0px_12px_32px_rgba(0,0,0,0.22)] md:min-h-[420px] md:max-w-[430px] md:p-10 lg:max-w-[320px] lg:p-8 xl:h-[524.38px] xl:w-[451.19px] xl:max-w-[451.19px] xl:rounded-[50.4692px] xl:p-[75.6489px_39.366px]"
               >
-                <div className="flex flex-col items-center gap-6 md:gap-[46px] xl:gap-[46.43px]">
+                <Image
+                  src="/Frame 18 (3).svg"
+                  alt=""
+                  fill
+                  aria-hidden="true"
+                  className="pointer-events-none object-cover"
+                />
+                <div className="relative z-[1] flex flex-col items-center gap-6 md:gap-[46px] xl:gap-[46.43px]">
                   <div className="relative h-[70px] w-[70px] md:h-[101px] md:w-[101px]">
                     <Image
                       src="/Mask group (9).svg"
@@ -1453,12 +1483,12 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="flex flex-col items-center gap-3 md:gap-[17px] xl:w-[372.18px] xl:gap-[17.15px]">
+                  <div className="flex w-full max-w-[372px] flex-col items-center gap-3 md:gap-[17px] xl:max-w-[372.18px] xl:gap-[17.15px]">
                     <h3 className="max-w-[189.63px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px] xl:text-[29.0222px] xl:leading-[29px]">
                       Approche Sur-Mesure
                     </h3>
 
-                    <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white opacity-50 md:max-w-[372px] md:text-[20px] xl:max-w-[372.18px] xl:text-[22.7451px] xl:leading-[21px]">
+                    <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white/65 md:max-w-[372px] md:text-[20px] xl:max-w-[372.18px] xl:text-[22.7451px] xl:leading-[21px]">
                       Des stratégies adaptées à chaque
                       entreprise, orientées performance et résultats
                       mesurables.
@@ -1468,9 +1498,16 @@ export default function Home() {
               </div>
 
               <div
-                className="relative mx-auto flex h-auto w-full max-w-[320px] flex-col items-center justify-center rounded-[30px] bg-white/5 p-8 md:col-span-2 md:min-h-[420px] md:max-w-[451.19px] md:p-10 xl:col-span-1 xl:h-[524.38px] xl:max-w-[451.19px] xl:rounded-[50.4692px] xl:bg-[rgba(0,0,0,0.004)] xl:p-[75.6489px_39.366px]"
+                className="relative mx-auto flex h-full w-full max-w-[320px] flex-col items-center justify-center overflow-hidden rounded-[30px] border border-white/25 bg-[rgba(0,0,0,0.004)] p-8 shadow-[0px_12px_32px_rgba(0,0,0,0.22)] md:min-h-[420px] md:max-w-[451.19px] md:p-10 lg:max-w-[320px] lg:p-8 xl:h-[524.38px] xl:w-[451.19px] xl:max-w-[451.19px] xl:rounded-[50.4692px] xl:p-[75.6489px_39.366px]"
               >
-                <div className="flex flex-col items-center gap-6 md:gap-[46px] xl:gap-[46.43px]">
+                <Image
+                  src="/Frame 18 (3).svg"
+                  alt=""
+                  fill
+                  aria-hidden="true"
+                  className="pointer-events-none object-cover"
+                />
+                <div className="relative z-[1] flex flex-col items-center gap-6 md:gap-[46px] xl:gap-[46.43px]">
                   <div className="relative h-[70px] w-[70px] md:h-[101px] md:w-[101px]">
                     <Image
                       src="/Mask group (10).svg"
@@ -1481,12 +1518,12 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="flex flex-col items-center gap-3 md:gap-[17px] xl:w-[372.18px] xl:gap-[17.15px]">
+                  <div className="flex w-full max-w-[372px] flex-col items-center gap-3 md:gap-[17px] xl:max-w-[372.18px] xl:gap-[17.15px]">
                     <h3 className="max-w-[291.71px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px] xl:text-[29.0222px] xl:leading-[29px]">
                       Vision Durable
                     </h3>
 
-                    <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white opacity-50 md:max-w-[372px] md:text-[20px] xl:max-w-[372.18px] xl:text-[22.7451px] xl:leading-[21px]">
+                    <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white/65 md:max-w-[372px] md:text-[20px] xl:max-w-[372.18px] xl:text-[22.7451px] xl:leading-[21px]">
                       Une maîtrise approfondie des enjeux financiers,
                       réglementaires et ESG pour des décisions
                       sécurisées et conformes.
@@ -1497,7 +1534,7 @@ export default function Home() {
             </div>
 
             <p
-              className="mx-auto mt-10 max-w-[90%] px-4 text-center font-[Geist] text-[14px] font-normal leading-[1.4] text-white opacity-50 md:mt-12 md:max-w-[980px] md:px-0 md:text-[18px] xl:max-w-[1193px] xl:text-[20px] xl:text-left 2xl:mt-0 2xl:absolute 2xl:left-[157px] 2xl:top-[1369px]"
+              className="mx-auto mt-10 max-w-[90%] px-4 text-center font-[Geist] text-[14px] font-normal leading-[1.4] text-white opacity-50 md:mt-12 md:max-w-[980px] md:px-0 md:text-[18px] xl:absolute xl:left-[157px] xl:top-[1369px] xl:mt-0 xl:max-w-[1193px] xl:px-0 xl:text-left xl:text-[23.6828px] xl:leading-[25px]"
             >
               RNJ Advisory conjugue expertise certifiée, approche sur mesure et
               vision durable afin d&apos;éclairer des décisions sûres, structurées

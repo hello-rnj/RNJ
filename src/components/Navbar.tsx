@@ -16,7 +16,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="absolute left-1/2 top-4 z-50 w-[95%] -translate-x-1/2 md:top-12 md:w-[90%] lg:w-[1450px]">
+    <nav className="absolute left-1/2 top-4 z-50 w-[95%] -translate-x-1/2 md:top-12 md:w-[90%] 2xl:w-[1450px]">
       <div
         className="flex flex-row items-center justify-between bg-[#F7FCFF] px-4 py-3 md:px-6 md:py-3.5"
         style={{
