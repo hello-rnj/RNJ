@@ -1421,113 +1421,122 @@ export default function Home() {
               </p>
             </div>
 
-            <div
-              className="mt-12 grid w-full grid-cols-1 items-stretch gap-4 px-0 sm:gap-5 md:mx-auto md:mt-16 md:max-w-[940px] md:grid-cols-2 md:gap-5 lg:max-w-[1392px] lg:grid-cols-3 lg:gap-[19.21px] xl:absolute xl:left-[58px] xl:top-[706.81px] xl:mt-0 xl:w-[1392px] xl:max-w-none xl:grid-cols-3 xl:gap-[19.21px]"
-              style={{
-                filter: 'drop-shadow(0px 3.84163px 30.4449px rgba(0, 0, 0, 0.25))',
-              }}
-            >
+            <div className="mt-12 md:mt-16 xl:absolute xl:left-[58px] xl:top-[706.81px] xl:mt-0 xl:w-[1392px]">
               <div
-                className="relative mx-auto flex h-full w-full max-w-[320px] flex-col items-center justify-center overflow-hidden rounded-[30px] border border-white/30 bg-[rgba(0,0,0,0.004)] p-8 md:min-h-[420px] md:max-w-[451.19px] md:p-10 lg:min-h-[500px] lg:max-w-[451.19px] lg:rounded-[46px] lg:p-[64px_34px] xl:h-[524.38px] xl:w-[451.19px] xl:max-w-[451.19px] xl:rounded-[50.4692px] xl:p-[75.6489px_39.366px]"
+                className="relative mx-auto hidden h-[524.38px] w-full max-w-[1392px] lg:block"
+                style={{ filter: 'drop-shadow(0px 3.84163px 30.4449px rgba(0, 0, 0, 0.25))' }}
               >
                 <Image
-                  src="/Frame 18 (3).svg"
-                  alt=""
+                  src="/Frame 30.svg"
+                  alt="Expertise certifiée, approche sur-mesure et vision durable"
                   fill
-                  aria-hidden="true"
-                  className="pointer-events-none object-cover"
+                  sizes="(min-width: 1280px) 1392px, (min-width: 1024px) 92vw, 100vw"
+                  className="object-contain"
                 />
-                <div className="relative z-[1] flex flex-col items-center gap-6 md:gap-[46px] xl:gap-[46.43px]">
-                  <div className="relative h-[70px] w-[60px] md:h-[101px] md:w-[88px]">
-                    <Image
-                      src="/Layer 1 (7).svg"
-                      alt=""
-                      fill
-                      className="object-contain"
-                      aria-hidden="true"
-                    />
-                  </div>
-
-                  <div className="flex w-full max-w-[372px] flex-col items-center gap-3 md:gap-[17px] xl:max-w-[372.18px] xl:gap-[17.15px]">
-                    <h3 className="max-w-[291.71px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px] lg:text-[29px] xl:text-[29.0222px] xl:leading-[29px]">
-                      Expertise Certifiée
-                    </h3>
-
-                    <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white/50 md:max-w-[372px] md:text-[20px] lg:text-[22px] lg:leading-[21px] xl:max-w-[372.18px] xl:text-[22.7451px] xl:leading-[21px]">
-                      Une maîtrise approfondie des enjeux financiers,
-                      réglementaires et ESG pour des décisions
-                      sécurisées et conformes.
-                    </p>
-                  </div>
-                </div>
               </div>
 
               <div
-                className="relative mx-auto flex h-full w-full max-w-[320px] flex-col items-center justify-center overflow-hidden rounded-[30px] border border-white/30 bg-[rgba(0,0,0,0.004)] p-8 md:min-h-[420px] md:max-w-[430px] md:p-10 lg:min-h-[500px] lg:max-w-[451.19px] lg:rounded-[46px] lg:p-[64px_34px] xl:h-[524.38px] xl:w-[451.19px] xl:max-w-[451.19px] xl:rounded-[50.4692px] xl:p-[75.6489px_39.366px]"
+                className="grid w-full grid-cols-1 items-stretch gap-4 px-0 sm:gap-5 md:mx-auto md:max-w-[940px] md:grid-cols-2 md:gap-5 lg:hidden"
+                style={{
+                  filter: 'drop-shadow(0px 3.84163px 30.4449px rgba(0, 0, 0, 0.25))',
+                }}
               >
-                <Image
-                  src="/Frame 18 (3).svg"
-                  alt=""
-                  fill
-                  aria-hidden="true"
-                  className="pointer-events-none object-cover"
-                />
-                <div className="relative z-[1] flex flex-col items-center gap-6 md:gap-[46px] xl:gap-[46.43px]">
-                  <div className="relative h-[70px] w-[70px] md:h-[101px] md:w-[101px]">
-                    <Image
-                      src="/Mask group (9).svg"
-                      alt=""
-                      fill
-                      className="object-contain"
-                      aria-hidden="true"
-                    />
-                  </div>
+                <div className="relative mx-auto flex h-full w-full max-w-[320px] flex-col items-center justify-center overflow-hidden rounded-[30px] border border-white/30 bg-[rgba(0,0,0,0.004)] p-8 md:min-h-[420px] md:max-w-[451.19px] md:p-10">
+                  <Image
+                    src="/Frame 18 (3).svg"
+                    alt=""
+                    fill
+                    aria-hidden="true"
+                    className="pointer-events-none object-cover"
+                  />
+                  <div className="relative z-[1] flex flex-col items-center gap-6 md:gap-[46px]">
+                    <div className="relative h-[70px] w-[60px] md:h-[101px] md:w-[88px]">
+                      <Image
+                        src="/Layer 1 (7).svg"
+                        alt=""
+                        fill
+                        className="object-contain"
+                        aria-hidden="true"
+                      />
+                    </div>
 
-                  <div className="flex w-full max-w-[372px] flex-col items-center gap-3 md:gap-[17px] xl:max-w-[372.18px] xl:gap-[17.15px]">
-                    <h3 className="max-w-[189.63px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px] lg:text-[29px] xl:text-[29.0222px] xl:leading-[29px]">
-                      Approche Sur-Mesure
-                    </h3>
+                    <div className="flex w-full max-w-[372px] flex-col items-center gap-3 md:gap-[17px]">
+                      <h3 className="max-w-[291.71px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px]">
+                        Expertise Certifiée
+                      </h3>
 
-                    <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white/50 md:max-w-[372px] md:text-[20px] lg:text-[22px] lg:leading-[21px] xl:max-w-[372.18px] xl:text-[22.7451px] xl:leading-[21px]">
-                      Des stratégies adaptées à chaque
-                      entreprise, orientées performance et résultats
-                      mesurables.
-                    </p>
+                      <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white/50 md:max-w-[372px] md:text-[20px]">
+                        Une maîtrise approfondie des enjeux financiers,
+                        réglementaires et ESG pour des décisions
+                        sécurisées et conformes.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div
-                className="relative mx-auto flex h-full w-full max-w-[320px] flex-col items-center justify-center overflow-hidden rounded-[30px] border border-white/30 bg-[rgba(0,0,0,0.004)] p-8 md:min-h-[420px] md:max-w-[451.19px] md:p-10 lg:min-h-[500px] lg:max-w-[451.19px] lg:rounded-[46px] lg:p-[64px_34px] xl:h-[524.38px] xl:w-[451.19px] xl:max-w-[451.19px] xl:rounded-[50.4692px] xl:p-[75.6489px_39.366px]"
-              >
-                <Image
-                  src="/Frame 18 (3).svg"
-                  alt=""
-                  fill
-                  aria-hidden="true"
-                  className="pointer-events-none object-cover"
-                />
-                <div className="relative z-[1] flex flex-col items-center gap-6 md:gap-[46px] xl:gap-[46.43px]">
-                  <div className="relative h-[70px] w-[70px] md:h-[101px] md:w-[101px]">
-                    <Image
-                      src="/Mask group (10).svg"
-                      alt=""
-                      fill
-                      className="object-contain"
-                      aria-hidden="true"
-                    />
+                <div className="relative mx-auto flex h-full w-full max-w-[320px] flex-col items-center justify-center overflow-hidden rounded-[30px] border border-white/30 bg-[rgba(0,0,0,0.004)] p-8 md:min-h-[420px] md:max-w-[430px] md:p-10">
+                  <Image
+                    src="/Frame 18 (3).svg"
+                    alt=""
+                    fill
+                    aria-hidden="true"
+                    className="pointer-events-none object-cover"
+                  />
+                  <div className="relative z-[1] flex flex-col items-center gap-6 md:gap-[46px]">
+                    <div className="relative h-[70px] w-[70px] md:h-[101px] md:w-[101px]">
+                      <Image
+                        src="/Mask group (9).svg"
+                        alt=""
+                        fill
+                        className="object-contain"
+                        aria-hidden="true"
+                      />
+                    </div>
+
+                    <div className="flex w-full max-w-[372px] flex-col items-center gap-3 md:gap-[17px]">
+                      <h3 className="max-w-[189.63px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px]">
+                        Approche Sur-Mesure
+                      </h3>
+
+                      <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white/50 md:max-w-[372px] md:text-[20px]">
+                        Des stratégies adaptées à chaque
+                        entreprise, orientées performance et résultats
+                        mesurables.
+                      </p>
+                    </div>
                   </div>
+                </div>
 
-                  <div className="flex w-full max-w-[372px] flex-col items-center gap-3 md:gap-[17px] xl:max-w-[372.18px] xl:gap-[17.15px]">
-                    <h3 className="max-w-[291.71px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px] lg:text-[29px] xl:text-[29.0222px] xl:leading-[29px]">
-                      Vision Durable
-                    </h3>
+                <div className="relative mx-auto flex h-full w-full max-w-[320px] flex-col items-center justify-center overflow-hidden rounded-[30px] border border-white/30 bg-[rgba(0,0,0,0.004)] p-8 md:min-h-[420px] md:max-w-[451.19px] md:p-10">
+                  <Image
+                    src="/Frame 18 (3).svg"
+                    alt=""
+                    fill
+                    aria-hidden="true"
+                    className="pointer-events-none object-cover"
+                  />
+                  <div className="relative z-[1] flex flex-col items-center gap-6 md:gap-[46px]">
+                    <div className="relative h-[70px] w-[70px] md:h-[101px] md:w-[101px]">
+                      <Image
+                        src="/Mask group (10).svg"
+                        alt=""
+                        fill
+                        className="object-contain"
+                        aria-hidden="true"
+                      />
+                    </div>
 
-                    <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white/50 md:max-w-[372px] md:text-[20px] lg:text-[22px] lg:leading-[21px] xl:max-w-[372.18px] xl:text-[22.7451px] xl:leading-[21px]">
-                      Une maîtrise approfondie des enjeux financiers,
-                      réglementaires et ESG pour des décisions
-                      sécurisées et conformes.
-                    </p>
+                    <div className="flex w-full max-w-[372px] flex-col items-center gap-3 md:gap-[17px]">
+                      <h3 className="max-w-[291.71px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px]">
+                        Vision Durable
+                      </h3>
+
+                      <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white/50 md:max-w-[372px] md:text-[20px]">
+                        Une maîtrise approfondie des enjeux financiers,
+                        réglementaires et ESG pour des décisions
+                        sécurisées et conformes.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
