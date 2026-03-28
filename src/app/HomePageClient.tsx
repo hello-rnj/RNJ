@@ -1349,9 +1349,9 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full overflow-hidden min-h-[980px] md:min-h-[1500px] xl:min-h-[1627px] xl:max-w-[1526px]">
+        <div className="relative mx-auto w-full overflow-hidden min-h-[980px] md:min-h-[1500px] lg:min-h-[1627px] xl:max-w-[1526px]">
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 lg:hidden"
             style={{
               background: '#003300',
             }}
@@ -1361,19 +1361,22 @@ export default function Home() {
               alt=""
               fill
               sizes="100vw"
-              className="object-cover object-center xl:hidden"
-            />
-            <Image
-              src="/Frame 535.png"
-              alt=""
-              width={1798}
-              height={1667}
-              sizes="1798px"
-              className="absolute left-[-115px] top-[-54px] hidden max-w-none xl:block"
+              className="object-cover object-center"
             />
           </div>
 
-          <div className="relative mx-auto w-full max-w-[1510px] px-4 py-12 md:px-6 md:py-16 xl:max-w-[1526px] xl:px-0 xl:py-0">
+          <div className="absolute inset-0 hidden lg:block">
+            <Image
+              src="/Frame 49 (1).svg"
+              alt="Expertise reconnue et résultats prouvés"
+              fill
+              sizes="1526px"
+              className="object-cover object-center"
+              priority={false}
+            />
+          </div>
+
+          <div className="relative mx-auto w-full max-w-[1510px] px-4 py-12 md:px-6 md:py-16 lg:hidden">
             <div
               className="flex flex-col items-center gap-6 md:gap-8 xl:absolute xl:left-1/2 xl:top-[208px] xl:w-[922px] xl:-translate-x-1/2 xl:gap-[35.5px]"
             >
