@@ -1427,7 +1427,7 @@ export default function Home() {
                 style={{ filter: 'drop-shadow(0px 3.84163px 30.4449px rgba(0, 0, 0, 0.25))' }}
               >
                 <Image
-                  src="/Frame 30.svg"
+                  src="/Frame 30.png"
                   alt="Expertise certifiée, approche sur-mesure et vision durable"
                   fill
                   sizes="(min-width: 1280px) 1392px, (min-width: 1024px) 92vw, 100vw"
