@@ -1286,7 +1286,7 @@ export default function Home() {
                     href="/services"
                     className="font-[Geist] text-[14px] font-medium leading-[18px] text-white underline underline-offset-4 sm:text-[16px] lg:text-[20px] lg:leading-[20px]"
                   >
-                    Découvrez nos services
+                    Découvrez nos projets
                   </Link>
                 </div>
               </div>
@@ -1305,10 +1305,7 @@ export default function Home() {
 
                 <div className="mt-5 flex flex-col items-center sm:mt-6 md:mt-7">
                   <span className="font-[Geist] text-[36px] font-semibold leading-none text-white sm:text-[46px] md:text-[58px] lg:text-[64px] lg:leading-[83px]">
-                    10K+
-                  </span>
-                  <span className="font-[Geist] text-[18px] font-medium leading-[1.05] text-white/70 sm:text-[22px] md:text-[28px] lg:text-[32px] lg:leading-[42px]">
-                    Clients
+                    500 clients
                   </span>
                 </div>
               </div>
