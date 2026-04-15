@@ -477,6 +477,21 @@
 }
 
 /* Pulse animation for Tunisia marker */
+@keyframes tabFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-fade {
+  animation: tabFade 600ms ease-out;
+}
+
 @keyframes pulse-marker {
   0%, 100% {
     transform: scale(1);
@@ -518,3 +533,126 @@
     bottom: -6px;
   }
 }
+
+/* World map entrance animation */
+@keyframes mapFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.map-fade-in {
+  animation: mapFadeIn 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Tunisia marker: pulsing core dot */
+@keyframes markerDotPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 0 0 rgba(187, 203, 46, 0.55);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.12);
+    box-shadow: 0 0 0 6px rgba(187, 203, 46, 0);
+  }
+}
+
+.marker-dot-pulse {
+  animation: markerDotPulse 2s ease-in-out infinite;
+}
+
+/* Tunisia marker: expanding ripple rings */
+@keyframes markerRipple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.6);
+    opacity: 0;
+  }
+}
+
+.marker-ripple {
+  animation: markerRipple 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.marker-ripple-delay {
+  animation-delay: 1.2s;
+}
+
+/* Popup entrance */
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(0% + 4px));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (min-width: 768px) {
+  @keyframes popupFadeIn {
+    from {
+      opacity: 0;
+      transform: translate(-8px, -50%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+  }
+}
+
+.popup-fade-in {
+  animation: popupFadeIn 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Bento grid card entrance + hover */
+@keyframes bentoFadeUp {
+  from { opacity: 0; transform: translateY(28px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+.bento-card {
+  animation: bentoFadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 320ms ease;
+  will-change: transform;
+}
+
+.bento-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 18px 40px -12px rgba(0, 51, 0, 0.35);
+}
+
+.bento-card.bento-d1 { animation-delay: 80ms; }
+.bento-card.bento-d2 { animation-delay: 180ms; }
+.bento-card.bento-d3 { animation-delay: 280ms; }
+.bento-card.bento-d4 { animation-delay: 380ms; }
+.bento-card.bento-d5 { animation-delay: 480ms; }
+.bento-card.bento-d6 { animation-delay: 580ms; }
+.bento-card.bento-d7 { animation-delay: 680ms; }
+.bento-card.bento-d8 { animation-delay: 780ms; }
+
+/* Concentric rings + floating icons (green concentric card) */
+@keyframes ringPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);    opacity: 0.85; }
+  50%      { transform: translate(-50%, -50%) scale(1.04); opacity: 1; }
+}
+.ring-pulse           { animation: ringPulse 4s ease-in-out infinite; }
+.ring-pulse-delay-1   { animation-delay: 0.6s; }
+.ring-pulse-delay-2   { animation-delay: 1.2s; }
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.float-icon { animation: floatIcon 3.2s ease-in-out infinite; }

@@ -1,0 +1,320 @@
+
+> rnj@0.1.0 dev
+> next dev --port 3000
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.179:3000
+
+✓ Starting...
+Creating turbopack project { dir: 'D:\\dev\\rnj', testMode: true }
+✓ Ready in 14.5s
+○ Compiling / ...
+ GET / 200 in 128ms (compile: 5ms, render: 122ms)
+ GET / 200 in 238ms (compile: 41ms, render: 197ms)
+✓ Compiled in 2.8s
+✓ Compiled in 2.3s
+ GET / 200 in 939ms (compile: 421ms, render: 518ms)
+✓ Compiled in 2.3s
+✓ Compiled in 2.6s
+✓ Compiled in 2.6s
+ GET / 200 in 469ms (compile: 171ms, render: 297ms)
+✓ Compiled in 2.5s
+ GET / 200 in 487ms (compile: 146ms, render: 342ms)
+✓ Compiled in 2.5s
+✓ Compiled in 2.5s
+✓ Compiled in 2.5s
+✓ Compiled in 2.5s
+✓ Compiled in 2.3s
+✓ Compiled in 2.4s
+✓ Compiled in 2.4s
+✓ Compiled in 2.5s
+✓ Compiled in 1543ms
+✓ Compiled in 1684ms
+ GET / 200 in 485ms (compile: 162ms, render: 324ms)
+✓ Compiled in 2.4s
+✓ Compiled in 1245ms
+ GET / 500 in 469ms (compile: 135ms, render: 333ms)
+ GET / 500 in 152ms (compile: 11ms, render: 141ms)
+ GET / 500 in 143ms (compile: 6ms, render: 138ms)
+✓ Compiled in 2s
+ GET / 200 in 370ms (compile: 135ms, render: 235ms)
+ GET / 200 in 162ms (compile: 5ms, render: 157ms)
+✓ Compiled in 1283ms
+ GET / 200 in 444ms (compile: 149ms, render: 295ms)
+✓ Compiled in 2.2s
+ GET / 200 in 467ms (compile: 151ms, render: 316ms)
+✓ Compiled in 1232ms
+✓ Compiled in 1960ms
+✓ Compiled in 1315ms
+✓ Compiled in 2.1s
+✓ Compiled in 1971ms
+ GET / 200 in 444ms (compile: 142ms, render: 302ms)
+✓ Compiled in 1167ms
+ GET / 200 in 386ms (compile: 117ms, render: 269ms)
+✓ Compiled in 1993ms
+ GET / 200 in 391ms (compile: 139ms, render: 252ms)
+✓ Compiled in 1968ms
+✓ Compiled in 2s
+✓ Compiled in 1888ms
+ GET / 200 in 389ms (compile: 127ms, render: 262ms)
+ GET / 200 in 160ms (compile: 7ms, render: 152ms)
+✓ Compiled in 1932ms
+ GET / 200 in 393ms (compile: 116ms, render: 276ms)
+ GET / 200 in 168ms (compile: 5ms, render: 164ms)
+✓ Compiled in 2.1s
+✓ Compiled in 1358ms
+ GET / 200 in 528ms (compile: 161ms, render: 367ms)
+✓ Compiled in 2.2s
+✓ Compiled in 1567ms
+ GET / 200 in 403ms (compile: 118ms, render: 285ms)
+✓ Compiled in 2.4s
+✓ Compiled in 1635ms
+✓ Compiled in 1929ms
+ GET / 200 in 483ms (compile: 176ms, render: 307ms)
+✓ Compiled in 1870ms
+ GET / 200 in 554ms (compile: 180ms, render: 374ms)
+✓ Compiled in 2.2s
+ GET / 200 in 991ms (compile: 344ms, render: 647ms)
+✓ Compiled in 4.1s
+ GET / 200 in 1398ms (compile: 802ms, render: 596ms)
+ GET / 200 in 287ms (compile: 15ms, render: 273ms)
+✓ Compiled in 4.5s
+ GET / 200 in 911ms (compile: 281ms, render: 630ms)
+✓ Compiled in 3.2s
+ GET / 200 in 852ms (compile: 277ms, render: 575ms)
+✓ Compiled in 5.7s
+ GET / 200 in 1415ms (compile: 694ms, render: 722ms)
+✓ Compiled in 4.5s
+✓ Compiled in 3.1s
+✓ Compiled in 3.1s
+ GET / 200 in 1050ms (compile: 338ms, render: 712ms)
+✓ Compiled in 4.6s
+ GET / 200 in 884ms (compile: 304ms, render: 580ms)
+✓ Compiled in 4.4s
+ GET / 200 in 888ms (compile: 285ms, render: 603ms)
+✓ Compiled in 4.7s
+ GET / 200 in 1770ms (compile: 1111ms, render: 660ms)
+✓ Compiled in 4.2s
+ GET / 200 in 1332ms (compile: 732ms, render: 600ms)
+ GET / 200 in 406ms (compile: 13ms, render: 393ms)
+✓ Compiled in 1174ms
+✓ Compiled in 3.4s
+✓ Compiled in 2.3s
+✓ Compiled in 2.3s
+ GET / 200 in 1909ms (compile: 1085ms, render: 824ms)
+✓ Compiled in 3.1s
+✓ Compiled in 3.3s
+ GET / 200 in 603ms (compile: 218ms, render: 385ms)
+ GET / 200 in 216ms (compile: 7ms, render: 210ms)
+ GET / 200 in 273ms (compile: 6ms, render: 267ms)
+✓ Compiled in 2.7s
+✓ Compiled in 2s
+ GET / 200 in 461ms (compile: 163ms, render: 298ms)
+✓ Compiled in 3s
+✓ Compiled in 1082ms
+✓ Compiled in 3.4s
+✓ Compiled in 2.4s
+✓ Compiled in 3s
+✓ Compiled in 2.6s
+✓ Compiled in 1279ms
+✓ Compiled in 2.2s
+✓ Compiled in 2.5s
+✓ Compiled in 1882ms
+✓ Compiled in 1886ms
+✓ Compiled in 1878ms
+✓ Compiled in 2.5s
+✓ Compiled in 1743ms
+✓ Compiled in 2.7s
+✓ Compiled in 3.9s
+✓ Compiled in 3.6s
+ GET / 200 in 565ms (compile: 194ms, render: 371ms)
+✓ Compiled in 3.2s
+✓ Compiled in 3.6s
+✓ Compiled in 2.3s
+✓ Compiled in 3.3s
+✓ Compiled in 3.7s
+✓ Compiled in 2.6s
+ GET / 200 in 662ms (compile: 217ms, render: 445ms)
+✓ Compiled in 3.4s
+ GET / 200 in 559ms (compile: 184ms, render: 376ms)
+✓ Compiled in 3.2s
+ GET / 200 in 570ms (compile: 172ms, render: 398ms)
+✓ Compiled in 3.1s
+ GET / 200 in 434ms (compile: 157ms, render: 276ms)
+✓ Compiled in 2.1s
+✓ Compiled in 3.3s
+ GET / 200 in 570ms (compile: 195ms, render: 375ms)
+✓ Compiled in 3.7s
+✓ Compiled in 2.8s
+✓ Compiled in 3.4s
+ GET / 200 in 571ms (compile: 201ms, render: 370ms)
+✓ Compiled in 3.5s
+ GET / 200 in 518ms (compile: 154ms, render: 364ms)
+✓ Compiled in 2.7s
+ GET / 200 in 486ms (compile: 152ms, render: 334ms)
+✓ Compiled in 2.5s
+✓ Compiled in 2.5s
+✓ Compiled in 1853ms
+ GET / 200 in 496ms (compile: 163ms, render: 334ms)
+✓ Compiled in 3.6s
+✓ Compiled in 2s
+✓ Compiled in 2.8s
+ GET /services/analyse-institutionnelle 200 in 381ms (compile: 291ms, render: 90ms)
+ GET /contact 200 in 320ms (compile: 283ms, render: 37ms)
+ GET / 200 in 198ms (compile: 124ms, render: 74ms)
+✓ Compiled in 1014ms
+✓ Compiled in 817ms
+✓ Compiled in 650ms
+✓ Compiled in 470ms
+✓ Compiled in 686ms
+✓ Compiled in 491ms
+✓ Compiled in 448ms
+✓ Compiled in 4.3s
+✓ Compiled in 3.7s
+✓ Compiled in 3.5s
+✓ Compiled in 6.1s
+✓ Compiled in 3.5s
+✓ Compiled in 7.4s
+✓ Compiled in 4.5s
+ GET / 200 in 484ms (compile: 160ms, render: 323ms)
+✓ Compiled in 3.1s
+✓ Compiled in 3.4s
+✓ Compiled in 2.9s
+✓ Compiled in 2.8s
+✓ Compiled in 2.2s
+✓ Compiled in 2.6s
+✓ Compiled in 2.8s
+✓ Compiled in 355ms
+ GET /services/analyse-institutionnelle 200 in 222ms (compile: 160ms, render: 61ms)
+ GET /contact 200 in 228ms (compile: 162ms, render: 66ms)
+ GET / 200 in 184ms (compile: 129ms, render: 55ms)
+ GET /services/analyse-institutionnelle 200 in 53ms (compile: 5ms, render: 48ms)
+ GET /contact 200 in 45ms (compile: 4ms, render: 41ms)
+ GET / 200 in 36ms (compile: 3ms, render: 33ms)
+ GET / 200 in 44ms (compile: 5ms, render: 39ms)
+ GET / 200 in 29ms (compile: 3ms, render: 25ms)
+ GET / 200 in 40ms (compile: 8ms, render: 32ms)
+ GET /services/analyse-institutionnelle 200 in 38ms (compile: 3ms, render: 35ms)
+ GET /services 200 in 257ms (compile: 221ms, render: 36ms)
+ GET /services 200 in 35ms (compile: 3ms, render: 31ms)
+ GET /services 200 in 32ms (compile: 4ms, render: 29ms)
+ GET / 200 in 42ms (compile: 5ms, render: 37ms)
+ GET /services/analyse-institutionnelle 200 in 59ms (compile: 6ms, render: 52ms)
+ GET / 200 in 34ms (compile: 4ms, render: 30ms)
+ GET /contact 200 in 54ms (compile: 4ms, render: 49ms)
+✓ Compiled in 391ms
+ GET / 200 in 188ms (compile: 125ms, render: 63ms)
+✓ Compiled in 2.8s
+✓ Compiled in 3s
+✓ Compiled in 2.6s
+✓ Compiled in 2.7s
+✓ Compiled in 2.6s
+✓ Compiled in 1503ms
+✓ Compiled in 3.3s
+✓ Compiled in 2.2s
+✓ Compiled in 2.9s
+✓ Compiled in 1719ms
+✓ Compiled in 2.9s
+✓ Compiled in 2.9s
+✓ Compiled in 2.5s
+ GET /services/analyse-institutionnelle 200 in 201ms (compile: 135ms, render: 66ms)
+ GET / 200 in 188ms (compile: 150ms, render: 38ms)
+ GET /services/analyse-institutionnelle 200 in 43ms (compile: 7ms, render: 36ms)
+ GET /contact 200 in 183ms (compile: 130ms, render: 53ms)
+ GET /services/analyse-institutionnelle 200 in 42ms (compile: 7ms, render: 36ms)
+ GET / 200 in 24ms (compile: 3ms, render: 20ms)
+ GET /services/analyse-institutionnelle 200 in 46ms (compile: 6ms, render: 40ms)
+ GET / 200 in 33ms (compile: 4ms, render: 29ms)
+✓ Compiled in 3s
+✓ Compiled in 2.7s
+✓ Compiled in 2.9s
+✓ Compiled in 2.6s
+ GET / 200 in 446ms (compile: 145ms, render: 302ms)
+✓ Compiled in 2.9s
+✓ Compiled in 1792ms
+✓ Compiled in 2.5s
+ GET / 200 in 458ms (compile: 145ms, render: 313ms)
+✓ Compiled in 2.5s
+✓ Compiled in 3s
+✓ Compiled in 2.8s
+✓ Compiled in 2.8s
+ GET / 200 in 461ms (compile: 140ms, render: 321ms)
+✓ Compiled in 2.7s
+✓ Compiled in 2.8s
+✓ Compiled in 2.7s
+✓ Compiled in 2.7s
+✓ Compiled in 2.9s
+✓ Compiled in 2.9s
+ GET / 200 in 449ms (compile: 136ms, render: 313ms)
+✓ Compiled in 2.7s
+✓ Compiled in 2.7s
+✓ Compiled in 2.6s
+✓ Compiled in 2.7s
+ GET / 200 in 465ms (compile: 140ms, render: 325ms)
+✓ Compiled in 2.8s
+✓ Compiled in 1635ms
+✓ Compiled in 2.7s
+✓ Compiled in 1751ms
+✓ Compiled in 2.9s
+✓ Compiled in 2.7s
+✓ Compiled in 3.1s
+✓ Compiled in 2.3s
+✓ Compiled in 2.3s
+✓ Compiled in 2.3s
+✓ Compiled in 2.9s
+✓ Compiled in 3.1s
+✓ Compiled in 3.3s
+✓ Compiled in 2.2s
+✓ Compiled in 1137ms
+✓ Compiled in 2.1s
+✓ Compiled in 2.1s
+✓ Compiled in 1247ms
+✓ Compiled in 2.2s
+✓ Compiled in 2s
+✓ Compiled in 2s
+✓ Compiled in 2.1s
+✓ Compiled in 1103ms
+✓ Compiled in 822ms
+✓ Compiled in 820ms
+✓ Compiled in 824ms
+ GET / 200 in 462ms (compile: 157ms, render: 305ms)
+✓ Compiled in 1045ms
+✓ Compiled in 833ms
+✓ Compiled in 786ms
+✓ Compiled in 812ms
+✓ Compiled in 773ms
+✓ Compiled in 1019ms
+✓ Compiled in 1156ms
+✓ Compiled in 1171ms
+ GET /contact 200 in 73ms (compile: 24ms, render: 49ms)
+ GET / 200 in 183ms (compile: 133ms, render: 50ms)
+✓ Compiled in 312ms
+ GET / 200 in 383ms (compile: 186ms, render: 196ms)
+ GET / 200 in 126ms (compile: 3ms, render: 123ms)
+ GET / 200 in 93ms (compile: 5ms, render: 88ms)
+ GET / 200 in 42ms (compile: 4ms, render: 38ms)
+ GET /services/analyse-institutionnelle 200 in 217ms (compile: 154ms, render: 63ms)
+✓ Compiled in 1077ms
+✓ Compiled in 1077ms
+ GET /services/analyse-institutionnelle 200 in 292ms (compile: 5ms, render: 287ms)
+ GET /services/analyse-institutionnelle 200 in 99ms (compile: 7ms, render: 93ms)
+ GET / 200 in 179ms (compile: 127ms, render: 52ms)
+ GET /services/analyse-institutionnelle 200 in 40ms (compile: 5ms, render: 35ms)
+✓ Compiled in 1163ms
+ GET / 200 in 164ms (compile: 120ms, render: 44ms)
+✓ Compiled in 1136ms
+✓ Compiled in 1173ms
+✓ Compiled in 1107ms
+ GET / 200 in 479ms (compile: 129ms, render: 350ms)
+ GET / 200 in 217ms (compile: 29ms, render: 188ms)
+✓ Compiled in 1081ms
+ GET / 200 in 498ms (compile: 137ms, render: 361ms)
+ GET /contact 200 in 213ms (compile: 155ms, render: 58ms)
+ GET /contact 200 in 27ms (compile: 4ms, render: 23ms)
+ GET /contact 200 in 38ms (compile: 4ms, render: 34ms)
+ GET /contact 200 in 39ms (compile: 4ms, render: 34ms)
+ GET / 200 in 35ms (compile: 3ms, render: 32ms)
+ GET / 200 in 31ms (compile: 4ms, render: 27ms)
+ GET /contact 200 in 32ms (compile: 6ms, render: 26ms)
+ GET / 200 in 37ms (compile: 3ms, render: 34ms)

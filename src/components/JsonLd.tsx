@@ -18,7 +18,7 @@ export default function JsonLd() {
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: '+32 474 03 22 66',
-      email: 'contact@rnj-advisory.be',
+      email: 'info@rnj-advisory.be',
       contactType: 'customer service',
       availableLanguage: ['French', 'English', 'Arabic'],
     },

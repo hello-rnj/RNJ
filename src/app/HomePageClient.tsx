@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Clock3, Leaf, PhoneCall, Plus, ShieldCheck, Users2, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -137,14 +137,19 @@ const glowShapes = [
   },
 ];
 
-const logoStripItems = [
-  { src: '/Layer 1 (19).svg', alt: 'Logo 1', width: 139.3, height: 60.91 },
-  { src: '/Layer 1 (20).svg', alt: 'Logo 2', width: 159.47, height: 45.05 },
-  { src: '/Layer 1 (22).svg', alt: 'Logo 3', width: 153.59, height: 58.45 },
-  { src: '/Layer 3 (2).svg', alt: 'Logo 4', width: 108.22, height: 43.43 },
-  { src: '/Layer 2 (1).svg', alt: 'Logo 5', width: 102.19, height: 60.91 },
-  { src: '/Layer 1 (23).svg', alt: 'Logo 6', width: 207.42, height: 44.38 },
-];
+const partnerAssetLogos = [
+  '/Asset 14 1.svg',
+  '/Asset 15 1.svg',
+  '/Asset 16 1.svg',
+  '/Asset 17 1.svg',
+  '/Asset 21 1.svg',
+  '/Asset 22 1.svg',
+  '/Asset 23 1.svg',
+  '/Asset 24 1.svg',
+  '/Asset 26 1.svg',
+  '/Asset 27 1.svg',
+  '/Asset 28 1.svg',
+] as const;
 
 const entrepreneurshipCards = [
   {
@@ -177,32 +182,126 @@ const entrepreneurshipCards = [
   },
 ];
 
-const serviceCards = [
+const servicesFocusCards = [
   {
-    title: "Création d’entreprise\nDémarches administratives",
-    description:
-      "RNJ Advisory accompagne les entrepreneurs et PME de l’idée à la création, en prenant en charge le plan d’affaires, le plan financier, la carte professionnelle, les autorisations et toutes les démarches administratives.",
-    icon: '/Mask group (13).svg',
-    iconWidth: 141.41,
-    iconHeight: 113.73,
+    title: 'Créer mon entreprise',
+    description: "J'ai une idée, je veux me lancer.",
+    icon: '/Mask group (3).svg',
+    iconWidth: 67.41,
+    iconHeight: 67.41,
   },
   {
-    title: 'Conseils juridiques',
-    description:
-      "Études institutionnelles et réglementaires, conformité, et accompagnement de projets d’infrastructure (énergie, transport, hydraulique, oil & gas, environnement), avec expertise en marchés publics, PPP, concessions et délégations de service public.",
-    icon: '/Mask group (14).svg',
-    iconWidth: 93,
-    iconHeight: 95,
+    title: 'Consulter un conseil juridique',
+    description: "J'ai un projet complexe à sécuriser.",
+    icon: '/Mask group (4).svg',
+    iconWidth: 77.59,
+    iconHeight: 79.26,
   },
   {
-    title: 'Accompagnement en durabilité',
-    description:
-      "Accompagnement pour intégrer la durabilité et les critères ESG (Environnement, Social, Gouvernance) dans leur stratégie. Démarche claire et conforme, en transformant les exigences réglementaires et les attentes du marché en leviers de performance, de crédibilité et de pérennité, en Belgique et à l’international.",
-    icon: '/Mask group (15).svg',
-    iconWidth: 140.4,
-    iconHeight: 112.91,
+    title: 'Accélérer mon business / Recruter',
+    description: "Je veux développer ou recruter à l'international.",
+    icon: '/Mask group (5).svg',
+    iconWidth: 77,
+    iconHeight: 77,
   },
 ];
+
+const strategicTrustCards = [
+  {
+    title: 'Cadre européen',
+    description: 'Accès aux institutions et aux cadres réglementaires européens.',
+  },
+  {
+    title: 'Expertise locale',
+    description: 'Une connaissance approfondie du marché et des acteurs à Bruxelles.',
+  },
+  {
+    title: 'Conseil stratégique',
+    description: 'Des solutions juridiques et stratégiques adaptées à vos enjeux.',
+  },
+];
+
+const institutionalCarouselCards = [
+  {
+    title: 'Analyse Institutionnelle & Réglementaire',
+    description:
+      'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
+    image: '/group-of-business-people-discussing-in-meeting-2026-01-05-00-38-48-utc 1.svg',
+    panelBg: '#406640',
+    titleColor: '#BFCCBF',
+    descriptionColor: '#BFCCBF',
+    buttonBg: '#BFCCBF',
+    buttonTextColor: '#003300',
+    panelFirst: true,
+  },
+  {
+    title: 'Structuration Juridique & Gouvernance',
+    description:
+      'Choix de la forme juridique (Belgique, Tunisie, international), création, transformation et mise en conformité des sociétés, pactes d’associés, conventions de partenariat et transmission (M&A).',
+    image: '/multinational-company-headquarters-office-with-a-b-2026-01-08-02-30-05-utc 1.svg',
+    panelBg: '#BFCCBF',
+    titleColor: '#003300',
+    descriptionColor: 'rgba(0, 51, 0, 0.6)',
+    buttonBg: '#003300',
+    buttonTextColor: '#FFFFFF',
+    panelFirst: false,
+  },
+  {
+    title: 'Droit Des Contrats & Sécurité Commerciale',
+    description:
+      'Rédaction, revue et négociation de contrats (clients, fournisseurs, partenaires), contrats de prestation, sous-traitance, licences, confidentialité. Réduire les risques et sécuriser la relation commerciale à chaque étape clé.',
+    image: '/business-meeting-2026-01-08-00-07-57-utc 3.svg',
+    panelBg: '#A2B144',
+    titleColor: '#003300',
+    descriptionColor: 'rgba(0, 51, 0, 0.6)',
+    buttonBg: '#003300',
+    buttonTextColor: '#FFFFFF',
+    panelFirst: false,
+  },
+  {
+    title: 'Partenariats Public-Privé & Concessions',
+    description:
+      'Structuration juridique de projets PPP et concessions, appui aux entreprises, collectivités et institutions. Projets liés à l’énergie, aux infrastructures et à l’intérêt général.',
+    image: '/pexels-henri-mathieu-8348468 1.svg',
+    panelBg: '#E0E5C0',
+    titleColor: '#003300',
+    descriptionColor: 'rgba(0, 51, 0, 0.6)',
+    buttonBg: '#003300',
+    buttonTextColor: '#FFFFFF',
+    panelFirst: false,
+  },
+  {
+    title: 'ESG, Conformité & Appels À Projets',
+    description:
+      'Audit juridique et compliance, protection des données (RGPD), mise en conformité opérationnelle. Accompagnement sur les appels à projets : analyse d’éligibilité, cadrage juridique, rédaction et sécurisation contractuelle.',
+    image: '/modern-coworking-space-with-comfortable-chairs-and-2026-01-09-00-01-33-utc 2.svg',
+    panelBg: '#DDE597',
+    titleColor: '#003300',
+    descriptionColor: '#003300',
+    buttonBg: '#003300',
+    buttonTextColor: '#FFFFFF',
+    panelFirst: false,
+  },
+  {
+    title: 'Veille Juridique & Anticipation Réglementaire',
+    description:
+      'Surveillance active des évolutions législatives et réglementaires en Belgique, Europe et Tunisie. Alertes sur les impacts potentiels et accompagnement dans l’anticipation des changements.',
+    image: '/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc 1.svg',
+    panelBg: '#CCD862',
+    titleColor: '#003300',
+    descriptionColor: 'rgba(0, 51, 0, 0.6)',
+    buttonBg: '#003300',
+    buttonTextColor: '#FFFFFF',
+    panelFirst: false,
+  },
+] as const;
+
+const servicesFocusAnimationStates = [
+  { activeCount: 0, lineFill: 0 },
+  { activeCount: 1, lineFill: 0 },
+  { activeCount: 2, lineFill: 50 },
+  { activeCount: 3, lineFill: 100 },
+] as const;
 
 const whyChooseStripCards = [
   {
@@ -262,6 +361,52 @@ const whyChooseCardGradients = [
 const whyChooseCardActiveBackground = '#F7FCFF';
 const whyChooseCardActiveBorder = '#6C8B68';
 
+const whyChooseAnimatedCards = [
+  {
+    title: 'Approche humaine & multilingue',
+    description: 'Approche humaine et multilingue.',
+    icon: '/Layer 1 (14).svg',
+    iconWidth: 58.33,
+    iconHeight: 61.14,
+  },
+  {
+    title: 'Expertise juridique & stratégique',
+    description:
+      'Expertise en droit public, énergie, stratégie et transformation.',
+    icon: '/Group (11).svg',
+    iconWidth: 60.38,
+    iconHeight: 61.08,
+  },
+  {
+    title: 'Performances & fiabilité',
+    description: 'Service rapide, sécurisé et optimisé pour vos performances.',
+    icon: '/Layer 1 (17).svg',
+    iconWidth: 54.62,
+    iconHeight: 41.8,
+  },
+  {
+    title: 'Méthodologie et durabilité',
+    description: 'Un cadre structuré pour une croissance agile et durable.',
+    icon: '/Layer 1 (16).svg',
+    iconWidth: 51.95,
+    iconHeight: 60.34,
+  },
+  {
+    title: 'Ancrage local et ouverture internationale',
+    description: 'Bruxelles & Tunis : un accompagnement local et international.',
+    icon: '/Layer 1 (15).svg',
+    iconWidth: 59.77,
+    iconHeight: 59.77,
+  },
+  {
+    title: 'Partenariats stratégiques avec des acteurs reconnus',
+    description: 'Un réseau de partenaires en Belgique et en Tunisie.',
+    icon: '/Layer 4.svg',
+    iconWidth: 83.23,
+    iconHeight: 59,
+  },
+] as const;
+
 const faqItems = [
   {
     question: "À qui s'adressent les services de RNJ Advisory ?",
@@ -308,19 +453,6 @@ const faqItems = [
     answer:
       "Les délais d’exécution varient selon la nature, la complexité et le niveau d’urgence du projet. Après la phase de cadrage, nous partageons un calendrier clair avec des étapes définies afin d’assurer une exécution rigoureuse, transparente et adaptée à vos impératifs.",
   },
-];
-
-const strategicFeatureIcons = [Users2, Leaf, ShieldCheck, Clock3];
-const workflowPillOrder = ['conformite', 'decision', 'analyse'] as const;
-type WorkflowPill = (typeof workflowPillOrder)[number];
-
-const professionalProfileHotspots = [
-  { id: 'sam', name: 'Sam.M', x: '50%', y: '50%', size: 102, label: 'top' as const },
-  { id: 'jasmin', name: 'Jasmin', x: '24.9%', y: '21.6%', size: 44, label: 'top' as const },
-  { id: 'steve', name: 'Steve.R', x: '82.6%', y: '28.4%', size: 62, label: 'top' as const },
-  { id: 'rocky', name: 'Rocky', x: '22.2%', y: '78.1%', size: 72, label: 'top' as const },
-  { id: 'ahmed', name: 'Ahmed', x: '80.7%', y: '74.4%', size: 73, label: 'top' as const },
-  { id: 'filip', name: 'Filip.L', x: '58.4%', y: '97.9%', size: 74, label: 'top' as const },
 ];
 
 const whyChooseGridCards = [
@@ -385,638 +517,6 @@ const whyChooseGridCards = [
     descriptionWidth: '344px',
   },
 ];
-
-function BusinessServicesSection() {
-  const [activeProfessionalProfile, setActiveProfessionalProfile] = useState<string | null>(null);
-  const [activeWorkflowPill, setActiveWorkflowPill] = useState<WorkflowPill>('decision');
-  const activeProfessionalProfileTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const clearProfessionalProfileTimeout = () => {
-    if (activeProfessionalProfileTimeout.current) {
-      clearTimeout(activeProfessionalProfileTimeout.current);
-      activeProfessionalProfileTimeout.current = null;
-    }
-  };
-
-  const showProfessionalProfile = (id: string, autoHide = false) => {
-    clearProfessionalProfileTimeout();
-    setActiveProfessionalProfile(id);
-
-    if (autoHide) {
-      activeProfessionalProfileTimeout.current = setTimeout(() => {
-        setActiveProfessionalProfile(null);
-        activeProfessionalProfileTimeout.current = null;
-      }, 1400);
-    }
-  };
-
-  const hideProfessionalProfiles = () => {
-    clearProfessionalProfileTimeout();
-    setActiveProfessionalProfile(null);
-  };
-
-  useEffect(() => () => clearProfessionalProfileTimeout(), []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveWorkflowPill((current) => {
-        const currentIndex = workflowPillOrder.indexOf(current);
-        return workflowPillOrder[(currentIndex + 1) % workflowPillOrder.length];
-      });
-    }, 2200);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <section
-      className="w-full px-3 py-12 md:px-6 md:py-24"
-      style={{
-        backgroundColor: '#F7FCFF',
-        maxWidth: '1450px',
-        margin: '0 auto',
-        position: 'relative',
-      }}
-    >
-      <div className="mx-auto flex w-full max-w-[1450px] flex-col items-center gap-6 md:gap-10">
-        <div
-          className="flex w-full flex-col items-stretch gap-4 md:gap-[23px] 2xl:h-[730px] 2xl:flex-row 2xl:items-stretch 2xl:gap-[19px]"
-          style={{ filter: 'drop-shadow(2px 2px 24.5px rgba(0, 0, 0, 0.21))' }}
-        >
-          <div className="flex w-full flex-col items-stretch gap-4 md:gap-[23px] 2xl:w-[350px] 2xl:min-w-[350px] 2xl:items-stretch">
-            <div className="mx-auto flex min-h-[250px] w-full max-w-[334px] flex-col items-center justify-center rounded-[20px] bg-[#003300] p-3 md:min-h-[290px] md:max-w-[380px] lg:hidden">
-              <div
-                className="flex h-[188px] w-[184px] flex-col rounded-[22px] bg-white px-4 pt-5"
-                style={{ boxShadow: '0px 0px 43px -5px rgba(255, 255, 255, 0.33)' }}
-              >
-                <div className="mb-4 flex items-center gap-[6px]">
-                  {strategicFeatureIcons.map((Icon, index) => (
-                    <div
-                      key={index}
-                      className="flex h-[24px] w-[24px] items-center justify-center rounded-full bg-[#BBCB2E]"
-                    >
-                      <Icon size={11} strokeWidth={2.2} color="#003300" />
-                    </div>
-                  ))}
-                </div>
-                <h3 className="font-[Geist] text-[20px] font-medium leading-[20px] text-[#003300]">
-                  Expertise stratégique au service de vos projets
-                </h3>
-              </div>
-            </div>
-
-            <div className="hidden h-[334px] w-full max-w-[334px] justify-center lg:flex 2xl:h-[350px] 2xl:max-w-[350px]">
-              <div className="relative h-[334px] w-[334px] overflow-hidden rounded-[20px] bg-[#003300] 2xl:scale-[1.048] 2xl:origin-center">
-              <div
-                className="absolute"
-                style={{
-                  width: '208px',
-                  height: '230px',
-                  left: '63px',
-                  top: '52px',
-                  backgroundColor: '#FFFFFF',
-                  boxShadow: '0px 0px 43px -5px rgba(255, 255, 255, 0.33)',
-                  borderRadius: '30px',
-                }}
-              />
-
-              <div className="absolute flex items-center gap-[6px]" style={{ left: '75px', top: '90px' }}>
-                {strategicFeatureIcons.map((Icon, index) => (
-                  <div
-                    key={index}
-                    className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#BBCB2E]"
-                  >
-                    <Icon size={14} strokeWidth={2.2} color="#003300" />
-                  </div>
-                ))}
-              </div>
-
-              <h3
-                className="absolute font-[Geist] font-medium text-[#003300]"
-                style={{
-                  width: '176px',
-                  left: '75px',
-                  top: '144px',
-                  fontSize: '27.6078px',
-                  lineHeight: '27px',
-                }}
-              >
-                Expertise stratégique au service de vos projets
-              </h3>
-              </div>
-            </div>
-
-            <div className="mx-auto flex min-h-[250px] w-full max-w-[334px] flex-col items-center justify-center rounded-[20px] bg-white px-4 py-5 md:min-h-[290px] md:max-w-[380px] lg:hidden">
-              <div className="flex w-full max-w-[272px] flex-col gap-3">
-                <div className="flex items-center justify-between">
-                  <div
-                    className="flex h-[46px] w-[164px] items-center justify-center rounded-[111.475px] transition-all duration-500"
-                    style={
-                      activeWorkflowPill === 'conformite'
-                        ? { background: 'linear-gradient(277.78deg, #003300 14.8%, #BBCB2E 85.2%)' }
-                        : { border: '2px solid #E2E2E2' }
-                    }
-                  >
-                    <span
-                      className="font-[Geist] text-[16px] font-medium leading-[20px]"
-                      style={{ color: activeWorkflowPill === 'conformite' ? '#FFFFFF' : '#E2E2E2' }}
-                    >
-                      Conformité
-                    </span>
-                  </div>
-                  <div
-                    className="flex h-[46px] w-[46px] items-center justify-center rounded-full transition-all duration-500"
-                    style={
-                      activeWorkflowPill === 'conformite'
-                        ? { background: 'linear-gradient(307.68deg, #003300 4.96%, #BBCB2E 95.04%)' }
-                        : { border: '2px solid #E2E2E2' }
-                    }
-                  >
-                    <Plus
-                      size={20}
-                      strokeWidth={1.8}
-                      color={activeWorkflowPill === 'conformite' ? '#FFFFFF' : '#E2E2E2'}
-                    />
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <div
-                    className="relative z-10 flex h-[46px] w-[46px] items-center justify-center rounded-full transition-all duration-500"
-                    style={
-                      activeWorkflowPill === 'decision'
-                        ? { background: '#BBCB2E', border: '2px solid #FFFFFF' }
-                        : { border: '2px solid #E2E2E2' }
-                    }
-                  >
-                    <Plus
-                      size={20}
-                      strokeWidth={1.8}
-                      color={activeWorkflowPill === 'decision' ? '#003300' : '#E2E2E2'}
-                    />
-                  </div>
-                  <div
-                    className="-ml-[16px] flex h-[46px] flex-1 items-center justify-center rounded-[111.475px] pl-4 transition-all duration-500"
-                    style={
-                      activeWorkflowPill === 'decision'
-                        ? { background: '#BBCB2E' }
-                        : { border: '2px solid #E2E2E2', background: '#FFFFFF' }
-                    }
-                  >
-                    <span
-                      className="font-[Geist] text-[16px] font-medium leading-[20px]"
-                      style={{ color: activeWorkflowPill === 'decision' ? '#003300' : '#E2E2E2' }}
-                    >
-                      Décision
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div
-                    className="flex h-[46px] w-[182px] items-center justify-center rounded-[111.475px] transition-all duration-500"
-                    style={
-                      activeWorkflowPill === 'analyse'
-                        ? { background: 'linear-gradient(281.01deg, #003300 22.97%, #BBCB2E 77.03%)' }
-                        : { border: '2px solid #E2E2E2' }
-                    }
-                  >
-                    <span
-                      className="font-[Geist] text-[16px] font-medium leading-[20px]"
-                      style={{ color: activeWorkflowPill === 'analyse' ? '#FFFFFF' : '#E2E2E2' }}
-                    >
-                      Analyse
-                    </span>
-                  </div>
-                  <div
-                    className="flex h-[46px] w-[46px] items-center justify-center rounded-full transition-all duration-500"
-                    style={
-                      activeWorkflowPill === 'analyse'
-                        ? { background: 'linear-gradient(301.25deg, #003300 7.42%, #BBCB2E 92.58%)' }
-                        : { border: '2px solid #E2E2E2' }
-                    }
-                  >
-                    <Plus
-                      size={20}
-                      strokeWidth={1.8}
-                      color={activeWorkflowPill === 'analyse' ? '#FFFFFF' : '#E2E2E2'}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="hidden h-[334px] w-full max-w-[334px] justify-center lg:flex 2xl:h-[350px] 2xl:max-w-[350px]">
-              <div className="relative h-[334px] w-[334px] overflow-hidden rounded-[20px] bg-white 2xl:scale-[1.048] 2xl:origin-center">
-              <div
-                className="absolute"
-                style={{ width: '272px', height: '167.21px', left: '31px', top: '83px' }}
-              >
-                <div
-                  className="absolute flex items-center justify-between"
-                  style={{ width: '246px', height: '55.74px', left: '0px', top: '0px' }}
-                >
-                  <div
-                    className="flex items-center justify-center rounded-[111.475px] transition-all duration-500"
-                    style={
-                      activeWorkflowPill === 'conformite'
-                        ? { width: '186px', height: '55.74px', background: 'linear-gradient(277.78deg, #003300 14.8%, #BBCB2E 85.2%)' }
-                        : { width: '186px', height: '55.74px', border: '2px solid #E2E2E2' }
-                    }
-                  >
-                    <span
-                      className="font-[Geist] text-[20px] font-medium leading-[29px]"
-                      style={{ color: activeWorkflowPill === 'conformite' ? '#FFFFFF' : '#E2E2E2' }}
-                    >
-                      Conformité
-                    </span>
-                  </div>
-                  <div
-                    className="flex items-center justify-center rounded-full transition-all duration-500"
-                    style={
-                      activeWorkflowPill === 'conformite'
-                        ? { width: '55.74px', height: '55.74px', background: 'linear-gradient(307.68deg, #003300 4.96%, #BBCB2E 95.04%)' }
-                        : { width: '55.74px', height: '55.74px', border: '2px solid #E2E2E2' }
-                    }
-                  >
-                    <Plus
-                      size={24}
-                      strokeWidth={1.8}
-                      color={activeWorkflowPill === 'conformite' ? '#FFFFFF' : '#E2E2E2'}
-                    />
-                  </div>
-                </div>
-
-                <div
-                  className="absolute flex items-center"
-                  style={{ width: '218.49px', height: '55.74px', left: '53.51px', top: '55.74px' }}
-                >
-                  <div
-                    className="absolute left-0 top-0 flex items-center justify-center rounded-full transition-all duration-500"
-                    style={
-                      activeWorkflowPill === 'decision'
-                        ? { width: '55.74px', height: '55.74px', background: '#BBCB2E', border: '2px solid #FFFFFF' }
-                        : { width: '55.74px', height: '55.74px', border: '2px solid #E2E2E2' }
-                    }
-                  >
-                    <Plus
-                      size={24}
-                      strokeWidth={1.8}
-                      color={activeWorkflowPill === 'decision' ? '#003300' : '#E2E2E2'}
-                    />
-                  </div>
-                  <div
-                    className="ml-[31px] flex items-center justify-center rounded-[111.475px] transition-all duration-500"
-                    style={
-                      activeWorkflowPill === 'decision'
-                        ? { width: '186px', height: '55.74px', background: '#BBCB2E' }
-                        : { width: '186px', height: '55.74px', border: '2px solid #E2E2E2', background: '#FFFFFF' }
-                    }
-                  >
-                    <span
-                      className="font-[Geist] text-[20px] font-medium leading-[29px]"
-                      style={{ color: activeWorkflowPill === 'decision' ? '#003300' : '#E2E2E2' }}
-                    >
-                      Décision
-                    </span>
-                  </div>
-                </div>
-
-                <div
-                  className="absolute flex items-center justify-between"
-                  style={{ width: '271px', height: '55.74px', left: '11.15px', top: '111.48px' }}
-                >
-                  <div
-                    className="flex items-center justify-center rounded-[111.475px] transition-all duration-500"
-                    style={
-                      activeWorkflowPill === 'analyse'
-                        ? { width: '189px', height: '56px', background: 'linear-gradient(281.01deg, #003300 22.97%, #BBCB2E 77.03%)' }
-                        : { width: '215px', height: '55.74px', border: '2px solid #E2E2E2' }
-                    }
-                  >
-                    <span
-                      className="font-[Geist] text-[20px] font-medium leading-[29px]"
-                      style={{ color: activeWorkflowPill === 'analyse' ? '#FFFFFF' : '#E2E2E2' }}
-                    >
-                      Analyse
-                    </span>
-                  </div>
-                  <div
-                    className="flex items-center justify-center rounded-full transition-all duration-500"
-                    style={
-                      activeWorkflowPill === 'analyse'
-                        ? { width: '55.74px', height: '55.74px', background: 'linear-gradient(301.25deg, #003300 7.42%, #BBCB2E 92.58%)' }
-                        : { width: '55.74px', height: '55.74px', border: '2px solid #E2E2E2' }
-                    }
-                  >
-                    <Plus
-                      size={24}
-                      strokeWidth={1.8}
-                      color={activeWorkflowPill === 'analyse' ? '#FFFFFF' : '#E2E2E2'}
-                    />
-                  </div>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative mx-auto h-[320px] w-full max-w-[334px] overflow-hidden rounded-[20px] bg-[#eef4e8] sm:h-[500px] md:h-[540px] 2xl:h-[730px] 2xl:w-[350px] 2xl:min-w-[350px]">
-            <img
-              src="/Group 352.svg"
-              alt="RNJ Advisory team"
-              loading="lazy"
-              decoding="async"
-              className="absolute inset-0 h-full w-full object-contain object-center p-3 sm:p-0 sm:object-cover"
-            />
-          </div>
-
-          <div className="grid w-full max-w-[334px] justify-items-stretch gap-x-[19px] gap-y-4 md:max-w-none md:justify-items-center md:gap-y-[23px] md:grid-cols-2 2xl:w-[712px] 2xl:min-w-[712px]">
-            <div className="relative mx-auto h-[240px] w-full max-w-[334px] overflow-hidden rounded-[20px] bg-[#eef4e8] sm:h-[334px] 2xl:h-[350px] 2xl:max-w-[350px]">
-              <img
-                src="/Group 363.svg"
-                alt="Business success"
-                loading="lazy"
-                decoding="async"
-                className="absolute inset-0 h-full w-full object-contain object-center p-3 sm:p-0 sm:object-cover"
-              />
-            </div>
-
-            <div className="mx-auto flex min-h-[250px] w-full max-w-[334px] flex-col rounded-[20px] bg-white px-5 py-5 md:min-h-[290px] md:max-w-[380px] lg:hidden">
-              <div
-                className="mb-4 h-[62px] w-full rounded-[16px]"
-                style={{ background: 'linear-gradient(90deg, #DDE597 0%, rgba(123, 127, 84, 0.17) 100%)' }}
-              >
-                <div className="flex h-full items-center gap-3 px-4">
-                  <div className="flex h-[44px] w-[44px] items-center justify-center rounded-full bg-[#BBCB2E]">
-                    <span className="font-[EB_Garamond] text-[21px] font-normal leading-[21px] text-[#003300]">
-                      01
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-[6px]">
-                    {[1, 2, 3, 4, 5].map((dot) => (
-                      <div
-                        key={dot}
-                        className={`rounded-full bg-[#BBCB2E] ${dot === 1 ? 'h-[18px] w-[18px]' : 'h-[9px] w-[9px]'}`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <h3 className="mb-4 max-w-[220px] font-[Geist] text-[24px] font-medium leading-[24px] text-[#003300]">
-                développer votre activité en Belgique
-              </h3>
-
-              <p className="max-w-[230px] font-[Geist] text-[14px] font-medium leading-[17px] text-[#003300] opacity-60">
-                complétez les étapes et démarrez votre Entrepreneuriat en Belgique
-              </p>
-            </div>
-
-            <div className="hidden h-[334px] w-full max-w-[334px] justify-center lg:flex 2xl:h-[350px] 2xl:max-w-[350px]">
-              <div className="relative h-[334px] w-[334px] overflow-hidden rounded-[20px] bg-white 2xl:scale-[1.048] 2xl:origin-center">
-              <div
-                className="absolute left-0 top-[30px] h-[74px] w-full"
-                style={{
-                  background:
-                    'linear-gradient(90deg, #DDE597 0%, rgba(123, 127, 84, 0.17) 100%)',
-                }}
-              />
-
-              <div
-                className="absolute flex items-center gap-[29px]"
-                style={{ width: '289px', height: '60px', left: '23px', top: '7px' }}
-              >
-                <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-[#BBCB2E]">
-                  <span className="font-[EB_Garamond] text-[29.12px] font-normal leading-[29px] text-[#003300]">
-                    01
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-[8px]">
-                  {[1, 2, 3, 4, 5].map((dot) => (
-                    <div
-                      key={dot}
-                      className={`rounded-full bg-[#BBCB2E] ${dot === 1 ? 'h-[28px] w-[28px]' : 'h-[14px] w-[14px]'}`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <h3
-                className="absolute font-[Geist] font-medium text-[#003300]"
-                style={{
-                  width: '263px',
-                  left: '23px',
-                  top: '108px',
-                  fontSize: '36px',
-                  lineHeight: '32px',
-                }}
-              >
-                développer votre activité en Belgique
-              </h3>
-
-              <p
-                className="absolute font-[Geist] font-medium text-[#003300]"
-                style={{
-                  width: '263px',
-                  left: '23px',
-                  top: '226px',
-                  fontSize: '16px',
-                  lineHeight: '16px',
-                  opacity: 0.6,
-                }}
-              >
-                complétez les étapes et démarrez votre Entrepreneuriat en Belgique
-              </p>
-              </div>
-            </div>
-
-            <div className="mx-auto flex min-h-[266px] w-full max-w-[334px] flex-col rounded-[20px] bg-white md:min-h-[300px] md:max-w-[380px] lg:hidden">
-              <div className="px-5 pt-5">
-                <div className="mb-4 flex items-center gap-2">
-                  <div className="flex h-[30px] w-[30px] items-center justify-center rounded-[15px] bg-[#839705]">
-                    <Users2 size={14} strokeWidth={2.2} color="#FFFFFF" />
-                  </div>
-                  <span className="font-[Geist] text-[11px] font-medium leading-[10px] text-[#839705]">
-                    partenaires
-                  </span>
-                </div>
-
-                <span
-                  className="font-[Geist] font-normal text-[#003300]"
-                  style={{ fontSize: '44px', lineHeight: '42px', letterSpacing: '-0.05em' }}
-                >
-                  500+
-                </span>
-
-                <h3
-                  className="mt-4 font-[Geist] font-semibold text-[#003300]"
-                  style={{ fontSize: '20px', lineHeight: '20px', letterSpacing: '-0.05em' }}
-                >
-                  Partenaires de référence
-                </h3>
-
-                <p
-                  className="mt-3 max-w-[220px] font-[Geist] font-medium text-[#003300]"
-                  style={{ fontSize: '14px', lineHeight: '17px', letterSpacing: '-0.05em', opacity: 0.5 }}
-                >
-                  Un réseau solide pour vos projets
-                </p>
-              </div>
-
-              <button
-                type="button"
-                className="mt-auto flex h-[72px] w-full items-center justify-center gap-[10px] rounded-[20px] bg-[#003300] px-5"
-              >
-                <div className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-white">
-                  <PhoneCall size={16} strokeWidth={2.2} color="#003300" />
-                </div>
-                <span className="rounded-[100px] bg-white px-[15px] py-[7px] font-[Geist] text-[14px] font-semibold leading-[20px] text-[#003300]">
-                  Nous contacter
-                </span>
-              </button>
-            </div>
-
-            <div className="hidden h-[334px] w-full max-w-[334px] justify-center lg:flex 2xl:h-[350px] 2xl:max-w-[350px]">
-              <div className="relative h-[334px] w-[334px] overflow-hidden rounded-[20px] 2xl:scale-[1.048] 2xl:origin-center">
-              <div className="absolute left-0 top-0 h-[220px] w-full rounded-[20px] bg-white" />
-
-              <div className="absolute left-[28px] top-[18px] flex items-center gap-2">
-                <div className="flex h-[30px] w-[30px] items-center justify-center rounded-[15px] bg-[#839705]">
-                  <Users2 size={14} strokeWidth={2.2} color="#FFFFFF" />
-                </div>
-                <span className="font-[Geist] text-[11px] font-medium leading-[10px] text-[#839705]">
-                  partenaires
-                </span>
-              </div>
-
-              <span
-                className="absolute left-[28px] top-[61px] font-[Geist] font-normal text-[#003300]"
-                style={{ fontSize: '64px', lineHeight: '60px', letterSpacing: '-0.05em' }}
-              >
-                500+
-              </span>
-
-              <h3
-                className="absolute left-[28px] top-[145px] font-[Geist] font-semibold text-[#003300]"
-                style={{ fontSize: '24px', lineHeight: '19px', letterSpacing: '-0.05em' }}
-              >
-                Partenaires de référence
-              </h3>
-
-              <p
-                className="absolute left-[28px] top-[177px] font-[Geist] font-medium text-[#003300]"
-                style={{ fontSize: '16px', lineHeight: '19px', letterSpacing: '-0.05em', opacity: 0.5 }}
-              >
-                Un réseau solide pour vos projets
-              </p>
-
-              <button
-                type="button"
-                className="absolute left-0 top-[243px] flex h-[91px] w-full items-center justify-center gap-[10px] rounded-[20px] bg-[#003300] px-[32px]"
-              >
-                <div className="flex h-[44px] w-[45px] items-center justify-center rounded-full bg-white">
-                  <PhoneCall size={19} strokeWidth={2.2} color="#003300" />
-                </div>
-                <span className="rounded-[100px] bg-white px-[17px] py-[7px] font-[Geist] text-[16px] font-semibold leading-[29px] text-[#003300]">
-                  Nous contacter
-                </span>
-              </button>
-              </div>
-            </div>
-
-            <div
-              className="relative mx-auto h-[240px] w-full max-w-[334px] overflow-hidden rounded-[20px] bg-[#BBCB2E] sm:h-[334px] 2xl:h-[350px] 2xl:max-w-[350px]"
-              onMouseLeave={hideProfessionalProfiles}
-            >
-              <div className="absolute inset-0 md:hidden">
-                <div className="absolute inset-0 rounded-[20px] bg-[#DDE597]" />
-                <div className="absolute left-1/2 top-1/2 h-[45%] w-[45%] -translate-x-1/2 -translate-y-1/2 rounded-full border-[4px] border-white" />
-                <div className="absolute left-1/2 top-1/2 h-[81%] w-[81%] -translate-x-1/2 -translate-y-1/2 rounded-full border-[4px] border-white" />
-                <div className="absolute left-1/2 top-1/2 h-[113%] w-[113%] -translate-x-1/2 -translate-y-1/2 rounded-full border-[4px] border-white" />
-                <div className="absolute left-1/2 top-1/2 h-[25%] w-[25%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0px_0px_20.9px_-3px_rgba(0,0,0,0.5)]" />
-                <div className="absolute left-1/2 top-1/2 h-[22%] w-[22%] -translate-x-1/2 -translate-y-[54%] rounded-full bg-[radial-gradient(circle_at_50%_28%,#d7c39e_0%,#b58d58_30%,#6f7b3b_68%,#4f5e21_100%)]" />
-              </div>
-
-              <img
-                src="/Group 353.svg"
-                alt="Professional profiles"
-                loading="lazy"
-                decoding="async"
-                className="absolute inset-0 h-full w-full object-cover object-center"
-              />
-
-              {professionalProfileHotspots.map((profile) => {
-                const isActive = activeProfessionalProfile === profile.id;
-
-                return (
-                  <button
-                    key={profile.id}
-                    type="button"
-                    className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full focus:outline-none"
-                    style={{
-                      left: profile.x,
-                      top: profile.y,
-                      width: `clamp(${Math.max(profile.size - 18, 34)}px, 10vw, ${profile.size}px)`,
-                      height: `clamp(${Math.max(profile.size - 18, 34)}px, 10vw, ${profile.size}px)`,
-                      touchAction: 'manipulation',
-                    }}
-                    aria-label={`Afficher ${profile.name}`}
-                    onMouseEnter={() => showProfessionalProfile(profile.id)}
-                    onFocus={() => showProfessionalProfile(profile.id)}
-                    onBlur={hideProfessionalProfiles}
-                    onTouchStart={() => showProfessionalProfile(profile.id, true)}
-                    onClick={() => showProfessionalProfile(profile.id, true)}
-                  >
-                    <span
-                      className={`absolute inset-0 rounded-full transition-all duration-300 md:border-2 md:border-white/80 ${
-                        isActive
-                          ? 'scale-110 bg-white/25 shadow-[0_0_18px_rgba(255,255,255,0.85)] md:bg-white/25'
-                          : 'bg-white shadow-[0_0_16px_rgba(0,0,0,0.22)] md:bg-transparent md:shadow-none'
-                      }`}
-                    />
-
-                    <span
-                      className={`absolute inset-[8%] rounded-full md:hidden ${
-                        profile.id === 'sam'
-                          ? 'bg-[radial-gradient(circle_at_50%_28%,#d7c39e_0%,#b58d58_30%,#6f7b3b_68%,#4f5e21_100%)]'
-                          : 'bg-[radial-gradient(circle_at_50%_28%,#e8d8bb_0%,#caa779_34%,#7d8d4a_70%,#5f6c2a_100%)]'
-                      }`}
-                    />
-
-                    <span
-                      className={`pointer-events-none absolute left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-[10px] bg-white px-3 py-1 font-[Geist] text-[12px] font-medium leading-[14px] text-[#003300] shadow-[0px_1px_13.7px_rgba(0,0,0,0.23)] transition-all duration-300 ${
-                        isActive ? 'visible opacity-100' : 'invisible opacity-0'
-                      }`}
-                      style={{
-                        bottom: 'calc(100% + 10px)',
-                      }}
-                    >
-                      {profile.name}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        <p
-          className="text-center font-[Geist] font-medium text-[#003300]"
-          style={{
-            fontSize: '15.3706px',
-            lineHeight: '21px',
-            textTransform: 'capitalize',
-            opacity: 0.5,
-          }}
-        >
-          &copy; 2026 RNJ Advisory. Tous droits réservés.
-        </p>
-      </div>
-    </section>
-  );
-}
 
 function RegulationAnalysisSection() {
   return (
@@ -1168,41 +668,341 @@ function WhyChooseGridSection() {
   );
 }
 
+type TabKey = 'installer' | 'structurer' | 'developper';
+
+const entrepreneuriatTabs: Array<{
+  key: TabKey;
+  label: string;
+  tag: string;
+  title: string;
+  description: string;
+  bg: string;
+  textColor: string;
+  buttonOutlineColor: string;
+  buttonFilledBg: string;
+  image: string;
+}> = [
+  {
+    key: 'installer',
+    label: "S'installer",
+    tag: 'Entrepreneuriat',
+    title: 'Entrepreneurs Hors Union Européenne Installation en Belgique',
+    description:
+      "Vous êtes ressortissant hors Union européenne et souhaitez développer votre activité en Belgique ? RNJ Advisory vous accompagne à chaque étape de votre installation afin de sécuriser votre projet sur les plans juridique, stratégique et administratif.",
+    bg: '#BBCB2E',
+    textColor: '#003300',
+    buttonOutlineColor: '#003300',
+    buttonFilledBg: '#003300',
+    image: '/Group 541.svg',
+  },
+  {
+    key: 'structurer',
+    label: 'Structurer',
+    tag: 'Structurer',
+    title: 'Création & Structuration d’Entreprise',
+    description:
+      "Vous êtes indépendant ou envisagez de lancer votre activité ? RNJ Advisory vous accompagne dès la phase de conception afin de structurer votre projet sur des bases juridiques solides et économiquement viables. Notre objectif : transformer votre idée en une activité conforme, crédible et prête à se développer durablement.",
+    bg: '#DDE597',
+    textColor: '#003300',
+    buttonOutlineColor: '#003300',
+    buttonFilledBg: '#003300',
+    image: '/Group 541 (1).svg',
+  },
+  {
+    key: 'developper',
+    label: 'Développer',
+    tag: 'Développer',
+    title: 'PME & ASBL en Croissance',
+    description:
+      "Vous dirigez une PME ou une ASBL en phase de développement ? Votre croissance nécessite une structuration solide et une gestion conforme aux exigences réglementaires ? RNJ Advisory vous accompagne afin de professionnaliser votre organisation, sécuriser vos opérations et soutenir une expansion maîtrisée.",
+    bg: '#B5E0EC',
+    textColor: '#0E434F',
+    buttonOutlineColor: '#0E434F',
+    buttonFilledBg: '#0E434F',
+    image: '/Group 541 (2).svg',
+  },
+];
+
+function EntrepreneuriatTabsSection() {
+  const TOTAL_DURATION = 13500;
+  const [progress, setProgress] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+    let raf = 0;
+    const start = performance.now() - progress * TOTAL_DURATION;
+    const tick = (now: number) => {
+      const elapsed = (now - start) % TOTAL_DURATION;
+      setProgress(elapsed / TOTAL_DURATION);
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPaused]);
+
+  const activeIndex = Math.max(
+    0,
+    Math.min(
+      entrepreneuriatTabs.length - 1,
+      Math.floor(progress * entrepreneuriatTabs.length),
+    ),
+  );
+  const active = entrepreneuriatTabs[activeIndex] ?? entrepreneuriatTabs[0];
+  const activeImageSrc = active?.image ?? '/Group 541.svg';
+
+  const firstStepPercent = 100 / entrepreneuriatTabs.length;
+  const progressPercent = Math.min(
+    100,
+    firstStepPercent + progress * (100 - firstStepPercent),
+  );
+
+  const setActiveIndex = (idx: number) => {
+    setProgress(idx / entrepreneuriatTabs.length);
+  };
+
+  return (
+    <section
+      className="w-full bg-[#F7FCFF] pb-10 pt-12 sm:pt-16 md:pb-14 md:pt-20 lg:pt-24 xl:pt-32"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className="w-full">
+        <div className="relative w-full overflow-hidden">
+          <div
+            className="relative h-[54px] w-full sm:h-[58px] md:h-[61px]"
+            style={{ backgroundColor: 'rgba(0,51,0,0.5)' }}
+          >
+            <div
+              className="absolute left-0 top-0 h-full bg-[#003300]"
+              style={{ width: `${progressPercent}%` }}
+            />
+            <div className="relative grid h-full w-full grid-cols-3">
+              {entrepreneuriatTabs.map((tab, idx) => {
+                const isActive = idx === activeIndex;
+                const isPast = idx < activeIndex;
+                return (
+                  <button
+                    key={tab.key}
+                    type="button"
+                    onClick={() => setActiveIndex(idx)}
+                    className="relative flex items-center justify-center"
+                  >
+                    <span
+                      className="whitespace-nowrap px-2 font-[Geist] text-[14px] font-semibold leading-[12px] transition-opacity duration-500 sm:text-[16px] sm:leading-[13px] md:text-[20px] md:leading-[14px]"
+                      style={{
+                        color: '#BBCB2E',
+                        opacity: isActive || isPast ? 1 : 0.5,
+                      }}
+                    >
+                      {tab.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div key={active.key} className="tab-fade flex flex-col xl:min-h-[835px] xl:flex-row">
+            <div
+              className="flex w-full flex-col px-5 py-8 sm:px-6 sm:py-10 md:px-10 md:py-12 xl:w-1/2 xl:px-[60px] xl:py-[89px] transition-colors duration-500"
+              style={{ backgroundColor: active.bg }}
+            >
+              <div className="flex items-center gap-[8px]">
+                <span
+                  className="inline-block h-[7.28px] w-[7.28px] rounded-full"
+                  style={{ backgroundColor: active.textColor }}
+                />
+                <span
+                  className="font-[Geist] text-[15px] font-bold leading-[16px] sm:text-[16px] sm:leading-[17px] md:text-[17.25px] md:leading-[18px]"
+                  style={{
+                    color: active.textColor,
+                  }}
+                >
+                  {active.tag}
+                </span>
+              </div>
+
+              <div className="mt-10 flex flex-col gap-10 sm:mt-12 md:mt-16 md:gap-14 xl:mt-[89px] xl:gap-[200px]">
+                <div className="flex max-w-[595px] flex-col gap-[30px]">
+                  <h3
+                    className="font-[EB_Garamond] font-semibold"
+                    style={{
+                      fontSize: 'clamp(34px, 5.2vw, 64px)',
+                      lineHeight: '0.86',
+                      letterSpacing: '-0.03em',
+                      color: active.textColor,
+                    }}
+                  >
+                    {active.title}
+                  </h3>
+                  <p
+                    className="max-w-[572px] font-[Geist] font-medium"
+                    style={{
+                      fontSize: '16px',
+                      lineHeight: '17px',
+                      color: active.textColor,
+                      opacity: 0.7,
+                    }}
+                  >
+                    {active.description}
+                  </p>
+                </div>
+
+                <div className="flex w-full flex-col items-stretch gap-2.5 sm:flex-row sm:flex-wrap sm:items-start sm:gap-[7.65px]">
+                  <Link
+                    href="/services"
+                    className="inline-flex h-[52px] w-full items-center justify-center rounded-full px-6 font-[Geist] font-semibold transition-opacity hover:opacity-80 sm:w-auto sm:min-w-[170px] sm:px-[24px]"
+                    style={{
+                      border: `1.53px solid ${active.buttonOutlineColor}`,
+                      color: active.textColor,
+                      fontSize: '15.52px',
+                      lineHeight: '16px',
+                    }}
+                  >
+                    En savoir plus
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="inline-flex h-[51.19px] w-full items-center justify-center rounded-full px-6 font-[Geist] font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[195px] sm:px-[28px]"
+                    style={{
+                      backgroundColor: active.buttonFilledBg,
+                      fontSize: '15.52px',
+                      lineHeight: '16px',
+                    }}
+                  >
+                    Prendre rendez-vous
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="relative w-full overflow-hidden transition-colors duration-500 xl:w-1/2"
+              style={{ backgroundColor: active.bg }}
+            >
+              <div className="relative w-full xl:absolute xl:inset-0 xl:h-full">
+                {/* Below xl: image sizes naturally at full width (no crop/zoom). xl: absolute-fill with object-cover */}
+                {/* iOS Safari needs explicit width/height + aspect-ratio for SVG sizing */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  key={activeImageSrc}
+                  src={encodeURI(activeImageSrc)}
+                  alt={active.title}
+                  width={759}
+                  height={835}
+                  className="block w-full h-auto [aspect-ratio:759/835] xl:absolute xl:inset-0 xl:h-full xl:w-full xl:object-contain xl:object-right-top xl:[aspect-ratio:auto]"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const [showTunisiaPopup, setShowTunisiaPopup] = useState(false);
   const [showStrategicPopup, setShowStrategicPopup] = useState(false);
+  const [esgActiveCardIndex, setEsgActiveCardIndex] = useState(0);
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
   const [hoveredScrollCardIndex, setHoveredScrollCardIndex] = useState<number | null>(null);
   const [hoveredFaqIndex, setHoveredFaqIndex] = useState<number | null>(null);
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
+  const [servicesFocusStage, setServicesFocusStage] = useState(0);
+  const [isInstitutionalCarouselPaused, setIsInstitutionalCarouselPaused] = useState(false);
+  const institutionalCarouselRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setServicesFocusStage((current) => (current + 1) % servicesFocusAnimationStates.length);
+    }, 1500);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setEsgActiveCardIndex((current) => (current + 1) % 3);
+    }, 1700);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const servicesFocusActiveCount = servicesFocusAnimationStates[servicesFocusStage].activeCount;
+  const servicesFocusLineFill = servicesFocusAnimationStates[servicesFocusStage].lineFill;
+
+  useEffect(() => {
+    let raf = 0;
+    let last = performance.now();
+
+    const tick = (now: number) => {
+      const carousel = institutionalCarouselRef.current;
+      if (carousel) {
+        const deltaSeconds = (now - last) / 1000;
+        if (!isInstitutionalCarouselPaused) {
+          const loopWidth = carousel.scrollWidth / 2;
+          carousel.scrollLeft += 45 * deltaSeconds;
+
+          if (loopWidth > 0 && carousel.scrollLeft >= loopWidth) {
+            carousel.scrollLeft -= loopWidth;
+          }
+        }
+      }
+
+      last = now;
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [isInstitutionalCarouselPaused]);
+
+  const scrollInstitutionalCarousel = (direction: 'left' | 'right') => {
+    const carousel = institutionalCarouselRef.current;
+    if (!carousel) return;
+
+    const firstCard = carousel.querySelector('[data-institutional-card]') as HTMLElement | null;
+    const styles = getComputedStyle(carousel);
+    const gap = Number.parseFloat(styles.columnGap || styles.gap || '0') || 0;
+    const cardWidth = firstCard?.getBoundingClientRect().width ?? carousel.clientWidth * 0.9;
+    const offset = (cardWidth + gap) * (direction === 'right' ? 1 : -1);
+    carousel.scrollBy({ left: offset, behavior: 'smooth' });
+  };
 
   return (
     <main className="relative min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-[#F7FCFF] to-white">
       <Navbar />
 
       <div className="relative w-full">
-        <div className="relative w-full overflow-hidden min-h-[900px] sm:min-h-[940px] md:min-h-[1220px] lg:min-h-[1320px] xl:min-h-[1009px]">
+        <div className="relative w-full overflow-hidden pb-8 sm:pb-10 md:pb-12 xl:pb-14 min-h-[760px] sm:min-h-[820px] md:min-h-[900px] lg:min-h-[940px] xl:min-h-[983px]">
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/hero-background.jpg')" }}
+            className="absolute inset-0 bg-no-repeat bg-cover bg-center"
+            style={{
+              backgroundImage: "url('/bg%20(1).svg')",
+            }}
           />
 
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0c2517]/10 via-transparent to-[#2a1e14]/55" />
-
           <div
-            className="absolute left-1/2 -translate-x-1/2 w-[90%] md:w-[746px] px-4 md:px-0 top-[120px] md:top-[200px] lg:top-[249px]"
+            className="absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[814px] px-4 md:px-0 top-[70px] md:top-[150px] lg:top-[200px] xl:left-[calc(50%-814px/2-199px)] xl:translate-x-0 xl:top-[260px] xl:w-[814px] xl:max-w-none"
           >
-            <div className="flex flex-col items-center gap-6 md:gap-10">
-              <div className="flex flex-col items-center gap-4 md:gap-[31px]">
+            <div className="flex flex-col items-center gap-6 md:gap-10 xl:items-start xl:gap-[59px]">
+              <div className="flex flex-col items-center gap-4 md:gap-[31px] xl:items-start xl:gap-[35px]">
                 <h1
-                  className="text-center font-[EB_Garamond] text-white text-[32px] md:text-[50px] lg:text-[68px] font-semibold leading-[1.1] md:leading-[0.85]"
+                  className="text-center xl:text-left font-[EB_Garamond] text-white font-normal leading-[1.1] md:leading-[1] xl:leading-[57px] xl:w-[715.21px]"
+                  style={{ fontSize: 'clamp(22px, 5.5vw, 68.6467px)' }}
                 >
-                  Conseil stratégique pour une performance durable
+                  <span className="block whitespace-nowrap">Conseil stratégique pour</span>
+                  <span className="block whitespace-nowrap">une performance durable</span>
                 </h1>
 
                 <p
-                  className="mt-2 md:mt-8 text-center font-[Geist] text-white text-[14px] md:text-[16px] font-semibold leading-[1.4] max-w-[90%] md:max-w-[814px]"
+                  className="-mt-5 md:-mt-3 xl:-mt-2 text-center xl:text-left font-[Geist] text-white/70 text-[14px] md:text-[16px] font-normal leading-[1.4] md:leading-[20px] max-w-[90%] md:max-w-[814px] xl:w-[618px]"
                 >
                   RNJ Advisory s&apos;associe à des organisations visionnaires pour
                   résoudre des défis critiques, optimiser leurs opérations et créer
@@ -1211,25 +1011,25 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-[7.1px] w-full">
+              <div className="relative -mt-1 md:-mt-2 flex flex-col md:flex-row items-center xl:items-start justify-center xl:justify-start gap-3 md:gap-[7.1px] xl:gap-[6.37px] w-full xl:w-[473px] xl:h-[63px]">
                 <button
-                  className="flex h-[50px] md:h-[70px] w-[200px] md:w-[230px] items-center justify-center rounded-full bg-[#F7FCFF] shadow-lg transition hover:opacity-90"
+                  className="flex h-[50px] md:h-[60px] xl:h-[63px] w-[229px] md:w-[229px] xl:w-[229px] items-center justify-center rounded-full bg-[#EEF2CA] transition hover:opacity-90"
                   style={{ boxShadow: '2.10047px 4.20093px 22.6px rgba(0, 0, 0, 0.44)' }}
                 >
                   <span
-                    className="text-center font-[Geist] font-semibold text-[#003300] text-[14px] md:text-[16px]"
+                    className="whitespace-nowrap text-center font-[Geist] font-semibold text-[#003300]/50 text-[14px] leading-[16px]"
                   >
                     Découvrir nos services
                   </span>
                 </button>
 
                 <button
-                  className="flex h-[50px] md:h-[69px] w-[220px] md:w-[285px] items-center gap-3 md:gap-[21px] rounded-full bg-[#BBCB2E] px-2 md:px-[6px] shadow-lg transition hover:opacity-90"
+                  className="flex h-[50px] md:h-[60px] xl:h-[62px] w-[250px] md:w-[250px] xl:w-[228px] items-center gap-2 md:gap-[16px] xl:gap-[18.85px] rounded-full bg-[#BBCB2E] px-3 md:px-[6px] shadow-lg transition hover:opacity-90"
                   style={{
                     boxShadow: '2.10047px 4.20093px 22.6px rgba(0, 0, 0, 0.44)',
                   }}
                 >
-                  <div className="relative h-[40px] w-[40px] md:h-[56px] md:w-[56px] flex-shrink-0">
+                  <div className="relative h-[40px] w-[40px] md:h-[46px] md:w-[46px] xl:h-[46px] xl:w-[46px] flex-shrink-0">
                     <div
                       className="absolute h-full w-full rounded-full bg-white left-1 top-0.5"
                     />
@@ -1248,7 +1048,7 @@ export default function Home() {
                   </div>
 
                   <span
-                    className="text-center font-[Geist] text-[#003300] text-[14px] md:text-[16px] font-extrabold"
+                    className="-ml-1 whitespace-nowrap text-center font-[Geist] text-[#003300] text-[14px] leading-[16px] font-bold tracking-[-0.02em]"
                   >
                     Contacter un conseiller
                   </span>
@@ -1257,217 +1057,168 @@ export default function Home() {
             </div>
           </div>
 
-					            <div className="hero-cards-wrapper absolute inset-x-0 bottom-[24px] sm:bottom-[28px] md:bottom-[32px] lg:bottom-[36px] xl:bottom-[40px] 2xl:bottom-[28px]">
-				            <div className="mx-auto w-full max-w-[1510px]">
-              <div className="hero-cards-track flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 pr-4 sm:gap-4 sm:px-5 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-6 md:pb-0 2xl:grid-cols-[663px_296px_422px] 2xl:gap-[19px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-              <div
-                className="flex min-h-[196px] min-w-[248px] max-w-[248px] snap-start flex-col gap-3 rounded-[26px] border border-white/15 bg-[rgba(0,0,0,0.08)] p-3 text-white shadow-[0px_5px_31.8px_rgba(0,0,0,0.27)] backdrop-blur-[10px] sm:min-h-[236px] sm:min-w-[320px] sm:max-w-[320px] sm:gap-4 sm:rounded-[34px] sm:p-4 md:col-span-2 md:min-h-[260px] md:min-w-0 md:max-w-none md:w-full md:flex-row md:items-center md:gap-6 md:rounded-[40px] md:p-4 lg:gap-8 lg:rounded-[50px] lg:p-[14px] 2xl:col-span-1 2xl:w-[663px]"
+          <div className="relative z-[1] mx-auto mt-[520px] w-full max-w-[1421px] px-4 sm:mt-[560px] sm:px-6 md:mt-[640px] lg:mt-[680px] xl:mt-[670px] xl:px-0">
+            {/* Mobile: horizontal swipe (scroll-snap). md+: grid with fluid clamp sizes */}
+            <div
+              className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-4 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:px-6 md:mx-0 md:grid md:w-full md:grid-cols-[1.95fr_0.9fr_1.2fr] md:items-stretch md:overflow-visible md:px-0 md:pb-0"
+              style={{ gap: 'clamp(12px, 1.2vw, 20px)', ['--desktop-h' as string]: 'clamp(200px, 28vw, 284px)' }}
+            >
+              {/* Card 1 — image + text, flex-row always */}
+              <article
+                className="w-[85%] shrink-0 snap-center bg-[rgba(0,0,0,0.004)] shadow-[0px_5px_31.8px_rgba(0,0,0,0.27)] md:w-auto md:shrink md:snap-none md:h-[var(--desktop-h)]"
+                style={{ borderRadius: 'clamp(20px, 3.5vw, 50px)', padding: 'clamp(8px, 1vw, 14px)' }}
               >
-                <div className="relative h-[104px] w-full overflow-hidden rounded-[22px] sm:h-[156px] md:h-[210px] md:w-[240px] md:min-w-[240px] lg:h-[256px] lg:w-[267px] lg:min-w-[267px] md:rounded-[28px] lg:rounded-[36px]">
-                  <Image
-                    src="/Group 527.svg"
-                    alt="Réunion autour d'un projet durable"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                <div className="flex flex-col items-start gap-2 md:max-w-[336px] md:gap-3 lg:max-w-none lg:gap-[13px]">
-                  <h3 className="font-[Geist] text-[19px] font-medium leading-[1.05] text-white sm:text-[24px] md:text-[26px] lg:text-[32px] md:leading-[1.05] lg:leading-[34px]">
-                    Quand la durabilité rencontre la stratégie.
-                  </h3>
-
-                  <p className="font-[Geist] text-[12px] font-medium leading-[1.3] text-white/60 sm:text-[14px] md:text-[15px] lg:text-[16px] lg:leading-[20px]">
-                    Une approche qui transforme les exigences environnementales en
-                    leviers de croissance et d’innovation.
-                  </p>
-
-                  <Link
-                    href="/services"
-                    className="font-[Geist] text-[14px] font-medium leading-[18px] text-white underline underline-offset-4 sm:text-[16px] lg:text-[20px] lg:leading-[20px]"
+                <div className="flex h-full items-center" style={{ gap: 'clamp(6px, 1.6vw, 32px)' }}>
+                  <div
+                    className="relative shrink-0 overflow-hidden"
+                    style={{
+                      width: 'clamp(120px, 18vw, 267px)',
+                      height: 'clamp(120px, 18vw, 256px)',
+                      borderRadius: 'clamp(14px, 2.5vw, 36px)',
+                    }}
                   >
-                    Découvrez nos projets
-                  </Link>
-                </div>
-              </div>
+                    <Image
+                      src="/group-of-business-people-discussing-in-meeting-2026-01-05-00-38-48-utc%201.svg"
+                      alt="Where sustainability meets strategy"
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
 
-              <div
-                className="flex min-h-[170px] min-w-[188px] max-w-[188px] snap-start flex-col items-center justify-center rounded-[26px] border border-white/15 bg-[rgba(0,0,0,0.08)] px-5 py-6 text-white shadow-[0px_5px_31.8px_rgba(0,0,0,0.27)] backdrop-blur-[10px] sm:min-h-[220px] sm:min-w-[228px] sm:max-w-[228px] sm:rounded-[34px] sm:px-6 sm:py-7 md:min-h-[250px] md:min-w-0 md:max-w-none md:w-full md:rounded-[40px] md:px-8 md:py-10 lg:rounded-[50px] lg:px-[48px] lg:py-[45px] 2xl:w-[296px]"
+                  <div className="flex flex-1 flex-col" style={{ width: 'clamp(100px, 23vw, 336px)', gap: 'clamp(4px, 0.9vw, 13px)' }}>
+                    <h3 className="font-[Geist] font-medium text-white" style={{ fontSize: 'clamp(15px, 2.25vw, 32px)', lineHeight: 'clamp(17px, 2.4vw, 34px)' }}>
+                      Where sustainability meets strategy.
+                    </h3>
+                    <p className="font-[Geist] font-medium text-white/60" style={{ fontSize: 'clamp(11px, 1.15vw, 16px)', lineHeight: 'clamp(14px, 1.4vw, 20px)' }}>
+                      Une approche qui transforme les exigences environnementales en leviers de croissance et d&apos;innovation.
+                    </p>
+                    <Link
+                      href="/services"
+                      className="w-fit font-[Geist] font-medium text-white underline underline-offset-4 transition-opacity hover:opacity-80"
+                      style={{ fontSize: 'clamp(12px, 1.4vw, 20px)', lineHeight: 'clamp(14px, 1.5vw, 20px)' }}
+                    >
+                      Découvrez nos projets
+                    </Link>
+                  </div>
+                </div>
+              </article>
+
+              {/* Card 2 — stats with avatar circles */}
+              <article
+                className="flex w-[85%] shrink-0 snap-center flex-col items-center justify-center bg-[rgba(0,0,0,0.004)] shadow-[0px_5px_31.8px_rgba(0,0,0,0.27)] md:w-auto md:shrink md:snap-none md:h-[var(--desktop-h)]"
+                style={{ borderRadius: 'clamp(18px, 3.5vw, 50px)', padding: 'clamp(14px, 2.5vw, 45px) clamp(14px, 3vw, 48px)' }}
               >
-                <div className="relative h-[44px] w-[108px] sm:h-[54px] sm:w-[128px] md:h-[70px] md:w-[168px] lg:h-[76px] lg:w-[182px]">
-                  <Image
-                    src="/Frame 526.svg"
-                    alt="Portraits de clients"
-                    fill
-                    className="object-contain"
-                  />
+                <div
+                  className="relative"
+                  style={{
+                    width: 'clamp(100px, 13vw, 182px)',
+                    height: 'clamp(44px, 5.4vw, 76px)',
+                    marginBottom: 'clamp(10px, 1.6vw, 28px)',
+                  }}
+                >
+                  {[
+                    { src: '/OpenAI%20%E2%80%94%20Jake%20Stangel%201.svg', alt: 'Customer 1', left: '0' },
+                    { src: '/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc%201.svg', alt: 'Customer 2', left: 'clamp(28px, 3.7vw, 53px)' },
+                    { src: '/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc%201.svg', alt: 'Customer 3', left: 'clamp(56px, 7.5vw, 106px)' },
+                  ].map((c) => (
+                    <div
+                      key={c.alt}
+                      className="absolute top-0 overflow-hidden rounded-full border border-white/30"
+                      style={{
+                        left: c.left,
+                        width: 'clamp(44px, 5.4vw, 76px)',
+                        height: 'clamp(44px, 5.4vw, 76px)',
+                      }}
+                    >
+                      <Image src={c.src} alt={c.alt} fill className="object-cover" unoptimized />
+                    </div>
+                  ))}
                 </div>
 
-                <div className="mt-5 flex flex-col items-center sm:mt-6 md:mt-7">
-                  <span className="font-[Geist] text-[36px] font-semibold leading-none text-white sm:text-[46px] md:text-[58px] lg:text-[64px] lg:leading-[83px]">
-                    500 clients
-                  </span>
+                <div className="text-center">
+                  <p className="font-[Geist] font-medium text-white/70" style={{ fontSize: 'clamp(12px, 2.3vw, 32px)', lineHeight: 1.15 }}>
+                    partenaires nous font confiance
+                  </p>
                 </div>
-              </div>
+              </article>
 
-              <div
-                className="flex min-h-[170px] min-w-[224px] max-w-[224px] snap-start flex-col justify-center rounded-[26px] border border-white/15 bg-[rgba(0,0,0,0.08)] px-5 py-6 text-white shadow-[0px_5px_31.8px_rgba(0,0,0,0.27)] backdrop-blur-[10px] sm:min-h-[210px] sm:min-w-[280px] sm:max-w-[280px] sm:rounded-[34px] sm:px-6 sm:py-7 md:min-h-[250px] md:min-w-0 md:max-w-none md:w-full md:rounded-[40px] md:px-8 lg:min-h-[284px] lg:rounded-[50px] lg:px-[43px] lg:py-9 2xl:w-[422px]"
+              {/* Card 3 — headline + paragraph */}
+              <article
+                className="flex w-[85%] shrink-0 snap-center flex-col justify-center bg-[rgba(0,0,0,0.004)] shadow-[0px_5px_31.8px_rgba(0,0,0,0.27)] md:w-auto md:shrink md:snap-none md:h-[var(--desktop-h)]"
+                style={{ borderRadius: 'clamp(18px, 3.5vw, 50px)', padding: 'clamp(14px, 2vw, 40px) clamp(16px, 2.5vw, 40px)' }}
               >
-                <div className="flex max-w-[336px] flex-col items-start gap-2 sm:gap-3 md:gap-[13px]">
-                  <h3 className="font-[Geist] text-[20px] font-medium leading-[1.05] text-white sm:text-[24px] md:text-[28px] lg:text-[32px] lg:leading-[34px]">
+                <div className="flex max-w-[336px] flex-col" style={{ gap: 'clamp(4px, 0.9vw, 13px)' }}>
+                  <h3 className="font-[Geist] font-medium text-white" style={{ fontSize: 'clamp(15px, 2.25vw, 32px)', lineHeight: 'clamp(17px, 2.4vw, 34px)' }}>
                     Une approche claire et structurée
                   </h3>
-
-                  <p className="font-[Geist] text-[12px] font-medium leading-[1.3] text-white/60 sm:text-[14px] md:text-[15px] lg:text-[16px] lg:leading-[20px]">
-                    Nous transformons la complexité réglementaire en décisions
-                    lisibles et opérationnelles.
+                  <p className="font-[Geist] font-medium text-white/60" style={{ fontSize: 'clamp(11px, 1.15vw, 16px)', lineHeight: 'clamp(14px, 1.4vw, 20px)' }}>
+                    Nous transformons la complexité réglementaire en décisions lisibles et opérationnelles.
                   </p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+        </div>
+
+        <div className="relative z-[2] w-full bg-[#BBCB2E] py-5 sm:py-6 md:py-[26.2558px]">
+          <div className="w-full px-0">
+            <div className="relative min-h-[72px] overflow-hidden sm:min-h-[78px] md:min-h-[92px] lg:min-h-[104.65px]">
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-[#BBCB2E] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-[#BBCB2E] to-transparent" />
+
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div
+                  className="flex w-max items-center gap-[clamp(24px,4.5vw,73px)]"
+                  style={{
+                    animation: 'scroll 26s linear infinite',
+                    willChange: 'transform',
+                  }}
+                >
+                  {[...partnerAssetLogos, ...partnerAssetLogos].map((logo, index) => (
+                    <div
+                      key={`partner-asset-logo-${index}-${logo}`}
+                      className="relative h-[clamp(30px,4.6vw,52px)] w-[clamp(108px,15vw,190px)] shrink-0"
+                    >
+                      <Image
+                        src={logo}
+                        alt={`Logo partenaire ${index % partnerAssetLogos.length + 1}`}
+                        fill
+                        className="object-contain [filter:brightness(0)_saturate(100%)_invert(100%)]"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-            </div>
           </div>
         </div>
 
-        <div className="relative w-full bg-[rgba(0,0,0,0.004)] py-6 md:py-[26.2558px]">
-          <div className="mx-auto flex w-full max-w-[1536px] flex-nowrap items-center justify-start gap-8 overflow-x-auto px-4 md:justify-center md:gap-12 md:overflow-visible md:px-0 lg:gap-[112.37px] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            {logoStripItems.map((logo) => (
-              <div
-                key={logo.src}
-                className="relative shrink-0"
-                style={{
-                  width: `clamp(${Math.max(logo.width * 0.55, 72)}px, 14vw, ${logo.width}px)`,
-                  height: `clamp(${Math.max(logo.height * 0.55, 28)}px, 5vw, ${logo.height}px)`,
-                }}
-              >
-                <Image src={logo.src} alt={logo.alt} fill className="object-contain" />
+        <div className="relative w-full overflow-hidden bg-[#F7FCFF] py-10 sm:py-12 md:py-14 lg:min-h-[782px] lg:py-16">
+          <div className="relative z-[2] mx-auto flex w-full max-w-[1395px] flex-col items-center gap-8 px-4 sm:gap-10 md:gap-12 lg:gap-[60px]">
+            <div className="flex min-h-[58px] w-full max-w-[1391.5px] flex-wrap items-center justify-between gap-3 sm:gap-4">
+              <div className="flex items-center gap-3">
+                <span className="h-[10px] w-[10px] rounded-full bg-[#003300]" />
+                <span className="font-[Geist] text-[16px] font-bold leading-[1.05] text-[#003300] sm:text-[20px] lg:text-[23.6828px] lg:leading-[25px]">
+                  Services
+                </span>
               </div>
-            ))}
-          </div>
-        </div>
 
-        <div className="relative w-full overflow-hidden min-h-[980px] md:min-h-[1500px] lg:min-h-[1450px] xl:min-h-[1500px] 2xl:min-h-[1627px]">
-          <div
-            className="absolute inset-0 lg:hidden"
-            style={{
-              background: '#003300',
-            }}
-          >
-            <Image
-              src="/Frame 535-mobile.svg"
-              alt=""
-              fill
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </div>
-
-          <div
-            className="absolute inset-0 hidden lg:block bg-center bg-no-repeat"
-            style={{
-              backgroundImage: "url('/Frame 535 (1).svg')",
-              backgroundSize: 'cover',
-            }}
-          >
-          </div>
-
-          <div
-            className="absolute hidden 2xl:block"
-            style={{
-              width: '922px',
-              height: '319.5px',
-              left: 'calc(50% - 922px/2 - 1px)',
-              top: '208px',
-            }}
-          >
-            <Image
-              src="/Frame 20.svg"
-              alt="Expertise Reconnue et Résultats Prouvés"
-              fill
-              sizes="922px"
-              className="object-contain"
-              priority={false}
-            />
-          </div>
-
-          <div
-            className="absolute left-1/2 hidden -translate-x-1/2 2xl:block 2xl:top-[706.81px]"
-            style={{
-              width: 'min(1392px, calc(100% - 32px))',
-              aspectRatio: '1392 / 524.38',
-              filter: 'drop-shadow(0px 3.84163px 30.4449px rgba(0, 0, 0, 0.25))',
-            }}
-          >
-            <Image
-              src="/Frame 30 (1).svg"
-              alt="Expertise certifiée, approche sur-mesure et vision durable"
-              fill
-              sizes="(min-width: 1530px) 1392px, calc(100vw - 32px)"
-              className="object-contain"
-              priority={false}
-            />
-          </div>
-
-          <p
-            className="absolute left-1/2 hidden w-[calc(100%_-_32px)] max-w-[1193px] -translate-x-1/2 text-center font-[Geist] font-normal text-white opacity-50 2xl:block 2xl:top-[1369px] 2xl:text-[23.6828px] 2xl:leading-[25px]"
-          >
-            RNJ Advisory combines certified expertise, tailored strategy, and a
-            long-term sustainable vision to deliver secure, high-impact
-            decisions. Our approach ensures regulatory compliance, measurable
-            performance, and responsible growth aligned with each
-            organization&apos;s strategic objectives.
-          </p>
-
-          <div className="relative mx-auto hidden w-full max-w-[1120px] px-6 pb-16 pt-28 lg:block 2xl:hidden">
-            <div className="relative mx-auto w-full max-w-[760px] [aspect-ratio:922/319.5]">
-              <Image
-                src="/Frame 20.svg"
-                alt="Expertise Reconnue et Résultats Prouvés"
-                fill
-                sizes="(min-width: 1024px) 760px, 100vw"
-                className="object-contain"
-                priority={false}
-              />
-            </div>
-
-            <div
-              className="relative mx-auto mt-12 w-full max-w-[992px] [aspect-ratio:1392/524.38]"
-              style={{ filter: 'drop-shadow(0px 3.84163px 30.4449px rgba(0, 0, 0, 0.25))' }}
-            >
-              <Image
-                src="/Frame 30 (1).svg"
-                alt="Expertise certifiée, approche sur-mesure et vision durable"
-                fill
-                sizes="(min-width: 1024px) 992px, 100vw"
-                className="object-contain"
-                priority={false}
-              />
-            </div>
-
-            <p className="mx-auto mt-10 max-w-[900px] text-center font-[Geist] text-[18px] font-normal leading-[22px] text-white opacity-50">
-              RNJ Advisory combines certified expertise, tailored strategy, and a
-              long-term sustainable vision to deliver secure, high-impact
-              decisions. Our approach ensures regulatory compliance, measurable
-              performance, and responsible growth aligned with each
-              organization&apos;s strategic objectives.
-            </p>
-          </div>
-
-          <div className="relative mx-auto w-full max-w-[1510px] px-4 py-12 md:px-6 md:py-16 lg:hidden">
-            <div
-              className="flex flex-col items-center gap-6 md:gap-8 xl:absolute xl:left-1/2 xl:top-[208px] xl:w-[922px] xl:-translate-x-1/2 xl:gap-[35.5px]"
-            >
-                <h2
-                  className="text-center text-[#003300] font-['EB_Garamond'] text-[36px] md:text-[62px] lg:text-[78px] xl:text-[117.641px] font-medium leading-[1.1] md:leading-[0.92] xl:leading-[98px] max-w-[90%] md:max-w-[964px] xl:max-w-[964px]"
-                >
-                  <span className="whitespace-nowrap">Expertise Reconnue.</span>
-                  <br />
-                  Résultats Prouvés.
-                </h2>
-
-              <p
-                className="text-center text-[#003300] font-[Geist] text-[14px] md:text-[18px] lg:text-[22px] xl:text-[25.803px] font-medium leading-[1.3] opacity-70 max-w-[90%] md:max-w-[906px] mt-2 md:mt-4 xl:mt-0 xl:leading-[29px]"
+              <Link
+                href="/contact"
+                className="inline-flex h-[46px] items-center justify-center rounded-[150px] bg-[#BBCB2E] px-7 font-[Geist] text-[16px] font-bold leading-[1.05] text-[#003300] sm:h-[54px] sm:px-9 sm:text-[20px] lg:h-[58px] lg:px-[43px] lg:text-[23.6828px] lg:leading-[25px]"
               >
+                Contact
+              </Link>
+            </div>
+
+            <div className="flex w-full max-w-[1395px] flex-col items-center gap-6 text-center sm:gap-8 lg:gap-[48px]">
+              <h2 className="font-[EB_Garamond] text-[48px] font-bold leading-[0.84] text-[#003300] sm:text-[64px] lg:text-[96px] xl:text-[128px] xl:leading-[94px]">
+                Nos Services
+              </h2>
+
+              <p className="max-w-[753px] font-[Geist] text-[14px] font-normal leading-[1.35] text-[#003300]/50 sm:text-[16px] md:text-[18px] lg:text-[20px] lg:leading-[24px]">
                 RNJ Advisory s&apos;associe à des organisations visionnaires pour
                 résoudre des défis critiques, optimiser leurs opérations et créer
                 une valeur durable dans un environnement mondial en constante
@@ -1475,169 +1226,82 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="mt-12 md:mt-16 xl:absolute xl:left-[58px] xl:top-[706.81px] xl:mt-0 xl:w-[1392px]">
-              <div
-                className="relative mx-auto hidden h-[524.38px] w-full max-w-[1392px] lg:block"
-                style={{ filter: 'drop-shadow(0px 3.84163px 30.4449px rgba(0, 0, 0, 0.25))' }}
-              >
-                <Image
-                  src="/Frame 30.png"
-                  alt="Expertise certifiée, approche sur-mesure et vision durable"
-                  fill
-                  sizes="(min-width: 1280px) 1392px, (min-width: 1024px) 92vw, 100vw"
-                  className="object-contain"
-                />
+            <div className="flex w-full max-w-[1065.41px] flex-col items-center gap-6 lg:gap-[9px]">
+              <div className="relative h-[42px] w-full max-w-[768px] sm:h-[46px]">
+                <div className="absolute left-[20px] right-[20px] top-1/2 h-[14px] -translate-y-1/2 rounded-full bg-[#DDE597] sm:left-[24.5px] sm:right-[24.5px] sm:h-[17px]">
+                  <div
+                    className="h-full rounded-full bg-[#BBCB2E] transition-all duration-500 ease-out"
+                    style={{ width: `${servicesFocusLineFill}%` }}
+                  />
+                </div>
+
+                {[1, 2, 3].map((step, index) => {
+                  const isStepActive = servicesFocusStage >= step;
+                  const positionClass =
+                    index === 0 ? 'left-0' : index === 1 ? 'left-1/2 -translate-x-1/2' : 'right-0';
+
+                  return (
+                    <div
+                      key={step}
+                      className={`absolute top-0 flex h-[42px] w-[42px] items-center justify-center rounded-full transition-colors duration-500 sm:h-[46px] sm:w-[46px] ${positionClass} ${
+                        isStepActive ? 'bg-[#BBCB2E]' : 'bg-[#D9D9D9]'
+                      }`}
+                    >
+                      <span
+                        className={`font-[Geist] text-[18px] font-medium leading-[18px] text-[#003300] transition-opacity duration-500 sm:text-[22.2147px] sm:leading-[22px] ${
+                          isStepActive ? 'opacity-100' : 'opacity-40'
+                        }`}
+                      >
+                        {step}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
 
-              <div
-                className="grid w-full grid-cols-1 items-stretch gap-4 px-0 sm:gap-5 md:mx-auto md:max-w-[940px] md:grid-cols-2 md:gap-5 lg:hidden"
-                style={{
-                  filter: 'drop-shadow(0px 3.84163px 30.4449px rgba(0, 0, 0, 0.25))',
-                }}
-              >
-                <div className="relative mx-auto flex h-full w-full max-w-[320px] flex-col items-center justify-center overflow-hidden rounded-[30px] border border-white/30 bg-[rgba(0,0,0,0.004)] p-8 md:min-h-[420px] md:max-w-[451.19px] md:p-10">
-                  <Image
-                    src="/Frame 18 (3).svg"
-                    alt=""
-                    fill
-                    aria-hidden="true"
-                    className="pointer-events-none object-cover"
-                  />
-                  <div className="relative z-[1] flex flex-col items-center gap-6 md:gap-[46px]">
-                    <div className="relative h-[70px] w-[60px] md:h-[101px] md:w-[88px]">
-                      <Image
-                        src="/Layer 1 (7).svg"
-                        alt=""
-                        fill
-                        className="object-contain"
-                        aria-hidden="true"
-                      />
-                    </div>
+              <div className="flex w-full flex-nowrap items-stretch gap-4 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-5 xl:gap-[14.7px]">
+                {servicesFocusCards.map((card, index) => {
+                  const isCardActive = servicesFocusActiveCount > index;
 
-                    <div className="flex w-full max-w-[372px] flex-col items-center gap-3 md:gap-[17px]">
-                      <h3 className="max-w-[291.71px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px]">
-                        Expertise Certifiée
-                      </h3>
+                  return (
+                    <article
+                      key={card.title}
+                      className={`relative isolate flex h-[328px] w-[min(84vw,346px)] shrink-0 flex-col items-center px-[24px] pt-[48px] transition-all duration-500 ease-out sm:w-[min(62vw,346px)] sm:px-[30.1322px] sm:pt-[57.9046px] md:w-[min(48vw,346px)] lg:w-[345px] ${
+                        isCardActive
+                          ? 'opacity-100 [filter:drop-shadow(0px_4px_23.1px_rgba(0,0,0,0.08))]'
+                          : 'opacity-30'
+                      }`}
+                    >
+                      <div className="pointer-events-none absolute left-0 top-[33px] h-[262px] w-full rounded-[38.6311px] bg-[#DDE597]" />
 
-                      <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white/50 md:max-w-[372px] md:text-[20px]">
-                        Une maîtrise approfondie des enjeux financiers,
-                        réglementaires et ESG pour des décisions
-                        sécurisées et conformes.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                      <div className="relative z-[1] flex w-[284.88px] max-w-full flex-col items-center gap-[35.54px]">
+                        <Image
+                          src={card.icon}
+                          alt={card.title}
+                          width={card.iconWidth}
+                          height={card.iconHeight}
+                          className="h-auto w-auto"
+                        />
 
-                <div className="relative mx-auto flex h-full w-full max-w-[320px] flex-col items-center justify-center overflow-hidden rounded-[30px] border border-white/30 bg-[rgba(0,0,0,0.004)] p-8 md:min-h-[420px] md:max-w-[430px] md:p-10">
-                  <Image
-                    src="/Frame 18 (3).svg"
-                    alt=""
-                    fill
-                    aria-hidden="true"
-                    className="pointer-events-none object-cover"
-                  />
-                  <div className="relative z-[1] flex flex-col items-center gap-6 md:gap-[46px]">
-                    <div className="relative h-[70px] w-[70px] md:h-[101px] md:w-[101px]">
-                      <Image
-                        src="/Mask group (9).svg"
-                        alt=""
-                        fill
-                        className="object-contain"
-                        aria-hidden="true"
-                      />
-                    </div>
+                        <div className="flex w-full flex-col items-center gap-[13.13px]">
+                          <h3 className="w-full text-center font-[Geist] text-[22.2147px] font-extrabold leading-[22px] text-[#003300]">
+                            {card.title}
+                          </h3>
 
-                    <div className="flex w-full max-w-[372px] flex-col items-center gap-3 md:gap-[17px]">
-                      <h3 className="max-w-[189.63px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px]">
-                        Approche Sur-Mesure
-                      </h3>
-
-                      <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white/50 md:max-w-[372px] md:text-[20px]">
-                        Des stratégies adaptées à chaque
-                        entreprise, orientées performance et résultats
-                        mesurables.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative mx-auto flex h-full w-full max-w-[320px] flex-col items-center justify-center overflow-hidden rounded-[30px] border border-white/30 bg-[rgba(0,0,0,0.004)] p-8 md:min-h-[420px] md:max-w-[451.19px] md:p-10">
-                  <Image
-                    src="/Frame 18 (3).svg"
-                    alt=""
-                    fill
-                    aria-hidden="true"
-                    className="pointer-events-none object-cover"
-                  />
-                  <div className="relative z-[1] flex flex-col items-center gap-6 md:gap-[46px]">
-                    <div className="relative h-[70px] w-[70px] md:h-[101px] md:w-[101px]">
-                      <Image
-                        src="/Mask group (10).svg"
-                        alt=""
-                        fill
-                        className="object-contain"
-                        aria-hidden="true"
-                      />
-                    </div>
-
-                    <div className="flex w-full max-w-[372px] flex-col items-center gap-3 md:gap-[17px]">
-                      <h3 className="max-w-[291.71px] text-center font-[Geist] text-[20px] font-extrabold text-white md:text-[29px]">
-                        Vision Durable
-                      </h3>
-
-                      <p className="max-w-[280px] text-center font-[Geist] text-[14px] font-medium leading-[1.3] text-white/50 md:max-w-[372px] md:text-[20px]">
-                        Une maîtrise approfondie des enjeux financiers,
-                        réglementaires et ESG pour des décisions
-                        sécurisées et conformes.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                          <p className="w-full text-center font-[Geist] text-[17.41px] font-medium leading-[18px] text-[#003300]/50">
+                            {card.description}
+                          </p>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </div>
-
-            <p
-              className="mx-auto mt-10 max-w-[90%] px-4 text-center font-[Geist] text-[14px] font-normal leading-[1.4] text-white opacity-50 md:mt-12 md:max-w-[980px] md:px-0 md:text-[18px]"
-            >
-              RNJ Advisory conjugue expertise certifiée, approche sur mesure et
-              vision durable afin d&apos;éclairer des décisions sûres, structurées
-              et à fort impact. Notre accompagnement favorise la conformité
-              réglementaire, la performance mesurable et une croissance
-              responsable, alignée sur les objectifs stratégiques de chaque
-              organisation.
-            </p>
           </div>
         </div>
 
-        <section
-          className="relative w-full overflow-hidden bg-[#647359] min-h-[640px] sm:min-h-[720px] md:min-h-[760px] lg:min-h-[840px] xl:min-h-[920px] 2xl:min-h-[800px] 2xl:[aspect-ratio:1513/1009]"
-        >
-          <div className="absolute inset-0">
-            <Image
-              src="/business-meeting-background-mobile.jpg"
-              alt=""
-              fill
-              sizes="100vw"
-              className="object-cover object-center 2xl:hidden"
-              priority={false}
-            />
-            <Image
-              src="/business-meeting-background.jpg"
-              alt=""
-              fill
-              sizes="100vw"
-              className="hidden object-cover object-center 2xl:block"
-              priority={false}
-            />
-          </div>
-
-          <div
-            className="absolute inset-0 2xl:hidden"
-            style={{
-              background:
-                'linear-gradient(180deg, rgba(100,115,89,0.06) 0%, rgba(100,115,89,0.18) 34%, rgba(100,115,89,0.58) 66%, rgba(100,115,89,0.95) 100%)',
-            }}
-          />
+        <section className="relative w-full overflow-hidden bg-[#181818] py-10 sm:py-12 md:py-14 lg:py-16 xl:py-[62px]">
           <div
             className="absolute inset-0 hidden 2xl:block"
             style={{
@@ -1646,45 +1310,569 @@ export default function Home() {
             }}
           />
 
-          <div
-            className="relative inset-x-0 bottom-0 flex w-full flex-col items-start justify-end px-5 pb-6 pt-24 sm:px-6 sm:pb-8 md:px-8 md:pb-10 md:pt-28 lg:px-10 lg:pb-12 lg:pt-32 xl:px-12 xl:pb-16 xl:pt-36 2xl:absolute 2xl:left-[64px] 2xl:inset-x-auto 2xl:bottom-auto 2xl:top-[800px] 2xl:w-auto 2xl:px-0 2xl:pb-0 2xl:pt-0"
-          >
-            <div className="flex max-w-[330px] flex-col gap-4 sm:max-w-[420px] md:max-w-[560px] md:gap-5 lg:max-w-[680px] xl:max-w-[760px] xl:gap-6 2xl:max-w-[905px]">
-              <h2
-                className="text-white font-['EB_Garamond'] font-semibold text-[26px] leading-[1.02] tracking-tight sm:text-[34px] md:text-[40px] md:leading-[0.98] lg:text-[48px] lg:leading-[0.92] xl:text-[56px] xl:leading-[0.9] 2xl:text-[70px] 2xl:leading-[0.8]"
-              >
-                Concrétisez vos idées avec un cabinet de conseils
-                juridiques &amp; stratégiques à Bruxelles
-              </h2>
+          <div className="relative z-[1] mx-auto flex w-full max-w-[1580px] flex-col px-4 sm:px-6 md:px-8 lg:px-8 xl:px-[70px]">
+            <div className="flex flex-col gap-8 xl:flex-row xl:items-start xl:justify-between xl:gap-[72px]">
+              <div className="flex w-full max-w-[779px] flex-col gap-8 lg:gap-10 xl:gap-[66px]">
+                <div className="relative h-[30px] w-[225px]">
+                  <Image
+                    src="/Group (1).svg"
+                    alt="RNJ Advisory"
+                    fill
+                    className="object-contain object-left"
+                  />
+                </div>
 
-              <p
-                className="max-w-[320px] font-[Geist] text-[14px] font-medium leading-[1.45] text-white/80 sm:max-w-[360px] md:max-w-[500px] md:text-[16px] md:leading-[1.45] md:text-white md:opacity-70 lg:max-w-[540px] lg:text-[17px] xl:max-w-[580px] xl:text-[18px] xl:leading-[1.45] 2xl:max-w-[615px] 2xl:text-[19px] 2xl:leading-[1.4]"
-              >
-                RNJ Advisory accompagne des organisations ambitieuses pour relever
-                des défis complexes, optimiser leurs opérations et créer une
-                valeur durable dans un environnement en constante évolution.
-              </p>
+                <div className="flex flex-col gap-7 lg:gap-9 xl:gap-[43.92px]">
+                  <h2 className="font-[EB_Garamond] text-[34px] font-semibold italic leading-[0.9] tracking-[-0.03em] text-white sm:text-[44px] md:text-[52px] lg:text-[58px] xl:text-[62.7408px] xl:leading-[54px]">
+                    Concrétisez vos idées avec un cabinet de conseils juridiques
+                    &amp; stratégiques à Bruxelles
+                  </h2>
+
+                  <p className="max-w-[567px] font-[Geist] text-[14px] font-medium leading-[1.2] text-white/70 sm:text-[15px] md:text-[16px] md:leading-[17px]">
+                    Basé à Bruxelles, au cœur des institutions européennes, nous
+                    allions une expertise juridique pointue et une vision
+                    stratégique pour accompagner vos projets, de la conception à
+                    la réalisation.
+                  </p>
+                </div>
+
+                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-[9.15px] lg:justify-start">
+                  <Link
+                    href="/about"
+                    className="inline-flex h-[56px] items-center justify-center rounded-[8.23702px] border border-white px-8 font-[Geist] text-[16px] font-semibold leading-[19px] text-white sm:h-[62px] sm:min-w-[135.45px] sm:px-4 sm:text-[18.5699px]"
+                  >
+                    À propos
+                  </Link>
+
+                  <Link
+                    href="/contact"
+                    className="inline-flex h-[56px] items-center justify-center rounded-[8.23702px] bg-white px-8 font-[Geist] text-[16px] font-semibold leading-[19px] text-[#181818] sm:h-[61.1px] sm:min-w-[260px] sm:px-4 sm:text-[18.5699px] md:min-w-[311px]"
+                  >
+                    Demander une consultation
+                  </Link>
+                </div>
+              </div>
+
+              <div className="relative mx-auto h-[390px] w-full max-w-[360px] sm:h-[470px] sm:max-w-[430px] md:h-[527px] md:max-w-[462.21px] xl:mx-0 xl:mt-[14px]">
+                <Image
+                  src="/Mask group (6).svg"
+                  alt="Partenaires en réunion"
+                  fill
+                  sizes="(max-width: 768px) 360px, (max-width: 1024px) 430px, 462px"
+                  className="object-contain object-center"
+                />
+              </div>
             </div>
 
-            <div className="mt-6 flex w-full flex-col items-start gap-4 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-[10.5px] xl:mt-8">
-              <button
-                type="button"
-                className="flex min-h-[74px] w-full items-center justify-center rounded-[14px] border-2 border-white px-7 py-4 font-[Geist] text-[16px] font-semibold text-white sm:min-h-0 sm:w-auto sm:min-w-[90px] sm:rounded-[9px] sm:px-6 sm:text-[18px] xl:min-h-[64px] xl:px-8 xl:text-[19px] 2xl:text-[21px]"
-                style={{ touchAction: 'manipulation' }}
-              >
-                À propos
-              </button>
-
-              <button
-                type="button"
-                className="flex min-h-[68px] w-full items-center justify-center rounded-[14px] bg-[#BBCB2E] px-7 py-4 font-[Geist] text-[16px] font-semibold text-[#003300] sm:min-h-0 sm:w-auto sm:min-w-[235px] sm:rounded-[9px] sm:px-6 sm:text-[18px] xl:min-h-[64px] xl:px-8 xl:text-[19px] 2xl:text-[21px]"
-                style={{ touchAction: 'manipulation' }}
-              >
-                Demander une consultation
-              </button>
+            <div className="mt-10 grid grid-cols-1 gap-4 sm:gap-5 md:mt-12 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:mt-[88px] xl:gap-[40px]">
+              {strategicTrustCards.map((card) => (
+                <article
+                  key={card.title}
+                  className="flex min-h-[190px] flex-col items-center justify-center bg-white px-6 py-8 text-center md:min-h-[220px] md:px-8 xl:h-[237px]"
+                >
+                  <h3 className="font-[Geist] text-[24px] font-semibold leading-[1.06] tracking-[-0.03em] text-[#181818] sm:text-[28px] xl:text-[32px] xl:leading-[34px]">
+                    {card.title}
+                  </h3>
+                  <p className="mt-4 max-w-[291px] font-[Geist] text-[14px] font-medium leading-[1.26] tracking-[-0.03em] text-black xl:text-[15px] xl:leading-[19px]">
+                    {card.description}
+                  </p>
+                </article>
+              ))}
             </div>
           </div>
         </section>
+
+        <section className="mt-8 w-full bg-[#F7FCFF] py-10 sm:mt-10 sm:py-12 md:mt-12 md:py-14 lg:mt-14 lg:py-16 xl:mt-16">
+          <div className="mx-auto w-full max-w-[1395px] px-4 sm:px-6 md:px-8 xl:px-0">
+            <div className="h-0 w-full border-b-2 border-[#003300]/10" />
+          </div>
+
+          <div className="mx-auto mt-10 mb-4 flex w-full max-w-[1392px] flex-col items-center gap-10 px-4 sm:px-6 md:px-8 lg:mt-14 lg:mb-6 xl:mt-16 xl:mb-8 xl:flex-row xl:items-center xl:justify-between xl:gap-8 xl:px-0">
+            <div className="flex w-full max-w-[988px] flex-col items-center gap-10 text-center xl:items-start xl:gap-[94px] xl:text-left">
+              <div className="flex items-center gap-[13px]">
+                <span className="h-[11.81px] w-[11.81px] rounded-full bg-[#003300]" />
+                <h3 className="font-[Geist] text-[22px] font-bold leading-[1.06] text-[#003300] sm:text-[24px] lg:text-[27.9642px] lg:leading-[30px]">
+                  Études &amp; Analyse Réglementaire
+                </h3>
+              </div>
+
+              <div className="flex w-full max-w-[987.89px] flex-col items-center gap-10 xl:items-start xl:gap-[102px]">
+                <div className="flex w-full max-w-[773.41px] flex-col items-center gap-7 xl:items-start xl:gap-[41.6px]">
+                  <h2 className="font-[EB_Garamond] text-[38px] font-semibold leading-[0.9] tracking-[-0.03em] text-[#003300] sm:text-[48px] md:text-[62px] lg:text-[72px] lg:leading-[60px] xl:text-[83.0753px] xl:leading-[68px]">
+                    Analyse Institutionnelle &amp; Réglementaire
+                  </h2>
+
+                  <p className="max-w-[655px] font-[Geist] text-[15px] font-medium leading-[1.25] text-[#003300]/80 sm:text-[17px] md:text-[19px] lg:text-[20.9988px] lg:leading-[23px]">
+                    RNJ Advisory vous accompagne dans l&apos;analyse approfondie des
+                    environnements institutionnels, juridiques et réglementaires
+                    afin de sécuriser vos décisions stratégiques.
+                  </p>
+                </div>
+
+                <div className="flex w-full max-w-[634.22px] flex-col gap-3 sm:flex-row sm:items-start sm:justify-center sm:gap-[12.4px] xl:justify-start">
+                  <Link
+                    href="/about"
+                    className="inline-flex h-[68px] w-full items-center justify-center rounded-[82.6547px] border-[2.48019px] border-[#003300] px-8 font-[Geist] text-[18px] font-semibold leading-[25px] text-[#003300] sm:h-[84.49px] sm:w-auto sm:min-w-[250px] sm:px-10 xl:text-[25.1616px]"
+                  >
+                    En savoir plus
+                  </Link>
+
+                  <Link
+                    href="/contact"
+                    className="inline-flex h-[68px] w-full items-center justify-center rounded-[141.694px] bg-[#003300] px-6 font-[Geist] text-[18px] font-semibold leading-[25px] text-[#F7FCFF] sm:h-[83.04px] sm:w-auto sm:min-w-[340px] sm:px-8 xl:text-[25.1616px]"
+                  >
+                    Demander une analyse
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative w-full max-w-[340px] sm:max-w-[420px] md:max-w-[460px] xl:w-[477px] xl:max-w-none">
+              <div className="relative h-[390px] w-full sm:h-[500px] md:h-[560px] xl:h-[566.12px]">
+                <Image
+                  src="/Frame 559.svg"
+                  alt="Illustration Analyse Réglementaire"
+                  fill
+                  sizes="(max-width: 640px) 340px, (max-width: 1024px) 460px, 477px"
+                  className="object-contain object-center"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div aria-hidden="true" className="h-12 lg:h-16 xl:h-20" />
+
+          <div className="mx-auto mt-10 flex w-full max-w-[1392px] flex-col items-center gap-5 px-4 pb-8 text-center sm:px-6 md:px-8 lg:mt-16 lg:gap-[20px] lg:px-0 lg:pb-[46px] xl:mt-20">
+            <div className="relative h-[93.48px] w-[58.69px]">
+              <Image
+                src="/Layer 1 (2).svg"
+                alt="Light bulb icon"
+                fill
+                sizes="58.69px"
+                className="object-contain"
+              />
+            </div>
+
+            <h3
+              className="max-w-[1006.97px] font-[EB_Garamond] text-[#003300] text-[34px] font-medium leading-[1.02] sm:text-[40px] md:text-[44px] lg:text-[48px] lg:leading-[49px]"
+              style={{ transform: 'rotate(0.1deg)' }}
+            >
+              Des solutions adaptées à chaque étape
+            </h3>
+
+            <p
+              className="max-w-[1215.08px] font-[Geist] text-[14px] font-medium leading-[17px] text-[#003300]/50 lg:text-[16px]"
+              style={{ transform: 'rotate(0.1deg)' }}
+            >
+              Un accompagnement structuré pour sécuriser vos projets et soutenir
+              votre croissance.
+            </p>
+          </div>
+        </section>
+
+        <section className="w-full bg-[#F7FCFF] pb-10 pt-6 md:pb-12 md:pt-8 lg:pb-16 lg:pt-10">
+          <div className="mx-auto grid w-full max-w-[1157px] grid-cols-1 gap-4 px-4 md:px-6 lg:grid-cols-2 lg:gap-5 lg:px-8 xl:gap-[19px] xl:px-0">
+            <article className="relative overflow-hidden rounded-[25px] md:rounded-[35px] min-h-[560px] sm:min-h-[620px] md:min-h-[760px] lg:min-h-[816px]">
+              <Image
+                src="/Mask%20group%20(16).svg"
+                alt="Interconnexion électrique Tunisie-Italie"
+                fill
+                className="object-cover"
+                unoptimized
+              />
+
+              <div className="relative z-[1] flex min-h-full flex-col items-center px-4 py-6 sm:py-8 md:px-6 md:pb-10 md:pt-12 lg:px-0 lg:pb-[58px] lg:pt-[77px]">
+                <div className="flex w-full max-w-[505px] flex-col items-center gap-[17px]">
+                  <div className="flex w-full flex-col items-center gap-2 md:gap-[8px]">
+                    <div
+                      className="relative h-[430px] w-full overflow-hidden rounded-[18px] text-white sm:h-[500px] md:h-[533px]"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.14)',
+                        boxShadow: '2px 4px 22.3px rgba(0, 0, 0, 0.6)',
+                      }}
+                    >
+                      <div className="px-5 pb-[86px] pt-6 sm:px-8 sm:pb-[96px] sm:pt-8 md:px-[41px] md:pb-[104px] md:pt-[45px]">
+                        <div className="relative mb-7 h-[20px] w-[84px] md:mb-9 md:h-[44px] md:w-[111px]">
+                          <Image
+                            src="/image 2.svg"
+                            alt="RNJ Advisory"
+                            fill
+                            className="object-contain object-left"
+                          />
+                        </div>
+
+                        <h3 className="mb-6 max-w-[381px] font-[Geist] text-[28px] font-normal leading-[0.98] text-white sm:text-[32px] md:mb-8 md:text-[44px] md:leading-[44px] xl:text-[61.04px] xl:leading-[60px]">
+                          Interconnexion électrique Tunisie-Italie
+                        </h3>
+
+                        <div className="relative max-h-[176px] overflow-hidden sm:max-h-[184px] md:max-h-[190px]">
+                          <p className="max-w-[439px] font-[Geist] text-[13px] font-normal leading-[1.14] text-white md:text-[16px] md:leading-[18px]">
+                            Étude juridique et institutionnelle pour la mise en
+                            place d’un cadre réglementaire propice à
+                            l’interconnexion électrique entre la Tunisie et
+                            l’Italie, ainsi que la création d’une autorité de
+                            régulation du secteur électrique en Tunisie.
+                            {' '}📌 Nos interventions : • Analyse du cadre
+                            réglementaire tunisien applicable au secteur de
+                            l’électricité et aux énergies renouvelables •
+                            Actualisation des textes réglementaires relatifs à la
+                            création de l’autorité de régulation du secteur
+                            électrique • Assistance à la mise en place d’un cadre
+                            réglementaire et contractuel propice à l’exportation
+                            d’électricité via ELMED
+                          </p>
+
+                          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[rgba(71,71,71,0.96)] via-[rgba(71,71,71,0.72)] to-transparent md:h-20" />
+                        </div>
+                      </div>
+
+                      <div className="absolute inset-x-0 bottom-0 flex h-[76px] items-center justify-center rounded-b-[18px] bg-[rgba(0,0,0,0.10)] shadow-[2px_4px_22.3px_rgba(0,0,0,0.6)] md:rounded-b-[18px]">
+                        <button
+                          type="button"
+                          className="inline-flex h-[48px] w-[102px] items-center justify-center rounded-[120px] bg-white px-0 font-[Geist] text-[11px] font-bold leading-[14px] text-black"
+                          onClick={() => setShowStrategicPopup(true)}
+                        >
+                          Read more...
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <span className="h-[11.73px] w-[11.73px] rounded-full bg-[#ECECEC]" />
+                      <span className="h-[10.16px] w-[10.16px] rounded-full bg-white/30" />
+                      <span className="h-[10.16px] w-[10.16px] rounded-full bg-white/30" />
+                    </div>
+                  </div>
+
+                  <div className="mt-2 flex min-h-[100px] w-full max-w-[317px] flex-col items-center gap-[26px] md:mt-3">
+                    <button
+                      type="button"
+                      className="flex h-[53px] w-[225px] max-w-full items-center justify-center rounded-[18px] bg-white px-[34px] py-[18px] font-[Geist] text-[16px] font-bold leading-[16px] text-black"
+                      onClick={() => setShowStrategicPopup(true)}
+                    >
+                      Sécuriser mon projet
+                    </button>
+
+                    <p className="w-full max-w-[317px] text-center font-[Geist] font-medium text-[15.3706px] leading-[21px] text-white/50">
+                      &copy; 2026 RNJ Advisory. Tous droits réservés.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article className="relative overflow-hidden rounded-[25px] md:rounded-[35px]">
+              <div className="relative h-[680px] w-full sm:h-[740px] md:h-[760px] lg:h-[816px]">
+                <Image
+                  src="/Mask group (17).svg"
+                  alt="Decision strategique"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="absolute inset-0 flex flex-col justify-between p-4 text-white md:p-6 lg:p-8">
+                <div>
+                  <div className="mb-4 flex items-center gap-[7px] md:mb-6">
+                    <span className="h-[8px] w-[8px] rounded-full bg-white" />
+                    <span
+                      className="font-[Geist] font-bold text-white"
+                      style={{ fontSize: '16.8333px', lineHeight: '18px' }}
+                    >
+                      Conseil Stratégique
+                    </span>
+                  </div>
+
+                  <div
+                    className="relative mx-auto mt-4 w-full max-w-[368px] overflow-hidden rounded-[18px] text-white md:mt-[34px] md:max-w-[392px]"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.14)',
+                      boxShadow: '2px 4px 22.3px rgba(0, 0, 0, 0.6)',
+                    }}
+                  >
+                    <div className="px-4 pb-[86px] pt-4 md:px-5 md:pb-[96px] md:pt-5">
+                      <div className="relative mb-5 h-[170px] w-full overflow-hidden rounded-[13px] bg-[#F7FCFF] md:mb-6 md:h-[250px]">
+                        <Image
+                          src="/Group 65.svg"
+                          alt="Graphique de performance"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+
+                      <h3 className="mb-4 font-[EB_Garamond] text-[24px] font-normal leading-[1.02] text-white md:text-[31.25px] md:leading-[31px]">
+                        Des projets accompagnés sécurisés dès la phase de
+                        structuration
+                      </h3>
+
+                      <p className="font-[Geist] text-[14px] font-normal leading-[1.25] text-white/60 md:text-[16px] md:leading-[16px]">
+                        Nous analysons, structurons et sécurisons vos projets
+                        dans des environnements réglementaires complexes.
+                      </p>
+                    </div>
+
+                    <div className="absolute inset-x-0 bottom-0 h-[72px] rounded-b-[18px] bg-[rgba(0,0,0,0.10)] shadow-[2px_4px_22.3px_rgba(0,0,0,0.6)] md:h-[76px]" />
+                  </div>
+                </div>
+
+                <div className="pt-6 md:pt-8">
+                  <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-[10px] lg:justify-start">
+                    <button
+                      type="button"
+                      className="inline-flex h-[52px] w-full items-center justify-center rounded-full border-2 border-white px-6 text-center font-[Geist] text-[15px] font-medium leading-[16px] text-white sm:w-auto sm:min-w-[190px] sm:px-8 md:h-[53px] md:min-w-[220px] md:px-10 md:text-[16px] lg:min-w-0 lg:px-[53px]"
+                      style={{ touchAction: 'manipulation' }}
+                    >
+                      En savoir plus
+                    </button>
+
+                    <button
+                      type="button"
+                      className="inline-flex h-[52px] w-full items-center justify-center rounded-full bg-white px-6 text-center font-[Geist] text-[15px] font-bold leading-[16px] text-black sm:w-auto sm:min-w-[210px] sm:px-8 md:h-[53px] md:min-w-[235px] md:px-8 md:text-[16px] lg:min-w-0 lg:px-[34px]"
+                      style={{ touchAction: 'manipulation' }}
+                      onClick={() => setShowStrategicPopup(true)}
+                    >
+                      Sécuriser mon projet
+                    </button>
+                  </div>
+
+                  <p className="mt-4 max-w-[420px] font-[Geist] text-[14px] font-normal leading-[1.25] text-white/60 md:mt-5 md:text-[16px] md:leading-[16px]">
+                    Une expertise indépendante au service de décisions
+                    stratégiques sécurisées.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section className="w-full bg-[#F7FCFF] py-10 md:py-12 lg:py-14">
+          <div className="mx-auto w-full px-0">
+            <div className="mb-8 flex flex-col gap-3 px-4 md:mb-10 md:px-6 lg:px-8">
+              <div className="flex items-center gap-3">
+                <span className="h-[10px] w-[10px] rounded-full bg-[#003300]" />
+                <span className="font-[Geist] text-[18px] font-bold leading-[1.05] text-[#003300] sm:text-[20px] md:text-[22px] lg:text-[23.6828px] lg:leading-[25px]">
+                  Pourquoi choisir RNJ Advisory ?
+                </span>
+              </div>
+
+              <p className="font-[Geist] text-[16px] font-bold leading-[1.15] text-[#003300]/65 sm:text-[18px] md:text-[19px] lg:text-[20px] lg:leading-[18px]">
+                Une expertise rigoureuse au service de vos décisions
+              </p>
+            </div>
+
+            <div className="relative overflow-hidden py-6 md:py-8 2xl:h-[512px]">
+              <div className="relative z-[1] grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 xl:grid-cols-3 2xl:hidden">
+                {whyChooseAnimatedCards.map((card, index) => (
+                  <article
+                    key={`why-choose-mobile-${card.title}`}
+                    className="flex min-h-[250px] flex-col items-center justify-center rounded-[10px] bg-[#D4E175] p-5 text-center shadow-[0px_4px_22.4px_rgba(0,0,0,0.19)] transition-all duration-300 sm:p-6 md:min-h-[270px] xl:min-h-[304px]"
+                    style={{
+                      border:
+                        hoveredCardIndex === index
+                          ? `2px solid ${whyChooseCardActiveBorder}`
+                          : '2px solid transparent',
+                      background:
+                        hoveredCardIndex === index
+                          ? whyChooseCardActiveBackground
+                          : '#D4E175',
+                    }}
+                    onMouseEnter={() => setHoveredCardIndex(index)}
+                    onMouseLeave={() => setHoveredCardIndex(null)}
+                    onTouchStart={() => setHoveredCardIndex(index)}
+                    onTouchEnd={() => {
+                      setTimeout(() => {
+                        setHoveredCardIndex(null);
+                      }, 220);
+                    }}
+                  >
+                    <div
+                      className="relative mb-5"
+                      style={{ width: `${card.iconWidth}px`, height: `${card.iconHeight}px` }}
+                    >
+                      <Image
+                        src={card.icon}
+                        alt={card.title}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+
+                    <h3 className="mb-4 max-w-[303px] font-[EB_Garamond] text-[26px] font-bold leading-[24px] text-[#003300] sm:text-[28px] sm:leading-[25px] xl:text-[32px] xl:leading-[27px]">
+                      {card.title}
+                    </h3>
+
+                    <p className="max-w-[262px] font-[Geist] text-[14px] font-medium leading-[15px] text-[#003300]/50 sm:text-[15px] sm:leading-[15px] xl:text-[16px] xl:leading-[16px]">
+                      {card.description}
+                    </p>
+                  </article>
+                ))}
+              </div>
+
+              <div className="relative z-[1] hidden h-full overflow-hidden 2xl:block">
+                <div className="absolute left-0 top-1/2 -translate-y-1/2">
+                  <div
+                    className="flex w-max items-center gap-5"
+                    style={{
+                      animation: 'scroll 22s linear infinite',
+                      willChange: 'transform',
+                    }}
+                  >
+                    {[...whyChooseAnimatedCards, ...whyChooseAnimatedCards].map(
+                      (card, index) => (
+                        <article
+                          key={`why-choose-desktop-${card.title}-${index}`}
+                          className="flex h-[304px] w-[308.02px] shrink-0 cursor-pointer flex-col items-center justify-center rounded-[10px] px-5 text-center transition-all duration-300"
+                          style={{
+                            background:
+                              hoveredScrollCardIndex === index
+                                ? whyChooseCardActiveBackground
+                                : '#D4E175',
+                            border:
+                              hoveredScrollCardIndex === index
+                                ? `2px solid ${whyChooseCardActiveBorder}`
+                                : '2px solid transparent',
+                            boxShadow:
+                              hoveredScrollCardIndex === index
+                                ? '0px 8px 26px rgba(0, 0, 0, 0.18)'
+                                : '0px 4px 22.4px rgba(0, 0, 0, 0.19)',
+                            transform:
+                              hoveredScrollCardIndex === index
+                                ? 'translateY(-2px)'
+                                : 'translateY(0)',
+                          }}
+                          onMouseEnter={() => setHoveredScrollCardIndex(index)}
+                          onMouseLeave={() => setHoveredScrollCardIndex(null)}
+                          onTouchStart={() => setHoveredScrollCardIndex(index)}
+                          onTouchEnd={() => {
+                            setTimeout(() => {
+                              setHoveredScrollCardIndex(null);
+                            }, 220);
+                          }}
+                        >
+                          <div
+                            className="relative mb-5"
+                            style={{ width: `${card.iconWidth}px`, height: `${card.iconHeight}px` }}
+                          >
+                            <Image
+                              src={card.icon}
+                              alt={card.title}
+                              fill
+                              className="object-contain"
+                            />
+                          </div>
+
+                          <h3 className="mb-4 max-w-[303px] font-[EB_Garamond] text-[32px] font-bold leading-[27px] text-[#003300]">
+                            {card.title}
+                          </h3>
+
+                          <p className="max-w-[262px] font-[Geist] text-[16px] font-medium leading-[16px] text-[#003300]/50">
+                            {card.description}
+                          </p>
+                        </article>
+                      ),
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mx-auto mt-8 w-full max-w-[1680px] px-0">
+              <p
+                className="max-w-[892px] px-4 font-[Geist] text-[15px] font-semibold leading-[17px] text-[#003300]/50 md:px-6 md:text-[16px] md:leading-[18px] lg:px-8"
+              >
+                Choisir RNJ Advisory, c&apos;est bénéficier d&apos;une approche
+                structurée, indépendante et orientée résultats. Nous combinons
+                analyse juridique, compréhension institutionnelle et vision
+                stratégique afin de vous aider à anticiper les risques, assurer
+                la conformité de vos projets et prendre des décisions éclairées.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full bg-[#F7FCFF] pb-10 pt-2 md:pb-12 md:pt-4 lg:pb-14">
+          <div className="mx-auto w-full max-w-[1680px] px-0">
+            <div className="relative min-h-[620px] overflow-hidden bg-[#003300] md:min-h-[680px] lg:h-[760px]">
+              <Image
+                src="/Group%20349040.svg"
+                alt=""
+                fill
+                className="object-cover object-center"
+                unoptimized
+                priority={false}
+              />
+
+              <div className="absolute inset-0 bg-[#003300]/40" />
+
+              <div className="relative z-[1] mx-auto flex h-full w-full max-w-[1392px] flex-col justify-between px-4 py-8 md:px-6 md:py-12 lg:px-[20px] lg:py-[80px]">
+                <div className="flex w-full flex-row items-center justify-between gap-3 sm:gap-5">
+                  <div className="flex min-w-0 items-center gap-[8px] sm:gap-[12px]">
+                    <span className="h-[7px] w-[7px] shrink-0 rounded-full bg-white sm:h-[10px] sm:w-[10px]" />
+                    <span
+                      className="truncate font-[Geist] font-bold text-white"
+                      style={{ fontSize: 'clamp(14px, 3.5vw, 23.3613px)', lineHeight: 1.1 }}
+                    >
+                      Entrepreneuriat
+                    </span>
+                  </div>
+
+                  <Link
+                    href="/contact"
+                    className="inline-flex h-[38px] w-fit shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#BBCB2E] px-[14px] font-[Geist] font-semibold text-[#003300] transition-colors hover:bg-[#D4E175] sm:h-[50px] sm:px-[32px] lg:translate-x-[10px] lg:px-[38px]"
+                    style={{ fontSize: 'clamp(12px, 2.5vw, 22.5px)', lineHeight: 1 }}
+                  >
+                    Contact
+                  </Link>
+                </div>
+
+                <div className="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
+                  <div className="flex max-w-[920px] flex-col gap-10">
+                    <p
+                      className="max-w-[520px] font-[Geist] font-semibold text-white/50"
+                      style={{ fontSize: 'clamp(13px, 2.5vw, 16px)', lineHeight: 1.25 }}
+                    >
+                      Nous analysons votre environnement institutionnel et
+                      réglementaire afin de sécuriser vos décisions et garantir
+                      la conformité de vos projets.
+                    </p>
+
+                    <h2
+                      className="font-[EB_Garamond] font-medium text-white"
+                      style={{
+                        fontSize: 'clamp(28px, 6.5vw, 72px)',
+                        lineHeight: 'clamp(30px, 6.2vw, 68px)',
+                        textTransform: 'capitalize',
+                      }}
+                    >
+                      de la création d&apos;entreprise à l&apos;accélération
+                    </h2>
+                  </div>
+
+                  <div className="w-fit self-start lg:ml-auto lg:self-end lg:translate-x-[10px]">
+                    <p
+                      className="mb-4 text-right font-[Geist] font-normal text-[#7C9780]"
+                      style={{ fontSize: 'clamp(14px, 2.5vw, 23px)', lineHeight: 1.1 }}
+                    >
+                      RNJ Advisory
+                    </p>
+
+                    <div className="relative h-[160px] w-[160px] overflow-hidden rounded-[16px] border-2 border-[#BBCB2E] sm:h-[210px] sm:w-[210px] sm:rounded-[20px] md:h-[240px] md:w-[240px] md:rounded-[24px] lg:h-[280px] lg:w-[280px] lg:rounded-[28px]">
+                      <Image
+                        src="/OpenAI%20%E2%80%94%20Jake%20Stangel%201.svg"
+                        alt="Portrait entrepreneuriat"
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <EntrepreneuriatTabsSection />
 
         <section className="w-full bg-[#F7FCFF] py-12 md:py-24">
           <div className="mx-auto flex w-full max-w-[1513px] flex-col items-center gap-12 md:gap-[180px] px-4">
@@ -1761,234 +1949,6 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative w-full max-w-[1393.44px]">
-              <div className="mb-8 md:mb-12 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
-                <div className="flex items-center gap-3">
-                  <span className="h-[8px] w-[8px] md:h-[10px] md:w-[10px] rounded-full bg-[#003300]" />
-                  <span className="font-[Geist] font-bold text-[#003300] text-[16px] md:text-[24px]">
-                    Services
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  className="rounded-full bg-[#BBCB2E] px-6 py-3 font-[Geist] font-semibold text-[#003300] text-[16px] md:text-[24px]"
-                >
-                  Contact
-                </button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4 md:gap-[17px]">
-                {serviceCards.map((card) => (
-                  <article
-                    key={card.title}
-                    className="flex min-h-[360px] flex-col items-center rounded-[28px] bg-[#BBCB2E] px-6 py-8 text-center md:min-h-[456px] md:rounded-[39.3941px] md:px-8 md:py-[58px]"
-                    style={{ boxShadow: '1.92358px 1.92358px 20.8708px rgba(0, 0, 0, 0.1)' }}
-                  >
-                    <div
-                      className="relative mx-auto mb-8 h-[74px] w-[92px] md:mb-[42px]"
-                      style={{
-                        width: `${Math.min(card.iconWidth, 141.41)}px`,
-                        height: `${card.iconHeight}px`,
-                      }}
-                    >
-                      <Image
-                        src={card.icon}
-                        alt={card.title}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-
-                    <h3 className="mx-auto mb-5 max-w-[387px] whitespace-pre-line font-[Geist] text-[22px] font-bold leading-[1.02] text-[#003300] md:mb-[22px] md:text-[28.7287px] md:leading-[29px]">
-                      {card.title}
-                    </h3>
-
-                    <p className="mx-auto max-w-[386px] font-[Geist] text-[15px] font-medium leading-[1.35] text-[#003300] md:text-[16px] md:leading-[18px]">
-                      {card.description}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid w-full max-w-[1157px] grid-cols-1 gap-4 md:gap-[19px] 2xl:grid-cols-2">
-              <article className="relative overflow-hidden rounded-[25px] md:rounded-[35px]">
-                <div className="relative h-[500px] md:h-[816px] w-full">
-                  <Image
-                    src="/Mask group (16).svg"
-                    alt="Stratégie et conformité"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                <div className="absolute inset-0 flex flex-col items-center px-4 py-8 md:px-[32px] md:pb-[56px] md:pt-[77px]">
-                  <div className="flex w-full max-w-[505px] flex-col items-start gap-5 pt-5 md:gap-[17px] md:pt-0">
-
-                    <div className="flex w-full flex-col items-center gap-4 md:gap-[19px]">
-                      <div
-                        className="relative w-full overflow-hidden rounded-[18px] text-white md:rounded-[18px]"
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.14)',
-                          boxShadow: '2px 4px 22.3px rgba(0, 0, 0, 0.6)',
-                        }}
-                      >
-                        <div className="px-8 pb-[96px] pt-8 md:px-[41px] md:pb-[104px] md:pt-[45px]">
-                          <div className="relative mb-7 h-[20px] w-[84px] md:mb-9 md:h-[44px] md:w-[111px]">
-                            <Image
-                              src="/image 2.svg"
-                              alt="RNJ Advisory"
-                              fill
-                              className="object-contain object-left"
-                            />
-                          </div>
-
-                          <h3 className="mb-6 font-[Geist] text-[30px] font-normal leading-[0.98] text-white sm:text-[32px] md:mb-8 md:text-[50px] lg:text-[61px] lg:leading-[60px]">
-                            Stratégie &amp; Conformité
-                          </h3>
-
-                          <div className="relative max-h-[184px] overflow-hidden md:max-h-[190px]">
-                            <p className="font-[Geist] text-[13px] font-normal leading-[1.14] text-white md:text-[16px] md:leading-[18px]">
-                              RNJ Advisory est un cabinet de conseil stratégique
-                              spécialisé dans l’analyse institutionnelle, la
-                              conformité réglementaire et le développement
-                              économique durable. Nous accompagnons les acteurs
-                              publics, les entreprises privées, les investisseurs
-                              et les bailleurs de fonds dans la compréhension
-                              d’environnements juridiques et réglementaires
-                              complexes, en Europe et en Afrique du Nord. Notre
-                              approche repose sur trois piliers : rigueur
-                              analytique, vision stratégique et sécurisation des
-                              projets. Nous aidons nos clients à anticiper les
-                              évolutions légales, structurer leurs activités,
-                              maîtriser leurs risques et saisir les opportunités
-                              liées aux transitions économiques, énergétiques et
-                              réglementaires.
-                            </p>
-
-                            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[rgba(71,71,71,0.96)] via-[rgba(71,71,71,0.72)] to-transparent md:h-20" />
-                          </div>
-                        </div>
-
-                        <div className="absolute inset-x-0 bottom-0 flex h-[76px] items-center justify-center rounded-b-[18px] bg-[rgba(0,0,0,0.10)] shadow-[2px_4px_22.3px_rgba(0,0,0,0.6)] md:rounded-b-[18px]">
-                          <button
-                            type="button"
-                            className="inline-flex h-[48px] items-center justify-center rounded-full bg-white px-7 font-[Geist] text-[11px] font-bold text-black"
-                            onClick={() => setShowStrategicPopup(true)}
-                          >
-                            Read more...
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <span className="h-[10px] w-[10px] rounded-full bg-[#ECECEC]" />
-                        <span className="h-[8px] w-[8px] rounded-full bg-white/30" />
-                        <span className="h-[8px] w-[8px] rounded-full bg-white/30" />
-                      </div>
-                    </div>
-
-                    <div className="flex w-full flex-col items-center gap-4 md:gap-[26px]">
-                      <button
-                        type="button"
-                        className="flex h-[56px] min-w-[196px] items-center justify-center rounded-[18px] bg-white px-[34px] py-[18px] font-[Geist] text-[16px] font-bold text-black"
-                        onClick={() => setShowStrategicPopup(true)}
-                      >
-                        Sécuriser mon projet
-                      </button>
-
-                      <p className="text-center font-[Geist] font-medium text-white/50 text-[12px] md:text-[15px]">
-                        &copy; 2026 RNJ Advisory. Tous droits réservés.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article className="relative overflow-hidden rounded-[25px] md:rounded-[35px]">
-                <div className="relative h-[680px] sm:h-[740px] md:h-[816px] w-full">
-                  <Image
-                    src="/Mask group (17).svg"
-                    alt="Decision strategique"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                <div className="absolute inset-0 flex flex-col justify-between p-4 text-white md:p-8">
-                  <div>
-                    <div className="mb-4 flex items-center gap-[7px] md:mb-6">
-                      <span className="h-[8px] w-[8px] rounded-full bg-white" />
-                      <span
-                        className="font-[Geist] font-bold text-white"
-                        style={{ fontSize: '16.8333px', lineHeight: '18px' }}
-                      >
-                        Conseil Stratégique
-                      </span>
-                    </div>
-
-                    <div
-                      className="relative mx-auto mt-4 w-full max-w-[368px] overflow-hidden rounded-[18px] text-white md:mt-[34px] md:max-w-[392px]"
-                      style={{
-                        background: 'rgba(255, 255, 255, 0.14)',
-                        boxShadow: '2px 4px 22.3px rgba(0, 0, 0, 0.6)',
-                      }}
-                    >
-                      <div className="px-4 pb-[86px] pt-4 md:px-5 md:pb-[96px] md:pt-5">
-                        <div className="relative mb-5 h-[170px] w-full overflow-hidden rounded-[13px] bg-[#F7FCFF] md:mb-6 md:h-[250px]">
-                          <Image
-                            src="/Group 65.svg"
-                            alt="Graphique de performance"
-                            fill
-                            className="object-contain"
-                          />
-                        </div>
-
-                        <h3 className="mb-4 font-[EB_Garamond] text-[24px] font-normal leading-[1.02] text-white md:text-[31.25px] md:leading-[31px]">
-                          Des projets accompagnés sécurisés dès la phase de
-                          structuration
-                        </h3>
-
-                        <p className="font-[Geist] text-[14px] font-normal leading-[1.25] text-white/60 md:text-[16px] md:leading-[16px]">
-                          Nous analysons, structurons et sécurisons vos projets dans
-                          des environnements réglementaires complexes.
-                        </p>
-                      </div>
-
-                      <div className="absolute inset-x-0 bottom-0 h-[72px] rounded-b-[18px] bg-[rgba(0,0,0,0.10)] shadow-[2px_4px_22.3px_rgba(0,0,0,0.6)] md:h-[76px]" />
-                    </div>
-                  </div>
-
-                  <div className="pt-6 md:pt-8">
-                    <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-[10px]">
-                      <button
-                        type="button"
-                        className="inline-flex h-[52px] w-full items-center justify-center rounded-full border-2 border-white px-6 text-center font-[Geist] text-[16px] font-medium leading-[16px] text-white sm:w-auto sm:px-8 md:h-[53px] md:px-[53px]"
-                        style={{ touchAction: 'manipulation' }}
-                      >
-                        À propos
-                      </button>
-
-                      <button
-                        type="button"
-                        className="inline-flex h-[52px] w-full items-center justify-center rounded-full bg-white px-6 text-center font-[Geist] text-[16px] font-bold leading-[16px] text-black sm:w-auto sm:px-8 md:h-[53px] md:px-[34px]"
-                        style={{ touchAction: 'manipulation' }}
-                        onClick={() => setShowStrategicPopup(true)}
-                      >
-                        Sécuriser mon projet
-                      </button>
-                    </div>
-
-                    <p className="mt-4 max-w-[420px] font-[Geist] text-[14px] font-normal leading-[1.25] text-white/60 md:mt-5 md:text-[16px] md:leading-[16px]">
-                      Une expertise indépendante au service de décisions
-                      stratégiques sécurisées.
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </div>
-
             {showStrategicPopup && (
               <div
                 className="fixed inset-0 z-[90] flex items-center justify-center bg-black/45 px-4 py-6"
@@ -2019,11 +1979,22 @@ export default function Home() {
 
                     <div className="max-w-[1139px]">
                       <h2 className="mb-6 font-[Geist] font-normal text-white text-[40px] leading-[0.98] sm:text-[56px] md:mb-8 md:text-[88px] md:leading-[0.98] lg:text-[128px]">
-                        Stratégie &amp; Conformité
+                        Interconnexion électrique Tunisie-Italie
                       </h2>
 
                       <p className="font-[Geist] font-normal text-white text-[16px] leading-[1.18] sm:text-[18px] md:text-[24px] md:leading-[1.12] lg:text-[32px]">
-                        RNJ Advisory est un cabinet de conseil stratégique spécialisé dans l’analyse institutionnelle, la conformité réglementaire et le développement économique durable. Nous accompagnons les acteurs publics, les entreprises privées, les investisseurs et les bailleurs de fonds dans la compréhension d’environnements juridiques et réglementaires complexes, en Europe et en Afrique du Nord. Notre approche repose sur trois piliers : rigueur analytique, vision stratégique et sécurisation des projets. Nous aidons nos clients à anticiper les évolutions légales, structurer leurs activités, maîtriser leurs risques et saisir les opportunités liées aux transitions économiques, énergétiques et réglementaires. RNJ Advisory intervient notamment sur les enjeux de conformité européenne, la structuration d’activités entrepreneuriales et l’accompagnement stratégique des PME et institutions en croissance. Notre mission : transformer la complexité réglementaire en levier de performance et de compétitivité durable.
+                        Étude juridique et institutionnelle pour la mise en place
+                        d’un cadre réglementaire propice à l’interconnexion
+                        électrique entre la Tunisie et l’Italie, ainsi que la
+                        création d’une autorité de régulation du secteur
+                        électrique en Tunisie. 📌 Nos interventions : • Analyse du
+                        cadre réglementaire tunisien applicable au secteur de
+                        l’électricité et aux énergies renouvelables •
+                        Actualisation des textes réglementaires relatifs à la
+                        création de l’autorité de régulation du secteur
+                        électrique • Assistance à la mise en place d’un cadre
+                        réglementaire et contractuel propice à l’exportation
+                        d’électricité via ELMED
                       </p>
                     </div>
 
@@ -2041,166 +2012,459 @@ export default function Home() {
               </div>
             )}
 
-            <section className="w-full max-w-[1392.5px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-8">
-              <div className="mb-8 flex w-full flex-col gap-4 md:mb-[48px] md:gap-6 lg:flex-row lg:items-center lg:justify-between xl:mb-[62px] 2xl:flex-row 2xl:items-center 2xl:justify-between">
-                <div className="flex items-center gap-[8px] md:gap-[11px]">
-                  <span className="h-[8px] w-[8px] md:h-[10px] md:w-[10px] rounded-full bg-[#003300]" />
-                  <span
-                    className="font-[Geist] font-bold text-[#003300]"
-                    style={{ fontSize: 'clamp(16px, 2.5vw, 23.6828px)', lineHeight: 'clamp(20px, 2.8vw, 25px)' }}
-                  >
-                    Fiabilité
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  className="flex h-[40px] w-full max-w-[180px] items-center justify-center rounded-[200px] bg-[#BBCB2E] px-[18px] py-[8px] font-[Geist] font-semibold text-[#003300] transition-colors hover:bg-[#a8b829] active:scale-95 active:bg-[#9aa824] sm:w-[140px] sm:max-w-none md:h-[47px] md:w-[159px] md:px-[23px] md:py-[10px]"
-                  style={{ fontSize: 'clamp(16px, 2.5vw, 23.6828px)', lineHeight: 'clamp(16px, 2.2vw, 20px)' }}
-                  onTouchStart={(e) => {
-                    e.currentTarget.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                      e.currentTarget.style.transform = 'scale(1)';
-                    }, 150);
-                  }}
-                >
-                  Contact
-                </button>
-              </div>
-
-              <div className="flex w-full flex-col items-start gap-8 md:gap-10 lg:flex-row lg:items-center lg:justify-between xl:gap-[62px] 2xl:flex-row 2xl:items-center 2xl:justify-between">
-                <div className="w-full max-w-full lg:max-w-[620px] xl:max-w-[792px]">
-                  <p
-                    className="mb-6 max-w-full font-[Geist] font-semibold text-[#003300] text-center md:mb-8 md:max-w-[473px] md:text-left"
-                    style={{ fontSize: 'clamp(14px, 2vw, 16px)', lineHeight: 'clamp(16px, 2.4vw, 18px)', opacity: 0.49 }}
-                  >
-                    Nous analysons votre environnement institutionnel et
-                    réglementaire afin de sécuriser vos décisions et garantir la
-                    conformité de vos projets.
-                  </p>
-
-                  <h2
-                    className="w-full max-w-full md:max-w-[792px] xl:w-[792px] xl:max-w-[792px] font-[EB_Garamond] text-center font-medium text-[#003300] md:text-left"
-                    style={{
-                      fontSize: 'clamp(32px, 5vw, 72.215px)',
-                      lineHeight: 'clamp(36px, 4.5vw, 57px)',
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      fontVariationSettings: '"wght" 500',
-                      fontSynthesis: 'none',
-                    }}
-                  >
-                    Vous portez un projet. Nous sécurisons son environnement.
-                  </h2>
-                </div>
-
-                <div className="relative mx-auto h-[200px] w-full max-w-[180px] overflow-hidden rounded-[20px] sm:h-[220px] sm:max-w-[200px] md:h-[280px] md:max-w-[220px] md:rounded-[28px] lg:mx-0 lg:h-[300px] lg:w-[240px] lg:max-w-[240px] lg:min-w-[240px] xl:h-[322px] xl:w-[257px] xl:max-w-[257px] xl:min-w-[257px]">
-                  <Image
-                    src="/Frame 65.svg"
-                    alt="2026 insight"
-                    fill
-                    sizes="(min-width: 1280px) 257px, (min-width: 1024px) 240px, (min-width: 768px) 220px, 180px"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            </section>
-
             <article
-              className="grid w-full max-w-[1392px] grid-cols-1 gap-[30px] md:gap-[40px] rounded-[20px] md:rounded-[40px] bg-[#F7FCFF] p-[12px] md:p-[15px] 2xl:grid-cols-[672px_minmax(0,1fr)]"
+              className="grid w-full max-w-[1392px] grid-cols-1 gap-[24px] rounded-[20px] bg-[#F7FCFF] p-[12px] md:gap-[30px] md:rounded-[40px] md:p-[15px] 2xl:h-[811px] 2xl:grid-cols-[672px_minmax(0,1fr)]"
               style={{ boxShadow: '2px 4px 28.3px rgba(0, 0, 0, 0.17)' }}
             >
-              <div className="relative min-h-[300px] md:min-h-[500px] lg:min-h-[781px] overflow-hidden rounded-[15px] md:rounded-[25px] order-2 2xl:order-1">
+              <div className="relative order-2 min-h-[320px] overflow-hidden rounded-[18px] md:min-h-[520px] md:rounded-[25px] 2xl:order-1 2xl:h-[781px]">
                 <Image
                   src="/Mask group (18).svg"
-                  alt="Entrepreneurs hors Union Europeenne"
+                  alt="Accélération PME et ASBL"
                   fill
-                  className="object-cover"
+                  className="object-cover object-center"
                 />
               </div>
 
-              <div className="order-1 flex flex-col px-4 py-6 md:px-6 md:py-10 2xl:order-2">
-                <div className="flex h-full w-full flex-col justify-between gap-10 md:gap-[54px]">
-                  <div className="flex flex-col gap-[30px] md:gap-[42.12px]">
-                    <div className="flex items-center gap-2 md:gap-3">
-                      <span className="h-[6px] w-[6px] md:h-[9.33px] md:w-[9.33px] rounded-full bg-[#003300]" />
-                      <span
-                        className="font-[Geist] font-semibold text-[#003300]"
-                        style={{ fontSize: 'clamp(16px, 2.5vw, 20px)', lineHeight: 'clamp(20px, 2.8vw, 24px)' }}
-                      >
-                        Entrepreneuriat
-                      </span>
-                    </div>
-
-                    <div className="flex flex-col gap-[15px] md:gap-[19px]">
-                      <h3
-                        className="w-full max-w-full md:max-w-[613px] xl:w-[613px] xl:max-w-[613px] font-[EB_Garamond] text-center font-medium text-[#003300] md:text-left"
-                        style={{
-                          fontSize: 'clamp(28px, 4.5vw, 64px)',
-                          lineHeight: 'clamp(32px, 4vw, 51px)',
-                          letterSpacing: '-0.03em',
-                          fontStyle: 'normal',
-                          fontWeight: 500,
-                          fontVariationSettings: '"wght" 500',
-                          fontSynthesis: 'none',
-                        }}
-                      >
-                        Entrepreneurs Hors Union Européenne<br className="hidden md:block" /> Installation en Belgique
-                      </h3>
-
-                      <p
-                        className="max-w-[100%] md:max-w-[572px] font-[Geist] font-medium text-[#003300] text-center md:text-left"
-                        style={{
-                          fontSize: 'clamp(14px, 2vw, 16px)',
-                          lineHeight: 'clamp(16px, 2.4vw, 19px)',
-                          opacity: 0.7,
-                        }}
-                      >
-                        Vous êtes ressortissant hors Union européenne et souhaitez
-                        développer votre activité en Belgique ? RNJ Advisory vous
-                        accompagne à chaque étape de votre installation afin de
-                        sécuriser votre projet sur les plans juridique, stratégique
-                        et administratif.
-                      </p>
-                    </div>
+              <div className="order-1 flex flex-col px-4 py-6 md:px-6 md:py-9 2xl:order-2 2xl:px-0 2xl:py-[56px]">
+                <div className="flex h-full w-full flex-col gap-8 2xl:gap-[36px]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="h-[8px] w-[8px] rounded-full bg-[#003300] md:h-[9.33px] md:w-[9.33px]" />
+                    <span
+                      className="font-[Geist] font-semibold text-[#003300]"
+                      style={{ fontSize: '20px', lineHeight: '24px' }}
+                    >
+                      Entrepreneuriat
+                    </span>
                   </div>
 
-                  <div className="flex w-full flex-col gap-3 self-stretch sm:flex-row sm:flex-wrap sm:justify-center md:justify-start md:gap-[9.8px]">
-                    <button
-                      type="button"
-                      className="w-full rounded-full border-[1.5px] border-[#003300] px-6 py-[16px] text-center font-[Geist] font-semibold text-[#003300] transition-colors hover:bg-[#003300] hover:text-[#F7FCFF] active:scale-95 active:bg-[#003300] active:text-[#F7FCFF] sm:w-auto sm:px-[60px] md:border-[1.96016px] md:px-[87px] md:py-[22px]"
-                      style={{ fontSize: 'clamp(14px, 2vw, 16px)', lineHeight: 'clamp(16px, 2.2vw, 20px)', touchAction: 'manipulation' }}
-                      onTouchStart={(e) => {
-                        e.currentTarget.style.transform = 'scale(0.95)';
-                        setTimeout(() => {
-                          e.currentTarget.style.transform = 'scale(1)';
-                        }, 150);
-                      }}
-                    >
-                      À propos
-                    </button>
+                  <div className="flex h-full flex-col justify-between gap-10 2xl:gap-[126px]">
+                    <div className="flex flex-col gap-8 2xl:max-w-[637px] 2xl:gap-[45px]">
+                      <h3
+                        className="max-w-[590px] font-[EB_Garamond] font-semibold text-[#003300]"
+                        style={{
+                          fontSize: 'clamp(34px, 5vw, 64px)',
+                          lineHeight: 'clamp(36px, 4.8vw, 56px)',
+                          textTransform: 'capitalize',
+                        }}
+                      >
+                        Accélération PME &amp; ASBL Recrutement International &amp; Croissance
+                      </h3>
 
-                    <button
-                      type="button"
-                      className="w-full rounded-full bg-[#003300] px-6 py-[16px] text-center font-[Geist] font-semibold text-[#F7FCFF] transition-colors hover:bg-[#002200] active:scale-95 active:bg-[#001100] sm:w-auto sm:px-[20px] md:px-[26px] md:py-[22px]"
-                      style={{ fontSize: 'clamp(14px, 2vw, 16px)', lineHeight: 'clamp(16px, 2.2vw, 20px)', touchAction: 'manipulation' }}
-                      onTouchStart={(e) => {
-                        e.currentTarget.style.transform = 'scale(0.95)';
-                        setTimeout(() => {
-                          e.currentTarget.style.transform = 'scale(1)';
-                        }, 150);
-                      }}
-                    >
-                      <span className="hidden md:inline">Planifier un entretien confidentiel</span>
-                      <span className="md:hidden">Entretien</span>
-                    </button>
+                      <div className="flex max-w-[435px] flex-col gap-[25px]">
+                        {/* Each question on its own line with a green highlight that ends at the text length */}
+                        <div className="flex flex-col gap-[6px] md:gap-[7.26px]">
+                          <span
+                            className="w-fit max-w-full whitespace-nowrap font-[Geist] font-semibold text-[#003300]"
+                            style={{
+                              fontSize: 'clamp(11px, 2.3vw, 16px)',
+                              lineHeight: 'clamp(20px, 4vw, 28px)',
+                              opacity: 0.85,
+                              backgroundImage: 'linear-gradient(transparent 55%, #BBCB2E 55%, #BBCB2E 92%, transparent 92%)',
+                              paddingLeft: '4px',
+                              paddingRight: '4px',
+                            }}
+                          >
+                            Vous êtes une PME ou une Asbl en croissance ?
+                          </span>
+                          <span
+                            className="w-fit max-w-full whitespace-nowrap font-[Geist] font-semibold text-[#003300]"
+                            style={{
+                              fontSize: 'clamp(11px, 2.3vw, 16px)',
+                              lineHeight: 'clamp(20px, 4vw, 28px)',
+                              opacity: 0.85,
+                              backgroundImage: 'linear-gradient(transparent 55%, #BBCB2E 55%, #BBCB2E 92%, transparent 92%)',
+                              paddingLeft: '4px',
+                              paddingRight: '4px',
+                            }}
+                          >
+                            Vous souhaitez recruter des talents hors UE ?
+                          </span>
+                        </div>
+
+                        <p
+                          className="max-w-[424px] pl-[11px] font-[Geist] font-medium text-[#003300]"
+                          style={{ fontSize: 'clamp(13px, 2.2vw, 16px)', lineHeight: 'clamp(17px, 2.8vw, 19px)', opacity: 0.7 }}
+                        >
+                          Nous sécurisons vos recrutements internationaux pour vous concentrer sur votre développement.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:gap-[9.8px] 2xl:max-w-[483.85px]">
+                      <button
+                        type="button"
+                        className="h-[56px] w-full rounded-full border border-[#003300] px-8 font-[Geist] font-semibold text-[#003300] transition-colors hover:bg-[#003300] hover:text-[#F7FCFF] sm:w-auto md:h-[66.65px] md:border-[1.96016px] md:px-[44px]"
+                        style={{ fontSize: '16px', lineHeight: '20px' }}
+                      >
+                        About
+                      </button>
+
+                      <button
+                        type="button"
+                        className="h-[56px] w-full rounded-full bg-[#003300] px-6 font-[Geist] font-semibold text-[#F7FCFF] transition-colors hover:bg-[#002200] sm:w-auto md:h-[65.08px] md:min-w-[329px] md:px-[9.8008px]"
+                        style={{ fontSize: '16px', lineHeight: '20px' }}
+                      >
+                        Planifier un entretien confidentiel
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </article>
 
+            <section className="relative w-screen overflow-hidden bg-[#BBCB2E] py-12 md:py-16 lg:py-[84px]">
+              <div className="absolute inset-0">
+                <Image
+                  src="/Group 349051.svg"
+                  alt=""
+                  fill
+                  className="object-cover object-center"
+                  aria-hidden="true"
+                />
+              </div>
+
+              <div className="relative left-1/2 w-screen -translate-x-1/2">
+                <div className="mx-auto w-full max-w-none px-0">
+                  <div className="mx-auto flex w-full max-w-[774px] flex-col items-center gap-5 px-4 text-center sm:gap-6 sm:px-6 md:gap-[41.6px] md:px-0">
+                    <h2
+                      className="max-w-[773.41px] font-[EB_Garamond] font-semibold tracking-[-0.03em] text-white"
+                      style={{
+                        fontSize: 'clamp(26px, 6vw, 83.0753px)',
+                        lineHeight: 'clamp(28px, 5.5vw, 68px)',
+                      }}
+                    >
+                      <span className="block sm:whitespace-nowrap">Analyse Institutionnelle</span>
+                      <span className="block">&amp; Réglementaire</span>
+                    </h2>
+
+                    <p
+                      className="max-w-[774px] font-[Geist] font-medium text-white"
+                      style={{ fontSize: 'clamp(13px, 2vw, 16px)', lineHeight: 'clamp(17px, 2.5vw, 19px)', opacity: 0.8 }}
+                    >
+                      Vous êtes un organisme public, une institution privée, un investisseur ou un bailleur de fonds ?
+                      RNJ Advisory vous accompagne dans l’analyse approfondie des environnements institutionnels,
+                      juridiques et réglementaires afin de sécuriser vos décisions stratégiques.
+                    </p>
+
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center justify-center rounded-full bg-[#BBCB2E] font-[Geist] font-semibold text-[#003300] shadow-[0_4px_20px_rgba(0,0,0,0.18)]"
+                      style={{
+                        height: 'clamp(44px, 7vw, 59.85px)',
+                        paddingLeft: 'clamp(20px, 3.5vw, 32px)',
+                        paddingRight: 'clamp(20px, 3.5vw, 32px)',
+                        fontSize: 'clamp(16px, 3.5vw, 29.7896px)',
+                        lineHeight: 1,
+                      }}
+                    >
+                      Contact
+                    </Link>
+                  </div>
+
+                  <div className="mt-12 md:mt-[90px]">
+                    <div
+                      className="relative rounded-[26px] bg-black/[0.004] shadow-[0px_2px_44.2px_rgba(0,0,0,0.17)]"
+                      onMouseEnter={() => setIsInstitutionalCarouselPaused(true)}
+                      onMouseLeave={() => setIsInstitutionalCarouselPaused(false)}
+                      onTouchStart={() => setIsInstitutionalCarouselPaused(true)}
+                      onTouchEnd={() => setIsInstitutionalCarouselPaused(false)}
+                    >
+                    <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-[9.5%] bg-gradient-to-r from-[#F9FFC4]/70 to-transparent md:block" />
+                    <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-[9.5%] bg-gradient-to-l from-[#F9FFC4]/70 to-transparent md:block" />
+
+                    <button
+                      type="button"
+                      aria-label="Précédent"
+                      onClick={() => scrollInstitutionalCarousel('left')}
+                      className="absolute left-[1.2%] top-1/2 z-20 hidden h-[52px] w-[52px] -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(187,203,46,0.28)] text-[#003300] opacity-60 transition-opacity hover:opacity-85 md:inline-flex"
+                    >
+                      <span className="text-[24px] leading-none">‹</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      aria-label="Suivant"
+                      onClick={() => scrollInstitutionalCarousel('right')}
+                      className="absolute right-[1.2%] top-1/2 z-20 hidden h-[52px] w-[52px] -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(187,203,46,0.28)] text-[#003300] opacity-60 transition-opacity hover:opacity-85 md:inline-flex"
+                    >
+                      <span className="text-[24px] leading-none">›</span>
+                    </button>
+
+                    <div
+                      ref={institutionalCarouselRef}
+                      className="flex flex-nowrap gap-5 overflow-x-auto overflow-y-hidden px-3 py-3 md:gap-[21.98px] md:px-4 md:py-5 touch-pan-x [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
+                    >
+                      {[...institutionalCarouselCards, ...institutionalCarouselCards].map((card, index) => (
+                        <article
+                          key={`${card.title}-${index}`}
+                          data-institutional-card
+                          className="flex w-[92vw] shrink-0 flex-col gap-3 md:h-[427.36px] md:w-[1076.68px] md:flex-row md:gap-[21.99px]"
+                        >
+                          {card.panelFirst ? (
+                            <>
+                              <div
+                                className="flex justify-center rounded-[28px] px-6 py-6 md:h-[427.36px] md:w-[370.67px] md:rounded-[91.5803px_91.5771px_91.5771px_0px] md:px-[36.88px] md:py-[73.05px]"
+                                style={{ backgroundColor: card.panelBg }}
+                              >
+                                <div className="flex h-full w-full max-w-[275.15px] flex-col justify-between">
+                                  <div className="flex flex-col gap-[14.18px]">
+                                    <h3
+                                      className="font-[Geist] font-semibold"
+                                      style={{
+                                        fontSize: '24px',
+                                        lineHeight: '31px',
+                                        textTransform: 'capitalize',
+                                        color: card.titleColor,
+                                      }}
+                                    >
+                                      {card.title}
+                                    </h3>
+
+                                    <p
+                                      className="max-w-[265.39px] font-[Geist] font-medium"
+                                      style={{
+                                        fontSize: '15px',
+                                        lineHeight: '20px',
+                                        textTransform: 'capitalize',
+                                        color: card.descriptionColor,
+                                      }}
+                                    >
+                                      {card.description}
+                                    </p>
+                                  </div>
+
+                                  <button
+                                    type="button"
+                                    className="inline-flex h-[29.08px] w-[180.83px] items-center justify-center rounded-[6.58028px] font-[Geist] font-medium"
+                                    style={{
+                                      backgroundColor: card.buttonBg,
+                                      color: card.buttonTextColor,
+                                      fontSize: '11.8445px',
+                                      lineHeight: '15px',
+                                    }}
+                                  >
+                                    Demander une consultation
+                                  </button>
+                                </div>
+                              </div>
+
+                              <div className="relative h-[260px] overflow-hidden rounded-[28px] md:h-[427.36px] md:w-[684.02px] md:rounded-[91.5771px_0px_91.5803px_91.5771px]">
+                                <Image
+                                  src={card.image}
+                                  alt={card.title}
+                                  fill
+                                  className="object-cover"
+                                />
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className="relative h-[260px] overflow-hidden rounded-[28px] md:h-[427.36px] md:w-[684.02px] md:rounded-[91.5803px_91.5803px_0px_91.5771px]">
+                                <Image
+                                  src={card.image}
+                                  alt={card.title}
+                                  fill
+                                  className="object-cover"
+                                />
+                              </div>
+
+                              <div
+                                className="flex justify-center rounded-[28px] px-6 py-6 md:h-[427.36px] md:w-[370.67px] md:rounded-[91.5803px_91.5771px_91.5771px_0px] md:px-[36.88px] md:py-[73.05px]"
+                                style={{ backgroundColor: card.panelBg }}
+                              >
+                                <div className="flex h-full w-full max-w-[275.15px] flex-col justify-between">
+                                  <div className="flex flex-col gap-[14.18px]">
+                                    <h3
+                                      className="font-[Geist] font-semibold"
+                                      style={{
+                                        fontSize: '24px',
+                                        lineHeight: '31px',
+                                        textTransform: 'capitalize',
+                                        color: card.titleColor,
+                                      }}
+                                    >
+                                      {card.title}
+                                    </h3>
+
+                                    <p
+                                      className="max-w-[265.39px] font-[Geist] font-medium"
+                                      style={{
+                                        fontSize: '15px',
+                                        lineHeight: '20px',
+                                        textTransform: 'capitalize',
+                                        color: card.descriptionColor,
+                                      }}
+                                    >
+                                      {card.description}
+                                    </p>
+                                  </div>
+
+                                  <button
+                                    type="button"
+                                    className="inline-flex h-[29.08px] w-[180.83px] items-center justify-center rounded-[6.58028px] font-[Geist] font-medium"
+                                    style={{
+                                      backgroundColor: card.buttonBg,
+                                      color: card.buttonTextColor,
+                                      fontSize: '11.8445px',
+                                      lineHeight: '15px',
+                                    }}
+                                  >
+                                    Demander une consultation
+                                  </button>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </article>
+                      ))}
+                    </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 flex justify-center md:mt-10">
+                    <div className="relative h-[46px] w-[186px] md:h-[57.57px] md:w-[233px]">
+                      <Image
+                        src="/minimal horizontal logo white 1.svg"
+                        alt="RNJ Advisory"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section className="relative -mt-6 w-full py-10 md:-mt-[62px] md:py-14">
+              <div className="mx-auto w-full max-w-[1540px] px-4">
+                <div
+                  className="mx-auto grid w-full max-w-[1299.66px] grid-cols-1 gap-4 md:grid-cols-3 md:gap-4 xl:gap-[19px]"
+                  style={{ filter: 'drop-shadow(0px 4px 47.1px rgba(0, 0, 0, 0.09))' }}
+                >
+                  <article
+                    className="relative flex min-h-[390px] flex-col overflow-hidden rounded-[28px] bg-[#D9D9D9] transition-all duration-500 md:min-h-[420px] md:rounded-[30px] lg:min-h-[450px] xl:h-[473.49px] xl:rounded-[34.8794px]"
+                    style={{
+                      border:
+                        esgActiveCardIndex === 0 ? '2px solid #003300' : '2px solid transparent',
+                      transform: esgActiveCardIndex === 0 ? 'translateY(-8px)' : 'translateY(0)',
+                      boxShadow:
+                        esgActiveCardIndex === 0
+                          ? '0px 12px 36px rgba(0, 51, 0, 0.22)'
+                          : '0px 4px 22.4px rgba(0, 0, 0, 0.19)',
+                    }}
+                  >
+                    <div className="relative h-[220px] w-full sm:h-[240px] md:h-[200px] lg:h-[240px] xl:h-[285px]">
+                      <Image
+                        src="/jakub-zerdzicki-yKnIbJV0RbY-unsplash 1.svg"
+                        alt="ESG et financements"
+                        fill
+                        className="object-cover object-top"
+                      />
+                    </div>
+
+                    <div className="flex flex-1 flex-col bg-[#A2B144] px-5 py-5 sm:px-6 md:px-[33.11px] md:pt-[15px]">
+                      <h3
+                        className="font-[EB_Garamond] font-semibold text-[#003300] text-[24px] leading-[24px] sm:text-[26px] sm:leading-[25px] lg:text-[28px] lg:leading-[27px] xl:text-[31.3914px] xl:leading-[28px]"
+                      >
+                        ESG &amp; financements / accompagnement sur mesure
+                      </h3>
+                      <p
+                        className="mt-3 max-w-[247.64px] font-[Geist] text-[#003300] text-[13.9517px] leading-[16px] opacity-70"
+                      >
+                        ESG &amp; financements / accompagnement sur mesure
+                      </p>
+                    </div>
+                  </article>
+
+                  <article
+                    className="relative flex min-h-[390px] flex-col items-center justify-center rounded-[28px] bg-[#F9FFC4] px-5 py-7 text-center transition-all duration-500 md:min-h-[420px] md:rounded-[30px] md:px-5 lg:min-h-[450px] lg:px-6 xl:h-[473.49px] xl:rounded-[34.8794px] xl:px-8"
+                    style={{
+                      border:
+                        esgActiveCardIndex === 1 ? '2px solid #003300' : '2px solid transparent',
+                      transform: esgActiveCardIndex === 1 ? 'translateY(-8px)' : 'translateY(0)',
+                      boxShadow:
+                        esgActiveCardIndex === 1
+                          ? '0px 12px 36px rgba(0, 51, 0, 0.22)'
+                          : '0px 4px 22.4px rgba(0, 0, 0, 0.19)',
+                    }}
+                  >
+                    <div className="mb-6 flex flex-col items-center gap-4 md:mb-7 md:gap-5 xl:mb-[48.83px] xl:gap-[26.16px]">
+                      <span
+                        className="font-[Geist] font-bold text-[#BBCB2E] text-[8.97436px] leading-[14px]"
+                      >
+                        [ Analyse Institutionnelle &amp; Réglementaire ]
+                      </span>
+
+                      <h3
+                        className="max-w-[334.84px] font-[EB_Garamond] font-semibold text-[#003300] text-[24px] leading-[26px] sm:text-[26px] sm:leading-[28px] lg:text-[30px] lg:leading-[31px] xl:text-[35.8975px] xl:leading-[36px]"
+                      >
+                        Durabilité et ESG (Environnemental, Social et Gouvernance)
+                      </h3>
+
+                      <p
+                        className="max-w-[299.96px] font-[Geist] text-[#003300] text-[13.9517px] leading-[17px] opacity-70"
+                      >
+                        RNJ Advisory intègre les enjeux ESG au cœur de votre stratégie pour une performance durable et conforme.
+                      </p>
+                    </div>
+
+                    <Link
+                      href="/services"
+                      className="inline-flex h-[50px] items-center justify-center rounded-full bg-[#BBCB2E] px-6 font-[Geist] font-semibold text-[#003300] transition-all duration-500 sm:h-[52px] sm:px-8 xl:h-[56.29px] xl:px-[37px]"
+                      style={{
+                        fontSize: '14.6036px',
+                        lineHeight: '23px',
+                        transform: esgActiveCardIndex === 1 ? 'scale(1.03)' : 'scale(1)',
+                        boxShadow:
+                          esgActiveCardIndex === 1
+                            ? '0px 8px 28px rgba(0, 51, 0, 0.25)'
+                            : 'none',
+                      }}
+                    >
+                      En savoir plus
+                    </Link>
+                  </article>
+
+                  <article
+                    className="relative flex min-h-[390px] flex-col overflow-hidden rounded-[28px] bg-[#D9D9D9] transition-all duration-500 md:min-h-[420px] md:rounded-[30px] lg:min-h-[450px] xl:h-[473.49px] xl:rounded-[34.8794px]"
+                    style={{
+                      border:
+                        esgActiveCardIndex === 2 ? '2px solid #003300' : '2px solid transparent',
+                      transform: esgActiveCardIndex === 2 ? 'translateY(-8px)' : 'translateY(0)',
+                      boxShadow:
+                        esgActiveCardIndex === 2
+                          ? '0px 12px 36px rgba(0, 51, 0, 0.22)'
+                          : '0px 4px 22.4px rgba(0, 0, 0, 0.19)',
+                    }}
+                  >
+                    <div className="relative h-[220px] w-full sm:h-[240px] md:h-[200px] lg:h-[240px] xl:h-[300px]">
+                      <Image
+                        src="/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc 1.svg"
+                        alt="Diagnostic ESG et conformité"
+                        fill
+                        className="object-cover object-top"
+                      />
+                    </div>
+
+                    <div className="flex flex-1 flex-col bg-[#CCD862] px-5 py-5 sm:px-6 md:px-[33px] md:pt-[15px]">
+                      <h3
+                        className="font-[EB_Garamond] font-semibold text-[#003300] text-[24px] leading-[24px] sm:text-[26px] sm:leading-[25px] lg:text-[28px] lg:leading-[27px] xl:text-[31.3914px] xl:leading-[28px]"
+                      >
+                        Diagnostic ESG &amp; conformité
+                      </h3>
+                      <p
+                        className="mt-3 max-w-[247.64px] font-[Geist] text-[#003300] text-[13.9517px] leading-[16px] opacity-70"
+                      >
+                        Pour savoir où vous en êtes et ce qui est attendu de vous.
+                      </p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </section>
+
             <div className="flex w-full flex-col items-center gap-10 md:gap-16">
-              <section className="w-full 2xl:max-w-none">
+              <section className="hidden w-full 2xl:max-w-none">
               <div className="2xl:hidden">
                 <div className="mb-10 flex flex-col gap-3">
                   <div className="flex items-center gap-3">
@@ -2423,9 +2687,6 @@ export default function Home() {
               </div>
             </section>
 
-            <BusinessServicesSection />
-            <RegulationAnalysisSection />
-            <WhyChooseGridSection />
             {false && (
               <>
             {/* Business Services Section - Position CorrigÃ©e */}
@@ -3199,7 +3460,7 @@ export default function Home() {
 
                 {/* World Map Container */}
                 <div
-                  className="relative w-full max-w-[1346px] overflow-visible xl:h-[640.52px]"
+                  className="map-fade-in relative w-full max-w-[1346px] overflow-visible xl:h-[640.52px]"
                   style={{ height: 'clamp(260px, 46vw, 640.52px)' }}
                 >
                   <div className="absolute inset-0 overflow-hidden rounded-[28px] md:rounded-[40px]">
@@ -3220,7 +3481,7 @@ export default function Home() {
                     }}
                   >
                     {showTunisiaPopup && (
-                      <div className="absolute left-1/2 top-[calc(100%+12px)] z-30 w-[min(78vw,300px)] -translate-x-1/2 rounded-[24px] bg-[rgba(0,0,0,0.32)] p-3 backdrop-blur-md sm:w-[min(82vw,389px)] sm:rounded-[38px] sm:p-4 md:left-5 md:top-1/2 md:w-[389px] md:-translate-x-0 md:-translate-y-1/2 md:rounded-[45px] md:rounded-bl-none md:px-8 md:py-[35px]">
+                      <div className="popup-fade-in absolute left-1/2 top-[calc(100%+12px)] z-30 w-[min(78vw,300px)] -translate-x-1/2 rounded-[24px] bg-[rgba(0,0,0,0.32)] p-3 backdrop-blur-md sm:w-[min(82vw,389px)] sm:rounded-[38px] sm:p-4 md:left-5 md:top-1/2 md:w-[389px] md:-translate-x-0 md:-translate-y-1/2 md:rounded-[45px] md:rounded-bl-none md:px-8 md:py-[35px]">
                         <button
                           onClick={() => setShowTunisiaPopup(false)}
                           className="absolute right-3 top-3 text-white transition hover:text-gray-300 md:right-8 md:top-8"
@@ -3275,7 +3536,7 @@ export default function Home() {
 
                     <button
                       type="button"
-                      className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer appearance-none border-0 bg-transparent p-0 outline-none"
+                      className="group absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer appearance-none border-0 bg-transparent p-0 outline-none"
                       style={{
                         width: 'clamp(34px, 4vw, 52px)',
                         height: 'clamp(34px, 4vw, 52px)',
@@ -3288,6 +3549,21 @@ export default function Home() {
                       onFocus={() => setShowTunisiaPopup(true)}
                     />
                   </div>
+
+                  {/* Animated location pins overlay (drop-in + idle bounce, staggered per pin) */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/pins%20group.svg"
+                    alt=""
+                    aria-hidden
+                    className="pointer-events-none absolute z-[15]"
+                    style={{
+                      left: '38%',
+                      top: '32%',
+                      width: '20%',
+                      height: 'auto',
+                    }}
+                  />
                 </div>
 
                 {/* Buttons and Copyright Section */}
@@ -3350,6 +3626,174 @@ export default function Home() {
               </div>
             </section>
 
+            {/* Bento Grid Section (Group 386) */}
+            <section className="relative mx-auto my-8 w-full max-w-[1393px] px-4 sm:px-5 md:px-6">
+              <div
+                className="grid w-full grid-cols-1 gap-[19px] md:grid-cols-2 xl:grid-cols-[334px_334px_minmax(0,1fr)]"
+                style={{ filter: 'drop-shadow(2px 2px 24.5px rgba(0,0,0,0.21))' }}
+              >
+                {/* Column 1: BECI + Pills */}
+                <div className="flex flex-col gap-[23px]">
+                  {/* BECI card */}
+                  <div className="bento-card bento-d1 relative h-[334px] w-full overflow-hidden rounded-[20px] bg-[#003300]">
+                    <div className="absolute left-1/2 top-1/2 flex h-[230px] w-[min(208px,calc(100%-40px))] -translate-x-1/2 -translate-y-1/2 flex-col items-start rounded-[30px] bg-white px-[18px] pt-[27px] shadow-[0_0_43px_-5px_rgba(255,255,255,0.33)]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/Beci%2B2%201.svg" alt="BECI" className="h-[65px] w-[57px] object-contain" />
+                      <p className="mt-[27px] w-full font-[Geist] text-[20px] font-semibold leading-[22px] text-[#003300]">
+                        RNJ Advisory membre de BECI
+                      </p>
+                      <p className="mt-[7px] font-[Geist] text-[11px] font-medium leading-[15px] text-[#003300]">
+                        RNJ Advisory membre de BECI
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Pills card */}
+                  <div className="bento-card bento-d2 relative flex h-[334px] w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-[20px] bg-white px-3 sm:px-5">
+                    <div className="flex w-full max-w-[272px] items-center gap-[4px]">
+                      <div className="flex h-[55.74px] flex-1 items-center justify-center rounded-full border-2 border-[#BBCB2E]">
+                        <span className="font-[Geist] text-[18px] font-medium text-[#BBCB2E] sm:text-[20px]">Conformité</span>
+                      </div>
+                      <div className="flex h-[55.74px] w-[55.74px] shrink-0 items-center justify-center rounded-full border-2 border-[#BBCB2E]">
+                        <span className="text-[#BBCB2E]">→</span>
+                      </div>
+                    </div>
+                    <div className="flex w-full max-w-[272px] items-center gap-[4px]">
+                      <div className="flex h-[55.74px] w-[55.74px] shrink-0 items-center justify-center rounded-full border-2 border-[#BBCB2E]">
+                        <span className="text-[#BBCB2E]">←</span>
+                      </div>
+                      <div className="flex h-[55.74px] flex-1 items-center justify-center rounded-full bg-[#BBCB2E]">
+                        <span className="font-[Geist] text-[18px] font-medium text-[#003300] sm:text-[20px]">Décision</span>
+                      </div>
+                    </div>
+                    <div className="flex w-full max-w-[272px] items-center gap-[4px]">
+                      <div className="flex h-[55.74px] flex-1 items-center justify-center rounded-full border-2 border-[#BBCB2E]">
+                        <span className="font-[Geist] text-[18px] font-medium text-[#BBCB2E] sm:text-[20px]">Analyse</span>
+                      </div>
+                      <div className="flex h-[55.74px] w-[55.74px] shrink-0 items-center justify-center rounded-full border-2 border-[#BBCB2E]">
+                        <span className="text-[#BBCB2E]">→</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Column 2: Tall photo card */}
+                <div className="bento-card bento-d3 relative h-[420px] w-full overflow-hidden rounded-[20px] bg-[#6F6F6F] sm:h-[520px] md:h-[691px]">
+                  <Image
+                    src="/Group%20352.svg"
+                    alt=""
+                    fill
+                    unoptimized
+                    sizes="(min-width: 768px) 334px, 100vw"
+                    className="object-cover object-center"
+                  />
+                </div>
+
+                {/* Column 3: responsive sub-grid */}
+                <div className="grid grid-cols-1 gap-[23px] sm:grid-cols-2 sm:gap-x-[19px] sm:gap-y-[23px] md:col-span-2 xl:col-span-1">
+                  {/* Yoga blurred */}
+                  <div className="bento-card bento-d4 relative h-[334px] w-full overflow-hidden rounded-[20px] bg-[#6F6F6F]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/Group%20363.svg" alt="" className="h-full w-full object-cover" />
+                  </div>
+
+                  {/* Belgique card */}
+                  <div className="bento-card bento-d5 relative h-[334px] w-full overflow-hidden rounded-[20px] bg-white">
+                    <div
+                      className="mt-[30px] flex h-[74px] w-full items-center px-4 sm:px-[23px]"
+                      style={{ background: 'linear-gradient(90deg, #DDE597 0%, rgba(123,127,84,0.17) 100%)' }}
+                    >
+                      <div className="flex w-full items-center justify-between gap-3 sm:justify-start sm:gap-[29px]">
+                        <div className="relative flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#BBCB2E] sm:h-[60px] sm:w-[60px]">
+                          <span className="font-[EB_Garamond] text-[26px] leading-none text-[#003300] sm:text-[29.12px]">01</span>
+                        </div>
+                        <div className="flex items-center gap-[6px] sm:gap-[8px]">
+                          <span className="block h-[20px] w-[20px] rounded-full bg-[#BBCB2E] sm:h-[28px] sm:w-[28px]" />
+                          <span className="block h-[12px] w-[12px] rounded-full bg-[#BBCB2E] sm:h-[14px] sm:w-[14px]" />
+                          <span className="block h-[12px] w-[12px] rounded-full bg-[#BBCB2E] sm:h-[14px] sm:w-[14px]" />
+                          <span className="block h-[12px] w-[12px] rounded-full bg-[#BBCB2E] sm:h-[14px] sm:w-[14px]" />
+                          <span className="block h-[12px] w-[12px] rounded-full bg-[#BBCB2E] sm:h-[14px] sm:w-[14px]" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="px-[23px] pt-[34px]">
+                      <h3 className="w-full font-[Geist] text-[30px] font-medium leading-[30px] text-[#003300] sm:text-[36px] sm:leading-[32px]">
+                        développer votre activité en Belgique
+                      </h3>
+                      <p className="mt-3 w-full font-[Geist] text-[15px] font-medium leading-[16px] text-[#003300]/60 sm:text-[16px]">
+                        complétez les étapes et démarrez votre Entrepreneuriat en belgique
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Shifting + Contact stacked */}
+                  <div className="flex flex-col gap-[23px]">
+                    <div className="bento-card bento-d6 relative h-[220px] w-full overflow-hidden rounded-[20px] bg-white p-6 sm:p-[29px]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/Group%20558.svg" alt="Shifting Academy" className="h-[31px] w-[118px] object-contain" />
+                      <p className="mt-[20px] w-full font-[Geist] text-[22px] font-semibold leading-[24px] tracking-[-0.05em] text-[#003300] sm:text-[24px] sm:leading-[25px]">
+                        RNJ Advisory est certifiée Shifting Academy
+                      </p>
+                      <div className="mt-[18px] flex items-center gap-[6px]">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/E_SDG_PRINT-07%201.svg" alt="SDG 7" className="h-[36px] w-[36px]" />
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src="/E_SDG_PRINT-08%201.svg" alt="SDG 8" className="h-[36px] w-[36px]" />
+                      </div>
+                    </div>
+                    <div className="bento-card bento-d7 relative flex h-[91px] w-full items-center justify-center gap-[6px] rounded-[20px] bg-[#003300] px-4 sm:px-8">
+                      <div className="flex h-[44px] w-[45px] items-center justify-center rounded-full bg-white">
+                        <span className="text-[#003300]">→</span>
+                      </div>
+                      <div className="flex h-[43px] min-w-[115px] items-center justify-center rounded-full bg-white px-4">
+                        <span className="font-[Geist] text-[16px] font-semibold text-[#003300]">contact us</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Concentric circles card */}
+                  <div className="bento-card bento-d8 relative h-[334px] w-full overflow-hidden rounded-[20px] bg-[#BBCB2E]">
+                    <div
+                      className="absolute inset-0 rounded-[20px]"
+                      style={{ background: 'radial-gradient(50% 61.83% at 50% 50%, #DDE597 60.08%, rgba(123,127,84,0) 100%)' }}
+                    />
+                    <span className="ring-pulse pointer-events-none absolute left-1/2 top-1/2 h-[378px] w-[378px] rounded-full border-[4px] border-white/80" />
+                    <span className="ring-pulse ring-pulse-delay-1 pointer-events-none absolute left-1/2 top-1/2 h-[270px] w-[270px] rounded-full border-[4px] border-white/80" />
+                    <span className="ring-pulse ring-pulse-delay-2 pointer-events-none absolute left-1/2 top-1/2 h-[152px] w-[152px] rounded-full border-[4px] border-white" />
+                    <div className="absolute left-1/2 top-1/2 flex h-[84px] w-[84px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#003300]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/Group%20559.svg" alt="" className="h-[36px] w-[36px]" />
+                    </div>
+                    <div className="float-icon absolute flex h-[51px] w-[51px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597]" style={{ left: '17%', top: '14%', animationDelay: '0s' }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/Vector%20(2).svg" alt="" className="h-[22px] w-[22px]" />
+                    </div>
+                    <div className="float-icon absolute flex h-[57px] w-[57px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597]" style={{ left: '74%', top: '20%', animationDelay: '0.4s' }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/Group%20(2).svg" alt="" className="h-[24px] w-[24px]" />
+                    </div>
+                    <div className="float-icon absolute flex h-[57px] w-[57px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597]" style={{ left: '73%', top: '66%', animationDelay: '0.8s' }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/Group%20(3).svg" alt="" className="h-[24px] w-[24px]" />
+                    </div>
+                    <div className="float-icon absolute flex h-[57px] w-[57px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597]" style={{ left: '15%', top: '70%', animationDelay: '1.2s' }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/Group%20(4).svg" alt="" className="h-[24px] w-[24px]" />
+                    </div>
+                    <div className="float-icon absolute flex h-[57px] w-[57px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597]" style={{ left: '51%', top: '89%', animationDelay: '1.6s' }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/Layer%201%20(3).svg" alt="" className="h-[24px] w-[24px]" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Copyright */}
+              <p className="mt-[20px] text-center font-[Geist] text-[15.4px] font-medium leading-[21px] text-[#003300] opacity-50">
+                © 2026 RNJ Advisory. Tous droits réservés.
+              </p>
+            </section>
+
             {/* Ã‰tudes & Analyse RÃ©glementaire Section */}
             {false && (
             <section className="relative w-full py-16 md:py-20 lg:py-24 bg-[#F7FCFF] overflow-hidden">
@@ -3385,7 +3829,12 @@ export default function Home() {
                           opacity: 0.8 
                         }}
                       >
-                        Vous êtes un organisme public, une institution privée, un investisseur ou un bailleur de fonds ? RNJ Advisory vous accompagne dans l'analyse approfondie des environnements institutionnels, juridiques et réglementaires afin de sécuriser vos décisions stratégiques.
+                        Vous êtes un organisme public, une institution privée,
+                        un investisseur ou un bailleur de fonds ? RNJ Advisory
+                        vous accompagne dans l&apos;analyse approfondie des
+                        environnements institutionnels, juridiques et
+                        réglementaires afin de sécuriser vos décisions
+                        stratégiques.
                       </p>
 
                       {/* Buttons */}

@@ -148,7 +148,7 @@ export default function Footer() {
                       <Image src="/Vector (18).svg" alt="E-mail" fill className="object-contain" />
                     </div>
                     <span className="break-all font-[Geist] text-[14px] font-medium tracking-[0.05em] text-white sm:text-[15.37px]">
-                      contact@rnj-advisory.be
+                      info@rnj-advisory.be
                     </span>
                   </div>
                 </div>
