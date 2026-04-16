@@ -677,6 +677,7 @@ const entrepreneuriatTabs: Array<{
   title: string;
   description: string;
   bg: string;
+  imageBg?: string;
   textColor: string;
   buttonOutlineColor: string;
   buttonFilledBg: string;
@@ -715,10 +716,11 @@ const entrepreneuriatTabs: Array<{
     title: 'PME & ASBL en Croissance',
     description:
       "Vous dirigez une PME ou une ASBL en phase de développement ? Votre croissance nécessite une structuration solide et une gestion conforme aux exigences réglementaires ? RNJ Advisory vous accompagne afin de professionnaliser votre organisation, sécuriser vos opérations et soutenir une expansion maîtrisée.",
-    bg: '#B5E0EC',
-    textColor: '#0E434F',
-    buttonOutlineColor: '#0E434F',
-    buttonFilledBg: '#0E434F',
+    bg: '#C1CB82',
+    imageBg: '#D9D9D9',
+    textColor: '#003300',
+    buttonOutlineColor: '#003300',
+    buttonFilledBg: '#003300',
     image: '/Group 541 (2).svg',
   },
 ];
@@ -764,7 +766,7 @@ function EntrepreneuriatTabsSection() {
 
   return (
     <section
-      className="w-full bg-[#F7FCFF] pb-10 pt-12 sm:pt-16 md:pb-14 md:pt-20 lg:pt-24 xl:pt-32"
+      className="w-full bg-white pb-10 pt-12 sm:pt-16 md:pb-14 md:pt-20 lg:pt-24 xl:pt-32"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -880,7 +882,7 @@ function EntrepreneuriatTabsSection() {
 
             <div
               className="relative w-full overflow-hidden transition-colors duration-500 xl:w-1/2"
-              style={{ backgroundColor: active.bg }}
+              style={{ backgroundColor: active.imageBg ?? active.bg }}
             >
               <div className="relative w-full xl:absolute xl:inset-0 xl:h-full">
                 {/* Below xl: image sizes naturally at full width (no crop/zoom). xl: absolute-fill with object-cover */}
