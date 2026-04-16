@@ -678,6 +678,7 @@ const entrepreneuriatTabs: Array<{
   description: string;
   bg: string;
   imageBg?: string;
+  imageClassName?: string;
   textColor: string;
   buttonOutlineColor: string;
   buttonFilledBg: string;
@@ -718,6 +719,7 @@ const entrepreneuriatTabs: Array<{
       "Vous dirigez une PME ou une ASBL en phase de développement ? Votre croissance nécessite une structuration solide et une gestion conforme aux exigences réglementaires ? RNJ Advisory vous accompagne afin de professionnaliser votre organisation, sécuriser vos opérations et soutenir une expansion maîtrisée.",
     bg: '#C1CB82',
     imageBg: '#D9D9D9',
+    imageClassName: 'xl:object-cover xl:object-center xl:scale-[1.06]',
     textColor: '#003300',
     buttonOutlineColor: '#003300',
     buttonFilledBg: '#003300',
@@ -894,7 +896,7 @@ function EntrepreneuriatTabsSection() {
                   alt={active.title}
                   width={759}
                   height={835}
-                  className="block w-full h-auto [aspect-ratio:759/835] xl:absolute xl:inset-0 xl:h-full xl:w-full xl:object-contain xl:object-right-top xl:[aspect-ratio:auto]"
+                  className={`block w-full h-auto [aspect-ratio:759/835] xl:absolute xl:inset-0 xl:h-full xl:w-full xl:object-contain xl:object-right-top xl:[aspect-ratio:auto] ${active.imageClassName ?? ''}`}
                   loading="eager"
                   decoding="async"
                 />
