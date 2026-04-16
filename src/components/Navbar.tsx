@@ -25,7 +25,7 @@ export default function Navbar() {
       >
         <Link href="/" className="flex min-w-0 items-center gap-2 md:gap-2.5">
           <Image
-            src="/Layer 4.svg"
+            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333984/rnj/layer-4-955dc651.svg"
             alt="Logo icon"
             width={32}
             height={34}
@@ -33,7 +33,7 @@ export default function Navbar() {
             priority
           />
           <Image
-            src="/Group.svg"
+            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334126/rnj/group-73892e5a.svg"
             alt="Logo text"
             width={162}
             height={43}
@@ -103,7 +103,7 @@ export default function Navbar() {
 
         <div className="hidden flex-row items-center gap-2 xl:flex xl:gap-[10px]">
           <Image
-            src="/%F0%9F%87%A7%F0%9F%87%AA.png"
+            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334127/rnj/asset-96a86689.png"
             alt="Drapeau Belgique"
             width={20}
             height={30}

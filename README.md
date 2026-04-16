@@ -45,12 +45,45 @@ Change those values in [`docker-compose.yml`](./docker-compose.yml) before produ
 
 The frontend proxies `/api/contact` and `/api/bookings` to Laravel using `LARAVEL_API_URL`.
 
-## Production notes
+## Cloudinary asset migration
 
-For the current non-Docker PM2 deployment of the frontend, remember to rebuild Next.js after frontend changes:
+To migrate referenced `public/` images to Cloudinary and rewrite the codebase to the returned CDN URLs:
+
+1. Add these variables to your environment:
 
 ```bash
-npm run build && pm2 restart rnj
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+CLOUDINARY_FOLDER=rnj
+CLOUDINARY_SITE_ORIGIN=https://rnj-advisory.be
+```
+
+2. Run a dry scan first:
+
+```bash
+npm run cloudinary:scan-assets
+```
+
+3. Run the real migration:
+
+```bash
+npm run cloudinary:migrate-assets
+```
+
+The script:
+
+- scans `src/` for referenced local image paths
+- uploads the matching `public/` assets to Cloudinary
+- rewrites the source files to use the returned `secure_url`
+- saves a manifest to `cloudinary-assets-manifest.json`
+
+## Production notes
+
+For the current Docker deployment on the server, rebuild and relaunch with:
+
+```bash
+sudo docker-compose up -d --build
 ```
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

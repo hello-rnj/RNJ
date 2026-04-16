@@ -175,7 +175,7 @@ export default function ContactPageClient() {
           showSuccessModal ? 'pointer-events-none select-none' : ''
         }`}
       >
-        <Image src="/Frame 391.svg" alt="" fill className="object-cover" priority />
+        <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334078/rnj/frame-391-96629423.svg" alt="" fill className="object-cover" priority />
 
         <div className="relative z-10">
           <Navbar />
@@ -193,7 +193,7 @@ export default function ContactPageClient() {
                 <div className="flex flex-col items-center justify-center gap-[68.45px]">
                   <div className="flex flex-col items-center justify-center gap-[27.38px]">
                     <Image
-                      src="/minimal horizontal logo white 1.svg"
+                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                       alt="RNJ Advisory"
                       width={199}
                       height={49}
@@ -239,10 +239,10 @@ export default function ContactPageClient() {
 
           {view === 'subjects' && (() => {
             const cards = [
-              { src: '/institution.svg', label: 'Institution' },
-              { src: '/investisseur.svg', label: 'Investisseur' },
-              { src: '/Entrepreneur.svg', label: 'Entrepreneur' },
-              { src: '/Autre.svg', label: 'Autre' },
+              { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334082/rnj/institution-ff95583d.svg', label: 'Institution' },
+              { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334085/rnj/investisseur-b14c1fbc.svg', label: 'Investisseur' },
+              { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334087/rnj/entrepreneur-855980d1.svg', label: 'Entrepreneur' },
+              { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334089/rnj/autre-3a5ebc68.svg', label: 'Autre' },
             ];
             return (
               <div className="absolute inset-0 z-10 flex items-center justify-center px-4 sm:px-6">
@@ -291,7 +291,7 @@ export default function ContactPageClient() {
                   <div className="flex flex-1 flex-col gap-10 md:gap-[87px]">
                     <div className="flex flex-col gap-6 md:gap-[32.75px]">
                       <Image
-                        src="/minimal horizontal logo white 1.svg"
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                         alt="RNJ Advisory"
                         width={180}
                         height={44}
@@ -450,7 +450,7 @@ export default function ContactPageClient() {
                       <div className="flex h-full flex-col justify-between gap-10">
                         <div className="space-y-7">
                           <Image
-                            src="/minimal horizontal logo white 1.svg"
+                            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                             alt="RNJ Advisory"
                             width={233}
                             height={58}
@@ -661,7 +661,7 @@ export default function ContactPageClient() {
         <div className="fixed inset-0 z-[200] flex items-center justify-center bg-[rgba(0,0,0,0.22)] px-4 backdrop-blur-sm">
           <div className="w-full max-w-[360px] rounded-[44px] bg-white px-7 py-8 text-center shadow-[0px_20px_70px_rgba(0,0,0,0.22)] md:max-w-[520px] md:rounded-[70px] md:px-14 md:py-12">
             <div className="relative mx-auto mb-6 h-[88px] w-[120px] md:mb-8 md:h-[150px] md:w-[205px]">
-              <Image src="/Layer 1 (24).svg" alt="Message envoye" fill className="object-contain" />
+              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334091/rnj/layer-1-24-5765da83.svg" alt="Message envoye" fill className="object-contain" />
             </div>
 
             <h2

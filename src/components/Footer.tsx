@@ -29,11 +29,11 @@ const footerColumns = [
 ];
 
 const socialIcons = [
-  { name: 'Instagram', src: '/Mask group (23).svg' },
-  { name: 'LinkedIn', src: '/Mask group (24).svg' },
-  { name: 'Telegram', src: '/Mask group (25).svg' },
-  { name: 'Twitter', src: '/Mask group (26).svg' },
-  { name: 'Facebook', src: '/Mask group (27).svg' },
+  { name: 'Instagram', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334109/rnj/mask-group-23-1ce30be9.svg' },
+  { name: 'LinkedIn', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334110/rnj/mask-group-24-fd4f223e.svg' },
+  { name: 'Telegram', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334111/rnj/mask-group-25-516d2f88.svg' },
+  { name: 'Twitter', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334113/rnj/mask-group-26-a7a619cb.svg' },
+  { name: 'Facebook', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334115/rnj/mask-group-27-5870749d.svg' },
 ];
 
 export default function Footer() {
@@ -41,7 +41,7 @@ export default function Footer() {
     <footer className="relative w-full overflow-hidden bg-[#BBCB2E] px-4 py-10 sm:px-6 md:px-8 md:py-14">
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[#BBCB2E]" />
-        <Image src="/Mask group (20).svg" alt="Arrière-plan du pied de page" fill className="object-cover" />
+        <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334121/rnj/mask-group-20-0d9c29f8.svg" alt="Arrière-plan du pied de page" fill className="object-cover" />
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1462px] flex-col gap-6 md:gap-8">
@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
 
           <div className="relative hidden h-[49px] w-[175px] shrink-0 lg:block">
-            <Image src="/Mask group (21).svg" alt="Flèches décoratives" fill className="object-contain" />
+            <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334123/rnj/mask-group-21-d1c01771.svg" alt="Flèches décoratives" fill className="object-contain" />
           </div>
 
           <Link
@@ -81,7 +81,7 @@ export default function Footer() {
             <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
               <div className="flex max-w-[352px] flex-col gap-6">
                 <Image
-                  src="/minimal horizontal logo white 1.svg"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                   alt="Logo RNJ Advisory"
                   width={233}
                   height={58}
@@ -136,7 +136,7 @@ export default function Footer() {
 
                   <div className="flex items-center gap-4">
                     <div className="relative h-[22px] w-[22px]">
-                      <Image src="/Vector (18).svg" alt="Téléphone" fill className="object-contain" />
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333875/rnj/vector-18-18cc905b.svg" alt="Téléphone" fill className="object-contain" />
                     </div>
                     <span className="font-[Geist] text-[14px] font-medium tracking-[0.05em] text-white sm:text-[15.37px]">
                       +32 474 03 22 66
@@ -145,7 +145,7 @@ export default function Footer() {
 
                   <div className="flex items-center gap-4">
                     <div className="relative h-[15px] w-[22px]">
-                      <Image src="/Vector (18).svg" alt="E-mail" fill className="object-contain" />
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333875/rnj/vector-18-18cc905b.svg" alt="E-mail" fill className="object-contain" />
                     </div>
                     <span className="break-all font-[Geist] text-[14px] font-medium tracking-[0.05em] text-white sm:text-[15.37px]">
                       info@rnj-advisory.be

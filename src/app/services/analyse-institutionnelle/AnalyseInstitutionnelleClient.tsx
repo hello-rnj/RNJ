@@ -27,25 +27,25 @@ const relatedCategories = [
 
 const relatedCards = [
   {
-    src: '/Group 483.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334093/rnj/group-483-89ee6676.svg',
     year: '2026',
     title: 'Workshop BeCentral : digitalisation durable',
     description: 'Retour sur un échange autour des enjeux de la digitalisation responsable.',
   },
   {
-    src: '/Group 482.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334095/rnj/group-482-365877a7.svg',
     year: '2024',
     title: "Informations de base sur les garanties d'origine (GO).",
     description: "Principes et fonctionnement des garanties d'origine dans le marché de l'énergie.",
   },
   {
-    src: '/Group 484.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334097/rnj/group-484-04b278f7.svg',
     year: '2025',
     title: 'Accélération de la transition énergétique en Tunisie',
     description: 'Focus sur les initiatives et leviers pour accélérer la transition énergétique.',
   },
   {
-    src: '/Group 481.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334100/rnj/group-481-8071b8c8.svg',
     year: '2025',
     title: 'CSR en Tunisie : cadre réglementaire',
     description: "Analyse du cadre juridique et des enjeux liés à l'utilisation du CSR en Tunisie.",
@@ -63,7 +63,7 @@ export default function AnalyseInstitutionnelleClient() {
           style={{ inset: 0, transform: 'scale(1.15) translateX(5%)' }}
         >
           <object
-            data="/map%20(3).svg"
+            data="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334103/rnj/map-3-380cf512.svg"
             type="image/svg+xml"
             width="100%"
             height="100%"
@@ -231,7 +231,7 @@ export default function AnalyseInstitutionnelleClient() {
                 <button type="button" className="shrink-0 self-start sm:self-end">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/Frame%20487.svg"
+                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334107/rnj/frame-487-5f9f4c30.svg"
                     alt="Voir plus"
                     className="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] lg:h-[116px] lg:w-[116px]"
                   />
@@ -249,7 +249,7 @@ export default function AnalyseInstitutionnelleClient() {
                   {/* Logo + description */}
                   <div className="flex max-w-[352px] flex-col gap-[30px]">
                     <Image
-                      src="/minimal horizontal logo white 1.svg"
+                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                       alt="Logo RNJ Advisory"
                       width={233}
                       height={58}
@@ -321,11 +321,11 @@ export default function AnalyseInstitutionnelleClient() {
                   {/* Group 334 — social icons */}
                   <div className="flex flex-wrap items-center gap-3">
                     {[
-                      { name: 'Instagram', src: '/Mask%20group%20(23).svg' },
-                      { name: 'LinkedIn', src: '/Mask%20group%20(24).svg' },
-                      { name: 'Telegram', src: '/Mask%20group%20(25).svg' },
-                      { name: 'Twitter', src: '/Mask%20group%20(26).svg' },
-                      { name: 'Facebook', src: '/Mask%20group%20(27).svg' },
+                      { name: 'Instagram', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334109/rnj/mask-group-23-1ce30be9.svg' },
+                      { name: 'LinkedIn', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334110/rnj/mask-group-24-fd4f223e.svg' },
+                      { name: 'Telegram', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334111/rnj/mask-group-25-516d2f88.svg' },
+                      { name: 'Twitter', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334113/rnj/mask-group-26-a7a619cb.svg' },
+                      { name: 'Facebook', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334115/rnj/mask-group-27-5870749d.svg' },
                     ].map((social) => (
                       <div key={social.name} className="relative h-[29.2px] w-[29.2px] overflow-hidden rounded-full">
                         <Image src={social.src} alt={social.name} fill className="object-contain" />
@@ -340,7 +340,7 @@ export default function AnalyseInstitutionnelleClient() {
                       {/* Frame 201 — phone */}
                       <div className="flex items-center gap-[20px]">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/Layer%201%20(1).svg" alt="" className="h-[22px] w-[21.92px]" />
+                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334117/rnj/layer-1-1-8ff14e3f.svg" alt="" className="h-[22px] w-[21.92px]" />
                         <span className={`${geist.className} text-[13px] font-medium leading-[21px] tracking-[0.05em] text-white sm:text-[15.37px]`}>
                           +32 474 03 22 66
                         </span>
@@ -348,7 +348,7 @@ export default function AnalyseInstitutionnelleClient() {
                       {/* Frame 202 — email */}
                       <div className="flex items-center gap-[20px]">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/Layer%201.svg" alt="" className="h-[15.47px] w-[22px]" />
+                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334119/rnj/layer-1-9cd3c742.svg" alt="" className="h-[15.47px] w-[22px]" />
                         <span className={`${geist.className} text-[13px] font-medium leading-[21px] tracking-[0.05em] text-white sm:text-[15.37px]`}>
                           info@rnj-advisory.be
                         </span>

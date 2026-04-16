@@ -138,44 +138,44 @@ const glowShapes = [
 ];
 
 const partnerAssetLogos = [
-  '/Asset 14 1.svg',
-  '/Asset 15 1.svg',
-  '/Asset 16 1.svg',
-  '/Asset 17 1.svg',
-  '/Asset 21 1.svg',
-  '/Asset 22 1.svg',
-  '/Asset 23 1.svg',
-  '/Asset 24 1.svg',
-  '/Asset 26 1.svg',
-  '/Asset 27 1.svg',
-  '/Asset 28 1.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333855/rnj/asset-14-1-cda0f5e7.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333857/rnj/asset-15-1-7f0249bf.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333858/rnj/asset-16-1-41dc72e6.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333859/rnj/asset-17-1-5077f95f.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333861/rnj/asset-21-1-6ad9b68e.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333863/rnj/asset-22-1-ac5775de.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333864/rnj/asset-23-1-9c5664dc.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333866/rnj/asset-24-1-1c05ea09.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333867/rnj/asset-26-1-3d6250e2.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333869/rnj/asset-27-1-8679f4ab.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333870/rnj/asset-28-1-d6d25061.svg',
 ] as const;
 
 const entrepreneurshipCards = [
   {
     title: 'Choix du statut juridique adapte',
-    icon: '/Mask group (12).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333872/rnj/mask-group-12-bfc180ab.svg',
     iconWidth: 75.19,
     iconHeight: 75.19,
     titleWidth: 176.02,
   },
   {
     title: 'Faisabilite & plan financier',
-    icon: '/Vector (19).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333873/rnj/vector-19-81ce45a8.svg',
     iconWidth: 75.19,
     iconHeight: 75.19,
     titleWidth: 140.59,
   },
   {
     title: 'Demarches administratives',
-    icon: '/Vector (18).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333875/rnj/vector-18-18cc905b.svg',
     iconWidth: 65.55,
     iconHeight: 75.19,
     titleWidth: 176.02,
   },
   {
     title: 'Conformite reglementaire',
-    icon: '/Mask group (11).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333876/rnj/mask-group-11-4a32da53.svg',
     iconWidth: 75.19,
     iconHeight: 75.19,
     titleWidth: 176.02,
@@ -186,21 +186,21 @@ const servicesFocusCards = [
   {
     title: 'Créer mon entreprise',
     description: "J'ai une idée, je veux me lancer.",
-    icon: '/Mask group (3).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333878/rnj/mask-group-3-2ece0ef0.svg',
     iconWidth: 67.41,
     iconHeight: 67.41,
   },
   {
     title: 'Consulter un conseil juridique',
     description: "J'ai un projet complexe à sécuriser.",
-    icon: '/Mask group (4).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333879/rnj/mask-group-4-f2eb00c6.svg',
     iconWidth: 77.59,
     iconHeight: 79.26,
   },
   {
     title: 'Accélérer mon business / Recruter',
     description: "Je veux développer ou recruter à l'international.",
-    icon: '/Mask group (5).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333881/rnj/mask-group-5-c793fd9f.svg',
     iconWidth: 77,
     iconHeight: 77,
   },
@@ -226,7 +226,7 @@ const institutionalCarouselCards = [
     title: 'Analyse Institutionnelle & Réglementaire',
     description:
       'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
-    image: '/group-of-business-people-discussing-in-meeting-2026-01-05-00-38-48-utc 1.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335423/rnj/optimized/group-of-business-people-discussing-in-meeting-2026-01-05-00-38-48-utc-1-a9d430a2.webp',
     panelBg: '#406640',
     titleColor: '#BFCCBF',
     descriptionColor: '#BFCCBF',
@@ -238,7 +238,7 @@ const institutionalCarouselCards = [
     title: 'Structuration Juridique & Gouvernance',
     description:
       'Choix de la forme juridique (Belgique, Tunisie, international), création, transformation et mise en conformité des sociétés, pactes d’associés, conventions de partenariat et transmission (M&A).',
-    image: '/multinational-company-headquarters-office-with-a-b-2026-01-08-02-30-05-utc 1.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335423/rnj/optimized/multinational-company-headquarters-office-with-a-b-2026-01-08-02-30-05-utc-1-bb7b9def.webp',
     panelBg: '#BFCCBF',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -250,7 +250,7 @@ const institutionalCarouselCards = [
     title: 'Droit Des Contrats & Sécurité Commerciale',
     description:
       'Rédaction, revue et négociation de contrats (clients, fournisseurs, partenaires), contrats de prestation, sous-traitance, licences, confidentialité. Réduire les risques et sécuriser la relation commerciale à chaque étape clé.',
-    image: '/business-meeting-2026-01-08-00-07-57-utc 3.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335424/rnj/optimized/business-meeting-2026-01-08-00-07-57-utc-3-971f8e8a.webp',
     panelBg: '#A2B144',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -262,7 +262,7 @@ const institutionalCarouselCards = [
     title: 'Partenariats Public-Privé & Concessions',
     description:
       'Structuration juridique de projets PPP et concessions, appui aux entreprises, collectivités et institutions. Projets liés à l’énergie, aux infrastructures et à l’intérêt général.',
-    image: '/pexels-henri-mathieu-8348468 1.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333964/rnj/pexels-henri-mathieu-8348468-1-9eb7df36.svg',
     panelBg: '#E0E5C0',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -274,7 +274,7 @@ const institutionalCarouselCards = [
     title: 'ESG, Conformité & Appels À Projets',
     description:
       'Audit juridique et compliance, protection des données (RGPD), mise en conformité opérationnelle. Accompagnement sur les appels à projets : analyse d’éligibilité, cadrage juridique, rédaction et sécurisation contractuelle.',
-    image: '/modern-coworking-space-with-comfortable-chairs-and-2026-01-09-00-01-33-utc 2.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335425/rnj/optimized/modern-coworking-space-with-comfortable-chairs-and-2026-01-09-00-01-33-utc-2-fc092aaa.webp',
     panelBg: '#DDE597',
     titleColor: '#003300',
     descriptionColor: '#003300',
@@ -286,7 +286,7 @@ const institutionalCarouselCards = [
     title: 'Veille Juridique & Anticipation Réglementaire',
     description:
       'Surveillance active des évolutions législatives et réglementaires en Belgique, Europe et Tunisie. Alertes sur les impacts potentiels et accompagnement dans l’anticipation des changements.',
-    image: '/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc 1.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333970/rnj/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc-1-72edb5b8.svg',
     panelBg: '#CCD862',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -365,7 +365,8 @@ const whyChooseAnimatedCards = [
   {
     title: 'Approche humaine & multilingue',
     description: 'Approche humaine et multilingue.',
-    icon: '/Layer 1 (14).svg',
+    hideIcon: false,
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333975/rnj/layer-1-14-44306fc4.svg',
     iconWidth: 58.33,
     iconHeight: 61.14,
   },
@@ -373,35 +374,40 @@ const whyChooseAnimatedCards = [
     title: 'Expertise juridique & stratégique',
     description:
       'Expertise en droit public, énergie, stratégie et transformation.',
-    icon: '/Group (11).svg',
+    hideIcon: false,
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333977/rnj/group-11-5aa17a22.svg',
     iconWidth: 60.38,
     iconHeight: 61.08,
   },
   {
     title: 'Performances & fiabilité',
     description: 'Service rapide, sécurisé et optimisé pour vos performances.',
-    icon: '/Layer 1 (17).svg',
+    hideIcon: false,
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333979/rnj/layer-1-17-4a7f8924.svg',
     iconWidth: 54.62,
     iconHeight: 41.8,
   },
   {
     title: 'Méthodologie et durabilité',
     description: 'Un cadre structuré pour une croissance agile et durable.',
-    icon: '/Layer 1 (16).svg',
+    hideIcon: false,
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333981/rnj/layer-1-16-56e67520.svg',
     iconWidth: 51.95,
     iconHeight: 60.34,
   },
   {
     title: 'Ancrage local et ouverture internationale',
     description: 'Bruxelles & Tunis : un accompagnement local et international.',
-    icon: '/Layer 1 (15).svg',
+    hideIcon: false,
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333983/rnj/layer-1-15-b835edfe.svg',
     iconWidth: 59.77,
     iconHeight: 59.77,
   },
   {
     title: 'Partenariats stratégiques avec des acteurs reconnus',
     description: 'Un réseau de partenaires en Belgique et en Tunisie.',
-    icon: '/Layer 4.svg',
+    hideIcon: true,
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333984/rnj/layer-4-955dc651.svg',
     iconWidth: 83.23,
     iconHeight: 59,
   },
@@ -460,7 +466,7 @@ const whyChooseGridCards = [
     title: 'Expertise juridique & stratégique',
     description:
       "Notre accompagnement repose sur la rigueur d’un pool d'experts spécialisé en droit public, énergie, stratégie entrepreneuriale, gestion de projet et transformation opérationnelle et digitale.",
-    icon: '/Group (11).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333977/rnj/group-11-5aa17a22.svg',
     iconWidth: 97,
     iconHeight: 97,
     titleWidth: '270px',
@@ -470,7 +476,7 @@ const whyChooseGridCards = [
     title: 'Performances & fiabilité',
     description:
       'Nous nous engageons à vous offrir un service professionnel, rapide et sécurisé. Nos outils sont conçus pour réduire les temps morts, fluidifier les démarches administratives et optimiser vos résultats.',
-    icon: '/Layer 1 (17).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333979/rnj/layer-1-17-4a7f8924.svg',
     iconWidth: 82,
     iconHeight: 64,
     titleWidth: '178px',
@@ -480,7 +486,7 @@ const whyChooseGridCards = [
     title: 'Méthodologie et durabilité',
     description:
       'Notre cadre d’accompagnement structuré permet de clarifier les priorités, de construire une base solide, et de déployer votre activité avec agilité, automatisation et vision long terme.',
-    icon: '/Layer 1 (18).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333986/rnj/layer-1-18-c437361a.svg',
     iconWidth: 86,
     iconHeight: 78,
     titleWidth: '270px',
@@ -490,7 +496,7 @@ const whyChooseGridCards = [
     title: 'Accompagnement humain, multilingue & engagé',
     description:
       'Proximité, écoute active et respect de votre rythme : chez RNJ Advisory, nous mettons l’humain au cœur de chaque projet. Nous intervenons en français, anglais et arabe.',
-    icon: '/Layer 1 (14).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333975/rnj/layer-1-14-44306fc4.svg',
     iconWidth: 55,
     iconHeight: 87,
     titleWidth: '326px',
@@ -500,7 +506,7 @@ const whyChooseGridCards = [
     title: 'Ancrage local et ouverture internationale',
     description:
       'Basés à Bruxelles et à Tunis, nous accompagnons les porteurs de projet installés en Belgique, les entrepreneurs hors UE, les institutions souhaitant structurer ou étendre leur impact.',
-    icon: '/Layer 1 (15).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333983/rnj/layer-1-15-b835edfe.svg',
     iconWidth: 52,
     iconHeight: 75,
     titleWidth: '310px',
@@ -510,7 +516,7 @@ const whyChooseGridCards = [
     title: 'Partenariats stratégiques avec des acteurs reconnus',
     description:
       'Nous collaborons avec un réseau solide d’acteurs publics, privés et associatifs, en Belgique comme en Tunisie.',
-    icon: '/Layer 1 (16).svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333981/rnj/layer-1-16-56e67520.svg',
     iconWidth: 77,
     iconHeight: 72,
     titleWidth: '330px',
@@ -583,7 +589,7 @@ function RegulationAnalysisSection() {
         <div className="mx-auto w-full max-w-[220px] sm:max-w-[280px] md:max-w-[320px] lg:max-w-[340px] xl:max-w-[360px] 2xl:mx-0 2xl:w-[364.57px] 2xl:max-w-[364.57px]">
           <div className="relative h-[240px] w-full sm:h-[320px] md:h-[400px] lg:h-[460px] xl:h-[520px] 2xl:h-[580.66px]">
             <Image
-              src="/light bulb 1 (1).svg"
+              src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333987/rnj/light-bulb-1-1-aa32136c.svg"
               alt="Ampoule - Analyse réglementaire"
               fill
               sizes="(min-width: 1536px) 364.57px, (min-width: 1280px) 360px, (min-width: 1024px) 340px, (min-width: 768px) 320px, (min-width: 640px) 280px, 220px"
@@ -695,7 +701,7 @@ const entrepreneuriatTabs: Array<{
     textColor: '#003300',
     buttonOutlineColor: '#003300',
     buttonFilledBg: '#003300',
-    image: '/Group 541.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333990/rnj/group-541-2a130507.svg',
   },
   {
     key: 'structurer',
@@ -708,7 +714,7 @@ const entrepreneuriatTabs: Array<{
     textColor: '#003300',
     buttonOutlineColor: '#003300',
     buttonFilledBg: '#003300',
-    image: '/Group 541 (1).svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335425/rnj/optimized/group-541-1-5b55b5e0.webp',
   },
   {
     key: 'developper',
@@ -723,7 +729,7 @@ const entrepreneuriatTabs: Array<{
     textColor: '#003300',
     buttonOutlineColor: '#003300',
     buttonFilledBg: '#003300',
-    image: '/Group 541 (2).svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335426/rnj/optimized/group-541-2-59ca9193.webp',
   },
 ];
 
@@ -754,7 +760,7 @@ function EntrepreneuriatTabsSection() {
     ),
   );
   const active = entrepreneuriatTabs[activeIndex] ?? entrepreneuriatTabs[0];
-  const activeImageSrc = active?.image ?? '/Group 541.svg';
+  const activeImageSrc = active?.image ?? 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333990/rnj/group-541-2a130507.svg';
 
   const firstStepPercent = 100 / entrepreneuriatTabs.length;
   const progressPercent = Math.min(
@@ -988,7 +994,7 @@ export default function Home() {
             aria-hidden="true"
             className="absolute inset-0 bg-no-repeat bg-cover bg-center"
             style={{
-              backgroundImage: "url('/bg%20(1).svg')",
+              backgroundImage: "url('https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335426/rnj/optimized/bg-1-d0c5568b.webp')",
             }}
           />
 
@@ -1041,7 +1047,7 @@ export default function Home() {
                       className="absolute flex h-full w-full items-center justify-center left-1 top-0.5"
                     >
                       <Image
-                        src="/Vector (17).svg"
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333995/rnj/vector-17-f73f224f.svg"
                         alt="Arrow icon"
                         width={18}
                         height={18}
@@ -1082,8 +1088,8 @@ export default function Home() {
                     }}
                   >
                     <Image
-                      src="/group-of-business-people-discussing-in-meeting-2026-01-05-00-38-48-utc%201.svg"
-                      alt="Where sustainability meets strategy"
+                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335423/rnj/optimized/group-of-business-people-discussing-in-meeting-2026-01-05-00-38-48-utc-1-a9d430a2.webp"
+                      alt="Quand la durabilité rencontre la stratégie"
                       fill
                       className="object-cover"
                       unoptimized
@@ -1092,7 +1098,7 @@ export default function Home() {
 
                   <div className="flex flex-1 flex-col" style={{ width: 'clamp(100px, 23vw, 336px)', gap: 'clamp(4px, 0.9vw, 13px)' }}>
                     <h3 className="font-[Geist] font-medium text-white" style={{ fontSize: 'clamp(15px, 2.25vw, 32px)', lineHeight: 'clamp(17px, 2.4vw, 34px)' }}>
-                      Where sustainability meets strategy.
+                      Quand la durabilité rencontre la stratégie
                     </h3>
                     <p className="font-[Geist] font-medium text-white/60" style={{ fontSize: 'clamp(11px, 1.15vw, 16px)', lineHeight: 'clamp(14px, 1.4vw, 20px)' }}>
                       Une approche qui transforme les exigences environnementales en leviers de croissance et d&apos;innovation.
@@ -1122,9 +1128,9 @@ export default function Home() {
                   }}
                 >
                   {[
-                    { src: '/OpenAI%20%E2%80%94%20Jake%20Stangel%201.svg', alt: 'Customer 1', left: '0' },
-                    { src: '/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc%201.svg', alt: 'Customer 2', left: 'clamp(28px, 3.7vw, 53px)' },
-                    { src: '/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc%201.svg', alt: 'Customer 3', left: 'clamp(56px, 7.5vw, 106px)' },
+                    { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333996/rnj/openai-jake-stangel-1-c442a239.svg', alt: 'Customer 1', left: '0' },
+                    { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333999/rnj/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc-1-a731531a.svg', alt: 'Customer 2', left: 'clamp(28px, 3.7vw, 53px)' },
+                    { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333970/rnj/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc-1-72edb5b8.svg', alt: 'Customer 3', left: 'clamp(56px, 7.5vw, 106px)' },
                   ].map((c) => (
                     <div
                       key={c.alt}
@@ -1141,8 +1147,9 @@ export default function Home() {
                 </div>
 
                 <div className="text-center">
-                  <p className="font-[Geist] font-medium text-white/70" style={{ fontSize: 'clamp(12px, 2.3vw, 32px)', lineHeight: 1.15 }}>
-                    partenaires nous font confiance
+                  <p className="font-[Geist] font-medium text-white/70" style={{ fontSize: 'clamp(11px, 1.7vw, 24px)', lineHeight: 1.1 }}>
+                    <span className="block">Des partenaires</span>
+                    <span className="block">qui nous font confiance</span>
                   </p>
                 </div>
               </article>
@@ -1166,9 +1173,9 @@ export default function Home() {
 
         </div>
 
-        <div className="relative z-[2] w-full bg-[#BBCB2E] py-5 sm:py-6 md:py-[26.2558px]">
+        <div className="relative z-[2] w-full bg-[#BBCB2E] py-3 sm:py-3 md:py-4">
           <div className="w-full px-0">
-            <div className="relative min-h-[72px] overflow-hidden sm:min-h-[78px] md:min-h-[92px] lg:min-h-[104.65px]">
+            <div className="relative min-h-[54px] overflow-hidden sm:min-h-[58px] md:min-h-[66px] lg:min-h-[74px]">
               <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-[#BBCB2E] to-transparent" />
               <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-[#BBCB2E] to-transparent" />
 
@@ -1319,7 +1326,7 @@ export default function Home() {
               <div className="flex w-full max-w-[779px] flex-col gap-8 lg:gap-10 xl:gap-[66px]">
                 <div className="relative h-[30px] w-[225px]">
                   <Image
-                    src="/Group (1).svg"
+                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334004/rnj/group-1-23b4740e.svg"
                     alt="RNJ Advisory"
                     fill
                     className="object-contain object-left"
@@ -1359,7 +1366,7 @@ export default function Home() {
 
               <div className="relative mx-auto h-[390px] w-full max-w-[360px] sm:h-[470px] sm:max-w-[430px] md:h-[527px] md:max-w-[462.21px] xl:mx-0 xl:mt-[14px]">
                 <Image
-                  src="/Mask group (6).svg"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334006/rnj/mask-group-6-f1b1cc88.svg"
                   alt="Partenaires en réunion"
                   fill
                   sizes="(max-width: 768px) 360px, (max-width: 1024px) 430px, 462px"
@@ -1434,7 +1441,7 @@ export default function Home() {
             <div className="relative w-full max-w-[340px] sm:max-w-[420px] md:max-w-[460px] xl:w-[477px] xl:max-w-none">
               <div className="relative h-[390px] w-full sm:h-[500px] md:h-[560px] xl:h-[566.12px]">
                 <Image
-                  src="/Frame 559.svg"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335427/rnj/optimized/frame-559-7811d1b0.webp"
                   alt="Illustration Analyse Réglementaire"
                   fill
                   sizes="(max-width: 640px) 340px, (max-width: 1024px) 460px, 477px"
@@ -1449,7 +1456,7 @@ export default function Home() {
           <div className="mx-auto mt-10 flex w-full max-w-[1392px] flex-col items-center gap-5 px-4 pb-8 text-center sm:px-6 md:px-8 lg:mt-16 lg:gap-[20px] lg:px-0 lg:pb-[46px] xl:mt-20">
             <div className="relative h-[93.48px] w-[58.69px]">
               <Image
-                src="/Layer 1 (2).svg"
+                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334015/rnj/layer-1-2-1d375d74.svg"
                 alt="Light bulb icon"
                 fill
                 sizes="58.69px"
@@ -1478,7 +1485,7 @@ export default function Home() {
           <div className="mx-auto grid w-full max-w-[1157px] grid-cols-1 gap-4 px-4 md:px-6 lg:grid-cols-2 lg:gap-5 lg:px-8 xl:gap-[19px] xl:px-0">
             <article className="relative overflow-hidden rounded-[25px] md:rounded-[35px] min-h-[560px] sm:min-h-[620px] md:min-h-[760px] lg:min-h-[816px]">
               <Image
-                src="/Mask%20group%20(16).svg"
+                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334018/rnj/mask-group-16-f5d02d69.svg"
                 alt="Interconnexion électrique Tunisie-Italie"
                 fill
                 className="object-cover"
@@ -1498,7 +1505,7 @@ export default function Home() {
                       <div className="px-5 pb-[86px] pt-6 sm:px-8 sm:pb-[96px] sm:pt-8 md:px-[41px] md:pb-[104px] md:pt-[45px]">
                         <div className="relative mb-7 h-[20px] w-[84px] md:mb-9 md:h-[44px] md:w-[111px]">
                           <Image
-                            src="/image 2.svg"
+                            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334020/rnj/image-2-2c9f497b.svg"
                             alt="RNJ Advisory"
                             fill
                             className="object-contain object-left"
@@ -1511,19 +1518,18 @@ export default function Home() {
 
                         <div className="relative max-h-[176px] overflow-hidden sm:max-h-[184px] md:max-h-[190px]">
                           <p className="max-w-[439px] font-[Geist] text-[13px] font-normal leading-[1.14] text-white md:text-[16px] md:leading-[18px]">
-                            Étude juridique et institutionnelle pour la mise en
-                            place d’un cadre réglementaire propice à
-                            l’interconnexion électrique entre la Tunisie et
-                            l’Italie, ainsi que la création d’une autorité de
-                            régulation du secteur électrique en Tunisie.
-                            {' '}📌 Nos interventions : • Analyse du cadre
-                            réglementaire tunisien applicable au secteur de
-                            l’électricité et aux énergies renouvelables •
-                            Actualisation des textes réglementaires relatifs à la
-                            création de l’autorité de régulation du secteur
-                            électrique • Assistance à la mise en place d’un cadre
-                            réglementaire et contractuel propice à l’exportation
-                            d’électricité via ELMED
+                            <span className="block">
+                              Étude juridique et institutionnelle pour la mise en
+                              place d’un cadre réglementaire propice à
+                              l’interconnexion électrique entre la Tunisie et
+                              l’Italie, ainsi que la création d’une autorité de
+                              régulation du secteur électrique en Tunisie.
+                            </span>
+                            <span className="block h-3 md:h-4" aria-hidden="true" />
+                            <span className="block">Nos interventions :</span>
+                            <span className="block">• Analyse du cadre réglementaire tunisien applicable au secteur de l’électricité et aux énergies renouvelables</span>
+                            <span className="block">• Actualisation des textes réglementaires relatifs à la création de l’autorité de régulation du secteur électrique</span>
+                            <span className="block">• Assistance à la mise en place d’un cadre réglementaire et contractuel propice à l’exportation d’électricité via ELMED</span>
                           </p>
 
                           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[rgba(71,71,71,0.96)] via-[rgba(71,71,71,0.72)] to-transparent md:h-20" />
@@ -1568,7 +1574,7 @@ export default function Home() {
             <article className="relative overflow-hidden rounded-[25px] md:rounded-[35px]">
               <div className="relative h-[680px] w-full sm:h-[740px] md:h-[760px] lg:h-[816px]">
                 <Image
-                  src="/Mask group (17).svg"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334022/rnj/mask-group-17-57db8ebe.svg"
                   alt="Decision strategique"
                   fill
                   className="object-cover"
@@ -1597,7 +1603,7 @@ export default function Home() {
                     <div className="px-4 pb-[86px] pt-4 md:px-5 md:pb-[96px] md:pt-5">
                       <div className="relative mb-5 h-[170px] w-full overflow-hidden rounded-[13px] bg-[#F7FCFF] md:mb-6 md:h-[250px]">
                         <Image
-                          src="/Group 65.svg"
+                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335427/rnj/optimized/group-65-16f18ed1.webp"
                           alt="Graphique de performance"
                           fill
                           className="object-cover"
@@ -1665,53 +1671,6 @@ export default function Home() {
             </div>
 
             <div className="relative overflow-hidden py-6 md:py-8 2xl:h-[512px]">
-              <div className="relative z-[1] grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 xl:grid-cols-3 2xl:hidden">
-                {whyChooseAnimatedCards.map((card, index) => (
-                  <article
-                    key={`why-choose-mobile-${card.title}`}
-                    className="flex min-h-[250px] flex-col items-center justify-center rounded-[10px] bg-[#D4E175] p-5 text-center shadow-[0px_4px_22.4px_rgba(0,0,0,0.19)] transition-all duration-300 sm:p-6 md:min-h-[270px] xl:min-h-[304px]"
-                    style={{
-                      border:
-                        hoveredCardIndex === index
-                          ? `2px solid ${whyChooseCardActiveBorder}`
-                          : '2px solid transparent',
-                      background:
-                        hoveredCardIndex === index
-                          ? whyChooseCardActiveBackground
-                          : '#D4E175',
-                    }}
-                    onMouseEnter={() => setHoveredCardIndex(index)}
-                    onMouseLeave={() => setHoveredCardIndex(null)}
-                    onTouchStart={() => setHoveredCardIndex(index)}
-                    onTouchEnd={() => {
-                      setTimeout(() => {
-                        setHoveredCardIndex(null);
-                      }, 220);
-                    }}
-                  >
-                    <div
-                      className="relative mb-5"
-                      style={{ width: `${card.iconWidth}px`, height: `${card.iconHeight}px` }}
-                    >
-                      <Image
-                        src={card.icon}
-                        alt={card.title}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-
-                    <h3 className="mb-4 max-w-[303px] font-[EB_Garamond] text-[26px] font-bold leading-[24px] text-[#003300] sm:text-[28px] sm:leading-[25px] xl:text-[32px] xl:leading-[27px]">
-                      {card.title}
-                    </h3>
-
-                    <p className="max-w-[262px] font-[Geist] text-[14px] font-medium leading-[15px] text-[#003300]/50 sm:text-[15px] sm:leading-[15px] xl:text-[16px] xl:leading-[16px]">
-                      {card.description}
-                    </p>
-                  </article>
-                ))}
-              </div>
-
               <div className="relative z-[1] hidden h-full overflow-hidden 2xl:block">
                 <div className="absolute left-0 top-1/2 -translate-y-1/2">
                   <div
@@ -1753,17 +1712,19 @@ export default function Home() {
                             }, 220);
                           }}
                         >
-                          <div
-                            className="relative mb-5"
-                            style={{ width: `${card.iconWidth}px`, height: `${card.iconHeight}px` }}
-                          >
-                            <Image
-                              src={card.icon}
-                              alt={card.title}
-                              fill
-                              className="object-contain"
-                            />
-                          </div>
+                          {!card.hideIcon && (
+                            <div
+                              className="relative mb-5"
+                              style={{ width: `${card.iconWidth}px`, height: `${card.iconHeight}px` }}
+                            >
+                              <Image
+                                src={card.icon}
+                                alt={card.title}
+                                fill
+                                className="object-contain"
+                              />
+                            </div>
+                          )}
 
                           <h3 className="mb-4 max-w-[303px] font-[EB_Garamond] text-[32px] font-bold leading-[27px] text-[#003300]">
                             {card.title}
@@ -1798,7 +1759,7 @@ export default function Home() {
           <div className="mx-auto w-full max-w-[1680px] px-0">
             <div className="relative min-h-[620px] overflow-hidden bg-[#003300] md:min-h-[680px] lg:h-[760px]">
               <Image
-                src="/Group%20349040.svg"
+                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334026/rnj/group-349040-b40f156d.svg"
                 alt=""
                 fill
                 className="object-cover object-center"
@@ -1862,7 +1823,7 @@ export default function Home() {
 
                     <div className="relative h-[160px] w-[160px] overflow-hidden rounded-[16px] border-2 border-[#BBCB2E] sm:h-[210px] sm:w-[210px] sm:rounded-[20px] md:h-[240px] md:w-[240px] md:rounded-[24px] lg:h-[280px] lg:w-[280px] lg:rounded-[28px]">
                       <Image
-                        src="/OpenAI%20%E2%80%94%20Jake%20Stangel%201.svg"
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333996/rnj/openai-jake-stangel-1-c442a239.svg"
                         alt="Portrait entrepreneuriat"
                         fill
                         className="object-cover"
@@ -1974,7 +1935,7 @@ export default function Home() {
                   <div className="flex flex-1 flex-col overflow-y-auto px-5 py-6 sm:px-7 md:px-10 md:py-10 lg:px-14 lg:py-12">
                     <div className="relative mb-8 h-[36px] w-[92px] md:mb-12 md:h-[52px] md:w-[132px]">
                       <Image
-                        src="/minimal horizontal logo white 1.svg"
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                         alt="RNJ Advisory"
                         fill
                         className="object-contain object-left"
@@ -1987,18 +1948,18 @@ export default function Home() {
                       </h2>
 
                       <p className="font-[Geist] font-normal text-white text-[16px] leading-[1.18] sm:text-[18px] md:text-[24px] md:leading-[1.12] lg:text-[32px]">
-                        Étude juridique et institutionnelle pour la mise en place
-                        d’un cadre réglementaire propice à l’interconnexion
-                        électrique entre la Tunisie et l’Italie, ainsi que la
-                        création d’une autorité de régulation du secteur
-                        électrique en Tunisie. 📌 Nos interventions : • Analyse du
-                        cadre réglementaire tunisien applicable au secteur de
-                        l’électricité et aux énergies renouvelables •
-                        Actualisation des textes réglementaires relatifs à la
-                        création de l’autorité de régulation du secteur
-                        électrique • Assistance à la mise en place d’un cadre
-                        réglementaire et contractuel propice à l’exportation
-                        d’électricité via ELMED
+                        <span className="block">
+                          Étude juridique et institutionnelle pour la mise en place
+                          d’un cadre réglementaire propice à l’interconnexion
+                          électrique entre la Tunisie et l’Italie, ainsi que la
+                          création d’une autorité de régulation du secteur
+                          électrique en Tunisie.
+                        </span>
+                        <span className="block h-4 md:h-5 lg:h-6" aria-hidden="true" />
+                        <span className="block">Nos interventions :</span>
+                        <span className="block">• Analyse du cadre réglementaire tunisien applicable au secteur de l’électricité et aux énergies renouvelables</span>
+                        <span className="block">• Actualisation des textes réglementaires relatifs à la création de l’autorité de régulation du secteur électrique</span>
+                        <span className="block">• Assistance à la mise en place d’un cadre réglementaire et contractuel propice à l’exportation d’électricité via ELMED</span>
                       </p>
                     </div>
 
@@ -2022,7 +1983,7 @@ export default function Home() {
             >
               <div className="relative order-2 min-h-[320px] overflow-hidden rounded-[18px] md:min-h-[520px] md:rounded-[25px] 2xl:order-1 2xl:h-[781px]">
                 <Image
-                  src="/Mask group (18).svg"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334031/rnj/mask-group-18-c3bd04c7.svg"
                   alt="Accélération PME et ASBL"
                   fill
                   className="object-cover object-center"
@@ -2119,7 +2080,7 @@ export default function Home() {
             <section className="relative w-screen overflow-hidden bg-[#BBCB2E] py-12 md:py-16 lg:py-[84px]">
               <div className="absolute inset-0">
                 <Image
-                  src="/Group 349051.svg"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334036/rnj/group-349051-d2f123fc.svg"
                   alt=""
                   fill
                   className="object-cover object-center"
@@ -2328,7 +2289,7 @@ export default function Home() {
                   <div className="mt-8 flex justify-center md:mt-10">
                     <div className="relative h-[46px] w-[186px] md:h-[57.57px] md:w-[233px]">
                       <Image
-                        src="/minimal horizontal logo white 1.svg"
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                         alt="RNJ Advisory"
                         fill
                         className="object-contain"
@@ -2359,7 +2320,7 @@ export default function Home() {
                   >
                     <div className="relative h-[220px] w-full sm:h-[240px] md:h-[200px] lg:h-[240px] xl:h-[285px]">
                       <Image
-                        src="/jakub-zerdzicki-yKnIbJV0RbY-unsplash 1.svg"
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334038/rnj/jakub-zerdzicki-yknibjv0rby-unsplash-1-1b22cd9c.svg"
                         alt="ESG et financements"
                         fill
                         className="object-cover object-top"
@@ -2443,7 +2404,7 @@ export default function Home() {
                   >
                     <div className="relative h-[220px] w-full sm:h-[240px] md:h-[200px] lg:h-[240px] xl:h-[300px]">
                       <Image
-                        src="/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc 1.svg"
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333999/rnj/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc-1-a731531a.svg"
                         alt="Diagnostic ESG et conformité"
                         fill
                         className="object-cover object-top"
@@ -3046,7 +3007,7 @@ export default function Home() {
                   }}
                 >
                   <Image
-                    src="/Businessfotografie & Bewerbungsfotos Berlin _ KOPF & KRAGEN 1.svg"
+                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334040/rnj/businessfotografie-bewerbungsfotos-berlin-kopf-kragen-1-f0daffa4.svg"
                     alt="Business professionals"
                     fill
                     sizes="518px"
@@ -3094,7 +3055,7 @@ export default function Home() {
                       }}
                     />
                     <Image
-                      src="/Group 363.svg"
+                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334042/rnj/group-363-02f81f30.svg"
                       alt="Business success"
                       fill
                       className="object-cover"
@@ -3371,7 +3332,7 @@ export default function Home() {
                         }}
                       >
                         <Image
-                          src="/Vector (17).svg"
+                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333995/rnj/vector-17-f73f224f.svg"
                           alt="Arrow icon"
                           width={18}
                           height={18}
@@ -3408,7 +3369,7 @@ export default function Home() {
                     }}
                   >
                     <Image
-                      src="/Group 353.svg"
+                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334045/rnj/group-353-8693f0d7.svg"
                       alt="Professional profiles"
                       fill
                       className="object-cover"
@@ -3469,7 +3430,7 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 overflow-hidden rounded-[28px] md:rounded-[40px]">
                     <Image
-                      src="/world-map.svg"
+                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334047/rnj/world-map-d7a17219.svg"
                       alt="World Map"
                       fill
                       className="object-contain"
@@ -3501,7 +3462,7 @@ export default function Home() {
                             <div className="flex items-start gap-3 sm:gap-4 md:gap-[29px]">
                               <div className="relative h-[76px] w-[36px] overflow-hidden rounded bg-[#F7FCFF] sm:h-[96px] sm:w-[46px] md:h-[150.19px] md:w-[71.6px]">
                                 <Image
-                                  src="/TN.svg"
+                                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334052/rnj/tn-819898be.svg"
                                   alt="Tunisie"
                                   fill
                                   className="object-contain"
@@ -3557,7 +3518,7 @@ export default function Home() {
                   {/* Animated location pins overlay (drop-in + idle bounce, staggered per pin) */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/pins%20group.svg"
+                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334053/rnj/pins-group-3909cb2e.svg"
                     alt=""
                     aria-hidden
                     className="pointer-events-none absolute z-[15]"
@@ -3642,7 +3603,7 @@ export default function Home() {
                   <div className="bento-card bento-d1 relative h-[334px] w-full overflow-hidden rounded-[20px] bg-[#003300]">
                     <div className="absolute left-1/2 top-1/2 flex h-[230px] w-[min(208px,calc(100%-40px))] -translate-x-1/2 -translate-y-1/2 flex-col items-start rounded-[30px] bg-white px-[18px] pt-[27px] shadow-[0_0_43px_-5px_rgba(255,255,255,0.33)]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/Beci%2B2%201.svg" alt="BECI" className="h-[65px] w-[57px] object-contain" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334055/rnj/beci-2-1-241bb936.svg" alt="BECI" className="h-[65px] w-[57px] object-contain" />
                       <p className="mt-[27px] w-full font-[Geist] text-[20px] font-semibold leading-[22px] text-[#003300]">
                         RNJ Advisory membre de BECI
                       </p>
@@ -3684,7 +3645,7 @@ export default function Home() {
                 {/* Column 2: Tall photo card */}
                 <div className="bento-card bento-d3 relative h-[420px] w-full overflow-hidden rounded-[20px] bg-[#6F6F6F] sm:h-[520px] md:h-[691px]">
                   <Image
-                    src="/Group%20352.svg"
+                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334058/rnj/group-352-32f4e599.svg"
                     alt=""
                     fill
                     unoptimized
@@ -3698,7 +3659,7 @@ export default function Home() {
                   {/* Yoga blurred */}
                   <div className="bento-card bento-d4 relative h-[334px] w-full overflow-hidden rounded-[20px] bg-[#6F6F6F]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/Group%20363.svg" alt="" className="h-full w-full object-cover" />
+                    <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334042/rnj/group-363-02f81f30.svg" alt="" className="h-full w-full object-cover" />
                   </div>
 
                   {/* Belgique card */}
@@ -3732,17 +3693,28 @@ export default function Home() {
 
                   {/* Shifting + Contact stacked */}
                   <div className="flex flex-col gap-[23px]">
-                    <div className="bento-card bento-d6 relative h-[220px] w-full overflow-hidden rounded-[20px] bg-white p-6 sm:p-[29px]">
+                    <div className="bento-card bento-d6 relative h-[220px] w-full overflow-hidden rounded-[20px] bg-white">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/Group%20558.svg" alt="Shifting Academy" className="h-[31px] w-[118px] object-contain" />
-                      <p className="mt-[20px] w-full font-[Geist] text-[22px] font-semibold leading-[24px] tracking-[-0.05em] text-[#003300] sm:text-[24px] sm:leading-[25px]">
+                      <img
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334060/rnj/group-558-46fa6f2f.svg"
+                        alt="Shifting Academy"
+                        className="absolute left-[29px] top-[35px] h-[31px] w-[118px] object-contain"
+                      />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="/Group%20349031%20(1).svg"
+                        alt=""
+                        aria-hidden="true"
+                        className="absolute right-[29px] top-[31px] h-[38px] w-[90px] object-contain"
+                      />
+                      <p className="absolute left-[29px] top-[88px] w-[276px] font-[Geist] text-[22px] font-semibold leading-[24px] tracking-[-0.05em] text-[#003300] sm:text-[24px] sm:leading-[25px]">
                         RNJ Advisory est certifiée Shifting Academy
                       </p>
-                      <div className="mt-[18px] flex items-center gap-[6px]">
+                      <div className="absolute left-[29px] top-[153px] flex items-center gap-[6px]">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/E_SDG_PRINT-07%201.svg" alt="SDG 7" className="h-[36px] w-[36px]" />
+                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334061/rnj/e-sdg-print-07-1-af43b2fc.svg" alt="SDG 7" className="h-[36px] w-[36px]" />
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/E_SDG_PRINT-08%201.svg" alt="SDG 8" className="h-[36px] w-[36px]" />
+                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334064/rnj/e-sdg-print-08-1-53b17059.svg" alt="SDG 8" className="h-[36px] w-[36px]" />
                       </div>
                     </div>
                     <div className="bento-card bento-d7 relative flex h-[91px] w-full items-center justify-center gap-[6px] rounded-[20px] bg-[#003300] px-4 sm:px-8">
@@ -3766,27 +3738,27 @@ export default function Home() {
                     <span className="ring-pulse ring-pulse-delay-2 pointer-events-none absolute left-1/2 top-1/2 h-[152px] w-[152px] rounded-full border-[4px] border-white" />
                     <div className="absolute left-1/2 top-1/2 flex h-[84px] w-[84px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#003300]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/Group%20559.svg" alt="" className="h-[36px] w-[36px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334065/rnj/group-559-aaf6f0b3.svg" alt="" className="h-[36px] w-[36px]" />
                     </div>
                     <div className="float-icon absolute flex h-[51px] w-[51px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597]" style={{ left: '17%', top: '14%', animationDelay: '0s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/Vector%20(2).svg" alt="" className="h-[22px] w-[22px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334067/rnj/vector-2-8beb62fa.svg" alt="" className="h-[22px] w-[22px]" />
                     </div>
                     <div className="float-icon absolute flex h-[57px] w-[57px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597]" style={{ left: '74%', top: '20%', animationDelay: '0.4s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/Group%20(2).svg" alt="" className="h-[24px] w-[24px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334069/rnj/group-2-8d410a01.svg" alt="" className="h-[24px] w-[24px]" />
                     </div>
                     <div className="float-icon absolute flex h-[57px] w-[57px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597]" style={{ left: '73%', top: '66%', animationDelay: '0.8s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/Group%20(3).svg" alt="" className="h-[24px] w-[24px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334070/rnj/group-3-ab3adbb8.svg" alt="" className="h-[24px] w-[24px]" />
                     </div>
                     <div className="float-icon absolute flex h-[57px] w-[57px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597]" style={{ left: '15%', top: '70%', animationDelay: '1.2s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/Group%20(4).svg" alt="" className="h-[24px] w-[24px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334072/rnj/group-4-c8bc5566.svg" alt="" className="h-[24px] w-[24px]" />
                     </div>
                     <div className="float-icon absolute flex h-[57px] w-[57px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597]" style={{ left: '51%', top: '89%', animationDelay: '1.6s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/Layer%201%20(3).svg" alt="" className="h-[24px] w-[24px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334073/rnj/layer-1-3-08f03874.svg" alt="" className="h-[24px] w-[24px]" />
                     </div>
                   </div>
                 </div>
@@ -3876,7 +3848,7 @@ export default function Home() {
                   <div className="flex-1 order-1 lg:order-2 flex justify-center lg:justify-end">
                     <div className="relative w-full max-w-[364px] md:max-w-[400px] lg:max-w-[500px] h-[400px] md:h-[500px] lg:h-[580px]">
                       <Image
-                        src="/light bulb 1 (1).svg"
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333987/rnj/light-bulb-1-1-aa32136c.svg"
                         alt="Light bulb - Analyse Réglementaire"
                         fill
                         className="object-contain"
@@ -3946,7 +3918,7 @@ export default function Home() {
                             }}
                           >
                             <Image
-                              src={expandedFaqIndex === index ? '/Group 67.svg' : '/Vector (20).svg'}
+                              src={expandedFaqIndex === index ? 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334075/rnj/group-67-4180bee4.svg' : 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334077/rnj/vector-20-25c3631c.svg'}
                               alt={expandedFaqIndex === index ? 'Réduire' : 'Développer'}
                               fill
                               className="object-contain"
@@ -3976,7 +3948,7 @@ export default function Home() {
                   style={{ boxShadow: '2px 4px 33.5px rgba(0, 0, 0, 0.12)' }}
                 >
                   <div className="relative h-[22px] w-[22px] sm:h-[26px] sm:w-[26px]">
-                    <Image src="/Vector (18).svg" alt="Question icon" fill className="object-contain" />
+                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333875/rnj/vector-18-18cc905b.svg" alt="Question icon" fill className="object-contain" />
                   </div>
                 </div>
 
