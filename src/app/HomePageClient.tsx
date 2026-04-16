@@ -989,7 +989,7 @@ export default function Home() {
           />
 
           <div
-            className="absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[814px] px-4 md:px-0 top-[70px] md:top-[150px] lg:top-[200px] xl:left-[calc(50%-814px/2-199px)] xl:translate-x-0 xl:top-[260px] xl:w-[814px] xl:max-w-none"
+            className="absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[814px] px-4 md:px-0 top-[112px] sm:top-[128px] md:top-[150px] lg:top-[200px] xl:left-[calc(50%-814px/2-199px)] xl:translate-x-0 xl:top-[260px] xl:w-[814px] xl:max-w-none"
           >
             <div className="flex flex-col items-center gap-6 md:gap-10 xl:items-start xl:gap-[59px]">
               <div className="flex flex-col items-center gap-4 md:gap-[31px] xl:items-start xl:gap-[35px]">
