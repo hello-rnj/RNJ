@@ -1,3 +1,9 @@
-node_modules
-.next
 .git
+.gitignore
+.next
+node_modules
+backend/vendor
+backend/node_modules
+tmp-*.png
+tmp-*.html
+npm-debug.log

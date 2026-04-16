@@ -1,8 +1,14 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This repository now contains:
+
+- A public [Next.js](https://nextjs.org) frontend in the project root
+- A Laravel admin/backend in [`backend`](./backend)
+- A MySQL database wired through `docker-compose.yml`
 
 ## Getting Started
 
-First, run the development server:
+## Frontend only
+
+First, run the Next.js development server:
 
 ```bash
 npm run dev
@@ -14,9 +20,38 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the public site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Full stack with Docker Compose
+
+The stack includes:
+
+- Frontend: `http://localhost:3000`
+- Laravel admin: `http://localhost:8000/login`
+- MySQL: `localhost:3306`
+
+Start everything with:
+
+```bash
+docker compose up --build
+```
+
+Default admin credentials are injected through Docker Compose:
+
+- Email: `admin@rnj-advisory.be`
+- Password: `change-me-please`
+
+Change those values in [`docker-compose.yml`](./docker-compose.yml) before production use.
+
+The frontend proxies `/api/contact` and `/api/bookings` to Laravel using `LARAVEL_API_URL`.
+
+## Production notes
+
+For the current non-Docker PM2 deployment of the frontend, remember to rebuild Next.js after frontend changes:
+
+```bash
+npm run build && pm2 restart rnj
+```
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 

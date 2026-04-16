@@ -1,0 +1,66 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        LARAVEL_API_URL: http://backend:8000/api
+    environment:
+      LARAVEL_API_URL: http://backend:8000/api
+      NODE_ENV: production
+    depends_on:
+      backend:
+        condition: service_started
+    ports:
+      - "127.0.0.1:3001:3000"
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      APP_NAME: RNJAdmin
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_URL: https://rnj-advisory.be
+      APP_LOCALE: fr
+      APP_FALLBACK_LOCALE: fr
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: rnj
+      DB_USERNAME: rnj
+      DB_PASSWORD: secret
+      SESSION_DRIVER: database
+      CACHE_STORE: database
+      QUEUE_CONNECTION: database
+      SESSION_SECURE_COOKIE: "true"
+      ADMIN_NAME: RNJ Admin
+      ADMIN_EMAIL: admin@rnj-advisory.be
+      ADMIN_PASSWORD: change-me-please
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8000:8000"
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: rnj
+      MYSQL_USER: rnj
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
