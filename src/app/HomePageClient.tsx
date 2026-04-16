@@ -1645,7 +1645,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full bg-[#F7FCFF] py-10 md:py-12 lg:py-14">
+        <section className="hidden w-full bg-[#F7FCFF] py-10 md:block md:py-12 lg:py-14">
           <div className="mx-auto w-full px-0">
             <div className="mb-8 flex flex-col gap-3 px-4 md:mb-10 md:px-6 lg:px-8">
               <div className="flex items-center gap-3">
