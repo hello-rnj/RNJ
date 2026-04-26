@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 
@@ -62,12 +63,13 @@ export default function AnalyseInstitutionnelleClient() {
           className="absolute overflow-hidden"
           style={{ inset: 0, transform: 'scale(1.15) translateX(5%)' }}
         >
-          <object
-            data="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334103/rnj/map-3-380cf512.svg"
-            type="image/svg+xml"
-            width="100%"
-            height="100%"
+          <img
+            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132780/rnj/map-3-380cf512.svg"
+            alt=""
             aria-hidden="true"
+            className="h-full w-full"
+            loading="eager"
+            decoding="async"
           />
         </div>
 
@@ -112,15 +114,15 @@ export default function AnalyseInstitutionnelleClient() {
                 leur conformit&eacute; et d&rsquo;orienter les d&eacute;cisions dans des environnements complexes.
               </p>
 
-              <button
-                type="button"
+              <Link
+                href="/contact?mode=message&subject=Analyse%20institutionnelle"
                 className={`${geist.className} pointer-events-auto mt-3 inline-flex h-[44px] items-center justify-between gap-2 rounded-[105px] bg-[#839705] pl-5 pr-[3px] text-[13px] font-extrabold text-[#E7E7E7] shadow-[0_10px_24px_rgba(0,0,0,0.22)] transition hover:brightness-105 sm:mt-4 sm:h-[52px] sm:gap-3 sm:pl-6 sm:pr-[4px] sm:text-[15px] md:mt-6 md:h-[64px] md:gap-4 md:pl-7 md:pr-[5px] md:text-[18px] lg:mt-0 lg:h-[63.47px] lg:w-[224px] lg:rounded-[89.6px] lg:pl-[41.07px] lg:pr-[4.48px] lg:text-[17.24px] lg:leading-[19px]`}
               >
                 <span>Contact us</span>
                 <span className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-[#DDE597] sm:h-[44px] sm:w-[44px] md:h-[56px] md:w-[56px] lg:h-[54.51px] lg:w-[54.51px]">
                   <span className="inline-block h-[12px] w-[12px] border-r-[2px] border-t-[2px] border-[#839705] rotate-45 translate-x-[-2px] sm:h-[14px] sm:w-[14px] sm:border-r-[2.5px] sm:border-t-[2.5px] md:h-[18px] md:w-[18px] md:border-r-[3px] md:border-t-[3px] lg:h-[19.05px] lg:w-[19.05px] lg:border-r-[2.74px] lg:border-t-[2.74px]" />
                 </span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

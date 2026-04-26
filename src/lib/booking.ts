@@ -1,0 +1,3 @@
+export const BOOKING_FEE_EUR = 500;
+export const BOOKING_FEE_CENTS = BOOKING_FEE_EUR * 100;
+export const BOOKING_FEE_LABEL = `${BOOKING_FEE_EUR} EUR`;

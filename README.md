@@ -45,6 +45,37 @@ Change those values in [`docker-compose.yml`](./docker-compose.yml) before produ
 
 The frontend proxies `/api/contact` and `/api/bookings` to Laravel using `LARAVEL_API_URL`.
 
+## Stripe rendez-vous payment
+
+The booking flow can redirect clients to Stripe Checkout for a fixed 200 EUR rendez-vous payment before the booking is marked as paid.
+
+Add these variables to the frontend environment:
+
+```bash
+LARAVEL_API_URL=http://backend:8000/api
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+INTERNAL_API_TOKEN=change-this-shared-secret
+```
+
+Add the same shared secret to the Laravel backend environment:
+
+```bash
+INTERNAL_API_TOKEN=change-this-shared-secret
+```
+
+Then configure a Stripe webhook to send these events to your frontend deployment:
+
+- `checkout.session.completed`
+- `checkout.session.async_payment_succeeded`
+- `checkout.session.async_payment_failed`
+
+Webhook URL:
+
+```bash
+https://your-frontend-domain/api/stripe/webhook
+```
+
 ## Cloudinary asset migration
 
 To migrate referenced `public/` images to Cloudinary and rewrite the codebase to the returned CDN URLs:

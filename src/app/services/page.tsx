@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 export const metadata: Metadata = {
   title: 'Services | RNJ Advisory',
   description:
-    'Decouvrez les services RNJ Advisory: analyse institutionnelle, conseil strategique, etudes reglementaires et accompagnement des projets.',
+    'Decouvrez le service RNJ Advisory dedie a l analyse institutionnelle.',
 };
 
 const services = [
@@ -15,24 +15,6 @@ const services = [
     description:
       'Comprendre les dynamiques publiques, politiques et reglementaires pour securiser vos decisions.',
     href: '/services/analyse-institutionnelle',
-  },
-  {
-    title: 'Conseil strategique',
-    description:
-      "Construire une trajectoire claire et realiste pour vos projets d'investissement et de transformation.",
-    href: '/services',
-  },
-  {
-    title: 'Etudes reglementaires',
-    description:
-      'Identifier les obligations juridiques et anticiper les changements de cadre applicables a vos activites.',
-    href: '/services',
-  },
-  {
-    title: 'Accompagnement des projets',
-    description:
-      'Structurer vos initiatives de bout en bout avec une approche operationnelle et conforme.',
-    href: '/services',
   },
 ];
 
@@ -44,8 +26,8 @@ export default function ServicesPage() {
       <section className="mx-auto w-full max-w-[1200px] px-6 pb-24 pt-36 md:px-10 md:pt-44">
         <h1 className="font-[EB_Garamond] text-5xl font-bold text-[#003300] md:text-6xl">Services</h1>
         <p className="mt-4 max-w-3xl font-[Geist] text-base text-[#003300]/70 md:text-lg">
-          RNJ Advisory accompagne les acteurs publics, les entreprises et les investisseurs dans des environnements
-          institutionnels complexes.
+          RNJ Advisory propose ici un service dedie a l analyse institutionnelle pour aider les acteurs publics, les
+          entreprises et les investisseurs a evoluer dans des environnements complexes.
         </p>
 
         <div className="mt-10 grid gap-5 md:grid-cols-2">

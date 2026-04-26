@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Repository utility scripts not shipped with the Next.js app:
+    "create-map.js",
+    "fix-map-colors.js",
+    "generate-map.js",
+    "generate-map-fixed.js",
+    "generate-map-v2.js",
   ]),
 ]);
 

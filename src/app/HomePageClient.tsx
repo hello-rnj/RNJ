@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { X } from 'lucide-react';
@@ -151,6 +151,257 @@ const partnerAssetLogos = [
   'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333870/rnj/asset-28-1-d6d25061.svg',
 ] as const;
 
+type ImpactCountryId = 'tn' | 'mr' | 'sn' | 'gn' | 'bf' | 'ne' | 'bj' | 'cd';
+
+type ImpactCountry = {
+  id: ImpactCountryId;
+  code: string;
+  name: string;
+  years: string;
+  focusYear: string;
+  projects: string;
+  mapSrc: string;
+  summary: string;
+  description: string;
+  tags: readonly string[];
+  miniMapWidth: number;
+  miniMapHeight: number;
+  miniMapBorder: string;
+  cardLeft: string;
+  cardTop: string;
+  cardPopupLeft: number;
+  cardPopupTop: number;
+  pinStyle: CSSProperties;
+};
+
+const impactPinsFrame = {
+  left: 37.74,
+  top: 21.7,
+  width: 14.75,
+  height: 39.4,
+} as const;
+
+function readPercentValue(value: unknown) {
+  const number = Number.parseFloat(String(value ?? '0').replace('%', ''));
+  return Number.isFinite(number) ? number : 0;
+}
+
+function getImpactPopupVars(country: ImpactCountry): CSSProperties {
+  // Position spécifique pour chaque pays selon le design Figma
+  const leftPercent = (country.cardPopupLeft / 1346) * 100;
+  const topPercent = (country.cardPopupTop / 640.52) * 100;
+
+  return {
+    '--card-left': `${leftPercent}%`,
+    '--card-top': `${topPercent}%`,
+    '--card-translate-x': '-50%',
+    '--card-translate-y': '-100%',
+  } as CSSProperties;
+}
+
+const impactCountries: readonly ImpactCountry[] = [
+  {
+    id: 'tn',
+    code: 'TN',
+    name: 'Tunisia',
+    years: '2024-2026',
+    focusYear: '2026',
+    projects: '45 Project',
+    mapSrc: '/tn-map.svg',
+    summary: 'Strategic & Regulatory Advisory',
+    description: "RNJ Advisory accompagne des institutions, investisseurs et entrepreneurs en Tunisie dans des projets a forte dimension reglementaire et strategique. Nos interventions couvrent l'analyse institutionnelle, la structuration juridique, la conformite reglementaire ainsi que l'integration des criteres ESG, afin de securiser les projets et garantir leur viabilite a long terme.",
+    tags: ['energy', 'durability', 'gouvernance'],
+    miniMapWidth: 71.6,
+    miniMapHeight: 150.19,
+    miniMapBorder: '0.666051px solid #000000',
+    cardLeft: '49%',
+    cardTop: '20%',
+    cardPopupLeft: 713,
+    cardPopupTop: 488,
+    pinStyle: {
+      left: '48.92%',
+      top: '-0.19%',
+      width: '18.39%',
+      height: '27.88%',
+    },
+  },
+  {
+    id: 'mr',
+    code: 'MR',
+    name: 'Moritania',
+    years: '2024-2026',
+    focusYear: '2026',
+    projects: '02 Project',
+    mapSrc: '/MR.svg',
+    summary: 'Strategic & Regulatory Advisory',
+    description: "En Moritania, RNJ Advisory accompagne les acteurs publics et prives sur la structuration institutionnelle, le cadrage juridique et les modeles de gouvernance de projet. Nous aidons a aligner les initiatives d'investissement avec les exigences reglementaires et les objectifs de performance durable.",
+    tags: ['energy', 'durability'],
+    miniMapWidth: 102,
+    miniMapHeight: 125,
+    miniMapBorder: '1px solid #003300',
+    cardLeft: '43%',
+    cardTop: '30%',
+    cardPopupLeft: 580,
+    cardPopupTop: 559,
+    pinStyle: {
+      left: '12.65%',
+      top: '26.55%',
+      width: '18.39%',
+      height: '27.88%',
+    },
+  },
+  {
+    id: 'sn',
+    code: 'SN',
+    name: 'Senegal',
+    years: '2024-2026',
+    focusYear: '2026',
+    projects: '14 Project',
+    mapSrc: '/SN.svg',
+    summary: 'Strategic & Regulatory Advisory',
+    description: "Au Senegal, nous intervenons sur des dossiers a forte valeur strategique: diagnostics institutionnels, analyse des risques reglementaires et assistance a la mise en conformite. Notre objectif est de rendre les projets plus bancables, plus robustes et plus rapides a deployer.",
+    tags: ['energy', 'durability'],
+    miniMapWidth: 124,
+    miniMapHeight: 99,
+    miniMapBorder: '1px solid #003300',
+    cardLeft: '42%',
+    cardTop: '36%',
+    cardPopupLeft: 563,
+    cardPopupTop: 582,
+    pinStyle: {
+      left: '4.06%',
+      top: '34.91%',
+      width: '18.39%',
+      height: '27.88%',
+    },
+  },
+  {
+    id: 'gn',
+    code: 'GN',
+    name: 'Ghana',
+    years: '2024-2026',
+    focusYear: '2026',
+    projects: '05 Project',
+    mapSrc: '/GN.svg',
+    summary: 'Strategic & Regulatory Advisory',
+    description: "Pour les missions au Ghana, RNJ Advisory appuie la conception de cadres d'operation conformes, l'organisation des parties prenantes et l'integration des standards ESG. Nous facilitons la traduction de la strategie en execution operationnelle mesurable.",
+    tags: ['energy', 'durability'],
+    miniMapWidth: 131,
+    miniMapHeight: 107,
+    miniMapBorder: '1px solid #003300',
+    cardLeft: '43%',
+    cardTop: '40%',
+    cardPopupLeft: 580,
+    cardPopupTop: 604,
+    pinStyle: {
+      left: '11.74%',
+      top: '42.91%',
+      width: '18.39%',
+      height: '27.88%',
+    },
+  },
+  {
+    id: 'bf',
+    code: 'BF',
+    name: 'Borkina Faco',
+    years: '2024-2026',
+    focusYear: '2026',
+    projects: '02 Project',
+    mapSrc: '/BF.svg',
+    summary: 'Strategic & Regulatory Advisory',
+    description: "Au Burkina Faso, nous accompagnons la structuration de projets complexes avec un angle legal, institutionnel et de soutenabilite. Nos recommandations couvrent la gouvernance, la conformite et la feuille de route de mise en oeuvre.",
+    tags: ['energy', 'durability'],
+    miniMapWidth: 122,
+    miniMapHeight: 101,
+    miniMapBorder: '1px solid #003300',
+    cardLeft: '45%',
+    cardTop: '38%',
+    cardPopupLeft: 617,
+    cardPopupTop: 595,
+    pinStyle: {
+      left: '28.48%',
+      top: '39.64%',
+      width: '18.39%',
+      height: '27.88%',
+    },
+  },
+  {
+    id: 'ne',
+    code: 'NE',
+    name: 'Negeria',
+    years: '2024-2026',
+    focusYear: '2026',
+    projects: '12 Project',
+    mapSrc: '/NE.svg',
+    summary: 'Strategic & Regulatory Advisory',
+    description: "Au Niger, RNJ Advisory intervient sur la securisation des programmes d'investissement et des partenariats. Nous realisons les analyses juridiques, reglementaires et institutionnelles necessaires pour fiabiliser la decision et reduire les risques d'execution.",
+    tags: ['energy', 'durability'],
+    miniMapWidth: 115,
+    miniMapHeight: 101,
+    miniMapBorder: '1px solid #003300',
+    cardLeft: '50%',
+    cardTop: '33%',
+    cardPopupLeft: 663,
+    cardPopupTop: 568,
+    pinStyle: {
+      left: '50.39%',
+      top: '29.82%',
+      width: '18.39%',
+      height: '27.88%',
+    },
+  },
+  {
+    id: 'bj',
+    code: 'BJ',
+    name: 'Benin',
+    years: '2024-2026',
+    focusYear: '2026',
+    projects: '11 Project',
+    mapSrc: '/BJ.svg',
+    summary: 'Strategic & Regulatory Advisory',
+    description: "Sur les projets en Benin, nous accompagnons la structuration des cadres de gouvernance, la clarte des responsabilites institutionnelles et l'alignement des dispositifs juridiques. L'objectif est de garantir la coherence entre strategie, execution et impact.",
+    tags: ['energy', 'durability'],
+    miniMapWidth: 58,
+    miniMapHeight: 133,
+    miniMapBorder: '1px solid #003300',
+    cardLeft: '46%',
+    cardTop: '41%',
+    cardPopupLeft: 685,
+    cardPopupTop: 620,
+    pinStyle: {
+      left: '36.18%',
+      top: '44.36%',
+      width: '18.39%',
+      height: '27.88%',
+    },
+  },
+  {
+    id: 'cd',
+    code: 'CD',
+    name: 'Congo democratic',
+    years: '2024-2026',
+    focusYear: '2026',
+    projects: '12 Project',
+    mapSrc: '/CD.svg',
+    summary: 'Strategic & Regulatory Advisory',
+    description: "En Republique democratique du Congo, RNJ Advisory soutient les acteurs institutionnels et investisseurs dans la conception de projets durables et conformes. Nos interventions portent sur l'analyse reglementaire, les montages juridiques et les mecanismes de suivi de performance.",
+    tags: ['energy', 'durability'],
+    miniMapWidth: 119,
+    miniMapHeight: 131,
+    miniMapBorder: '1px solid #003300',
+    cardLeft: '53%',
+    cardTop: '50%',
+    cardPopupLeft: 776,
+    cardPopupTop: 677,
+    pinStyle: {
+      left: '77.36%',
+      top: '66.18%',
+      width: '18.39%',
+      height: '27.88%',
+    },
+  },
+] as const;
+
 const entrepreneurshipCards = [
   {
     title: 'Choix du statut juridique adapte',
@@ -226,7 +477,7 @@ const institutionalCarouselCards = [
     title: 'Analyse Institutionnelle & Réglementaire',
     description:
       'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335423/rnj/optimized/group-of-business-people-discussing-in-meeting-2026-01-05-00-38-48-utc-1-a9d430a2.webp',
+    image: '/group527.svg',
     panelBg: '#406640',
     titleColor: '#BFCCBF',
     descriptionColor: '#BFCCBF',
@@ -916,8 +1167,9 @@ function EntrepreneuriatTabsSection() {
 }
 
 export default function Home() {
-  const [showTunisiaPopup, setShowTunisiaPopup] = useState(false);
+  const [activeImpactCountry, setActiveImpactCountry] = useState<ImpactCountryId | null>(null);
   const [showStrategicPopup, setShowStrategicPopup] = useState(false);
+  const [showCertificatesPopup, setShowCertificatesPopup] = useState(false);
   const [esgActiveCardIndex, setEsgActiveCardIndex] = useState(0);
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
   const [hoveredScrollCardIndex, setHoveredScrollCardIndex] = useState<number | null>(null);
@@ -926,6 +1178,7 @@ export default function Home() {
   const [servicesFocusStage, setServicesFocusStage] = useState(0);
   const [isInstitutionalCarouselPaused, setIsInstitutionalCarouselPaused] = useState(false);
   const institutionalCarouselRef = useRef<HTMLDivElement | null>(null);
+  const activeImpactCountryData = impactCountries.find((country) => country.id === activeImpactCountry) ?? null;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -1088,7 +1341,7 @@ export default function Home() {
                     }}
                   >
                     <Image
-                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335423/rnj/optimized/group-of-business-people-discussing-in-meeting-2026-01-05-00-38-48-utc-1-a9d430a2.webp"
+                      src="/group527.svg"
                       alt="Quand la durabilité rencontre la stratégie"
                       fill
                       className="object-cover"
@@ -1555,13 +1808,12 @@ export default function Home() {
                   </div>
 
                   <div className="mt-2 flex min-h-[100px] w-full max-w-[317px] flex-col items-center gap-[26px] md:mt-3">
-                    <button
-                      type="button"
+                    <a
+                      href="/contact"
                       className="flex h-[53px] w-[225px] max-w-full items-center justify-center rounded-[18px] bg-white px-[34px] py-[18px] font-[Geist] text-[16px] font-bold leading-[16px] text-black"
-                      onClick={() => setShowStrategicPopup(true)}
                     >
                       Sécuriser mon projet
-                    </button>
+                    </a>
 
                     <p className="w-full max-w-[317px] text-center font-[Geist] font-medium text-[15.3706px] leading-[21px] text-white/50">
                       &copy; 2026 RNJ Advisory. Tous droits réservés.
@@ -1631,18 +1883,18 @@ export default function Home() {
                       type="button"
                       className="inline-flex h-[52px] w-full items-center justify-center rounded-full border-2 border-white px-6 text-center font-[Geist] text-[15px] font-medium leading-[16px] text-white sm:w-auto sm:min-w-[190px] sm:px-8 md:h-[53px] md:min-w-[220px] md:px-10 md:text-[16px] lg:min-w-0 lg:px-[53px]"
                       style={{ touchAction: 'manipulation' }}
+                      onClick={() => setShowCertificatesPopup(true)}
                     >
                       En savoir plus
                     </button>
 
-                    <button
-                      type="button"
+                    <a
+                      href="/contact"
                       className="inline-flex h-[52px] w-full items-center justify-center rounded-full bg-white px-6 text-center font-[Geist] text-[15px] font-bold leading-[16px] text-black sm:w-auto sm:min-w-[210px] sm:px-8 md:h-[53px] md:min-w-[235px] md:px-8 md:text-[16px] lg:min-w-0 lg:px-[34px]"
                       style={{ touchAction: 'manipulation' }}
-                      onClick={() => setShowStrategicPopup(true)}
                     >
                       Sécuriser mon projet
-                    </button>
+                    </a>
                   </div>
 
                   <p className="mt-4 max-w-[420px] font-[Geist] text-[14px] font-normal leading-[1.25] text-white/60 md:mt-5 md:text-[16px] md:leading-[16px]">
@@ -1968,6 +2220,66 @@ export default function Home() {
                         href="/contact"
                         className="inline-flex h-[68px] items-center justify-center rounded-full bg-white px-10 font-[Geist] text-[20px] font-medium text-black transition hover:opacity-90 md:h-[97px] md:px-[72px] md:text-[24px]"
                         onClick={() => setShowStrategicPopup(false)}
+                      >
+                        Contact
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {showCertificatesPopup && (
+              <div
+                className="fixed inset-0 z-[90] flex items-center justify-center bg-black/45 px-4 py-6"
+                onClick={() => setShowCertificatesPopup(false)}
+              >
+                <div
+                  className="relative flex max-h-[90vh] w-full max-w-[1323px] flex-col overflow-hidden rounded-[32px] bg-black/35 shadow-[0px_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-[16px] md:rounded-[60px]"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    type="button"
+                    aria-label="Fermer"
+                    className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full text-white/90 transition hover:bg-white/10 hover:text-white md:right-7 md:top-7"
+                    onClick={() => setShowCertificatesPopup(false)}
+                  >
+                    <X size={28} strokeWidth={2.6} />
+                  </button>
+
+                  <div className="flex flex-1 flex-col overflow-y-auto px-5 py-6 sm:px-7 md:px-10 md:py-10 lg:px-14 lg:py-12">
+                    <div className="relative mb-8 h-[36px] w-[92px] md:mb-12 md:h-[52px] md:w-[132px]">
+                      <Image
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                        alt="RNJ Advisory"
+                        fill
+                        className="object-contain object-left"
+                      />
+                    </div>
+
+                    <div className="max-w-[1139px]">
+                      <h2 className="mb-6 font-[Geist] font-normal text-white text-[40px] leading-[0.98] sm:text-[56px] md:mb-8 md:text-[88px] md:leading-[0.98] lg:text-[128px]">
+                        Certificats d’Attribut d&apos;Énergie et Garanties d’origine
+                      </h2>
+
+                      <p className="font-[Geist] font-normal text-white text-[16px] leading-[1.18] sm:text-[18px] md:text-[24px] md:leading-[1.12] lg:text-[32px]">
+                        <span className="block">
+                          Étude juridique pour la mise en place d’un cadre réglementaire applicable à l’émission des certificats d’Attribut d&apos;Énergie et des Garanties d’origine pour l’électricité produite à partir des énergies renouvelables.
+                        </span>
+                        <span className="block h-4 md:h-5 lg:h-6" aria-hidden="true" />
+                        <span className="block">Nos interventions :</span>
+                        <span className="block">• Analyse du cadre réglementaire tunisien</span>
+                        <span className="block">• Identification des parties prenantes et précision des rôles à jouer par lesdites parties</span>
+                        <span className="block">• Proposition d’un cadre institutionnel propice pour l’émission des certificats verts et garanties d’origine</span>
+                        <span className="block">• Préparation des textes réglementaires requis pour la mise en place du projet</span>
+                      </p>
+                    </div>
+
+                    <div className="mt-8 flex flex-col items-start gap-4 md:mt-10">
+                      <Link
+                        href="/contact"
+                        className="inline-flex h-[68px] items-center justify-center rounded-full bg-white px-10 font-[Geist] text-[20px] font-medium text-black transition hover:opacity-90 md:h-[97px] md:px-[72px] md:text-[24px]"
+                        onClick={() => setShowCertificatesPopup(false)}
                       >
                         Contact
                       </Link>
@@ -2404,7 +2716,7 @@ export default function Home() {
                   >
                     <div className="relative h-[220px] w-full sm:h-[240px] md:h-[200px] lg:h-[240px] xl:h-[300px]">
                       <Image
-                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333999/rnj/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc-1-a731531a.svg"
+                        src="/WhatsApp%20Image%202026-04-19%20at%2012.52.25%20PM%201.svg"
                         alt="Diagnostic ESG et conformité"
                         fill
                         className="object-cover object-top"
@@ -2606,7 +2918,9 @@ export default function Home() {
                     >
                       <div className="flex h-full w-[303px] flex-col items-center justify-center gap-5 p-6">
                         <h3
-                          className="font-[EB_Garamond] font-bold transition-colors duration-300"
+                          className={`font-[Geist] leading-none text-[#003300] transition-opacity duration-300 ${
+                                    hoveredScrollCardIndex === index ? 'text-[18px] opacity-100' : 'pointer-events-none opacity-0'
+                                  }`}
                           style={{
                             width: card.titleWidth,
                             maxWidth: card.titleWidth,
@@ -3394,9 +3708,9 @@ export default function Home() {
               </>
             )}
             </div>
-            <section className="relative mx-auto my-8 w-full max-w-[1449px] px-4 sm:px-5 md:px-6">
+            <section className="relative mx-auto my-8 w-full max-w-[1449px] px-4 sm:px-5 md:px-6 xl:px-0">
               <div
-                className="flex w-full flex-col items-center rounded-[36px] bg-[#003300] px-5 py-12 sm:px-8 md:px-10 md:py-16 lg:rounded-[80px] lg:px-[48px] lg:py-[75px] xl:min-h-[1312px] xl:rounded-[120px] xl:pt-[91px]"
+                className="flex w-full flex-col items-center rounded-[36px] bg-[#003300] px-5 py-12 sm:px-8 md:px-10 md:py-16 lg:rounded-[80px] lg:px-[48px] lg:py-[75px] xl:h-[1312px] xl:rounded-[120px] xl:pt-[91px] xl:pb-[75px] xl:pl-[55px] xl:pr-[48px] xl:gap-[80px]"
                 style={{ gap: 'clamp(48px, 5vw, 80px)' }}
               >
                 {/* Header Section */}
@@ -3425,110 +3739,112 @@ export default function Home() {
 
                 {/* World Map Container */}
                 <div
-                  className="map-fade-in relative w-full max-w-[1346px] overflow-visible xl:h-[640.52px]"
+                  className="map-fade-in map-impact-map-frame relative w-full max-w-[1346px] overflow-visible xl:h-[640.52px]"
                   style={{ height: 'clamp(260px, 46vw, 640.52px)' }}
                 >
                   <div className="absolute inset-0 overflow-hidden rounded-[28px] md:rounded-[40px]">
                     <Image
-                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334047/rnj/world-map-d7a17219.svg"
+                      src="/maps.svg"
                       alt="World Map"
                       fill
                       className="object-contain"
                     />
                   </div>
-                  
-                  {/* Interactive Tunisia marker */}
-                  <div
-                    className="absolute z-20"
-                    style={{
-                      left: '46.6%',
-                      top: '36.9%',
-                    }}
-                  >
-                    {showTunisiaPopup && (
-                      <div className="popup-fade-in absolute left-1/2 top-[calc(100%+12px)] z-30 w-[min(78vw,300px)] -translate-x-1/2 rounded-[24px] bg-[rgba(0,0,0,0.32)] p-3 backdrop-blur-md sm:w-[min(82vw,389px)] sm:rounded-[38px] sm:p-4 md:left-5 md:top-1/2 md:w-[389px] md:-translate-x-0 md:-translate-y-1/2 md:rounded-[45px] md:rounded-bl-none md:px-8 md:py-[35px]">
-                        <button
-                          onClick={() => setShowTunisiaPopup(false)}
-                          className="absolute right-3 top-3 text-white transition hover:text-gray-300 md:right-8 md:top-8"
+
+                  <div className="pointer-events-none absolute z-[14]" style={{ left: '37.74%', top: '21.70%', width: '14.75%', height: '39.40%' }} aria-hidden>
+                    <Image src="/pins.svg" alt="" fill className="object-contain" />
+                  </div>
+
+                  <div className="absolute z-20" style={{ left: '37.74%', top: '21.70%', width: '14.75%', height: '39.40%' }}>
+                    {impactCountries.map((country) => {
+                      const isActive = activeImpactCountry === country.id;
+
+                      return (
+                        <div
+                          key={country.id}
+                          className="map-pin-button group absolute cursor-pointer appearance-none border-0 bg-transparent p-0 outline-none"
+                          style={{
+                            ...country.pinStyle,
+                            touchAction: 'manipulation',
+                            minWidth: '30px',
+                            minHeight: '30px',
+                          }}
+                          aria-label={`Show ${country.name} details`}
+                          aria-expanded={isActive}
+                          onMouseEnter={() => setActiveImpactCountry(country.id)}
+                          onMouseLeave={() => setActiveImpactCountry(null)}
                         >
-                          <span className="block rotate-45 font-[Geist] text-[24px] font-light leading-none sm:text-[30px] md:text-[49px]">+</span>
-                        </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {activeImpactCountryData && (
+                    <div
+                      className="map-country-card-shell absolute z-30 w-[min(88vw,389px)] max-w-[389px]"
+                      style={getImpactPopupVars(activeImpactCountryData)}
+                      onMouseEnter={() => setActiveImpactCountry(activeImpactCountryData.id)}
+                      onMouseLeave={() => setActiveImpactCountry(null)}
+                    >
+                      <div
+                        className="map-country-card pointer-events-auto w-full px-5 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.28)] backdrop-blur-[14px] sm:px-7 sm:py-6 md:px-8 md:py-[35px]"
+                        style={{
+                          background: 'rgba(0, 0, 0, 0.32)',
+                          borderRadius: '0 45px 45px 45px',
+                        }}
+                        onClick={(event) => event.stopPropagation()}
+                      >
                         <div className="flex flex-col items-start gap-3 sm:gap-5 md:gap-[26px]">
                           <div className="flex flex-col items-start gap-3 sm:gap-5 md:gap-[30px]">
-                            <span className="font-[Geist] text-[12px] font-medium leading-[12px] text-white sm:text-[16px] sm:leading-[16px] md:text-[21.4956px] md:leading-[22px]">
-                              2026
+                            <span className="font-[Geist] text-[13px] font-medium leading-[22px] text-white opacity-50">
+                              {activeImpactCountryData.years}
                             </span>
 
                             <div className="flex items-start gap-3 sm:gap-4 md:gap-[29px]">
-                              <div className="relative h-[76px] w-[36px] overflow-hidden rounded bg-[#F7FCFF] sm:h-[96px] sm:w-[46px] md:h-[150.19px] md:w-[71.6px]">
+                              <div
+                                className="relative shrink-0 overflow-hidden bg-[#BBCB2E]"
+                                style={{
+                                  width: `${activeImpactCountryData.miniMapWidth}px`,
+                                  height: `${activeImpactCountryData.miniMapHeight}px`,
+                                  border: activeImpactCountryData.miniMapBorder,
+                                }}
+                              >
                                 <Image
-                                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334052/rnj/tn-819898be.svg"
-                                  alt="Tunisie"
+                                  src={activeImpactCountryData.mapSrc}
+                                  alt={activeImpactCountryData.name}
                                   fill
-                                  className="object-contain"
+                                  className="object-contain p-1.5 md:p-2"
                                 />
                               </div>
 
-                              <div className="flex flex-col items-start gap-1.5 sm:gap-2 md:w-[193px] md:gap-[9px]">
-                                <div className="flex flex-col items-start gap-0.5 sm:gap-1 md:gap-[3px]">
-                                  <h3 className="font-[Geist] text-[18px] font-normal leading-[1] text-white sm:text-[24px] md:text-[31.2663px] md:leading-[32px]">
-                                    Tunisie
+                              <div className="flex min-w-0 flex-1 flex-col gap-1.5 sm:gap-2 md:gap-[5px]">
+                                <div className="flex flex-col items-start gap-0.5 sm:gap-1 md:gap-[15px]">
+                                  <h3 className="font-[Geist] text-[20px] font-normal leading-[32px] text-white">
+                                    {activeImpactCountryData.name}
                                   </h3>
-                                  <p className="font-[Geist] text-[18px] font-bold leading-[1] text-white sm:text-[24px] md:text-[31.2663px] md:leading-[32px]">
-                                    45 projets
+                                  <p className="font-[Geist] text-[32px] font-bold leading-[32px] text-white">
+                                    {activeImpactCountryData.projects}
                                   </p>
                                 </div>
-                                <p className="font-[Geist] text-[11px] font-medium leading-[1.2] text-white/50 sm:text-[14px] md:text-[17.3096px] md:leading-[20px]">
-                                  Conseil stratégique &amp; réglementaire
-                                </p>
+
+                                <div className="flex flex-wrap gap-[5px]">
+                                  {activeImpactCountryData.tags.map((tag) => (
+                                    <span
+                                      key={tag}
+                                      className="inline-flex h-[22px] items-center justify-center rounded-[70px] bg-white px-[18px] text-[10px] font-normal capitalize text-[#003300] opacity-60"
+                                      style={{ fontFamily: 'Geist' }}
+                                    >
+                                      {tag}
+                                    </span>
+                                  ))}
+                                </div>
                               </div>
-                            </div>
-                          </div>
-
-                          <div className="h-0 w-full border-t-2 border-white/50" />
-
-                          <div className="flex w-full items-start gap-2 sm:gap-3 md:gap-[10px]">
-                            <div className="relative mt-0.5 h-[92px] w-[6px] shrink-0 rounded-[26px] bg-white/40 sm:mt-1 sm:h-[128px] sm:w-[7px] md:h-[257px]">
-                              <div className="absolute left-0 top-0 h-[30px] w-full rounded-[26px] bg-[#F7FCFF] sm:h-[44px] md:h-[59px]" />
-                            </div>
-                            <div className="max-h-[92px] overflow-y-auto pr-1 font-[Geist] text-[11px] font-medium leading-[1.22] text-white/90 sm:max-h-[128px] sm:text-[14px] sm:leading-[1.25] md:max-h-[273px] md:text-[19.3263px] md:leading-[21px]">
-                              RNJ Advisory accompagne des institutions, investisseurs et entrepreneurs en Tunisie dans des projets à forte dimension réglementaire et stratégique. Nos interventions couvrent l’analyse institutionnelle, la structuration juridique, la conformité réglementaire ainsi que l’intégration des critères ESG, afin de sécuriser les projets et garantir leur viabilité à long terme.
                             </div>
                           </div>
                         </div>
                       </div>
-                    )}
-
-                    <button
-                      type="button"
-                      className="group absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer appearance-none border-0 bg-transparent p-0 outline-none"
-                      style={{
-                        width: 'clamp(34px, 4vw, 52px)',
-                        height: 'clamp(34px, 4vw, 52px)',
-                        touchAction: 'manipulation',
-                      }}
-                      aria-label="Afficher les détails de la Tunisie"
-                      aria-expanded={showTunisiaPopup}
-                      onTouchStart={() => setShowTunisiaPopup(true)}
-                      onMouseEnter={() => setShowTunisiaPopup(true)}
-                      onFocus={() => setShowTunisiaPopup(true)}
-                    />
-                  </div>
-
-                  {/* Animated location pins overlay (drop-in + idle bounce, staggered per pin) */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334053/rnj/pins-group-3909cb2e.svg"
-                    alt=""
-                    aria-hidden
-                    className="pointer-events-none absolute z-[15]"
-                    style={{
-                      left: '38%',
-                      top: '32%',
-                      width: '20%',
-                      height: 'auto',
-                    }}
-                  />
+                    </div>
+                  )}
                 </div>
 
                 {/* Buttons and Copyright Section */}
@@ -3549,7 +3865,7 @@ export default function Home() {
                         className="font-[Geist] font-semibold text-white"
                         style={{ fontSize: 'clamp(16px, 1.8vw, 21.3092px)' }}
                       >
-                        À propos
+                        About
                       </span>
                     </button>
                     
@@ -3570,7 +3886,7 @@ export default function Home() {
                           color: '#003300' 
                         }}
                       >
-                        <span className="hidden sm:inline">Demander une consultation</span>
+                        <span className="hidden sm:inline">Request a Consultation</span>
                         <span className="sm:hidden">Consultation</span>
                       </span>
                     </button>

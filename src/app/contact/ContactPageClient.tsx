@@ -1,9 +1,10 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { EB_Garamond, Geist, Poppins } from 'next/font/google';
 import Navbar from '@/components/Navbar';
+import { BOOKING_FEE_LABEL } from '@/lib/booking';
 
 const ebGaramond = EB_Garamond({
   subsets: ['latin'],
@@ -23,8 +24,13 @@ const poppins = Poppins({
   display: 'swap',
 });
 
-type View = 'initial' | 'subjects' | 'calendar' | 'message';
+type View = 'initial' | 'bookingInfo' | 'subjects' | 'calendar' | 'message';
 type SubmissionMode = 'contact' | 'booking';
+type PaymentState = 'success' | 'cancelled';
+type CalendarMonth = {
+  year: number;
+  month: number;
+};
 
 type ContactPayload = {
   name: string;
@@ -39,6 +45,14 @@ type BookingPayload = ContactPayload & {
   preferred_date: string;
   preferred_time?: string;
 };
+type CalendarDateParts = CalendarMonth & {
+  day: number;
+};
+type CalendarCell = {
+  iso: string;
+  day: number;
+  isUnavailable: boolean;
+};
 
 const initialMessageForm: ContactPayload = {
   name: '',
@@ -51,8 +65,192 @@ const initialMessageForm: ContactPayload = {
 
 const fieldClassName =
   'w-full rounded-[18px] border border-transparent bg-[#F0F3F0] px-5 py-4 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 sm:px-6 sm:py-5 sm:text-[16px]';
+const pendingBookingStorageKey = 'rnj-pending-booking';
+const defaultCalendarMonth: CalendarMonth = { year: 2026, month: 3 };
+const defaultBookingDate = '2026-04-15';
+const defaultBookingTime = '14:00';
+const monthLabels = [
+  'Janvier',
+  'Fevrier',
+  'Mars',
+  'Avril',
+  'Mai',
+  'Juin',
+  'Juillet',
+  'Aout',
+  'Septembre',
+  'Octobre',
+  'Novembre',
+  'Decembre',
+] as const;
+const daysOfWeek = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+const timeOptions = [
+  '09:00',
+  '09:15',
+  '09:30',
+  '09:45',
+  '10:00',
+  '10:15',
+  '10:30',
+  '10:45',
+  '11:00',
+  '11:15',
+  '11:30',
+  '11:45',
+  '13:00',
+  '13:15',
+  '13:30',
+  '13:45',
+  '14:00',
+  '14:15',
+  '14:30',
+  '14:45',
+  '15:00',
+  '15:15',
+  '15:30',
+  '15:45',
+  '16:00',
+  '16:15',
+  '16:30',
+  '16:45',
+  '17:00',
+  '17:15',
+  '17:30',
+  '17:45',
+] as const;
+const explicitlyUnavailableDates = new Set(['2026-04-10', '2026-04-11', '2026-04-12', '2026-04-13']);
+const bookingInfoHighlights = [
+  {
+    eyebrow: 'Etape 1',
+    title: 'Frais de dossier',
+    copy: 'Le bouton Rendez-vous ouvre desormais une etape dediee au reglement du dossier.',
+  },
+  {
+    eyebrow: 'Etape 2',
+    title: 'Choix du sujet',
+    copy: 'Vous selectionnez ensuite votre profil et la date souhaitee avant de finaliser la demande.',
+  },
+  {
+    eyebrow: 'Etape 3',
+    title: 'Validation Stripe',
+    copy: 'Le paiement securise confirme l ouverture du dossier avant la confirmation finale.',
+  },
+] as const;
 
-export default function ContactPageClient() {
+function padNumber(value: number) {
+  return String(value).padStart(2, '0');
+}
+
+function toIsoDate(parts: CalendarDateParts) {
+  return `${parts.year}-${padNumber(parts.month + 1)}-${padNumber(parts.day)}`;
+}
+
+function parseIsoDate(value: string | null): CalendarDateParts | null {
+  if (!value) {
+    return null;
+  }
+
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+
+  if (!match) {
+    return null;
+  }
+
+  return {
+    year: Number(match[1]),
+    month: Number(match[2]) - 1,
+    day: Number(match[3]),
+  };
+}
+
+function shiftCalendarMonth(month: CalendarMonth, offset: number): CalendarMonth {
+  const next = new Date(Date.UTC(month.year, month.month + offset, 1));
+
+  return {
+    year: next.getUTCFullYear(),
+    month: next.getUTCMonth(),
+  };
+}
+
+function isUnavailableDate(parts: CalendarDateParts) {
+  const isoDate = toIsoDate(parts);
+  const weekday = new Date(Date.UTC(parts.year, parts.month, parts.day)).getUTCDay();
+
+  return explicitlyUnavailableDates.has(isoDate) || weekday === 0 || weekday === 6;
+}
+
+function findFirstAvailableDate(month: CalendarMonth) {
+  const daysInMonth = new Date(Date.UTC(month.year, month.month + 1, 0)).getUTCDate();
+
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const candidate = { ...month, day };
+
+    if (!isUnavailableDate(candidate)) {
+      return toIsoDate(candidate);
+    }
+  }
+
+  return null;
+}
+
+function getCalendarWeeks(month: CalendarMonth): Array<Array<CalendarCell | null>> {
+  const firstWeekday = new Date(Date.UTC(month.year, month.month, 1)).getUTCDay();
+  const firstColumn = (firstWeekday + 6) % 7;
+  const daysInMonth = new Date(Date.UTC(month.year, month.month + 1, 0)).getUTCDate();
+  const cells: Array<CalendarCell | null> = Array.from({ length: firstColumn }, () => null);
+
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const parts = { ...month, day };
+
+    cells.push({
+      iso: toIsoDate(parts),
+      day,
+      isUnavailable: isUnavailableDate(parts),
+    });
+  }
+
+  while (cells.length % 7 !== 0) {
+    cells.push(null);
+  }
+
+  const weeks: Array<Array<CalendarCell | null>> = [];
+
+  for (let index = 0; index < cells.length; index += 7) {
+    weeks.push(cells.slice(index, index + 7));
+  }
+
+  return weeks;
+}
+
+function formatLongDateLabel(value: string | null) {
+  const parts = parseIsoDate(value);
+
+  if (!parts) {
+    return 'Date a confirmer';
+  }
+
+  return `${parts.day} ${monthLabels[parts.month].toLowerCase()} ${parts.year}`;
+}
+
+function formatMonthLabel(month: CalendarMonth) {
+  return `${monthLabels[month.month]} ${month.year}`;
+}
+
+function formatBookingMessage(date: string | null, time: string) {
+  return `Je souhaite planifier un rendez-vous le ${formatLongDateLabel(date)} a ${time}.`;
+}
+
+type ContactPageClientProps = {
+  initialMode?: 'message' | 'booking' | null;
+  initialSubject?: string;
+  initialPaymentState?: PaymentState | null;
+};
+
+export default function ContactPageClient({
+  initialMode = null,
+  initialSubject = '',
+  initialPaymentState = null,
+}: ContactPageClientProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [submitState, setSubmitState] = useState<'idle' | 'success' | 'error'>('idle');
@@ -60,9 +258,11 @@ export default function ContactPageClient() {
   const [submissionMode, setSubmissionMode] = useState<SubmissionMode>('contact');
 
   const [view, setView] = useState<View>('initial');
+  const [bookingInfoReturnView, setBookingInfoReturnView] = useState<'initial' | 'message'>('initial');
   const [selectedSubject, setSelectedSubject] = useState('');
-  const [selectedDay, setSelectedDay] = useState<number | null>(15);
-  const [selectedBookingDate, setSelectedBookingDate] = useState<string | null>(null);
+  const [displayedMonth, setDisplayedMonth] = useState<CalendarMonth>(defaultCalendarMonth);
+  const [selectedBookingDate, setSelectedBookingDate] = useState<string | null>(defaultBookingDate);
+  const [selectedBookingTime, setSelectedBookingTime] = useState(defaultBookingTime);
   const [cardIndex, setCardIndex] = useState(0);
   const [isSliding, setIsSliding] = useState(false);
   const [messageForm, setMessageForm] = useState<ContactPayload>(initialMessageForm);
@@ -74,16 +274,98 @@ export default function ContactPageClient() {
     { label: 'Investissement' },
     { label: 'Autre' },
   ];
+  const requestedMode = initialMode;
+  const requestedSubject = initialSubject.trim();
+  const calendarWeeks = getCalendarWeeks(displayedMonth);
+  const selectedTimeIndex = Math.max(0, timeOptions.indexOf(selectedBookingTime as (typeof timeOptions)[number]));
+  const [selectedHourPart, selectedMinutePart] = selectedBookingTime.split(':');
+  const isMorningTime = Number(selectedHourPart) < 12;
+  const paymentNotice =
+    initialPaymentState === 'success'
+      ? {
+          title: 'Paiement confirme',
+          copy: `Vos frais de dossier de ${BOOKING_FEE_LABEL} ont ete recus. Le rendez-vous reste visible dans le dashboard admin pour validation finale.`,
+        }
+      : initialPaymentState === 'cancelled'
+        ? {
+            title: 'Paiement annule',
+            copy: `Le paiement des frais de dossier de ${BOOKING_FEE_LABEL} a ete annule. Vous pouvez reprendre votre reservation et relancer Stripe ci-dessous.`,
+          }
+        : null;
 
-  const calendarWeeks = [
-    [null, null, 1, 2, 3, 4, 5],
-    [6, 7, 8, 9, 10, 11, 12],
-    [13, 14, 15, 16, 17, 18, 19],
-    [20, 21, 22, 23, 24, 25, 26],
-    [27, 28, 29, 30, 31, null, null],
-  ];
-  const unavailableDays = [10, 11, 12, 13];
-  const daysOfWeek = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+  useEffect(() => {
+    if (requestedMode === 'message') {
+      setSubmitState('idle');
+      setSubmitMessage('');
+      setSubmissionMode('contact');
+      setSelectedBookingDate(null);
+      setView('message');
+      setMessageForm((current) => ({
+        ...current,
+        subject: requestedSubject || current.subject,
+      }));
+      return;
+    }
+
+    if (requestedMode === 'booking') {
+      setSubmitState('idle');
+      setSubmitMessage('');
+      setSubmissionMode('booking');
+      setDisplayedMonth(defaultCalendarMonth);
+      setSelectedBookingDate(defaultBookingDate);
+      setSelectedBookingTime(defaultBookingTime);
+      setSelectedSubject(requestedSubject);
+      setBookingInfoReturnView('initial');
+      setView('bookingInfo');
+    }
+  }, [requestedMode, requestedSubject]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (initialPaymentState === 'success') {
+      window.sessionStorage.removeItem(pendingBookingStorageKey);
+      return;
+    }
+
+    if (initialPaymentState !== 'cancelled') {
+      return;
+    }
+
+    const savedBooking = window.sessionStorage.getItem(pendingBookingStorageKey);
+
+    if (!savedBooking) {
+      return;
+    }
+
+    try {
+      const parsedBooking = JSON.parse(savedBooking) as BookingPayload;
+      const parsedDate = parseIsoDate(parsedBooking.preferred_date);
+      setSubmissionMode('booking');
+      setSelectedSubject(parsedBooking.subject);
+      setSelectedBookingDate(parsedBooking.preferred_date);
+      setSelectedBookingTime(parsedBooking.preferred_time || defaultBookingTime);
+      if (parsedDate) {
+        setDisplayedMonth({
+          year: parsedDate.year,
+          month: parsedDate.month,
+        });
+      }
+      setMessageForm({
+        name: parsedBooking.name,
+        phone: parsedBooking.phone,
+        email: parsedBooking.email,
+        company: parsedBooking.company,
+        subject: parsedBooking.subject,
+        message: parsedBooking.message,
+      });
+      setView('message');
+    } catch {
+      window.sessionStorage.removeItem(pendingBookingStorageKey);
+    }
+  }, [initialPaymentState]);
 
   async function sendContact(payload: ContactPayload) {
     const response = await fetch('/api/contact', {
@@ -98,22 +380,23 @@ export default function ContactPageClient() {
     }
   }
 
-  async function sendBooking(payload: BookingPayload) {
-    const response = await fetch('/api/bookings', {
+  async function startBookingCheckout(payload: BookingPayload) {
+    const response = await fetch('/api/bookings/checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
 
-    const data = (await response.json()) as { message?: string };
+    const data = (await response.json()) as { message?: string; url?: string };
     if (!response.ok) {
       throw new Error(data.message || "Echec de l'envoi.");
     }
-  }
 
-  function formatPreferredDate(day: number | null) {
-    const safeDay = day ?? 15;
-    return `2026-04-${String(safeDay).padStart(2, '0')}`;
+    if (!data.url) {
+      throw new Error("Stripe n'a pas retourne d'URL de paiement.");
+    }
+
+    return data.url;
   }
 
   function openMessageView(
@@ -121,12 +404,16 @@ export default function ContactPageClient() {
     options?: {
       mode?: SubmissionMode;
       preferredDate?: string | null;
+      preferredTime?: string;
     }
   ) {
     setSubmitState('idle');
     setSubmitMessage('');
     setSubmissionMode(options?.mode ?? 'contact');
     setSelectedBookingDate(options?.preferredDate ?? null);
+    if (options?.preferredTime) {
+      setSelectedBookingTime(options.preferredTime);
+    }
     setView('message');
     if (overrides) {
       setMessageForm((current) => ({
@@ -134,6 +421,36 @@ export default function ContactPageClient() {
         ...overrides,
       }));
     }
+  }
+
+  function openBookingInfoView(returnView: 'initial' | 'message' = 'initial') {
+    setSubmitState('idle');
+    setSubmitMessage('');
+    setBookingInfoReturnView(returnView);
+    if (!selectedBookingDate) {
+      setDisplayedMonth(defaultCalendarMonth);
+      setSelectedBookingDate(defaultBookingDate);
+      setSelectedBookingTime(defaultBookingTime);
+    }
+    setView('bookingInfo');
+  }
+
+  function changeDisplayedMonth(offset: number) {
+    const nextMonth = shiftCalendarMonth(displayedMonth, offset);
+    const nextAvailableDate = findFirstAvailableDate(nextMonth);
+
+    setDisplayedMonth(nextMonth);
+
+    if (nextAvailableDate) {
+      setSelectedBookingDate(nextAvailableDate);
+    }
+  }
+
+  function moveSelectedTime(direction: -1 | 1) {
+    const currentIndex = Math.max(0, timeOptions.indexOf(selectedBookingTime as (typeof timeOptions)[number]));
+    const nextIndex = Math.min(timeOptions.length - 1, Math.max(0, currentIndex + direction));
+
+    setSelectedBookingTime(timeOptions[nextIndex]);
   }
 
   async function handleMessageSubmit(event: FormEvent<HTMLFormElement>) {
@@ -148,11 +465,19 @@ export default function ContactPageClient() {
           throw new Error('Merci de selectionner une date pour le rendez-vous.');
         }
 
-        await sendBooking({
+        const bookingPayload = {
           ...messageForm,
           preferred_date: selectedBookingDate,
-          preferred_time: '15:00',
-        });
+          preferred_time: selectedBookingTime,
+        };
+
+        if (typeof window !== 'undefined') {
+          window.sessionStorage.setItem(pendingBookingStorageKey, JSON.stringify(bookingPayload));
+        }
+
+        const checkoutUrl = await startBookingCheckout(bookingPayload);
+        window.location.assign(checkoutUrl);
+        return;
       } else {
         await sendContact(messageForm);
       }
@@ -179,6 +504,26 @@ export default function ContactPageClient() {
 
         <div className="relative z-10">
           <Navbar />
+
+          {paymentNotice ? (
+            <section className="relative z-20 px-4 pt-6 sm:px-6">
+              <div className="mx-auto max-w-[1040px] rounded-[28px] border border-[#003300]/10 bg-white/90 px-5 py-5 shadow-[0px_12px_40px_rgba(0,0,0,0.08)] backdrop-blur sm:px-7">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.18em] text-[#406640]`}>
+                      Stripe
+                    </p>
+                    <h2 className={`${ebGaramond.className} text-[34px] leading-[0.95] text-[#003300]`}>
+                      {paymentNotice.title}
+                    </h2>
+                  </div>
+                  <p className={`${geist.className} max-w-[620px] text-[14px] font-medium leading-[1.5] text-[#003300]/70`}>
+                    {paymentNotice.copy}
+                  </p>
+                </div>
+              </div>
+            </section>
+          ) : null}
 
           <section className="relative w-full overflow-hidden" style={{ minHeight: '100vh' }}>
             <div className="relative z-10 flex flex-col items-center">
@@ -216,7 +561,7 @@ export default function ContactPageClient() {
                 <div className="flex w-full max-w-[546px] flex-col items-center gap-[8.56px]">
                   <button
                     type="button"
-                    onClick={() => setView('subjects')}
+                    onClick={() => openBookingInfoView()}
                     className={`${poppins.className} flex h-[60px] w-full items-center justify-center rounded-[59.89px] bg-[#BBCB2E] text-[16px] font-medium text-[#003300] transition hover:brightness-95 sm:h-[72px] sm:text-[18px] md:h-[88.12px] md:text-[20.53px]`}
                   >
                     Rendez-vous
@@ -236,6 +581,118 @@ export default function ContactPageClient() {
               ) : null}
             </div>
           </section>
+
+          {view === 'bookingInfo' ? (
+            <section className="absolute inset-0 z-20 flex items-center justify-center px-4 py-10 sm:px-6">
+              <div className="relative w-full max-w-[1040px] overflow-hidden rounded-[32px] bg-white shadow-[0px_28px_90px_rgba(0,51,0,0.22)] sm:rounded-[42px]">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(187,203,46,0.26),_transparent_42%),radial-gradient(circle_at_bottom_right,_rgba(0,51,0,0.08),_transparent_38%)]" />
+                <div className="relative grid gap-0 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
+                  <div className="px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+                    <p className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.2em] text-[#406640]`}>
+                      Rendez-vous RNJ Advisory
+                    </p>
+                    <h2
+                      className={`${ebGaramond.className} mt-3 max-w-[560px] text-[clamp(42px,6vw,84px)] leading-[0.92] text-[#003300]`}
+                    >
+                      Frais de dossier
+                    </h2>
+                    <p
+                      className={`${geist.className} mt-4 max-w-[560px] text-[15px] font-medium leading-[1.65] text-[#003300]/68 sm:text-[16px]`}
+                    >
+                      Avant de confirmer votre rendez-vous, nous ouvrons d abord votre dossier.
+                      Cette etape inclut des frais de dossier regles via Stripe, puis vous pourrez
+                      choisir le sujet et la disponibilite qui vous conviennent.
+                    </p>
+
+                    <div className="mt-8 grid gap-4 md:grid-cols-3">
+                      {bookingInfoHighlights.map((item) => (
+                        <div
+                          key={item.title}
+                          className="rounded-[24px] border border-[#003300]/10 bg-[#F7FAEA] px-5 py-5 shadow-[0px_12px_28px_rgba(0,51,0,0.06)]"
+                        >
+                          <p className={`${geist.className} text-[11px] font-semibold uppercase tracking-[0.18em] text-[#406640]`}>
+                            {item.eyebrow}
+                          </p>
+                          <h3 className={`${geist.className} mt-3 text-[18px] font-semibold text-[#003300]`}>
+                            {item.title}
+                          </h3>
+                          <p className={`${geist.className} mt-2 text-[13px] font-medium leading-[1.6] text-[#003300]/60`}>
+                            {item.copy}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                      <button
+                        type="button"
+                        onClick={() => setView('subjects')}
+                        className={`${poppins.className} inline-flex h-[58px] items-center justify-center rounded-full bg-[#003300] px-8 text-[16px] font-medium text-white transition hover:opacity-92 sm:h-[62px] sm:text-[17px]`}
+                      >
+                        Voir les disponibilites
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setView(bookingInfoReturnView)}
+                        className={`${poppins.className} inline-flex h-[58px] items-center justify-center rounded-full border border-[#003300]/14 bg-white px-8 text-[16px] font-medium text-[#003300] transition hover:bg-[#F0F3F0] sm:h-[62px] sm:text-[17px]`}
+                      >
+                        Retour
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="relative flex flex-col justify-between bg-[#003300] px-6 py-8 text-white sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+                    <div className="absolute -right-12 top-[-22px] h-40 w-40 rounded-full border border-white/12 bg-white/8 blur-xl" />
+                    <div className="absolute bottom-[-28px] left-[-18px] h-40 w-40 rounded-full bg-[#BBCB2E]/16 blur-2xl" />
+
+                    <div className="relative z-10">
+                      <p className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.2em] text-white/55`}>
+                        Montant a regler
+                      </p>
+                      <div className="mt-5 rounded-[30px] border border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,0.12),rgba(187,203,46,0.16))] px-6 py-7">
+                        <p className={`${geist.className} text-[13px] font-medium text-white/65`}>
+                          Frais de dossier
+                        </p>
+                        <div className="mt-3 flex items-end gap-3">
+                          <span className={`${ebGaramond.className} text-[72px] leading-none text-[#DDE597] sm:text-[88px]`}>
+                            500
+                          </span>
+                          <span className={`${geist.className} pb-3 text-[18px] font-semibold uppercase tracking-[0.12em] text-white/78`}>
+                            EUR
+                          </span>
+                        </div>
+                        <p className={`${geist.className} mt-3 text-[14px] font-medium leading-[1.6] text-white/70`}>
+                          Paiement securise via Stripe avant validation du dossier et prise en
+                          charge du rendez-vous.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="relative z-10 mt-8 space-y-3">
+                      <div className="rounded-[20px] border border-white/12 bg-white/6 px-4 py-4">
+                        <p className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.18em] text-[#BBCB2E]`}>
+                          Inclus
+                        </p>
+                        <p className={`${geist.className} mt-2 text-[14px] font-medium leading-[1.6] text-white/72`}>
+                          Ouverture du dossier, qualification de la demande et activation du flux de
+                          reservation.
+                        </p>
+                      </div>
+                      <div className="rounded-[20px] border border-white/12 bg-white/6 px-4 py-4">
+                        <p className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.18em] text-[#BBCB2E]`}>
+                          Confirmation
+                        </p>
+                        <p className={`${geist.className} mt-2 text-[14px] font-medium leading-[1.6] text-white/72`}>
+                          Vous choisissez ensuite le sujet, la date souhaitee et vous finalisez la
+                          demande depuis le formulaire.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          ) : null}
 
           {view === 'subjects' && (() => {
             const cards = [
@@ -324,15 +781,17 @@ export default function ContactPageClient() {
                       <button
                         type="button"
                         onClick={() =>
-                          openMessageView({
-                            subject: selectedSubject || 'Rendez-vous',
-                            message: `Je souhaite planifier un rendez-vous le ${
-                              selectedDay ?? 15
-                            } avril 2026.`,
-                          }, {
-                            mode: 'booking',
-                            preferredDate: formatPreferredDate(selectedDay),
-                          })
+                          openMessageView(
+                            {
+                              subject: selectedSubject || 'Rendez-vous',
+                              message: formatBookingMessage(selectedBookingDate, selectedBookingTime),
+                            },
+                            {
+                              mode: 'booking',
+                              preferredDate: selectedBookingDate,
+                              preferredTime: selectedBookingTime,
+                            }
+                          )
                         }
                         className={`${ebGaramond.className} flex h-[50px] w-[170px] items-center justify-center rounded-[290px] bg-[#BBCB2E]/30 text-[18px] font-bold text-[#003300] transition hover:bg-[#BBCB2E]/50 sm:h-[56px] sm:w-[200px] sm:text-[20px] md:h-[64px] md:w-[220px] md:text-[22.52px]`}
                       >
@@ -353,36 +812,105 @@ export default function ContactPageClient() {
 
                   <div className="flex w-full max-w-[522px] flex-col items-center rounded-[20px] border-2 border-[#003300] bg-white px-4 py-8 shadow-[4px_4px_0px_#003300] sm:rounded-[30.9px] sm:px-8 sm:py-[61px]">
                     <div className="flex w-full max-w-[455px] flex-col gap-8 sm:gap-[40.78px]">
-                      <div className="flex items-start justify-between">
+                      <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
                         <div className="flex flex-col">
-                          <span className={`${poppins.className} text-[22px] leading-[31px] text-[#003300] sm:text-[29.66px]`}>
+                          <span className={`${poppins.className} text-[22px] font-normal leading-[31px] text-[#003300] sm:text-[29.66px]`}>
                             calendrier
                           </span>
                           <div className="flex items-center gap-2">
-                            <span className="text-[10px] text-[#003300]">&#9664;</span>
+                            <button
+                              type="button"
+                              onClick={() => changeDisplayedMonth(-1)}
+                              className="flex h-6 w-6 items-center justify-center text-[10px] text-[#003300] transition hover:opacity-60"
+                              aria-label="Mois precedent"
+                            >
+                              &#9664;
+                            </button>
                             <span className={`${poppins.className} text-[12px] font-semibold text-[#003300]/40 sm:text-[14.83px]`}>
-                              Avril 2026
+                              {formatMonthLabel(displayedMonth)}
                             </span>
-                            <span className="text-[10px] text-[#003300]">&#9654;</span>
+                            <button
+                              type="button"
+                              onClick={() => changeDisplayedMonth(1)}
+                              className="flex h-6 w-6 items-center justify-center text-[10px] text-[#003300] transition hover:opacity-60"
+                              aria-label="Mois suivant"
+                            >
+                              &#9654;
+                            </button>
                           </div>
                         </div>
-                        <div className="flex items-center gap-1 rounded-[9.27px] bg-[#E0E5C0]/50 px-2.5 py-2.5">
-                          <div className={`${poppins.className} flex h-[32px] w-[32px] items-center justify-center rounded-[9.27px] bg-[#C1CB82] text-[15px] text-[#003300] sm:h-[40px] sm:w-[40px] sm:text-[19.77px]`}>
-                            {selectedDay ?? 15}
-                          </div>
-                          <span className={`${poppins.className} text-[15px] text-[#003300] sm:text-[19.77px]`}>
-                            :
-                          </span>
-                          <div className={`${poppins.className} flex h-[32px] w-[32px] items-center justify-center rounded-[9.27px] bg-[#C1CB82] text-[15px] text-[#003300] sm:h-[40px] sm:w-[40px] sm:text-[19.77px]`}>
-                            00
-                          </div>
-                          <div className="ml-1 flex flex-col gap-[2px]">
-                            <div className={`${poppins.className} flex h-[16px] w-[26px] items-center justify-center rounded-[5.56px] bg-[#C1CB82]/50 text-[9px] text-[#003300] sm:h-[18.54px] sm:w-[31.51px] sm:text-[12.36px]`}>
-                              AM
+
+                        <div className="flex items-center gap-[6px] self-start rounded-[9.27px] bg-[#E0E5C0]/70 px-[10px] py-[8px]">
+                          <div className="relative flex items-center gap-[4px]">
+                            <div
+                              className={`${poppins.className} flex h-[32px] w-[32px] items-center justify-center rounded-[9.27px] bg-[#C1CB82] text-[15px] text-[#003300] sm:h-[40px] sm:w-[40px] sm:text-[19.77px]`}
+                            >
+                              {selectedHourPart}
                             </div>
-                            <div className={`${poppins.className} flex h-[16px] w-[26px] items-center justify-center rounded-[5.56px] bg-[#C1CB82] text-[9px] text-[#003300] sm:h-[18.54px] sm:w-[31.51px] sm:text-[12.36px]`}>
-                              PM
+                            <span className={`${poppins.className} text-[15px] text-[#003300] sm:text-[19.77px]`}>
+                              :
+                            </span>
+                            <div
+                              className={`${poppins.className} flex h-[32px] w-[32px] items-center justify-center rounded-[9.27px] bg-[#C1CB82] text-[15px] text-[#003300] sm:h-[40px] sm:w-[40px] sm:text-[19.77px]`}
+                            >
+                              {selectedMinutePart}
                             </div>
+                            <div className="ml-1 flex flex-col gap-[2px]">
+                              <div
+                                className={`${poppins.className} flex h-[16px] w-[26px] items-center justify-center rounded-[5.56px] text-[9px] text-[#003300] sm:h-[18.54px] sm:w-[31.51px] sm:text-[12.36px] ${
+                                  isMorningTime ? 'bg-[#C1CB82]' : 'bg-[#C1CB82]/50'
+                                }`}
+                              >
+                                AM
+                              </div>
+                              <div
+                                className={`${poppins.className} flex h-[16px] w-[26px] items-center justify-center rounded-[5.56px] text-[9px] text-[#003300] sm:h-[18.54px] sm:w-[31.51px] sm:text-[12.36px] ${
+                                  isMorningTime ? 'bg-[#C1CB82]/50' : 'bg-[#C1CB82]'
+                                }`}
+                              >
+                                PM
+                              </div>
+                            </div>
+                            <label className="absolute inset-0 cursor-pointer">
+                              <span className="sr-only">Choisir l heure du rendez-vous</span>
+                              <select
+                                value={selectedBookingTime}
+                                onChange={(event) => setSelectedBookingTime(event.target.value)}
+                                className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                                aria-label="Choisir l heure du rendez-vous"
+                              >
+                                {timeOptions.map((time) => (
+                                  <option key={time} value={time}>
+                                    {time}
+                                  </option>
+                                ))}
+                              </select>
+                            </label>
+                          </div>
+
+                          <div className="ml-1 flex flex-col gap-[3px]">
+                            <button
+                              type="button"
+                              onClick={() => moveSelectedTime(-1)}
+                              disabled={selectedTimeIndex === 0}
+                              className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#C1CB82] text-[#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-45"
+                              aria-label="Heure precedente"
+                            >
+                              <svg width="8" height="4" viewBox="0 0 8 4" fill="none" stroke="currentColor" strokeWidth="1.4">
+                                <path d="M1 3 L4 1 L7 3" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => moveSelectedTime(1)}
+                              disabled={selectedTimeIndex === timeOptions.length - 1}
+                              className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#C1CB82] text-[#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-45"
+                              aria-label="Heure suivante"
+                            >
+                              <svg width="8" height="4" viewBox="0 0 8 4" fill="none" stroke="currentColor" strokeWidth="1.4">
+                                <path d="M1 1 L4 3 L7 1" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -404,26 +932,23 @@ export default function ContactPageClient() {
                                 return <div key={di} className="h-[42px] sm:h-[58.58px]" />;
                               }
 
-                              const isUnavailable = unavailableDays.includes(day);
-                              const isSelected = day === selectedDay;
-                              const isNextMonth = wi === 4 && (day === 1 || day === 2);
+                              const isSelected = day.iso === selectedBookingDate;
 
                               return (
                                 <button
                                   key={di}
                                   type="button"
-                                  onClick={() => !isUnavailable && setSelectedDay(day)}
+                                  onClick={() => !day.isUnavailable && setSelectedBookingDate(day.iso)}
                                   className={`${poppins.className} flex h-[42px] w-full items-center justify-center rounded-full text-[11px] transition sm:h-[58.58px] sm:text-[12.57px] ${
-                                    isUnavailable
+                                    day.isUnavailable
                                       ? 'border border-dashed border-[#B3C2B3] text-[#B3C2B3]'
                                       : isSelected
                                         ? 'bg-[#DDE597] font-semibold text-[#003300]'
-                                        : isNextMonth
-                                          ? 'bg-[#EEF2CA]/50 text-[#003300]'
-                                          : 'bg-[#EEF2CA] text-[#003300]'
+                                        : 'bg-[#EEF2CA] text-[#003300] hover:bg-[#E4ECA8]'
                                   }`}
+                                  aria-label={`Choisir le ${day.day} ${monthLabels[displayedMonth.month].toLowerCase()} ${displayedMonth.year}`}
                                 >
-                                  {day}
+                                  {day.day}
                                 </button>
                               );
                             })}
@@ -474,7 +999,7 @@ export default function ContactPageClient() {
                           <div className="grid gap-3 sm:grid-cols-2">
                             <button
                               type="button"
-                              onClick={() => setView('subjects')}
+                              onClick={() => openBookingInfoView('message')}
                               className={`${poppins.className} flex h-[60px] items-center justify-center rounded-[70px] bg-[#BBCB2E] px-6 text-[18px] font-medium text-[#003300] transition hover:brightness-95 sm:h-[72px] sm:text-[22px]`}
                             >
                               Rendez-vous
@@ -528,7 +1053,17 @@ export default function ContactPageClient() {
                                 </div>
                                 {submissionMode === 'booking' && selectedBookingDate ? (
                                   <div className="inline-flex max-w-full rounded-full border border-[#003300]/15 bg-white/80 px-4 py-2 text-[13px] font-medium text-[#003300]">
-                                    Date souhaitee: {selectedBookingDate}
+                                    Date souhaitee: {formatLongDateLabel(selectedBookingDate)}
+                                  </div>
+                                ) : null}
+                                {submissionMode === 'booking' ? (
+                                  <div className="inline-flex max-w-full rounded-full border border-[#003300]/15 bg-white/80 px-4 py-2 text-[13px] font-medium text-[#003300]">
+                                    Heure souhaitee: {selectedBookingTime}
+                                  </div>
+                                ) : null}
+                                {submissionMode === 'booking' ? (
+                                  <div className="inline-flex max-w-full rounded-full border border-[#003300]/15 bg-[#003300] px-4 py-2 text-[13px] font-semibold text-white">
+                                    Frais de dossier: {BOOKING_FEE_LABEL}
                                   </div>
                                 ) : null}
                               </div>
@@ -549,8 +1084,9 @@ export default function ContactPageClient() {
                           <p
                             className={`${geist.className} mt-3 max-w-[360px] text-[14px] font-medium leading-[1.45] text-[#003300]/45`}
                           >
-                            Share your question, context, or objective and we&apos;ll get back to
-                            you quickly.
+                            {submissionMode === 'booking'
+                              ? `Completez vos coordonnees puis reglez les frais de dossier de ${BOOKING_FEE_LABEL} via Stripe pour confirmer la demande de rendez-vous.`
+                              : "Share your question, context, or objective and we'll get back to you quickly."}
                           </p>
                         </div>
 
@@ -636,15 +1172,60 @@ export default function ContactPageClient() {
                           </p>
                         ) : null}
 
+                        {submissionMode === 'booking' ? (
+                          <div className="overflow-hidden rounded-[24px] border border-[#003300]/10 bg-[linear-gradient(145deg,#F7FAEA,#E4ECA8)]">
+                            <div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_220px]">
+                              <div className="px-5 py-5 sm:px-6">
+                                <p className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.18em] text-[#406640]`}>
+                                  Frais de dossier
+                                </p>
+                                <p className={`${geist.className} mt-2 text-[14px] font-medium leading-[1.6] text-[#003300]/72`}>
+                                  Le paiement Stripe des frais de dossier est demande avant
+                                  l&apos;enregistrement definitif du rendez-vous.
+                                </p>
+                                <div className="mt-4 rounded-[16px] bg-white/80 px-4 py-3">
+                                  <p className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.16em] text-[#406640]`}>
+                                    Rendez-vous choisi
+                                  </p>
+                                  <p className={`${geist.className} mt-2 text-[14px] font-medium text-[#003300]`}>
+                                    {formatLongDateLabel(selectedBookingDate)} a {selectedBookingTime}
+                                  </p>
+                                </div>
+                                <div className="mt-4 flex flex-wrap gap-2">
+                                  <div className="inline-flex rounded-full border border-[#003300]/10 bg-white/80 px-3 py-2 text-[12px] font-semibold text-[#003300]">
+                                    Paiement securise Stripe
+                                  </div>
+                                  <div className="inline-flex rounded-full border border-[#003300]/10 bg-white/80 px-3 py-2 text-[12px] font-semibold text-[#003300]">
+                                    Validation avant confirmation
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="flex flex-col items-start justify-center border-t border-[#003300]/10 bg-[#003300] px-5 py-5 text-white md:border-l md:border-t-0">
+                                <span className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.18em] text-white/55`}>
+                                  Montant
+                                </span>
+                                <span className={`${ebGaramond.className} mt-2 text-[40px] leading-none text-[#DDE597]`}>
+                                  {BOOKING_FEE_LABEL}
+                                </span>
+                                <span className={`${geist.className} mt-2 text-[13px] font-medium text-white/68`}>
+                                  Ouvrir et traiter votre dossier
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        ) : null}
+
                         <button
                           type="submit"
                           disabled={isSubmitting}
                           className={`${ebGaramond.className} flex h-[72px] w-full items-center justify-center rounded-[70px] bg-[#BBCB2E] text-[28px] font-bold text-[#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60 sm:h-[82px] sm:text-[32px]`}
                         >
                           {isSubmitting
-                            ? 'Envoi...'
+                            ? submissionMode === 'booking'
+                              ? 'Redirection vers Stripe...'
+                              : 'Envoi...'
                             : submissionMode === 'booking'
-                              ? 'Demander le rendez-vous'
+                              ? `Payer ${BOOKING_FEE_LABEL} et reserver`
                               : 'Soumettre'}
                         </button>
                       </form>
@@ -667,17 +1248,13 @@ export default function ContactPageClient() {
             <h2
               className={`${ebGaramond.className} mx-auto max-w-[280px] text-[34px] leading-[0.96] text-[#003300] md:max-w-[420px] md:text-[64px] md:leading-[0.92]`}
             >
-              {submitState === 'success' && submissionMode === 'booking'
-                ? 'Votre demande de rendez-vous a ete envoyee'
-                : 'Votre message a ete envoye'}
+              Votre message a ete envoye
             </h2>
 
             <p
               className={`${geist.className} mx-auto mt-4 max-w-[250px] text-[11px] leading-[1.45] text-[#003300] md:mt-6 md:max-w-[360px] md:text-[15px] md:leading-[22px]`}
             >
-              {submitState === 'success' && submissionMode === 'booking'
-                ? 'Merci. Votre demande est bien recue et apparait maintenant dans le dashboard admin.'
-                : 'Merci pour votre message. Nous l&apos;avons bien recu et nous vous repondrons tres prochainement.'}
+              Merci pour votre message. Nous l&apos;avons bien recu et nous vous repondrons tres prochainement.
             </p>
 
             <button

@@ -1,7 +1,11 @@
 export default function JsonLd() {
+  const organizationId = 'https://rnj-advisory.be/#organization';
+  const websiteId = 'https://rnj-advisory.be/#website';
+
   const organizationData = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': organizationId,
     name: 'RNJ Advisory',
     url: 'https://rnj-advisory.be',
     logo: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg',
@@ -59,6 +63,18 @@ export default function JsonLd() {
     ],
   };
 
+  const websiteData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': websiteId,
+    name: 'RNJ Advisory',
+    url: 'https://rnj-advisory.be',
+    inLanguage: 'fr-BE',
+    publisher: {
+      '@id': organizationId,
+    },
+  };
+
   const serviceData = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -66,9 +82,7 @@ export default function JsonLd() {
     description:
       'Accompagnement stratégique et réglementaire pour acteurs publics, entreprises privées et investisseurs',
     provider: {
-      '@type': 'Organization',
-      name: 'RNJ Advisory',
-      url: 'https://rnj-advisory.be',
+      '@id': organizationId,
     },
     serviceType: [
       'Conseil stratégique',
@@ -86,6 +100,10 @@ export default function JsonLd() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteData) }}
       />
       <script
         type="application/ld+json"

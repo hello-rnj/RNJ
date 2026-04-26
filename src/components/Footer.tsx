@@ -36,6 +36,18 @@ const socialIcons = [
   { name: 'Facebook', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334115/rnj/mask-group-27-5870749d.svg' },
 ];
 
+const footerItemLinks: Record<string, string> = {
+  Accueil: '/',
+  'À propos': '/about',
+  'Notre approche': '/about#approche',
+  "Zones d'intervention": '/#impact-map',
+  'Conseil stratégique': '/services',
+  'Analyse institutionnelle': '/services/analyse-institutionnelle',
+  'Conformité réglementaire': '/services',
+  'Transition énergétique': '/services',
+  "Structuration d'entreprise": '/services',
+};
+
 export default function Footer() {
   return (
     <footer className="relative w-full overflow-hidden bg-[#BBCB2E] px-4 py-10 sm:px-6 md:px-8 md:py-14">
@@ -101,18 +113,39 @@ export default function Footer() {
                       {column.title}
                     </span>
                     <div className="flex flex-col items-start gap-4">
-                      {column.items.map((item) => (
-                        <button
-                          key={item}
-                          type="button"
-                          className="flex items-center gap-3 text-left transition-opacity hover:opacity-100"
-                        >
-                          <div className="h-[6px] w-[6px] rounded-full bg-white" />
-                          <span className="font-[Geist] text-[15px] font-medium leading-5 text-white opacity-80 sm:text-[16px]">
-                            {item}
-                          </span>
-                        </button>
-                      ))}
+                      {column.items.map((item) => {
+                        const href = footerItemLinks[item];
+                        const content = (
+                          <>
+                            <div className="h-[6px] w-[6px] rounded-full bg-white" />
+                            <span className="font-[Geist] text-[15px] font-medium leading-5 text-white opacity-80 sm:text-[16px]">
+                              {item}
+                            </span>
+                          </>
+                        );
+
+                        if (href) {
+                          return (
+                            <Link
+                              key={item}
+                              href={href}
+                              className="flex items-center gap-3 text-left transition-opacity hover:opacity-100"
+                            >
+                              {content}
+                            </Link>
+                          );
+                        }
+
+                        return (
+                          <button
+                            key={item}
+                            type="button"
+                            className="flex items-center gap-3 text-left transition-opacity hover:opacity-100"
+                          >
+                            {content}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                 ))}

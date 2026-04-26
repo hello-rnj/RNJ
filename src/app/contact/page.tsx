@@ -3,6 +3,36 @@ import ContactPageClient from './ContactPageClient';
 
 export { metadata };
 
-export default function ContactPage() {
-  return <ContactPageClient />;
+type ContactPageSearchParams = Promise<{
+  mode?: string | string[];
+  subject?: string | string[];
+  payment?: string | string[];
+}>;
+
+type ContactPageProps = {
+  searchParams: ContactPageSearchParams;
+};
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const resolvedSearchParams = await searchParams;
+  const mode = Array.isArray(resolvedSearchParams.mode)
+    ? resolvedSearchParams.mode[0]
+    : resolvedSearchParams.mode;
+  const subject = Array.isArray(resolvedSearchParams.subject)
+    ? resolvedSearchParams.subject[0]
+    : resolvedSearchParams.subject;
+  const payment = Array.isArray(resolvedSearchParams.payment)
+    ? resolvedSearchParams.payment[0]
+    : resolvedSearchParams.payment;
+  const initialMode = mode === 'message' || mode === 'booking' ? mode : null;
+  const initialPaymentState =
+    payment === 'success' || payment === 'cancelled' ? payment : null;
+
+  return (
+    <ContactPageClient
+      initialMode={initialMode}
+      initialSubject={subject ?? ''}
+      initialPaymentState={initialPaymentState}
+    />
+  );
 }

@@ -1,0 +1,321 @@
+import type { Metadata } from 'next';
+import { EB_Garamond, Poppins } from 'next/font/google';
+import Image from 'next/image';
+import AboutHero from '@/components/AboutHero';
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
+import TeamCard from '@/components/TeamCard';
+
+const ebGaramond = EB_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+});
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  display: 'swap',
+});
+
+export const metadata: Metadata = {
+  title: 'À propos',
+  description:
+    'Découvrez RNJ Advisory, cabinet de conseil stratégique et réglementaire accompagnant entreprises, investisseurs et institutions en Belgique et à l’international.',
+  alternates: {
+    canonical: '/about',
+  },
+  openGraph: {
+    title: 'À propos | RNJ Advisory',
+    description:
+      'RNJ Advisory accompagne entreprises, investisseurs et institutions dans leurs décisions juridiques, réglementaires et stratégiques.',
+    url: 'https://rnj-advisory.be/about',
+    type: 'website',
+    siteName: 'RNJ Advisory',
+    locale: 'fr_FR',
+  },
+};
+
+const values = [
+  {
+    title: 'Rigueur',
+    description:
+      'Une approche exigeante fondée sur l’analyse, la précision juridique et la maîtrise des environnements réglementaires.',
+    background: '#EEF2CA',
+    titleColor: '#406640',
+    textColor: 'rgba(64, 102, 64, 0.55)',
+  },
+  {
+    title: 'Excellence',
+    description: 'Un accompagnement sur mesure, aligné avec les enjeux stratégiques de chaque client.',
+    background: '#CCD862',
+    titleColor: '#406640',
+    textColor: 'rgba(64, 102, 64, 0.55)',
+  },
+  {
+    title: 'Engagement',
+    description:
+      'Une implication durable aux côtés de nos clients pour garantir des résultats concrets et mesurables.',
+    background: '#406640',
+    titleColor: '#CCD862',
+    textColor: 'rgba(204, 216, 98, 0.62)',
+  },
+];
+
+const teamMembers = [
+  {
+    name: 'Nahla Aschi',
+    role: 'ENJ Co Founder, CEO',
+    initials: 'NA',
+    tone: '#EEF2CA',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132758/rnj/nahla-eae48fe8.svg',
+  },
+  {
+    name: 'Ramzi Jelalia',
+    role: 'ENJ Co Founder, CEO',
+    initials: 'RJ',
+    tone: '#DDE597',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132761/rnj/ramzi-05917bd9.svg',
+  },
+  {
+    name: 'Eya Mhamed',
+    role: 'Tech Lead',
+    initials: 'EM',
+    tone: '#CCD862',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132763/rnj/eya-44c9ccac.svg',
+  },
+  {
+    name: 'Chahine Fehri',
+    role: 'Creative Director',
+    initials: 'CF',
+    tone: '#EEF2CA',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132766/rnj/chahine-88336938.svg',
+  },
+];
+
+const approachSteps = [
+  {
+    title: 'Analyse & cadrage',
+    description:
+      'Compréhension approfondie de vos enjeux, de votre environnement et des contraintes réglementaires.',
+  },
+  {
+    title: 'Structuration',
+    description: 'Mise en place de solutions juridiques et stratégiques adaptées à vos objectifs.',
+  },
+  {
+    title: 'Accompagnement',
+    description: 'Suivi opérationnel et conseil continu pour sécuriser vos décisions et vos projets.',
+  },
+];
+
+function SectionIntro({
+  label,
+  eyebrow,
+  dark = false,
+}: {
+  label: string;
+  eyebrow: string;
+  dark?: boolean;
+}) {
+  return (
+    <div className={`${poppins.className} flex flex-col gap-5`}>
+      <h2 className={`text-[28px] font-medium leading-none md:text-[32px] ${dark ? 'text-white' : 'text-black'}`}>
+        {label}
+      </h2>
+      <p className={`max-w-[220px] text-[16px] font-semibold leading-[21px] ${dark ? 'text-white/50' : 'text-black/50'}`}>
+        {eyebrow}
+      </p>
+    </div>
+  );
+}
+
+export default function AboutPage() {
+  return (
+    <main className="min-h-screen bg-white text-[#003300]">
+      <Navbar />
+      <AboutHero titleClassName={ebGaramond.className} />
+
+      <section className="relative h-[360px] overflow-hidden bg-[#737373] md:h-[500px] lg:h-[569px]">
+        <Image
+          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132770/rnj/group-349020-a82fd32c.svg"
+          alt="Architecture institutionnelle"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center brightness-[1.45] contrast-[1.2] saturate-[1.15]"
+        />
+      </section>
+
+      <section id="mission" className="bg-black px-4 py-20 sm:px-6 lg:px-8 lg:py-[72px]">
+        <div className="mx-auto grid max-w-[1461px] gap-12 lg:grid-cols-[minmax(220px,0.35fr)_1fr] lg:items-start">
+          <SectionIntro label="//Notre mission" eyebrow="Accompagnement sur mesure" dark />
+          <p className={`${poppins.className} max-w-[803px] text-[28px] font-medium leading-[1.16] text-[#BBCB2E] md:text-[36px] md:leading-[40px] lg:justify-self-end`}>
+            Sécuriser leurs projets et structurer leur croissance, c’est permettre à nos clients d’évoluer avec
+            confiance dans des environnements juridiques et réglementaires complexes.
+          </p>
+        </div>
+      </section>
+
+      <section id="valeurs" className="px-4 py-20 sm:px-6 lg:px-8 lg:py-[104px]">
+        <div className="mx-auto grid max-w-[1461px] gap-12 lg:grid-cols-[minmax(220px,0.32fr)_1fr]">
+          <SectionIntro label="//Nos valeurs" eyebrow="Exigence professionnelle" />
+          <div className="grid gap-4 md:grid-cols-3">
+            {values.map((value) => (
+              <article
+                key={value.title}
+                className="flex min-h-[307px] flex-col justify-end rounded-[8px] p-8"
+                style={{ background: value.background }}
+              >
+                <h3 className={`${poppins.className} text-[32px] font-medium leading-none`} style={{ color: value.titleColor }}>
+                  {value.title}
+                </h3>
+                <p className={`${poppins.className} mt-5 max-w-[280px] text-[12px] font-medium leading-4`} style={{ color: value.textColor }}>
+                  {value.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="equipe" className="px-4 pb-20 sm:px-6 lg:px-8 lg:pb-[118px]">
+        <div className="mx-auto max-w-[1461px]">
+          <div className="mb-16 grid gap-8 lg:grid-cols-[minmax(240px,0.45fr)_1fr]">
+            <h2 className={`${poppins.className} text-[32px] font-medium leading-[38px] text-black`}>{'//Notre équipe'}</h2>
+            <p className={`${poppins.className} max-w-[455px] text-[15px] font-medium leading-5 text-black/70`}>
+              Une équipe de professionnels expérimentés, forte d’un parcours solide et d’une expertise reconnue.
+            </p>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            {teamMembers.map((member) => (
+              <TeamCard
+                key={member.name}
+                name={member.name}
+                role={member.role}
+                initials={member.initials}
+                tone={member.tone}
+                image={member.image}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto h-px max-w-[1157px] bg-black/10" />
+
+      <section id="approche" className="px-4 py-20 sm:px-6 lg:px-8 lg:py-[92px]">
+        <div className="mx-auto max-w-[1461px]">
+          <div className="mb-16 grid gap-8 lg:grid-cols-[minmax(260px,0.48fr)_1fr]">
+            <h2 className={`${poppins.className} text-[32px] font-medium leading-none text-black`}>{'//Notre approche'}</h2>
+            <p className={`${poppins.className} max-w-[635px] text-[15px] font-medium leading-5 text-black/70`}>
+              Nous adoptons une méthodologie structurée, adaptée à chaque contexte, afin de garantir des décisions
+              sécurisées et une exécution efficace.
+            </p>
+          </div>
+
+          <div className="grid gap-12 lg:grid-cols-[435px_1fr] lg:items-start">
+            <div className="relative aspect-[435/382] overflow-hidden rounded-[8px] bg-[#D9D9D9]">
+              <Image
+                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132773/rnj/business-meeting-background-b7be96e9.jpg"
+                alt="Réunion de conseil stratégique"
+                fill
+                sizes="(max-width: 1024px) 92vw, 435px"
+                className="object-cover"
+              />
+            </div>
+
+            <div className="flex flex-col">
+              {approachSteps.map((step) => (
+                <article key={step.title} className="grid gap-4 border-b border-[#D9D9D9] py-10 first:pt-0 md:grid-cols-[180px_1fr] md:gap-16">
+                  <h3 className="font-[Geist] text-[16px] font-medium leading-[21px] text-black">{step.title}</h3>
+                  <p className="max-w-[335px] font-[Geist] text-[13px] font-medium leading-[17px] text-black/50">{step.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#003300] px-4 py-6 sm:px-6">
+        <div className="mx-auto max-w-[1512px]">
+          <Image
+            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132774/rnj/frame-16-8d976706.svg"
+            alt="Partenaires et références"
+            width={1512}
+            height={111}
+            sizes="100vw"
+            className="h-auto w-full"
+          />
+        </div>
+      </section>
+
+      <section id="contact-about" className="px-4 py-20 sm:px-6 lg:px-8 lg:py-[116px]">
+        <div className="mx-auto grid max-w-[1155px] gap-12 lg:grid-cols-[336px_1fr] lg:items-start lg:gap-[165px]">
+          <div className="flex flex-col gap-10">
+            <h2 className={`${poppins.className} text-[52px] font-normal leading-none text-black md:text-[64px]`}>
+              Reach out
+            </h2>
+            <p className={`${poppins.className} text-[16px] font-normal leading-[22px] text-black/60`}>
+              Échangez avec nos experts et obtenez un accompagnement adapté à vos enjeux.
+            </p>
+          </div>
+
+          <form action="/contact" className="bg-[#F7FCFF] p-7 shadow-[2px_4px_42px_rgba(0,0,0,0.19)] md:p-10">
+            <div className="mb-14">
+              <div className="flex items-center justify-between gap-8 px-4 font-[Geist] text-[20px] font-medium leading-6 md:text-[24px]">
+                <span className="text-[#003300]">Entrepreneuriat</span>
+                <span className="hidden text-[#BFCCBF] sm:inline">Institutionnel</span>
+              </div>
+              <div className="mt-8 h-1 bg-[#BFCCBF]">
+                <div className="h-full w-1/2 bg-[#003300]" />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-10">
+              {['*Nom', 'Prenom', 'Email'].map((placeholder) => (
+                <label key={placeholder} className="block border-b-2 border-[#BFCCBF] pb-5">
+                  <span className="sr-only">{placeholder}</span>
+                  <input
+                    name={placeholder.replace('*', '').toLowerCase()}
+                    placeholder={placeholder}
+                    className="w-full bg-transparent font-[Geist] text-[20px] font-normal leading-6 text-[#003300] outline-none placeholder:text-[#003300]/70"
+                  />
+                </label>
+              ))}
+              <label className="block border-b-2 border-[#BFCCBF] pb-5">
+                <span className="sr-only">Messages</span>
+                <textarea
+                  name="message"
+                  rows={4}
+                  placeholder="Messages"
+                  className="w-full resize-none bg-transparent font-[Geist] text-[20px] font-normal leading-6 text-[#003300] outline-none placeholder:text-[#003300]/70"
+                />
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              className="mt-14 flex h-[72px] w-full items-center justify-center rounded-[8px] bg-[#BBCB2E] font-[Geist] text-[24px] font-medium leading-6 text-[#003300] transition hover:bg-[#aeba2a]"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section className="relative h-[540px] overflow-hidden bg-[#003300] md:h-[660px]">
+        <Image
+          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132776/rnj/beautiful-architecture-building-exterior-cityscape-2026-01-05-01-06-47-utc-2-8e38423b.svg"
+          alt="Ville et architecture"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+      </section>
+
+      <Footer />
+    </main>
+  );
+}

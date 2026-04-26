@@ -1,5 +1,7 @@
 services:
   frontend:
+    env_file:
+      - .env.production
     build:
       context: .
       dockerfile: Dockerfile.frontend
@@ -16,6 +18,8 @@ services:
     restart: unless-stopped
 
   backend:
+    env_file:
+      - backend/.env
     build:
       context: ./backend
       dockerfile: Dockerfile

@@ -1,103 +1,15 @@
 {
   "version": 1,
-  "generatedAt": "2026-04-16T10:30:28.482Z",
+  "generatedAt": "2026-04-25T16:29:04.006Z",
   "cloudName": "dmrtdo9z3",
   "folder": "rnj",
   "assets": [
     {
-      "repoPath": "public/optimized/bg-1.webp",
-      "publicId": "rnj/optimized/bg-1-d0c5568b",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335426/rnj/optimized/bg-1-d0c5568b.webp",
+      "repoPath": "public/Group 527.svg",
+      "publicId": "rnj/group-527-95a77a63",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777134540/rnj/group-527-95a77a63.svg",
       "references": [
-        "/optimized/bg-1.webp"
-      ],
-      "sourceFiles": [
-        "src/app/HomePageClient.tsx"
-      ]
-    },
-    {
-      "repoPath": "public/optimized/business-meeting-2026-01-08-00-07-57-utc-3.webp",
-      "publicId": "rnj/optimized/business-meeting-2026-01-08-00-07-57-utc-3-971f8e8a",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335424/rnj/optimized/business-meeting-2026-01-08-00-07-57-utc-3-971f8e8a.webp",
-      "references": [
-        "/optimized/business-meeting-2026-01-08-00-07-57-utc-3.webp"
-      ],
-      "sourceFiles": [
-        "src/app/HomePageClient.tsx"
-      ]
-    },
-    {
-      "repoPath": "public/optimized/frame-559.webp",
-      "publicId": "rnj/optimized/frame-559-7811d1b0",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335427/rnj/optimized/frame-559-7811d1b0.webp",
-      "references": [
-        "/optimized/frame-559.webp"
-      ],
-      "sourceFiles": [
-        "src/app/HomePageClient.tsx"
-      ]
-    },
-    {
-      "repoPath": "public/optimized/group-541-1.webp",
-      "publicId": "rnj/optimized/group-541-1-5b55b5e0",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335425/rnj/optimized/group-541-1-5b55b5e0.webp",
-      "references": [
-        "/optimized/group-541-1.webp"
-      ],
-      "sourceFiles": [
-        "src/app/HomePageClient.tsx"
-      ]
-    },
-    {
-      "repoPath": "public/optimized/group-541-2.webp",
-      "publicId": "rnj/optimized/group-541-2-59ca9193",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335426/rnj/optimized/group-541-2-59ca9193.webp",
-      "references": [
-        "/optimized/group-541-2.webp"
-      ],
-      "sourceFiles": [
-        "src/app/HomePageClient.tsx"
-      ]
-    },
-    {
-      "repoPath": "public/optimized/group-65.webp",
-      "publicId": "rnj/optimized/group-65-16f18ed1",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335427/rnj/optimized/group-65-16f18ed1.webp",
-      "references": [
-        "/optimized/group-65.webp"
-      ],
-      "sourceFiles": [
-        "src/app/HomePageClient.tsx"
-      ]
-    },
-    {
-      "repoPath": "public/optimized/group-of-business-people-discussing-in-meeting-2026-01-05-00-38-48-utc-1.webp",
-      "publicId": "rnj/optimized/group-of-business-people-discussing-in-meeting-2026-01-05-00-38-48-utc-1-a9d430a2",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335423/rnj/optimized/group-of-business-people-discussing-in-meeting-2026-01-05-00-38-48-utc-1-a9d430a2.webp",
-      "references": [
-        "/optimized/group-of-business-people-discussing-in-meeting-2026-01-05-00-38-48-utc-1.webp"
-      ],
-      "sourceFiles": [
-        "src/app/HomePageClient.tsx"
-      ]
-    },
-    {
-      "repoPath": "public/optimized/modern-coworking-space-with-comfortable-chairs-and-2026-01-09-00-01-33-utc-2.webp",
-      "publicId": "rnj/optimized/modern-coworking-space-with-comfortable-chairs-and-2026-01-09-00-01-33-utc-2-fc092aaa",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335425/rnj/optimized/modern-coworking-space-with-comfortable-chairs-and-2026-01-09-00-01-33-utc-2-fc092aaa.webp",
-      "references": [
-        "/optimized/modern-coworking-space-with-comfortable-chairs-and-2026-01-09-00-01-33-utc-2.webp"
-      ],
-      "sourceFiles": [
-        "src/app/HomePageClient.tsx"
-      ]
-    },
-    {
-      "repoPath": "public/optimized/multinational-company-headquarters-office-with-a-b-2026-01-08-02-30-05-utc-1.webp",
-      "publicId": "rnj/optimized/multinational-company-headquarters-office-with-a-b-2026-01-08-02-30-05-utc-1-bb7b9def",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335423/rnj/optimized/multinational-company-headquarters-office-with-a-b-2026-01-08-02-30-05-utc-1-bb7b9def.webp",
-      "references": [
-        "/optimized/multinational-company-headquarters-office-with-a-b-2026-01-08-02-30-05-utc-1.webp"
+        "/Group 527.svg"
       ],
       "sourceFiles": [
         "src/app/HomePageClient.tsx"

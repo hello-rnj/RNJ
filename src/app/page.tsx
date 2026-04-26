@@ -1,8 +1,14 @@
+import { metadata } from './metadata';
+import HomePageStructuredData from '@/components/HomePageStructuredData';
 import HomePageClient from './HomePageClient';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export { metadata };
 
 export default function HomePage() {
-  return <HomePageClient />;
+  return (
+    <>
+      <HomePageStructuredData />
+      <HomePageClient />
+    </>
+  );
 }

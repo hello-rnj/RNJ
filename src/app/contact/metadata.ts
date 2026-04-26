@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     url: 'https://rnj-advisory.be/contact',
     images: [
       {
-        url: '/og-contact.jpg',
+        url: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389844/rnj/og-contact-af2e1910.jpg',
         width: 1200,
         height: 630,
         alt: 'Contact RNJ Advisory - Cabinet de conseil',
@@ -36,6 +36,6 @@ export const metadata: Metadata = {
     title: 'Contactez RNJ Advisory',
     description:
       "Notre équipe d'experts vous accompagne dans vos projets stratégiques et réglementaires.",
-    images: ['/twitter-contact.jpg'],
+    images: ['https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389845/rnj/twitter-contact-b57c71ae.jpg'],
   },
 };
