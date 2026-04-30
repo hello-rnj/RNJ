@@ -7,3 +7,5 @@ backend/node_modules
 tmp-*.png
 tmp-*.html
 npm-debug.log
+public/frame-559.svg
+public/mesmerizing-mountain.svg

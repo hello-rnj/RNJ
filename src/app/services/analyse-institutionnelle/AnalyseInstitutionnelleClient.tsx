@@ -28,25 +28,25 @@ const relatedCategories = [
 
 const relatedCards = [
   {
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334093/rnj/group-483-89ee6676.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410422/rnj/group-483-89ee6676.svg',
     year: '2026',
     title: 'Workshop BeCentral : digitalisation durable',
     description: 'Retour sur un échange autour des enjeux de la digitalisation responsable.',
   },
   {
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334095/rnj/group-482-365877a7.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410425/rnj/group-482-365877a7.svg',
     year: '2024',
     title: "Informations de base sur les garanties d'origine (GO).",
     description: "Principes et fonctionnement des garanties d'origine dans le marché de l'énergie.",
   },
   {
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334097/rnj/group-484-04b278f7.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410428/rnj/group-484-04b278f7.svg',
     year: '2025',
     title: 'Accélération de la transition énergétique en Tunisie',
     description: 'Focus sur les initiatives et leviers pour accélérer la transition énergétique.',
   },
   {
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334100/rnj/group-481-8071b8c8.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410430/rnj/group-481-8071b8c8.svg',
     year: '2025',
     title: 'CSR en Tunisie : cadre réglementaire',
     description: "Analyse du cadre juridique et des enjeux liés à l'utilisation du CSR en Tunisie.",
@@ -94,7 +94,7 @@ export default function AnalyseInstitutionnelleClient() {
             <h1
               className={`${ebGaramond.className} mt-4 text-[clamp(28px,7vw,98px)] font-bold leading-[0.95] tracking-[-0.04em] text-white sm:mt-6 md:mt-8 lg:mt-[37.79px] lg:w-[634.32px] lg:text-[98.06px] lg:leading-[93px]`}
             >
-              Analyse institutionnelle
+              Nos projet
             </h1>
 
             <div className="mt-4 flex flex-col items-start gap-3 sm:mt-5 sm:gap-4 md:mt-7 md:gap-[18.39px] lg:mt-[37.79px] lg:w-[765.06px] lg:max-w-none lg:gap-[33px]">
@@ -156,22 +156,27 @@ export default function AnalyseInstitutionnelleClient() {
               </div>
             </div>
 
-            <div className="-mx-5 overflow-x-auto px-5 pb-1 sm:-mx-0 sm:px-0">
+            <div className="overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               <div className="flex gap-3 sm:gap-4 lg:gap-[20.24px]">
-                {relatedCards.map((card) => (
-                  <div
-                    key={card.src}
-                    className="relative h-[280px] w-[250px] shrink-0 overflow-hidden rounded-[16px] bg-[#D9D9D9] sm:h-[340px] sm:w-[300px] sm:rounded-[18px] md:h-[400px] md:w-[350px] lg:h-[447.25px] lg:w-[392.61px] lg:rounded-[20.2377px]"
-                  >
-                    <Image
-                      src={card.src}
-                      alt={card.title}
-                      fill
-                      sizes="(max-width: 640px) 250px, (max-width: 768px) 300px, (max-width: 1024px) 350px, 392px"
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
+                {relatedCards.map((card) => {
+                  const imageOnlyDesktopWidth =
+                    card.title === 'CSR en Tunisie : cadre réglementaire' ? 'lg:w-[391.6px]' : 'lg:w-[392.61px]';
+
+                  return (
+                    <div
+                      key={card.title}
+                      className={`relative h-[280px] w-[250px] shrink-0 sm:h-[340px] sm:w-[300px] md:h-[400px] md:w-[350px] lg:h-[447.25px] ${imageOnlyDesktopWidth}`}
+                    >
+                      <Image
+                        src={card.src}
+                        alt={card.title}
+                        fill
+                        sizes="(max-width: 640px) 250px, (max-width: 768px) 300px, (max-width: 1024px) 350px, 392px"
+                        className="object-cover"
+                      />
+                    </div>
+                  );
+                })}
 
                 <div className="h-[280px] w-[250px] shrink-0 rounded-[16px] bg-[#D9D9D9] sm:h-[340px] sm:w-[300px] sm:rounded-[18px] md:h-[400px] md:w-[350px] lg:h-[447.25px] lg:w-[392.61px] lg:rounded-[20.2377px]" />
               </div>
@@ -197,13 +202,30 @@ export default function AnalyseInstitutionnelleClient() {
         </div>
       </section>
 
+      {/* Team section */}
       {/* Cityscape background + CTA + Footer card — all on mask-group-2 */}
-      <footer
-        className="relative w-full bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: 'url(/mask-group-2.svg)' }}
-      >
+      <footer className="relative w-full overflow-hidden">
+        {/* Background layers from Figma: cityscape + Rectangle 490 gradient */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-1/2 h-[1765.79px] w-[1580px] -translate-x-1/2 bottom-[-82.96px]">
+            <Image
+              src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132776/rnj/beautiful-architecture-building-exterior-cityscape-2026-01-05-01-06-47-utc-2-8e38423b.svg"
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
+          <div
+            className="absolute left-1/2 h-[1676px] w-[1513px] -translate-x-1/2 bottom-[-122px]"
+            style={{
+              background: 'linear-gradient(180deg, rgba(217, 217, 217, 0) 17.92%, #737373 74.61%)',
+            }}
+          />
+        </div>
+
         {/* All overlaid content */}
-        <div className="flex flex-col">
+        <div className="relative z-10 flex flex-col">
           {/* Frame 490 — CTA area (top portion) */}
           <div className="flex flex-1 items-center justify-center px-5 py-10 sm:px-6 sm:py-14 md:py-16 lg:py-20">
             <div className="flex w-full max-w-[1392px] flex-col items-center gap-10 sm:gap-16 md:gap-20 lg:gap-[118px]">
@@ -263,7 +285,7 @@ export default function AnalyseInstitutionnelleClient() {
                   </div>
 
                   {/* Columns */}
-                  <div className="grid w-full max-w-[916px] grid-cols-2 gap-6 sm:gap-8 md:grid-cols-2 xl:grid-cols-4">
+                  <div className="grid w-full max-w-[916px] grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 md:grid-cols-2 xl:grid-cols-3">
                     {/* Cabinet */}
                     <div className="flex flex-col gap-[24px] sm:gap-[32px] md:gap-[40px]">
                       <span className={`${geist.className} text-[16px] font-semibold leading-[16px] text-white sm:text-[18px] md:text-[20px]`}>Cabinet</span>
@@ -290,19 +312,6 @@ export default function AnalyseInstitutionnelleClient() {
                       </div>
                     </div>
 
-                    {/* Secteurs */}
-                    <div className="flex flex-col gap-[24px] sm:gap-[32px] md:gap-[40px]">
-                      <span className={`${geist.className} text-[16px] font-semibold leading-[16px] text-white sm:text-[18px] md:text-[20px]`}>Secteurs</span>
-                      <div className="flex flex-col gap-[17px]">
-                        {['Acteurs publics', 'Investisseurs & bailleurs', 'PME & ASBL', 'Indépendants', 'Exportateurs'].map((item) => (
-                          <button key={item} type="button" className="flex items-center gap-[14px] text-left transition-opacity hover:opacity-100">
-                            <div className="h-[6px] w-[6px] shrink-0 rounded-full bg-white" />
-                            <span className={`${geist.className} text-[13px] font-medium leading-[16px] text-white/80 sm:text-[14px] md:text-[16px]`}>{item}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
                     {/* Publications */}
                     <div className="flex flex-col gap-[24px] sm:gap-[32px] md:gap-[40px]">
                       <span className={`${geist.className} text-[16px] font-semibold leading-[16px] text-white sm:text-[18px] md:text-[20px]`}>Publications</span>
@@ -319,9 +328,9 @@ export default function AnalyseInstitutionnelleClient() {
                 </div>
 
                 {/* Frame 346 — bottom row: social icons | phone + email | copyright */}
-                <div className="mt-10 flex flex-col gap-6 lg:mt-[40px] lg:flex-row lg:items-end lg:justify-between">
+                <div className="mt-10 flex flex-col items-center gap-6 w-full sm:flex-row sm:items-center sm:justify-between sm:gap-[20px] md:gap-[60px] lg:mt-[40px] lg:gap-[215px]">
                   {/* Group 334 — social icons */}
-                  <div className="flex flex-wrap items-center gap-3">
+                  <div className="flex flex-row items-center gap-[20px]">
                     {[
                       { name: 'Instagram', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334109/rnj/mask-group-23-1ce30be9.svg' },
                       { name: 'LinkedIn', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334110/rnj/mask-group-24-fd4f223e.svg' },
@@ -336,28 +345,28 @@ export default function AnalyseInstitutionnelleClient() {
                   </div>
 
                   {/* Frame 345 — contact + copyright row */}
-                  <div className="flex flex-col gap-4 sm:items-end lg:flex-row lg:items-end lg:gap-[142px]">
+                  <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-[20px] md:gap-[78px] lg:gap-[142px] w-full">
                     {/* Frame 336 — phone + email */}
-                    <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-[78px]">
+                    <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-[20px] md:gap-[78px]">
                       {/* Frame 201 — phone */}
-                      <div className="flex items-center gap-[20px]">
+                      <div className="flex flex-row items-center gap-[20px]">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334117/rnj/layer-1-1-8ff14e3f.svg" alt="" className="h-[22px] w-[21.92px]" />
-                        <span className={`${geist.className} text-[13px] font-medium leading-[21px] tracking-[0.05em] text-white sm:text-[15.37px]`}>
+                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310359/rnj/layer-1-27-a0d86191.svg" alt="" className="h-[22px] w-[21.92px] shrink-0" />
+                        <span className={`${geist.className} text-[13px] font-medium leading-[21px] tracking-[0.05em] text-white sm:text-[15.37px] whitespace-nowrap`}>
                           +32 474 03 22 66
                         </span>
                       </div>
                       {/* Frame 202 — email */}
-                      <div className="flex items-center gap-[20px]">
+                      <div className="flex flex-row items-center gap-[20px]">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334119/rnj/layer-1-9cd3c742.svg" alt="" className="h-[15.47px] w-[22px]" />
+                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310361/rnj/layer-1-26-33e2a54e.svg" alt="" className="h-[15.47px] w-[22px] shrink-0" />
                         <span className={`${geist.className} text-[13px] font-medium leading-[21px] tracking-[0.05em] text-white sm:text-[15.37px]`}>
                           info@rnj-advisory.be
                         </span>
                       </div>
                     </div>
                     {/* Copyright */}
-                    <span className={`${geist.className} text-[12px] font-medium leading-[21px] text-white/50 sm:text-[15.37px]`}>
+                    <span className={`${geist.className} text-[12px] font-medium leading-[21px] text-white/50 sm:text-[15.37px] whitespace-nowrap`}>
                       &copy; 2026 RNJ Advisory. Tous droits r&eacute;serv&eacute;s.
                     </span>
                   </div>

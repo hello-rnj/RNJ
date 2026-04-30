@@ -836,8 +836,37 @@
   animation: lightbulbPulse 0.6s ease-in-out;
 }
 
+.lightbulb-hover:hover .lightbulb-lines {
+  opacity: 1;
+}
+
 .lightbulb-active {
   animation: lightbulbPulse 0.6s ease-in-out;
+}
+
+.lightbulb-scroll-active .lightbulb-lines {
+  opacity: 1;
+}
+
+.lightbulb-scroll-active {
+  animation: lightbulbPulse 0.6s ease-in-out;
+}
+
+.contact-btn {
+  transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+  background-color: #DDE597 !important;
+  color: #839705 !important;
+}
+
+.contact-btn:hover .contact-btn-circle {
+  background-color: #839705 !important;
+}
+
+.contact-btn-circle {
+  transition: background-color 0.3s ease;
 }
 
 @keyframes floatIcon {
@@ -1237,7 +1266,8 @@
   left: 0;
   right: 0;
   height: 35%;
-  background: linear-gradient(180deg, rgba(187, 203, 46, 0) 0%, rgba(187, 203, 46, 0.7) 100%);
+  background: url('https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376860/rnj/group-349017-391749d4.svg') no-repeat center bottom;
+  background-size: cover;
   z-index: 2;
   transition: opacity 500ms var(--team-card-ease);
 }

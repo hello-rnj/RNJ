@@ -102,7 +102,7 @@ export default function AboutHero({ titleClassName }: AboutHeroProps) {
         <div className="flex flex-col gap-12">
           <div className="about-hero-tag flex items-center gap-3 font-[Geist] text-[16px] font-medium text-[#003300]">
             <span className="h-2 w-2 rounded-full bg-[#003300]" />
-            <span>About us</span>
+            <span>À propos</span>
           </div>
 
           <div
@@ -124,7 +124,7 @@ export default function AboutHero({ titleClassName }: AboutHeroProps) {
 
             <div className="about-hero-card relative overflow-hidden rounded-[16px] bg-[#D9D9D9] shadow-[0px_2px_20px_rgba(0,0,0,0.2)]">
               <Image
-                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132783/rnj/jpg-1-1-b32bbd33.svg"
+                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310363/rnj/business-people-meeting-to-join-with-partner-team-2026-03-25-03-32-06-utc-10a13933.jpg"
                 alt="Équipe RNJ Advisory"
                 fill
                 priority
@@ -141,10 +141,10 @@ export default function AboutHero({ titleClassName }: AboutHeroProps) {
                 onClick={handleCtaClick}
               >
                 <span className="sr-only">Connect</span>
-                <span className="about-hero-card-cta-label about-hero-card-cta-label-initial font-[Geist] text-[22px] font-bold leading-none">
-                  Our Team
+                <span className="about-hero-card-cta-label about-hero-card-cta-label-initial font-[Geist] text-[16px] font-bold leading-none">
+                  Notre équipe
                 </span>
-                <span className="about-hero-card-cta-label about-hero-card-cta-label-final font-[Geist] text-[22px] font-bold leading-none">
+                <span className="about-hero-card-cta-label about-hero-card-cta-label-final font-[Geist] text-[16px] font-bold leading-none">
                   Connect
                 </span>
               </Link>

@@ -16,6 +16,7 @@ type BookingCheckoutPayload = {
   message: string;
   preferred_date: string;
   preferred_time?: string;
+  profile: string;
 };
 
 function getStripeClient() {
@@ -60,6 +61,7 @@ function parseBookingPayload(payload: unknown): BookingCheckoutPayload | null {
     message: normalizeText(record.message),
     preferred_date: normalizeText(record.preferred_date),
     preferred_time: normalizeText(record.preferred_time) || '15:00',
+    profile: normalizeText(record.profile) || 'other',
   };
 
   if (
@@ -103,6 +105,9 @@ export async function POST(request: NextRequest) {
     const cancelUrl = new URL('/contact', siteUrl);
     cancelUrl.searchParams.set('payment', 'cancelled');
 
+    // Déterminer le montant selon le profil
+    const priceCents = payload.profile === 'institution' ? 50000 : 20000;
+
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       customer_email: payload.email,
@@ -114,7 +119,7 @@ export async function POST(request: NextRequest) {
           quantity: 1,
           price_data: {
             currency: BOOKING_CURRENCY,
-            unit_amount: BOOKING_PRICE_CENTS,
+            unit_amount: priceCents,
             product_data: {
               name: BOOKING_PRODUCT_NAME,
               description: `Frais de dossier pour le rendez-vous du ${payload.preferred_date} a ${payload.preferred_time ?? '15:00'}`,
@@ -127,6 +132,7 @@ export async function POST(request: NextRequest) {
         booking_date: payload.preferred_date,
         booking_time: (payload.preferred_time ?? '15:00').slice(0, 50),
         customer_name: payload.name.slice(0, 255),
+        booking_profile: payload.profile || 'other',
       },
     });
 

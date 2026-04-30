@@ -1,12 +1,18 @@
-import { Metadata } from 'next';
-import AnalyseInstitutionnelleClient from './AnalyseInstitutionnelleClient';
+import type { Metadata } from 'next';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Analyse institutionnelle | RNJ Advisory',
-  description:
-    "Découvrez notre service d'analyse institutionnelle pour comprendre les dynamiques politiques, économiques et réglementaires de vos marchés cibles.",
+  title: 'Analyse Institutionnelle | RNJ Advisory',
+  description: 'Analyse institutionnelle.',
 };
 
 export default function AnalyseInstitutionnellePage() {
-  return <AnalyseInstitutionnelleClient />;
+  return (
+    <div className="flex min-h-screen flex-col bg-[#F7FCFF]">
+      <Navbar />
+      <div className="flex-grow" />
+      <Footer />
+    </div>
+  );
 }

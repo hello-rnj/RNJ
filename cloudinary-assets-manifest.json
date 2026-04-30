@@ -1,19 +1,81 @@
 {
   "version": 1,
-  "generatedAt": "2026-04-25T16:29:04.006Z",
+  "generatedAt": "2026-04-28T21:25:43.815Z",
   "cloudName": "dmrtdo9z3",
   "folder": "rnj",
   "assets": [
     {
-      "repoPath": "public/Group 527.svg",
-      "publicId": "rnj/group-527-95a77a63",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777134540/rnj/group-527-95a77a63.svg",
+      "repoPath": "public/optimized/frame-559.webp",
+      "publicId": "rnj/optimized/frame-559",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410436/rnj/optimized/frame-559.webp",
       "references": [
-        "/Group 527.svg"
+        "/optimized/frame-559.webp"
       ],
       "sourceFiles": [
         "src/app/HomePageClient.tsx"
       ]
+    },
+    {
+      "repoPath": "public/optimized/group-348987.webp",
+      "publicId": "rnj/optimized/group-348987",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410436/rnj/optimized/group-348987.webp",
+      "references": [
+        "/optimized/group-348987.webp"
+      ],
+      "sourceFiles": [
+        "src/app/HomePageClient.tsx"
+      ]
+    },
+    {
+      "repoPath": "public/optimized/mask-group-40.webp",
+      "publicId": "rnj/optimized/mask-group-40",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410436/rnj/optimized/mask-group-40.webp",
+      "references": [
+        "/optimized/mask-group-40.webp"
+      ],
+      "sourceFiles": [
+        "src/app/HomePageClient.tsx"
+      ]
+    },
+    {
+      "repoPath": "public/optimized/mesmerizing-mountain.webp",
+      "publicId": "rnj/optimized/mesmerizing-mountain",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410436/rnj/optimized/mesmerizing-mountain.webp",
+      "references": [
+        "/optimized/mesmerizing-mountain.webp"
+      ],
+      "sourceFiles": [
+        "src/app/HomePageClient.tsx"
+      ]
+    },
+    {
+      "repoPath": "public/optimized/partenariats-public-priv-concessions-image.webp",
+      "publicId": "rnj/optimized/partenariats-public-priv-concessions-image",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410436/rnj/optimized/partenariats-public-priv-concessions-image.webp",
+      "references": [
+        "/optimized/partenariats-public-priv-concessions-image.webp"
+      ],
+      "sourceFiles": [
+        "src/app/HomePageClient.tsx"
+      ]
+    },
+    {
+      "repoPath": "public/optimized/group-349025.webp",
+      "publicId": "rnj/optimized/group-349025",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410436/rnj/optimized/group-349025.webp",
+      "references": [
+        "/optimized/group-349025.webp"
+      ],
+      "sourceFiles": []
+    },
+    {
+      "repoPath": "public/optimized/mask-group-43.webp",
+      "publicId": "rnj/optimized/mask-group-43",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410436/rnj/optimized/mask-group-43.webp",
+      "references": [
+        "/optimized/mask-group-43.webp"
+      ],
+      "sourceFiles": []
     }
   ],
   "failures": []

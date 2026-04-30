@@ -19,10 +19,6 @@ const footerColumns = [
     ],
   },
   {
-    title: 'Secteurs',
-    items: ['Acteurs publics', 'Investisseurs & bailleurs', 'PME & ASBL', 'Indépendants', 'Exportateurs'],
-  },
-  {
     title: 'Publications',
     items: ['Articles', 'Analyses', 'PME & ASBL', 'Études sectorielles'],
   },
@@ -106,7 +102,7 @@ export default function Footer() {
                 </p>
               </div>
 
-              <div className="grid w-full max-w-[916px] grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4">
+              <div className="grid w-full max-w-[916px] grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3">
                 {footerColumns.map((column) => (
                   <div key={column.title} className="flex flex-col gap-6">
                     <span className="font-[Geist] text-[18px] font-semibold text-white sm:text-[20px]">
@@ -152,8 +148,9 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-6 border-t border-white/15 pt-6 lg:flex-row lg:items-end lg:justify-between">
-              <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-col items-center gap-6 border-t border-white/15 pt-6 w-full sm:flex-row sm:items-center sm:justify-between sm:gap-[20px] md:gap-[60px] lg:gap-[215px]">
+              {/* Frame 334 — social icons */}
+              <div className="flex flex-row items-center gap-[20px]">
                 {socialIcons.map((social) => (
                   <div key={social.name} className="relative h-[29.2px] w-[29.2px] overflow-hidden rounded-full">
                     <Image src={social.src} alt={social.name} fill className="object-contain" />
@@ -161,32 +158,31 @@ export default function Footer() {
                 ))}
               </div>
 
-              <div className="flex flex-col gap-5 lg:items-end">
-                <div className="flex flex-col gap-4 sm:items-end">
-                  <span className="font-[Geist] text-[14px] font-medium leading-5 text-white sm:text-[15.37px] sm:leading-[21px]">
-                    Avenue Louise 500, Ixelles, Bruxelles
-                  </span>
-
-                  <div className="flex items-center gap-4">
-                    <div className="relative h-[22px] w-[22px]">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333875/rnj/vector-18-18cc905b.svg" alt="Téléphone" fill className="object-contain" />
+              {/* Frame 345 — contact + copyright row */}
+              <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-[20px] md:gap-[78px] lg:gap-[142px] w-full">
+                {/* Frame 336 — phone + email */}
+                <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-[20px] md:gap-[78px]">
+                  {/* Frame 201 — phone */}
+                  <div className="flex flex-row items-center gap-[20px]">
+                    <div className="relative h-[22px] w-[21.92px] shrink-0">
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310359/rnj/layer-1-27-a0d86191.svg" alt="Téléphone" fill className="object-contain" />
                     </div>
-                    <span className="font-[Geist] text-[14px] font-medium tracking-[0.05em] text-white sm:text-[15.37px]">
+                    <span className="font-[Geist] text-[14px] font-medium tracking-[0.05em] text-white sm:text-[15.37px] whitespace-nowrap">
                       +32 474 03 22 66
                     </span>
                   </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="relative h-[15px] w-[22px]">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333875/rnj/vector-18-18cc905b.svg" alt="E-mail" fill className="object-contain" />
+                  {/* Frame 202 — email */}
+                  <div className="flex flex-row items-center gap-[20px]">
+                    <div className="relative h-[15.47px] w-[22px] shrink-0">
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310361/rnj/layer-1-26-33e2a54e.svg" alt="E-mail" fill className="object-contain" />
                     </div>
                     <span className="break-all font-[Geist] text-[14px] font-medium tracking-[0.05em] text-white sm:text-[15.37px]">
                       info@rnj-advisory.be
                     </span>
                   </div>
                 </div>
-
-                <span className="font-[Geist] text-[13px] font-medium leading-5 text-white opacity-50 sm:text-[15.37px] sm:leading-[21px]">
+                {/* Copyright */}
+                <span className="font-[Geist] text-[13px] font-medium leading-5 text-white opacity-50 sm:text-[15.37px] sm:leading-[21px] whitespace-nowrap">
                   © 2026 RNJ Advisory. Tous droits réservés.
                 </span>
               </div>

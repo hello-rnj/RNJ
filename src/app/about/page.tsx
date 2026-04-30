@@ -1,6 +1,8 @@
-import type { Metadata } from 'next';
+'use client';
+
 import { EB_Garamond, Poppins } from 'next/font/google';
 import Image from 'next/image';
+import { useState } from 'react';
 import AboutHero from '@/components/AboutHero';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
@@ -17,24 +19,6 @@ const poppins = Poppins({
   weight: ['400', '500', '600'],
   display: 'swap',
 });
-
-export const metadata: Metadata = {
-  title: 'À propos',
-  description:
-    'Découvrez RNJ Advisory, cabinet de conseil stratégique et réglementaire accompagnant entreprises, investisseurs et institutions en Belgique et à l’international.',
-  alternates: {
-    canonical: '/about',
-  },
-  openGraph: {
-    title: 'À propos | RNJ Advisory',
-    description:
-      'RNJ Advisory accompagne entreprises, investisseurs et institutions dans leurs décisions juridiques, réglementaires et stratégiques.',
-    url: 'https://rnj-advisory.be/about',
-    type: 'website',
-    siteName: 'RNJ Advisory',
-    locale: 'fr_FR',
-  },
-};
 
 const values = [
   {
@@ -68,7 +52,7 @@ const teamMembers = [
     role: 'ENJ Co Founder, CEO',
     initials: 'NA',
     tone: '#EEF2CA',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132758/rnj/nahla-eae48fe8.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376840/rnj/nahla-eae48fe8.svg',
   },
   {
     name: 'Ramzi Jelalia',
@@ -131,6 +115,8 @@ function SectionIntro({
 }
 
 export default function AboutPage() {
+  const [selectedTab, setSelectedTab] = useState<'entrepreneuriat' | 'institutionnel'>('entrepreneuriat');
+
   return (
     <main className="min-h-screen bg-white text-[#003300]">
       <Navbar />
@@ -188,13 +174,12 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="flex flex-row items-center gap-[18px]">
             {teamMembers.map((member) => (
               <TeamCard
                 key={member.name}
                 name={member.name}
                 role={member.role}
-                initials={member.initials}
                 tone={member.tone}
                 image={member.image}
               />
@@ -218,7 +203,7 @@ export default function AboutPage() {
           <div className="grid gap-12 lg:grid-cols-[435px_1fr] lg:items-start">
             <div className="relative aspect-[435/382] overflow-hidden rounded-[8px] bg-[#D9D9D9]">
               <Image
-                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132773/rnj/business-meeting-background-b7be96e9.jpg"
+                src="/optimized/group-349025.webp"
                 alt="Réunion de conseil stratégique"
                 fill
                 sizes="(max-width: 1024px) 92vw, 435px"
@@ -255,7 +240,7 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-[1155px] gap-12 lg:grid-cols-[336px_1fr] lg:items-start lg:gap-[165px]">
           <div className="flex flex-col gap-10">
             <h2 className={`${poppins.className} text-[52px] font-normal leading-none text-black md:text-[64px]`}>
-              Reach out
+              Contactez-nous
             </h2>
             <p className={`${poppins.className} text-[16px] font-normal leading-[22px] text-black/60`}>
               Échangez avec nos experts et obtenez un accompagnement adapté à vos enjeux.
@@ -265,15 +250,28 @@ export default function AboutPage() {
           <form action="/contact" className="bg-[#F7FCFF] p-7 shadow-[2px_4px_42px_rgba(0,0,0,0.19)] md:p-10">
             <div className="mb-14">
               <div className="flex items-center justify-between gap-8 px-4 font-[Geist] text-[20px] font-medium leading-6 md:text-[24px]">
-                <span className="text-[#003300]">Entrepreneuriat</span>
-                <span className="hidden text-[#BFCCBF] sm:inline">Institutionnel</span>
+                <button
+                  type="button"
+                  onClick={() => setSelectedTab('entrepreneuriat')}
+                  className={`cursor-pointer transition ${selectedTab === 'entrepreneuriat' ? 'text-[#003300]' : 'text-[#BFCCBF]'}`}
+                >
+                  Entrepreneuriat
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedTab('institutionnel')}
+                  className={`cursor-pointer transition ${selectedTab === 'institutionnel' ? 'text-[#003300]' : 'text-[#BFCCBF]'}`}
+                >
+                  Institutionnel
+                </button>
               </div>
               <div className="mt-8 h-1 bg-[#BFCCBF]">
-                <div className="h-full w-1/2 bg-[#003300]" />
+                <div className={`h-full transition-all duration-300 ${selectedTab === 'entrepreneuriat' ? 'w-1/2' : 'w-full ml-auto'}`} style={{ marginLeft: selectedTab === 'institutionnel' ? '50%' : '0' }} />
               </div>
             </div>
 
             <div className="flex flex-col gap-10">
+              <input type="hidden" name="subject" value={selectedTab === 'entrepreneuriat' ? 'Entrepreneuriat' : 'Institutionnel'} />
               {['*Nom', 'Prenom', 'Email'].map((placeholder) => (
                 <label key={placeholder} className="block border-b-2 border-[#BFCCBF] pb-5">
                   <span className="sr-only">{placeholder}</span>
@@ -299,7 +297,7 @@ export default function AboutPage() {
               type="submit"
               className="mt-14 flex h-[72px] w-full items-center justify-center rounded-[8px] bg-[#BBCB2E] font-[Geist] text-[24px] font-medium leading-6 text-[#003300] transition hover:bg-[#aeba2a]"
             >
-              Submit
+              Envoyer
             </button>
           </form>
         </div>
@@ -307,11 +305,11 @@ export default function AboutPage() {
 
       <section className="relative h-[540px] overflow-hidden bg-[#003300] md:h-[660px]">
         <Image
-          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132776/rnj/beautiful-architecture-building-exterior-cityscape-2026-01-05-01-06-47-utc-2-8e38423b.svg"
+          src="/optimized/mask-group-43.webp"
           alt="Ville et architecture"
           fill
           sizes="100vw"
-          className="object-cover"
+          className="absolute left-[-2px] bottom-[-50px] h-[1674.89px] w-[1512px] object-cover"
         />
       </section>
 

@@ -5,12 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Navbar() {
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const services = [
-    { label: 'Analyse institutionnelle', href: '/services/analyse-institutionnelle' },
-  ];
 
   return (
     <nav className="absolute left-1/2 top-3 z-50 w-[95%] max-w-[1450px] -translate-x-1/2 sm:top-4 sm:w-[94%] md:top-8 md:w-[92%] lg:top-10 lg:w-[90%] xl:top-12">
@@ -50,8 +45,8 @@ export default function Navbar() {
           <div className="relative">
             <button
               type="button"
-              onClick={() => setIsServicesOpen(!isServicesOpen)}
-              className="flex items-center gap-1.5 text-center font-[Geist] text-[15px] font-semibold text-[#003300] opacity-50 transition hover:opacity-75 2xl:text-[17px]"
+              disabled
+              className="flex items-center gap-1.5 text-center font-[Geist] text-[15px] font-semibold text-[#003300] opacity-50 transition hover:opacity-75 2xl:text-[17px] cursor-not-allowed"
             >
               <span>Services</span>
               <svg
@@ -61,34 +56,19 @@ export default function Navbar() {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2.5"
-                className={`transition-transform ${isServicesOpen ? 'rotate-0' : 'rotate-180'}`}
+                className="transition-transform rotate-180"
               >
                 <path d="M1 5 L6 1 L11 5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
-
-            {isServicesOpen && (
-              <div className="absolute left-0 top-full z-20 mt-2 min-w-[200px] overflow-hidden rounded-lg border border-[#003300]/10 bg-[#F7FCFF] shadow-lg">
-                {services.map((service) => (
-                  <Link
-                    key={service.label}
-                    href={service.href}
-                    onClick={() => setIsServicesOpen(false)}
-                    className="block w-full border-b border-[#003300]/5 px-4 py-3 text-left text-sm font-medium text-[#003300] transition last:border-b-0 hover:bg-[#BBCB2E]/10"
-                  >
-                    {service.label}
-                  </Link>
-                ))}
-              </div>
-            )}
           </div>
 
-          <button
-            type="button"
+          <Link
+            href="/projets"
             className="text-center font-[Geist] text-[15px] font-semibold text-[#003300] opacity-50 transition hover:opacity-75 2xl:text-[17px]"
           >
             Projets
-          </button>
+          </Link>
 
           <Link
             href="/about"
@@ -115,9 +95,14 @@ export default function Navbar() {
 
           <Link
             href="/contact"
-            className="flex h-[39px] items-center justify-center rounded-[10px] bg-[#BBCB2E] px-4 text-center font-[Geist] text-[14px] font-extrabold text-[#003300] transition hover:bg-[#BBCB2E]/90 2xl:h-[41px] 2xl:text-[15px]"
+            className="flex h-[41px] w-[100px] items-center justify-center rounded-[10px] px-4 text-center font-[Geist] text-[15.0249px] font-extrabold leading-[17px] text-white transition hover:opacity-90 relative overflow-hidden"
+            style={{
+              backgroundImage: "url('https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376864/rnj/group-349012-8572149e.svg')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
           >
-            Contact
+            <span className="relative z-10">Contact</span>
           </Link>
         </div>
 
@@ -161,8 +146,8 @@ export default function Navbar() {
             <div>
               <button
                 type="button"
-                onClick={() => setIsServicesOpen(!isServicesOpen)}
-                className="flex w-full items-center justify-between border-b border-[#003300]/10 py-2 font-[Geist] text-lg font-semibold text-[#003300]"
+                disabled
+                className="flex w-full items-center justify-between border-b border-[#003300]/10 py-2 font-[Geist] text-lg font-semibold text-[#003300] cursor-not-allowed opacity-50"
               >
                 <span>Services</span>
                 <svg
@@ -172,37 +157,20 @@ export default function Navbar() {
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2.5"
-                  className={`transition-transform ${isServicesOpen ? 'rotate-0' : 'rotate-180'}`}
+                  className="transition-transform rotate-180"
                 >
                   <path d="M1 5 L6 1 L11 5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
-
-              {isServicesOpen && (
-                <div className="mt-2 flex flex-col gap-2 pl-4">
-                  {services.map((service) => (
-                    <Link
-                      key={service.label}
-                      href={service.href}
-                      onClick={() => {
-                        setIsServicesOpen(false);
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="py-2 text-left text-sm font-medium text-[#003300] opacity-70 hover:opacity-100"
-                    >
-                      {service.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
             </div>
 
-            <button
-              type="button"
+            <Link
+              href="/projets"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="border-b border-[#003300]/10 py-2 text-left font-[Geist] text-lg font-semibold text-[#003300]"
             >
               Projets
-            </button>
+            </Link>
 
             <Link
               href="/about"
@@ -222,10 +190,15 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/contact"
-                className="w-full rounded-xl bg-[#BBCB2E] py-3 text-center font-[Geist] font-extrabold text-[#003300]"
+                className="w-full rounded-xl py-3 text-center font-[Geist] font-extrabold text-white transition hover:opacity-90 relative overflow-hidden"
+                style={{
+                  backgroundImage: "url('https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376864/rnj/group-349012-8572149e.svg')",
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Contact
+                <span className="relative z-10">Contact</span>
               </Link>
             </div>
           </div>

@@ -2,78 +2,100 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { EB_Garamond } from 'next/font/google';
-
-const ebGaramond = EB_Garamond({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-});
 
 interface TeamCardProps {
   name: string;
   role: string;
-  initials: string;
   tone: string;
   image?: string;
 }
 
-export default function TeamCard({ name, role, initials, tone, image }: TeamCardProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+export default function TeamCard({ name, role, tone, image }: TeamCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
 
-  const handleClick = () => {
-    setIsExpanded(!isExpanded);
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const handleCardClick = () => {
+    setIsHovered((prev) => !prev);
+  };
+
+  const handleLinkedInClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    // Ajouter le lien LinkedIn ici
+    console.log('LinkedIn clicked for', name);
   };
 
   return (
     <article
-      className="team-card group flex flex-col gap-5 cursor-pointer"
-      data-expanded={isExpanded ? 'true' : 'false'}
-      onClick={handleClick}
+      className="flex flex-col gap-5"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleCardClick}
     >
       <div
-        className="team-card-image relative flex min-h-[459px] overflow-hidden rounded-[8px] p-6 transition-all duration-500"
+        className="relative h-[459px] w-[352px] overflow-hidden rounded-[10px] cursor-pointer"
         style={{ background: tone }}
       >
         {image && (
-          <div className="absolute inset-0 opacity-100 z-0">
-            <Image
-              src={image}
-              alt={name}
-              fill
-              sizes="(max-width: 1280px) 50vw, 352px"
-              className="object-cover"
-            />
-          </div>
-        )}
-        <div className="absolute inset-0 opacity-20 z-1">
           <Image
-            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132783/rnj/jpg-1-1-b32bbd33.svg"
-            alt=""
+            src={image}
+            alt={name}
             fill
             sizes="(max-width: 1280px) 50vw, 352px"
-            className="object-cover"
+            className="object-cover transition-transform duration-500"
+            style={{ transform: isHovered ? 'scale(1.02)' : 'scale(1)' }}
           />
+        )}
+
+        {/* Gradient overlay */}
+        <div
+          className="absolute inset-0 transition-all duration-500"
+          style={{
+            background: isHovered
+              ? 'linear-gradient(180deg, rgba(187, 203, 46, 0.08) 0%, rgba(187, 203, 46, 0.88) 78.62%)'
+              : 'linear-gradient(180deg, rgba(187, 203, 46, 0) 70%, rgba(187, 203, 46, 0.36) 100%)',
+          }}
+        />
+
+        {/* Role badge */}
+        <div
+          className="absolute left-1/2 flex h-[30px] w-[185px] -translate-x-1/2 items-center justify-center rounded-full bg-white transition-all duration-500"
+          style={{ top: isHovered ? '332px' : '503px', opacity: isHovered ? 1 : 0 }}
+        >
+          <span className="font-[Geist] text-[15px] font-medium leading-[20px] text-[#003300]/50">
+            {role}
+          </span>
         </div>
 
-        <div className="team-card-overlay absolute inset-x-0 bottom-0 h-1/3 bg-[#BBCB2E]/70 transition-all duration-500" />
-
-        <div className="team-card-content relative z-10 mt-auto flex w-full flex-col items-center gap-8 pb-8 text-center">
-          <div
-            className={`${ebGaramond.className} team-card-initials flex h-36 w-36 items-center justify-center rounded-full bg-white/80 text-[54px] font-semibold text-[#406640] shadow-[0px_18px_45px_rgba(0,51,0,0.16)] transition-all duration-500`}
-          >
-            {initials}
-          </div>
-
-          <div className="team-card-badge rounded-full bg-white px-4 py-2 transition-all duration-500">
-            <span className="font-[Geist] text-[15px] font-medium leading-5 text-[#003300]/50">
-              {role}
+        {/* LinkedIn button */}
+        <div
+          className={`absolute left-[10px] top-[379px] flex h-[70px] w-[332px] cursor-pointer items-center justify-center rounded-[10px] bg-white transition-all duration-500 ${
+            isHovered ? 'pointer-events-auto translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'
+          }`}
+          onClick={handleLinkedInClick}
+        >
+          <div className="relative h-full w-full">
+            <Image
+              src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410434/rnj/mask-group-38-09146cc3.svg"
+              alt="LinkedIn"
+              width={27}
+              height={27}
+              className="absolute left-[91px] top-[22px] h-[27px] w-[27px]"
+            />
+            <span className="absolute left-[130px] top-[28px] font-[Geist] text-[15px] font-semibold leading-[16px] text-[#003300]">
+              Check LinkedIn
             </span>
           </div>
         </div>
       </div>
 
-      <div className="team-card-info flex flex-col gap-1 transition-all duration-500">
+      <div className="flex flex-col gap-1">
         <p className="font-[Geist] text-[15px] font-medium leading-5 text-black/50">{role}</p>
         <h3 className="font-[Geist] text-[32px] font-semibold leading-[42px] text-black">
           {name}
