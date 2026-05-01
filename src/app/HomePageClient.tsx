@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
@@ -1026,7 +1026,7 @@ function EntrepreneuriatTabsSection() {
 
   return (
     <section
-      className="w-full bg-white pb-10 pt-12 sm:pt-16 md:pb-14 md:pt-20 lg:pt-24 xl:pt-32"
+      className="w-full bg-[#eff1ce] pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-32"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -1750,15 +1750,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-8 w-full bg-[#F7FCFF] py-10 sm:mt-10 sm:py-12 md:mt-12 md:py-14 lg:mt-14 lg:py-16 xl:mt-16" style={{ marginTop: '0px' }}>
+        <section className="mt-8 w-full bg-[#eff1ce] py-10 sm:mt-10 sm:py-12 md:mt-12 md:py-14 lg:mt-14 lg:py-16 xl:mt-16" style={{ marginTop: '0px' }}>
           
 
           <div aria-hidden="true" className="h-12 lg:h-16 xl:h-20" />
 
           {/* Section Light bulb */}
           <div ref={lightBulbSectionRef} className="mx-auto mt-10 flex w-full max-w-[1392px] flex-col items-center gap-5 px-4 pb-8 text-center sm:px-6 md:px-8 lg:mt-16 lg:gap-[20px] lg:px-0 lg:pb-[46px] xl:mt-20">
-            <div className={`relative h-[180px] w-[120px] ${isLightBulbAnimated ? 'lightbulb-scroll-active' : ''}`} style={{ marginBottom: '10px' }}>
-              <div className={`lightbulb-lines absolute left-0 -top-32 h-full w-full transition-opacity duration-300 ${isLightBulbAnimated ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={`relative h-[110px] w-[70px] ${isLightBulbAnimated ? 'lightbulb-scroll-active' : ''}`} style={{ marginBottom: '10px' }}>
+              <div className={`lightbulb-lines absolute left-0 -top-20 h-full w-full transition-opacity duration-300 ${isLightBulbAnimated ? 'opacity-100' : 'opacity-0'}`}>
                 <Image
                   src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310340/rnj/group-349075-a2bbf73f.svg"
                   alt="Light bulb lines"
@@ -1848,122 +1848,17 @@ export default function Home() {
           )}
         </section>
 
-        {/* Section masquée - Pourquoi choisir RNJ Advisory */}
-        {false && (
-        <section className="hidden w-full bg-[#F7FCFF] py-10 md:block md:py-12 lg:py-14">
-          <div className="mx-auto w-full px-0">
-            <div className="mb-8 flex flex-col gap-3 px-4 md:mb-10 md:px-6 lg:px-8">
-              <div className="flex items-center gap-3">
-                <span className="h-[10px] w-[10px] rounded-full bg-[#003300]" />
-                <span className="font-[Geist] text-[18px] font-bold leading-[1.05] text-[#003300] sm:text-[20px] md:text-[22px] lg:text-[23.6828px] lg:leading-[25px]">
-                  Pourquoi choisir RNJ Advisory ?
-                </span>
-              </div>
-
-              <p className="font-[Geist] text-[16px] font-bold leading-[1.15] text-[#003300]/65 sm:text-[18px] md:text-[19px] lg:text-[20px] lg:leading-[18px]">
-                Une expertise rigoureuse au service de vos décisions
-              </p>
-            </div>
-
-            <div className="relative overflow-hidden py-6 md:py-8 2xl:h-[512px]">
-              <div className="relative z-[1] hidden h-full overflow-hidden 2xl:block">
-                <div className="absolute left-0 top-1/2 -translate-y-1/2">
-                  <div
-                    className="flex w-max items-center gap-5"
-                    style={{
-                      animation: 'scroll 22s linear infinite',
-                      willChange: 'transform',
-                    }}
-                  >
-                    {[...whyChooseAnimatedCards, ...whyChooseAnimatedCards].map(
-                      (card, index) => (
-                        <article
-                          key={`why-choose-desktop-${card.title}-${index}`}
-                          className="flex h-[304px] w-[308.02px] shrink-0 cursor-pointer flex-col items-center justify-center rounded-[10px] px-5 text-center transition-all duration-300"
-                          style={{
-                            background:
-                              hoveredScrollCardIndex === index
-                                ? whyChooseCardActiveBackground
-                                : '#D4E175',
-                            border:
-                              hoveredScrollCardIndex === index
-                                ? `2px solid ${whyChooseCardActiveBorder}`
-                                : '2px solid transparent',
-                            boxShadow:
-                              hoveredScrollCardIndex === index
-                                ? '0px 8px 26px rgba(0, 0, 0, 0.18)'
-                                : '0px 4px 22.4px rgba(0, 0, 0, 0.19)',
-                            transform:
-                              hoveredScrollCardIndex === index
-                                ? 'translateY(-2px)'
-                                : 'translateY(0)',
-                          }}
-                          onMouseEnter={() => setHoveredScrollCardIndex(index)}
-                          onMouseLeave={() => setHoveredScrollCardIndex(null)}
-                          onTouchStart={() => setHoveredScrollCardIndex(index)}
-                          onTouchEnd={() => {
-                            setTimeout(() => {
-                              setHoveredScrollCardIndex(null);
-                            }, 220);
-                          }}
-                        >
-                          {!card.hideIcon && (
-                            <div
-                              className="relative mb-5"
-                              style={{ width: `${card.iconWidth}px`, height: `${card.iconHeight}px` }}
-                            >
-                              <Image
-                                src={card.icon}
-                                alt={card.title}
-                                fill
-                                className="object-contain"
-                              />
-                            </div>
-                          )}
-
-                          <h3 className="mb-4 max-w-[303px] font-[EB_Garamond] text-[32px] font-bold leading-[27px] text-[#003300]">
-                            {card.title}
-                          </h3>
-
-                          <p className="max-w-[262px] font-[Geist] text-[16px] font-medium leading-[16px] text-[#003300]/50">
-                            {card.description}
-                          </p>
-                        </article>
-                      ),
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mx-auto mt-8 w-full max-w-[1680px] px-0">
-              <p
-                className="max-w-[892px] px-4 font-[Geist] text-[15px] font-semibold leading-[17px] text-[#003300]/50 md:px-6 md:text-[16px] md:leading-[18px] lg:px-8"
-              >
-                Choisir RNJ Advisory, c&apos;est bénéficier d&apos;une approche
-                structurée, indépendante et orientée résultats. Nous combinons
-                analyse juridique, compréhension institutionnelle et vision
-                stratégique afin de vous aider à anticiper les risques, assurer
-                la conformité de vos projets et prendre des décisions éclairées.
-              </p>
-            </div>
-          </div>
-        </section>
-        )}
-
-        <section className="w-full bg-[#F7FCFF] pb-10 pt-2 md:pb-12 md:pt-4 lg:pb-14">
+        <section className="w-full bg-[#eff1ce] pb-10 pt-2 md:pb-12 md:pt-4 lg:pb-14">
           <div className="mx-auto w-full max-w-[1680px] px-0">
             <div className="relative min-h-[620px] overflow-hidden bg-[#003300] md:min-h-[680px] lg:h-[760px]">
               <Image
-                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334026/rnj/group-349040-b40f156d.svg"
+                src="/optimized/Group 349040.svg"
                 alt=""
                 fill
                 className="object-cover object-center"
                 unoptimized
                 priority={false}
               />
-
-              <div className="absolute inset-0 bg-[#003300]/40" />
 
               <div className="relative z-[1] mx-auto flex h-full w-full max-w-[1392px] flex-col justify-between px-4 py-8 md:px-6 md:py-12 lg:px-[20px] lg:py-[80px]">
                 <div className="flex w-full flex-row items-center justify-between gap-3 sm:gap-5">
@@ -2036,7 +1931,7 @@ export default function Home() {
         <EntrepreneuriatTabsSection />
 
         <section className="w-full bg-[#F7FCFF] py-12 md:py-24">
-          <div className="mx-auto flex w-full max-w-[1513px] flex-col items-center gap-12 md:gap-[180px] px-4">
+          <div className="mx-auto flex w-full max-w-[1513px] flex-col items-center gap-12 md:gap-[150px] px-4">
             <div className="relative w-full max-w-[1392px]">
               <div className="flex flex-col gap-8 md:gap-[90px]">
                 <div className="flex w-full flex-col items-center justify-between gap-4 sm:flex-row sm:gap-6">
@@ -2109,6 +2004,218 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
+            {/* Section Articles Interconnexion et Certificats */}
+            <article
+              className="relative w-screen max-w-none overflow-hidden bg-[#003300]"
+              style={{
+                marginLeft: 'calc(50% - 50vw)',
+                marginRight: 'calc(50% - 50vw)',
+                boxShadow: '2px 4px 28.3px rgba(0, 0, 0, 0.17)',
+              }}
+            >
+              <div className="grid w-full max-w-none grid-cols-1 gap-[60px] md:gap-[80px] 2xl:h-[815.12px] 2xl:grid-cols-[900px_672px] 2xl:gap-[120px]">
+              <div className="relative order-2 min-h-[320px] w-full overflow-hidden md:min-h-[520px] 2xl:order-1 2xl:h-full">
+                <Image
+                  src="/optimized/Mask group (44).svg"
+                  alt="Accélération PME et ASBL"
+                  fill
+                  className="object-cover object-left"
+                />
+              </div>
+
+              <div className="order-1 flex flex-col px-4 py-6 md:px-6 md:py-9 2xl:order-2 2xl:px-[60px] 2xl:py-[56px]">
+                <div className="flex h-full w-full flex-col gap-8 2xl:gap-[36px]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="h-[8px] w-[8px] rounded-full bg-[#BFCCBF] md:h-[9.33px] md:w-[9.33px]" />
+                    <span
+                      className="font-[Geist] font-semibold text-[#BFCCBF]"
+                      style={{ fontSize: '20px', lineHeight: '24px' }}
+                    >
+                      Entrepreneuriat
+                    </span>
+                  </div>
+
+                  <div className="flex h-full flex-col justify-between gap-10 2xl:gap-[126px]">
+                    <div className="flex flex-col gap-8 2xl:max-w-[637px] 2xl:gap-[45px]">
+                      <h3
+                        className="max-w-[800px] font-[EB_Garamond] font-semibold text-[#BFCCBF]"
+                        style={{
+                          fontSize: 'clamp(34px, 5vw, 64px)',
+                          lineHeight: 'clamp(36px, 4.8vw, 56px)',
+                          textTransform: 'capitalize',
+                        }}
+                      >
+                        <span className="whitespace-nowrap">Accélération PME &amp;</span><br />
+                        ASBL Recrutement<br />
+                        International &amp;<br />
+                        Croissance
+                      </h3>
+
+                      <div className="flex max-w-[435px] flex-col gap-[25px]">
+                        {/* Questions with SVG background */}
+                        <div
+                          className="relative flex flex-col items-center justify-center gap-[4px]"
+                          style={{
+                            width: '426.24px',
+                            height: '56.17px',
+                          }}
+                        >
+                          <Image
+                            src="/optimized/Vector (22).svg"
+                            alt=""
+                            fill
+                            className="object-cover"
+                          />
+                          <span
+                            className="relative z-10 w-full text-center font-[Geist] font-semibold text-[#003300]"
+                            style={{
+                              fontSize: '16.0844px',
+                              lineHeight: '28px',
+                              opacity: 0.7,
+                            }}
+                          >
+                            Vous êtes une PME ou une Asbl en croissance ?
+                          </span>
+                          <span
+                            className="relative z-10 w-full text-center font-[Geist] font-semibold text-[#003300]"
+                            style={{
+                              fontSize: '16.0844px',
+                              lineHeight: '28px',
+                              opacity: 0.7,
+                            }}
+                          >
+                            Vous souhaitez recruter des talents hors UE ?
+                          </span>
+                        </div>
+
+                        <p
+                          className="max-w-[424px] pl-[11px] font-[Geist] font-medium text-[#BFCCBF]"
+                          style={{ fontSize: 'clamp(13px, 2.2vw, 16px)', lineHeight: 'clamp(17px, 2.8vw, 19px)', opacity: 0.7 }}
+                        >
+                          Nous sécurisons vos recrutements internationaux pour vous concentrer sur votre développement.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:gap-[9.8px] 2xl:max-w-[483.85px]">
+                      <button
+                        type="button"
+                        className="h-[56px] w-full whitespace-nowrap rounded-full border border-[#BFCCBF] px-8 font-[Geist] font-semibold text-[#BFCCBF] transition-colors hover:bg-[#BFCCBF] hover:text-[#F7FCFF] sm:w-auto md:h-[66.65px] md:border-[1.96016px] md:px-[44px]"
+                        style={{ fontSize: '16px', lineHeight: '20px' }}
+                      >
+                        À propos
+                      </button>
+                      <button
+                        type="button"
+                        className="h-[56px] w-full rounded-full bg-[#BBCB2E] px-6 font-[Geist] font-semibold text-[#003300] transition-colors hover:bg-[#002200] sm:w-auto md:h-[65.08px] md:min-w-[329px] md:px-[9.8008px]"
+                        style={{ fontSize: '16px', lineHeight: '20px' }}
+                      >
+                        Planifier un entretien confidentiel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </article>
+
+            {/* Section Pourquoi choisir RNJ Advisory */}
+            <section
+              className="relative w-screen max-w-none bg-[#F7FCFF] py-10 md:py-12 lg:py-14"
+              style={{
+                marginLeft: 'calc(50% - 50vw)',
+                marginRight: 'calc(50% - 50vw)',
+                marginTop: '-107px',
+                marginBottom: '-50px',
+              }}
+            >
+              <div className="w-full px-4">
+                <div className="mb-[3.02px] flex flex-col gap-3 pl-12 md:mb-[3.02px] md:pl-16 lg:pl-20">
+                  <div className="flex items-center gap-3">
+                    <span className="h-[10px] w-[10px] rounded-full bg-[#003300]" />
+                    <span className="font-[Geist] text-[18px] font-bold leading-[1.05] text-[#003300] sm:text-[20px] md:text-[22px] lg:text-[23.6828px] lg:leading-[25px]">
+                      Pourquoi choisir RNJ Advisory ?
+                    </span>
+                  </div>
+
+                  <p className="font-[Geist] text-[16px] font-bold leading-[1.15] text-[#003300]/65 sm:text-[18px] md:text-[19px] lg:text-[20px] lg:leading-[18px]">
+                    Une expertise rigoureuse au service de vos décisions
+                  </p>
+                </div>
+
+                <div className="relative overflow-hidden py-6 md:py-8 2xl:h-[512px]">
+                  <div className="relative z-[1] hidden h-full overflow-hidden 2xl:block">
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2">
+                      <div
+                        className="flex w-max items-center gap-5"
+                        style={{
+                          animation: 'scroll 22s linear infinite',
+                          willChange: 'transform',
+                        }}
+                      >
+                        {[...whyChooseAnimatedCards, ...whyChooseAnimatedCards].map(
+                          (card, index) => (
+                            <article
+                              key={`why-choose-desktop-${card.title}-${index}`}
+                              className="flex h-[304px] w-[308.02px] shrink-0 cursor-pointer flex-col items-center justify-center rounded-[10px] px-5 text-center transition-all duration-300"
+                              style={{
+                                background:
+                                  hoveredScrollCardIndex === index
+                                    ? whyChooseCardActiveBackground
+                                    : '#D4E175',
+                                border:
+                                  hoveredScrollCardIndex === index
+                                    ? `2px solid ${whyChooseCardActiveBorder}`
+                                    : '2px solid transparent',
+                                boxShadow:
+                                  hoveredScrollCardIndex === index
+                                    ? '0px 8px 26px rgba(0, 0, 0, 0.18)'
+                                    : '0px 4px 22.4px rgba(0, 0, 0, 0.19)',
+                                transform:
+                                  hoveredScrollCardIndex === index
+                                    ? 'translateY(-2px)'
+                                    : 'translateY(0)',
+                              }}
+                              onMouseEnter={() => setHoveredScrollCardIndex(index)}
+                              onMouseLeave={() => setHoveredScrollCardIndex(null)}
+                              onTouchStart={() => setHoveredScrollCardIndex(index)}
+                              onTouchEnd={() => {
+                                setTimeout(() => {
+                                  setHoveredScrollCardIndex(null);
+                                }, 220);
+                              }}
+                            >
+                              {!card.hideIcon && (
+                                <div
+                                  className="relative mb-5"
+                                  style={{ width: `${card.iconWidth}px`, height: `${card.iconHeight}px` }}
+                                >
+                                  <Image
+                                    src={card.icon}
+                                    alt={card.title}
+                                    fill
+                                    className="object-contain"
+                                  />
+                                </div>
+                              )}
+
+                              <h3 className="mb-4 max-w-[303px] font-[EB_Garamond] text-[32px] font-bold leading-[27px] text-[#003300]">
+                                {card.title}
+                              </h3>
+
+                              <p className="max-w-[262px] font-[Geist] text-[16px] font-medium leading-[16px] text-[#003300]/50">
+                                {card.description}
+                              </p>
+                            </article>
+                          ),
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
 
             {showStrategicPopup && (
               <div
@@ -2406,106 +2513,6 @@ export default function Home() {
                 </article>
               </div>
             </section>
-
-            {/* Section Articles Interconnexion et Certificats */}
-            <article
-              className="grid w-full max-w-[1392px] grid-cols-1 gap-[24px] rounded-[20px] bg-[#F7FCFF] p-[12px] md:gap-[30px] md:rounded-[40px] md:p-[15px] 2xl:h-[811px] 2xl:grid-cols-[672px_minmax(0,1fr)]"
-              style={{ boxShadow: '2px 4px 28.3px rgba(0, 0, 0, 0.17)' }}
-            >
-              <div className="relative order-2 min-h-[320px] overflow-hidden rounded-[18px] md:min-h-[520px] md:rounded-[25px] 2xl:order-1 2xl:h-[781px]">
-                <Image
-                  src="/optimized/mask-group-42.webp"
-                  alt="Accélération PME et ASBL"
-                  fill
-                  className="object-cover object-center"
-                />
-              </div>
-
-              <div className="order-1 flex flex-col px-4 py-6 md:px-6 md:py-9 2xl:order-2 2xl:px-0 2xl:py-[56px]">
-                <div className="flex h-full w-full flex-col gap-8 2xl:gap-[36px]">
-                  <div className="flex items-center gap-2.5">
-                    <span className="h-[8px] w-[8px] rounded-full bg-[#003300] md:h-[9.33px] md:w-[9.33px]" />
-                    <span
-                      className="font-[Geist] font-semibold text-[#003300]"
-                      style={{ fontSize: '20px', lineHeight: '24px' }}
-                    >
-                      Entrepreneuriat
-                    </span>
-                  </div>
-
-                  <div className="flex h-full flex-col justify-between gap-10 2xl:gap-[126px]">
-                    <div className="flex flex-col gap-8 2xl:max-w-[637px] 2xl:gap-[45px]">
-                      <h3
-                        className="max-w-[590px] font-[EB_Garamond] font-semibold text-[#003300]"
-                        style={{
-                          fontSize: 'clamp(34px, 5vw, 64px)',
-                          lineHeight: 'clamp(36px, 4.8vw, 56px)',
-                          textTransform: 'capitalize',
-                        }}
-                      >
-                        Accélération PME &amp; ASBL Recrutement International &amp; Croissance
-                      </h3>
-
-                      <div className="flex max-w-[435px] flex-col gap-[25px]">
-                        {/* Each question on its own line with a green highlight that ends at the text length */}
-                        <div className="flex flex-col items-center gap-[6px] md:gap-[7.26px]">
-                          <span
-                            className="mx-auto w-fit max-w-full whitespace-nowrap text-center font-[Geist] font-semibold text-[#003300]"
-                            style={{
-                              fontSize: 'clamp(11px, 2.3vw, 16px)',
-                              lineHeight: 'clamp(20px, 4vw, 28px)',
-                              opacity: 0.85,
-                              backgroundImage: 'linear-gradient(transparent 35%, #BBCB2E 35%, #BBCB2E 65%, transparent 65%)',
-                              paddingLeft: '4px',
-                              paddingRight: '4px',
-                            }}
-                          >
-                            Vous êtes une PME ou une Asbl en croissance ?
-                          </span>
-                          <span
-                            className="mx-auto w-fit max-w-full whitespace-nowrap text-center font-[Geist] font-semibold text-[#003300]"
-                            style={{
-                              fontSize: 'clamp(11px, 2.3vw, 16px)',
-                              lineHeight: 'clamp(20px, 4vw, 28px)',
-                              opacity: 0.85,
-                              backgroundImage: 'linear-gradient(transparent 35%, #BBCB2E 35%, #BBCB2E 65%, transparent 65%)',
-                              paddingLeft: '4px',
-                              paddingRight: '4px',
-                            }}
-                          >
-                            Vous souhaitez recruter des talents hors UE ?
-                          </span>
-                        </div>
-
-                        <p
-                          className="max-w-[424px] pl-[11px] font-[Geist] font-medium text-[#003300]"
-                          style={{ fontSize: 'clamp(13px, 2.2vw, 16px)', lineHeight: 'clamp(17px, 2.8vw, 19px)', opacity: 0.7 }}
-                        >
-                          Nous sécurisons vos recrutements internationaux pour vous concentrer sur votre développement.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:gap-[9.8px] 2xl:max-w-[483.85px]">
-                      <button
-                        type="button"
-                        className="h-[56px] w-full rounded-full border border-[#003300] px-8 font-[Geist] font-semibold text-[#003300] transition-colors hover:bg-[#003300] hover:text-[#F7FCFF] sm:w-auto md:h-[66.65px] md:border-[1.96016px] md:px-[44px]"
-                        style={{ fontSize: '16px', lineHeight: '20px' }}
-                      >
-                        À propos
-                      </button>
-                      <button
-                        type="button"
-                        className="h-[56px] w-full rounded-full bg-[#003300] px-6 font-[Geist] font-semibold text-[#F7FCFF] transition-colors hover:bg-[#002200] sm:w-auto md:h-[65.08px] md:min-w-[329px] md:px-[9.8008px]"
-                        style={{ fontSize: '16px', lineHeight: '20px' }}
-                      >
-                        Planifier un entretien confidentiel
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
 
             <section className="relative w-screen overflow-hidden bg-[#BBCB2E] py-12 md:min-h-[1422.65px] md:py-[94.3px] lg:min-h-[1422.65px] lg:py-[94.3px]">
               <div className="absolute inset-0 bg-[#BBCB2E]" />
@@ -2901,7 +2908,7 @@ export default function Home() {
                   >
                     <div className="relative h-[220px] w-full sm:h-[240px] md:h-[200px] lg:h-[240px] xl:h-[300px]">
                       <Image
-                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310344/rnj/whatsapp-image-2026-04-19-at-12.52.25-pm-1-84a926a6.svg"
+                        src="/optimized/wind-turbines-on-golden-green-field-in-summer-aer-2026-03-24-13-00-37-utc 1.svg"
                         alt="Diagnostic ESG et conformité"
                         fill
                         className="object-cover object-top"
@@ -4158,9 +4165,9 @@ export default function Home() {
                 {/* Column 3: responsive sub-grid */}
                 <div className="grid grid-cols-1 gap-[23px] sm:grid-cols-2 sm:gap-x-[19px] sm:gap-y-[23px] md:col-span-2 xl:col-span-1">
                   {/* Yoga blurred */}
-                  <div className="bento-card bento-d4 relative h-[334px] w-full overflow-hidden rounded-[20px] bg-[#6F6F6F]">
+                  <div className="bento-card bento-d4 relative h-[334px] w-full overflow-hidden rounded-[20px]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334042/rnj/group-363-02f81f30.svg" alt="" className="h-full w-full object-cover" />
+                    <img src="/optimized/Group 363 (1).svg" alt="" className="h-full w-full object-cover" />
                   </div>
 
                   {/* Belgique card */}

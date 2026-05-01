@@ -49,14 +49,14 @@ const values = [
 const teamMembers = [
   {
     name: 'Nahla Aschi',
-    role: 'ENJ Co Founder, CEO',
+    role: 'Co-Founder & CEO',
     initials: 'NA',
     tone: '#EEF2CA',
     image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376840/rnj/nahla-eae48fe8.svg',
   },
   {
     name: 'Ramzi Jelalia',
-    role: 'ENJ Co Founder, CEO',
+    role: 'Co-founder & CTO',
     initials: 'RJ',
     tone: '#DDE597',
     image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132761/rnj/ramzi-05917bd9.svg',
@@ -76,6 +76,20 @@ const teamMembers = [
     image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132766/rnj/chahine-88336938.svg',
   },
 ];
+
+const partnerAssetLogos = [
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333855/rnj/asset-14-1-cda0f5e7.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333857/rnj/asset-15-1-7f0249bf.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333858/rnj/asset-16-1-41dc72e6.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333859/rnj/asset-17-1-5077f95f.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333861/rnj/asset-21-1-6ad9b68e.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333863/rnj/asset-22-1-ac5775de.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333864/rnj/asset-23-1-9c5664dc.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333866/rnj/asset-24-1-1c05ea09.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333867/rnj/asset-26-1-3d6250e2.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333869/rnj/asset-27-1-8679f4ab.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333870/rnj/asset-28-1-d6d25061.svg',
+] as const;
 
 const approachSteps = [
   {
@@ -223,16 +237,36 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-[#003300] px-4 py-6 sm:px-6">
-        <div className="mx-auto max-w-[1512px]">
-          <Image
-            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132774/rnj/frame-16-8d976706.svg"
-            alt="Partenaires et références"
-            width={1512}
-            height={111}
-            sizes="100vw"
-            className="h-auto w-full"
-          />
+      <section className="relative z-[2] w-full bg-[#BBCB2E] py-3 sm:py-3 md:py-4">
+        <div className="w-full px-0">
+          <div className="relative min-h-[54px] overflow-hidden sm:min-h-[58px] md:min-h-[66px] lg:min-h-[74px]">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-[#BBCB2E] to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-[#BBCB2E] to-transparent" />
+
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div
+                className="flex w-max items-center gap-[clamp(24px,4.5vw,73px)]"
+                style={{
+                  animation: 'scroll 26s linear infinite',
+                  willChange: 'transform',
+                }}
+              >
+                {[...partnerAssetLogos, ...partnerAssetLogos].map((logo, index) => (
+                  <div
+                    key={`partner-asset-logo-about-${index}-${logo}`}
+                    className="relative h-[clamp(30px,4.6vw,52px)] w-[clamp(108px,15vw,190px)] shrink-0"
+                  >
+                    <Image
+                      src={logo}
+                      alt={`Logo partenaire ${index % partnerAssetLogos.length + 1}`}
+                      fill
+                      className="object-contain [filter:brightness(0)_saturate(100%)_invert(100%)]"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -94,7 +94,7 @@ export default function AnalyseInstitutionnelleClient() {
             <h1
               className={`${ebGaramond.className} mt-4 text-[clamp(28px,7vw,98px)] font-bold leading-[0.95] tracking-[-0.04em] text-white sm:mt-6 md:mt-8 lg:mt-[37.79px] lg:w-[634.32px] lg:text-[98.06px] lg:leading-[93px]`}
             >
-              Nos projet
+              Nos projets
             </h1>
 
             <div className="mt-4 flex flex-col items-start gap-3 sm:mt-5 sm:gap-4 md:mt-7 md:gap-[18.39px] lg:mt-[37.79px] lg:w-[765.06px] lg:max-w-none lg:gap-[33px]">
