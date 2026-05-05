@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import BookingModal from '@/components/BookingModal';
 
 const glowShapes = [
   {
@@ -1178,6 +1179,7 @@ export default function Home() {
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
   const [servicesFocusStage, setServicesFocusStage] = useState(0);
   const [isInstitutionalCarouselPaused, setIsInstitutionalCarouselPaused] = useState(false);
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const institutionalCarouselRef = useRef<HTMLDivElement | null>(null);
   const activeImpactCountryData = impactCountries.find((country) => country.id === activeImpactCountry) ?? null;
 
@@ -4295,8 +4297,7 @@ export default function Home() {
 
         {/* Footer Section */}
         <Footer />
-      </div>
-    </main>
+      </main>
 
     <BookingModal open={bookingModalOpen} onClose={() => setBookingModalOpen(false)} />
     </>
