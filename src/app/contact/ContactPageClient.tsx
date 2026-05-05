@@ -67,6 +67,7 @@ const initialMessageForm: ContactPayload = {
 const fieldClassName =
   'w-full rounded-[18px] border border-transparent bg-[#F0F3F0] px-5 py-4 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 sm:px-6 sm:py-5 sm:text-[16px]';
 const pendingBookingStorageKey = 'rnj-pending-booking';
+const defaultBookingSubject = "Creation d'entreprise";
 const defaultCalendarMonth: CalendarMonth = { year: 2026, month: 3 };
 const defaultBookingDate = '2026-04-15';
 const defaultBookingTime = '14:00';
@@ -243,7 +244,7 @@ export default function ContactPageClient({
 
   const [view, setView] = useState<View>('initial');
   const [bookingStep, setBookingStep] = useState<BookingStep>(1);
-  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState(defaultBookingSubject);
   const [selectedProfile, setSelectedProfile] = useState('other'); // Pour Institution vs autres
   const [displayedMonth, setDisplayedMonth] = useState<CalendarMonth>(defaultCalendarMonth);
   const [selectedBookingDate, setSelectedBookingDate] = useState<string | null>(defaultBookingDate);
@@ -299,7 +300,7 @@ export default function ContactPageClient({
       setDisplayedMonth(defaultCalendarMonth);
       setSelectedBookingDate(defaultBookingDate);
       setSelectedBookingTime(defaultBookingTime);
-      setSelectedSubject(requestedSubject);
+      setSelectedSubject(requestedSubject || defaultBookingSubject);
       setView('booking');
       setBookingStep(1);
     }
@@ -416,6 +417,9 @@ export default function ContactPageClient({
     setSubmitMessage('');
     setSubmissionMode('booking');
     setBookingStep(1);
+    if (!selectedSubject) {
+      setSelectedSubject(defaultBookingSubject);
+    }
     if (!selectedBookingDate) {
       setDisplayedMonth(defaultCalendarMonth);
       setSelectedBookingDate(defaultBookingDate);
@@ -504,6 +508,7 @@ export default function ContactPageClient({
   }
 
   const isBookingMessageStep = view === 'message' && submissionMode === 'booking';
+  const bookingDateTimeLabel = `${formatLongDateLabel(selectedBookingDate)} a ${selectedBookingTime}`;
 
   return (
     <>
@@ -537,7 +542,7 @@ export default function ContactPageClient({
             </section>
           ) : null}
 
-          <section className="relative w-full overflow-hidden" style={{ minHeight: '100vh' }}>
+          <section className="relative w-full overflow-hidden" style={{ minHeight: '10vh' }}>
             <div className="relative z-10 flex flex-col items-center">
               <div
                 className={`flex w-full max-w-[604px] flex-col items-center justify-center gap-[8.56px] rounded-[28px] bg-white px-6 py-10 shadow-[0px_3.42px_48px_rgba(0,0,0,0.25)] transition-all duration-700 ease-in-out sm:rounded-[42.78px] sm:px-10 sm:py-14 md:px-12 ${
@@ -587,235 +592,196 @@ export default function ContactPageClient({
                   </button>
                 </div>
               </div>
-
-              {view !== 'initial' && view !== 'message' ? (
-                <div className="h-[60vh] sm:h-[70vh] md:h-[80vh]" />
-              ) : null}
             </div>
           </section>
 
 
           {view === 'booking' ? (
-            <section className="relative z-20 w-full px-4 pb-16 pt-8 sm:px-6 sm:pt-12 md:pb-20 md:pt-16">
-              <div className="mx-auto w-full max-w-[1392px] rounded-[30px] bg-white px-5 py-10 shadow-[0px_4px_57.4px_rgba(0,0,0,0.25)] sm:rounded-[40px] sm:px-8 sm:py-12 md:rounded-[50px] md:px-[58px] md:py-16">
-                {/* Step indicator */}
-                <div className="mb-8 flex items-center justify-center gap-2">
-                  {[1, 2, 3].map((step) => (
-                    <div
-                      key={step}
-                      className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                        bookingStep === step ? 'w-8 bg-[#BBCB2E]' : 'bg-[#DDE597]/50'
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                {/* Step 1: Subject selection */}
+            <section className="relative z-20 flex min-h-screen w-full items-center justify-center px-4 py-8 sm:px-6 md:py-12">
+              <div className="mx-auto w-full max-w-[1392px] h-[883px] rounded-[50px] bg-white px-[58px] py-16 shadow-[0px_4px_57.4px_rgba(0,0,0,0.25)]">
+                {/* Step 1: Subject selection and calendar */}
                 <div
                   className={`transition-all duration-500 ${
                     bookingStep === 1 ? 'opacity-100 translate-x-0' : 'opacity-0 absolute pointer-events-none'
                   }`}
                 >
-                  <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-[124px]">
-                    <div className="flex flex-1 flex-col gap-10 md:gap-[87px]">
-                      <div className="flex flex-col gap-6 md:gap-[32.75px]">
-                        <Image
-                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
-                          alt="RNJ Advisory"
-                          width={180}
-                          height={44}
-                          className="h-auto w-[130px] brightness-0 sm:w-[150px] md:w-[180px]"
-                        />
-                        <h2
-                          className={`${ebGaramond.className} text-[clamp(32px,5vw,64px)] font-medium leading-[1.17] text-[#003300]`}
-                        >
+                  <div className="absolute left-[79.11px] top-[144.9px] flex flex-row items-center gap-[124px] w-[1233.78px] h-[593.2px]">
+                    {/* Left column: Subject selection */}
+                    <div className="flex flex-col items-start gap-[87.13px] w-[587.64px] h-[565.34px]">
+                      <div className="flex flex-col gap-[32.75px] w-[587.64px] h-[414.16px]">
+                        <h2 className={`${ebGaramond.className} w-[587.64px] h-[151px] text-[64px] font-medium leading-[75px] text-[#003300]`}>
                           Quel est le sujet de votre demande&nbsp;?
                         </h2>
-                        <div className="flex flex-wrap gap-[10px]">
-                          {subjects.map((s) => (
-                            <button
-                              key={s.label}
-                              type="button"
-                              onClick={() => setSelectedSubject(s.label)}
-                              className={`${poppins.className} flex h-[52px] items-center justify-center rounded-[19.46px] px-5 text-[13px] font-medium text-[#003300] transition sm:h-[60px] sm:px-6 sm:text-[14px] md:h-[71.56px] md:text-[15.56px] ${
-                                selectedSubject === s.label
-                                  ? 'border-[1.5px] border-[#003300] bg-[#DDE597]'
-                                  : 'bg-[#DDE597]/50'
-                              }`}
-                            >
-                              {s.label}
-                            </button>
-                          ))}
+                        <div className="flex flex-row flex-wrap items-center align-content-flex-start gap-[10.12px] w-[457px] h-[153.24px]">
+                          <button
+                            type="button"
+                            onClick={() => setSelectedSubject('Creation d\'entreprise')}
+                            className={`${poppins.className} flex h-[71.56px] w-[211.8px] items-center justify-center rounded-[19.46px] px-[25px] text-[15.56px] font-medium text-[#003300] transition ${
+                              selectedSubject === 'Creation d\'entreprise'
+                                ? 'border-[1.5px] border-[#003300] bg-[#DDE597]'
+                                : 'bg-[#DDE597]/50'
+                            }`}
+                          >
+                            Creation d&apos;entreprise
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setSelectedSubject('Conseil reglementaire')}
+                            className={`${poppins.className} flex h-[71.56px] w-[211.8px] items-center justify-center rounded-[19.46px] px-[25px] text-[15.56px] font-medium text-[#003300] transition ${
+                              selectedSubject === 'Conseil reglementaire'
+                                ? 'border-[1.5px] border-[#003300] bg-[#DDE597]'
+                                : 'bg-[#DDE597]/50'
+                            }`}
+                          >
+                            Conseil reglementaire
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setSelectedSubject('ESG & conformite')}
+                            className={`${poppins.className} flex h-[71.56px] w-[173.29px] items-center justify-center rounded-[19.46px] px-[25px] text-[15.56px] font-medium text-[#003300] transition ${
+                              selectedSubject === 'ESG & conformite'
+                                ? 'border-[1.5px] border-[#003300] bg-[#DDE597]'
+                                : 'bg-[#DDE597]/50'
+                            }`}
+                          >
+                            ESG & conformite
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setSelectedSubject('Investissement')}
+                            className={`${poppins.className} flex h-[71.56px] w-[173.29px] items-center justify-center rounded-[19.46px] px-[25px] text-[15.56px] font-medium text-[#003300] transition ${
+                              selectedSubject === 'Investissement'
+                                ? 'border-[1.5px] border-[#003300] bg-[#DDE597]'
+                                : 'bg-[#DDE597]/50'
+                            }`}
+                          >
+                            Investissement
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setSelectedSubject('Autre')}
+                            className={`${poppins.className} flex h-[71.56px] w-[90.11px] items-center justify-center rounded-[19.46px] px-[25px] text-[15.56px] font-medium text-[#003300] transition ${
+                              selectedSubject === 'Autre'
+                                ? 'border-[1.5px] border-[#003300] bg-[#DDE597]'
+                                : 'bg-[#DDE597]/50'
+                            }`}
+                          >
+                            Autre
+                          </button>
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap items-center gap-4">
+                      <div className="flex flex-row items-center gap-[7.04px] w-[183px] h-[64.05px] bg-[#BBCB2E] opacity-30 rounded-[290px]">
                         <button
                           type="button"
-                          onClick={nextBookingStep}
-                          disabled={!selectedSubject}
-                          className={`${ebGaramond.className} flex h-[50px] w-[170px] items-center justify-center rounded-[290px] bg-[#BBCB2E] text-[18px] font-bold text-[#003300] transition hover:brightness-95 disabled:opacity-50 disabled:cursor-not-allowed sm:h-[56px] sm:w-[200px] sm:text-[20px] md:h-[64px] md:w-[220px] md:text-[22.52px]`}
+                          onClick={() => goToBookingStep(2)}
+                          disabled={!selectedSubject.trim()}
+                          className={`${ebGaramond.className} flex h-[64px] w-[183px] items-center justify-center rounded-[290px] bg-[#BBCB2E] text-[22.52px] font-bold text-[#003300] transition hover:brightness-95 disabled:opacity-50 disabled:cursor-not-allowed`}
                         >
-                          Continuer
+                          Soumettre
                         </button>
                       </div>
                     </div>
 
-                    {/* Calendrier preview pour étape 1 - version simple */}
-                    <div className="flex w-full max-w-[522px] flex-col items-center rounded-[20px] border-2 border-[#003300] bg-white px-4 py-8 shadow-[4px_4px_0px_#003300] sm:rounded-[30.9px] sm:px-8 sm:py-[61px]">
-                      <p className={`${geist.className} text-center text-[14px] text-[#003300]/60`}>
-                        Prochaine étape : choix de la date
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Step 2: Calendar selection */}
-                <div
-                  className={`transition-all duration-500 ${
-                    bookingStep === 2 ? 'opacity-100 translate-x-0' : 'opacity-0 absolute pointer-events-none'
-                  }`}
-                >
-                  <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-[124px]">
-                    <div className="flex flex-1 flex-col gap-10 md:gap-[87px]">
-                      <div className="flex flex-col gap-6 md:gap-[32.75px]">
-                        <Image
-                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
-                          alt="RNJ Advisory"
-                          width={180}
-                          height={44}
-                          className="h-auto w-[130px] brightness-0 sm:w-[150px] md:w-[180px]"
-                        />
-                        <h2
-                          className={`${ebGaramond.className} text-[clamp(32px,5vw,64px)] font-medium leading-[1.17] text-[#003300]`}
-                        >
-                          Selectionnez votre date
-                        </h2>
-                        <p className={`${geist.className} text-[16px] text-[#003300]/60`}>
-                          Sujet : {selectedSubject}
-                        </p>
-                      </div>
-
-                      <div className="flex flex-wrap items-center gap-4">
-                        <button
-                          type="button"
-                          onClick={prevBookingStep}
-                          className={`${ebGaramond.className} flex h-[50px] w-[170px] items-center justify-center rounded-[290px] border-2 border-[#003300] text-[18px] font-bold text-[#003300] transition hover:bg-[#003300]/5 sm:h-[56px] sm:w-[200px] sm:text-[20px] md:h-[64px] md:w-[220px] md:text-[22.52px]`}
-                        >
-                          Retour
-                        </button>
-                        <button
-                          type="button"
-                          onClick={nextBookingStep}
-                          disabled={!selectedBookingDate}
-                          className={`${ebGaramond.className} flex h-[50px] w-[170px] items-center justify-center rounded-[290px] bg-[#BBCB2E] text-[18px] font-bold text-[#003300] transition hover:brightness-95 disabled:opacity-50 disabled:cursor-not-allowed sm:h-[56px] sm:w-[200px] sm:text-[20px] md:h-[64px] md:w-[220px] md:text-[22.52px]`}
-                        >
-                          Continuer
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="flex w-full max-w-[522px] flex-col items-center rounded-[20px] border-2 border-[#003300] bg-white px-4 py-8 shadow-[4px_4px_0px_#003300] sm:rounded-[30.9px] sm:px-8 sm:py-[61px]">
-                    <div className="flex w-full max-w-[455px] flex-col gap-8 sm:gap-[40.78px]">
-                      <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-                        <div className="flex flex-col">
-                          <span className={`${poppins.className} text-[22px] font-normal leading-[31px] text-[#003300] sm:text-[29.66px]`}>
-                            calendrier
-                          </span>
-                          <div className="flex items-center gap-2">
-                            <button
-                              type="button"
-                              onClick={() => changeDisplayedMonth(-1)}
-                              className="flex h-6 w-6 items-center justify-center text-[10px] text-[#003300] transition hover:opacity-60"
-                              aria-label="Mois precedent"
-                            >
-                              &#9664;
-                            </button>
-                            <span className={`${poppins.className} text-[12px] font-semibold text-[#003300]/40 sm:text-[14.83px]`}>
-                              {formatMonthLabel(displayedMonth)}
+                    {/* Right column: Calendrier card */}
+                    <div className="flex flex-col items-center px-[33.3676px] py-[61px] gap-[12px] w-[522.14px] h-[593.2px] rounded-[30.8959px] border-2 border-[#003300] bg-white shadow-[4px_4px_0px_#003300]">
+                      <div className="flex flex-col gap-[40.78px] w-[454.79px] h-[445.13px]">
+                        <div className="flex flex-row justify-between items-start gap-[197.12px] w-[454.79px] h-[62px]">
+                          <div className="flex flex-col w-[150.77px] h-[62px]">
+                            <span className={`${poppins.className} w-[150.77px] h-[31px] text-[29.66px] font-normal leading-[31px] text-[#003300]`}>
+                              calendrier
                             </span>
-                            <button
-                              type="button"
-                              onClick={() => changeDisplayedMonth(1)}
-                              className="flex h-6 w-6 items-center justify-center text-[10px] text-[#003300] transition hover:opacity-60"
-                              aria-label="Mois suivant"
-                            >
-                              &#9654;
-                            </button>
+                            <div className="flex items-center gap-[7.42px] w-[87.39px] h-[31px]">
+                              <button
+                                type="button"
+                                onClick={() => changeDisplayedMonth(-1)}
+                                className="flex h-[10px] w-[6px] items-center justify-center text-[10px] text-[#003300] transition hover:opacity-60"
+                                aria-label="Mois precedent"
+                              >
+                                &#9664;
+                              </button>
+                              <span className={`${poppins.className} w-[74px] h-[31px] text-[14.83px] font-semibold leading-[31px] text-[#003300] opacity-0.4`}>
+                                {formatMonthLabel(displayedMonth)}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => changeDisplayedMonth(1)}
+                                className="flex h-[10px] w-[6px] items-center justify-center text-[10px] text-[#003300] transition hover:opacity-60"
+                                aria-label="Mois suivant"
+                              >
+                                &#9654;
+                              </button>
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="flex items-center gap-[6px] self-start rounded-[9.27px] bg-[#E0E5C0]/70 px-[10px] py-[8px]">
-                          <div className="relative flex items-center gap-[4px]">
-                            <div
-                              className={`${poppins.className} flex h-[32px] w-[32px] items-center justify-center rounded-[9.27px] bg-[#C1CB82] text-[15px] text-[#003300] sm:h-[40px] sm:w-[40px] sm:text-[19.77px]`}
-                            >
-                              {selectedHourPart}
+                          <div className="flex flex-row justify-center items-center px-[11.7404px] py-[12.3584px] gap-[6.18px] w-[159.42px] h-[46.96px] rounded-[9.26877px] bg-[#E0E5C0] opacity-0.5">
+                            <div className="flex flex-row items-center gap-[4.33px] w-[152.68px] h-[40.78px]">
+                              <div className="flex flex-row justify-center items-center px-[11.7404px] py-[12.3584px] gap-[6.18px] w-[40.16px] h-[39.55px] rounded-[9.26877px] bg-[#C1CB82]">
+                                <span className={`${poppins.className} w-[19px] h-[16px] text-[19.7734px] leading-[15px] text-[#003300]`}>
+                                  {selectedHourPart}
+                                </span>
+                              </div>
+                              <span className={`${poppins.className} w-[5px] h-[16px] text-[19.7734px] leading-[15px] text-[#003300]`}>
+                                :
+                              </span>
+                              <div className="flex flex-row justify-center items-center px-[11.7404px] py-[12.3584px] gap-[6.18px] w-[40.16px] h-[39.55px] rounded-[9.26877px] bg-[#C1CB82]">
+                                <span className={`${poppins.className} w-[25px] h-[16px] text-[19.7734px] leading-[15px] text-[#003300]`}>
+                                  {selectedMinutePart}
+                                </span>
+                              </div>
+                              <div className="flex flex-col gap-[2.47px] w-[31.51px] h-[40.78px]">
+                                <div className="flex flex-row justify-center items-center px-[11.7404px] py-[12.3584px] gap-[6.18px] w-[31.51px] h-[18.54px] rounded-[5.56126px] bg-[#C1CB82]">
+                                  <span className={`${poppins.className} w-[18px] h-[16px] text-[12.3584px] leading-[15px] text-[#003300]`}>
+                                    PM
+                                  </span>
+                                </div>
+                                <div className="flex flex-row justify-center items-center px-[11.7404px] py-[12.3584px] gap-[6.18px] w-[31.51px] h-[18.54px] rounded-[5.56126px] bg-[#C1CB82] opacity-0.5">
+                                  <span className={`${poppins.className} w-[19px] h-[16px] text-[12.3584px] leading-[15px] text-[#003300]`}>
+                                    AM
+                                  </span>
+                                </div>
+                              </div>
+                              <label className="relative cursor-pointer">
+                                <span className="sr-only">Choisir l heure du rendez-vous</span>
+                                <select
+                                  value={selectedBookingTime}
+                                  onChange={(event) => setSelectedBookingTime(event.target.value)}
+                                  className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+                                  aria-label="Choisir l heure du rendez-vous"
+                                >
+                                  {timeOptions.map((time) => (
+                                    <option key={time} value={time}>
+                                      {time}
+                                    </option>
+                                  ))}
+                                </select>
+                              </label>
                             </div>
-                            <span className={`${poppins.className} text-[15px] text-[#003300] sm:text-[19.77px]`}>
-                              :
-                            </span>
-                            <div
-                              className={`${poppins.className} flex h-[32px] w-[32px] items-center justify-center rounded-[9.27px] bg-[#C1CB82] text-[15px] text-[#003300] sm:h-[40px] sm:w-[40px] sm:text-[19.77px]`}
-                            >
-                              {selectedMinutePart}
-                            </div>
+
                             <div className="ml-1 flex flex-col gap-[2px]">
-                              <div
-                                className={`${poppins.className} flex h-[16px] w-[26px] items-center justify-center rounded-[5.56px] text-[9px] text-[#003300] sm:h-[18.54px] sm:w-[31.51px] sm:text-[12.36px] ${
-                                  isMorningTime ? 'bg-[#C1CB82]' : 'bg-[#C1CB82]/50'
-                                }`}
+                              <button
+                                type="button"
+                                onClick={() => moveSelectedTime(-1)}
+                                disabled={selectedTimeIndex === 0}
+                                className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#C1CB82] text-[#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-45"
+                                aria-label="Heure precedente"
                               >
-                                AM
-                              </div>
-                              <div
-                                className={`${poppins.className} flex h-[16px] w-[26px] items-center justify-center rounded-[5.56px] text-[9px] text-[#003300] sm:h-[18.54px] sm:w-[31.51px] sm:text-[12.36px] ${
-                                  isMorningTime ? 'bg-[#C1CB82]/50' : 'bg-[#C1CB82]'
-                                }`}
+                                <svg width="8" height="4" viewBox="0 0 8 4" fill="none" stroke="currentColor" strokeWidth="1.4">
+                                  <path d="M1 3 L4 1 L7 3" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => moveSelectedTime(1)}
+                                disabled={selectedTimeIndex === timeOptions.length - 1}
+                                className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#C1CB82] text-[#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-45"
+                                aria-label="Heure suivante"
                               >
-                                PM
-                              </div>
+                                <svg width="8" height="4" viewBox="0 0 8 4" fill="none" stroke="currentColor" strokeWidth="1.4">
+                                  <path d="M1 1 L4 3 L7 1" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              </button>
                             </div>
-                            <label className="absolute inset-0 cursor-pointer">
-                              <span className="sr-only">Choisir l heure du rendez-vous</span>
-                              <select
-                                value={selectedBookingTime}
-                                onChange={(event) => setSelectedBookingTime(event.target.value)}
-                                className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                                aria-label="Choisir l heure du rendez-vous"
-                              >
-                                {timeOptions.map((time) => (
-                                  <option key={time} value={time}>
-                                    {time}
-                                  </option>
-                                ))}
-                              </select>
-                            </label>
-                          </div>
-
-                          <div className="ml-1 flex flex-col gap-[3px]">
-                            <button
-                              type="button"
-                              onClick={() => moveSelectedTime(-1)}
-                              disabled={selectedTimeIndex === 0}
-                              className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#C1CB82] text-[#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-45"
-                              aria-label="Heure precedente"
-                            >
-                              <svg width="8" height="4" viewBox="0 0 8 4" fill="none" stroke="currentColor" strokeWidth="1.4">
-                                <path d="M1 3 L4 1 L7 3" strokeLinecap="round" strokeLinejoin="round" />
-                              </svg>
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => moveSelectedTime(1)}
-                              disabled={selectedTimeIndex === timeOptions.length - 1}
-                              className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#C1CB82] text-[#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-45"
-                              aria-label="Heure suivante"
-                            >
-                              <svg width="8" height="4" viewBox="0 0 8 4" fill="none" stroke="currentColor" strokeWidth="1.4">
-                                <path d="M1 1 L4 3 L7 1" strokeLinecap="round" strokeLinejoin="round" />
-                              </svg>
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -864,36 +830,61 @@ export default function ContactPageClient({
                   </div>
                 </div>
 
-                {/* Step 3: Contact details and payment */}
+                {/* Step 2: Contact details and payment - Variant8 */}
                 <div
                   className={`transition-all duration-500 ${
-                    bookingStep === 3 ? 'opacity-100 translate-x-0' : 'opacity-0 absolute pointer-events-none'
+                    bookingStep === 2 ? 'opacity-100 translate-x-0' : 'opacity-0 absolute pointer-events-none'
                   }`}
                 >
-                  <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-[80px]">
-                    <div className="flex flex-1 flex-col gap-8">
-                      <div className="flex flex-col gap-6">
-                        <Image
-                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
-                          alt="RNJ Advisory"
-                          width={180}
-                          height={44}
-                          className="h-auto w-[130px] brightness-0 sm:w-[150px] md:w-[180px]"
-                        />
-                        <h2
-                          className={`${ebGaramond.className} text-[clamp(32px,5vw,64px)] font-medium leading-[1.17] text-[#003300]`}
-                        >
-                          Vos coordonnees
-                        </h2>
-                        <div className={`${geist.className} text-[16px] text-[#003300]/60`}>
-                          <p>Sujet : {selectedSubject}</p>
-                          <p>Date : {formatLongDateLabel(selectedBookingDate)} a {selectedBookingTime}</p>
+                  <div className="relative mx-auto h-[883px] w-full max-w-[1392px] overflow-hidden rounded-[50px] bg-white px-[58px] py-16 shadow-[0px_4px_57.4px_rgba(0,0,0,0.25)]">
+                    <Image
+                      src="/optimized/Group%20349091%20(1).svg"
+                      alt=""
+                      width={1550}
+                      height={1074}
+                      className="pointer-events-none absolute left-[-43px] top-[-79px] h-[1073.89px] w-[1549.96px] max-w-none"
+                    />
+
+                    {/* Payment card */}
+                    <div className="absolute left-[436px] top-[103px] z-10 h-[662.03px] w-[520px] rounded-[28.6344px] bg-white shadow-[0px_3.43612px_78px_rgba(0,0,0,0.16)]">
+                      {/* Green header */}
+                      <div className="absolute left-[0px] top-[0px] w-[520px] h-[263.44px] rounded-t-[28.6344px] bg-[#003300]">
+                        <div className="absolute left-[34.36px] top-[35.51px] w-[424.93px] h-[182.3px]">
+                          <p className={`${geist.className} absolute left-[0px] top-[0px] w-[91px] h-[30px] text-[22.9075px] font-medium leading-[30px] text-white opacity-0.5`}>Montant</p>
+                          <p className={`${ebGaramond.className} absolute left-[0px] top-[32.07px] w-[264px] h-[96px] text-[73.304px] font-semibold leading-[96px] text-white`}>500EUR</p>
+                          <p className={`${geist.className} absolute left-[0px] top-[136.3px] w-[424.93px] h-[46px] text-[16.0352px] font-medium leading-[23px] text-white opacity-0.5`}>
+                            Le paiement Stripe des frais de dossier est demande avant l enregistrement definitif du rendez-vous.
+                          </p>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="flex w-full max-w-[520px] flex-col items-center">
-                      <form className="flex w-full flex-col items-center gap-[14px]" onSubmit={handleMessageSubmit}>
+                      {/* Date and time display */}
+                      <div className="absolute left-[29.78px] top-[366.52px] w-[289.78px] h-[37.15px]">
+                        <p className={`${geist.className} absolute left-[6.87px] top-[1.15px] w-[273px] h-[36px] text-[27.489px] font-semibold leading-[36px] text-center text-[#003300]`}>
+                          {bookingDateTimeLabel}
+                        </p>
+                      </div>
+
+                      {/* Confirmation text */}
+                      <div className="absolute left-[40.09px] top-[421.5px] w-[411.19px] h-[56.02px] flex flex-col gap-[8.02px]">
+                        <p className={`${geist.className} w-[411.19px] h-[32px] text-[12.5991px] font-medium leading-[16px] text-[#003300] opacity-0.5`}>
+                          Votre rendez-vous est confirme pour le creneau selectionne. Un expert RNJ vous accompagnera lors de cet echange.
+                        </p>
+                        <p className={`${geist.className} w-[411.19px] h-[16px] text-[12.5991px] font-semibold leading-[16px] underline text-[#003300] opacity-0.7`}>
+                          Apprendre encore plus
+                        </p>
+                      </div>
+
+                      {/* Info badges */}
+                      <div className="absolute left-[34.36px] top-[287.49px] w-[177.53px] h-[46.96px] rounded-[9.163px] bg-[#C1CB82]">
+                        <span className={`${geist.className} absolute left-[14.89px] top-[11.45px] w-[148px] h-[23px] text-[12.5991px] font-medium leading-[23px] text-[#406640]`}>Paiement securise Stripe</span>
+                      </div>
+                      <div className="absolute left-[217.62px] top-[287.49px] w-[202.73px] h-[46.96px] rounded-[9.163px] bg-[#C1CB82]">
+                        <span className={`${geist.className} absolute left-[14.89px] top-[11.45px] w-[173px] h-[23px] text-[12.5991px] font-medium leading-[23px] text-[#406640]`}>Validation avant confirmation</span>
+                      </div>
+
+                      {/* Contact form */}
+                      <form className="absolute left-[28.67px] top-[440.5px] flex flex-col gap-[14px] w-[462.73px]" onSubmit={handleMessageSubmit}>
                         <input
                           type="text"
                           value={messageForm.name}
@@ -901,7 +892,7 @@ export default function ContactPageClient({
                             setMessageForm((current) => ({ ...current, name: event.target.value }))
                           }
                           placeholder="Nom"
-                          className={`${geist.className} h-[80px] w-full rounded-[20px] border border-[#003300]/10 bg-[#EEF2CA] px-6 text-[20px] font-normal text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white`}
+                          className={`${geist.className} h-[103.05px] w-[505px] rounded-[20px] bg-[#EEF2CA] px-6 text-[24px] font-normal text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white text-center`}
                           required
                         />
                         <input
@@ -911,7 +902,7 @@ export default function ContactPageClient({
                             setMessageForm((current) => ({ ...current, email: event.target.value }))
                           }
                           placeholder="Email"
-                          className={`${geist.className} h-[80px] w-full rounded-[20px] border border-[#003300]/10 bg-[#EEF2CA] px-6 text-[20px] font-normal text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white`}
+                          className={`${geist.className} h-[103.05px] w-[505px] rounded-[20px] bg-[#EEF2CA] px-6 text-[24px] font-normal text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white text-center`}
                           required
                         />
                         <input
@@ -921,37 +912,20 @@ export default function ContactPageClient({
                             setMessageForm((current) => ({ ...current, phone: event.target.value }))
                           }
                           placeholder="Telephone"
-                          className={`${geist.className} h-[80px] w-full rounded-[20px] border border-[#003300]/10 bg-[#EEF2CA] px-6 text-[20px] font-normal text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white`}
+                          className={`${geist.className} h-[103.05px] w-[505px] rounded-[20px] bg-[#EEF2CA] px-6 text-[24px] font-normal text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white text-center`}
                           required
                         />
 
-                        {/* Payment section */}
-                        <div className="mt-4 w-full rounded-[28px] bg-[#003300] px-6 py-6 text-white">
-                          <p className={`${geist.className} text-[14px] font-medium text-white/70`}>Montant</p>
-                          <p className={`${ebGaramond.className} text-[48px] font-semibold text-white`}>500EUR</p>
-                          <p className={`${geist.className} mt-2 text-[12px] text-white/50`}>
-                            Le paiement Stripe des frais de dossier est demande avant l enregistrement definitif du rendez-vous.
-                          </p>
-                        </div>
-
-                        <div className="flex w-full gap-4">
+                        {/* Submit button */}
+                        <div className="relative h-[95.07px] w-[511px] mt-4">
+                          <div className="absolute bottom-0 left-[2.29px] h-[91.23px] w-[458.15px] rounded-[22.9075px] bg-[#003300]" />
                           <button
-                            type="button"
-                            onClick={prevBookingStep}
-                            className={`${ebGaramond.className} flex h-[60px] w-1/2 items-center justify-center rounded-[290px] border-2 border-[#003300] text-[18px] font-bold text-[#003300] transition hover:bg-[#003300]/5`}
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={`${ebGaramond.className} absolute top-0 left-[2.29px] flex h-[91.23px] w-[458.15px] items-center justify-center rounded-[22.9075px] bg-[#BBCB2E] text-[36.652px] font-bold text-[#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60`}
                           >
-                            Retour
+                            Soumettre
                           </button>
-                          <div className="relative h-[60px] w-1/2">
-                            <div className="absolute bottom-0 left-[3px] h-[57px] w-full rounded-[20px] bg-[#003300]" />
-                            <button
-                              type="submit"
-                              disabled={isSubmitting}
-                              className={`${ebGaramond.className} absolute top-0 left-0 flex h-[57px] w-full items-center justify-center rounded-[20px] bg-[#BBCB2E] text-[24px] font-bold text-[#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60`}
-                            >
-                              {isSubmitting ? 'Redirection...' : 'Soumettre'}
-                            </button>
-                          </div>
                         </div>
 
                         {submitState === 'error' && submitMessage ? (
@@ -961,11 +935,21 @@ export default function ContactPageClient({
                         ) : null}
                       </form>
                     </div>
+
+                    {/* Back button */}
+                    <div className="absolute bottom-[32px] left-[79px] z-10">
+                      <button
+                        type="button"
+                        onClick={prevBookingStep}
+                        className={`${ebGaramond.className} flex h-[64px] w-[183px] items-center justify-center rounded-[290px] bg-[#BBCB2E] text-[22.52px] font-bold text-[#003300] transition hover:brightness-95 disabled:opacity-50 disabled:cursor-not-allowed`}
+                      >
+                        Retour
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
           ) : null}
 
           {view === 'message' ? (
