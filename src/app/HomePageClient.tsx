@@ -2922,7 +2922,7 @@ export default function Home() {
             </section>
 
             <section
-              className="relative -mt-35 w-screen bg-[#003300] pt-0 pb-8 md:-mt-8"
+              className="relative -mt-75 w-screen bg-[#003300] pt-0 pb-8 md:-mt-8"
               style={{
                 marginLeft: 'calc(50% - 50vw)',
                 marginRight: 'calc(50% - 50vw)',
