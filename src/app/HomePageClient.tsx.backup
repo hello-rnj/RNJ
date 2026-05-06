@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import BookingModal from '@/components/BookingModal';
 
 const glowShapes = [
   {
@@ -206,9 +207,9 @@ const impactCountries: readonly ImpactCountry[] = [
     name: 'Tunisia',
     years: '2024-2026',
     focusYear: '2026',
-    projects: '45 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132735/rnj/tn-map-7a9a40cd.svg',
-    summary: 'Conseil Stratégique & Réglementaire',
+    projects: '45 Project',
+    mapSrc: '/tn-map.svg',
+    summary: 'Strategic & Regulatory Advisory',
     description: "RNJ Advisory accompagne des institutions, investisseurs et entrepreneurs en Tunisie dans des projets a forte dimension reglementaire et strategique. Nos interventions couvrent l'analyse institutionnelle, la structuration juridique, la conformite reglementaire ainsi que l'integration des criteres ESG, afin de securiser les projets et garantir leur viabilite a long terme.",
     tags: ['energy', 'durability', 'gouvernance'],
     miniMapWidth: 71.6,
@@ -231,9 +232,9 @@ const impactCountries: readonly ImpactCountry[] = [
     name: 'Moritania',
     years: '2024-2026',
     focusYear: '2026',
-    projects: '02 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132737/rnj/mr-f851e151.svg',
-    summary: 'Conseil Stratégique & Réglementaire',
+    projects: '02 Project',
+    mapSrc: '/MR.svg',
+    summary: 'Strategic & Regulatory Advisory',
     description: "En Moritania, RNJ Advisory accompagne les acteurs publics et prives sur la structuration institutionnelle, le cadrage juridique et les modeles de gouvernance de projet. Nous aidons a aligner les initiatives d'investissement avec les exigences reglementaires et les objectifs de performance durable.",
     tags: ['energy', 'durability'],
     miniMapWidth: 102,
@@ -256,9 +257,9 @@ const impactCountries: readonly ImpactCountry[] = [
     name: 'Senegal',
     years: '2024-2026',
     focusYear: '2026',
-    projects: '14 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132738/rnj/sn-fa0dd3fe.svg',
-    summary: 'Conseil Stratégique & Réglementaire',
+    projects: '14 Project',
+    mapSrc: '/SN.svg',
+    summary: 'Strategic & Regulatory Advisory',
     description: "Au Senegal, nous intervenons sur des dossiers a forte valeur strategique: diagnostics institutionnels, analyse des risques reglementaires et assistance a la mise en conformite. Notre objectif est de rendre les projets plus bancables, plus robustes et plus rapides a deployer.",
     tags: ['energy', 'durability'],
     miniMapWidth: 124,
@@ -281,9 +282,9 @@ const impactCountries: readonly ImpactCountry[] = [
     name: 'Ghana',
     years: '2024-2026',
     focusYear: '2026',
-    projects: '05 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132739/rnj/gn-09d6746e.svg',
-    summary: 'Conseil Stratégique & Réglementaire',
+    projects: '05 Project',
+    mapSrc: '/GN.svg',
+    summary: 'Strategic & Regulatory Advisory',
     description: "Pour les missions au Ghana, RNJ Advisory appuie la conception de cadres d'operation conformes, l'organisation des parties prenantes et l'integration des standards ESG. Nous facilitons la traduction de la strategie en execution operationnelle mesurable.",
     tags: ['energy', 'durability'],
     miniMapWidth: 131,
@@ -306,9 +307,9 @@ const impactCountries: readonly ImpactCountry[] = [
     name: 'Borkina Faco',
     years: '2024-2026',
     focusYear: '2026',
-    projects: '02 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132741/rnj/bf-82043e17.svg',
-    summary: 'Conseil Stratégique & Réglementaire',
+    projects: '02 Project',
+    mapSrc: '/BF.svg',
+    summary: 'Strategic & Regulatory Advisory',
     description: "Au Burkina Faso, nous accompagnons la structuration de projets complexes avec un angle legal, institutionnel et de soutenabilite. Nos recommandations couvrent la gouvernance, la conformite et la feuille de route de mise en oeuvre.",
     tags: ['energy', 'durability'],
     miniMapWidth: 122,
@@ -331,9 +332,9 @@ const impactCountries: readonly ImpactCountry[] = [
     name: 'Negeria',
     years: '2024-2026',
     focusYear: '2026',
-    projects: '12 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132743/rnj/ne-27d79c5a.svg',
-    summary: 'Conseil Stratégique & Réglementaire',
+    projects: '12 Project',
+    mapSrc: '/NE.svg',
+    summary: 'Strategic & Regulatory Advisory',
     description: "Au Niger, RNJ Advisory intervient sur la securisation des programmes d'investissement et des partenariats. Nous realisons les analyses juridiques, reglementaires et institutionnelles necessaires pour fiabiliser la decision et reduire les risques d'execution.",
     tags: ['energy', 'durability'],
     miniMapWidth: 115,
@@ -356,9 +357,9 @@ const impactCountries: readonly ImpactCountry[] = [
     name: 'Benin',
     years: '2024-2026',
     focusYear: '2026',
-    projects: '11 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132742/rnj/bj-46e4c23a.svg',
-    summary: 'Conseil Stratégique & Réglementaire',
+    projects: '11 Project',
+    mapSrc: '/BJ.svg',
+    summary: 'Strategic & Regulatory Advisory',
     description: "Sur les projets en Benin, nous accompagnons la structuration des cadres de gouvernance, la clarte des responsabilites institutionnelles et l'alignement des dispositifs juridiques. L'objectif est de garantir la coherence entre strategie, execution et impact.",
     tags: ['energy', 'durability'],
     miniMapWidth: 58,
@@ -381,9 +382,9 @@ const impactCountries: readonly ImpactCountry[] = [
     name: 'Congo democratic',
     years: '2024-2026',
     focusYear: '2026',
-    projects: '12 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132745/rnj/cd-c076eecb.svg',
-    summary: 'Conseil Stratégique & Réglementaire',
+    projects: '12 Project',
+    mapSrc: '/CD.svg',
+    summary: 'Strategic & Regulatory Advisory',
     description: "En Republique democratique du Congo, RNJ Advisory soutient les acteurs institutionnels et investisseurs dans la conception de projets durables et conformes. Nos interventions portent sur l'analyse reglementaire, les montages juridiques et les mecanismes de suivi de performance.",
     tags: ['energy', 'durability'],
     miniMapWidth: 119,
@@ -477,19 +478,19 @@ const institutionalCarouselCards = [
     title: 'Analyse Institutionnelle & Réglementaire',
     description:
       'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
-    image: '/optimized/group-348987.webp',
+    image: '/group527.svg',
     panelBg: '#406640',
     titleColor: '#BFCCBF',
     descriptionColor: '#BFCCBF',
     buttonBg: '#BFCCBF',
     buttonTextColor: '#003300',
-    panelFirst: false,
+    panelFirst: true,
   },
   {
     title: 'Structuration Juridique & Gouvernance',
     description:
       'Choix de la forme juridique (Belgique, Tunisie, international), création, transformation et mise en conformité des sociétés, pactes d’associés, conventions de partenariat et transmission (M&A).',
-    image: '/optimized/mask-group-40.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335423/rnj/optimized/multinational-company-headquarters-office-with-a-b-2026-01-08-02-30-05-utc-1-bb7b9def.webp',
     panelBg: '#BFCCBF',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -501,7 +502,7 @@ const institutionalCarouselCards = [
     title: 'Droit Des Contrats & Sécurité Commerciale',
     description:
       'Rédaction, revue et négociation de contrats (clients, fournisseurs, partenaires), contrats de prestation, sous-traitance, licences, confidentialité. Réduire les risques et sécuriser la relation commerciale à chaque étape clé.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410410/rnj/image-droit-des-contrats-se-curite-commerciale-5fe5d7a2.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335424/rnj/optimized/business-meeting-2026-01-08-00-07-57-utc-3-971f8e8a.webp',
     panelBg: '#A2B144',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -513,7 +514,7 @@ const institutionalCarouselCards = [
     title: 'Partenariats Public-Privé & Concessions',
     description:
       'Structuration juridique de projets PPP et concessions, appui aux entreprises, collectivités et institutions. Projets liés à l’énergie, aux infrastructures et à l’intérêt général.',
-    image: '/optimized/partenariats-public-priv-concessions-image.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333964/rnj/pexels-henri-mathieu-8348468-1-9eb7df36.svg',
     panelBg: '#E0E5C0',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -525,7 +526,7 @@ const institutionalCarouselCards = [
     title: 'ESG, Conformité & Appels À Projets',
     description:
       'Audit juridique et compliance, protection des données (RGPD), mise en conformité opérationnelle. Accompagnement sur les appels à projets : analyse d’éligibilité, cadrage juridique, rédaction et sécurisation contractuelle.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376883/rnj/optimized/esg-conformit-appels-projets-b1d37fff.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335425/rnj/optimized/modern-coworking-space-with-comfortable-chairs-and-2026-01-09-00-01-33-utc-2-fc092aaa.webp',
     panelBg: '#DDE597',
     titleColor: '#003300',
     descriptionColor: '#003300',
@@ -537,7 +538,7 @@ const institutionalCarouselCards = [
     title: 'Veille Juridique & Anticipation Réglementaire',
     description:
       'Surveillance active des évolutions législatives et réglementaires en Belgique, Europe et Tunisie. Alertes sur les impacts potentiels et accompagnement dans l’anticipation des changements.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376884/rnj/optimized/mask-group-36-61b10456.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333970/rnj/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc-1-72edb5b8.svg',
     panelBg: '#CCD862',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -617,7 +618,7 @@ const whyChooseAnimatedCards = [
     title: 'Approche humaine & multilingue',
     description: 'Approche humaine et multilingue.',
     hideIcon: false,
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376826/rnj/users-f9417797.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333975/rnj/layer-1-14-44306fc4.svg',
     iconWidth: 58.33,
     iconHeight: 61.14,
   },
@@ -626,7 +627,7 @@ const whyChooseAnimatedCards = [
     description:
       'Expertise en droit public, énergie, stratégie et transformation.',
     hideIcon: false,
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376827/rnj/law-ec037074.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333977/rnj/group-11-5aa17a22.svg',
     iconWidth: 60.38,
     iconHeight: 61.08,
   },
@@ -634,7 +635,7 @@ const whyChooseAnimatedCards = [
     title: 'Performances & fiabilité',
     description: 'Service rapide, sécurisé et optimisé pour vos performances.',
     hideIcon: false,
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376829/rnj/check-mark-89a3c66e.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333979/rnj/layer-1-17-4a7f8924.svg',
     iconWidth: 54.62,
     iconHeight: 41.8,
   },
@@ -642,7 +643,7 @@ const whyChooseAnimatedCards = [
     title: 'Méthodologie et durabilité',
     description: 'Un cadre structuré pour une croissance agile et durable.',
     hideIcon: false,
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376831/rnj/methologie-648e7fd2.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333981/rnj/layer-1-16-56e67520.svg',
     iconWidth: 51.95,
     iconHeight: 60.34,
   },
@@ -650,15 +651,15 @@ const whyChooseAnimatedCards = [
     title: 'Ancrage local et ouverture internationale',
     description: 'Bruxelles & Tunis : un accompagnement local et international.',
     hideIcon: false,
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376833/rnj/earth-c9fdae9d.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333983/rnj/layer-1-15-b835edfe.svg',
     iconWidth: 59.77,
     iconHeight: 59.77,
   },
   {
     title: 'Partenariats stratégiques avec des acteurs reconnus',
     description: 'Un réseau de partenaires en Belgique et en Tunisie.',
-    hideIcon: false,
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376835/rnj/handshake-387c4c1d.svg',
+    hideIcon: true,
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333984/rnj/layer-4-955dc651.svg',
     iconWidth: 83.23,
     iconHeight: 59,
   },
@@ -716,8 +717,8 @@ const whyChooseGridCards = [
   {
     title: 'Expertise juridique & stratégique',
     description:
-      "Notre accompagnement repose sur la rigueur d'un pool d'experts spécialisé en droit public, énergie, stratégie entrepreneuriale, gestion de projet et transformation opérationnelle et digitale.",
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376827/rnj/law-ec037074.svg',
+      "Notre accompagnement repose sur la rigueur d’un pool d'experts spécialisé en droit public, énergie, stratégie entrepreneuriale, gestion de projet et transformation opérationnelle et digitale.",
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333977/rnj/group-11-5aa17a22.svg',
     iconWidth: 97,
     iconHeight: 97,
     titleWidth: '270px',
@@ -727,7 +728,7 @@ const whyChooseGridCards = [
     title: 'Performances & fiabilité',
     description:
       'Nous nous engageons à vous offrir un service professionnel, rapide et sécurisé. Nos outils sont conçus pour réduire les temps morts, fluidifier les démarches administratives et optimiser vos résultats.',
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376829/rnj/check-mark-89a3c66e.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333979/rnj/layer-1-17-4a7f8924.svg',
     iconWidth: 82,
     iconHeight: 64,
     titleWidth: '178px',
@@ -736,8 +737,8 @@ const whyChooseGridCards = [
   {
     title: 'Méthodologie et durabilité',
     description:
-      'Notre cadre d accompagnement structuré permet de clarifier les priorités, de construire une base solide, et de déployer votre activité avec agilité, automatisation et vision long terme.',
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376831/rnj/methologie-648e7fd2.svg',
+      'Notre cadre d’accompagnement structuré permet de clarifier les priorités, de construire une base solide, et de déployer votre activité avec agilité, automatisation et vision long terme.',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333986/rnj/layer-1-18-c437361a.svg',
     iconWidth: 86,
     iconHeight: 78,
     titleWidth: '270px',
@@ -746,8 +747,8 @@ const whyChooseGridCards = [
   {
     title: 'Accompagnement humain, multilingue & engagé',
     description:
-      'Proximité, écoute active et respect de votre rythme : chez RNJ Advisory, nous mettons l humain au cœur de chaque projet. Nous intervenons en français, anglais et arabe.',
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376826/rnj/users-f9417797.svg',
+      'Proximité, écoute active et respect de votre rythme : chez RNJ Advisory, nous mettons l’humain au cœur de chaque projet. Nous intervenons en français, anglais et arabe.',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333975/rnj/layer-1-14-44306fc4.svg',
     iconWidth: 55,
     iconHeight: 87,
     titleWidth: '326px',
@@ -757,7 +758,7 @@ const whyChooseGridCards = [
     title: 'Ancrage local et ouverture internationale',
     description:
       'Basés à Bruxelles et à Tunis, nous accompagnons les porteurs de projet installés en Belgique, les entrepreneurs hors UE, les institutions souhaitant structurer ou étendre leur impact.',
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376833/rnj/earth-c9fdae9d.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333983/rnj/layer-1-15-b835edfe.svg',
     iconWidth: 52,
     iconHeight: 75,
     titleWidth: '310px',
@@ -766,15 +767,14 @@ const whyChooseGridCards = [
   {
     title: 'Partenariats stratégiques avec des acteurs reconnus',
     description:
-      'Nous collaborons avec un réseau solide d acteurs publics, privés et associatifs, en Belgique comme en Tunisie.',
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376835/rnj/handshake-387c4c1d.svg',
+      'Nous collaborons avec un réseau solide d’acteurs publics, privés et associatifs, en Belgique comme en Tunisie.',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333981/rnj/layer-1-16-56e67520.svg',
     iconWidth: 77,
     iconHeight: 72,
     titleWidth: '330px',
     descriptionWidth: '344px',
   },
 ];
-
 
 function RegulationAnalysisSection() {
   return (
@@ -985,7 +985,7 @@ const entrepreneuriatTabs: Array<{
   },
 ];
 
-function EntrepreneuriatTabsSection() {
+function EntrepreneuriatTabsSection({ onOpenBooking }: { onOpenBooking: () => void }) {
   const TOTAL_DURATION = 13500;
   const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -1026,7 +1026,7 @@ function EntrepreneuriatTabsSection() {
 
   return (
     <section
-      className="w-full bg-[#eff1ce] pt-12 sm:pt-16 md:pt-20 lg:pt-24 xl:pt-32"
+      className="w-full bg-white pb-10 pt-12 sm:pt-16 md:pb-14 md:pt-20 lg:pt-24 xl:pt-32"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -1125,8 +1125,9 @@ function EntrepreneuriatTabsSection() {
                   >
                     En savoir plus
                   </Link>
-                  <Link
-                    href="/contact"
+                  <button
+                    type="button"
+                    onClick={onOpenBooking}
                     className="inline-flex h-[51.19px] w-full items-center justify-center rounded-full px-6 font-[Geist] font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto sm:min-w-[195px] sm:px-[28px]"
                     style={{
                       backgroundColor: active.buttonFilledBg,
@@ -1135,7 +1136,7 @@ function EntrepreneuriatTabsSection() {
                     }}
                   >
                     Prendre rendez-vous
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1177,100 +1178,15 @@ export default function Home() {
   const [hoveredFaqIndex, setHoveredFaqIndex] = useState<number | null>(null);
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
   const [servicesFocusStage, setServicesFocusStage] = useState(0);
-  const [belgiumStep, setBelgiumStep] = useState(0);
   const [isInstitutionalCarouselPaused, setIsInstitutionalCarouselPaused] = useState(false);
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const institutionalCarouselRef = useRef<HTMLDivElement | null>(null);
-  const [isLightBulbAnimated, setIsLightBulbAnimated] = useState(false);
-  const lightBulbSectionRef = useRef<HTMLDivElement | null>(null);
-
-  const belgiumSteps = [
-    {
-      title: 'Diagnostic & cadrage',
-      description: 'Évaluez votre projet et lancez votre activité en Belgique.',
-      gradientWidth: '0%',
-      circles: [
-        { size: '56px', opacity: 1, number: '01' },
-        { size: '28px', opacity: 0.6, number: '' },
-        { size: '14px', opacity: 0.6, number: '' },
-        { size: '14px', opacity: 0.6, number: '' },
-        { size: '14px', opacity: 0.6, number: '' },
-      ],
-    },
-    {
-      title: 'Stratégie & structuration',
-      description: 'Un plan sur mesure pour structurer et orienter votre projet.',
-      gradientWidth: '32.67%',
-      circles: [
-        { size: '28px', opacity: 0.6, number: '' },
-        { size: '56px', opacity: 1, number: '02' },
-        { size: '28px', opacity: 0.6, number: '' },
-        { size: '14px', opacity: 0.6, number: '' },
-        { size: '14px', opacity: 0.6, number: '' },
-      ],
-    },
-    {
-      title: 'Mise en conformité & autorisations',
-      description: 'Gestion des formalités et conformité de votre activité.',
-      gradientWidth: '47.39%',
-      circles: [
-        { size: '14px', opacity: 0.6, number: '' },
-        { size: '28px', opacity: 0.6, number: '' },
-        { size: '56px', opacity: 1, number: '03' },
-        { size: '28px', opacity: 0.6, number: '' },
-        { size: '14px', opacity: 0.6, number: '' },
-      ],
-    },
-    {
-      title: 'Déploiement opérationnel',
-      description: 'Accompagnement à l\'exécution et pilotage de votre projet.',
-      gradientWidth: '65.17%',
-      circles: [
-        { size: '14px', opacity: 0.6, number: '' },
-        { size: '14px', opacity: 0.6, number: '' },
-        { size: '28px', opacity: 0.6, number: '' },
-        { size: '56px', opacity: 1, number: '04' },
-        { size: '28px', opacity: 0.6, number: '' },
-      ],
-    },
-    {
-      title: 'Suivi & performance durable',
-      description: 'Suivi continu pour renforcer et pérenniser vos résultats.',
-      gradientWidth: '83.65%',
-      circles: [
-        { size: '14px', opacity: 0.6, number: '' },
-        { size: '14px', opacity: 0.6, number: '' },
-        { size: '14px', opacity: 0.6, number: '' },
-        { size: '28px', opacity: 0.6, number: '' },
-        { size: '56px', opacity: 1, number: '05' },
-      ],
-    },
-  ];
   const activeImpactCountryData = impactCountries.find((country) => country.id === activeImpactCountry) ?? null;
 
   useEffect(() => {
-    const initialActivation = setTimeout(() => {
-      setServicesFocusStage(1);
-    }, 350);
-
     const interval = setInterval(() => {
-      setServicesFocusStage((current) => {
-        if (current === 0) {
-          return 1;
-        }
-        return current === servicesFocusAnimationStates.length - 1 ? 1 : current + 1;
-      });
+      setServicesFocusStage((current) => (current + 1) % servicesFocusAnimationStates.length);
     }, 1500);
-
-    return () => {
-      clearTimeout(initialActivation);
-      clearInterval(interval);
-    };
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBelgiumStep((current) => (current + 1) % 5);
-    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -1287,50 +1203,30 @@ export default function Home() {
   const servicesFocusLineFill = servicesFocusAnimationStates[servicesFocusStage].lineFill;
 
   useEffect(() => {
-    if (isInstitutionalCarouselPaused) return;
+    let raf = 0;
+    let last = performance.now();
 
-    const interval = setInterval(() => {
+    const tick = (now: number) => {
       const carousel = institutionalCarouselRef.current;
-      if (!carousel) return;
+      if (carousel) {
+        const deltaSeconds = (now - last) / 1000;
+        if (!isInstitutionalCarouselPaused) {
+          const loopWidth = carousel.scrollWidth / 2;
+          carousel.scrollLeft += 45 * deltaSeconds;
 
-      const loopWidth = carousel.scrollWidth / 2;
-      if (loopWidth > 0 && carousel.scrollLeft >= loopWidth) {
-        carousel.scrollLeft -= loopWidth;
-      }
-
-      scrollInstitutionalCarousel('right');
-    }, 3500);
-
-    return () => clearInterval(interval);
-  }, [isInstitutionalCarouselPaused]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        console.log('Light bulb section intersecting:', entry.isIntersecting);
-        if (entry.isIntersecting) {
-          setIsLightBulbAnimated(true);
-        } else {
-          setIsLightBulbAnimated(false);
+          if (loopWidth > 0 && carousel.scrollLeft >= loopWidth) {
+            carousel.scrollLeft -= loopWidth;
+          }
         }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '-100px 0px -100px 0px',
       }
-    );
 
-    if (lightBulbSectionRef.current) {
-      console.log('Observing light bulb section');
-      observer.observe(lightBulbSectionRef.current);
-    }
-
-    return () => {
-      if (lightBulbSectionRef.current) {
-        observer.unobserve(lightBulbSectionRef.current);
-      }
+      last = now;
+      raf = requestAnimationFrame(tick);
     };
-  }, []);
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [isInstitutionalCarouselPaused]);
 
   const scrollInstitutionalCarousel = (direction: 'left' | 'right') => {
     const carousel = institutionalCarouselRef.current;
@@ -1345,6 +1241,7 @@ export default function Home() {
   };
 
   return (
+    <>
     <main className="relative min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-[#F7FCFF] to-white">
       <Navbar />
 
@@ -1352,10 +1249,9 @@ export default function Home() {
         <div className="relative w-full overflow-hidden pb-8 sm:pb-10 md:pb-12 xl:pb-14 min-h-[760px] sm:min-h-[820px] md:min-h-[900px] lg:min-h-[940px] xl:min-h-[983px]">
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-no-repeat bg-cover"
+            className="absolute inset-0 bg-no-repeat bg-cover bg-center"
             style={{
-              backgroundImage: "url('https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376885/rnj/optimized/wind-energy-wind-power-sustainable-renewable-en-2026-03-18-04-35-53-utc-1-84fe3c19.webp')",
-              backgroundPosition: 'center right',
+              backgroundImage: "url('https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335426/rnj/optimized/bg-1-d0c5568b.webp')",
             }}
           />
 
@@ -1365,39 +1261,62 @@ export default function Home() {
             <div className="flex flex-col items-center gap-6 md:gap-10 xl:items-start xl:gap-[59px]">
               <div className="flex flex-col items-center gap-4 md:gap-[31px] xl:items-start xl:gap-[35px]">
                 <h1
-                  className="text-center xl:text-left font-[EB_Garamond] font-normal leading-[1.1] md:leading-[1] xl:leading-[57px] xl:w-[715.21px]"
-                  style={{ fontSize: 'clamp(22px, 5.5vw, 68.6467px)', color: '#003300' }}
+                  className="text-center xl:text-left font-[EB_Garamond] text-white font-normal leading-[1.1] md:leading-[1] xl:leading-[57px] xl:w-[715.21px]"
+                  style={{ fontSize: 'clamp(22px, 5.5vw, 68.6467px)' }}
                 >
                   <span className="block whitespace-nowrap">Conseil stratégique pour</span>
                   <span className="block whitespace-nowrap">une performance durable</span>
                 </h1>
+
                 <p
-                  className="-mt-5 md:-mt-3 xl:-mt-2 text-center xl:text-left font-[Geist] text-[14px] md:text-[16px] font-normal leading-[1.4] md:leading-[20px] max-w-[90%] md:max-w-[814px] xl:w-[618px]"
-                  style={{ color: 'rgba(0, 51, 0, 0.7)' }}
+                  className="-mt-5 md:-mt-3 xl:-mt-2 text-center xl:text-left font-[Geist] text-white/70 text-[14px] md:text-[16px] font-normal leading-[1.4] md:leading-[20px] max-w-[90%] md:max-w-[814px] xl:w-[618px]"
                 >
-                  RNJ Advisory s&apos;associe à des organisations visionnaires pour résoudre des défis critiques, optimiser leurs opérations et créer une valeur durable dans un environnement mondial en constante évolution.
+                  RNJ Advisory s&apos;associe à des organisations visionnaires pour
+                  résoudre des défis critiques, optimiser leurs opérations et créer
+                  une valeur durable dans un environnement mondial en constante
+                  évolution.
                 </p>
               </div>
 
               <div className="relative -mt-1 md:-mt-2 flex flex-col md:flex-row items-center xl:items-start justify-center xl:justify-start gap-3 md:gap-[7.1px] xl:gap-[6.37px] w-full xl:w-[473px] xl:h-[63px]">
                 <button
-                  className="group flex h-[50px] md:h-[60px] xl:h-[63px] w-[229px] md:w-[229px] xl:w-[229px] items-center justify-center rounded-full bg-[#F7FCFF] transition-all duration-300 hover:bg-[#003300]"
+                  className="flex h-[50px] md:h-[60px] xl:h-[63px] w-[229px] md:w-[229px] xl:w-[229px] items-center justify-center rounded-full bg-[#EEF2CA] transition hover:opacity-90"
                   style={{ boxShadow: '2.10047px 4.20093px 22.6px rgba(0, 0, 0, 0.44)' }}
                 >
                   <span
-                    className="whitespace-nowrap text-center font-[Geist] font-semibold text-[#003300] text-[14px] leading-[16px] transition-colors duration-300 group-hover:text-white"
+                    className="whitespace-nowrap text-center font-[Geist] font-semibold text-[#003300]/50 text-[14px] leading-[16px]"
                   >
                     Découvrir nos services
                   </span>
                 </button>
 
                 <button
-                  className="group flex h-[50px] md:h-[60px] xl:h-[62px] w-[250px] md:w-[250px] xl:w-[228px] items-center justify-center rounded-full bg-[#BBCB2E] shadow-lg transition-all duration-300 hover:bg-[#003300]"
+                  className="flex h-[50px] md:h-[60px] xl:h-[62px] w-[250px] md:w-[250px] xl:w-[228px] items-center gap-2 md:gap-[16px] xl:gap-[18.85px] rounded-full bg-[#BBCB2E] px-3 md:px-[6px] shadow-lg transition hover:opacity-90"
                   style={{
                     boxShadow: '2.10047px 4.20093px 22.6px rgba(0, 0, 0, 0.44)',
                   }}
                 >
-                  <span className="whitespace-nowrap text-center font-[Geist] text-[#003300] text-[14px] leading-[16px] font-bold tracking-[-0.02em] transition-colors duration-300 group-hover:text-[#BBCB2E]">
+                  <div className="relative h-[40px] w-[40px] md:h-[46px] md:w-[46px] xl:h-[46px] xl:w-[46px] flex-shrink-0">
+                    <div
+                      className="absolute h-full w-full rounded-full bg-white left-1 top-0.5"
+                    />
+                    <div
+                      className="absolute flex h-full w-full items-center justify-center left-1 top-0.5"
+                    >
+                      <Image
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333995/rnj/vector-17-f73f224f.svg"
+                        alt="Arrow icon"
+                        width={18}
+                        height={18}
+                        className="md:w-[22px] md:h-[22px]"
+                        style={{ width: 'auto', height: 'auto' }}
+                      />
+                    </div>
+                  </div>
+
+                  <span
+                    className="-ml-1 whitespace-nowrap text-center font-[Geist] text-[#003300] text-[14px] leading-[16px] font-bold tracking-[-0.02em]"
+                  >
                     Contacter un conseiller
                   </span>
                 </button>
@@ -1413,15 +1332,8 @@ export default function Home() {
             >
               {/* Card 1 — image + text, flex-row always */}
               <article
-                className="w-[85%] shrink-0 snap-center md:w-auto md:shrink md:snap-none md:h-[var(--desktop-h)]"
-                style={{
-                  borderRadius: 'clamp(20px, 3.5vw, 50px)',
-                  padding: 'clamp(8px, 1vw, 14px)',
-                  background: 'rgba(0, 0, 0, 0.15)',
-                  boxShadow: '0px 4.31034px 27.4138px rgba(0, 0, 0, 0.5)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                }}
+                className="w-[85%] shrink-0 snap-center bg-[rgba(0,0,0,0.004)] shadow-[0px_5px_31.8px_rgba(0,0,0,0.27)] md:w-auto md:shrink md:snap-none md:h-[var(--desktop-h)]"
+                style={{ borderRadius: 'clamp(20px, 3.5vw, 50px)', padding: 'clamp(8px, 1vw, 14px)' }}
               >
                 <div className="flex h-full items-center" style={{ gap: 'clamp(6px, 1.6vw, 32px)' }}>
                   <div
@@ -1433,7 +1345,7 @@ export default function Home() {
                     }}
                   >
                     <Image
-                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310333/rnj/group-527-v2-03944abc.svg"
+                      src="/group527.svg"
                       alt="Quand la durabilité rencontre la stratégie"
                       fill
                       className="object-cover"
@@ -1461,15 +1373,8 @@ export default function Home() {
 
               {/* Card 2 — stats with avatar circles */}
               <article
-                className="flex w-[85%] shrink-0 snap-center flex-col items-center justify-center md:w-auto md:shrink md:snap-none md:h-[var(--desktop-h)]"
-                style={{
-                  borderRadius: 'clamp(18px, 3.5vw, 50px)',
-                  padding: 'clamp(14px, 2.5vw, 45px) clamp(14px, 3vw, 48px)',
-                  background: 'rgba(0, 0, 0, 0.15)',
-                  boxShadow: '0px 4.31034px 27.4138px rgba(0, 0, 0, 0.5)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                }}
+                className="flex w-[85%] shrink-0 snap-center flex-col items-center justify-center bg-[rgba(0,0,0,0.004)] shadow-[0px_5px_31.8px_rgba(0,0,0,0.27)] md:w-auto md:shrink md:snap-none md:h-[var(--desktop-h)]"
+                style={{ borderRadius: 'clamp(18px, 3.5vw, 50px)', padding: 'clamp(14px, 2.5vw, 45px) clamp(14px, 3vw, 48px)' }}
               >
                 <div
                   className="relative"
@@ -1508,15 +1413,8 @@ export default function Home() {
 
               {/* Card 3 — headline + paragraph */}
               <article
-                className="flex w-[85%] shrink-0 snap-center flex-col justify-center md:w-auto md:shrink md:snap-none md:h-[var(--desktop-h)]"
-                style={{
-                  borderRadius: 'clamp(18px, 3.5vw, 50px)',
-                  padding: 'clamp(14px, 2vw, 40px) clamp(16px, 2.5vw, 40px)',
-                  background: 'rgba(0, 0, 0, 0.15)',
-                  boxShadow: '0px 4.31034px 27.4138px rgba(0, 0, 0, 0.5)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                }}
+                className="flex w-[85%] shrink-0 snap-center flex-col justify-center bg-[rgba(0,0,0,0.004)] shadow-[0px_5px_31.8px_rgba(0,0,0,0.27)] md:w-auto md:shrink md:snap-none md:h-[var(--desktop-h)]"
+                style={{ borderRadius: 'clamp(18px, 3.5vw, 50px)', padding: 'clamp(14px, 2vw, 40px) clamp(16px, 2.5vw, 40px)' }}
               >
                 <div className="flex max-w-[336px] flex-col" style={{ gap: 'clamp(4px, 0.9vw, 13px)' }}>
                   <h3 className="font-[Geist] font-medium text-white" style={{ fontSize: 'clamp(15px, 2.25vw, 32px)', lineHeight: 'clamp(17px, 2.4vw, 34px)' }}>
@@ -1575,16 +1473,17 @@ export default function Home() {
                 </span>
               </div>
 
-              <Link
-                href="/contact"
-                className="contact-btn inline-flex h-[46px] items-center justify-center rounded-[150px] bg-[#BBCB2E] px-7 font-[Geist] text-[16px] font-bold leading-[1.05] text-[#003300] sm:h-[54px] sm:px-9 sm:text-[20px] lg:h-[58px] lg:px-[43px] lg:text-[23.6828px] lg:leading-[25px]"
+              <button
+                type="button"
+                onClick={() => setBookingModalOpen(true)}
+                className="inline-flex h-[46px] items-center justify-center rounded-[150px] bg-[#BBCB2E] px-7 font-[Geist] text-[16px] font-bold leading-[1.05] text-[#003300] sm:h-[54px] sm:px-9 sm:text-[20px] lg:h-[58px] lg:px-[43px] lg:text-[23.6828px] lg:leading-[25px]"
               >
                 Contact
-              </Link>
+              </button>
             </div>
 
             <div className="flex w-full max-w-[1395px] flex-col items-center gap-6 text-center sm:gap-8 lg:gap-[48px]">
-              <h2 className="font-[EB_Garamond] text-[40px] font-bold leading-[0.9] text-[#003300] sm:text-[52px] lg:text-[76px] xl:text-[100px] xl:leading-[80px]">
+              <h2 className="font-[EB_Garamond] text-[48px] font-bold leading-[0.84] text-[#003300] sm:text-[64px] lg:text-[96px] xl:text-[128px] xl:leading-[94px]">
                 Nos Services
               </h2>
 
@@ -1597,8 +1496,8 @@ export default function Home() {
             </div>
 
             <div className="flex w-full max-w-[1065.41px] flex-col items-center gap-6 lg:gap-[9px]">
-              <div className="relative h-[42px] w-full max-w-[768px] rounded-full bg-transparent sm:h-[46px]">
-                <div className="absolute left-[20px] right-[20px] top-1/2 h-[14px] -translate-y-1/2 rounded-full bg-[#D9D9D9] sm:left-[24.5px] sm:right-[24.5px] sm:h-[17px]">
+              <div className="relative h-[42px] w-full max-w-[768px] sm:h-[46px]">
+                <div className="absolute left-[20px] right-[20px] top-1/2 h-[14px] -translate-y-1/2 rounded-full bg-[#DDE597] sm:left-[24.5px] sm:right-[24.5px] sm:h-[17px]">
                   <div
                     className="h-full rounded-full bg-[#BBCB2E] transition-all duration-500 ease-out"
                     style={{ width: `${servicesFocusLineFill}%` }}
@@ -1606,7 +1505,7 @@ export default function Home() {
                 </div>
 
                 {[1, 2, 3].map((step, index) => {
-                  const isStepActive = servicesFocusActiveCount >= step;
+                  const isStepActive = servicesFocusStage >= step;
                   const positionClass =
                     index === 0 ? 'left-0' : index === 1 ? 'left-1/2 -translate-x-1/2' : 'right-0';
 
@@ -1672,6 +1571,14 @@ export default function Home() {
         </div>
 
         <section className="relative w-full overflow-hidden bg-[#181818] py-10 sm:py-12 md:py-14 lg:py-16 xl:py-[62px]">
+          <div
+            className="absolute inset-0 hidden 2xl:block"
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(100,115,89,0.04) 0%, rgba(100,115,89,0) 44%, rgba(100,115,89,0.22) 68%, rgba(100,115,89,0.7) 100%)',
+            }}
+          />
+
           <div className="relative z-[1] mx-auto flex w-full max-w-[1580px] flex-col px-4 sm:px-6 md:px-8 lg:px-8 xl:px-[70px]">
             <div className="flex flex-col gap-8 xl:flex-row xl:items-start xl:justify-between xl:gap-[72px]">
               <div className="flex w-full max-w-[779px] flex-col gap-8 lg:gap-10 xl:gap-[66px]">
@@ -1706,28 +1613,23 @@ export default function Home() {
                     À propos
                   </Link>
 
-                  <Link
-                    href="/contact"
+                  <button
+                    type="button"
+                    onClick={() => setBookingModalOpen(true)}
                     className="inline-flex h-[56px] items-center justify-center rounded-[8.23702px] bg-white px-8 font-[Geist] text-[16px] font-semibold leading-[19px] text-[#181818] sm:h-[61.1px] sm:min-w-[260px] sm:px-4 sm:text-[18.5699px] md:min-w-[311px]"
                   >
                     Demander une consultation
-                  </Link>
+                  </button>
                 </div>
               </div>
 
-              <div
-                className="absolute"
-                style={{
-                  width: '464.65px',
-                  height: '529.93px',
-                  left: '961.08px',
-                  
-                }}
-              >
-                <img
-                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410416/rnj/mask-group-39-06a5eb07.svg"
+              <div className="relative mx-auto h-[390px] w-full max-w-[360px] sm:h-[470px] sm:max-w-[430px] md:h-[527px] md:max-w-[462.21px] xl:mx-0 xl:mt-[14px]">
+                <Image
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334006/rnj/mask-group-6-f1b1cc88.svg"
                   alt="Partenaires en réunion"
-                  className="h-full w-full object-contain"
+                  fill
+                  sizes="(max-width: 768px) 360px, (max-width: 1024px) 430px, 462px"
+                  className="object-contain object-center"
                 />
               </div>
             </div>
@@ -1750,50 +1652,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-8 w-full bg-[#eff1ce] py-10 sm:mt-10 sm:py-12 md:mt-12 md:py-14 lg:mt-14 lg:py-16 xl:mt-16" style={{ marginTop: '0px' }}>
-          
-
-          <div aria-hidden="true" className="h-12 lg:h-16 xl:h-20" />
-
-          {/* Section Light bulb */}
-          <div ref={lightBulbSectionRef} className="mx-auto mt-10 flex w-full max-w-[1392px] flex-col items-center gap-5 px-4 pb-8 text-center sm:px-6 md:px-8 lg:mt-16 lg:gap-[20px] lg:px-0 lg:pb-[46px] xl:mt-20">
-            <div className={`relative h-[110px] w-[70px] ${isLightBulbAnimated ? 'lightbulb-scroll-active' : ''}`} style={{ marginBottom: '10px' }}>
-              <div className={`lightbulb-lines absolute left-0 -top-20 h-full w-full transition-opacity duration-300 ${isLightBulbAnimated ? 'opacity-100' : 'opacity-0'}`}>
-                <Image
-                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310340/rnj/group-349075-a2bbf73f.svg"
-                  alt="Light bulb lines"
-                  fill
-                  className="object-contain"
-                  unoptimized
-                />
-              </div>
-              <Image
-                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334015/rnj/layer-1-2-1d375d74.svg"
-                alt="Light bulb icon"
-                fill
-                sizes="120px"
-                className="object-contain"
-              />
-            </div>
-
-            <h3
-              className="max-w-[1006.97px] font-[EB_Garamond] text-[#003300] text-[42px] font-medium leading-[1.02] sm:text-[50px] md:text-[56px] lg:text-[64px] lg:leading-[58px]"
-              style={{ transform: 'rotate(0.1deg)' }}
-            >
-              Des solutions adaptées à chaque étape
-            </h3>
-
-            <p
-              className="max-w-[1215.08px] font-[Geist] text-[18px] font-medium leading-[20px] text-[#003300]/50 lg:text-[20px]"
-              style={{ transform: 'rotate(0.1deg)' }}
-            >
-              Un accompagnement structuré pour sécuriser vos projets et soutenir
-              votre croissance.
-            </p>
+        <section className="mt-8 w-full bg-[#F7FCFF] py-10 sm:mt-10 sm:py-12 md:mt-12 md:py-14 lg:mt-14 lg:py-16 xl:mt-16">
+          <div className="mx-auto w-full max-w-[1395px] px-4 sm:px-6 md:px-8 xl:px-0">
+            <div className="h-0 w-full border-b-2 border-[#003300]/10" />
           </div>
 
-          {/* Section masquée - Analyse Institutionnelle & Réglementaire */}
-          {false && (
           <div className="mx-auto mt-10 mb-4 flex w-full max-w-[1392px] flex-col items-center gap-10 px-4 sm:px-6 md:px-8 lg:mt-14 lg:mb-6 xl:mt-16 xl:mb-8 xl:flex-row xl:items-center xl:justify-between xl:gap-8 xl:px-0">
             <div className="flex w-full max-w-[988px] flex-col items-center gap-10 text-center xl:items-start xl:gap-[94px] xl:text-left">
               <div className="flex items-center gap-[13px]">
@@ -1805,7 +1668,7 @@ export default function Home() {
 
               <div className="flex w-full max-w-[987.89px] flex-col items-center gap-10 xl:items-start xl:gap-[102px]">
                 <div className="flex w-full max-w-[773.41px] flex-col items-center gap-7 xl:items-start xl:gap-[41.6px]">
-                  <h2 className="font-[EB_Garamond] text-[32px] font-semibold leading-[0.95] tracking-[-0.02em] text-[#003300] sm:text-[40px] md:text-[50px] lg:text-[58px] lg:leading-[50px] xl:text-[68px] xl:leading-[56px]">
+                  <h2 className="font-[EB_Garamond] text-[38px] font-semibold leading-[0.9] tracking-[-0.03em] text-[#003300] sm:text-[48px] md:text-[62px] lg:text-[72px] lg:leading-[60px] xl:text-[83.0753px] xl:leading-[68px]">
                     Analyse Institutionnelle &amp; Réglementaire
                   </h2>
 
@@ -1824,114 +1687,238 @@ export default function Home() {
                     En savoir plus
                   </Link>
 
-                  <Link
-                    href="/contact"
+                  <button
+                    type="button"
+                    onClick={() => setBookingModalOpen(true)}
                     className="inline-flex h-[68px] w-full items-center justify-center rounded-[141.694px] bg-[#003300] px-6 font-[Geist] text-[18px] font-semibold leading-[25px] text-[#F7FCFF] sm:h-[83.04px] sm:w-auto sm:min-w-[340px] sm:px-8 xl:text-[25.1616px]"
                   >
                     Demander une analyse
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
 
-            <div className="relative w-full max-w-[380px] sm:max-w-[480px] md:max-w-[540px] xl:w-[580px] xl:max-w-none">
+            <div className="relative w-full max-w-[340px] sm:max-w-[420px] md:max-w-[460px] xl:w-[477px] xl:max-w-none">
               <div className="relative h-[390px] w-full sm:h-[500px] md:h-[560px] xl:h-[566.12px]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/optimized/frame-559.webp"
+                <Image
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335427/rnj/optimized/frame-559-7811d1b0.webp"
                   alt="Illustration Analyse Réglementaire"
-                  className="h-full w-full object-contain object-center"
+                  fill
+                  sizes="(max-width: 640px) 340px, (max-width: 1024px) 460px, 477px"
+                  className="object-contain object-center"
                 />
               </div>
             </div>
           </div>
-          )}
-        </section>
 
-        <section className="w-full bg-[#eff1ce] pb-10 pt-2 md:pb-12 md:pt-4 lg:pb-14">
-          <div className="mx-auto w-full max-w-[1680px] px-0">
-            <div className="relative min-h-[620px] overflow-hidden bg-[#003300] md:min-h-[680px] lg:h-[760px]">
+          <div aria-hidden="true" className="h-12 lg:h-16 xl:h-20" />
+
+          <div className="mx-auto mt-10 flex w-full max-w-[1392px] flex-col items-center gap-5 px-4 pb-8 text-center sm:px-6 md:px-8 lg:mt-16 lg:gap-[20px] lg:px-0 lg:pb-[46px] xl:mt-20">
+            <div className="relative h-[93.48px] w-[58.69px]">
               <Image
-                src="/optimized/Group 349040.svg"
-                alt=""
+                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334015/rnj/layer-1-2-1d375d74.svg"
+                alt="Light bulb icon"
                 fill
-                className="object-cover object-center"
-                unoptimized
-                priority={false}
+                sizes="58.69px"
+                className="object-contain"
               />
-
-              <div className="relative z-[1] mx-auto flex h-full w-full max-w-[1392px] flex-col justify-between px-4 py-8 md:px-6 md:py-12 lg:px-[20px] lg:py-[80px]">
-                <div className="flex w-full flex-row items-center justify-between gap-3 sm:gap-5">
-                  <div className="flex min-w-0 items-center gap-[8px] sm:gap-[12px]">
-                    <span className="h-[7px] w-[7px] shrink-0 rounded-full bg-white sm:h-[10px] sm:w-[10px]" />
-                    <span
-                      className="truncate font-[Geist] font-bold text-white"
-                      style={{ fontSize: 'clamp(14px, 3.5vw, 23.3613px)', lineHeight: 1.1 }}
-                    >
-                      Entrepreneuriat
-                    </span>
-                  </div>
-
-                  <Link
-                    href="/contact"
-                    className="contact-btn inline-flex h-[38px] w-fit shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#BBCB2E] px-[14px] font-[Geist] font-semibold text-[#003300] transition-colors hover:bg-[#D4E175] sm:h-[50px] sm:px-[32px] lg:translate-x-[10px] lg:px-[38px]"
-                    style={{ fontSize: 'clamp(12px, 2.5vw, 22.5px)', lineHeight: 1 }}
-                  >
-                    Contact
-                  </Link>
-                </div>
-
-                <div className="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
-                  <div className="flex max-w-[920px] flex-col gap-10">
-                    <p
-                      className="max-w-[520px] font-[Geist] font-semibold text-white/50"
-                      style={{ fontSize: 'clamp(13px, 2.5vw, 16px)', lineHeight: 1.25 }}
-                    >
-                      Nous analysons votre environnement institutionnel et
-                      réglementaire afin de sécuriser vos décisions et garantir
-                      la conformité de vos projets.
-                    </p>
-
-                    <h2
-                      className="font-[EB_Garamond] font-medium text-white"
-                      style={{
-                        fontSize: 'clamp(28px, 6.5vw, 72px)',
-                        lineHeight: 'clamp(30px, 6.2vw, 68px)',
-                        textTransform: 'capitalize',
-                      }}
-                    >
-                      de la création d&apos;entreprise à l&apos;accélération
-                    </h2>
-                  </div>
-
-                  <div className="w-fit self-start lg:ml-auto lg:self-end lg:translate-x-[10px]">
-                    <p
-                      className="mb-4 text-right font-[Geist] font-normal text-[#7C9780]"
-                      style={{ fontSize: 'clamp(14px, 2.5vw, 23px)', lineHeight: 1.1 }}
-                    >
-                      RNJ Advisory
-                    </p>
-
-                    <div className="relative h-[160px] w-[160px] overflow-hidden rounded-[16px] border-2 border-[#BBCB2E] sm:h-[210px] sm:w-[210px] sm:rounded-[20px] md:h-[240px] md:w-[240px] md:rounded-[24px] lg:h-[280px] lg:w-[280px] lg:rounded-[28px]">
-                      <Image
-                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333996/rnj/openai-jake-stangel-1-c442a239.svg"
-                        alt="Portrait entrepreneuriat"
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
+
+            <h3
+              className="max-w-[1006.97px] font-[EB_Garamond] text-[#003300] text-[34px] font-medium leading-[1.02] sm:text-[40px] md:text-[44px] lg:text-[48px] lg:leading-[49px]"
+              style={{ transform: 'rotate(0.1deg)' }}
+            >
+              Des solutions adaptées à chaque étape
+            </h3>
+
+            <p
+              className="max-w-[1215.08px] font-[Geist] text-[14px] font-medium leading-[17px] text-[#003300]/50 lg:text-[16px]"
+              style={{ transform: 'rotate(0.1deg)' }}
+            >
+              Un accompagnement structuré pour sécuriser vos projets et soutenir
+              votre croissance.
+            </p>
           </div>
         </section>
 
-        <EntrepreneuriatTabsSection />
+        <section className="w-full bg-[#F7FCFF] pb-10 pt-6 md:pb-12 md:pt-8 lg:pb-16 lg:pt-10">
+          <div className="mx-auto grid w-full max-w-[1157px] grid-cols-1 gap-4 px-4 md:px-6 lg:grid-cols-2 lg:gap-5 lg:px-8 xl:gap-[19px] xl:px-0">
+            <article className="relative overflow-hidden rounded-[25px] md:rounded-[35px] min-h-[560px] sm:min-h-[620px] md:min-h-[760px] lg:min-h-[816px]">
+              <Image
+                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334018/rnj/mask-group-16-f5d02d69.svg"
+                alt="Interconnexion électrique Tunisie-Italie"
+                fill
+                className="object-cover"
+                unoptimized
+              />
 
+              <div className="relative z-[1] flex min-h-full flex-col items-center px-4 py-6 sm:py-8 md:px-6 md:pb-10 md:pt-12 lg:px-0 lg:pb-[58px] lg:pt-[77px]">
+                <div className="flex w-full max-w-[505px] flex-col items-center gap-[17px]">
+                  <div className="flex w-full flex-col items-center gap-2 md:gap-[8px]">
+                    <div
+                      className="relative h-[430px] w-full overflow-hidden rounded-[18px] text-white sm:h-[500px] md:h-[533px]"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.14)',
+                        boxShadow: '2px 4px 22.3px rgba(0, 0, 0, 0.6)',
+                      }}
+                    >
+                      <div className="px-5 pb-[86px] pt-6 sm:px-8 sm:pb-[96px] sm:pt-8 md:px-[41px] md:pb-[104px] md:pt-[45px]">
+                        <div className="relative mb-7 h-[20px] w-[84px] md:mb-9 md:h-[44px] md:w-[111px]">
+                          <Image
+                            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334020/rnj/image-2-2c9f497b.svg"
+                            alt="RNJ Advisory"
+                            fill
+                            className="object-contain object-left"
+                          />
+                        </div>
+
+                        <h3 className="mb-6 max-w-[381px] font-[Geist] text-[28px] font-normal leading-[0.98] text-white sm:text-[32px] md:mb-8 md:text-[44px] md:leading-[44px] xl:text-[61.04px] xl:leading-[60px]">
+                          Interconnexion électrique Tunisie-Italie
+                        </h3>
+
+                        <div className="relative max-h-[176px] overflow-hidden sm:max-h-[184px] md:max-h-[190px]">
+                          <p className="max-w-[439px] font-[Geist] text-[13px] font-normal leading-[1.14] text-white md:text-[16px] md:leading-[18px]">
+                            <span className="block">
+                              Étude juridique et institutionnelle pour la mise en
+                              place d’un cadre réglementaire propice à
+                              l’interconnexion électrique entre la Tunisie et
+                              l’Italie, ainsi que la création d’une autorité de
+                              régulation du secteur électrique en Tunisie.
+                            </span>
+                            <span className="block h-3 md:h-4" aria-hidden="true" />
+                            <span className="block">Nos interventions :</span>
+                            <span className="block">• Analyse du cadre réglementaire tunisien applicable au secteur de l’électricité et aux énergies renouvelables</span>
+                            <span className="block">• Actualisation des textes réglementaires relatifs à la création de l’autorité de régulation du secteur électrique</span>
+                            <span className="block">• Assistance à la mise en place d’un cadre réglementaire et contractuel propice à l’exportation d’électricité via ELMED</span>
+                          </p>
+
+                          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[rgba(71,71,71,0.96)] via-[rgba(71,71,71,0.72)] to-transparent md:h-20" />
+                        </div>
+                      </div>
+
+                      <div className="absolute inset-x-0 bottom-0 flex h-[76px] items-center justify-center rounded-b-[18px] bg-[rgba(0,0,0,0.10)] shadow-[2px_4px_22.3px_rgba(0,0,0,0.6)] md:rounded-b-[18px]">
+                        <button
+                          type="button"
+                          className="inline-flex h-[48px] w-[102px] items-center justify-center rounded-[120px] bg-white px-0 font-[Geist] text-[11px] font-bold leading-[14px] text-black"
+                          onClick={() => setShowStrategicPopup(true)}
+                        >
+                          Read more...
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <span className="h-[11.73px] w-[11.73px] rounded-full bg-[#ECECEC]" />
+                      <span className="h-[10.16px] w-[10.16px] rounded-full bg-white/30" />
+                      <span className="h-[10.16px] w-[10.16px] rounded-full bg-white/30" />
+                    </div>
+                  </div>
+
+                  <div className="mt-2 flex min-h-[100px] w-full max-w-[317px] flex-col items-center gap-[26px] md:mt-3">
+                    <button
+                      type="button"
+                      onClick={() => setBookingModalOpen(true)}
+                      className="flex h-[53px] w-[225px] max-w-full items-center justify-center rounded-[18px] bg-white px-[34px] py-[18px] font-[Geist] text-[16px] font-bold leading-[16px] text-black"
+                    >
+                      Sécuriser mon projet
+                    </button>
+
+                    <p className="w-full max-w-[317px] text-center font-[Geist] font-medium text-[15.3706px] leading-[21px] text-white/50">
+                      &copy; 2026 RNJ Advisory. Tous droits réservés.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article className="relative overflow-hidden rounded-[25px] md:rounded-[35px]">
+              <div className="relative h-[680px] w-full sm:h-[740px] md:h-[760px] lg:h-[816px]">
+                <Image
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334022/rnj/mask-group-17-57db8ebe.svg"
+                  alt="Decision strategique"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="absolute inset-0 flex flex-col justify-between p-4 text-white md:p-6 lg:p-8">
+                <div>
+                  <div className="mb-4 flex items-center gap-[7px] md:mb-6">
+                    <span className="h-[8px] w-[8px] rounded-full bg-white" />
+                    <span
+                      className="font-[Geist] font-bold text-white"
+                      style={{ fontSize: '16.8333px', lineHeight: '18px' }}
+                    >
+                      Conseil Stratégique
+                    </span>
+                  </div>
+
+                  <div
+                    className="relative mx-auto mt-4 w-full max-w-[368px] overflow-hidden rounded-[18px] text-white md:mt-[34px] md:max-w-[392px]"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.14)',
+                      boxShadow: '2px 4px 22.3px rgba(0, 0, 0, 0.6)',
+                    }}
+                  >
+                    <div className="px-4 pb-[86px] pt-4 md:px-5 md:pb-[96px] md:pt-5">
+                      <div className="relative mb-5 h-[170px] w-full overflow-hidden rounded-[13px] bg-[#F7FCFF] md:mb-6 md:h-[250px]">
+                        <Image
+                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335427/rnj/optimized/group-65-16f18ed1.webp"
+                          alt="Graphique de performance"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+
+                      <h3 className="mb-4 font-[EB_Garamond] text-[24px] font-normal leading-[1.02] text-white md:text-[31.25px] md:leading-[31px]">
+                        Des projets accompagnés sécurisés dès la phase de
+                        structuration
+                      </h3>
+
+                      <p className="font-[Geist] text-[14px] font-normal leading-[1.25] text-white/60 md:text-[16px] md:leading-[16px]">
+                        Nous analysons, structurons et sécurisons vos projets
+                        dans des environnements réglementaires complexes.
+                      </p>
+                    </div>
+
+                    <div className="absolute inset-x-0 bottom-0 h-[72px] rounded-b-[18px] bg-[rgba(0,0,0,0.10)] shadow-[2px_4px_22.3px_rgba(0,0,0,0.6)] md:h-[76px]" />
+                  </div>
+                </div>
+
+                <div className="pt-6 md:pt-8">
+                  <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-[10px] lg:justify-start">
+                    <button
+                      type="button"
+                      className="inline-flex h-[52px] w-full items-center justify-center rounded-full border-2 border-white px-6 text-center font-[Geist] text-[15px] font-medium leading-[16px] text-white sm:w-auto sm:min-w-[190px] sm:px-8 md:h-[53px] md:min-w-[220px] md:px-10 md:text-[16px] lg:min-w-0 lg:px-[53px]"
+                      style={{ touchAction: 'manipulation' }}
+                      onClick={() => setShowCertificatesPopup(true)}
+                    >
+                      En savoir plus
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setBookingModalOpen(true)}
+                      className="inline-flex h-[52px] w-full items-center justify-center rounded-full bg-white px-6 text-center font-[Geist] text-[15px] font-bold leading-[16px] text-black sm:w-auto sm:min-w-[210px] sm:px-8 md:h-[53px] md:min-w-[235px] md:px-8 md:text-[16px] lg:min-w-0 lg:px-[34px]"
+                      style={{ touchAction: 'manipulation' }}
+                    >
+                      Sécuriser mon projet
+                    </button>
+                  </div>
+
+                  <p className="mt-4 max-w-[420px] font-[Geist] text-[14px] font-normal leading-[1.25] text-white/60 md:mt-5 md:text-[16px] md:leading-[16px]">
+                    Une expertise indépendante au service de décisions
+                    stratégiques sécurisées.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        {/* Section Indépendants & porteurs de projet */}
         <section className="w-full bg-[#F7FCFF] py-12 md:py-24">
-          <div className="mx-auto flex w-full max-w-[1513px] flex-col items-center gap-12 md:gap-[150px] px-4">
+          <div className="mx-auto flex w-full max-w-[1157px] flex-col items-center gap- px-4 md:px-6 lg:px-8 xl:px-0">
             <div className="relative w-full max-w-[1392px]">
               <div className="flex flex-col gap-8 md:gap-[90px]">
                 <div className="flex w-full flex-col items-center justify-between gap-4 sm:flex-row sm:gap-6">
@@ -1944,14 +1931,14 @@ export default function Home() {
 
                   <button
                     type="button"
-                    className="contact-btn rounded-full bg-[#BBCB2E] px-6 md:px-[43px] py-3 md:py-4 font-[Geist] font-bold text-[#003300] text-[16px] md:text-[24px]"
+                    className="rounded-full bg-[#BBCB2E] px-6 md:px-[43px] py-3 md:py-4 font-[Geist] font-bold text-[#003300] text-[16px] md:text-[24px]"
                   >
                     Contact
                   </button>
                 </div>
 
                 <div className="flex flex-col items-center gap-6 md:gap-[41px] text-center">
-                  <h2 className="max-w-[95%] sm:max-w-[90%] md:max-w-[824px] font-[EB_Garamond] font-extrabold text-[#003300] text-[28px] sm:text-[36px] md:text-[56px] lg:text-[80px] leading-[1.1] md:leading-[0.95]">
+                  <h2 className="max-w-[95%] sm:max-w-[90%] md:max-w-[824px] font-[EB_Garamond] font-extrabold text-[#003300] text-[32px] sm:text-[44px] md:text-[70px] lg:text-[100px] leading-[1.05] md:leading-[0.9]">
                     Indépendants &amp; porteurs de projet
                   </h2>
 
@@ -2004,218 +1991,193 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Section Articles Interconnexion et Certificats */}
-            <article
-              className="relative w-screen max-w-none overflow-hidden bg-[#003300]"
-              style={{
-                marginLeft: 'calc(50% - 50vw)',
-                marginRight: 'calc(50% - 50vw)',
-                boxShadow: '2px 4px 28.3px rgba(0, 0, 0, 0.17)',
-              }}
-            >
-              <div className="grid w-full max-w-none grid-cols-1 gap-[60px] md:gap-[80px] 2xl:h-[815.12px] 2xl:grid-cols-[900px_672px] 2xl:gap-[120px]">
-              <div className="relative order-2 min-h-[320px] w-full overflow-hidden md:min-h-[520px] 2xl:order-1 2xl:h-full">
-                <Image
-                  src="/optimized/Mask group (44).svg"
-                  alt="Accélération PME et ASBL"
-                  fill
-                  className="object-cover object-left"
-                />
+        <section className="hidden w-full bg-[#F7FCFF] py-10 md:block md:py-12 lg:py-14">
+          <div className="mx-auto w-full px-0">
+            <div className="mb-8 flex flex-col gap-3 px-4 md:mb-10 md:px-6 lg:px-8">
+              <div className="flex items-center gap-3">
+                <span className="h-[10px] w-[10px] rounded-full bg-[#003300]" />
+                <span className="font-[Geist] text-[18px] font-bold leading-[1.05] text-[#003300] sm:text-[20px] md:text-[22px] lg:text-[23.6828px] lg:leading-[25px]">
+                  Pourquoi choisir RNJ Advisory ?
+                </span>
               </div>
 
-              <div className="order-1 flex flex-col px-4 py-6 md:px-6 md:py-9 2xl:order-2 2xl:px-[60px] 2xl:py-[56px]">
-                <div className="flex h-full w-full flex-col gap-8 2xl:gap-[36px]">
-                  <div className="flex items-center gap-2.5">
-                    <span className="h-[8px] w-[8px] rounded-full bg-[#BFCCBF] md:h-[9.33px] md:w-[9.33px]" />
+              <p className="font-[Geist] text-[16px] font-bold leading-[1.15] text-[#003300]/65 sm:text-[18px] md:text-[19px] lg:text-[20px] lg:leading-[18px]">
+                Une expertise rigoureuse au service de vos décisions
+              </p>
+            </div>
+
+            <div className="relative overflow-hidden py-6 md:py-8 2xl:h-[512px]">
+              <div className="relative z-[1] hidden h-full overflow-hidden 2xl:block">
+                <div className="absolute left-0 top-1/2 -translate-y-1/2">
+                  <div
+                    className="flex w-max items-center gap-5"
+                    style={{
+                      animation: 'scroll 22s linear infinite',
+                      willChange: 'transform',
+                    }}
+                  >
+                    {[...whyChooseAnimatedCards, ...whyChooseAnimatedCards].map(
+                      (card, index) => (
+                        <article
+                          key={`why-choose-desktop-${card.title}-${index}`}
+                          className="flex h-[304px] w-[308.02px] shrink-0 cursor-pointer flex-col items-center justify-center rounded-[10px] px-5 text-center transition-all duration-300"
+                          style={{
+                            background:
+                              hoveredScrollCardIndex === index
+                                ? whyChooseCardActiveBackground
+                                : '#D4E175',
+                            border:
+                              hoveredScrollCardIndex === index
+                                ? `2px solid ${whyChooseCardActiveBorder}`
+                                : '2px solid transparent',
+                            boxShadow:
+                              hoveredScrollCardIndex === index
+                                ? '0px 8px 26px rgba(0, 0, 0, 0.18)'
+                                : '0px 4px 22.4px rgba(0, 0, 0, 0.19)',
+                            transform:
+                              hoveredScrollCardIndex === index
+                                ? 'translateY(-2px)'
+                                : 'translateY(0)',
+                          }}
+                          onMouseEnter={() => setHoveredScrollCardIndex(index)}
+                          onMouseLeave={() => setHoveredScrollCardIndex(null)}
+                          onTouchStart={() => setHoveredScrollCardIndex(index)}
+                          onTouchEnd={() => {
+                            setTimeout(() => {
+                              setHoveredScrollCardIndex(null);
+                            }, 220);
+                          }}
+                        >
+                          {!card.hideIcon && (
+                            <div
+                              className="relative mb-5"
+                              style={{ width: `${card.iconWidth}px`, height: `${card.iconHeight}px` }}
+                            >
+                              <Image
+                                src={card.icon}
+                                alt={card.title}
+                                fill
+                                className="object-contain"
+                              />
+                            </div>
+                          )}
+
+                          <h3 className="mb-4 max-w-[303px] font-[EB_Garamond] text-[32px] font-bold leading-[27px] text-[#003300]">
+                            {card.title}
+                          </h3>
+
+                          <p className="max-w-[262px] font-[Geist] text-[16px] font-medium leading-[16px] text-[#003300]/50">
+                            {card.description}
+                          </p>
+                        </article>
+                      ),
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mx-auto mt-8 w-full max-w-[1680px] px-0">
+              <p
+                className="max-w-[892px] px-4 font-[Geist] text-[15px] font-semibold leading-[17px] text-[#003300]/50 md:px-6 md:text-[16px] md:leading-[18px] lg:px-8"
+              >
+                Choisir RNJ Advisory, c&apos;est bénéficier d&apos;une approche
+                structurée, indépendante et orientée résultats. Nous combinons
+                analyse juridique, compréhension institutionnelle et vision
+                stratégique afin de vous aider à anticiper les risques, assurer
+                la conformité de vos projets et prendre des décisions éclairées.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full bg-[#F7FCFF] pb-10 pt-2 md:pb-12 md:pt-4 lg:pb-14">
+          <div className="mx-auto w-full max-w-[1680px] px-0">
+            <div className="relative min-h-[620px] overflow-hidden bg-[#003300] md:min-h-[680px] lg:h-[760px]">
+              <Image
+                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334026/rnj/group-349040-b40f156d.svg"
+                alt=""
+                fill
+                className="object-cover object-center"
+                unoptimized
+                priority={false}
+              />
+
+              <div className="absolute inset-0 bg-[#003300]/40" />
+
+              <div className="relative z-[1] mx-auto flex h-full w-full max-w-[1392px] flex-col justify-between px-4 py-8 md:px-6 md:py-12 lg:px-[20px] lg:py-[80px]">
+                <div className="flex w-full flex-row items-center justify-between gap-3 sm:gap-5">
+                  <div className="flex min-w-0 items-center gap-[8px] sm:gap-[12px]">
+                    <span className="h-[7px] w-[7px] shrink-0 rounded-full bg-white sm:h-[10px] sm:w-[10px]" />
                     <span
-                      className="font-[Geist] font-semibold text-[#BFCCBF]"
-                      style={{ fontSize: '20px', lineHeight: '24px' }}
+                      className="truncate font-[Geist] font-bold text-white"
+                      style={{ fontSize: 'clamp(14px, 3.5vw, 23.3613px)', lineHeight: 1.1 }}
                     >
                       Entrepreneuriat
                     </span>
                   </div>
 
-                  <div className="flex h-full flex-col justify-between gap-10 2xl:gap-[126px]">
-                    <div className="flex flex-col gap-8 2xl:max-w-[637px] 2xl:gap-[45px]">
-                      <h3
-                        className="max-w-[800px] font-[EB_Garamond] font-semibold text-[#BFCCBF]"
-                        style={{
-                          fontSize: 'clamp(34px, 5vw, 64px)',
-                          lineHeight: 'clamp(36px, 4.8vw, 56px)',
-                          textTransform: 'capitalize',
-                        }}
-                      >
-                        <span className="whitespace-nowrap">Accélération PME &amp;</span><br />
-                        ASBL Recrutement<br />
-                        International &amp;<br />
-                        Croissance
-                      </h3>
+                  <button
+                    type="button"
+                    onClick={() => setBookingModalOpen(true)}
+                    className="inline-flex h-[38px] w-fit shrink-0 items-center justify-center whitespace-nowrap rounded-full bg-[#BBCB2E] px-[14px] font-[Geist] font-semibold text-[#003300] transition-colors hover:bg-[#D4E175] sm:h-[50px] sm:px-[32px] lg:translate-x-[10px] lg:px-[38px]"
+                    style={{ fontSize: 'clamp(12px, 2.5vw, 22.5px)', lineHeight: 1 }}
+                  >
+                    Contact
+                  </button>
+                </div>
 
-                      <div className="flex max-w-[435px] flex-col gap-[25px]">
-                        {/* Questions with SVG background */}
-                        <div
-                          className="relative flex flex-col items-center justify-center gap-[4px]"
-                          style={{
-                            width: '426.24px',
-                            height: '56.17px',
-                          }}
-                        >
-                          <Image
-                            src="/optimized/Vector (22).svg"
-                            alt=""
-                            fill
-                            className="object-cover"
-                          />
-                          <span
-                            className="relative z-10 w-full text-center font-[Geist] font-semibold text-[#003300]"
-                            style={{
-                              fontSize: '16.0844px',
-                              lineHeight: '28px',
-                              opacity: 0.7,
-                            }}
-                          >
-                            Vous êtes une PME ou une Asbl en croissance ?
-                          </span>
-                          <span
-                            className="relative z-10 w-full text-center font-[Geist] font-semibold text-[#003300]"
-                            style={{
-                              fontSize: '16.0844px',
-                              lineHeight: '28px',
-                              opacity: 0.7,
-                            }}
-                          >
-                            Vous souhaitez recruter des talents hors UE ?
-                          </span>
-                        </div>
+                <div className="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
+                  <div className="flex max-w-[920px] flex-col gap-10">
+                    <p
+                      className="max-w-[520px] font-[Geist] font-semibold text-white/50"
+                      style={{ fontSize: 'clamp(13px, 2.5vw, 16px)', lineHeight: 1.25 }}
+                    >
+                      Nous analysons votre environnement institutionnel et
+                      réglementaire afin de sécuriser vos décisions et garantir
+                      la conformité de vos projets.
+                    </p>
 
-                        <p
-                          className="max-w-[424px] pl-[11px] font-[Geist] font-medium text-[#BFCCBF]"
-                          style={{ fontSize: 'clamp(13px, 2.2vw, 16px)', lineHeight: 'clamp(17px, 2.8vw, 19px)', opacity: 0.7 }}
-                        >
-                          Nous sécurisons vos recrutements internationaux pour vous concentrer sur votre développement.
-                        </p>
-                      </div>
-                    </div>
+                    <h2
+                      className="font-[EB_Garamond] font-medium text-white"
+                      style={{
+                        fontSize: 'clamp(28px, 6.5vw, 72px)',
+                        lineHeight: 'clamp(30px, 6.2vw, 68px)',
+                        textTransform: 'capitalize',
+                      }}
+                    >
+                      de la création d&apos;entreprise à l&apos;accélération
+                    </h2>
+                  </div>
 
-                    <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:gap-[9.8px] 2xl:max-w-[483.85px]">
-                      <button
-                        type="button"
-                        className="h-[56px] w-full whitespace-nowrap rounded-full border border-[#BFCCBF] px-8 font-[Geist] font-semibold text-[#BFCCBF] transition-colors hover:bg-[#BFCCBF] hover:text-[#F7FCFF] sm:w-auto md:h-[66.65px] md:border-[1.96016px] md:px-[44px]"
-                        style={{ fontSize: '16px', lineHeight: '20px' }}
-                      >
-                        À propos
-                      </button>
-                      <button
-                        type="button"
-                        className="h-[56px] w-full rounded-full bg-[#BBCB2E] px-6 font-[Geist] font-semibold text-[#003300] transition-colors hover:bg-[#002200] sm:w-auto md:h-[65.08px] md:min-w-[329px] md:px-[9.8008px]"
-                        style={{ fontSize: '16px', lineHeight: '20px' }}
-                      >
-                        Planifier un entretien confidentiel
-                      </button>
+                  <div className="w-fit self-start lg:ml-auto lg:self-end lg:translate-x-[10px]">
+                    <p
+                      className="mb-4 text-right font-[Geist] font-normal text-[#7C9780]"
+                      style={{ fontSize: 'clamp(14px, 2.5vw, 23px)', lineHeight: 1.1 }}
+                    >
+                      RNJ Advisory
+                    </p>
+
+                    <div className="relative h-[160px] w-[160px] overflow-hidden rounded-[16px] border-2 border-[#BBCB2E] sm:h-[210px] sm:w-[210px] sm:rounded-[20px] md:h-[240px] md:w-[240px] md:rounded-[24px] lg:h-[280px] lg:w-[280px] lg:rounded-[28px]">
+                      <Image
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333996/rnj/openai-jake-stangel-1-c442a239.svg"
+                        alt="Portrait entrepreneuriat"
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
                     </div>
                   </div>
                 </div>
               </div>
-              </div>
-            </article>
+            </div>
+          </div>
+        </section>
 
-            {/* Section Pourquoi choisir RNJ Advisory */}
-            <section
-              className="relative w-screen max-w-none bg-[#F7FCFF] py-10 md:py-12 lg:py-14"
-              style={{
-                marginLeft: 'calc(50% - 50vw)',
-                marginRight: 'calc(50% - 50vw)',
-                marginTop: '-107px',
-                marginBottom: '-50px',
-              }}
-            >
-              <div className="w-full px-4">
-                <div className="mb-[3.02px] flex flex-col gap-3 pl-12 md:mb-[3.02px] md:pl-16 lg:pl-20">
-                  <div className="flex items-center gap-3">
-                    <span className="h-[10px] w-[10px] rounded-full bg-[#003300]" />
-                    <span className="font-[Geist] text-[18px] font-bold leading-[1.05] text-[#003300] sm:text-[20px] md:text-[22px] lg:text-[23.6828px] lg:leading-[25px]">
-                      Pourquoi choisir RNJ Advisory ?
-                    </span>
-                  </div>
-
-                  <p className="font-[Geist] text-[16px] font-bold leading-[1.15] text-[#003300]/65 sm:text-[18px] md:text-[19px] lg:text-[20px] lg:leading-[18px]">
-                    Une expertise rigoureuse au service de vos décisions
-                  </p>
-                </div>
-
-                <div className="relative overflow-hidden py-6 md:py-8 2xl:h-[512px]">
-                  <div className="relative z-[1] hidden h-full overflow-hidden 2xl:block">
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2">
-                      <div
-                        className="flex w-max items-center gap-5"
-                        style={{
-                          animation: 'scroll 22s linear infinite',
-                          willChange: 'transform',
-                        }}
-                      >
-                        {[...whyChooseAnimatedCards, ...whyChooseAnimatedCards].map(
-                          (card, index) => (
-                            <article
-                              key={`why-choose-desktop-${card.title}-${index}`}
-                              className="flex h-[304px] w-[308.02px] shrink-0 cursor-pointer flex-col items-center justify-center rounded-[10px] px-5 text-center transition-all duration-300"
-                              style={{
-                                background:
-                                  hoveredScrollCardIndex === index
-                                    ? whyChooseCardActiveBackground
-                                    : '#D4E175',
-                                border:
-                                  hoveredScrollCardIndex === index
-                                    ? `2px solid ${whyChooseCardActiveBorder}`
-                                    : '2px solid transparent',
-                                boxShadow:
-                                  hoveredScrollCardIndex === index
-                                    ? '0px 8px 26px rgba(0, 0, 0, 0.18)'
-                                    : '0px 4px 22.4px rgba(0, 0, 0, 0.19)',
-                                transform:
-                                  hoveredScrollCardIndex === index
-                                    ? 'translateY(-2px)'
-                                    : 'translateY(0)',
-                              }}
-                              onMouseEnter={() => setHoveredScrollCardIndex(index)}
-                              onMouseLeave={() => setHoveredScrollCardIndex(null)}
-                              onTouchStart={() => setHoveredScrollCardIndex(index)}
-                              onTouchEnd={() => {
-                                setTimeout(() => {
-                                  setHoveredScrollCardIndex(null);
-                                }, 220);
-                              }}
-                            >
-                              {!card.hideIcon && (
-                                <div
-                                  className="relative mb-5"
-                                  style={{ width: `${card.iconWidth}px`, height: `${card.iconHeight}px` }}
-                                >
-                                  <Image
-                                    src={card.icon}
-                                    alt={card.title}
-                                    fill
-                                    className="object-contain"
-                                  />
-                                </div>
-                              )}
-
-                              <h3 className="mb-4 max-w-[303px] font-[EB_Garamond] text-[32px] font-bold leading-[27px] text-[#003300]">
-                                {card.title}
-                              </h3>
-
-                              <p className="max-w-[262px] font-[Geist] text-[16px] font-medium leading-[16px] text-[#003300]/50">
-                                {card.description}
-                              </p>
-                            </article>
-                          ),
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+        <EntrepreneuriatTabsSection onOpenBooking={() => setBookingModalOpen(true)} />
 
             {showStrategicPopup && (
               <div
@@ -2267,13 +2229,13 @@ export default function Home() {
                     </div>
 
                     <div className="mt-8 flex flex-col items-start gap-4 md:mt-10">
-                      <Link
-                        href="/contact"
-                        className="contact-btn inline-flex h-[68px] items-center justify-center rounded-full bg-white px-10 font-[Geist] text-[20px] font-medium text-black transition hover:opacity-90 md:h-[97px] md:px-[72px] md:text-[24px]"
-                        onClick={() => setShowStrategicPopup(false)}
+                      <button
+                        type="button"
+                        onClick={() => { setShowStrategicPopup(false); setBookingModalOpen(true); }}
+                        className="inline-flex h-[68px] items-center justify-center rounded-full bg-white px-10 font-[Geist] text-[20px] font-medium text-black transition hover:opacity-90 md:h-[97px] md:px-[72px] md:text-[24px]"
                       >
                         Contact
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -2327,235 +2289,131 @@ export default function Home() {
                     </div>
 
                     <div className="mt-8 flex flex-col items-start gap-4 md:mt-10">
-                      <Link
-                        href="/contact"
-                        className="contact-btn inline-flex h-[68px] items-center justify-center rounded-full bg-white px-10 font-[Geist] text-[20px] font-medium text-black transition hover:opacity-90 md:h-[97px] md:px-[72px] md:text-[24px]"
-                        onClick={() => setShowCertificatesPopup(false)}
+                      <button
+                        type="button"
+                        onClick={() => { setShowCertificatesPopup(false); setBookingModalOpen(true); }}
+                        className="inline-flex h-[68px] items-center justify-center rounded-full bg-white px-10 font-[Geist] text-[20px] font-medium text-black transition hover:opacity-90 md:h-[97px] md:px-[72px] md:text-[24px]"
                       >
                         Contact
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
             )}
 
-            <section className="w-full bg-[#F7FCFF] pb-10 pt-6 md:pb-12 md:pt-8 lg:pb-16 lg:pt-10">
-              <div className="mx-auto grid w-full max-w-[1157px] grid-cols-1 gap-4 px-4 md:px-6 lg:grid-cols-2 lg:gap-5 lg:px-8 xl:gap-[19px] xl:px-0">
-                <article className="relative overflow-hidden rounded-[25px] md:rounded-[35px] min-h-[560px] sm:min-h-[620px] md:min-h-[760px] lg:min-h-[816px]">
-                  <Image
-                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334018/rnj/mask-group-16-f5d02d69.svg"
-                    alt="Interconnexion électrique Tunisie-Italie"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
+            <article
+              className="grid w-full max-w-[1392px] grid-cols-1 gap-[24px] rounded-[20px] bg-[#F7FCFF] p-[12px] md:gap-[30px] md:rounded-[40px] md:p-[15px] 2xl:h-[811px] 2xl:grid-cols-[672px_minmax(0,1fr)]"
+              style={{ boxShadow: '2px 4px 28.3px rgba(0, 0, 0, 0.17)' }}
+            >
+              <div className="relative order-2 min-h-[320px] overflow-hidden rounded-[18px] md:min-h-[520px] md:rounded-[25px] 2xl:order-1 2xl:h-[781px]">
+                <Image
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334031/rnj/mask-group-18-c3bd04c7.svg"
+                  alt="Accélération PME et ASBL"
+                  fill
+                  className="object-cover object-center"
+                />
+              </div>
 
-                  <div className="relative z-[1] flex min-h-full flex-col items-center px-4 py-6 sm:py-8 md:px-6 md:pb-10 md:pt-12 lg:px-0 lg:pb-[58px] lg:pt-[77px]">
-                    <div className="flex w-full max-w-[505px] flex-col items-center gap-[17px]">
-                      <div className="flex w-full flex-col items-center gap-2 md:gap-[8px]">
-                        <div
-                          className="relative h-[430px] w-full overflow-hidden rounded-[18px] text-white sm:h-[500px] md:h-[533px]"
-                          style={{
-                            background: 'rgba(255, 255, 255, 0.14)',
-                            boxShadow: '2px 4px 22.3px rgba(0, 0, 0, 0.6)',
-                          }}
-                        >
-                          <div className="px-5 pb-[86px] pt-6 sm:px-8 sm:pb-[96px] sm:pt-8 md:px-[41px] md:pb-[104px] md:pt-[45px]">
-                            <div className="relative mb-7 h-[20px] w-[84px] md:mb-9 md:h-[44px] md:w-[111px]">
-                              <Image
-                                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334020/rnj/image-2-2c9f497b.svg"
-                                alt="RNJ Advisory"
-                                fill
-                                className="object-contain object-left"
-                              />
-                            </div>
+              <div className="order-1 flex flex-col px-4 py-6 md:px-6 md:py-9 2xl:order-2 2xl:px-0 2xl:py-[56px]">
+                <div className="flex h-full w-full flex-col gap-8 2xl:gap-[36px]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="h-[8px] w-[8px] rounded-full bg-[#003300] md:h-[9.33px] md:w-[9.33px]" />
+                    <span
+                      className="font-[Geist] font-semibold text-[#003300]"
+                      style={{ fontSize: '20px', lineHeight: '24px' }}
+                    >
+                      Entrepreneuriat
+                    </span>
+                  </div>
 
-                            <h3 className="mb-6 max-w-[381px] font-[Geist] text-[28px] font-normal leading-[0.98] text-white sm:text-[32px] md:mb-8 md:text-[44px] md:leading-[44px] xl:text-[61.04px] xl:leading-[60px]">
-                              Interconnexion électrique Tunisie-Italie
-                            </h3>
+                  <div className="flex h-full flex-col justify-between gap-10 2xl:gap-[126px]">
+                    <div className="flex flex-col gap-8 2xl:max-w-[637px] 2xl:gap-[45px]">
+                      <h3
+                        className="max-w-[590px] font-[EB_Garamond] font-semibold text-[#003300]"
+                        style={{
+                          fontSize: 'clamp(34px, 5vw, 64px)',
+                          lineHeight: 'clamp(36px, 4.8vw, 56px)',
+                          textTransform: 'capitalize',
+                        }}
+                      >
+                        Accélération PME &amp; ASBL Recrutement International &amp; Croissance
+                      </h3>
 
-                            <div className="relative max-h-[176px] overflow-hidden sm:max-h-[184px] md:max-h-[190px]">
-                              <p className="max-w-[439px] font-[Geist] text-[13px] font-normal leading-[1.14] text-white md:text-[16px] md:leading-[18px]">
-                                <span className="block">
-                                  Étude juridique et institutionnelle pour la mise en
-                                  place d'un cadre réglementaire propice à
-                                  l'interconnexion électrique entre la Tunisie et
-                                  l'Italie, ainsi que la création d'une autorité de
-                                  régulation du secteur électrique en Tunisie.
-                                </span>
-                                <span className="block h-3 md:h-4" aria-hidden="true" />
-                                <span className="block">Nos interventions :</span>
-                                <span className="block">• Analyse du cadre réglementaire tunisien applicable au secteur de l'électricité et aux énergies renouvelables</span>
-                                <span className="block">• Actualisation des textes réglementaires relatifs à la création de l'autorité de régulation du secteur électrique</span>
-                                <span className="block">• Assistance à la mise en place d'un cadre réglementaire et contractuel propice à l'exportation d'électricité via ELMED</span>
-                              </p>
-
-                              <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[rgba(71,71,71,0.96)] via-[rgba(71,71,71,0.72)] to-transparent md:h-20" />
-                            </div>
-                          </div>
-
-                          <div className="absolute inset-x-0 bottom-0 flex h-[76px] items-center justify-center rounded-b-[18px] bg-[rgba(0,0,0,0.10)] shadow-[2px 4px 22.3px rgba(0,0,0,0.6)] md:rounded-b-[18px]">
-                            <button
-                              type="button"
-                              className="inline-flex h-[48px] w-[102px] items-center justify-center rounded-[120px] bg-white px-0 font-[Geist] text-[11px] font-bold leading-[14px] text-black"
-                              onClick={() => setShowStrategicPopup(true)}
-                            >
-                              En savoir plus...
-                            </button>
-                          </div>
+                      <div className="flex max-w-[435px] flex-col gap-[25px]">
+                        {/* Each question on its own line with a green highlight that ends at the text length */}
+                        <div className="flex flex-col gap-[6px] md:gap-[7.26px]">
+                          <span
+                            className="w-fit max-w-full whitespace-nowrap font-[Geist] font-semibold text-[#003300]"
+                            style={{
+                              fontSize: 'clamp(11px, 2.3vw, 16px)',
+                              lineHeight: 'clamp(20px, 4vw, 28px)',
+                              opacity: 0.85,
+                              backgroundImage: 'linear-gradient(transparent 55%, #BBCB2E 55%, #BBCB2E 92%, transparent 92%)',
+                              paddingLeft: '4px',
+                              paddingRight: '4px',
+                            }}
+                          >
+                            Vous êtes une PME ou une Asbl en croissance ?
+                          </span>
+                          <span
+                            className="w-fit max-w-full whitespace-nowrap font-[Geist] font-semibold text-[#003300]"
+                            style={{
+                              fontSize: 'clamp(11px, 2.3vw, 16px)',
+                              lineHeight: 'clamp(20px, 4vw, 28px)',
+                              opacity: 0.85,
+                              backgroundImage: 'linear-gradient(transparent 55%, #BBCB2E 55%, #BBCB2E 92%, transparent 92%)',
+                              paddingLeft: '4px',
+                              paddingRight: '4px',
+                            }}
+                          >
+                            Vous souhaitez recruter des talents hors UE ?
+                          </span>
                         </div>
 
-                        <div className="flex items-center gap-2">
-                          <span className="h-[11.73px] w-[11.73px] rounded-full bg-[#ECECEC]" />
-                          <span className="h-[10.16px] w-[10.16px] rounded-full bg-white/30" />
-                          <span className="h-[10.16px] w-[10.16px] rounded-full bg-white/30" />
-                        </div>
-                      </div>
-
-                      <div className="mt-2 flex min-h-[100px] w-full max-w-[317px] flex-col items-center gap-[26px] md:mt-3">
-                        <a
-                          href="/contact"
-                          className="flex h-[53px] w-[225px] max-w-full items-center justify-center rounded-[18px] bg-white px-[28px] py-[18px] font-[Geist] text-[16px] font-bold leading-[20px] text-black whitespace-nowrap"
+                        <p
+                          className="max-w-[424px] pl-[11px] font-[Geist] font-medium text-[#003300]"
+                          style={{ fontSize: 'clamp(13px, 2.2vw, 16px)', lineHeight: 'clamp(17px, 2.8vw, 19px)', opacity: 0.7 }}
                         >
-                          Sécuriser mon projet
-                        </a>
-
-                        <p className="w-full max-w-[317px] text-center font-[Geist] font-medium text-[15.3706px] leading-[21px] text-white/50">
-                          &copy; 2026 RNJ Advisory. Tous droits réservés.
+                          Nous sécurisons vos recrutements internationaux pour vous concentrer sur votre développement.
                         </p>
                       </div>
                     </div>
-                  </div>
-                </article>
 
-                <article className="relative overflow-hidden rounded-[25px] md:rounded-[35px] min-h-[560px] sm:min-h-[620px] md:min-h-[760px] lg:min-h-[816px]">
-                  <Image
-                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334022/rnj/mask-group-17-57db8ebe.svg"
-                    alt="Decision strategique"
-                    fill
-                    className="object-cover"
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70" />
-                  <div className="relative z-[1] min-h-full text-white">
-                    <div className="absolute left-[8.5%] top-[5.2%] flex items-center gap-[8px]">
-                      <span className="h-[8px] w-[8px] rounded-full bg-white" />
-                      <span className="font-[Geist] text-[16.8333px] font-bold leading-[18px] text-white">
-                        Conseil Stratégique
-                      </span>
-                    </div>
-
-                    <div className="absolute left-1/2 top-[11.5%] w-[84%] max-w-[505px] -translate-x-1/2 sm:top-[12.5%] md:top-[11.2%]">
-                      <div
-                        className="h-[533px] overflow-hidden rounded-[18px] text-white"
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.14)',
-                          boxShadow: '2px 4px 22.3px rgba(0, 0, 0, 0.6)',
-                        }}
+                    <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:gap-[9.8px] 2xl:max-w-[483.85px]">
+                      <button
+                        type="button"
+                        className="h-[56px] w-full rounded-full border border-[#003300] px-8 font-[Geist] font-semibold text-[#003300] transition-colors hover:bg-[#003300] hover:text-[#F7FCFF] sm:w-auto md:h-[66.65px] md:border-[1.96016px] md:px-[44px]"
+                        style={{ fontSize: '16px', lineHeight: '20px' }}
                       >
-                        <div
-                          className="flex h-full flex-row items-center px-[21px]"
-                          style={{ paddingTop: '16px', paddingBottom: '26px' }}
-                        >
-                          <div className="mx-auto flex h-[491px] w-full max-w-[463px] flex-col items-start gap-[34px]">
-                            <div className="relative h-[349px] w-full max-w-[463px]">
-                              <div className="absolute inset-0 rounded-[13px] bg-[#F7FCFF]" />
-                              <Image
-                                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335427/rnj/optimized/group-65-16f18ed1.webp"
-                                alt="Graphique de performance"
-                                fill
-                                className="rounded-[13px] object-cover"
-                              />
-                            </div>
+                        About
+                      </button>
 
-                            <div className="flex h-[108px] w-full max-w-[439px] flex-col items-start gap-[13px]">
-                              <h3 className="font-[EB_Garamond] text-[31.25px] font-normal leading-[31px] text-white sm:whitespace-nowrap">
-                                Certificats d&apos;Attributs Énergétiques
-                              </h3>
-                              <p className="font-[Geist] text-[16px] font-normal leading-[16px] text-white opacity-60">
-                                RNJ Advisory a contribué à la première phase de
-                                l&apos;étude sur la conceptualisation des EAC en
-                                Tunisie, avec un atelier organisé à Tunis auprès du
-                                Ministère de l&apos;Énergie et des Mines et des
-                                parties prenantes.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="mt-[52px] flex h-[53px] w-[375px] max-w-full items-center gap-[10px]">
-                        <button
-                          type="button"
-                          className="flex h-[53px] w-[140px] items-center justify-center rounded-full border-2 border-[#F7FCFF] px-[26px] py-[19px] font-[Geist] text-[16px] font-medium leading-[16px] text-white whitespace-nowrap sm:px-[53px]"
-                          style={{ touchAction: 'manipulation' }}
-                          onClick={() => setShowCertificatesPopup(true)}
-                        >
-                          En savoir plus
-                        </button>
-
-                        <a
-                          href="/contact"
-                          className="flex h-[53px] w-[225px] items-center justify-center rounded-full bg-white px-[28px] py-[19px] font-[Geist] text-[16px] font-bold leading-[16px] text-black whitespace-nowrap sm:px-[34px]"
-                          style={{ touchAction: 'manipulation' }}
-                        >
-                          Sécuriser mon projet
-                        </a>
-                      </div>
-
-                      <div className="mt-[24px] max-w-[420px] font-[Geist] text-[16px] font-normal leading-[16px] text-white opacity-60">
-                        Une expertise indépendante au service de décisions
-                        stratégiques sécurisées.
-                      </div>
+                      <button
+                        type="button"
+                        className="h-[56px] w-full rounded-full bg-[#003300] px-6 font-[Geist] font-semibold text-[#F7FCFF] transition-colors hover:bg-[#002200] sm:w-auto md:h-[65.08px] md:min-w-[329px] md:px-[9.8008px]"
+                        style={{ fontSize: '16px', lineHeight: '20px' }}
+                      >
+                        Planifier un entretien confidentiel
+                      </button>
                     </div>
                   </div>
-                </article>
+                </div>
               </div>
-            </section>
+            </article>
 
-            <section className="relative w-screen overflow-hidden bg-[#003300] py-12 md:min-h-[1422.65px] md:py-[94.3px] lg:min-h-[1422.65px] lg:py-[94.3px]">
-              <div className="absolute inset-0 bg-[#003300]" />
-
-              <div className="absolute inset-0 md:hidden">
+            <section className="relative w-screen overflow-hidden bg-[#BBCB2E] py-12 md:py-16 lg:py-[84px]">
+              <div className="absolute inset-0">
                 <Image
-                  src="/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc.jpg"
-                  alt=""
-                  fill
-                  className="object-cover object-top"
-                  unoptimized
-                  aria-hidden="true"
-                />
-              </div>
-
-              <div className="absolute inset-0 hidden md:block">
-                <Image
-                  src="/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc.jpg"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334036/rnj/group-349051-d2f123fc.svg"
                   alt=""
                   fill
                   className="object-cover object-center"
-                  unoptimized
                   aria-hidden="true"
                 />
               </div>
 
-              <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/20 to-black/12" />
-
-              {/* List dark backdrop (Figma: Rectangle 598) */}
-              <div
-                className="pointer-events-none absolute z-[6] hidden md:block"
-                style={{
-                  left: '50%',
-                  width: '100vw',
-                  height: '731px',
-                  top: '675px',
-                  transform: 'translateX(-50%)',
-                  background: 'rgba(0, 0, 0, 0.2)',
-                  boxShadow: '0px 2px 44.2px rgba(0, 0, 0, 0.17)',
-                }}
-              />
-
-              <div className="relative z-[8] left-1/2 w-screen -translate-x-1/2">
+              <div className="relative left-1/2 w-screen -translate-x-1/2">
                 <div className="mx-auto w-full max-w-none px-0">
                   <div className="mx-auto flex w-full max-w-[774px] flex-col items-center gap-5 px-4 text-center sm:gap-6 sm:px-6 md:gap-[41.6px] md:px-0">
                     <h2
@@ -2578,112 +2436,74 @@ export default function Home() {
                       juridiques et réglementaires afin de sécuriser vos décisions stratégiques.
                     </p>
 
-                    <Link
-                      href="/contact"
-                      className="contact-btn inline-flex items-center justify-center rounded-full bg-[#BBCB2E] font-[Geist] font-semibold text-[#003300] shadow-[0_4px_20px_rgba(0,0,0,0.18)]"
+                    <button
+                      type="button"
+                      onClick={() => setBookingModalOpen(true)}
+                      className="inline-flex items-center justify-center rounded-full bg-[#BBCB2E] font-[Geist] font-semibold text-[#003300] shadow-[0_4px_20px_rgba(0,0,0,0.18)]"
                       style={{
                         height: 'clamp(44px, 7vw, 59.85px)',
-                        minWidth: 'clamp(140px, 20vw, 195px)',
-                        padding: '0 clamp(20px, 3vw, 40px)',
-                        fontSize: 'clamp(14px, 2vw, 18px)',
+                        paddingLeft: 'clamp(20px, 3.5vw, 32px)',
+                        paddingRight: 'clamp(20px, 3.5vw, 32px)',
+                        fontSize: 'clamp(16px, 3.5vw, 29.7896px)',
                         lineHeight: 1,
                       }}
                     >
-                      contact
-                    </Link>
+                      Contact
+                    </button>
                   </div>
 
-                  <div className="mt-24 md:mt-[280px]">
+                  <div className="mt-12 md:mt-[90px]">
                     <div
-                      className="relative bg-transparent"
+                      className="relative rounded-[26px] bg-black/[0.004] shadow-[0px_2px_44.2px_rgba(0,0,0,0.17)]"
                       onMouseEnter={() => setIsInstitutionalCarouselPaused(true)}
                       onMouseLeave={() => setIsInstitutionalCarouselPaused(false)}
                       onTouchStart={() => setIsInstitutionalCarouselPaused(true)}
                       onTouchEnd={() => setIsInstitutionalCarouselPaused(false)}
                     >
-                      <div
-                        className="absolute left-0 top-[0.35px] z-20 hidden h-[620px] md:block"
-                        style={{ width: 'max(241px, calc((100vw - 1395.73px) / 2 + 241px))' }}
-                      >
-                        <div className="group/nav relative h-full w-full">
-                          <div
-                            aria-hidden
-                            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/nav:opacity-100"
-                            style={{
-                              background: 'linear-gradient(90deg, #F9FFC4 0%, rgba(187, 203, 46, 0) 100%)',
-                            }}
-                          />
-                          <button
-                            type="button"
-                            aria-label="Précédent"
-                            onClick={() => scrollInstitutionalCarousel('left')}
-                            className="absolute left-[30px] top-[261px] inline-flex h-[98px] w-[98px] items-center justify-center opacity-0 transition-opacity duration-300 group-hover/nav:opacity-100 hover:opacity-100"
-                          >
-                            <Image
-                              src="/optimized/Group-444-left.svg"
-                              alt="Précédent"
-                              width={98}
-                              height={98}
-                              className="h-full w-full"
-                              unoptimized
-                            />
-                          </button>
-                        </div>
-                      </div>
+                    <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-[9.5%] bg-gradient-to-r from-[#F9FFC4]/70 to-transparent md:block" />
+                    <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-[9.5%] bg-gradient-to-l from-[#F9FFC4]/70 to-transparent md:block" />
 
-                      <div
-                        className="absolute right-0 top-[0.35px] z-20 hidden h-[620px] md:block"
-                        style={{ width: 'max(241px, calc((100vw - 1395.73px) / 2 + 241px))' }}
-                      >
-                        <div className="group/nav relative h-full w-full">
-                          <div
-                            aria-hidden
-                            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/nav:opacity-100"
-                            style={{
-                              background: 'linear-gradient(270deg, #F9FFC4 0%, rgba(187, 203, 46, 0) 100%)',
-                            }}
-                          />
-                          <button
-                            type="button"
-                            aria-label="Suivant"
-                            onClick={() => scrollInstitutionalCarousel('right')}
-                            className="absolute right-[30px] top-[261px] inline-flex h-[98px] w-[98px] items-center justify-center opacity-0 transition-opacity duration-300 group-hover/nav:opacity-100 hover:opacity-100"
-                          >
-                            <Image
-                              src="/optimized/Group-444.svg"
-                              alt="Suivant"
-                              width={98}
-                              height={98}
-                              className="h-full w-full"
-                              unoptimized
-                            />
-                          </button>
-                        </div>
-                      </div>
+                    <button
+                      type="button"
+                      aria-label="Précédent"
+                      onClick={() => scrollInstitutionalCarousel('left')}
+                      className="absolute left-[1.2%] top-1/2 z-20 hidden h-[52px] w-[52px] -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(187,203,46,0.28)] text-[#003300] opacity-60 transition-opacity hover:opacity-85 md:inline-flex"
+                    >
+                      <span className="text-[24px] leading-none">‹</span>
+                    </button>
 
-                      <div
-                        ref={institutionalCarouselRef}
-                        className="relative z-10 mx-auto flex snap-x snap-mandatory flex-nowrap gap-5 overflow-x-auto overflow-y-hidden px-3 py-3 md:w-[1500px] md:gap-[10px] md:px-[350px] md:py-5 touch-pan-x [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
-                      >
-                        {[...institutionalCarouselCards, ...institutionalCarouselCards].map((card, index) => (
-                          <article
-                            key={`${card.title}-${index}`}
-                            data-institutional-card
-                            className="flex w-[92vw] shrink-0 snap-start flex-col gap-3 md:h-[554px] md:w-[1395.73px] md:flex-row md:gap-[28.5px]"
-                          >
+                    <button
+                      type="button"
+                      aria-label="Suivant"
+                      onClick={() => scrollInstitutionalCarousel('right')}
+                      className="absolute right-[1.2%] top-1/2 z-20 hidden h-[52px] w-[52px] -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(187,203,46,0.28)] text-[#003300] opacity-60 transition-opacity hover:opacity-85 md:inline-flex"
+                    >
+                      <span className="text-[24px] leading-none">›</span>
+                    </button>
+
+                    <div
+                      ref={institutionalCarouselRef}
+                      className="flex flex-nowrap gap-5 overflow-x-auto overflow-y-hidden px-3 py-3 md:gap-[21.98px] md:px-4 md:py-5 touch-pan-x [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
+                    >
+                      {[...institutionalCarouselCards, ...institutionalCarouselCards].map((card, index) => (
+                        <article
+                          key={`${card.title}-${index}`}
+                          data-institutional-card
+                          className="flex w-[92vw] shrink-0 flex-col gap-3 md:h-[427.36px] md:w-[1076.68px] md:flex-row md:gap-[21.99px]"
+                        >
                           {card.panelFirst ? (
                             <>
                               <div
-                                className="flex justify-center rounded-[28px] px-6 py-6 md:h-[554px] md:w-[480.51px] md:rounded-[118.718px_118.714px_118.714px_0px] md:px-[47px] md:py-[95px]"
+                                className="flex justify-center rounded-[28px] px-6 py-6 md:h-[427.36px] md:w-[370.67px] md:rounded-[91.5803px_91.5771px_91.5771px_0px] md:px-[36.88px] md:py-[73.05px]"
                                 style={{ backgroundColor: card.panelBg }}
                               >
-                                <div className="flex h-full w-full max-w-[320px] flex-col justify-between md:max-w-[356.49px]">
+                                <div className="flex h-full w-full max-w-[275.15px] flex-col justify-between">
                                   <div className="flex flex-col gap-[14.18px]">
                                     <h3
                                       className="font-[Geist] font-semibold"
                                       style={{
-                                        fontSize: 'clamp(24px, 2.15vw, 31.112px)',
-                                        lineHeight: 'clamp(31px, 2.8vw, 40px)',
+                                        fontSize: '24px',
+                                        lineHeight: '31px',
                                         textTransform: 'capitalize',
                                         color: card.titleColor,
                                       }}
@@ -2694,8 +2514,8 @@ export default function Home() {
                                     <p
                                       className="max-w-[265.39px] font-[Geist] font-medium"
                                       style={{
-                                        fontSize: 'clamp(15px, 1.35vw, 19.445px)',
-                                        lineHeight: 'clamp(20px, 1.75vw, 25px)',
+                                        fontSize: '15px',
+                                        lineHeight: '20px',
                                         textTransform: 'capitalize',
                                         color: card.descriptionColor,
                                       }}
@@ -2706,12 +2526,12 @@ export default function Home() {
 
                                   <button
                                     type="button"
-                                    className="inline-flex h-[29.08px] w-[180.83px] items-center justify-center rounded-[6.58028px] font-[Geist] font-medium md:h-[37.69px] md:w-[234.42px] md:rounded-[8.53022px]"
+                                    className="inline-flex h-[29.08px] w-[180.83px] items-center justify-center rounded-[6.58028px] font-[Geist] font-medium"
                                     style={{
                                       backgroundColor: card.buttonBg,
                                       color: card.buttonTextColor,
-                                      fontSize: 'clamp(11.8445px, 1.1vw, 15.3544px)',
-                                      lineHeight: 'clamp(15px, 1.4vw, 20px)',
+                                      fontSize: '11.8445px',
+                                      lineHeight: '15px',
                                     }}
                                   >
                                     Demander une consultation
@@ -2719,45 +2539,37 @@ export default function Home() {
                                 </div>
                               </div>
 
-                              <div className="relative h-[260px] overflow-hidden md:h-[554px] md:w-[886.72px]">
+                              <div className="relative h-[260px] overflow-hidden rounded-[28px] md:h-[427.36px] md:w-[684.02px] md:rounded-[91.5771px_0px_91.5803px_91.5771px]">
                                 <Image
                                   src={card.image}
                                   alt={card.title}
                                   fill
-                                  style={
-                                    card.title === 'Droit Des Contrats & Sécurité Commerciale'
-                                      ? { transform: 'scaleX(-1)' }
-                                      : undefined
-                                  }
+                                  className="object-cover"
                                 />
                               </div>
                             </>
                           ) : (
                             <>
-                              <div className="relative h-[260px] overflow-hidden md:h-[554px] md:w-[886.72px]">
+                              <div className="relative h-[260px] overflow-hidden rounded-[28px] md:h-[427.36px] md:w-[684.02px] md:rounded-[91.5803px_91.5803px_0px_91.5771px]">
                                 <Image
                                   src={card.image}
                                   alt={card.title}
                                   fill
-                                  style={
-                                    card.title === 'Droit Des Contrats & Sécurité Commerciale'
-                                      ? { transform: 'scaleX(-1)' }
-                                      : undefined
-                                  }
+                                  className="object-cover"
                                 />
                               </div>
 
                               <div
-                                className="flex justify-center rounded-[28px] px-6 py-6 md:h-[554px] md:w-[480.51px] md:rounded-[118.718px_118.714px_118.714px_0px] md:px-[47px] md:py-[95px]"
+                                className="flex justify-center rounded-[28px] px-6 py-6 md:h-[427.36px] md:w-[370.67px] md:rounded-[91.5803px_91.5771px_91.5771px_0px] md:px-[36.88px] md:py-[73.05px]"
                                 style={{ backgroundColor: card.panelBg }}
                               >
-                                <div className="flex h-full w-full max-w-[320px] flex-col justify-between md:max-w-[356.49px]">
+                                <div className="flex h-full w-full max-w-[275.15px] flex-col justify-between">
                                   <div className="flex flex-col gap-[14.18px]">
                                     <h3
                                       className="font-[Geist] font-semibold"
                                       style={{
-                                        fontSize: 'clamp(24px, 2.15vw, 31.112px)',
-                                        lineHeight: 'clamp(31px, 2.8vw, 40px)',
+                                        fontSize: '24px',
+                                        lineHeight: '31px',
                                         textTransform: 'capitalize',
                                         color: card.titleColor,
                                       }}
@@ -2768,8 +2580,8 @@ export default function Home() {
                                     <p
                                       className="max-w-[265.39px] font-[Geist] font-medium"
                                       style={{
-                                        fontSize: 'clamp(15px, 1.35vw, 19.445px)',
-                                        lineHeight: 'clamp(20px, 1.75vw, 25px)',
+                                        fontSize: '15px',
+                                        lineHeight: '20px',
                                         textTransform: 'capitalize',
                                         color: card.descriptionColor,
                                       }}
@@ -2780,12 +2592,12 @@ export default function Home() {
 
                                   <button
                                     type="button"
-                                    className="inline-flex h-[29.08px] w-[180.83px] items-center justify-center rounded-[6.58028px] font-[Geist] font-medium md:h-[37.69px] md:w-[234.42px] md:rounded-[8.53022px]"
+                                    className="inline-flex h-[29.08px] w-[180.83px] items-center justify-center rounded-[6.58028px] font-[Geist] font-medium"
                                     style={{
                                       backgroundColor: card.buttonBg,
                                       color: card.buttonTextColor,
-                                      fontSize: 'clamp(11.8445px, 1.1vw, 15.3544px)',
-                                      lineHeight: 'clamp(15px, 1.4vw, 20px)',
+                                      fontSize: '11.8445px',
+                                      lineHeight: '15px',
                                     }}
                                   >
                                     Demander une consultation
@@ -2800,12 +2612,22 @@ export default function Home() {
                     </div>
                   </div>
 
+                  <div className="mt-8 flex justify-center md:mt-10">
+                    <div className="relative h-[46px] w-[186px] md:h-[57.57px] md:w-[233px]">
+                      <Image
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                        alt="RNJ Advisory"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </section>
 
-            <section className="relative -mt-32 w-screen overflow-hidden bg-[#003300] py-16 md:-mt-[150px] md:py-20">
-              <div className="mx-auto w-full px-4">
+            <section className="relative -mt-6 w-full bg-[#003300] py-10 md:-mt-[62px] md:py-14">
+              <div className="mx-auto w-full max-w-[1540px] px-4">
                 <div
                   className="mx-auto grid w-full max-w-[1299.66px] grid-cols-1 gap-4 md:grid-cols-3 md:gap-4 xl:gap-[19px]"
                   style={{ filter: 'drop-shadow(0px 4px 47.1px rgba(0, 0, 0, 0.09))' }}
@@ -2908,7 +2730,7 @@ export default function Home() {
                   >
                     <div className="relative h-[220px] w-full sm:h-[240px] md:h-[200px] lg:h-[240px] xl:h-[300px]">
                       <Image
-                        src="/optimized/wind-turbines-on-golden-green-field-in-summer-aer-2026-03-24-13-00-37-utc 1.svg"
+                        src="/WhatsApp%20Image%202026-04-19%20at%2012.52.25%20PM%201.svg"
                         alt="Diagnostic ESG et conformité"
                         fill
                         className="object-cover object-top"
@@ -2932,7 +2754,7 @@ export default function Home() {
               </div>
             </section>
 
-            <div className="flex w-full flex-col items-center gap-10 md:gap-16 bg-[#003300]">
+            <div className="flex w-full flex-col items-center gap-10 bg-[#003300] md:gap-16">
               <section className="hidden w-full 2xl:max-w-none">
               <div className="2xl:hidden">
                 <div className="mb-10 flex flex-col gap-3">
@@ -3900,9 +3722,10 @@ export default function Home() {
               </>
             )}
             </div>
-            <section className="relative w-screen bg-[#003300] py-8">
+            <section className="relative mx-auto my-0 w-full bg-[#003300] max-w-none px-0">
+              <div className="mx-auto w-full max-w-[1449px] px-4 sm:px-5 md:px-6 xl:px-0">
               <div
-                className="mx-auto flex w-full max-w-[1449px] flex-col items-center rounded-[36px] bg-[#003300] px-5 py-12 sm:px-8 md:px-10 md:py-16 lg:rounded-[80px] lg:px-[48px] lg:py-[75px] xl:h-[1312px] xl:rounded-[120px] xl:pt-[91px] xl:pb-[75px] xl:pl-[55px] xl:pr-[48px] xl:gap-[80px]"
+                className="flex w-full flex-col items-center rounded-[36px] bg-[#003300] px-5 py-12 sm:px-8 md:px-10 md:py-16 lg:rounded-[80px] lg:px-[48px] lg:py-[75px] xl:h-[1312px] xl:rounded-[120px] xl:pt-[91px] xl:pb-[75px] xl:pl-[55px] xl:pr-[48px] xl:gap-[80px]"
                 style={{ gap: 'clamp(48px, 5vw, 80px)' }}
               >
                 {/* Header Section */}
@@ -3936,7 +3759,7 @@ export default function Home() {
                 >
                   <div className="absolute inset-0 overflow-hidden rounded-[28px] md:rounded-[40px]">
                     <Image
-                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132753/rnj/maps-10375837.svg"
+                      src="/maps.svg"
                       alt="World Map"
                       fill
                       className="object-contain"
@@ -3944,7 +3767,7 @@ export default function Home() {
                   </div>
 
                   <div className="pointer-events-none absolute z-[14]" style={{ left: '37.74%', top: '21.70%', width: '14.75%', height: '39.40%' }} aria-hidden>
-                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310349/rnj/pins-951a2bbe.svg" alt="" fill className="object-contain" />
+                    <Image src="/pins.svg" alt="" fill className="object-contain" />
                   </div>
 
                   <div className="absolute z-20" style={{ left: '37.74%', top: '21.70%', width: '14.75%', height: '39.40%' }}>
@@ -4053,11 +3876,11 @@ export default function Home() {
                         }, 150);
                       }}
                     >
-                      <span
+                      <span 
                         className="font-[Geist] font-semibold text-white"
                         style={{ fontSize: 'clamp(16px, 1.8vw, 21.3092px)' }}
                       >
-                        À propos
+                        About
                       </span>
                     </button>
                     
@@ -4097,19 +3920,19 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+              </div>
             </section>
 
             {/* Bento Grid Section (Group 386) */}
-            <section className="relative w-screen bg-[#003300] py-8">
-              <div className="mx-auto my-8 w-full max-w-[1393px] px-4 sm:px-5 md:px-6">
-                <div
-                  className="grid w-full grid-cols-1 gap-[19px] md:grid-cols-2 xl:grid-cols-[334px_334px_minmax(0,1fr)]"
-                  style={{ filter: 'drop-shadow(2px 2px 24.5px rgba(0,0,0,0.21))' }}
-                >
+            <section className="relative mx-auto my-0 w-full max-w-[1393px] px-4 sm:px-5 md:px-6">
+              <div
+                className="grid w-full grid-cols-1 gap-[19px] md:grid-cols-2 xl:grid-cols-[334px_334px_minmax(0,1fr)]"
+                style={{ filter: 'drop-shadow(2px 2px 24.5px rgba(0,0,0,0.21))' }}
+              >
                 {/* Column 1: BECI + Pills */}
                 <div className="flex flex-col gap-[23px]">
                   {/* BECI card */}
-                  <div className="bento-card bento-d1 relative h-[334px] w-full overflow-hidden rounded-[20px] bg-[#DDE597]">
+                  <div className="bento-card bento-d1 relative h-[334px] w-full overflow-hidden rounded-[20px] bg-[#003300]">
                     <div className="absolute left-1/2 top-1/2 flex h-[230px] w-[min(208px,calc(100%-40px))] -translate-x-1/2 -translate-y-1/2 flex-col items-start rounded-[30px] bg-white px-[18px] pt-[27px] shadow-[0_0_43px_-5px_rgba(255,255,255,0.33)]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334055/rnj/beci-2-1-241bb936.svg" alt="BECI" className="h-[65px] w-[57px] object-contain" />
@@ -4154,7 +3977,7 @@ export default function Home() {
                 {/* Column 2: Tall photo card */}
                 <div className="bento-card bento-d3 relative h-[420px] w-full overflow-hidden rounded-[20px] bg-[#6F6F6F] sm:h-[520px] md:h-[691px]">
                   <Image
-                    src="/optimized/Group 352 (3).svg"
+                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334058/rnj/group-352-32f4e599.svg"
                     alt=""
                     fill
                     unoptimized
@@ -4166,43 +3989,36 @@ export default function Home() {
                 {/* Column 3: responsive sub-grid */}
                 <div className="grid grid-cols-1 gap-[23px] sm:grid-cols-2 sm:gap-x-[19px] sm:gap-y-[23px] md:col-span-2 xl:col-span-1">
                   {/* Yoga blurred */}
-                  <div className="bento-card bento-d4 relative h-[334px] w-full overflow-hidden rounded-[20px]">
+                  <div className="bento-card bento-d4 relative h-[334px] w-full overflow-hidden rounded-[20px] bg-[#6F6F6F]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/optimized/Group 363 (1).svg" alt="" className="h-full w-full object-cover" />
+                    <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334042/rnj/group-363-02f81f30.svg" alt="" className="h-full w-full object-cover" />
                   </div>
 
                   {/* Belgique card */}
                   <div className="bento-card bento-d5 relative h-[334px] w-full overflow-hidden rounded-[20px] bg-white">
                     <div
-                      className="mt-[30px] flex h-[74px] w-full items-center px-4 sm:px-[23px] transition-all duration-500"
-                      style={{ background: `linear-gradient(90deg, #DDE597 ${belgiumSteps[belgiumStep].gradientWidth}, rgba(123,127,84,0.17) 100%)` }}
+                      className="mt-[30px] flex h-[74px] w-full items-center px-4 sm:px-[23px]"
+                      style={{ background: 'linear-gradient(90deg, #DDE597 0%, rgba(123,127,84,0.17) 100%)' }}
                     >
                       <div className="flex w-full items-center justify-between gap-3 sm:justify-start sm:gap-[29px]">
-                        {belgiumSteps[belgiumStep].circles.map((circle, index) => (
-                          <div
-                            key={index}
-                            className="relative flex items-center justify-center rounded-full bg-[#BBCB2E] transition-all duration-500"
-                            style={{
-                              width: circle.size,
-                              height: circle.size,
-                              opacity: circle.opacity,
-                            }}
-                          >
-                            {circle.number && (
-                              <span className="font-[EB_Garamond] leading-none text-[#003300]" style={{ fontSize: circle.size === '56px' ? '26px' : circle.size === '28px' ? '18px' : '12px' }}>
-                                {circle.number}
-                              </span>
-                            )}
-                          </div>
-                        ))}
+                        <div className="relative flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#BBCB2E] sm:h-[60px] sm:w-[60px]">
+                          <span className="font-[EB_Garamond] text-[26px] leading-none text-[#003300] sm:text-[29.12px]">01</span>
+                        </div>
+                        <div className="flex items-center gap-[6px] sm:gap-[8px]">
+                          <span className="block h-[20px] w-[20px] rounded-full bg-[#BBCB2E] sm:h-[28px] sm:w-[28px]" />
+                          <span className="block h-[12px] w-[12px] rounded-full bg-[#BBCB2E] sm:h-[14px] sm:w-[14px]" />
+                          <span className="block h-[12px] w-[12px] rounded-full bg-[#BBCB2E] sm:h-[14px] sm:w-[14px]" />
+                          <span className="block h-[12px] w-[12px] rounded-full bg-[#BBCB2E] sm:h-[14px] sm:w-[14px]" />
+                          <span className="block h-[12px] w-[12px] rounded-full bg-[#BBCB2E] sm:h-[14px] sm:w-[14px]" />
+                        </div>
                       </div>
                     </div>
                     <div className="px-[23px] pt-[34px]">
-                      <h3 className="w-full font-[Geist] text-[30px] font-medium leading-[30px] text-[#003300] sm:text-[36px] sm:leading-[32px] transition-all duration-500">
-                        {belgiumSteps[belgiumStep].title}
+                      <h3 className="w-full font-[Geist] text-[30px] font-medium leading-[30px] text-[#003300] sm:text-[36px] sm:leading-[32px]">
+                        développer votre activité en Belgique
                       </h3>
-                      <p className="mt-3 w-full font-[Geist] text-[15px] font-medium leading-[16px] text-[#003300]/60 sm:text-[16px] transition-all duration-500">
-                        {belgiumSteps[belgiumStep].description}
+                      <p className="mt-3 w-full font-[Geist] text-[15px] font-medium leading-[16px] text-[#003300]/60 sm:text-[16px]">
+                        complétez les étapes et démarrez votre Entrepreneuriat en belgique
                       </p>
                     </div>
                   </div>
@@ -4218,7 +4034,7 @@ export default function Home() {
                       />
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389405/rnj/group-349031-1-46313aad.svg"
+                        src="/Group%20349031%20(1).svg"
                         alt=""
                         aria-hidden="true"
                         className="absolute right-[29px] top-[31px] h-[38px] w-[90px] object-contain"
@@ -4278,7 +4094,6 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
               </div>
 
               {/* Copyright */}
@@ -4377,13 +4192,15 @@ export default function Home() {
             </section>
             )}
 
-            <section className="relative w-screen bg-[#003300] py-8">
-              <div
-                className="mx-auto w-full max-w-[1393px] rounded-[25px] bg-white px-[18px] pb-[61px] pt-[107px]"
-                style={{ boxShadow: '2px 4px 33.5px rgba(0, 0, 0, 0.12)' }}
-              >
-                <div className="mx-auto flex w-full max-w-[1292px] flex-col items-center gap-10 sm:gap-[81px]">
-                  <div className="flex max-w-[1010px] flex-col items-center gap-5 text-center sm:gap-[45px]">
+            {/* FAQ Section */}
+            <section className="relative w-full py-16 md:py-20 lg:py-24 bg-[#F7FCFF] overflow-hidden">
+              <div className="flex w-full max-w-[994px] flex-col items-center gap-[56px] mx-auto px-4 sm:px-6 md:px-8">
+                <div
+                  className="w-full rounded-[25px] bg-white px-[18px] pb-[61px] pt-[107px]"
+                  style={{ boxShadow: '2px 4px 33.5px rgba(0, 0, 0, 0.12)' }}
+                >
+                <div className="mx-auto flex w-full max-w-[922px] flex-col items-center gap-10 sm:gap-[81px]">
+                  <div className="flex max-w-[721px] flex-col items-center gap-5 text-center sm:gap-[45px]">
                     <h2
                       className="w-full font-[EB_Garamond] font-normal text-[#003300]"
                       style={{ fontSize: 'clamp(34px, 8vw, 61.04px)', lineHeight: 'clamp(38px, 8vw, 56px)' }}
@@ -4476,13 +4293,15 @@ export default function Home() {
                   Une question ?
                 </p>
               </div>
+            </div>
             </section>
           </div>
-        </section>
 
         {/* Footer Section */}
         <Footer />
-      </div>
-    </main>
+      </main>
+
+    <BookingModal open={bookingModalOpen} onClose={() => setBookingModalOpen(false)} />
+    </>
   );
 }
