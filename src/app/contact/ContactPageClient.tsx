@@ -859,7 +859,7 @@ export default function ContactPageClient({
                     <div
                       className="mx-auto flex min-h-[560px] w-full max-w-[1360px] items-center justify-center rounded-[30px] bg-cover bg-center bg-no-repeat px-4 py-8 sm:min-h-[620px] sm:px-8 sm:py-10 lg:min-h-[730px]"
                       style={{
-                        backgroundImage: 'url("/optimized/Group%20349091%20(1).svg")',
+                        backgroundImage: 'url("https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051891/rnj/optimized/group-349091-1-144384f9.svg")',
                       }}
                     >
                       <div className="w-full max-w-[700px]">
@@ -960,7 +960,20 @@ export default function ContactPageClient({
 
                           <button
                             type="button"
-                            onClick={() => nextBookingStep()}
+                            onClick={async () => {
+                              if (!selectedBookingDate) {
+                                throw new Error('Merci de sélectionner une date pour le rendez-vous.');
+                              }
+                              const bookingPayload = {
+                                ...messageForm,
+                                subject: selectedSubject || 'Rendez-vous',
+                                message: formatBookingMessage(selectedBookingDate, selectedBookingTime),
+                                preferred_date: selectedBookingDate,
+                                preferred_time: selectedBookingTime,
+                              };
+                              const checkoutUrl = await startBookingCheckout(bookingPayload);
+                              window.location.assign(checkoutUrl);
+                            }}
                             className={`${ebGaramond.className} mt-2 flex h-[72px] w-full items-center justify-center rounded-[18px] bg-[#BBCB2E] text-[40px] font-bold leading-none text-[#003300] shadow-[0px_5px_0px_#003300] transition hover:brightness-95 sm:mt-3 sm:h-[82px] sm:rounded-[22px] sm:text-[52px]`}
                           >
                             Soumettre
@@ -1119,111 +1132,22 @@ export default function ContactPageClient({
               <section className="relative z-20 w-full px-4 py-10 sm:px-6 sm:py-12 md:py-16">
                 <div className="mx-auto w-full max-w-[1512px] overflow-hidden rounded-[34px] bg-[#BBCB2E] shadow-[0px_4px_56px_rgba(0,0,0,0.18)] sm:rounded-[44px] lg:rounded-[50px]">
                   <div className="relative overflow-hidden px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.22),_transparent_42%),radial-gradient(circle_at_bottom_right,_rgba(0,51,0,0.12),_transparent_38%)]" />
                     <div className="absolute -left-16 top-[-90px] h-[260px] w-[260px] rounded-full border border-white/25 bg-white/10 blur-2xl" />
                     <div className="absolute -right-10 bottom-[-60px] h-[220px] w-[220px] rounded-full border border-[#003300]/10 bg-[#DDE597]/50 blur-2xl" />
 
                     <div className="relative z-10 grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.1fr)] lg:items-center">
-                      <div className="rounded-[28px] bg-white px-6 py-8 shadow-[0px_4px_40px_rgba(0,0,0,0.12)] sm:px-8 sm:py-10 lg:min-h-[760px] lg:rounded-[42px] lg:px-10">
-                        <div className="flex h-full flex-col justify-between gap-10">
-                          <div className="space-y-7">
-                            <Image
-                              src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
-                              alt="RNJ Advisory"
-                              width={233}
-                              height={58}
-                              className="h-auto w-[150px] brightness-0 sm:w-[190px] lg:w-[233px]"
-                            />
-
-                            <div className="space-y-4">
-                              <h2
-                                className={`${ebGaramond.className} max-w-[420px] text-[clamp(46px,7vw,96px)] font-normal leading-[0.9] text-[#003300]`}
-                              >
-                                Parlons de votre projet
-                              </h2>
-                              <p
-                                className={`${geist.className} max-w-[430px] text-[14px] font-medium leading-[1.45] text-[#003300]/50 sm:text-[15px] lg:text-[16px]`}
-                              >
-                                Have a question or a project in mind? Get in touch with our team and
-                                we&apos;ll respond as soon as possible.
-                              </p>
-                            </div>
-
-                            <div className="grid gap-3 sm:grid-cols-2">
-                              <button
-                                type="button"
-                                onClick={() => openBookingView()}
-                                className={`${poppins.className} flex h-[60px] items-center justify-center rounded-[70px] bg-[#BBCB2E] px-6 text-[18px] font-medium text-[#003300] transition hover:brightness-95 sm:h-[72px] sm:text-[22px]`}
-                              >
-                                Rendez-vous
-                              </button>
-                              <button
-                                type="button"
-                                className={`${poppins.className} flex h-[60px] items-center justify-center rounded-[70px] bg-[#406640] px-6 text-[18px] font-medium text-[#BFCCBF] sm:h-[72px] sm:text-[22px]`}
-                              >
-                                Message
-                              </button>
-                            </div>
-                          </div>
-
-                          <div className="relative overflow-hidden rounded-[28px] border border-[#003300]/10 bg-[linear-gradient(145deg,#F4F7D9,#DDE597)] px-6 py-6 sm:px-7">
-                            <div className="absolute -right-6 top-5 h-20 w-20 rounded-full border border-[#003300]/10 bg-white/30" />
-                            <div className="absolute bottom-[-18px] left-[-12px] h-28 w-28 rounded-full bg-[#003300]/8" />
-                            <div className="relative z-10 space-y-4">
-                              <div className="flex items-center gap-3">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-[0px_8px_18px_rgba(0,0,0,0.08)]">
-                                  <svg
-                                    width="22"
-                                    height="22"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M4 6.5C4 5.67157 4.67157 5 5.5 5H18.5C19.3284 5 20 5.67157 20 6.5V15.5C20 16.3284 19.3284 17 18.5 17H8L4 20V6.5Z"
-                                      stroke="#003300"
-                                      strokeWidth="1.8"
-                                      strokeLinejoin="round"
-                                    />
-                                    <path d="M8 9H16" stroke="#003300" strokeWidth="1.8" strokeLinecap="round" />
-                                    <path d="M8 12H13" stroke="#003300" strokeWidth="1.8" strokeLinecap="round" />
-                                  </svg>
-                                </div>
-                                <div>
-                                  <p className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.2em] text-[#003300]/45`}>
-                                    Contact us
-                                  </p>
-                                  <p className={`${geist.className} text-[14px] font-medium text-[#003300]/70`}>
-                                    A direct line for strategic questions, mandates, and follow-up.
-                                  </p>
-                                </div>
-                              </div>
-
-                              {messageForm.subject ? (
-                                <div className="flex flex-wrap gap-2">
-                                  <div className="inline-flex max-w-full rounded-full border border-[#003300]/15 bg-white/80 px-4 py-2 text-[13px] font-medium text-[#003300]">
-                                    Sujet pre-rempli: {messageForm.subject}
-                                  </div>
-                                </div>
-                              ) : null}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="rounded-[28px] bg-white px-5 py-6 shadow-[0px_4px_40px_rgba(0,0,0,0.12)] sm:px-7 sm:py-8 lg:rounded-[42px] lg:px-10 lg:py-10">
-                        <div className="mb-6 flex items-start justify-between gap-4">
+                      <div className="mx-auto w-full max-w-[667.57px] rounded-[28px] bg-white px-5 py-6 shadow-[0px_4px_40px_rgba(0,0,0,0.12)] sm:px-7 sm:py-8 lg:rounded-[42px] lg:px-10 lg:py-10">
+                        <div className="mb-[13.69px] flex items-start justify-between gap-4">
                           <div>
                             <h3
-                              className={`${ebGaramond.className} text-[clamp(36px,5vw,55px)] leading-[0.95] text-[#003300]`}
+                              className={`${ebGaramond.className} text-[54.76px] leading-[47px] text-[#003300]`}
                             >
                               Let&apos;s Talk About Your Project
                             </h3>
                             <p
-                              className={`${geist.className} mt-3 max-w-[360px] text-[14px] font-medium leading-[1.45] text-[#003300]/45`}
+                              className={`${geist.className} mt-[21px] max-w-[355.92px] text-[13.69px] font-medium leading-[15px] text-[#003300]/40`}
                             >
-                              Share your question, context, or objective and we&apos;ll get back to
-                              you quickly.
+                              Have a question or a project in mind? Get in touch with our team and we&apos;ll respond as soon as possible.
                             </p>
                           </div>
 
@@ -1236,8 +1160,8 @@ export default function ContactPageClient({
                           </button>
                         </div>
 
-                        <form className="space-y-4" onSubmit={handleMessageSubmit}>
-                          <div className="grid gap-4 md:grid-cols-2">
+                        <form className="space-y-0" onSubmit={handleMessageSubmit}>
+                          <div className="grid gap-[8.56px] md:grid-cols-2">
                             <input
                               type="text"
                               value={messageForm.name}
@@ -1245,7 +1169,7 @@ export default function ContactPageClient({
                                 setMessageForm((current) => ({ ...current, name: event.target.value }))
                               }
                               placeholder="Nom *"
-                              className={`${geist.className} ${fieldClassName}`}
+                              className={`${geist.className} h-[83.76px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
                               required
                             />
                             <input
@@ -1255,12 +1179,12 @@ export default function ContactPageClient({
                                 setMessageForm((current) => ({ ...current, phone: event.target.value }))
                               }
                               placeholder="(+216) Telephone *"
-                              className={`${geist.className} ${fieldClassName}`}
+                              className={`${geist.className} h-[83.76px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
                               required
                             />
                           </div>
 
-                          <div className="grid gap-4 md:grid-cols-2">
+                          <div className="grid gap-[8.56px] md:grid-cols-2">
                             <input
                               type="email"
                               value={messageForm.email}
@@ -1268,7 +1192,7 @@ export default function ContactPageClient({
                                 setMessageForm((current) => ({ ...current, email: event.target.value }))
                               }
                               placeholder="Votre email *"
-                              className={`${geist.className} ${fieldClassName}`}
+                              className={`${geist.className} h-[83.76px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
                               required
                             />
                             <input
@@ -1278,7 +1202,7 @@ export default function ContactPageClient({
                                 setMessageForm((current) => ({ ...current, company: event.target.value }))
                               }
                               placeholder="Votre societe"
-                              className={`${geist.className} ${fieldClassName}`}
+                              className={`${geist.className} h-[83.76px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
                             />
                           </div>
 
@@ -1289,39 +1213,40 @@ export default function ContactPageClient({
                               setMessageForm((current) => ({ ...current, subject: event.target.value }))
                             }
                             placeholder="Sujet *"
-                            className={`${geist.className} ${fieldClassName}`}
+                            className={`${geist.className} h-[88.19px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
                             required
                           />
-
                           <textarea
                             value={messageForm.message}
                             onChange={(event) =>
                               setMessageForm((current) => ({ ...current, message: event.target.value }))
                             }
                             placeholder="Votre question *"
-                            className={`${geist.className} ${fieldClassName} min-h-[180px] resize-none`}
+                            className={`${geist.className} h-[204.57px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 resize-none`}
                             required
                           />
-
-                          {submitState === 'error' && submitMessage ? (
-                            <p className={`${geist.className} text-[14px] font-medium text-[#9b1c1c]`}>
-                              {submitMessage}
-                            </p>
-                          ) : null}
-
-                          <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className={`${ebGaramond.className} flex h-[72px] w-full items-center justify-center rounded-[70px] bg-[#BBCB2E] text-[28px] font-bold text-[#003300] transition hover:bg-[#dde597] disabled:cursor-not-allowed disabled:opacity-60 sm:h-[82px] sm:text-[32px]`}
-                          >
-                            {isSubmitting ? 'Envoi...' : 'Soumettre'}
-                          </button>
+                          <div className="grid gap-[8.56px] md:grid-cols-2">
+                            <button
+                              type="submit"
+                              disabled={isSubmitting}
+                              className={`${ebGaramond.className} h-[88.19px] w-full items-center justify-center rounded-[12.83px] bg-[#BBCB2E] text-[34.22px] font-bold leading-[35px] text-[#003300] transition hover:bg-[#dde597] disabled:cursor-not-allowed disabled:opacity-60`}
+                            >
+                              {isSubmitting ? 'Envoi...' : 'Soumettre'}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => openBookingView()}
+                              className={`${ebGaramond.className} h-[88.19px] w-full items-center justify-center rounded-[12.83px] bg-[#003300] text-[34.22px] font-bold leading-[35px] text-[#BBCB2E] transition hover:bg-[#004400]`}
+                            >
+                              Rendez-vous
+                            </button>
+                          </div>
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
-              </section>
+            </section>
           ) : null}
         </div>
       </main>

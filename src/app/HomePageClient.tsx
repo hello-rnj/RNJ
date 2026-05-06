@@ -501,7 +501,7 @@ const institutionalCarouselCards = [
     title: 'Droit Des Contrats & Sécurité Commerciale',
     description:
       'Rédaction, revue et négociation de contrats (clients, fournisseurs, partenaires), contrats de prestation, sous-traitance, licences, confidentialité. Réduire les risques et sécuriser la relation commerciale à chaque étape clé.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410410/rnj/image-droit-des-contrats-se-curite-commerciale-5fe5d7a2.svg',
+    image: '/optimized/Mask group (44).svg',
     panelBg: '#A2B144',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -525,7 +525,7 @@ const institutionalCarouselCards = [
     title: 'ESG, Conformité & Appels À Projets',
     description:
       'Audit juridique et compliance, protection des données (RGPD), mise en conformité opérationnelle. Accompagnement sur les appels à projets : analyse d’éligibilité, cadrage juridique, rédaction et sécurisation contractuelle.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376883/rnj/optimized/esg-conformit-appels-projets-b1d37fff.webp',
+    image: '/optimized/esg-conformit-appels-projets.webp',
     panelBg: '#DDE597',
     titleColor: '#003300',
     descriptionColor: '#003300',
@@ -537,7 +537,7 @@ const institutionalCarouselCards = [
     title: 'Veille Juridique & Anticipation Réglementaire',
     description:
       'Surveillance active des évolutions législatives et réglementaires en Belgique, Europe et Tunisie. Alertes sur les impacts potentiels et accompagnement dans l’anticipation des changements.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376884/rnj/optimized/mask-group-36-61b10456.webp',
+    image: '/optimized/mask-group-36.webp',
     panelBg: '#CCD862',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -1838,7 +1838,7 @@ export default function Home() {
               <div className="relative h-[390px] w-full sm:h-[500px] md:h-[560px] xl:h-[566.12px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/optimized/frame-559.webp"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410436/rnj/optimized/frame-559.webp"
                   alt="Illustration Analyse Réglementaire"
                   className="h-full w-full object-contain object-center"
                 />
@@ -2017,7 +2017,7 @@ export default function Home() {
               <div className="grid w-full max-w-none grid-cols-1 gap-[60px] md:gap-[80px] 2xl:h-[815.12px] 2xl:grid-cols-[900px_672px] 2xl:gap-[120px]">
               <div className="relative order-2 min-h-[320px] w-full overflow-hidden md:min-h-[520px] 2xl:order-1 2xl:h-full">
                 <Image
-                  src="/optimized/Mask group (44).svg"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051869/rnj/optimized/mask-group-44-3cbc4b7d.svg"
                   alt="Accélération PME et ASBL"
                   fill
                   className="object-cover object-left"
@@ -2062,7 +2062,7 @@ export default function Home() {
                           }}
                         >
                           <Image
-                            src="/optimized/Vector (22).svg"
+                            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051875/rnj/optimized/vector-22-5240d59f.svg"
                             alt=""
                             fill
                             className="object-cover"
@@ -2519,7 +2519,7 @@ export default function Home() {
 
               <div className="absolute inset-0 md:hidden">
                 <Image
-                  src="/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc.jpg"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778052436/rnj/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc-0151df33.jpg"
                   alt=""
                   fill
                   className="object-cover object-top"
@@ -2530,7 +2530,7 @@ export default function Home() {
 
               <div className="absolute inset-0 hidden md:block">
                 <Image
-                  src="/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc.jpg"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778052436/rnj/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc-0151df33.jpg"
                   alt=""
                   fill
                   className="object-cover object-center"
@@ -2541,17 +2541,28 @@ export default function Home() {
 
               <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/20 to-black/12" />
 
+              {/* White shadow overlay at top */}
+              <div
+                className="pointer-events-none absolute z-[11] hidden md:block"
+                style={{
+                  left: '0',
+                  width: '100%',
+                  height: '200px',
+                  top: '0',
+                  background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%)',
+                }}
+              />
+
               {/* List dark backdrop (Figma: Rectangle 598) */}
               <div
-                className="pointer-events-none absolute z-[6] hidden md:block"
+                className="pointer-events-none absolute z-[10] hidden md:block"
                 style={{
-                  left: '50%',
-                  width: '100vw',
-                  height: '731px',
-                  top: '675px',
-                  transform: 'translateX(-50%)',
+                  left: '0',
+                  width: '100%',
+                  height: '734.86px',
+                  top: '678.56px',
                   background: 'rgba(0, 0, 0, 0.2)',
-                  boxShadow: '0px 2px 44.2px rgba(0, 0, 0, 0.17)',
+                  boxShadow: '0px 2.01px 44.43px rgba(0, 0, 0, 0.17)',
                 }}
               />
 
@@ -2620,7 +2631,7 @@ export default function Home() {
                             className="absolute left-[30px] top-[261px] inline-flex h-[98px] w-[98px] items-center justify-center opacity-0 transition-opacity duration-300 group-hover/nav:opacity-100 hover:opacity-100"
                           >
                             <Image
-                              src="/optimized/Group-444-left.svg"
+                              src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051878/rnj/optimized/group-444-left-68489dda.svg"
                               alt="Précédent"
                               width={98}
                               height={98}
@@ -2650,7 +2661,7 @@ export default function Home() {
                             className="absolute right-[30px] top-[261px] inline-flex h-[98px] w-[98px] items-center justify-center opacity-0 transition-opacity duration-300 group-hover/nav:opacity-100 hover:opacity-100"
                           >
                             <Image
-                              src="/optimized/Group-444.svg"
+                              src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051879/rnj/optimized/group-444-70554d8f.svg"
                               alt="Suivant"
                               width={98}
                               height={98}
@@ -4154,7 +4165,7 @@ export default function Home() {
                 {/* Column 2: Tall photo card */}
                 <div className="bento-card bento-d3 relative h-[420px] w-full overflow-hidden rounded-[20px] bg-[#6F6F6F] sm:h-[520px] md:h-[691px]">
                   <Image
-                    src="/optimized/Group 352 (3).svg"
+                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051883/rnj/optimized/group-352-3-8e109b3c.svg"
                     alt=""
                     fill
                     unoptimized
@@ -4168,7 +4179,7 @@ export default function Home() {
                   {/* Yoga blurred */}
                   <div className="bento-card bento-d4 relative h-[334px] w-full overflow-hidden rounded-[20px]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/optimized/Group 363 (1).svg" alt="" className="h-full w-full object-cover" />
+                    <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051889/rnj/optimized/group-363-1-a0d0a075.svg" alt="" className="h-full w-full object-cover" />
                   </div>
 
                   {/* Belgique card */}

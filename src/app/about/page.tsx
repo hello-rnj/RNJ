@@ -217,7 +217,7 @@ export default function AboutPage() {
           <div className="grid gap-12 lg:grid-cols-[435px_1fr] lg:items-start">
             <div className="relative aspect-[435/382] overflow-hidden rounded-[8px] bg-[#D9D9D9]">
               <Image
-                src="/optimized/group-349025.webp"
+                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410436/rnj/optimized/group-349025.webp"
                 alt="Réunion de conseil stratégique"
                 fill
                 sizes="(max-width: 1024px) 92vw, 435px"
@@ -339,7 +339,7 @@ export default function AboutPage() {
 
       <section className="relative h-[540px] overflow-hidden bg-[#003300] md:h-[660px]">
         <Image
-          src="/optimized/mask-group-43.webp"
+          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410436/rnj/optimized/mask-group-43.webp"
           alt="Ville et architecture"
           fill
           sizes="100vw"

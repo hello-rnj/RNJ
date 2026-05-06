@@ -36,25 +36,25 @@ const profiles = [
     id: 'entrepreneur',
     label: 'Entrepreneur',
     description: 'Vous développez un projet et recherchez un accompagnement structuré.',
-    illustration: '/optimized/profile-entrepreneur.svg',
+    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051894/rnj/optimized/profile-entrepreneur-bbe709fa.svg',
   },
   {
     id: 'investisseur',
     label: 'Investisseur',
     description: 'Vous identifiez des opportunités et souhaitez sécuriser vos décisions.',
-    illustration: '/optimized/profile-investisseur.svg',
+    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051896/rnj/optimized/profile-investisseur-7de68e69.svg',
   },
   {
     id: 'institution',
     label: 'Institution',
     description: 'Vous représentez une organisation impliquée dans des enjeux stratégiques et réglementaires.',
-    illustration: '/optimized/profile-institution.svg',
+    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051900/rnj/optimized/profile-institution-b9c718be.svg',
   },
   {
     id: 'autre',
     label: 'Autre',
     description: 'Votre besoin ne correspond pas aux profils ci-dessus.',
-    illustration: '/optimized/profile-autre.svg',
+    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051902/rnj/optimized/profile-autre-07e379c1.svg',
   },
 ] as const;
 
