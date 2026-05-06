@@ -1,21 +1,27 @@
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
+import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 
 export const metadata: Metadata = {
-  title: 'about',
+  title: 'À propos | RNJ Advisory',
   description:
-    'Découvrez RNJ Advisory, cabinet de conseil stratégique et réglementaire accompagnant entreprises, investisseurs et institutions en Belgique et à l\'international.',
+    'Découvrez RNJ Advisory, cabinet de conseil juridique et stratégique à Bruxelles, accompagnant entreprises, investisseurs et institutions en Belgique et à l’international.',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'about | RNJ Advisory',
+    title: 'À propos de RNJ Advisory | Conseil juridique et stratégique',
     description:
       'RNJ Advisory accompagne entreprises, investisseurs et institutions dans leurs décisions juridiques, réglementaires et stratégiques.',
     url: 'https://rnj-advisory.be/about',
     type: 'website',
     siteName: 'RNJ Advisory',
-    locale: 'fr_FR',
+    locale: 'fr_BE',
+  },
+  twitter: {
+    title: 'À propos de RNJ Advisory',
+    description:
+      'Cabinet de conseil juridique et stratégique à Bruxelles, actif en Belgique, en Europe et en Afrique.',
   },
 };
 
@@ -24,5 +30,15 @@ export default function AboutLayout({
 }: {
   children: ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'Accueil', item: 'https://rnj-advisory.be/' },
+          { name: 'À propos', item: 'https://rnj-advisory.be/about' },
+        ]}
+      />
+      {children}
+    </>
+  );
 }

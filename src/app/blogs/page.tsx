@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import BlogStructuredData from '@/components/BlogStructuredData';
 
 export default function BlogsPage() {
   const [selectedFilter, setSelectedFilter] = useState('All');
@@ -47,6 +48,7 @@ export default function BlogsPage() {
 
   return (
     <main className="min-h-screen bg-[#F7FCFF]">
+      <BlogStructuredData />
       {/* Navbar */}
       <div className="relative w-full px-4 py-4 sm:px-6 md:px-8 lg:px-12">
         <div className="mx-auto max-w-[1393px]">

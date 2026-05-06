@@ -1,5 +1,6 @@
 import { metadata } from './metadata';
 import ContactPageClient from './ContactPageClient';
+import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 
 export { metadata };
 
@@ -29,10 +30,18 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
     payment === 'success' || payment === 'cancelled' ? payment : null;
 
   return (
-    <ContactPageClient
-      initialMode={initialMode}
-      initialSubject={subject ?? ''}
-      initialPaymentState={initialPaymentState}
-    />
+    <>
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'Accueil', item: 'https://rnj-advisory.be/' },
+          { name: 'Contact', item: 'https://rnj-advisory.be/contact' },
+        ]}
+      />
+      <ContactPageClient
+        initialMode={initialMode}
+        initialSubject={subject ?? ''}
+        initialPaymentState={initialPaymentState}
+      />
+    </>
   );
 }

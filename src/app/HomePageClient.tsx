@@ -209,7 +209,7 @@ const impactCountries: readonly ImpactCountry[] = [
     projects: '45 Projets',
     mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132735/rnj/tn-map-7a9a40cd.svg',
     summary: 'Conseil Stratégique & Réglementaire',
-    description: "RNJ Advisory accompagne des institutions, investisseurs et entrepreneurs en Tunisie dans des projets a forte dimension reglementaire et strategique. Nos interventions couvrent l'analyse institutionnelle, la structuration juridique, la conformite reglementaire ainsi que l'integration des criteres ESG, afin de securiser les projets et garantir leur viabilite a long terme.",
+    description: "En Tunisie, RNJ Advisory accompagne institutions, investisseurs et entrepreneurs sur des projets à forte composante réglementaire. Nos missions couvrent l'analyse institutionnelle, la structuration juridique, la conformité et l'intégration des critères ESG afin de sécuriser les décisions et renforcer la viabilité à long terme.",
     tags: ['energy', 'durability', 'gouvernance'],
     miniMapWidth: 71.6,
     miniMapHeight: 150.19,
@@ -228,13 +228,13 @@ const impactCountries: readonly ImpactCountry[] = [
   {
     id: 'mr',
     code: 'MR',
-    name: 'Moritania',
+    name: 'Mauritanie',
     years: '2024-2026',
     focusYear: '2026',
     projects: '02 Projets',
     mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132737/rnj/mr-f851e151.svg',
     summary: 'Conseil Stratégique & Réglementaire',
-    description: "En Moritania, RNJ Advisory accompagne les acteurs publics et prives sur la structuration institutionnelle, le cadrage juridique et les modeles de gouvernance de projet. Nous aidons a aligner les initiatives d'investissement avec les exigences reglementaires et les objectifs de performance durable.",
+    description: "En Mauritanie, nous accompagnons les acteurs publics et privés sur la gouvernance de projet, le cadrage juridique et l'architecture institutionnelle. Notre approche aligne les initiatives d'investissement avec les obligations réglementaires et les objectifs de performance durable.",
     tags: ['energy', 'durability'],
     miniMapWidth: 102,
     miniMapHeight: 125,
@@ -259,7 +259,7 @@ const impactCountries: readonly ImpactCountry[] = [
     projects: '14 Projets',
     mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132738/rnj/sn-fa0dd3fe.svg',
     summary: 'Conseil Stratégique & Réglementaire',
-    description: "Au Senegal, nous intervenons sur des dossiers a forte valeur strategique: diagnostics institutionnels, analyse des risques reglementaires et assistance a la mise en conformite. Notre objectif est de rendre les projets plus bancables, plus robustes et plus rapides a deployer.",
+    description: "Au Sénégal, nous intervenons sur des dossiers à forte valeur stratégique : diagnostics institutionnels, analyse des risques réglementaires et mise en conformité opérationnelle. Notre objectif est de rendre les projets plus robustes, plus finançables et plus rapides à déployer.",
     tags: ['energy', 'durability'],
     miniMapWidth: 124,
     miniMapHeight: 99,
@@ -278,13 +278,13 @@ const impactCountries: readonly ImpactCountry[] = [
   {
     id: 'gn',
     code: 'GN',
-    name: 'Ghana',
+    name: 'Guinée',
     years: '2024-2026',
     focusYear: '2026',
     projects: '05 Projets',
     mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132739/rnj/gn-09d6746e.svg',
     summary: 'Conseil Stratégique & Réglementaire',
-    description: "Pour les missions au Ghana, RNJ Advisory appuie la conception de cadres d'operation conformes, l'organisation des parties prenantes et l'integration des standards ESG. Nous facilitons la traduction de la strategie en execution operationnelle mesurable.",
+    description: "En Guinée, RNJ Advisory appuie la conception de cadres d'opération conformes, la coordination des parties prenantes et l'intégration des standards ESG. Nous facilitons le passage de la stratégie à une exécution opérationnelle mesurable.",
     tags: ['energy', 'durability'],
     miniMapWidth: 131,
     miniMapHeight: 107,
@@ -303,13 +303,13 @@ const impactCountries: readonly ImpactCountry[] = [
   {
     id: 'bf',
     code: 'BF',
-    name: 'Borkina Faco',
+    name: 'Burkina Faso',
     years: '2024-2026',
     focusYear: '2026',
     projects: '02 Projets',
     mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132741/rnj/bf-82043e17.svg',
     summary: 'Conseil Stratégique & Réglementaire',
-    description: "Au Burkina Faso, nous accompagnons la structuration de projets complexes avec un angle legal, institutionnel et de soutenabilite. Nos recommandations couvrent la gouvernance, la conformite et la feuille de route de mise en oeuvre.",
+    description: "Au Burkina Faso, nous accompagnons la structuration de projets complexes avec une approche juridique, institutionnelle et de durabilité. Nos recommandations couvrent la gouvernance, la conformité et la feuille de route de mise en oeuvre.",
     tags: ['energy', 'durability'],
     miniMapWidth: 122,
     miniMapHeight: 101,
@@ -328,13 +328,13 @@ const impactCountries: readonly ImpactCountry[] = [
   {
     id: 'ne',
     code: 'NE',
-    name: 'Negeria',
+    name: 'Niger',
     years: '2024-2026',
     focusYear: '2026',
     projects: '12 Projets',
     mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132743/rnj/ne-27d79c5a.svg',
     summary: 'Conseil Stratégique & Réglementaire',
-    description: "Au Niger, RNJ Advisory intervient sur la securisation des programmes d'investissement et des partenariats. Nous realisons les analyses juridiques, reglementaires et institutionnelles necessaires pour fiabiliser la decision et reduire les risques d'execution.",
+    description: "Au Niger, RNJ Advisory intervient sur la sécurisation des programmes d'investissement et des partenariats. Nous réalisons les analyses juridiques, réglementaires et institutionnelles nécessaires pour fiabiliser la décision et réduire les risques d'exécution.",
     tags: ['energy', 'durability'],
     miniMapWidth: 115,
     miniMapHeight: 101,
@@ -359,7 +359,7 @@ const impactCountries: readonly ImpactCountry[] = [
     projects: '11 Projets',
     mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132742/rnj/bj-46e4c23a.svg',
     summary: 'Conseil Stratégique & Réglementaire',
-    description: "Sur les projets en Benin, nous accompagnons la structuration des cadres de gouvernance, la clarte des responsabilites institutionnelles et l'alignement des dispositifs juridiques. L'objectif est de garantir la coherence entre strategie, execution et impact.",
+    description: "Au Bénin, nous accompagnons la structuration des cadres de gouvernance, la clarté des responsabilités institutionnelles et l'alignement des dispositifs juridiques. L'objectif est de garantir la cohérence entre stratégie, exécution et impact.",
     tags: ['energy', 'durability'],
     miniMapWidth: 58,
     miniMapHeight: 133,
@@ -378,13 +378,13 @@ const impactCountries: readonly ImpactCountry[] = [
   {
     id: 'cd',
     code: 'CD',
-    name: 'Congo democratic',
+    name: 'République démocratique du Congo',
     years: '2024-2026',
     focusYear: '2026',
     projects: '12 Projets',
     mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132745/rnj/cd-c076eecb.svg',
     summary: 'Conseil Stratégique & Réglementaire',
-    description: "En Republique democratique du Congo, RNJ Advisory soutient les acteurs institutionnels et investisseurs dans la conception de projets durables et conformes. Nos interventions portent sur l'analyse reglementaire, les montages juridiques et les mecanismes de suivi de performance.",
+    description: "En République démocratique du Congo, RNJ Advisory accompagne acteurs institutionnels et investisseurs dans la conception de projets durables et conformes. Nos interventions portent sur l'analyse réglementaire, les montages juridiques et les mécanismes de suivi de performance.",
     tags: ['energy', 'durability'],
     miniMapWidth: 119,
     miniMapHeight: 131,
@@ -404,28 +404,28 @@ const impactCountries: readonly ImpactCountry[] = [
 
 const entrepreneurshipCards = [
   {
-    title: 'Choix du statut juridique adapte',
+    title: 'Choix du statut juridique adapté',
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333872/rnj/mask-group-12-bfc180ab.svg',
     iconWidth: 75.19,
     iconHeight: 75.19,
     titleWidth: 176.02,
   },
   {
-    title: 'Faisabilite & plan financier',
+    title: 'Faisabilité & plan financier',
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333873/rnj/vector-19-81ce45a8.svg',
     iconWidth: 75.19,
     iconHeight: 75.19,
     titleWidth: 140.59,
   },
   {
-    title: 'Demarches administratives',
+    title: 'Démarches administratives',
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333875/rnj/vector-18-18cc905b.svg',
     iconWidth: 65.55,
     iconHeight: 75.19,
     titleWidth: 176.02,
   },
   {
-    title: 'Conformite reglementaire',
+    title: 'Conformité réglementaire',
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333876/rnj/mask-group-11-4a32da53.svg',
     iconWidth: 75.19,
     iconHeight: 75.19,
@@ -435,22 +435,22 @@ const entrepreneurshipCards = [
 
 const servicesFocusCards = [
   {
-    title: 'Créer mon entreprise',
-    description: "J'ai une idée, je veux me lancer.",
+    title: 'Créer mon entreprise en Belgique',
+    description: "Je lance mon activité avec un cadre juridique clair.",
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333878/rnj/mask-group-3-2ece0ef0.svg',
     iconWidth: 67.41,
     iconHeight: 67.41,
   },
   {
-    title: 'Consulter un conseil juridique',
-    description: "J'ai un projet complexe à sécuriser.",
+    title: 'Obtenir un conseil juridique',
+    description: "Je sécurise un projet complexe ou réglementé.",
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333879/rnj/mask-group-4-f2eb00c6.svg',
     iconWidth: 77.59,
     iconHeight: 79.26,
   },
   {
-    title: 'Accélérer mon business / Recruter',
-    description: "Je veux développer ou recruter à l'international.",
+    title: 'Accélérer ma croissance / Recruter hors UE',
+    description: "Je développe mon organisation et je recrute à l'international.",
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333881/rnj/mask-group-5-c793fd9f.svg',
     iconWidth: 77,
     iconHeight: 77,
@@ -460,15 +460,15 @@ const servicesFocusCards = [
 const strategicTrustCards = [
   {
     title: 'Cadre européen',
-    description: 'Accès aux institutions et aux cadres réglementaires européens.',
+    description: 'Accès direct aux institutions et aux cadres réglementaires belges et européens.',
   },
   {
     title: 'Expertise locale',
-    description: 'Une connaissance approfondie du marché et des acteurs à Bruxelles.',
+    description: 'Connaissance approfondie du marché belge et des écosystèmes à Bruxelles.',
   },
   {
     title: 'Conseil stratégique',
-    description: 'Des solutions juridiques et stratégiques adaptées à vos enjeux.',
+    description: 'Des solutions juridiques et stratégiques adaptées à vos objectifs de croissance.',
   },
 ];
 
@@ -477,7 +477,7 @@ const institutionalCarouselCards = [
     title: 'Analyse Institutionnelle & Réglementaire',
     description:
       'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
-    image: '/optimized/group-348987.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778065621/rnj/optimized/whatsapp-image-2026-04-19-12-51-04-pm.jpg',
     panelBg: '#406640',
     titleColor: '#BFCCBF',
     descriptionColor: '#BFCCBF',
@@ -488,7 +488,7 @@ const institutionalCarouselCards = [
   {
     title: 'Structuration Juridique & Gouvernance',
     description:
-      'Choix de la forme juridique (Belgique, Tunisie, international), création, transformation et mise en conformité des sociétés, pactes d’associés, conventions de partenariat et transmission (M&A).',
+      'Choix de la forme juridique (Belgique, Tunisie, international), création et transformation de sociétés, gouvernance, pactes d’associés, conventions de partenariat et opérations de transmission (M&A).',
     image: '/optimized/mask-group-40.webp',
     panelBg: '#BFCCBF',
     titleColor: '#003300',
@@ -500,8 +500,8 @@ const institutionalCarouselCards = [
   {
     title: 'Droit Des Contrats & Sécurité Commerciale',
     description:
-      'Rédaction, revue et négociation de contrats (clients, fournisseurs, partenaires), contrats de prestation, sous-traitance, licences, confidentialité. Réduire les risques et sécuriser la relation commerciale à chaque étape clé.',
-    image: '/optimized/Mask group (44).svg',
+      'Rédaction, revue et négociation de contrats (clients, fournisseurs, partenaires), sous-traitance, licences et confidentialité. Nous réduisons les risques et sécurisons la relation commerciale à chaque étape clé.',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778065554/rnj/optimized/image-droit-des-contrats-securite-commerciale-1.svg',
     panelBg: '#A2B144',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -512,7 +512,7 @@ const institutionalCarouselCards = [
   {
     title: 'Partenariats Public-Privé & Concessions',
     description:
-      'Structuration juridique de projets PPP et concessions, appui aux entreprises, collectivités et institutions. Projets liés à l’énergie, aux infrastructures et à l’intérêt général.',
+      'Structuration juridique de projets PPP et concessions, appui aux entreprises, collectivités et institutions. Interventions sur l’énergie, les infrastructures et les projets d’intérêt général.',
     image: '/optimized/partenariats-public-priv-concessions-image.webp',
     panelBg: '#E0E5C0',
     titleColor: '#003300',
@@ -524,7 +524,7 @@ const institutionalCarouselCards = [
   {
     title: 'ESG, Conformité & Appels À Projets',
     description:
-      'Audit juridique et compliance, protection des données (RGPD), mise en conformité opérationnelle. Accompagnement sur les appels à projets : analyse d’éligibilité, cadrage juridique, rédaction et sécurisation contractuelle.',
+      'Audit juridique et compliance, protection des données (RGPD), mise en conformité opérationnelle. Accompagnement sur les appels à projets : éligibilité, cadrage juridique, rédaction et sécurisation contractuelle.',
     image: '/optimized/esg-conformit-appels-projets.webp',
     panelBg: '#DDE597',
     titleColor: '#003300',
@@ -536,7 +536,7 @@ const institutionalCarouselCards = [
   {
     title: 'Veille Juridique & Anticipation Réglementaire',
     description:
-      'Surveillance active des évolutions législatives et réglementaires en Belgique, Europe et Tunisie. Alertes sur les impacts potentiels et accompagnement dans l’anticipation des changements.',
+      'Surveillance active des évolutions législatives et réglementaires en Belgique, en Europe et en Tunisie. Alertes ciblées sur les impacts potentiels et accompagnement dans l’anticipation des changements.',
     image: '/optimized/mask-group-36.webp',
     panelBg: '#CCD862',
     titleColor: '#003300',
@@ -558,7 +558,7 @@ const whyChooseStripCards = [
   {
     title: 'Accompagnement humain, multilingue & engag\u00E9',
     description:
-      "Proximit\u00E9, \u00E9coute active et respect de votre rythme : chez RNJ Advisory, nous mettons l'humain au c\u0153ur de chaque projet. Nous intervenons en fran\u00E7ais, anglais et arabe.",
+      "Proximit\u00E9, \u00E9coute active et respect de votre rythme : chez RNJ Advisory, nous mettons l'humain au c\u0153ur de chaque projet. Nous intervenons en fran\u00E7ais, en anglais et en arabe.",
     titleWidth: '301px',
     boxLeft: '-13.09%',
     boxRight: '92.99%',
@@ -574,7 +574,7 @@ const whyChooseStripCards = [
   {
     title: 'Performances & fiabilit\u00E9',
     description:
-      'Nous nous engageons \u00E0 vous offrir un service professionnel, rapide et s\u00E9curis\u00E9. Nos outils sont con\u00E7us pour r\u00E9duire les temps morts, fluidifier les d\u00E9marches administratives et optimiser vos r\u00E9sultats.',
+      'Nous nous engageons \u00E0 vous offrir un service professionnel, rapide et s\u00E9curis\u00E9. Nos outils r\u00E9duisent les temps morts, fluidifient les d\u00E9marches administratives et renforcent vos r\u00E9sultats.',
     titleWidth: '259px',
     boxLeft: '29.35%',
     boxRight: '50.56%',
@@ -582,7 +582,7 @@ const whyChooseStripCards = [
   {
     title: 'M\u00E9thodologie et durabilit\u00E9',
     description:
-      "Notre cadre d'accompagnement structur\u00E9 permet de clarifier les priorit\u00E9s, de construire une base solide, et de d\u00E9ployer votre activit\u00E9 avec agilit\u00E9, automatisation et vision long terme.",
+      "Notre cadre d'accompagnement structur\u00E9 permet de clarifier les priorit\u00E9s, de construire une base solide et de d\u00E9ployer votre activit\u00E9 avec agilit\u00E9, automatisation et vision long terme.",
     titleWidth: '259px',
     boxLeft: '50.56%',
     boxRight: '29.35%',
@@ -590,7 +590,7 @@ const whyChooseStripCards = [
   {
     title: 'Ancrage local et ouverture internationale',
     description:
-      'Bas\u00E9s \u00E0 Bruxelles et \u00E0 Tunis, nous accompagnons les porteurs de projet install\u00E9s en Belgique, les entrepreneurs hors UE, les institutions souhaitant structurer ou \u00E9tendre leur impact.',
+      'Bas\u00E9s \u00E0 Bruxelles et \u00E0 Tunis, nous accompagnons les porteurs de projet install\u00E9s en Belgique, les entrepreneurs hors UE et les institutions souhaitant structurer ou \u00E9tendre leur impact.',
     titleWidth: '285px',
     boxLeft: '71.78%',
     boxRight: '8.13%',
@@ -598,7 +598,7 @@ const whyChooseStripCards = [
   {
     title: 'Partenariats strat\u00E9giques avec des acteurs reconnus',
     description:
-      "Nous collaborons avec un r\u00E9seau solide d'acteurs publics, priv\u00E9s et associatifs, en Belgique comme en Tunisie.",
+      "Nous collaborons avec un r\u00E9seau solide d'acteurs publics, priv\u00E9s et associatifs en Belgique comme en Tunisie.",
     titleWidth: '303px',
     boxLeft: '92.99%',
     boxRight: '-13.09%',
@@ -615,7 +615,7 @@ const whyChooseCardActiveBorder = '#6C8B68';
 const whyChooseAnimatedCards = [
   {
     title: 'Approche humaine & multilingue',
-    description: 'Approche humaine et multilingue.',
+    description: 'Une approche humaine, claire et multilingue.',
     hideIcon: false,
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376826/rnj/users-f9417797.svg',
     iconWidth: 58.33,
@@ -632,7 +632,7 @@ const whyChooseAnimatedCards = [
   },
   {
     title: 'Performances & fiabilité',
-    description: 'Service rapide, sécurisé et optimisé pour vos performances.',
+    description: 'Un service rapide, sécurisé et orienté résultats.',
     hideIcon: false,
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376829/rnj/check-mark-89a3c66e.svg',
     iconWidth: 54.62,
@@ -648,7 +648,7 @@ const whyChooseAnimatedCards = [
   },
   {
     title: 'Ancrage local et ouverture internationale',
-    description: 'Bruxelles & Tunis : un accompagnement local et international.',
+    description: 'Bruxelles et Tunis : un accompagnement local et international.',
     hideIcon: false,
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376833/rnj/earth-c9fdae9d.svg',
     iconWidth: 59.77,
@@ -656,7 +656,7 @@ const whyChooseAnimatedCards = [
   },
   {
     title: 'Partenariats stratégiques avec des acteurs reconnus',
-    description: 'Un réseau de partenaires en Belgique et en Tunisie.',
+    description: 'Un réseau de partenaires actifs en Belgique et en Tunisie.',
     hideIcon: false,
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376835/rnj/handshake-387c4c1d.svg',
     iconWidth: 83.23,
@@ -668,22 +668,22 @@ const faqItems = [
   {
     question: "À qui s'adressent les services de RNJ Advisory ?",
     answer:
-      "Les services de RNJ Advisory s’adressent aux entrepreneurs, PME, ASBL, investisseurs, bailleurs de fonds, institutions publiques et acteurs privés souhaitant structurer, sécuriser ou développer leurs projets dans un cadre clair, conforme et durable.",
+      "Nos services s’adressent aux entrepreneurs, PME, ASBL, investisseurs, bailleurs de fonds, institutions publiques et acteurs privés qui souhaitent structurer, sécuriser ou développer leurs projets dans un cadre conforme et durable.",
   },
   {
     question: 'Dans quels pays intervenez-vous ?',
     answer:
-      "RNJ Advisory intervient principalement en Belgique, en Europe, dans la région MENA et en Afrique subsaharienne. Nous accompagnons des projets à dimension locale, transfrontalière ou internationale, selon les enjeux réglementaires, institutionnels et stratégiques de chaque mission.",
+      "RNJ Advisory intervient principalement en Belgique, en Europe, dans la région MENA et en Afrique subsaharienne. Nous accompagnons des projets locaux, transfrontaliers et internationaux selon les enjeux réglementaires, institutionnels et stratégiques de chaque mission.",
   },
   {
     question: 'Quels types de projets accompagnez-vous ?',
     answer:
-      "Nous accompagnons des projets de création d’entreprise, de structuration d’activité, de conformité réglementaire, d’études institutionnelles, de développement stratégique, d’accompagnement juridique, de durabilité, ainsi que des projets liés à l’implantation en Belgique et aux partenariats internationaux.",
+      "Nous accompagnons des projets de création d’entreprise, de structuration d’activité, de conformité réglementaire, d’études institutionnelles, de développement stratégique, ainsi que des projets d’implantation en Belgique et de partenariats internationaux.",
   },
   {
     question: "Comment se déroule une mission d'analyse réglementaire ?",
     answer:
-      "Chaque mission débute par une phase de cadrage afin de comprendre vos objectifs, votre secteur et votre contexte d’intervention. Nous analysons ensuite le cadre juridique et institutionnel applicable, identifions les risques, obligations et opportunités, puis formulons des recommandations structurées, concrètes et directement exploitables.",
+      "Chaque mission débute par une phase de cadrage pour comprendre vos objectifs, votre secteur et votre contexte d’intervention. Nous analysons ensuite le cadre juridique et institutionnel applicable, identifions les risques, obligations et opportunités, puis formulons des recommandations concrètes et actionnables.",
   },
   {
     question: 'Avec quels types d’organisations intervenez-vous ?',
@@ -693,22 +693,22 @@ const faqItems = [
   {
     question: 'Intervenez-vous à l’international ?',
     answer:
-      "Oui. Nous intervenons principalement en Europe, dans la région MENA et en Afrique subsaharienne, notamment dans le cadre d’études institutionnelles, de réformes réglementaires, de mise en place de projets, de conseils juridiques, d’accompagnement de porteurs de projet hors UE et d’engagement de personnel hors UE.",
+      "Oui. Nous intervenons principalement en Europe, dans la région MENA et en Afrique subsaharienne, notamment pour des études institutionnelles, des réformes réglementaires, des conseils juridiques, l’accompagnement de porteurs de projet hors UE et le recrutement de talents hors UE.",
   },
   {
     question: 'Comment débute une mission ?',
     answer:
-      "Chaque mission commence par un échange de cadrage destiné à clarifier vos besoins, vos priorités et le contexte du projet. À l’issue de cette étape, nous définissons le périmètre d’intervention, la méthodologie, les livrables attendus et le calendrier de réalisation.",
+      "Chaque mission commence par un échange de cadrage pour clarifier vos besoins, vos priorités et le contexte du projet. À l’issue de cette étape, nous définissons le périmètre d’intervention, la méthodologie, les livrables attendus et le calendrier.",
   },
   {
     question: 'Confidentialité et sécurité des données ?',
     answer:
-      "La confidentialité fait partie intégrante de notre méthode de travail. Les informations, documents et échanges confiés à RNJ Advisory sont traités avec la plus grande discrétion, dans un cadre sécurisé et professionnel, conformément aux exigences applicables en matière de confidentialité et de protection des données.",
+      "La confidentialité fait partie intégrante de notre méthode de travail. Les informations, documents et échanges confiés à RNJ Advisory sont traités avec discrétion, dans un cadre sécurisé et professionnel, conformément aux exigences applicables en matière de confidentialité et de protection des données.",
   },
   {
     question: 'Délais d’exécution ?',
     answer:
-      "Les délais d’exécution varient selon la nature, la complexité et le niveau d’urgence du projet. Après la phase de cadrage, nous partageons un calendrier clair avec des étapes définies afin d’assurer une exécution rigoureuse, transparente et adaptée à vos impératifs.",
+      "Les délais d’exécution varient selon la nature, la complexité et le niveau d’urgence du projet. Après la phase de cadrage, nous partageons un calendrier clair avec des étapes définies pour assurer une exécution rigoureuse, transparente et adaptée à vos priorités.",
   },
 ];
 
@@ -716,7 +716,7 @@ const whyChooseGridCards = [
   {
     title: 'Expertise juridique & stratégique',
     description:
-      "Notre accompagnement repose sur la rigueur d'un pool d'experts spécialisé en droit public, énergie, stratégie entrepreneuriale, gestion de projet et transformation opérationnelle et digitale.",
+      "Notre accompagnement repose sur la rigueur d'un pool d'experts spécialisés en droit public, énergie, stratégie entrepreneuriale, gestion de projet et transformation opérationnelle.",
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376827/rnj/law-ec037074.svg',
     iconWidth: 97,
     iconHeight: 97,
@@ -726,7 +726,7 @@ const whyChooseGridCards = [
   {
     title: 'Performances & fiabilité',
     description:
-      'Nous nous engageons à vous offrir un service professionnel, rapide et sécurisé. Nos outils sont conçus pour réduire les temps morts, fluidifier les démarches administratives et optimiser vos résultats.',
+      'Nous nous engageons à vous offrir un service professionnel, rapide et sécurisé. Nos outils réduisent les temps morts, fluidifient les démarches administratives et optimisent vos résultats.',
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376829/rnj/check-mark-89a3c66e.svg',
     iconWidth: 82,
     iconHeight: 64,
@@ -736,7 +736,7 @@ const whyChooseGridCards = [
   {
     title: 'Méthodologie et durabilité',
     description:
-      'Notre cadre d accompagnement structuré permet de clarifier les priorités, de construire une base solide, et de déployer votre activité avec agilité, automatisation et vision long terme.',
+      "Notre cadre d'accompagnement structuré permet de clarifier les priorités, de construire une base solide et de déployer votre activité avec agilité et vision long terme.",
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376831/rnj/methologie-648e7fd2.svg',
     iconWidth: 86,
     iconHeight: 78,
@@ -746,7 +746,7 @@ const whyChooseGridCards = [
   {
     title: 'Accompagnement humain, multilingue & engagé',
     description:
-      'Proximité, écoute active et respect de votre rythme : chez RNJ Advisory, nous mettons l humain au cœur de chaque projet. Nous intervenons en français, anglais et arabe.',
+      "Proximité, écoute active et respect de votre rythme : chez RNJ Advisory, nous mettons l'humain au cœur de chaque projet. Nous intervenons en français, anglais et arabe.",
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376826/rnj/users-f9417797.svg',
     iconWidth: 55,
     iconHeight: 87,
@@ -756,7 +756,7 @@ const whyChooseGridCards = [
   {
     title: 'Ancrage local et ouverture internationale',
     description:
-      'Basés à Bruxelles et à Tunis, nous accompagnons les porteurs de projet installés en Belgique, les entrepreneurs hors UE, les institutions souhaitant structurer ou étendre leur impact.',
+      'Basés à Bruxelles et à Tunis, nous accompagnons les porteurs de projet installés en Belgique, les entrepreneurs hors UE et les institutions souhaitant structurer ou étendre leur impact.',
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376833/rnj/earth-c9fdae9d.svg',
     iconWidth: 52,
     iconHeight: 75,
@@ -766,7 +766,7 @@ const whyChooseGridCards = [
   {
     title: 'Partenariats stratégiques avec des acteurs reconnus',
     description:
-      'Nous collaborons avec un réseau solide d acteurs publics, privés et associatifs, en Belgique comme en Tunisie.',
+      "Nous collaborons avec un réseau solide d'acteurs publics, privés et associatifs, en Belgique comme en Tunisie.",
     icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376835/rnj/handshake-387c4c1d.svg',
     iconWidth: 77,
     iconHeight: 72,
@@ -946,9 +946,9 @@ const entrepreneuriatTabs: Array<{
     key: 'installer',
     label: "S'installer",
     tag: 'Entrepreneuriat',
-    title: 'Entrepreneurs Hors Union Européenne Installation en Belgique',
+    title: 'Entrepreneurs hors Union européenne : installation en Belgique',
     description:
-      "Vous êtes ressortissant hors Union européenne et souhaitez développer votre activité en Belgique ? RNJ Advisory vous accompagne à chaque étape de votre installation afin de sécuriser votre projet sur les plans juridique, stratégique et administratif.",
+      "Vous êtes ressortissant hors Union européenne et souhaitez développer votre activité en Belgique ? RNJ Advisory vous accompagne à chaque étape pour sécuriser votre installation sur les plans juridique, stratégique et administratif.",
     bg: '#BBCB2E',
     textColor: '#003300',
     buttonOutlineColor: '#003300',
@@ -961,7 +961,7 @@ const entrepreneuriatTabs: Array<{
     tag: 'Structurer',
     title: 'Création & Structuration d’Entreprise',
     description:
-      "Vous êtes indépendant ou envisagez de lancer votre activité ? RNJ Advisory vous accompagne dès la phase de conception afin de structurer votre projet sur des bases juridiques solides et économiquement viables. Notre objectif : transformer votre idée en une activité conforme, crédible et prête à se développer durablement.",
+      "Vous êtes indépendant ou vous préparez un lancement ? RNJ Advisory vous accompagne dès la phase de conception pour structurer votre projet sur des bases juridiques solides et économiquement viables.",
     bg: '#DDE597',
     textColor: '#003300',
     buttonOutlineColor: '#003300',
@@ -974,7 +974,7 @@ const entrepreneuriatTabs: Array<{
     tag: 'Développer',
     title: 'PME & ASBL en Croissance',
     description:
-      "Vous dirigez une PME ou une ASBL en phase de développement ? Votre croissance nécessite une structuration solide et une gestion conforme aux exigences réglementaires ? RNJ Advisory vous accompagne afin de professionnaliser votre organisation, sécuriser vos opérations et soutenir une expansion maîtrisée.",
+      "Vous dirigez une PME ou une ASBL en croissance ? Nous vous aidons à professionnaliser votre organisation, sécuriser vos opérations et soutenir une expansion maîtrisée, y compris pour le recrutement hors UE.",
     bg: '#C1CB82',
     imageBg: '#D9D9D9',
     imageClassName: 'xl:object-cover xl:object-center xl:scale-[1.06]',
@@ -1286,6 +1286,18 @@ export default function Home() {
   const servicesFocusActiveCount = servicesFocusAnimationStates[servicesFocusStage].activeCount;
   const servicesFocusLineFill = servicesFocusAnimationStates[servicesFocusStage].lineFill;
 
+  function scrollInstitutionalCarousel(direction: 'left' | 'right') {
+    const carousel = institutionalCarouselRef.current;
+    if (!carousel) return;
+
+    const firstCard = carousel.querySelector('[data-institutional-card]') as HTMLElement | null;
+    const styles = getComputedStyle(carousel);
+    const gap = Number.parseFloat(styles.columnGap || styles.gap || '0') || 0;
+    const cardWidth = firstCard?.getBoundingClientRect().width ?? carousel.clientWidth * 0.9;
+    const offset = (cardWidth + gap) * (direction === 'right' ? 1 : -1);
+    carousel.scrollBy({ left: offset, behavior: 'smooth' });
+  }
+
   useEffect(() => {
     if (isInstitutionalCarouselPaused) return;
 
@@ -1332,18 +1344,6 @@ export default function Home() {
     };
   }, []);
 
-  const scrollInstitutionalCarousel = (direction: 'left' | 'right') => {
-    const carousel = institutionalCarouselRef.current;
-    if (!carousel) return;
-
-    const firstCard = carousel.querySelector('[data-institutional-card]') as HTMLElement | null;
-    const styles = getComputedStyle(carousel);
-    const gap = Number.parseFloat(styles.columnGap || styles.gap || '0') || 0;
-    const cardWidth = firstCard?.getBoundingClientRect().width ?? carousel.clientWidth * 0.9;
-    const offset = (cardWidth + gap) * (direction === 'right' ? 1 : -1);
-    carousel.scrollBy({ left: offset, behavior: 'smooth' });
-  };
-
   return (
     <main className="relative min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-[#F7FCFF] to-white">
       <Navbar />
@@ -1368,14 +1368,14 @@ export default function Home() {
                   className="text-center xl:text-left font-[EB_Garamond] font-normal leading-[1.1] md:leading-[1] xl:leading-[57px] xl:w-[715.21px]"
                   style={{ fontSize: 'clamp(22px, 5.5vw, 68.6467px)', color: '#003300' }}
                 >
-                  <span className="block whitespace-nowrap">Conseil stratégique pour</span>
-                  <span className="block whitespace-nowrap">une performance durable</span>
+                  <span className="block whitespace-nowrap">Conseil juridique et stratégique</span>
+                  <span className="block whitespace-nowrap">à Bruxelles</span>
                 </h1>
                 <p
                   className="-mt-5 md:-mt-3 xl:-mt-2 text-center xl:text-left font-[Geist] text-[14px] md:text-[16px] font-normal leading-[1.4] md:leading-[20px] max-w-[90%] md:max-w-[814px] xl:w-[618px]"
                   style={{ color: 'rgba(0, 51, 0, 0.7)' }}
                 >
-                  RNJ Advisory s&apos;associe à des organisations visionnaires pour résoudre des défis critiques, optimiser leurs opérations et créer une valeur durable dans un environnement mondial en constante évolution.
+                  RNJ Advisory accompagne entrepreneurs, PME, ASBL, investisseurs et institutions en Belgique, en Europe et en Afrique pour structurer, sécuriser et accélérer leurs projets.
                 </p>
               </div>
 
@@ -1443,10 +1443,10 @@ export default function Home() {
 
                   <div className="flex flex-1 flex-col" style={{ width: 'clamp(100px, 23vw, 336px)', gap: 'clamp(4px, 0.9vw, 13px)' }}>
                     <h3 className="font-[Geist] font-medium text-white" style={{ fontSize: 'clamp(15px, 2.25vw, 32px)', lineHeight: 'clamp(17px, 2.4vw, 34px)' }}>
-                      Quand la durabilité rencontre la stratégie
+                      Quand la conformité devient un levier de croissance
                     </h3>
                     <p className="font-[Geist] font-medium text-white/60" style={{ fontSize: 'clamp(11px, 1.15vw, 16px)', lineHeight: 'clamp(14px, 1.4vw, 20px)' }}>
-                      Une approche qui transforme les exigences environnementales en leviers de croissance et d&apos;innovation.
+                      Nous transformons vos contraintes juridiques et réglementaires en décisions claires et actionnables.
                     </p>
                     <Link
                       href="/services"
@@ -1519,12 +1519,12 @@ export default function Home() {
                 }}
               >
                 <div className="flex max-w-[336px] flex-col" style={{ gap: 'clamp(4px, 0.9vw, 13px)' }}>
-                  <h3 className="font-[Geist] font-medium text-white" style={{ fontSize: 'clamp(15px, 2.25vw, 32px)', lineHeight: 'clamp(17px, 2.4vw, 34px)' }}>
-                    Une approche claire et structurée
-                  </h3>
-                  <p className="font-[Geist] font-medium text-white/60" style={{ fontSize: 'clamp(11px, 1.15vw, 16px)', lineHeight: 'clamp(14px, 1.4vw, 20px)' }}>
-                    Nous transformons la complexité réglementaire en décisions lisibles et opérationnelles.
-                  </p>
+                    <h3 className="font-[Geist] font-medium text-white" style={{ fontSize: 'clamp(15px, 2.25vw, 32px)', lineHeight: 'clamp(17px, 2.4vw, 34px)' }}>
+                      Une méthode claire, du cadrage au déploiement
+                    </h3>
+                    <p className="font-[Geist] font-medium text-white/60" style={{ fontSize: 'clamp(11px, 1.15vw, 16px)', lineHeight: 'clamp(14px, 1.4vw, 20px)' }}>
+                      Nous transformons la complexité réglementaire en plan d&apos;action concret.
+                    </p>
                 </div>
               </article>
             </div>
@@ -1589,10 +1589,9 @@ export default function Home() {
               </h2>
 
               <p className="max-w-[753px] font-[Geist] text-[14px] font-normal leading-[1.35] text-[#003300]/50 sm:text-[16px] md:text-[18px] lg:text-[20px] lg:leading-[24px]">
-                RNJ Advisory s&apos;associe à des organisations visionnaires pour
-                résoudre des défis critiques, optimiser leurs opérations et créer
-                une valeur durable dans un environnement mondial en constante
-                évolution.
+                Nous accompagnons les organisations qui veulent décider plus vite,
+                rester conformes et déployer leurs projets avec impact, en
+                Belgique et à l&apos;international.
               </p>
             </div>
 
@@ -1686,15 +1685,12 @@ export default function Home() {
 
                 <div className="flex flex-col gap-7 lg:gap-9 xl:gap-[43.92px]">
                   <h2 className="font-[EB_Garamond] text-[34px] font-semibold italic leading-[0.9] tracking-[-0.03em] text-white sm:text-[44px] md:text-[52px] lg:text-[58px] xl:text-[62.7408px] xl:leading-[54px]">
-                    Concrétisez vos idées avec un cabinet de conseils juridiques
-                    &amp; stratégiques à Bruxelles
+                    Concrétisez vos ambitions avec un cabinet de conseil juridique
+                    et stratégique à Bruxelles
                   </h2>
 
                   <p className="max-w-[567px] font-[Geist] text-[14px] font-medium leading-[1.2] text-white/70 sm:text-[15px] md:text-[16px] md:leading-[17px]">
-                    Basé à Bruxelles, au cœur des institutions européennes, nous
-                    allions une expertise juridique pointue et une vision
-                    stratégique pour accompagner vos projets, de la conception à
-                    la réalisation.
+                    Basé à Bruxelles, au cœur des institutions européennes, RNJ Advisory combine expertise juridique, vision stratégique et exécution opérationnelle pour accompagner vos projets de bout en bout.
                   </p>
                 </div>
 
@@ -1715,15 +1711,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div
-                className="absolute"
-                style={{
-                  width: '464.65px',
-                  height: '529.93px',
-                  left: '961.08px',
-                  
-                }}
-              >
+              <div className="relative mx-auto mt-8 h-[260px] w-full max-w-[320px] sm:h-[320px] sm:max-w-[380px] md:h-[380px] md:max-w-[430px] xl:absolute xl:right-0 xl:top-0 xl:mt-0 xl:h-[529.93px] xl:w-[464.65px] xl:max-w-none">
                 <img
                   src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410416/rnj/mask-group-39-06a5eb07.svg"
                   alt="Partenaires en réunion"
@@ -1780,15 +1768,14 @@ export default function Home() {
               className="max-w-[1006.97px] font-[EB_Garamond] text-[#003300] text-[42px] font-medium leading-[1.02] sm:text-[50px] md:text-[56px] lg:text-[64px] lg:leading-[58px]"
               style={{ transform: 'rotate(0.1deg)' }}
             >
-              Des solutions adaptées à chaque étape
+              Des solutions juridiques adaptées à chaque étape
             </h3>
 
             <p
               className="max-w-[1215.08px] font-[Geist] text-[18px] font-medium leading-[20px] text-[#003300]/50 lg:text-[20px]"
               style={{ transform: 'rotate(0.1deg)' }}
             >
-              Un accompagnement structuré pour sécuriser vos projets et soutenir
-              votre croissance.
+              Un accompagnement structuré pour sécuriser vos projets en Belgique et accélérer votre croissance.
             </p>
           </div>
 
@@ -1887,9 +1874,7 @@ export default function Home() {
                       className="max-w-[520px] font-[Geist] font-semibold text-white/50"
                       style={{ fontSize: 'clamp(13px, 2.5vw, 16px)', lineHeight: 1.25 }}
                     >
-                      Nous analysons votre environnement institutionnel et
-                      réglementaire afin de sécuriser vos décisions et garantir
-                      la conformité de vos projets.
+                      Nous analysons votre environnement institutionnel et réglementaire pour sécuriser vos décisions et garantir la conformité de vos projets.
                     </p>
 
                     <h2
@@ -1900,7 +1885,7 @@ export default function Home() {
                         textTransform: 'capitalize',
                       }}
                     >
-                      de la création d&apos;entreprise à l&apos;accélération
+                      de la création d&apos;entreprise en Belgique à l&apos;accélération
                     </h2>
                   </div>
 
@@ -1931,7 +1916,7 @@ export default function Home() {
         <EntrepreneuriatTabsSection />
 
         <section className="w-full bg-[#F7FCFF] py-12 md:py-24">
-          <div className="mx-auto flex w-full max-w-[1513px] flex-col items-center gap-12 md:gap-[150px] px-4">
+          <div className="mx-auto flex w-full max-w-[1513px] flex-col items-center gap-0 md:gap-[0px] px-4">
             <div className="relative w-full max-w-[1392px]">
               <div className="flex flex-col gap-8 md:gap-[90px]">
                 <div className="flex w-full flex-col items-center justify-between gap-4 sm:flex-row sm:gap-6">
@@ -1952,15 +1937,11 @@ export default function Home() {
 
                 <div className="flex flex-col items-center gap-6 md:gap-[41px] text-center">
                   <h2 className="max-w-[95%] sm:max-w-[90%] md:max-w-[824px] font-[EB_Garamond] font-extrabold text-[#003300] text-[28px] sm:text-[36px] md:text-[56px] lg:text-[80px] leading-[1.1] md:leading-[0.95]">
-                    Indépendants &amp; porteurs de projet
+                    Indépendants et porteurs de projet
                   </h2>
 
                   <p className="max-w-[95%] sm:max-w-[92%] md:max-w-[998px] font-[Geist] font-medium text-[#003300] text-[14px] sm:text-[16px] md:text-[20px] lg:text-[24px] leading-[1.5] md:leading-[1.4] opacity-50">
-                    Vous êtes indépendant ou envisagez de lancer votre activité ?
-                    Vous souhaitez structurer votre projet sur des bases solides,
-                    sécurisées et durables ? RNJ Advisory vous accompagne dans la
-                    transformation de votre idée en une activité juridiquement
-                    conforme, économiquement viable et prête à se développer.
+                    Vous êtes indépendant ou vous lancez votre activité ? Nous vous accompagnons pour transformer votre idée en projet conforme, finançable et prêt à se développer durablement.
                   </p>
                 </div>
 
@@ -2011,6 +1992,8 @@ export default function Home() {
               style={{
                 marginLeft: 'calc(50% - 50vw)',
                 marginRight: 'calc(50% - 50vw)',
+                marginTop: '107px',
+                marginBottom: '107px',
                 boxShadow: '2px 4px 28.3px rgba(0, 0, 0, 0.17)',
               }}
             >
@@ -2046,20 +2029,15 @@ export default function Home() {
                           textTransform: 'capitalize',
                         }}
                       >
-                        <span className="whitespace-nowrap">Accélération PME &amp;</span><br />
-                        ASBL Recrutement<br />
-                        International &amp;<br />
-                        Croissance
+                        <span className="whitespace-nowrap">Accélération PME et ASBL :</span><br />
+                        Recrutement international<br />
+                        et croissance
                       </h3>
 
                       <div className="flex max-w-[435px] flex-col gap-[25px]">
                         {/* Questions with SVG background */}
                         <div
-                          className="relative flex flex-col items-center justify-center gap-[4px]"
-                          style={{
-                            width: '426.24px',
-                            height: '56.17px',
-                          }}
+                          className="relative flex h-[56.17px] w-full max-w-[426.24px] flex-col items-center justify-center gap-[4px]"
                         >
                           <Image
                             src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051875/rnj/optimized/vector-22-5240d59f.svg"
@@ -2075,7 +2053,7 @@ export default function Home() {
                               opacity: 0.7,
                             }}
                           >
-                            Vous êtes une PME ou une Asbl en croissance ?
+                            Vous êtes une PME ou une ASBL en croissance ?
                           </span>
                           <span
                             className="relative z-10 w-full text-center font-[Geist] font-semibold text-[#003300]"
@@ -2093,7 +2071,7 @@ export default function Home() {
                           className="max-w-[424px] pl-[11px] font-[Geist] font-medium text-[#BFCCBF]"
                           style={{ fontSize: 'clamp(13px, 2.2vw, 16px)', lineHeight: 'clamp(17px, 2.8vw, 19px)', opacity: 0.7 }}
                         >
-                          Nous sécurisons vos recrutements internationaux pour vous concentrer sur votre développement.
+                          Nous sécurisons vos recrutements internationaux pour vous permettre de vous concentrer sur votre développement.
                         </p>
                       </div>
                     </div>
@@ -2126,8 +2104,8 @@ export default function Home() {
               style={{
                 marginLeft: 'calc(50% - 50vw)',
                 marginRight: 'calc(50% - 50vw)',
-                marginTop: '-107px',
-                marginBottom: '-50px',
+                marginTop: '24px',
+                marginBottom: '24px',
               }}
             >
               <div className="w-full px-4">
@@ -2379,16 +2357,16 @@ export default function Home() {
                               <p className="max-w-[439px] font-[Geist] text-[13px] font-normal leading-[1.14] text-white md:text-[16px] md:leading-[18px]">
                                 <span className="block">
                                   Étude juridique et institutionnelle pour la mise en
-                                  place d'un cadre réglementaire propice à
-                                  l'interconnexion électrique entre la Tunisie et
-                                  l'Italie, ainsi que la création d'une autorité de
+                                  place d&apos;un cadre réglementaire propice à
+                                  l&apos;interconnexion électrique entre la Tunisie et
+                                  l&apos;Italie, ainsi que la création d&apos;une autorité de
                                   régulation du secteur électrique en Tunisie.
                                 </span>
                                 <span className="block h-3 md:h-4" aria-hidden="true" />
                                 <span className="block">Nos interventions :</span>
-                                <span className="block">• Analyse du cadre réglementaire tunisien applicable au secteur de l'électricité et aux énergies renouvelables</span>
-                                <span className="block">• Actualisation des textes réglementaires relatifs à la création de l'autorité de régulation du secteur électrique</span>
-                                <span className="block">• Assistance à la mise en place d'un cadre réglementaire et contractuel propice à l'exportation d'électricité via ELMED</span>
+                                <span className="block">• Analyse du cadre réglementaire tunisien applicable au secteur de l&apos;électricité et aux énergies renouvelables</span>
+                                <span className="block">• Actualisation des textes réglementaires relatifs à la création de l&apos;autorité de régulation du secteur électrique</span>
+                                <span className="block">• Assistance à la mise en place d&apos;un cadre réglementaire et contractuel propice à l&apos;exportation d&apos;électricité via ELMED</span>
                               </p>
 
                               <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[rgba(71,71,71,0.96)] via-[rgba(71,71,71,0.72)] to-transparent md:h-20" />
@@ -2485,10 +2463,10 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <div className="mt-[52px] flex h-[53px] w-[375px] max-w-full items-center gap-[10px]">
+                      <div className="mt-[52px] flex h-auto w-full max-w-[375px] flex-wrap items-center gap-[10px] sm:h-[53px] sm:flex-nowrap">
                         <button
                           type="button"
-                          className="flex h-[53px] w-[140px] items-center justify-center rounded-full border-2 border-[#F7FCFF] px-[26px] py-[19px] font-[Geist] text-[16px] font-medium leading-[16px] text-white whitespace-nowrap sm:px-[53px]"
+                          className="flex h-[53px] w-full items-center justify-center rounded-full border-2 border-[#F7FCFF] px-[26px] py-[19px] font-[Geist] text-[16px] font-medium leading-[16px] text-white whitespace-nowrap sm:w-[140px] sm:px-[53px]"
                           style={{ touchAction: 'manipulation' }}
                           onClick={() => setShowCertificatesPopup(true)}
                         >
@@ -2497,7 +2475,7 @@ export default function Home() {
 
                         <a
                           href="/contact"
-                          className="flex h-[53px] w-[225px] items-center justify-center rounded-full bg-white px-[28px] py-[19px] font-[Geist] text-[16px] font-bold leading-[16px] text-black whitespace-nowrap sm:px-[34px]"
+                          className="flex h-[53px] w-full items-center justify-center rounded-full bg-white px-[28px] py-[19px] font-[Geist] text-[16px] font-bold leading-[16px] text-black whitespace-nowrap sm:w-[225px] sm:px-[34px]"
                           style={{ touchAction: 'manipulation' }}
                         >
                           Sécuriser mon projet
@@ -2514,7 +2492,13 @@ export default function Home() {
               </div>
             </section>
 
-            <section className="relative w-screen overflow-hidden bg-[#003300] py-12 md:min-h-[1422.65px] md:py-[94.3px] lg:min-h-[1422.65px] lg:py-[94.3px]">
+            <section
+              className="relative w-screen overflow-hidden bg-[#003300] py-12 md:min-h-[1422.65px] md:py-[94.3px] lg:min-h-[1422.65px] lg:py-[94.3px]"
+              style={{
+                marginLeft: 'calc(50% - 50vw)',
+                marginRight: 'calc(50% - 50vw)',
+              }}
+            >
               <div className="absolute inset-0 bg-[#003300]" />
 
               <div className="absolute inset-0 md:hidden">
@@ -2539,17 +2523,15 @@ export default function Home() {
                 />
               </div>
 
-              <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/20 to-black/12" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/8 to-black/16" />
 
               {/* White shadow overlay at top */}
               <div
-                className="pointer-events-none absolute z-[11] hidden md:block"
+                className="pointer-events-none absolute inset-x-0 top-0 z-[9] h-[560px] md:h-[520px]"
                 style={{
-                  left: '0',
-                  width: '100%',
-                  height: '200px',
-                  top: '0',
-                  background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%)',
+                  background:
+                    'linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.58) 28%, rgba(255, 255, 255, 0.28) 52%, rgba(255, 255, 255, 0.08) 72%, rgba(255, 255, 255, 0) 100%)',
+                  filter: 'blur(0.4px)',
                 }}
               />
 
@@ -2560,17 +2542,17 @@ export default function Home() {
                   left: '0',
                   width: '100%',
                   height: '734.86px',
-                  top: '678.56px',
+                  top: '535px',
                   background: 'rgba(0, 0, 0, 0.2)',
                   boxShadow: '0px 2.01px 44.43px rgba(0, 0, 0, 0.17)',
                 }}
               />
 
-              <div className="relative z-[8] left-1/2 w-screen -translate-x-1/2">
+              <div className="relative z-[20] w-full">
                 <div className="mx-auto w-full max-w-none px-0">
                   <div className="mx-auto flex w-full max-w-[774px] flex-col items-center gap-5 px-4 text-center sm:gap-6 sm:px-6 md:gap-[41.6px] md:px-0">
                     <h2
-                      className="max-w-[773.41px] font-[EB_Garamond] font-semibold tracking-[-0.03em] text-white"
+                      className="max-w-[773.41px] font-[EB_Garamond] font-semibold tracking-[-0.03em] text-[#003300]"
                       style={{
                         fontSize: 'clamp(26px, 6vw, 83.0753px)',
                         lineHeight: 'clamp(28px, 5.5vw, 68px)',
@@ -2581,7 +2563,7 @@ export default function Home() {
                     </h2>
 
                     <p
-                      className="max-w-[774px] font-[Geist] font-medium text-white"
+                      className="max-w-[774px] font-[Geist] font-medium text-[#003300]"
                       style={{ fontSize: 'clamp(13px, 2vw, 16px)', lineHeight: 'clamp(17px, 2.5vw, 19px)', opacity: 0.8 }}
                     >
                       Vous êtes un organisme public, une institution privée, un investisseur ou un bailleur de fonds ?
@@ -2600,13 +2582,13 @@ export default function Home() {
                         lineHeight: 1,
                       }}
                     >
-                      contact
+                      Contact
                     </Link>
                   </div>
 
-                  <div className="mt-24 md:mt-[280px]">
+                  <div className="mt-20 md:mt-[250px]">
                     <div
-                      className="relative bg-transparent"
+                      className="relative -mt-10 md:-mt-14 bg-transparent"
                       onMouseEnter={() => setIsInstitutionalCarouselPaused(true)}
                       onMouseLeave={() => setIsInstitutionalCarouselPaused(false)}
                       onTouchStart={() => setIsInstitutionalCarouselPaused(true)}
@@ -2674,18 +2656,18 @@ export default function Home() {
 
                       <div
                         ref={institutionalCarouselRef}
-                        className="relative z-10 mx-auto flex snap-x snap-mandatory flex-nowrap gap-5 overflow-x-auto overflow-y-hidden px-3 py-3 md:w-[1500px] md:gap-[10px] md:px-[350px] md:py-5 touch-pan-x [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
+                        className="relative z-10 mx-auto flex w-full max-w-[1500px] snap-x snap-mandatory flex-nowrap gap-5 overflow-x-auto overflow-y-hidden px-3 py-3 md:gap-[10px] md:px-6 md:py-5 lg:px-10 xl:px-[52px] touch-pan-x [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
                       >
                         {[...institutionalCarouselCards, ...institutionalCarouselCards].map((card, index) => (
                           <article
                             key={`${card.title}-${index}`}
                             data-institutional-card
-                            className="flex w-[92vw] shrink-0 snap-start flex-col gap-3 md:h-[554px] md:w-[1395.73px] md:flex-row md:gap-[28.5px]"
+                            className="flex w-[92vw] shrink-0 snap-start flex-col gap-3 md:h-[554px] md:w-[min(92vw,1300px)] md:flex-row md:gap-[20px] xl:w-[1395.73px] xl:gap-[28.5px]"
                           >
                           {card.panelFirst ? (
                             <>
                               <div
-                                className="flex justify-center rounded-[28px] px-6 py-6 md:h-[554px] md:w-[480.51px] md:rounded-[118.718px_118.714px_118.714px_0px] md:px-[47px] md:py-[95px]"
+                                className="flex justify-center rounded-[28px] px-6 py-6 md:h-[554px] md:w-[min(38vw,480.51px)] md:min-w-[320px] md:rounded-[118.718px_118.714px_118.714px_0px] md:px-[32px] md:py-[70px] xl:w-[480.51px] xl:px-[47px] xl:py-[95px]"
                                 style={{ backgroundColor: card.panelBg }}
                               >
                                 <div className="flex h-full w-full max-w-[320px] flex-col justify-between md:max-w-[356.49px]">
@@ -2730,36 +2712,26 @@ export default function Home() {
                                 </div>
                               </div>
 
-                              <div className="relative h-[260px] overflow-hidden md:h-[554px] md:w-[886.72px]">
+                              <div className="relative h-[260px] overflow-hidden md:h-[554px] md:flex-1 xl:w-[886.72px]">
                                 <Image
                                   src={card.image}
                                   alt={card.title}
                                   fill
-                                  style={
-                                    card.title === 'Droit Des Contrats & Sécurité Commerciale'
-                                      ? { transform: 'scaleX(-1)' }
-                                      : undefined
-                                  }
                                 />
                               </div>
                             </>
                           ) : (
                             <>
-                              <div className="relative h-[260px] overflow-hidden md:h-[554px] md:w-[886.72px]">
+                              <div className="relative h-[260px] overflow-hidden md:h-[554px] md:flex-1 xl:w-[886.72px]">
                                 <Image
                                   src={card.image}
                                   alt={card.title}
                                   fill
-                                  style={
-                                    card.title === 'Droit Des Contrats & Sécurité Commerciale'
-                                      ? { transform: 'scaleX(-1)' }
-                                      : undefined
-                                  }
                                 />
                               </div>
 
                               <div
-                                className="flex justify-center rounded-[28px] px-6 py-6 md:h-[554px] md:w-[480.51px] md:rounded-[118.718px_118.714px_118.714px_0px] md:px-[47px] md:py-[95px]"
+                                className="flex justify-center rounded-[28px] px-6 py-6 md:h-[554px] md:w-[min(38vw,480.51px)] md:min-w-[320px] md:rounded-[118.718px_118.714px_118.714px_0px] md:px-[32px] md:py-[70px] xl:w-[480.51px] xl:px-[47px] xl:py-[95px]"
                                 style={{ backgroundColor: card.panelBg }}
                               >
                                 <div className="flex h-full w-full max-w-[320px] flex-col justify-between md:max-w-[356.49px]">
@@ -2815,7 +2787,13 @@ export default function Home() {
               </div>
             </section>
 
-            <section className="relative -mt-32 w-screen overflow-hidden bg-[#003300] py-16 md:-mt-[150px] md:py-20">
+            <section
+              className="relative -mt-32 w-screen overflow-hidden bg-[#003300] pt-16 pb-0 md:-mt-[150px] md:pt-20 md:pb-0"
+              style={{
+                marginLeft: 'calc(50% - 50vw)',
+                marginRight: 'calc(50% - 50vw)',
+              }}
+            >
               <div className="mx-auto w-full px-4">
                 <div
                   className="mx-auto grid w-full max-w-[1299.66px] grid-cols-1 gap-4 md:grid-cols-3 md:gap-4 xl:gap-[19px]"
@@ -2846,12 +2824,12 @@ export default function Home() {
                       <h3
                         className="font-[EB_Garamond] font-semibold text-[#003300] text-[24px] leading-[24px] sm:text-[26px] sm:leading-[25px] lg:text-[28px] lg:leading-[27px] xl:text-[31.3914px] xl:leading-[28px]"
                       >
-                        ESG &amp; financements / accompagnement sur mesure
+                        ESG, conformité et financements durables
                       </h3>
                       <p
                         className="mt-3 max-w-[247.64px] font-[Geist] text-[#003300] text-[13.9517px] leading-[16px] opacity-70"
                       >
-                        ESG &amp; financements / accompagnement sur mesure
+                        Structuration ESG, accès aux financements et feuille de route opérationnelle.
                       </p>
                     </div>
                   </article>
@@ -2878,13 +2856,13 @@ export default function Home() {
                       <h3
                         className="max-w-[334.84px] font-[EB_Garamond] font-semibold text-[#003300] text-[24px] leading-[26px] sm:text-[26px] sm:leading-[28px] lg:text-[30px] lg:leading-[31px] xl:text-[35.8975px] xl:leading-[36px]"
                       >
-                        Durabilité et ESG (Environnemental, Social et Gouvernance)
+                        Durabilité et ESG (Environnemental, Social, Gouvernance)
                       </h3>
 
                       <p
                         className="max-w-[299.96px] font-[Geist] text-[#003300] text-[13.9517px] leading-[17px] opacity-70"
                       >
-                        RNJ Advisory intègre les enjeux ESG au cœur de votre stratégie pour une performance durable et conforme.
+                        RNJ Advisory intègre les enjeux ESG au cœur de votre stratégie pour une performance durable, mesurable et conforme.
                       </p>
                     </div>
 
@@ -2935,7 +2913,7 @@ export default function Home() {
                       <p
                         className="mt-3 max-w-[247.64px] font-[Geist] text-[#003300] text-[13.9517px] leading-[16px] opacity-70"
                       >
-                        Pour savoir où vous en êtes et ce qui est attendu de vous.
+                        Pour savoir où vous en êtes, prioriser les actions et rester conforme.
                       </p>
                     </div>
                   </article>
@@ -2943,975 +2921,13 @@ export default function Home() {
               </div>
             </section>
 
-            <div className="flex w-full flex-col items-center gap-10 md:gap-16 bg-[#003300]">
-              <section className="hidden w-full 2xl:max-w-none">
-              <div className="2xl:hidden">
-                <div className="mb-10 flex flex-col gap-3">
-                  <div className="flex items-center gap-3">
-                    <span className="h-[10px] w-[10px] rounded-full bg-[#003300]" />
-                    <span
-                      className="font-[Geist] font-bold text-[#003300]"
-                      style={{ fontSize: '23.6828px', lineHeight: '25px' }}
-                    >
-                      Pourquoi choisir RNJ Advisory ?
-                    </span>
-                  </div>
-
-                  <p
-                    className="font-[Geist] font-bold text-[#003300]"
-                    style={{ fontSize: '20px', lineHeight: '18px', opacity: 0.65 }}
-                  >
-                    Une expertise rigoureuse au service de vos décisions
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 gap-[16.16px] md:grid-cols-2">
-                  {whyChooseStripCards.map((card, index) => (
-                    <article
-                      key={card.title}
-                      className="rounded-[24px] px-6 py-8 text-center cursor-pointer transition-all duration-300 touch-active:scale-95"
-                      style={{
-                        boxShadow:
-                          hoveredCardIndex === index
-                            ? '0px 8px 26px rgba(0, 0, 0, 0.18)'
-                            : '0px 4px 22.4px rgba(0, 0, 0, 0.19)',
-                        background:
-                          hoveredCardIndex === index
-                            ? whyChooseCardActiveBackground
-                            : whyChooseCardGradients[index % whyChooseCardGradients.length],
-                        border:
-                          hoveredCardIndex === index
-                            ? `2px solid ${whyChooseCardActiveBorder}`
-                            : '2px solid #003300',
-                        transform:
-                          hoveredCardIndex === index ? 'translateY(-2px)' : 'translateY(0)',
-                      }}
-                      onMouseEnter={() => setHoveredCardIndex(index)}
-                      onMouseLeave={() => setHoveredCardIndex(null)}
-                      onTouchStart={(e) => {
-                        setHoveredCardIndex(index);
-                        setTimeout(() => {
-                          setHoveredCardIndex(null);
-                        }, 220);
-                      }}
-                    >
-                      <h3
-                        className="mx-auto mb-5 font-[EB_Garamond] font-bold transition-colors duration-300"
-                        style={{
-                          width: card.titleWidth,
-                          maxWidth: card.titleWidth,
-                          fontSize: '32px',
-                          lineHeight: '27px',
-                          color: hoveredCardIndex === index ? '#003300' : '#F7FCFF',
-                        }}
-                      >
-                        {card.title}
-                      </h3>
-
-                      <p
-                        className="mx-auto max-w-[262.42px] font-[Geist] font-normal transition-colors duration-300"
-                        style={{
-                          fontSize: '14px',
-                          lineHeight: '16px',
-                          color: hoveredCardIndex === index ? '#003300' : '#F7FCFF',
-                        }}
-                      >
-                        {card.description}
-                      </p>
-                    </article>
-                  ))}
-                </div>
-
-                <p
-                  className="mt-8 font-[Geist] font-semibold text-[#003300]"
-                  style={{ fontSize: '16px', lineHeight: '18px', opacity: 0.5 }}
-                >
-                  Choisir RNJ Advisory, c&apos;est bénéficier d&apos;une approche
-                  structurée, indépendante et orientée résultats. Nous combinons
-                  analyse juridique, compréhension institutionnelle et vision
-                  stratégique afin de vous aider à anticiper les risques, assurer
-                  la conformité de vos projets et prendre des décisions éclairées.
-                </p>
-              </div>
-
-              <div
-                className="relative hidden 2xl:block overflow-hidden"
-                style={{
-                  width: '100vw',
-                  height: '512px',
-                  marginLeft: 'calc(50% - 50vw)',
-                  marginRight: 'calc(50% - 50vw)',
-                }}
-              >
-                <div
-                  className="absolute left-0 right-0"
-                  style={{
-                    top: '11.52%',
-                    bottom: '10.55%',
-                  }}
-                />
-
-                <div
-                  className="absolute flex flex-col items-start gap-3"
-                  style={{ left: '3.97%', top: 0 }}
-                >
-                  <div className="flex items-center gap-[11px]">
-                    <span className="h-[10px] w-[10px] rounded-full bg-[#003300]" />
-                    <span
-                      className="font-[Geist] font-bold text-[#003300]"
-                      style={{ fontSize: '23.6828px', lineHeight: '25px' }}
-                    >
-                      Pourquoi choisir RNJ Advisory ?
-                    </span>
-                  </div>
-
-                  <p
-                    className="font-[Geist] font-bold text-[#003300]"
-                    style={{ fontSize: '20px', lineHeight: '18px', opacity: 0.65 }}
-                  >
-                    {'Une expertise rigoureuse au service de vos d\u00E9cisions'}
-                  </p>
-                </div>
-
-                <div 
-                  className="absolute flex gap-4"
-                  style={{
-                    left: '0%',
-                    top: '20.9%',
-                    bottom: '19.73%',
-                    width: 'fit-content',
-                    animation: 'scroll 20s linear infinite',
-                    willChange: 'transform',
-                  }}
-                >
-                  {[...whyChooseStripCards, ...whyChooseStripCards].map((card, index) => (
-                    <article
-                      key={`${card.title}-${index}`}
-                      className="flex-shrink-0 overflow-hidden rounded-[10px] text-center cursor-pointer transition-all duration-300"
-                      style={{
-                        width: '303px',
-                        height: '100%',
-                        boxShadow:
-                          hoveredScrollCardIndex === index
-                            ? '0px 8px 26px rgba(0, 0, 0, 0.18)'
-                            : '0px 4px 22.4px rgba(0, 0, 0, 0.19)',
-                        marginRight: '20px',
-                        background:
-                          hoveredScrollCardIndex === index
-                            ? whyChooseCardActiveBackground
-                            : whyChooseCardGradients[
-                                (index % whyChooseStripCards.length) % whyChooseCardGradients.length
-                              ],
-                        border:
-                          hoveredScrollCardIndex === index
-                            ? `2px solid ${whyChooseCardActiveBorder}`
-                            : '2px solid #003300',
-                        touchAction: 'manipulation',
-                        transform:
-                          hoveredScrollCardIndex === index ? 'translateY(-2px)' : 'translateY(0)',
-                      }}
-                      onMouseEnter={() => setHoveredScrollCardIndex(index)}
-                      onMouseLeave={() => setHoveredScrollCardIndex(null)}
-                      onTouchStart={() => setHoveredScrollCardIndex(index)}
-                      onTouchEnd={() => {
-                        setTimeout(() => {
-                          setHoveredScrollCardIndex(null);
-                        }, 220);
-                      }}
-                    >
-                      <div className="flex h-full w-[303px] flex-col items-center justify-center gap-5 p-6">
-                        <h3
-                          className={`font-[Geist] leading-none text-[#003300] transition-opacity duration-300 ${
-                                    hoveredScrollCardIndex === index ? 'text-[18px] opacity-100' : 'pointer-events-none opacity-0'
-                                  }`}
-                          style={{
-                            width: card.titleWidth,
-                            maxWidth: card.titleWidth,
-                            fontSize: '32px',
-                            lineHeight: '27px',
-                            color:
-                              hoveredScrollCardIndex === index ? '#003300' : '#F7FCFF',
-                          }}
-                        >
-                          {card.title}
-                        </h3>
-
-                        <p
-                          className="w-[262.42px] font-[Geist] font-normal transition-colors duration-300"
-                          style={{
-                            fontSize: '14px',
-                            lineHeight: '16px',
-                            color:
-                              hoveredScrollCardIndex === index ? '#003300' : '#F7FCFF',
-                          }}
-                        >
-                          {card.description}
-                        </p>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-
-                <p
-                  className="absolute font-[Geist] font-semibold text-[#003300]"
-                  style={{
-                    left: '3.97%',
-                    top: '89.45%',
-                    width: '892px',
-                    maxWidth: '58.22vw',
-                    fontSize: '16px',
-                    lineHeight: '18px',
-                    opacity: 0.5
-                  }}
-                >
-                  Choisir RNJ Advisory, c&apos;est bénéficier d&apos;une approche structurée, indépendante et orientée résultats. Nous combinons analyse juridique, compréhension institutionnelle et vision stratégique afin de vous aider à anticiper les risques, assurer la conformité de vos projets et prendre des décisions éclairées.
-                </p>
-              </div>
-            </section>
-
-            {false && (
-              <>
-            {/* Business Services Section - Position CorrigÃ©e */}
-            <section 
-              className="w-full py-16 md:py-24"
-              style={{ 
-                backgroundColor: '#F7FCFF',
-                maxWidth: '1393px',
-                margin: '0 auto',
-                position: 'relative'
+            <section
+              className="relative -mt-35 w-screen bg-[#003300] pt-0 pb-8 md:-mt-8"
+              style={{
+                marginLeft: 'calc(50% - 50vw)',
+                marginRight: 'calc(50% - 50vw)',
               }}
             >
-              {/* Frame 355 - Main Container */}
-              <div 
-                className="relative mx-auto"
-                style={{
-                  width: '100%',
-                  maxWidth: '1393px',
-                  height: '691px',
-                  filter: 'drop-shadow(2px 2px 24.5px rgba(0, 0, 0, 0.21))'
-                }}
-              >
-                {/* Frame 353 - Left Column */}
-                <div 
-                  style={{
-                    position: 'absolute',
-                    width: '334px',
-                    height: '691px',
-                    left: '0px',
-                    top: '0px',
-                    zIndex: 2
-                  }}
-                >
-                  {/* Rectangle 420 - Dark Background */}
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      width: '334px',
-                      height: '334px',
-                      left: '0px',
-                      top: '0px',
-                      backgroundColor: '#003300',
-                      borderRadius: '20px'
-                    }}
-                  />
-                  
-                  {/* Rectangle 421 - White Card */}
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      width: '208px',
-                      height: '230px',
-                      left: '63px',
-                      top: '52px',
-                      backgroundColor: '#FFFFFF',
-                      boxShadow: '0px 0px 43px -5px rgba(255, 255, 255, 0.33)',
-                      borderRadius: '30px'
-                    }}
-                  />
-                  
-                  {/* Frame 385 - Four Dots */}
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      width: '138px',
-                      height: '30px',
-                      left: '75px',
-                      top: '90px',
-                      gap: '6px'
-                    }}
-                  >
-                    {[1, 2, 3, 4].map((dot) => (
-                      <div 
-                        key={dot}
-                        style={{
-                          position: 'relative',
-                          width: '30px',
-                          height: '30px'
-                        }}
-                      >
-                        <div 
-                          style={{
-                            position: 'absolute',
-                            width: '30px',
-                            height: '30px',
-                            left: '0px',
-                            top: '0px',
-                            backgroundColor: '#BBCB2E',
-                            borderRadius: '50%'
-                          }}
-                        />
-                        <div 
-                          style={{
-                            position: 'absolute',
-                            width: '14px',
-                            height: '14px',
-                            left: '8px',
-                            top: '8px',
-                            backgroundColor: '#003300',
-                            borderRadius: '50%'
-                          }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  
-                  {/* Title */}
-                  <h3 
-                    style={{
-                      position: 'absolute',
-                      fontFamily: 'Geist',
-                      fontWeight: '500',
-                      color: '#003300',
-                      width: '176px',
-                      height: '108px',
-                      left: '75px',
-                      top: '144px',
-                      fontSize: '27.6078px',
-                      lineHeight: '27px'
-                    }}
-                  >
-                    Expertise stratÃ©gique au service de vos projets
-                  </h3>
-                  
-                  {/* Service Steps Container */}
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      width: '334px',
-                      height: '334px',
-                      left: '0px',
-                      top: '357px',
-                      backgroundColor: '#FFFFFF',
-                      borderRadius: '20px'
-                    }}
-                  />
-                  
-                  {/* Service Steps */}
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      width: '272px',
-                      height: '167.21px',
-                      left: '31px',
-                      top: '440.39px'
-                    }}
-                  >
-                    {/* ConformitÃ© */}
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        width: '218.49px',
-                        height: '55.74px',
-                        left: '0px',
-                        top: '0px'
-                      }}
-                    >
-                      <div 
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          width: '162.75px',
-                          height: '55.74px',
-                          border: '2px solid #E2E2E2',
-                          borderRadius: '111.475px',
-                          padding: '13px 29px'
-                        }}
-                      >
-                        <span 
-                          style={{
-                            fontFamily: 'Geist',
-                            fontWeight: '500',
-                            fontSize: '20px',
-                            lineHeight: '29px',
-                            color: '#E2E2E2'
-                          }}
-                        >
-                          ConformitÃ©
-                        </span>
-                      </div>
-                      <div 
-                        style={{
-                          position: 'absolute',
-                          width: '55.74px',
-                          height: '55.74px',
-                          right: '0px',
-                          top: '0px',
-                          border: '2px solid #E2E2E2',
-                          borderRadius: '111.475px'
-                        }}
-                      >
-                        <div 
-                          style={{
-                            position: 'absolute',
-                            width: '26px',
-                            height: '26px',
-                            left: '14.61px',
-                            top: '14.61px',
-                            border: '2px solid #E2E2E2',
-                            borderRadius: '50%'
-                          }}
-                        />
-                      </div>
-                    </div>
-                    
-                    {/* DÃ©cision */}
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        display: 'flex',
-                        alignItems: 'center',
-                        width: '218.49px',
-                        height: '55.74px',
-                        left: '53.51px',
-                        top: '55.74px'
-                      }}
-                    >
-                      <div 
-                        style={{
-                          position: 'absolute',
-                          width: '55.74px',
-                          height: '55.74px',
-                          left: '0px',
-                          top: '0px',
-                          border: '2px solid #E2E2E2',
-                          borderRadius: '111.475px',
-                          transform: 'rotate(-180deg)'
-                        }}
-                      >
-                        <div 
-                          style={{
-                            position: 'absolute',
-                            width: '26px',
-                            height: '26px',
-                            left: '14.49px',
-                            top: '14.87px',
-                            border: '2px solid #E2E2E2',
-                            borderRadius: '50%'
-                          }}
-                        />
-                      </div>
-                      <div 
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          width: '162.75px',
-                          height: '55.74px',
-                          left: '55.74px',
-                          top: '0px',
-                          backgroundColor: '#BBCB2E',
-                          borderRadius: '111.475px',
-                          padding: '13px 29px'
-                        }}
-                      >
-                        <span 
-                          style={{
-                            fontFamily: 'Geist',
-                            fontWeight: '500',
-                            fontSize: '20px',
-                            lineHeight: '29px',
-                            color: '#003300'
-                          }}
-                        >
-                          DÃ©cision
-                        </span>
-                      </div>
-                    </div>
-                    
-                    {/* Analyse */}
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        width: '235.21px',
-                        height: '55.74px',
-                        left: '11.15px',
-                        top: '111.48px'
-                      }}
-                    >
-                      <div 
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          width: '179.48px',
-                          height: '55.74px',
-                          left: '0px',
-                          top: '0px',
-                          border: '2px solid #E2E2E2',
-                          borderRadius: '111.475px',
-                          padding: '13px 52px 13px 53px'
-                        }}
-                      >
-                        <span 
-                          style={{
-                            fontFamily: 'Geist',
-                            fontWeight: '500',
-                            fontSize: '20px',
-                            lineHeight: '29px',
-                            color: '#E2E2E2'
-                          }}
-                        >
-                          Analyse
-                        </span>
-                      </div>
-                      <div 
-                        style={{
-                          position: 'absolute',
-                          width: '55.74px',
-                          height: '55.74px',
-                          right: '0px',
-                          top: '0px',
-                          border: '2px solid #E2E2E2',
-                          borderRadius: '111.475px'
-                        }}
-                      >
-                        <div 
-                          style={{
-                            position: 'absolute',
-                            width: '26px',
-                            height: '26px',
-                            left: '15.13px',
-                            top: '15.13px',
-                            border: '2px solid #E2E2E2',
-                            borderRadius: '50%'
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Background Business Image */}
-                <div 
-                  style={{
-                    position: 'absolute',
-                    width: '518px',
-                    height: '691px',
-                    left: '291px',
-                    top: '0px',
-                    overflow: 'hidden',
-                    zIndex: 0
-                  }}
-                >
-                  <Image
-                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334040/rnj/businessfotografie-bewerbungsfotos-berlin-kopf-kragen-1-f0daffa4.svg"
-                    alt="Business professionals"
-                    fill
-                    sizes="518px"
-                    className="object-cover"
-                  />
-                </div>
-                
-                {/* Frame 354 - Grid Layout */}
-                <div 
-                  style={{
-                    position: 'absolute',
-                    width: '687px',
-                    height: '691px',
-                    left: '687px',
-                    top: '0px',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    flexWrap: 'wrap',
-                    alignItems: 'flex-start',
-                    alignContent: 'flex-start',
-                    padding: '0px',
-                    gap: '23px 19px',
-                    zIndex: 2
-                  }}
-                >
-                  {/* Group 363 - Image Card 1 */}
-                  <div 
-                    style={{
-                      position: 'relative',
-                      width: '334px',
-                      height: '334px',
-                      overflow: 'hidden',
-                      borderRadius: '20px'
-                    }}
-                  >
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        width: '334px',
-                        height: '334px',
-                        left: '0px',
-                        top: '0px',
-                        backgroundColor: '#6F6F6F',
-                        borderRadius: '20px'
-                      }}
-                    />
-                    <Image
-                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334042/rnj/group-363-02f81f30.svg"
-                      alt="Business success"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  
-                  {/* Group 354 - Business Development Card */}
-                  <div 
-                    style={{
-                      position: 'relative',
-                      width: '334px',
-                      height: '334px',
-                      backgroundColor: '#FFFFFF',
-                      borderRadius: '20px',
-                      overflow: 'hidden'
-                    }}
-                  >
-                    {/* Gradient Header */}
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        width: '334px',
-                        height: '74px',
-                        left: '0px',
-                        top: '30px',
-                        background: 'linear-gradient(90deg, #DDE597 0%, rgba(123, 127, 84, 0.17) 100%)'
-                      }}
-                    />
-                    
-                    {/* Header Content */}
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        display: 'flex',
-                        alignItems: 'center',
-                        width: '289px',
-                        height: '60px',
-                        left: '23px',
-                        top: '7px',
-                        gap: '29px'
-                      }}
-                    >
-                      <div 
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          width: '60px',
-                          height: '60px',
-                          backgroundColor: '#BBCB2E',
-                          borderRadius: '50%'
-                        }}
-                      >
-                        <span 
-                          style={{
-                            fontFamily: 'EB Garamond',
-                            fontWeight: '400',
-                            fontSize: '29.12px',
-                            lineHeight: '29px',
-                            color: '#003300'
-                          }}
-                        >
-                          01
-                        </span>
-                      </div>
-                      <div style={{ display: 'flex', gap: '4px' }}>
-                        {[1, 2, 3, 4, 5].map((i) => (
-                          <div 
-                            key={i}
-                            style={{
-                              backgroundColor: '#BBCB2E',
-                              borderRadius: '50%',
-                              width: '14px',
-                              height: '14px'
-                            }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                    
-                    {/* Card Content */}
-                    <h3 
-                      style={{
-                        position: 'absolute',
-                        fontFamily: 'Geist',
-                        fontWeight: '500',
-                        color: '#003300',
-                        width: '263px',
-                        height: '96px',
-                        left: '23px',
-                        top: '108px',
-                        fontSize: '36px',
-                        lineHeight: '32px'
-                      }}
-                    >
-                      dÃ©velopper votre activitÃ© en Belgique
-                    </h3>
-                    
-                    <p 
-                      style={{
-                        position: 'absolute',
-                        fontFamily: 'Geist',
-                        fontWeight: '500',
-                        color: '#003300',
-                        width: '263px',
-                        height: '32px',
-                        left: '23px',
-                        top: '226px',
-                        fontSize: '16px',
-                        lineHeight: '16px',
-                        opacity: 0.6
-                      }}
-                    >
-                      complÃ©tez les Ã©tapes et dÃ©marrez votre Entrepreneuriat en Belgique
-                    </p>
-                  </div>
-                  
-                  {/* Group 355 - Partners Card */}
-                  <div 
-                    style={{
-                      position: 'relative',
-                      width: '334px',
-                      height: '334px',
-                      overflow: 'hidden',
-                      borderRadius: '20px'
-                    }}
-                  >
-                    {/* Card Background */}
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        width: '334px',
-                        height: '220px',
-                        left: '0px',
-                        top: '0px',
-                        backgroundColor: '#FFFFFF',
-                        borderRadius: '20px'
-                      }}
-                    />
-                    
-                    {/* Partners Header */}
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        width: '30px',
-                        height: '30.11px',
-                        left: '28px',
-                        top: '18.04px'
-                      }}
-                    >
-                      <div 
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          width: '30px',
-                          height: '30px',
-                          backgroundColor: '#839705',
-                          borderRadius: '15px'
-                        }}
-                      >
-                        <span 
-                          style={{
-                            fontFamily: 'Geist',
-                            fontWeight: '500',
-                            color: '#FFFFFF',
-                            fontSize: '11px',
-                            lineHeight: '10px'
-                          }}
-                        >
-                          P
-                        </span>
-                      </div>
-                      <span 
-                        style={{
-                          fontFamily: 'Geist',
-                          fontWeight: '500',
-                          fontSize: '11px',
-                          lineHeight: '10px',
-                          color: '#839705'
-                        }}
-                      >
-                        partenaires
-                      </span>
-                    </div>
-                    
-                    {/* Partners Count */}
-                    <span 
-                      style={{
-                        position: 'absolute',
-                        fontFamily: 'Geist',
-                        fontWeight: '400',
-                        color: '#003300',
-                        width: '152px',
-                        height: '60px',
-                        left: '28px',
-                        top: '61px',
-                        fontSize: '64px',
-                        lineHeight: '60px'
-                      }}
-                    >
-                      500+
-                    </span>
-                    
-                    {/* Partners Title */}
-                    <h3 
-                      style={{
-                        position: 'absolute',
-                        fontFamily: 'Geist',
-                        fontWeight: '600',
-                        color: '#003300',
-                        width: '256px',
-                        height: '19px',
-                        left: '28px',
-                        top: '145px',
-                        fontSize: '24px',
-                        lineHeight: '19px',
-                        letterSpacing: '-0.05em'
-                      }}
-                    >
-                      Partenaires de référence
-                    </h3>
-                    
-                    {/* Partners Description */}
-                    <p 
-                      style={{
-                        position: 'absolute',
-                        fontFamily: 'Geist',
-                        fontWeight: '500',
-                        color: '#003300',
-                        width: '233px',
-                        height: '19px',
-                        left: '28px',
-                        top: '169px',
-                        fontSize: '16px',
-                        lineHeight: '19px',
-                        letterSpacing: '-0.05em',
-                        opacity: 0.5
-                      }}
-                    >
-                      Un réseau solide pour vos projets
-                    </p>
-                    
-                    {/* Contact Button */}
-                    <button 
-                      style={{
-                        position: 'absolute',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        width: '334px',
-                        height: '91px',
-                        left: '0px',
-                        top: '220px',
-                        backgroundColor: '#003300',
-                        borderRadius: '20px',
-                        padding: '24px 32px',
-                        gap: '10px'
-                      }}
-                    >
-                      <div 
-                        style={{
-                          position: 'relative',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          width: '45px',
-                          height: '44px',
-                          backgroundColor: '#FFFFFF',
-                          borderRadius: '50%'
-                        }}
-                      >
-                        <Image
-                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333995/rnj/vector-17-f73f224f.svg"
-                          alt="Arrow icon"
-                          width={18}
-                          height={18}
-                        />
-                      </div>
-                      <span 
-                        style={{
-                          fontFamily: 'Geist',
-                          fontWeight: '600',
-                          width: 'auto',
-                          height: '30px',
-                          fontSize: '16px',
-                          lineHeight: '29px',
-                          color: '#003300',
-                          backgroundColor: '#FFFFFF',
-                          borderRadius: '100px',
-                          padding: '7px 18px 6px'
-                        }}
-                      >
-                        Contact
-                      </span>
-                    </button>
-                  </div>
-                  
-                  {/* Group 353 - Image Card 2 */}
-                  <div 
-                    style={{
-                      position: 'relative',
-                      width: '334px',
-                      height: '334px',
-                      backgroundColor: '#BBCB2E',
-                      borderRadius: '20px',
-                      overflow: 'hidden'
-                    }}
-                  >
-                    <Image
-                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334045/rnj/group-353-8693f0d7.svg"
-                      alt="Professional profiles"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
-              
-              {/* Copyright */}
-              <p 
-                className="mt-10 text-center font-[Geist] font-medium text-[#003300]"
-                style={{
-                  fontSize: '15.3706px',
-                  lineHeight: '21px',
-                  textTransform: 'capitalize',
-                  opacity: 0.5
-                }}
-              >
-                &copy; 2026 RNJ Advisory. Tous droits réservés.
-              </p>
-              </section>
-              </>
-            )}
-            </div>
-            <section className="relative w-screen bg-[#003300] py-8">
               <div
                 className="mx-auto flex w-full max-w-[1449px] flex-col items-center rounded-[36px] bg-[#003300] px-5 py-12 sm:px-8 md:px-10 md:py-16 lg:rounded-[80px] lg:px-[48px] lg:py-[75px] xl:h-[1312px] xl:rounded-[120px] xl:pt-[91px] xl:pb-[75px] xl:pl-[55px] xl:pr-[48px] xl:gap-[80px]"
                 style={{ gap: 'clamp(48px, 5vw, 80px)' }}
@@ -4111,7 +3127,13 @@ export default function Home() {
             </section>
 
             {/* Bento Grid Section (Group 386) */}
-            <section className="relative w-screen bg-[#003300] py-8">
+            <section
+              className="relative w-screen bg-[#003300] py-8"
+              style={{
+                marginLeft: 'calc(50% - 50vw)',
+                marginRight: 'calc(50% - 50vw)',
+              }}
+            >
               <div className="mx-auto my-8 w-full max-w-[1393px] px-4 sm:px-5 md:px-6">
                 <div
                   className="grid w-full grid-cols-1 gap-[19px] md:grid-cols-2 xl:grid-cols-[334px_334px_minmax(0,1fr)]"
@@ -4249,7 +3271,7 @@ export default function Home() {
                         <span className="text-[#003300]">→</span>
                       </div>
                       <div className="flex h-[43px] min-w-[115px] items-center justify-center rounded-full bg-white px-4">
-                        <span className="font-[Geist] text-[16px] font-semibold text-[#003300]">contact us</span>
+                        <span className="font-[Geist] text-[16px] font-semibold text-[#003300]">Contact</span>
                       </div>
                     </div>
                   </div>
@@ -4388,7 +3410,13 @@ export default function Home() {
             </section>
             )}
 
-            <section className="relative w-screen bg-[#003300] py-8">
+            <section
+              className="relative w-screen bg-[#003300] py-8"
+              style={{
+                marginLeft: 'calc(50% - 50vw)',
+                marginRight: 'calc(50% - 50vw)',
+              }}
+            >
               <div
                 className="mx-auto w-full max-w-[1393px] rounded-[25px] bg-white px-[18px] pb-[61px] pt-[107px]"
                 style={{ boxShadow: '2px 4px 33.5px rgba(0, 0, 0, 0.12)' }}

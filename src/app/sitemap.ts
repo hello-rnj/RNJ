@@ -1,24 +1,51 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next';
+
+const BASE_URL = 'https://rnj-advisory.be';
+const LAST_MODIFIED = new Date('2026-05-06T00:00:00.000Z');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://rnj-advisory.be',
-      lastModified: new Date(),
+      url: `${BASE_URL}/`,
+      lastModified: LAST_MODIFIED,
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: 'https://rnj-advisory.be/contact',
-      lastModified: new Date(),
+      url: `${BASE_URL}/services`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/services/analyse-institutionnelle`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/projets`,
+      lastModified: LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://rnj-advisory.be/about',
-      lastModified: new Date(),
+      url: `${BASE_URL}/about`,
+      lastModified: LAST_MODIFIED,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-  ]
+    {
+      url: `${BASE_URL}/contact`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/blogs`,
+      lastModified: LAST_MODIFIED,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+  ];
 }
