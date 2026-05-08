@@ -177,7 +177,7 @@ export default function BlogsPage() {
           <div className="mb-[74px]">
             <div className="flex flex-col items-center gap-[30px]">
               <h2 className="font-[Geist] text-[40px] font-medium leading-[40px] text-black opacity-80">
-                contenu associé
+                Contenu associé
               </h2>
               <div className="flex flex-wrap items-center justify-center gap-[16px]">
                 {filters.map((filter) => (

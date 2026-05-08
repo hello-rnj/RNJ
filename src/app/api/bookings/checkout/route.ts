@@ -105,8 +105,8 @@ export async function POST(request: NextRequest) {
     const cancelUrl = new URL('/contact', siteUrl);
     cancelUrl.searchParams.set('payment', 'cancelled');
 
-    // Déterminer le montant selon le profil
-    const priceCents = payload.profile === 'institution' ? 50000 : 20000;
+    // Montant unique des frais de dossier (500 EUR) pour tous les profils
+    const priceCents = BOOKING_PRICE_CENTS;
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',

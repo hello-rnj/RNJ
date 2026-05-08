@@ -1,5 +1,3 @@
-import { redirect } from 'next/navigation';
+import AboutPageContent from './AboutPageContent';
 
-export default function AProposPage() {
-  redirect('/about');
-}
+export default AboutPageContent;

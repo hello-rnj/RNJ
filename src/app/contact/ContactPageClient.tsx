@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
+import { ArrowLeft, CalendarDays, CheckCircle2, Download, Home, RefreshCw, XCircle } from 'lucide-react';
 import { EB_Garamond, Geist, Poppins } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import { BOOKING_FEE_LABEL } from '@/lib/booking';
@@ -24,7 +25,7 @@ const poppins = Poppins({
   display: 'swap',
 });
 
-type BookingStep = 1 | 2 | 3;
+type BookingStep = 1 | 2 | 3 | 4;
 type View = 'initial' | 'booking' | 'message';
 type SubmissionMode = 'contact' | 'booking';
 type PaymentState = 'success' | 'cancelled';
@@ -72,6 +73,7 @@ const defaultBookingSubject = "Creation d'entreprise";
 const defaultCalendarMonth: CalendarMonth = { year: 2026, month: 3 };
 const defaultBookingDate = '2026-04-15';
 const defaultBookingTime = '14:00';
+const totalBookingSteps = 4;
 const monthLabels = [
   'Janvier',
   'Fevrier',
@@ -253,13 +255,12 @@ export default function ContactPageClient({
   const [view, setView] = useState<View>('initial');
   const [bookingStep, setBookingStep] = useState<BookingStep>(1);
   const [selectedSubject, setSelectedSubject] = useState(defaultBookingSubject);
-  const [selectedProfile, setSelectedProfile] = useState('other'); // Pour Institution vs autres
+  const [selectedProfile] = useState('other'); // Pour Institution vs autres
   const [displayedMonth, setDisplayedMonth] = useState<CalendarMonth>(defaultCalendarMonth);
   const [selectedBookingDate, setSelectedBookingDate] = useState<string | null>(defaultBookingDate);
   const [selectedBookingTime, setSelectedBookingTime] = useState(defaultBookingTime);
-  const [cardIndex, setCardIndex] = useState(0);
-  const [isSliding, setIsSliding] = useState(false);
   const [messageForm, setMessageForm] = useState<ContactPayload>(initialMessageForm);
+  const [mockPaymentState, setMockPaymentState] = useState<PaymentState | null>(initialPaymentState);
 
   const subjects = [
     { label: "Creation d'entreprise" },
@@ -287,6 +288,24 @@ export default function ContactPageClient({
             copy: `Le paiement des frais de dossier de ${BOOKING_FEE_LABEL} a ete annule. Vous pouvez reprendre votre reservation et relancer Stripe ci-dessous.`,
           }
         : null;
+  const paymentStatusTitle =
+    mockPaymentState === 'success'
+      ? 'Paiement confirme'
+      : mockPaymentState === 'cancelled'
+        ? 'Paiement a reprendre'
+        : 'Retour du paiement';
+  const paymentStatusCopy =
+    mockPaymentState === 'success'
+      ? `Le paiement de ${BOOKING_FEE_LABEL} est valide. Votre demande est prete pour validation finale par RNJ.`
+      : mockPaymentState === 'cancelled'
+        ? `Le paiement de ${BOOKING_FEE_LABEL} n a pas abouti. Vous pouvez relancer le paiement ou revenir au recapitulatif.`
+        : `Selectionnez un etat de paiement pour previsualiser le retour du prestataire tiers.`;
+  const paymentStatusLabel =
+    mockPaymentState === 'success' ? 'Paye' : mockPaymentState === 'cancelled' ? 'Non paye' : 'En attente';
+
+  useEffect(() => {
+    setMockPaymentState(initialPaymentState);
+  }, [initialPaymentState]);
 
   useEffect(() => {
     if (requestedMode === 'message') {
@@ -321,7 +340,38 @@ export default function ContactPageClient({
     }
 
     if (initialPaymentState === 'success') {
+      const savedBooking = window.sessionStorage.getItem(pendingBookingStorageKey);
+
+      if (savedBooking) {
+        try {
+          const parsedBooking = JSON.parse(savedBooking) as BookingPayload;
+          const parsedDate = parseIsoDate(parsedBooking.preferred_date);
+          setSelectedSubject(parsedBooking.subject);
+          setSelectedBookingDate(parsedBooking.preferred_date);
+          setSelectedBookingTime(parsedBooking.preferred_time || defaultBookingTime);
+          if (parsedDate) {
+            setDisplayedMonth({
+              year: parsedDate.year,
+              month: parsedDate.month,
+            });
+          }
+          setMessageForm({
+            name: parsedBooking.name,
+            phone: parsedBooking.phone,
+            email: parsedBooking.email,
+            company: parsedBooking.company,
+            subject: parsedBooking.subject,
+            message: parsedBooking.message,
+          });
+        } catch {
+          window.sessionStorage.removeItem(pendingBookingStorageKey);
+        }
+      }
+
       window.sessionStorage.removeItem(pendingBookingStorageKey);
+      setSubmissionMode('booking');
+      setView('booking');
+      setBookingStep(4);
       return;
     }
 
@@ -356,7 +406,8 @@ export default function ContactPageClient({
         subject: parsedBooking.subject,
         message: parsedBooking.message,
       });
-      setView('message');
+      setView('booking');
+      setBookingStep(4);
     } catch {
       window.sessionStorage.removeItem(pendingBookingStorageKey);
     }
@@ -437,12 +488,8 @@ export default function ContactPageClient({
     setView('booking');
   }
 
-  function goToBookingStep(step: BookingStep) {
-    setBookingStep(step);
-  }
-
   function nextBookingStep() {
-    if (bookingStep < 3) {
+    if (bookingStep < totalBookingSteps) {
       setBookingStep((prev) => (prev + 1) as BookingStep);
     }
   }
@@ -516,8 +563,41 @@ export default function ContactPageClient({
     }
   }
 
-  const isBookingMessageStep = view === 'message' && submissionMode === 'booking';
   const bookingDateTimeLabel = `${formatLongDateLabel(selectedBookingDate)} a ${selectedBookingTime}`;
+  const bookingReference = `RNJ-${(selectedBookingDate || defaultBookingDate).replaceAll('-', '')}-${selectedBookingTime.replace(':', '')}`;
+
+  function downloadMockInvoice() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const invoice = [
+      'RNJ Advisory',
+      'Facture - frais de dossier',
+      '',
+      `Reference: ${bookingReference}`,
+      `Statut paiement: ${paymentStatusLabel}`,
+      `Montant: ${BOOKING_FEE_LABEL}`,
+      `Date rendez-vous: ${bookingDateTimeLabel}`,
+      `Sujet: ${selectedSubject || 'Rendez-vous'}`,
+      '',
+      `Client: ${messageForm.name || 'Client RNJ'}`,
+      `Email: ${messageForm.email || 'Non renseigne'}`,
+      `Telephone: ${messageForm.phone || 'Non renseigne'}`,
+      '',
+      'Document genere pour previsualisation du parcours de paiement.',
+    ].join('\n');
+
+    const blob = new Blob([invoice], { type: 'text/plain;charset=utf-8' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `facture-${bookingReference}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+  }
 
   return (
     <>
@@ -609,184 +689,122 @@ export default function ContactPageClient({
 
           {view === 'booking' ? (
             <section className="relative z-20 flex min-h-screen w-full items-center justify-center px-4 py-8 sm:px-6 md:py-12">
-              <div className="mx-auto w-full max-w-[1392px] h-[883px] rounded-[50px] bg-white px-[58px] py-16 shadow-[0px_4px_57.4px_rgba(0,0,0,0.25)]">
-                {/* Step 1: Subject selection and calendar */}
+              <div
+                className="relative mx-auto w-full max-w-[1512px] overflow-hidden rounded-[34px] bg-white shadow-[0px_4px_57px_rgba(0,0,0,0.25)] sm:rounded-[44px] lg:rounded-[50px]"
+              >
                 <div
-                  className={`transition-all duration-500 ${
-                    bookingStep === 1 ? 'opacity-100 translate-x-0' : 'opacity-0 absolute pointer-events-none'
-                  }`}
+                  className="flex w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  style={{ transform: `translate3d(-${(bookingStep - 1) * 100}%, 0, 0)` }}
                 >
-                  <div className="absolute left-[79.11px] top-[144.9px] flex flex-row items-center gap-[124px] w-[1233.78px] h-[593.2px]">
-                    {/* Left column: Subject selection */}
-                    <div className="flex flex-col items-start gap-[87.13px] w-[587.64px] h-[565.34px]">
-                      <div className="flex flex-col gap-[32.75px] w-[587.64px] h-[414.16px]">
-                        <h2 className={`${ebGaramond.className} w-[587.64px] h-[151px] text-[64px] font-medium leading-[75px] text-[#003300]`}>
-                          Quel est le sujet de votre demande&nbsp;?
+                  <article className="min-w-full px-4 py-8 sm:px-8 sm:py-10">
+                    <div className="mx-auto grid min-h-[730px] w-full max-w-[1350px] gap-8 rounded-[30px] bg-white p-6 md:grid-cols-[1.1fr_0.9fr] md:items-center md:p-10">
+                      <div className="max-w-[620px]">
+                        <Image
+                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                          alt="RNJ Advisory"
+                          width={199}
+                          height={49}
+                          className="h-auto w-[160px] brightness-0 sm:w-[210px]"
+                        />
+                        <h2 className={`${ebGaramond.className} mt-6 text-[clamp(38px,7vw,74px)] leading-[0.95] text-[#003300] sm:mt-8`}>
+                          Quel est le sujet de votre demande ?
                         </h2>
-                        <div className="flex flex-row flex-wrap items-center align-content-flex-start gap-[10.12px] w-[457px] h-[153.24px]">
-                          <button
-                            type="button"
-                            onClick={() => setSelectedSubject('Creation d\'entreprise')}
-                            className={`${poppins.className} flex h-[71.56px] w-[211.8px] items-center justify-center rounded-[19.46px] px-[25px] text-[15.56px] font-medium text-[#003300] transition ${
-                              selectedSubject === 'Creation d\'entreprise'
-                                ? 'border-[1.5px] border-[#003300] bg-[#DDE597]'
-                                : 'bg-[#DDE597]/50'
-                            }`}
-                          >
-                            Creation d&apos;entreprise
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setSelectedSubject('Conseil reglementaire')}
-                            className={`${poppins.className} flex h-[71.56px] w-[211.8px] items-center justify-center rounded-[19.46px] px-[25px] text-[15.56px] font-medium text-[#003300] transition ${
-                              selectedSubject === 'Conseil reglementaire'
-                                ? 'border-[1.5px] border-[#003300] bg-[#DDE597]'
-                                : 'bg-[#DDE597]/50'
-                            }`}
-                          >
-                            Conseil reglementaire
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setSelectedSubject('ESG & conformite')}
-                            className={`${poppins.className} flex h-[71.56px] w-[173.29px] items-center justify-center rounded-[19.46px] px-[25px] text-[15.56px] font-medium text-[#003300] transition ${
-                              selectedSubject === 'ESG & conformite'
-                                ? 'border-[1.5px] border-[#003300] bg-[#DDE597]'
-                                : 'bg-[#DDE597]/50'
-                            }`}
-                          >
-                            ESG & conformite
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setSelectedSubject('Investissement')}
-                            className={`${poppins.className} flex h-[71.56px] w-[173.29px] items-center justify-center rounded-[19.46px] px-[25px] text-[15.56px] font-medium text-[#003300] transition ${
-                              selectedSubject === 'Investissement'
-                                ? 'border-[1.5px] border-[#003300] bg-[#DDE597]'
-                                : 'bg-[#DDE597]/50'
-                            }`}
-                          >
-                            Investissement
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setSelectedSubject('Autre')}
-                            className={`${poppins.className} flex h-[71.56px] w-[90.11px] items-center justify-center rounded-[19.46px] px-[25px] text-[15.56px] font-medium text-[#003300] transition ${
-                              selectedSubject === 'Autre'
-                                ? 'border-[1.5px] border-[#003300] bg-[#DDE597]'
-                                : 'bg-[#DDE597]/50'
-                            }`}
-                          >
-                            Autre
-                          </button>
-                        </div>
-                      </div>
 
-                      <div className="flex flex-row items-center gap-[7.04px] w-[183px] h-[64.05px] bg-[#BBCB2E] opacity-30 rounded-[290px]">
+                        <div className="mt-8 flex max-w-[520px] flex-wrap gap-3">
+                          {subjects.map((subject) => (
+                            <button
+                              key={subject.label}
+                              type="button"
+                              onClick={() => setSelectedSubject(subject.label)}
+                              className={`${poppins.className} flex min-h-[62px] w-full items-center justify-center rounded-[17px] px-5 text-[17px] font-medium transition sm:w-auto sm:text-[21px] ${
+                                selectedSubject === subject.label
+                                  ? 'border-[2px] border-[#003300] bg-[#DDE597] text-[#003300]'
+                                  : 'bg-[#E8ECCE] text-[#748974]'
+                              } ${
+                                subject.label === "Creation d'entreprise"
+                                  ? 'sm:min-w-[280px]'
+                                  : subject.label === 'Conseil reglementaire'
+                                    ? 'sm:min-w-[285px]'
+                                    : subject.label === 'Autre'
+                                      ? 'sm:min-w-[110px]'
+                                      : 'sm:min-w-[220px]'
+                              }`}
+                            >
+                              {subject.label}
+                            </button>
+                          ))}
+                        </div>
+
                         <button
                           type="button"
-                          onClick={() => goToBookingStep(2)}
-                          disabled={!selectedSubject.trim()}
-                          className={`${ebGaramond.className} flex h-[64px] w-[183px] items-center justify-center rounded-[290px] bg-[#BBCB2E] text-[22.52px] font-bold text-[#003300] transition hover:bg-[#dde597] disabled:opacity-50 disabled:cursor-not-allowed`}
+                          onClick={() => nextBookingStep()}
+                          className={`${ebGaramond.className} mt-10 inline-flex h-[66px] min-w-[190px] items-center justify-center rounded-[30px] bg-[#BBCB2E] px-7 text-[34px] font-bold leading-none text-[#003300] shadow-[0px_4px_0px_#003300] transition hover:brightness-95 sm:mt-16 sm:h-[74px] sm:min-w-[220px] sm:rounded-[34px] sm:px-8 sm:text-[42px]`}
                         >
                           Soumettre
                         </button>
                       </div>
-                    </div>
 
-                    {/* Right column: Calendrier card */}
-                    <div className="relative h-[593.2px] w-[522.14px] flex-none order-[0] grow-0">
-                      <div className="absolute left-0 top-0 z-0 flex h-[593.2px] w-[522.14px] flex-col items-center gap-[18px] rounded-[52px] border-[4px] border-[#0E3F13] bg-[#F5F5F2] px-[30px] py-[28px] shadow-[7px_7px_0px_#0E3F13]">
-                      <div className="relative z-[1] flex h-[445.13px] w-[454.79px]  flex-col items-start gap-[40.78px] p-0">
-                        <div className="flex w-[454.79px] items-start justify-between">
-                          <div className="flex flex-col items-start gap-[5px]">
-                            <span className={`${poppins.className} text-[40px] font-normal leading-[1] tracking-[-0.01em] text-[#0E3F13]`}>
+                      <div className="rounded-[38px] border-[2px] border-[#0E3F13] bg-[#F5F5F2] px-4 py-5 shadow-[4px_4px_0px_#0E3F13] sm:px-6 sm:py-7">
+                        <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
+                          <div>
+                            <p className={`${poppins.className} text-[34px] font-medium leading-none text-[#003300] sm:text-[44px]`}>
                               calendrier
-                            </span>
-                            <div className="flex items-center gap-[8px]">
+                            </p>
+                            <div className="mt-2 flex items-center gap-2">
                               <button
                                 type="button"
                                 onClick={() => changeDisplayedMonth(-1)}
-                                className="flex h-[22px] w-[20px] items-center justify-center text-[#003300] transition hover:opacity-70"
+                                className="text-[#003300]"
                                 aria-label="Mois precedent"
                               >
-                                <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="currentColor" strokeWidth="1.4">
-                                  <path d="M2 6 L5 3 L8 6" strokeLinecap="round" strokeLinejoin="round" />
-                                  <path d="M2 11 L5 8 L8 11" strokeLinecap="round" strokeLinejoin="round" />
+                                <svg width="11" height="15" viewBox="0 0 11 15" fill="none" stroke="currentColor" strokeWidth="1.8">
+                                  <path d="M2 6 L5.5 2.5 L9 6" strokeLinecap="round" strokeLinejoin="round" />
+                                  <path d="M2 12 L5.5 8.5 L9 12" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </button>
-                              <span className={`${poppins.className} text-[20px] font-semibold leading-[1] text-[#8B9E8C]`}>
+                              <span className={`${geist.className} text-[20px] font-medium text-[#748974] sm:text-[30px]`}>
                                 {formatMonthLabel(displayedMonth)}
                               </span>
-                              <button
-                                type="button"
-                                onClick={() => changeDisplayedMonth(1)}
-                                className="flex h-[22px] w-[20px] items-center justify-center text-[#003300] transition hover:opacity-70"
-                                aria-label="Mois suivant"
-                              >
-                                <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="currentColor" strokeWidth="1.4">
-                                  <path d="M2 3 L5 6 L8 3" strokeLinecap="round" strokeLinejoin="round" />
-                                  <path d="M2 8 L5 11 L8 8" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                              </button>
                             </div>
                           </div>
 
-                          <div className="relative flex h-[74px] items-center gap-[7px] rounded-[14px] bg-[#E3E5D7] px-[7px] py-[6px]">
-                            <div className="flex h-[60px] w-[60px] items-center justify-center rounded-[14px] bg-[#BEC888]">
-                              <span className={`${poppins.className} text-[24px] font-normal leading-[1] text-[#0E3F13]`}>
+                          <div className="relative flex items-center gap-1 rounded-[12px] bg-[#E3E5D7] px-2 py-1.5">
+                            <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#BEC888]">
+                              <span className={`${poppins.className} text-[20px] font-medium leading-none text-[#0E3F13]`}>
                                 {selectedHourPart}
                               </span>
                             </div>
-                            <span className={`${poppins.className} text-[24px] font-normal leading-[1] text-[#0E3F13]`}>
-                              :
-                            </span>
-                            <div className="flex h-[60px] w-[60px] items-center justify-center rounded-[14px] bg-[#BEC888]">
-                              <span className={`${poppins.className} text-[24px] font-normal leading-[1] text-[#0E3F13]`}>
+                            <span className={`${poppins.className} text-[20px] text-[#0E3F13]`}>:</span>
+                            <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#BEC888]">
+                              <span className={`${poppins.className} text-[20px] font-medium leading-none text-[#0E3F13]`}>
                                 {selectedMinutePart}
                               </span>
                             </div>
-                            <div className="flex h-[60px] w-[53px] flex-col justify-between">
-                              <div
-                                className={`flex h-[28px] items-center justify-center rounded-[9px] ${
-                                  isAfternoon ? 'bg-[#BEC888]' : 'bg-[#BEC888]/50'
-                                }`}
-                              >
-                                <span className={`${poppins.className} text-[13px] font-medium leading-[1] text-[#6F876F]`}>
-                                  PM
-                                </span>
-                              </div>
-                              <div
-                                className={`flex h-[28px] items-center justify-center rounded-[9px] ${
-                                  isMorningTime ? 'bg-[#BEC888]' : 'bg-[#BEC888]/50'
-                                }`}
-                              >
-                                <span className={`${poppins.className} text-[13px] font-medium leading-[1] text-[#6F876F]`}>
-                                  AM
-                                </span>
-                              </div>
+                            <div className="flex flex-col gap-1">
+                              <span className={`rounded-[8px] px-2 py-0.5 text-[10px] ${isMorningTime ? 'bg-[#BEC888]' : 'bg-[#BEC888]/50'} ${geist.className} text-[#6F876F]`}>AM</span>
+                              <span className={`rounded-[8px] px-2 py-0.5 text-[10px] ${isAfternoon ? 'bg-[#BEC888]' : 'bg-[#BEC888]/50'} ${geist.className} text-[#6F876F]`}>PM</span>
                             </div>
-                            <div className="flex h-[60px] w-[33px] flex-col justify-between">
+                            <div className="flex flex-col gap-1">
                               <button
                                 type="button"
                                 onClick={() => moveSelectedTime(-1)}
                                 disabled={selectedTimeIndex === 0}
-                                className="flex h-[27px] w-[27px] items-center justify-center self-center rounded-full bg-[#BEC888] text-[#0E3F13] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-45"
+                                className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#BEC888] text-[#0E3F13] disabled:cursor-not-allowed disabled:opacity-45"
                                 aria-label="Heure precedente"
                               >
-                                <svg width="11" height="7" viewBox="0 0 11 7" fill="none" stroke="currentColor" strokeWidth="1.8">
-                                  <path d="M2 5 L5.5 2 L9 5" strokeLinecap="round" strokeLinejoin="round" />
+                                <svg width="8" height="5" viewBox="0 0 8 5" fill="none" stroke="currentColor" strokeWidth="1.4">
+                                  <path d="M1 4 L4 1 L7 4" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </button>
                               <button
                                 type="button"
                                 onClick={() => moveSelectedTime(1)}
                                 disabled={selectedTimeIndex === timeOptions.length - 1}
-                                className="flex h-[27px] w-[27px] items-center justify-center self-center rounded-full bg-[#BEC888] text-[#0E3F13] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-45"
+                                className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#BEC888] text-[#0E3F13] disabled:cursor-not-allowed disabled:opacity-45"
                                 aria-label="Heure suivante"
                               >
-                                <svg width="11" height="7" viewBox="0 0 11 7" fill="none" stroke="currentColor" strokeWidth="1.8">
-                                  <path d="M2 2 L5.5 5 L9 2" strokeLinecap="round" strokeLinejoin="round" />
+                                <svg width="8" height="5" viewBox="0 0 8 5" fill="none" stroke="currentColor" strokeWidth="1.4">
+                                  <path d="M1 1 L4 4 L7 1" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </button>
                             </div>
@@ -807,99 +825,54 @@ export default function ContactPageClient({
                             </label>
                           </div>
                         </div>
-                      </div>
 
-                      <div className="w-full pt-[4px]">
-                        {calendarRows.map((row, rowIndex) => (
-                          <div key={rowIndex} className="mb-[12px] grid grid-cols-7 gap-[7px]">
-                            {row.map((day, di) => {
-                              const isSelected = day.iso === selectedBookingDate;
-                              const isDisabled = day.isUnavailable || day.isOutsideMonth;
-
-                              return (
-                                <button
-                                  key={`${day.iso}-${di}`}
-                                  type="button"
-                                  onClick={() => !isDisabled && setSelectedBookingDate(day.iso)}
-                                  disabled={isDisabled}
-                                  className={`${poppins.className} flex h-[58px] w-[58px] items-center justify-center rounded-full text-[14px] font-medium transition ${
-                                    day.isOutsideMonth
-                                      ? 'bg-[#E6E6DA] text-[#8CA08B] disabled:cursor-default'
-                                      : day.isUnavailable
-                                        ? 'border-2 border-dashed border-[#A8B8A6] bg-transparent text-[#A8B8A6] disabled:cursor-not-allowed'
-                                        : isSelected
-                                          ? 'bg-[#CDD589] text-[#0E3F13]'
-                                          : 'bg-[#DADDBA] text-[#1A421F] hover:bg-[#CED4A4]'
-                                  }`}
-                                  aria-label={`Choisir le ${day.day} ${monthLabels[displayedMonth.month].toLowerCase()} ${displayedMonth.year}`}
-                                >
-                                  {day.day}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        ))}
-                      </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Step 2: Contact details and payment - Variant8 */}
-                <div
-                  className={`transition-all duration-500 ${
-                    bookingStep === 2 ? 'opacity-100 translate-x-0' : 'opacity-0 absolute pointer-events-none'
-                  }`}
-                >
-                  <div className="relative mx-auto h-[883px] w-full max-w-[1392px] overflow-hidden rounded-[50px] bg-white px-[58px] py-16 shadow-[0px_4px_57.4px_rgba(0,0,0,0.25)]">
-                    <Image
-                      src="/optimized/Group%20349091%20(1).svg"
-                      alt=""
-                      width={1550}
-                      height={1074}
-                      className="pointer-events-none absolute left-[-43px] top-[-79px] h-[1073.89px] w-[1549.96px] max-w-none"
-                    />
-
-                    {/* Payment card */}
-                    <div className="absolute left-[436px] top-[103px] z-10 h-[662.03px] w-[520px] rounded-[28.6344px] bg-white shadow-[0px_3.43612px_78px_rgba(0,0,0,0.16)]">
-                      {/* Green header */}
-                      <div className="absolute left-[0px] top-[0px] w-[520px] h-[263.44px] rounded-t-[28.6344px] bg-[#003300]">
-                        <div className="absolute left-[34.36px] top-[35.51px] w-[424.93px] h-[182.3px]">
-                          <p className={`${geist.className} absolute left-[0px] top-[0px] w-[91px] h-[30px] text-[22.9075px] font-medium leading-[30px] text-white opacity-0.5`}>Montant</p>
-                          <p className={`${ebGaramond.className} absolute left-[0px] top-[32.07px] w-[264px] h-[96px] text-[73.304px] font-semibold leading-[96px] text-white`}>500EUR</p>
-                          <p className={`${geist.className} absolute left-[0px] top-[136.3px] w-[424.93px] h-[46px] text-[16.0352px] font-medium leading-[23px] text-white opacity-0.5`}>
-                            Le paiement Stripe des frais de dossier est demande avant l enregistrement definitif du rendez-vous.
-                          </p>
+                        <div className="grid grid-cols-7 gap-2.5">
+                          {calendarRows.flat().map((day, index) => {
+                            const isSelected = day.iso === selectedBookingDate;
+                            const isDisabled = day.isUnavailable || day.isOutsideMonth;
+                            return (
+                              <button
+                                key={`${day.iso}-${index}`}
+                                type="button"
+                                onClick={() => !isDisabled && setSelectedBookingDate(day.iso)}
+                                disabled={isDisabled}
+                                className={`${poppins.className} flex h-[46px] w-full items-center justify-center rounded-full text-[14px] font-medium transition sm:h-[52px] sm:text-[16px] ${
+                                  day.isOutsideMonth
+                                    ? 'bg-[#E6E6DA] text-[#A8B8A6] disabled:cursor-default'
+                                    : day.isUnavailable
+                                      ? 'border border-dashed border-[#A8B8A6] bg-transparent text-[#A8B8A6] disabled:cursor-not-allowed'
+                                      : isSelected
+                                        ? 'bg-[#BBCB2E] text-[#0E3F13]'
+                                        : 'bg-[#DADDBA] text-[#1A421F] hover:bg-[#CED4A4]'
+                                }`}
+                              >
+                                {day.day}
+                              </button>
+                            );
+                          })}
                         </div>
                       </div>
+                    </div>
+                  </article>
 
-                      {/* Date and time display */}
-                      <div className="absolute left-[29.78px] top-[366.52px] w-[289.78px] h-[37.15px]">
-                        <p className={`${geist.className} absolute left-[6.87px] top-[1.15px] w-[273px] h-[36px] text-[27.489px] font-semibold leading-[36px] text-center text-[#003300]`}>
-                          {bookingDateTimeLabel}
-                        </p>
-                      </div>
+                  <article className="min-w-full p-0">
+                    <div
+                      className="mx-auto flex min-h-[560px] w-full max-w-[1360px] items-center justify-center rounded-[30px] bg-cover bg-center bg-no-repeat px-4 py-8 sm:min-h-[620px] sm:px-8 sm:py-10 lg:min-h-[730px]"
+                      style={{
+                        backgroundImage: 'url("https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051891/rnj/optimized/group-349091-1-144384f9.svg")',
+                      }}
+                    >
+                      <div className="w-full max-w-[700px]">
+                        <div className="mx-auto flex w-full max-w-[700px] flex-col items-center justify-center">
+                      <Image
+                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                        alt="RNJ Advisory"
+                        width={220}
+                        height={54}
+                        className="h-auto w-[150px] brightness-0 sm:w-[220px]"
+                      />
 
-                      {/* Confirmation text */}
-                      <div className="absolute left-[40.09px] top-[421.5px] w-[411.19px] h-[56.02px] flex flex-col gap-[8.02px]">
-                        <p className={`${geist.className} w-[411.19px] h-[32px] text-[12.5991px] font-medium leading-[16px] text-[#003300] opacity-0.5`}>
-                          Votre rendez-vous est confirme pour le creneau selectionne. Un expert RNJ vous accompagnera lors de cet echange.
-                        </p>
-                        <p className={`${geist.className} w-[411.19px] h-[16px] text-[12.5991px] font-semibold leading-[16px] underline text-[#003300] opacity-0.7`}>
-                          Apprendre encore plus
-                        </p>
-                      </div>
-
-                      {/* Info badges */}
-                      <div className="absolute left-[34.36px] top-[287.49px] w-[177.53px] h-[46.96px] rounded-[9.163px] bg-[#C1CB82]">
-                        <span className={`${geist.className} absolute left-[14.89px] top-[11.45px] w-[148px] h-[23px] text-[12.5991px] font-medium leading-[23px] text-[#406640]`}>Paiement securise Stripe</span>
-                      </div>
-                      <div className="absolute left-[217.62px] top-[287.49px] w-[202.73px] h-[46.96px] rounded-[9.163px] bg-[#C1CB82]">
-                        <span className={`${geist.className} absolute left-[14.89px] top-[11.45px] w-[173px] h-[23px] text-[12.5991px] font-medium leading-[23px] text-[#406640]`}>Validation avant confirmation</span>
-                      </div>
-
-                      {/* Contact form */}
-                      <form className="absolute left-[28.67px] top-[440.5px] flex flex-col gap-[14px] w-[462.73px]" onSubmit={handleMessageSubmit}>
+                      <div className="mt-8 w-full space-y-3 sm:mt-10 sm:space-y-4">
                         <input
                           type="text"
                           value={messageForm.name}
@@ -907,7 +880,7 @@ export default function ContactPageClient({
                             setMessageForm((current) => ({ ...current, name: event.target.value }))
                           }
                           placeholder="Nom"
-                          className={`${geist.className} h-[103.05px] w-[505px] rounded-[20px] bg-[#EEF2CA] px-6 text-[24px] font-normal text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white text-center`}
+                          className={`${geist.className} h-[66px] w-full rounded-[16px] bg-[#E9EDCC] px-5 text-center text-[20px] font-medium text-[#7C9678] outline-none transition placeholder:text-[#7C9678] focus:bg-white sm:h-[92px] sm:rounded-[18px] sm:px-6 sm:text-[38px]`}
                           required
                         />
                         <input
@@ -917,7 +890,7 @@ export default function ContactPageClient({
                             setMessageForm((current) => ({ ...current, email: event.target.value }))
                           }
                           placeholder="Email"
-                          className={`${geist.className} h-[103.05px] w-[505px] rounded-[20px] bg-[#EEF2CA] px-6 text-[24px] font-normal text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white text-center`}
+                          className={`${geist.className} h-[66px] w-full rounded-[16px] bg-[#E9EDCC] px-5 text-center text-[20px] font-medium text-[#7C9678] outline-none transition placeholder:text-[#7C9678] focus:bg-white sm:h-[92px] sm:rounded-[18px] sm:px-6 sm:text-[38px]`}
                           required
                         />
                         <input
@@ -927,155 +900,254 @@ export default function ContactPageClient({
                             setMessageForm((current) => ({ ...current, phone: event.target.value }))
                           }
                           placeholder="Telephone"
-                          className={`${geist.className} h-[103.05px] w-[505px] rounded-[20px] bg-[#EEF2CA] px-6 text-[24px] font-normal text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white text-center`}
+                          className={`${geist.className} h-[66px] w-full rounded-[16px] bg-[#E9EDCC] px-5 text-center text-[20px] font-medium text-[#7C9678] outline-none transition placeholder:text-[#7C9678] focus:bg-white sm:h-[92px] sm:rounded-[18px] sm:px-6 sm:text-[38px]`}
                           required
                         />
+                      </div>
 
-                        {/* Submit button */}
-                        <div className="relative h-[95.07px] w-[511px] mt-4">
-                          <div className="absolute bottom-0 left-[2.29px] h-[91.23px] w-[458.15px] rounded-[22.9075px] bg-[#003300]" />
+                      <button
+                        type="button"
+                        onClick={() => nextBookingStep()}
+                        disabled={!messageForm.name.trim() || !messageForm.email.trim() || !messageForm.phone.trim()}
+                        className={`${ebGaramond.className} mt-3 flex h-[70px] w-full items-center justify-center rounded-[18px] bg-[#BBCB2E] text-[40px] font-bold leading-none text-[#003300] shadow-[0px_5px_0px_#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-55 sm:mt-4 sm:h-[92px] sm:rounded-[20px] sm:text-[52px]`}
+                      >
+                        Soumettre
+                      </button>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article className="min-w-full p-0">
+                    <div
+                      className="mx-auto flex min-h-[560px] w-full max-w-[1360px] items-center justify-center rounded-[30px] bg-cover bg-center bg-no-repeat px-4 py-8 sm:min-h-[620px] sm:px-8 sm:py-10 lg:min-h-[730px]"
+                      style={{
+                        backgroundImage:
+                          'url("https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778038594/Group_349101_cbdiuf.png")',
+                      }}
+                    >
+                      <div
+                        className="w-full max-w-[560px] overflow-hidden rounded-[24px] bg-white shadow-[0px_18px_45px_rgba(0,0,0,0.16)] sm:rounded-[30px]"
+                      >
+                        <div className="bg-[#003300] px-5 py-6 sm:px-8 sm:py-9">
+                          <p className={`${geist.className} text-[20px] font-medium text-white/55 sm:text-[24px]`}>Montant</p>
+                          <p className={`${ebGaramond.className} mt-1 text-[52px] font-semibold leading-[0.95] text-white sm:text-[68px]`}>{BOOKING_FEE_LABEL}</p>
+                          <p className={`${geist.className} mt-3 max-w-[430px] text-[14px] font-medium leading-[1.35] text-white/55 sm:text-[17px]`}>
+                            Le paiement Stripe des frais de dossier est demande avant l enregistrement definitif du rendez-vous.
+                          </p>
+                        </div>
+
+                        <div className="space-y-4 bg-white/95 px-5 py-5 sm:space-y-5 sm:px-8 sm:py-7">
+                          <div className="flex flex-wrap gap-2">
+                            <span className={`${geist.className} rounded-[10px] bg-[#C1CB82] px-3 py-2 text-[13px] font-medium text-[#406640] sm:px-4 sm:text-[16px]`}>
+                              Paiement securise Stripe
+                            </span>
+                            <span className={`${geist.className} rounded-[10px] bg-[#C1CB82] px-3 py-2 text-[13px] font-medium text-[#406640] sm:px-4 sm:text-[16px]`}>
+                              Validation avant confirmation
+                            </span>
+                          </div>
+
+                          <p className={`${geist.className} inline-block rounded-[8px] bg-[#BBCB2E] px-1 text-[36px] font-semibold leading-none text-[#003300] sm:text-[44px]`}>
+                            {bookingDateTimeLabel}
+                          </p>
+
+                          <p className={`${geist.className} max-w-[430px] text-[13px] font-medium leading-[1.35] text-[#003300]/45 sm:text-[14px]`}>
+                            Votre rendez-vous est confirme pour le creneau selectionne. Un expert RNJ vous accompagnera lors de cet echange.
+                          </p>
+                          <p className={`${geist.className} text-[13px] font-semibold underline text-[#003300]/65 sm:text-[14px]`}>
+                            Apprendre encore plus
+                          </p>
+
                           <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className={`${ebGaramond.className} absolute top-0 left-[2.29px] flex h-[91.23px] w-[458.15px] items-center justify-center rounded-[22.9075px] bg-[#BBCB2E] text-[36.652px] font-bold text-[#003300] transition hover:bg-[#dde597] disabled:cursor-not-allowed disabled:opacity-60`}
+                            type="button"
+                            onClick={async () => {
+                              if (!selectedBookingDate) {
+                                throw new Error('Merci de sélectionner une date pour le rendez-vous.');
+                              }
+                              const bookingPayload = {
+                                ...messageForm,
+                                subject: selectedSubject || 'Rendez-vous',
+                                message: formatBookingMessage(selectedBookingDate, selectedBookingTime),
+                                preferred_date: selectedBookingDate,
+                                preferred_time: selectedBookingTime,
+                              };
+                              const checkoutUrl = await startBookingCheckout(bookingPayload);
+                              window.location.assign(checkoutUrl);
+                            }}
+                            className={`${ebGaramond.className} mt-2 flex h-[72px] w-full items-center justify-center rounded-[18px] bg-[#BBCB2E] text-[40px] font-bold leading-none text-[#003300] shadow-[0px_5px_0px_#003300] transition hover:brightness-95 sm:mt-3 sm:h-[82px] sm:rounded-[22px] sm:text-[52px]`}
                           >
                             Soumettre
                           </button>
                         </div>
-
-                        {submitState === 'error' && submitMessage ? (
-                          <p className={`${geist.className} text-[14px] font-medium text-[#9b1c1c]`}>
-                            {submitMessage}
-                          </p>
-                        ) : null}
-                      </form>
+                      </div>
                     </div>
+                  </article>
 
-                    {/* Back button */}
-                    <div className="absolute bottom-[32px] left-[79px] z-10">
-                      <button
-                        type="button"
-                        onClick={prevBookingStep}
-                        className={`${ebGaramond.className} flex h-[64px] w-[183px] items-center justify-center rounded-[290px] bg-[#BBCB2E] text-[22.52px] font-bold text-[#003300] transition hover:brightness-95 disabled:opacity-50 disabled:cursor-not-allowed`}
-                      >
-                        Retour
-                      </button>
+                  <article className="min-w-full p-0">
+                    <div className="mx-auto flex min-h-[560px] w-full max-w-[1360px] items-center justify-center rounded-[30px] bg-[linear-gradient(135deg,#F5F5F2_0%,#EDF2D1_48%,#DDE6B5_100%)] px-4 py-8 sm:min-h-[620px] sm:px-8 sm:py-10 lg:min-h-[730px]">
+                      <div className="w-full max-w-[880px] overflow-hidden rounded-[24px] border border-[#003300]/10 bg-white shadow-[0px_20px_50px_rgba(0,0,0,0.18)]">
+                        <div className="grid gap-0 lg:grid-cols-[0.92fr_1.08fr]">
+                          <div className="bg-[#003300] p-6 text-white sm:p-8">
+                            <div
+                              className={`mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full ${
+                                mockPaymentState === 'success' ? 'bg-[#C1CB82] text-[#003300]' : 'bg-white/12 text-white'
+                              }`}
+                            >
+                              {mockPaymentState === 'cancelled' ? <XCircle size={26} /> : <CheckCircle2 size={26} />}
+                            </div>
+                            <p className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.16em] text-white/45`}>
+                              Paiement tiers
+                            </p>
+                            <h2 className={`${ebGaramond.className} mt-3 text-[42px] leading-[0.95] sm:text-[58px]`}>
+                              {paymentStatusTitle}
+                            </h2>
+                            <p className={`${geist.className} mt-4 text-[15px] font-medium leading-[1.5] text-white/60 sm:text-[16px]`}>
+                              {paymentStatusCopy}
+                            </p>
+                            <div className="mt-6 inline-flex rounded-full bg-white/10 px-4 py-2">
+                              <span className={`${geist.className} text-[13px] font-semibold text-white`}>
+                                {paymentStatusLabel}
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="p-5 sm:p-7">
+                            <div className="flex flex-col gap-4 border-b border-[#003300]/10 pb-5 sm:flex-row sm:items-start sm:justify-between">
+                              <div>
+                                <p className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.14em] text-[#406640]/70`}>
+                                  Reservation
+                                </p>
+                                <p className={`${ebGaramond.className} mt-1 text-[32px] leading-none text-[#003300] sm:text-[40px]`}>
+                                  {selectedSubject || 'Rendez-vous RNJ'}
+                                </p>
+                              </div>
+                              <div className={`${geist.className} rounded-full bg-[#EEF2EA] px-4 py-2 text-[13px] font-semibold text-[#003300]`}>
+                                {bookingReference}
+                              </div>
+                            </div>
+
+                            <div className="grid gap-3 border-b border-[#003300]/10 py-5 sm:grid-cols-2">
+                              <div className="flex items-center gap-3">
+                                <CalendarDays className="h-5 w-5 text-[#406640]" />
+                                <div>
+                                  <p className={`${geist.className} text-[12px] font-semibold text-[#003300]/40`}>Date et heure</p>
+                                  <p className={`${geist.className} text-[15px] font-semibold text-[#003300]`}>{bookingDateTimeLabel}</p>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <CheckCircle2 className="h-5 w-5 text-[#406640]" />
+                                <div>
+                                  <p className={`${geist.className} text-[12px] font-semibold text-[#003300]/40`}>Montant</p>
+                                  <p className={`${geist.className} text-[15px] font-semibold text-[#003300]`}>{BOOKING_FEE_LABEL}</p>
+                                </div>
+                              </div>
+                              <div>
+                                <p className={`${geist.className} text-[12px] font-semibold text-[#003300]/40`}>Client</p>
+                                <p className={`${geist.className} text-[15px] font-semibold text-[#003300]`}>{messageForm.name || 'Client RNJ'}</p>
+                              </div>
+                              <div>
+                                <p className={`${geist.className} text-[12px] font-semibold text-[#003300]/40`}>Contact</p>
+                                <p className={`${geist.className} break-words text-[15px] font-semibold text-[#003300]`}>
+                                  {messageForm.email || messageForm.phone || 'A confirmer'}
+                                </p>
+                              </div>
+                            </div>
+
+                            <div className="grid gap-3 pt-5 sm:grid-cols-2">
+                              <button
+                                type="button"
+                                onClick={downloadMockInvoice}
+                                className={`${geist.className} flex h-[54px] items-center justify-center gap-2 rounded-[14px] bg-[#BBCB2E] px-4 text-[15px] font-semibold text-[#003300] transition hover:brightness-95`}
+                              >
+                                <Download size={18} />
+                                Telecharger facture
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setBookingStep(3)}
+                                className={`${geist.className} flex h-[54px] items-center justify-center gap-2 rounded-[14px] border border-[#003300]/15 bg-white px-4 text-[15px] font-semibold text-[#003300] transition hover:bg-[#F0F3F0]`}
+                              >
+                                <ArrowLeft size={18} />
+                                Retour paiement
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setMockPaymentState('success')}
+                                className={`${geist.className} flex h-[50px] items-center justify-center gap-2 rounded-[14px] bg-[#EEF2EA] px-4 text-[14px] font-semibold text-[#003300] transition hover:bg-[#E1E8D8]`}
+                              >
+                                <RefreshCw size={16} />
+                                Simuler succes
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setView('initial')}
+                                className={`${geist.className} flex h-[50px] items-center justify-center gap-2 rounded-[14px] bg-[#EEF2EA] px-4 text-[14px] font-semibold text-[#003300] transition hover:bg-[#E1E8D8]`}
+                              >
+                                <Home size={16} />
+                                Retour accueil
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  </article>
+                </div>
+
+                <div className="absolute bottom-5 left-5 right-5 z-30 flex items-center justify-between">
+                  {bookingStep > 1 && bookingStep !== 4 ? (
+                    <button
+                      type="button"
+                      onClick={prevBookingStep}
+                      className={`${ebGaramond.className} inline-flex h-[56px] min-w-[150px] items-center justify-center rounded-full bg-[#BBCB2E] px-6 text-[30px] font-bold leading-none text-[#003300] shadow-[0px_4px_0px_#003300] transition hover:brightness-95`}
+                    >
+                      Retour
+                    </button>
+                  ) : (
+                    <span />
+                  )}
+
+                  {bookingStep > 1 && bookingStep < 4 && bookingStep !== 2 && bookingStep !== 3 ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (bookingStep === 1 && (!selectedSubject.trim() || !selectedBookingDate)) {
+                          return;
+                        }
+                        nextBookingStep();
+                      }}
+                      className={`${ebGaramond.className} inline-flex h-[56px] min-w-[150px] items-center justify-center rounded-full bg-[#BBCB2E] px-6 text-[30px] font-bold leading-none text-[#003300] shadow-[0px_4px_0px_#003300] transition hover:brightness-95`}
+                    >
+                      Suivant
+                    </button>
+                  ) : (
+                    <span />
+                  )}
                 </div>
               </div>
             </section>
           ) : null}
 
           {view === 'message' ? (
-              <section className="relative z-20 -mt-[30vh] w-full px-4 pb-16 sm:px-6 md:pb-20">
+              <section className="relative z-20 w-full px-4 py-10 sm:px-6 sm:py-12 md:py-16">
                 <div className="mx-auto w-full max-w-[1512px] overflow-hidden rounded-[34px] bg-[#BBCB2E] shadow-[0px_4px_56px_rgba(0,0,0,0.18)] sm:rounded-[44px] lg:rounded-[50px]">
                   <div className="relative overflow-hidden px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.22),_transparent_42%),radial-gradient(circle_at_bottom_right,_rgba(0,51,0,0.12),_transparent_38%)]" />
                     <div className="absolute -left-16 top-[-90px] h-[260px] w-[260px] rounded-full border border-white/25 bg-white/10 blur-2xl" />
                     <div className="absolute -right-10 bottom-[-60px] h-[220px] w-[220px] rounded-full border border-[#003300]/10 bg-[#DDE597]/50 blur-2xl" />
 
-                    <div className="relative z-10 grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.1fr)] lg:items-center">
-                      <div className="rounded-[28px] bg-white px-6 py-8 shadow-[0px_4px_40px_rgba(0,0,0,0.12)] sm:px-8 sm:py-10 lg:min-h-[760px] lg:rounded-[42px] lg:px-10">
-                        <div className="flex h-full flex-col justify-between gap-10">
-                          <div className="space-y-7">
-                            <Image
-                              src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
-                              alt="RNJ Advisory"
-                              width={233}
-                              height={58}
-                              className="h-auto w-[150px] brightness-0 sm:w-[190px] lg:w-[233px]"
-                            />
-
-                            <div className="space-y-4">
-                              <h2
-                                className={`${ebGaramond.className} max-w-[420px] text-[clamp(46px,7vw,96px)] font-normal leading-[0.9] text-[#003300]`}
-                              >
-                                Parlons de votre projet
-                              </h2>
-                              <p
-                                className={`${geist.className} max-w-[430px] text-[14px] font-medium leading-[1.45] text-[#003300]/50 sm:text-[15px] lg:text-[16px]`}
-                              >
-                                Have a question or a project in mind? Get in touch with our team and
-                                we&apos;ll respond as soon as possible.
-                              </p>
-                            </div>
-
-                            <div className="grid gap-3 sm:grid-cols-2">
-                              <button
-                                type="button"
-                                onClick={() => openBookingView()}
-                                className={`${poppins.className} flex h-[60px] items-center justify-center rounded-[70px] bg-[#BBCB2E] px-6 text-[18px] font-medium text-[#003300] transition hover:brightness-95 sm:h-[72px] sm:text-[22px]`}
-                              >
-                                Rendez-vous
-                              </button>
-                              <button
-                                type="button"
-                                className={`${poppins.className} flex h-[60px] items-center justify-center rounded-[70px] bg-[#406640] px-6 text-[18px] font-medium text-[#BFCCBF] sm:h-[72px] sm:text-[22px]`}
-                              >
-                                Message
-                              </button>
-                            </div>
-                          </div>
-
-                          <div className="relative overflow-hidden rounded-[28px] border border-[#003300]/10 bg-[linear-gradient(145deg,#F4F7D9,#DDE597)] px-6 py-6 sm:px-7">
-                            <div className="absolute -right-6 top-5 h-20 w-20 rounded-full border border-[#003300]/10 bg-white/30" />
-                            <div className="absolute bottom-[-18px] left-[-12px] h-28 w-28 rounded-full bg-[#003300]/8" />
-                            <div className="relative z-10 space-y-4">
-                              <div className="flex items-center gap-3">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-[0px_8px_18px_rgba(0,0,0,0.08)]">
-                                  <svg
-                                    width="22"
-                                    height="22"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M4 6.5C4 5.67157 4.67157 5 5.5 5H18.5C19.3284 5 20 5.67157 20 6.5V15.5C20 16.3284 19.3284 17 18.5 17H8L4 20V6.5Z"
-                                      stroke="#003300"
-                                      strokeWidth="1.8"
-                                      strokeLinejoin="round"
-                                    />
-                                    <path d="M8 9H16" stroke="#003300" strokeWidth="1.8" strokeLinecap="round" />
-                                    <path d="M8 12H13" stroke="#003300" strokeWidth="1.8" strokeLinecap="round" />
-                                  </svg>
-                                </div>
-                                <div>
-                                  <p className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.2em] text-[#003300]/45`}>
-                                    Contact us
-                                  </p>
-                                  <p className={`${geist.className} text-[14px] font-medium text-[#003300]/70`}>
-                                    A direct line for strategic questions, mandates, and follow-up.
-                                  </p>
-                                </div>
-                              </div>
-
-                              {messageForm.subject ? (
-                                <div className="flex flex-wrap gap-2">
-                                  <div className="inline-flex max-w-full rounded-full border border-[#003300]/15 bg-white/80 px-4 py-2 text-[13px] font-medium text-[#003300]">
-                                    Sujet pre-rempli: {messageForm.subject}
-                                  </div>
-                                </div>
-                              ) : null}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="rounded-[28px] bg-white px-5 py-6 shadow-[0px_4px_40px_rgba(0,0,0,0.12)] sm:px-7 sm:py-8 lg:rounded-[42px] lg:px-10 lg:py-10">
-                        <div className="mb-6 flex items-start justify-between gap-4">
+                    <div className="relative z-10 flex w-full justify-center">
+                      <div className="mx-auto w-full max-w-[667.57px] rounded-[28px] bg-white px-5 py-6 shadow-[0px_4px_40px_rgba(0,0,0,0.12)] sm:px-7 sm:py-8 lg:rounded-[42px] lg:px-10 lg:py-10">
+                        <div className="mb-[13.69px] flex items-start justify-between gap-4">
                           <div>
                             <h3
-                              className={`${ebGaramond.className} text-[clamp(36px,5vw,55px)] leading-[0.95] text-[#003300]`}
+                              className={`${ebGaramond.className} text-[54.76px] leading-[47px] text-[#003300]`}
                             >
                               Let&apos;s Talk About Your Project
                             </h3>
                             <p
-                              className={`${geist.className} mt-3 max-w-[360px] text-[14px] font-medium leading-[1.45] text-[#003300]/45`}
+                              className={`${geist.className} mt-[21px] max-w-[355.92px] text-[13.69px] font-medium leading-[15px] text-[#003300]/40`}
                             >
-                              Share your question, context, or objective and we&apos;ll get back to
-                              you quickly.
+                              Have a question or a project in mind? Get in touch with our team and we&apos;ll respond as soon as possible.
                             </p>
                           </div>
 
@@ -1088,8 +1160,8 @@ export default function ContactPageClient({
                           </button>
                         </div>
 
-                        <form className="space-y-4" onSubmit={handleMessageSubmit}>
-                          <div className="grid gap-4 md:grid-cols-2">
+                        <form className="space-y-0" onSubmit={handleMessageSubmit}>
+                          <div className="grid gap-[8.56px] md:grid-cols-2">
                             <input
                               type="text"
                               value={messageForm.name}
@@ -1097,7 +1169,7 @@ export default function ContactPageClient({
                                 setMessageForm((current) => ({ ...current, name: event.target.value }))
                               }
                               placeholder="Nom *"
-                              className={`${geist.className} ${fieldClassName}`}
+                              className={`${geist.className} h-[83.76px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
                               required
                             />
                             <input
@@ -1107,12 +1179,12 @@ export default function ContactPageClient({
                                 setMessageForm((current) => ({ ...current, phone: event.target.value }))
                               }
                               placeholder="(+216) Telephone *"
-                              className={`${geist.className} ${fieldClassName}`}
+                              className={`${geist.className} h-[83.76px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
                               required
                             />
                           </div>
 
-                          <div className="grid gap-4 md:grid-cols-2">
+                          <div className="grid gap-[8.56px] md:grid-cols-2">
                             <input
                               type="email"
                               value={messageForm.email}
@@ -1120,7 +1192,7 @@ export default function ContactPageClient({
                                 setMessageForm((current) => ({ ...current, email: event.target.value }))
                               }
                               placeholder="Votre email *"
-                              className={`${geist.className} ${fieldClassName}`}
+                              className={`${geist.className} h-[83.76px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
                               required
                             />
                             <input
@@ -1130,7 +1202,7 @@ export default function ContactPageClient({
                                 setMessageForm((current) => ({ ...current, company: event.target.value }))
                               }
                               placeholder="Votre societe"
-                              className={`${geist.className} ${fieldClassName}`}
+                              className={`${geist.className} h-[83.76px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
                             />
                           </div>
 
@@ -1141,39 +1213,40 @@ export default function ContactPageClient({
                               setMessageForm((current) => ({ ...current, subject: event.target.value }))
                             }
                             placeholder="Sujet *"
-                            className={`${geist.className} ${fieldClassName}`}
+                            className={`${geist.className} h-[88.19px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
                             required
                           />
-
                           <textarea
                             value={messageForm.message}
                             onChange={(event) =>
                               setMessageForm((current) => ({ ...current, message: event.target.value }))
                             }
                             placeholder="Votre question *"
-                            className={`${geist.className} ${fieldClassName} min-h-[180px] resize-none`}
+                            className={`${geist.className} h-[204.57px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 resize-none`}
                             required
                           />
-
-                          {submitState === 'error' && submitMessage ? (
-                            <p className={`${geist.className} text-[14px] font-medium text-[#9b1c1c]`}>
-                              {submitMessage}
-                            </p>
-                          ) : null}
-
-                          <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className={`${ebGaramond.className} flex h-[72px] w-full items-center justify-center rounded-[70px] bg-[#BBCB2E] text-[28px] font-bold text-[#003300] transition hover:bg-[#dde597] disabled:cursor-not-allowed disabled:opacity-60 sm:h-[82px] sm:text-[32px]`}
-                          >
-                            {isSubmitting ? 'Envoi...' : 'Soumettre'}
-                          </button>
+                          <div className="grid gap-[8.56px] md:grid-cols-2">
+                            <button
+                              type="submit"
+                              disabled={isSubmitting}
+                              className={`${ebGaramond.className} h-[88.19px] w-full items-center justify-center rounded-[12.83px] bg-[#BBCB2E] text-[34.22px] font-bold leading-[35px] text-[#003300] transition hover:bg-[#dde597] disabled:cursor-not-allowed disabled:opacity-60`}
+                            >
+                              {isSubmitting ? 'Envoi...' : 'Soumettre'}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => openBookingView()}
+                              className={`${ebGaramond.className} h-[88.19px] w-full items-center justify-center rounded-[12.83px] bg-[#003300] text-[34.22px] font-bold leading-[35px] text-[#BBCB2E] transition hover:bg-[#004400]`}
+                            >
+                              Rendez-vous
+                            </button>
+                          </div>
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
-              </section>
+            </section>
           ) : null}
         </div>
       </main>

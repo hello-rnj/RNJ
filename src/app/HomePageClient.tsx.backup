@@ -2526,12 +2526,12 @@ export default function Home() {
 
                                   <button
                                     type="button"
-                                    className="inline-flex h-[29.08px] w-[180.83px] items-center justify-center rounded-[6.58028px] font-[Geist] font-medium"
+                                    className="inline-flex h-[56px] w-full min-w-[180px] items-center justify-center rounded-[8px] font-[Geist] font-medium sm:h-[61px] sm:min-w-[260px] md:h-[72px] md:min-w-[311px]"
                                     style={{
                                       backgroundColor: card.buttonBg,
                                       color: card.buttonTextColor,
-                                      fontSize: '11.8445px',
-                                      lineHeight: '15px',
+                                      fontSize: 'clamp(14px, 1.4vw, 18px)',
+                                      lineHeight: 'clamp(18px, 1.6vw, 22px)',
                                     }}
                                   >
                                     Demander une consultation
@@ -2592,12 +2592,12 @@ export default function Home() {
 
                                   <button
                                     type="button"
-                                    className="inline-flex h-[29.08px] w-[180.83px] items-center justify-center rounded-[6.58028px] font-[Geist] font-medium"
+                                    className="inline-flex h-[56px] w-full min-w-[180px] items-center justify-center rounded-[8px] font-[Geist] font-medium sm:h-[61px] sm:min-w-[260px] md:h-[72px] md:min-w-[311px]"
                                     style={{
                                       backgroundColor: card.buttonBg,
                                       color: card.buttonTextColor,
-                                      fontSize: '11.8445px',
-                                      lineHeight: '15px',
+                                      fontSize: 'clamp(14px, 1.4vw, 18px)',
+                                      lineHeight: 'clamp(18px, 1.6vw, 22px)',
                                     }}
                                   >
                                     Demander une consultation

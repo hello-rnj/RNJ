@@ -71,7 +71,7 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="/about"
+            href="/a-propos"
             className="text-center font-[Geist] text-[15px] font-semibold text-[#003300] opacity-50 transition hover:opacity-75 2xl:text-[17px]"
           >
             À propos
@@ -87,7 +87,7 @@ export default function Navbar() {
             className="h-[26px] w-[18px] object-contain 2xl:h-[30px] 2xl:w-[20px]"
           />
           <Link
-            href="/about"
+            href="/a-propos"
             className="flex h-[39px] items-center justify-center rounded-[10px] border-[1.5px] border-[#003300] px-4 text-center font-[Geist] text-[14px] font-semibold text-[#003300] transition hover:bg-[#003300]/5 2xl:h-[41px] 2xl:px-[17px] 2xl:text-[15px]"
           >
             À propos
@@ -173,7 +173,7 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/about"
+              href="/a-propos"
               onClick={() => setIsMobileMenuOpen(false)}
               className="border-b border-[#003300]/10 py-2 text-left font-[Geist] text-lg font-semibold text-[#003300]"
             >
@@ -182,7 +182,7 @@ export default function Navbar() {
 
             <div className="mt-2 flex flex-col gap-3">
               <Link
-                href="/about"
+                href="/a-propos"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full rounded-xl border-[1.5px] border-[#003300] py-3 text-center font-[Geist] font-semibold text-[#003300]"
               >

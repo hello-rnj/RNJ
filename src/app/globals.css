@@ -204,6 +204,10 @@
     min-height: 100dvh;
     min-height: 100svh;
     min-height: -webkit-fill-available;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+    overflow-x: hidden;
     padding-top: env(safe-area-inset-top);
     padding-right: env(safe-area-inset-right);
     padding-bottom: env(safe-area-inset-bottom);
@@ -322,6 +326,41 @@
 
 .mobile-animate-slide-up {
   animation: slide-up-mobile 0.3s ease-out;
+}
+
+@keyframes institutional-mobile-shadow-pulse {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.78;
+    transform: translateY(-1px);
+  }
+}
+
+@media (max-width: 767px) {
+  .institutional-mobile-shadow {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.12) 38%,
+      rgba(0, 0, 0, 0.02) 100%
+    );
+    box-shadow:
+      0 8px 30px rgba(0, 0, 0, 0.22),
+      inset 0 -10px 24px rgba(0, 0, 0, 0.1);
+    animation: institutional-mobile-shadow-pulse 2.4s ease-in-out infinite;
+    will-change: opacity, transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .institutional-mobile-shadow {
+    animation: none;
+    opacity: 0.6;
+  }
 }
 
 /* Improve touch targets for mobile */

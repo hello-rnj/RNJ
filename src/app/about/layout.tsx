@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   description:
     'Découvrez RNJ Advisory, cabinet de conseil juridique et stratégique à Bruxelles, accompagnant entreprises, investisseurs et institutions en Belgique et à l’international.',
   alternates: {
-    canonical: '/about',
+    canonical: '/a-propos',
   },
   openGraph: {
     title: 'À propos de RNJ Advisory | Conseil juridique et stratégique',
     description:
       'RNJ Advisory accompagne entreprises, investisseurs et institutions dans leurs décisions juridiques, réglementaires et stratégiques.',
-    url: 'https://rnj-advisory.be/about',
+    url: 'https://rnj-advisory.be/a-propos',
     type: 'website',
     siteName: 'RNJ Advisory',
     locale: 'fr_BE',
@@ -35,7 +35,7 @@ export default function AboutLayout({
       <BreadcrumbStructuredData
         items={[
           { name: 'Accueil', item: 'https://rnj-advisory.be/' },
-          { name: 'À propos', item: 'https://rnj-advisory.be/about' },
+          { name: 'À propos', item: 'https://rnj-advisory.be/a-propos' },
         ]}
       />
       {children}
