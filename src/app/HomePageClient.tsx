@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
@@ -819,13 +819,13 @@ function RegulationAnalysisSection() {
             </div>
 
             <div className="flex w-full max-w-[634.22px] flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-center sm:gap-[12.4px] lg:justify-center lg:gap-4 2xl:w-[634.22px] 2xl:max-w-[634.22px] 2xl:justify-start 2xl:gap-[12.4px]">
-              <button
-                type="button"
+              <Link
+                href="/contact"
                 className="flex h-[68px] w-full items-center justify-center rounded-[82.6547px] border-[2.48019px] border-[#003300] px-8 text-center font-[Geist] font-semibold text-[#003300] text-[clamp(18px,2vw,25.1616px)] leading-[25px] transition-colors hover:bg-[#003300] hover:text-[#F7FCFF] sm:h-[84.49px] sm:w-auto sm:px-[60px] lg:h-[72px] lg:min-w-[210px] lg:px-10 lg:text-[20px] lg:leading-[22px] 2xl:h-[84.49px] 2xl:w-[254.77px] 2xl:min-w-0 2xl:px-0 2xl:text-[25.1616px] 2xl:leading-[25px]"
                 style={{ touchAction: 'manipulation' }}
               >
                 En savoir plus
-              </button>
+              </Link>
 
               <button
                 type="button"
@@ -1182,6 +1182,7 @@ export default function Home() {
   const [servicesFocusStage, setServicesFocusStage] = useState(0);
   const [belgiumStep, setBelgiumStep] = useState(0);
   const [isInstitutionalCarouselPaused, setIsInstitutionalCarouselPaused] = useState(false);
+  const [activeInstitutionalSlide, setActiveInstitutionalSlide] = useState(0);
   const institutionalCarouselRef = useRef<HTMLDivElement | null>(null);
   const interconnectionCardTouchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const interconnectionPopupOpenTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -1397,6 +1398,21 @@ export default function Home() {
     carousel.scrollBy({ left: offset, behavior: 'smooth' });
   }
 
+  function handleInstitutionalCarouselScroll(carousel: HTMLDivElement) {
+    const firstCard = carousel.querySelector('[data-institutional-card]') as HTMLElement | null;
+    if (!firstCard) return;
+    const styles = getComputedStyle(carousel);
+    const gap = Number.parseFloat(styles.columnGap || styles.gap || '0') || 0;
+    const cardWidth = firstCard.getBoundingClientRect().width;
+    const step = cardWidth + gap;
+    const totalUniqueCards = 6;
+    const rawIndex = carousel.scrollLeft / step;
+    const newIndex = Math.round(rawIndex) % totalUniqueCards;
+    if (newIndex !== activeInstitutionalSlide) {
+      setActiveInstitutionalSlide(newIndex);
+    }
+  }
+
   useEffect(() => {
     if (isInstitutionalCarouselPaused) return;
     if (window.innerWidth < 1024) return;
@@ -1480,7 +1496,8 @@ export default function Home() {
               </div>
 
               <div className="relative flex w-full max-w-[560px] flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-[8px] xl:max-w-[473px] xl:justify-start">
-                <button
+                <Link
+                  href="/contact"
                   className="group flex h-[52px] w-full max-w-[320px] items-center justify-center rounded-full bg-[#F7FCFF] transition-all duration-300 hover:bg-[#003300] sm:h-[56px] sm:w-auto sm:min-w-[220px] xl:h-[63px] xl:min-w-[229px]"
                   style={{ boxShadow: '2.10047px 4.20093px 22.6px rgba(0, 0, 0, 0.44)' }}
                 >
@@ -1489,9 +1506,10 @@ export default function Home() {
                   >
                     Découvrir nos services
                   </span>
-                </button>
+                </Link>
 
-                <button
+                <Link
+                  href="/contact"
                   className="group flex h-[52px] w-full max-w-[320px] items-center justify-center rounded-full bg-[#BBCB2E] shadow-lg transition-all duration-300 hover:bg-[#003300] sm:h-[56px] sm:w-auto sm:min-w-[232px] xl:h-[62px] xl:min-w-[228px]"
                   style={{
                     boxShadow: '2.10047px 4.20093px 22.6px rgba(0, 0, 0, 0.44)',
@@ -1500,7 +1518,7 @@ export default function Home() {
                   <span className="whitespace-nowrap text-center font-[Geist] text-[#003300] text-[14px] leading-[16px] font-bold tracking-[-0.02em] transition-colors duration-300 group-hover:text-[#BBCB2E]">
                     Contacter un conseiller
                   </span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -1811,7 +1829,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="relative mx-auto h-[220px] w-full max-w-[320px] sm:h-[300px] sm:max-w-[380px] md:h-[360px] md:max-w-[430px] lg:h-[420px] lg:max-w-[464.65px] xl:mx-0 xl:ml-auto xl:h-[529.93px] xl:w-full xl:max-w-[464.65px]">
+              <div className="relative mx-auto h-[220px] w-full max-w-[320px] sm:h-[300px] sm:max-w-[380px] md:h-[360px] md:max-w-[430px] lg:h-[420px] lg:max-w-[464.65px] xl:mx-0 xl:ml-auto xl:h-[529.93px] xl:w-full xl:max-w-[464.65px] hidden sm:block">
                 <img
                   src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410416/rnj/mask-group-39-06a5eb07.svg"
                   alt="Partenaires en réunion"
@@ -1998,12 +2016,13 @@ export default function Home() {
                       RNJ Advisory
                     </p>
 
-                    <div className="relative mx-auto h-[140px] w-[140px] overflow-hidden rounded-[16px] border-2 border-[#BBCB2E] sm:h-[190px] sm:w-[190px] sm:rounded-[20px] md:h-[230px] md:w-[230px] md:rounded-[24px] lg:mx-0 lg:h-[280px] lg:w-[280px] lg:rounded-[28px]">
+                    <div className="relative mx-auto h-[300px] w-[100%] overflow-hidden rounded-[16px] border-2 border-[#BBCB2E] sm:h-[190px] sm:w-[190px] sm:rounded-[20px] md:h-[230px] md:w-[230px] md:rounded-[24px] lg:mx-0 lg:h-[280px] lg:w-[280px] lg:rounded-[28px]">
                       <Image
                         src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333996/rnj/openai-jake-stangel-1-c442a239.svg"
                         alt="Portrait entrepreneuriat"
                         fill
                         className="object-cover"
+                        style={{ objectPosition: 'right' }}
                         unoptimized
                       />
                     </div>
@@ -2101,8 +2120,13 @@ export default function Home() {
                 boxShadow: '2px 4px 28.3px rgba(0, 0, 0, 0.17)',
               }}
             >
-              <div className="grid w-full max-w-none grid-cols-1 xl:grid-cols-[minmax(0,900px)_minmax(0,672px)]">
-                <div className="relative order-2 min-h-[260px] w-full overflow-hidden sm:min-h-[340px] md:min-h-[460px] lg:min-h-[560px] xl:order-1 xl:min-h-[780px]">
+              <div className="grid w-full max-w-none grid-cols-2 xl:grid-cols-[minmax(0px)_minmax(50%)]"
+              style={{
+                justifyContent: 'space-between',
+                height: '90vh',
+              }}
+              >
+                <div className="relative order-2 min-h-[260px] w-full overflow-hidden sm:min-h-[340px] md:min-h-[460px] lg:min-h-[560px] xl:order-1 xl:min-h-[780px]" style={{ width: '100%' }}>
                   <Image
                     src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051869/rnj/optimized/mask-group-44-3cbc4b7d.svg"
                     alt="Accélération PME et ASBL"
@@ -2129,35 +2153,34 @@ export default function Home() {
                            croissance</span>
                         </h3>
 
-                        <div className="flex w-full max-w-[460px] flex-col gap-4 sm:gap-5">
-                          <div className="flex w-full flex-col gap-1 rounded-[14px] border border-[#BFCCBF]/30 bg-[#BFCCBF]/10 px-4 py-3 sm:px-5">
-                            <span className="w-full text-left font-[Geist] text-[14px] font-semibold leading-[1.35] text-[#BFCCBF] sm:text-[15px] md:text-[16px]">
-                              Vous êtes une PME ou une ASBL en croissance ?
-                            </span>
-                            <span className="w-full text-left font-[Geist] text-[14px] font-semibold leading-[1.35] text-[#BFCCBF] sm:text-[15px] md:text-[16px]">
-                              Vous souhaitez recruter des talents hors UE ?
-                            </span>
-                          </div>
-
-                          <p className="max-w-[424px] font-[Geist] text-[13px] font-medium leading-[1.35] text-[#BFCCBF]/80 sm:text-[14px] md:text-[16px] md:leading-[1.2]">
+                        <div className="flex flex-col gap-4 max-w-[424px]">
+                          <p className="font-[Geist] text-[13px] font-medium leading-[1.35] text-[#BFCCBF]/80 sm:text-[14px] md:text-[16px] md:leading-[1.2]">
+                            Vous êtes une PME ou une ASBL en croissance ?
+                          </p>
+                          <p className="font-[Geist] text-[13px] font-medium leading-[1.35] text-[#BFCCBF]/80 sm:text-[14px] md:text-[16px] md:leading-[1.2]">
+                            Vous souhaitez recruter des talents hors UE ?
+                          </p>
+                          <p className="font-[Geist] text-[13px] font-medium leading-[1.35] text-[#BFCCBF]/80 sm:text-[14px] md:text-[16px] md:leading-[1.2]">
                             Nous sécurisons vos recrutements internationaux pour vous permettre de vous concentrer sur votre développement.
                           </p>
                         </div>
                       </div>
 
                       <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-[9.8px] xl:max-w-[560px]">
-                        <button
-                          type="button"
+                        <Link
+                          href="/contact"
                           className="h-[56px] w-full whitespace-nowrap rounded-full border border-[#BFCCBF] px-8 font-[Geist] text-[16px] font-semibold leading-[20px] text-[#BFCCBF] transition-colors hover:bg-[#BFCCBF] hover:text-[#003300] sm:w-auto sm:min-w-[170px] md:h-[62px] md:border-[1.6px] md:px-[34px]"
-                        >
+                          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                        >                    
                           À propos
-                        </button>
-                        <button
-                          type="button"
+                        </Link>
+                        <Link
+                          href="/contact"
                           className="h-[56px] w-full rounded-full bg-[#BBCB2E] px-6 font-[Geist] text-[16px] font-semibold leading-[20px] text-[#003300] transition-colors hover:bg-[#D4E175] sm:w-auto sm:min-w-[260px] md:h-[62px] md:min-w-[329px]"
+                          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                         >
                           Planifier un entretien confidentiel
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -2437,6 +2460,9 @@ export default function Home() {
                           onMouseLeave={() => setIsInterconnectionCardActive(false)}
                           onTouchStart={triggerInterconnectionCardTouchFeedback}
                           style={{
+                            width: '100%',
+                            maxWidth: '505px',
+                            height: 'clamp(360px,78vw,533px)',
                             background: isInterconnectionReadMoreOpenState
                               ? 'rgba(255, 255, 255, 0.22)'
                               : 'rgba(255, 255, 255, 0.14)',
@@ -2460,10 +2486,21 @@ export default function Home() {
                           />
 
                           <div
-                            className="relative z-[1] px-5 pb-[76px] pt-6 transition-opacity duration-500 sm:px-7 sm:pb-[90px] sm:pt-7 md:px-[34px] md:pb-[104px] md:pt-[42px]"
-                            style={{ opacity: isInterconnectionReadMoreOpening ? 0.7 : 1 }}
+                            className="pointer-events-none absolute inset-0 rounded-[18px]"
+                            style={{
+                              background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 65.38%)',
+                              opacity: isInterconnectionReadMoreOpenState ? 0.3 : 0.15,
+                            }}
+                          />
+
+                          <div
+                            className="relative z-[1] transition-opacity duration-500"
+                            style={{
+                              opacity: isInterconnectionReadMoreOpening ? 0.7 : 1,
+                              padding: '45px 41px 0 41px',
+                            }}
                           >
-                            <div className="relative mb-7 h-[20px] w-[84px] md:mb-9 md:h-[44px] md:w-[111px]">
+                            <div className="relative mb-[20px] h-[36px] w-[92px]">
                               <Image
                                 src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334020/rnj/image-2-2c9f497b.svg"
                                 alt="RNJ Advisory"
@@ -2472,62 +2509,90 @@ export default function Home() {
                               />
                             </div>
 
-                            <h3 className="mb-6 max-w-[440px] font-[Geist] text-[28px] font-normal leading-[0.98] text-white sm:text-[32px] md:mb-8 md:text-[40px] md:leading-[43px]">
-                              Interconnexion électrique Tunisie-Italie
-                            </h3>
+                            <div
+                              className="flex flex-col gap-[16px]"
+                              style={{
+                                width: '380px',
+                                maxWidth: '100%',
+                              }}
+                            >
+                              <h3
+                                className="font-[Geist] font-normal text-white"
+                                style={{
+                                  width: '380px',
+                                  maxWidth: '100%',
+                                  height: '70px',
+                                  fontSize: 'clamp(24px, 4.5vw, 32px)',
+                                  lineHeight: 'clamp(23px, 4.5vw, 34px)',
+                                }}
+                              >
+                                Interconnexion électrique Tunisie-Italie
+                              </h3>
 
-                            <div className="relative max-h-[170px] overflow-hidden sm:max-h-[195px] md:max-h-[229px]">
-                              <p className="max-w-[439px] font-[Geist] text-[13px] font-normal leading-[1.14] text-white md:text-[16px] md:leading-[18px]">
-                                <span className="block">
-                                  Étude juridique et institutionnelle pour la mise en
-                                  place d&apos;un cadre réglementaire propice à
-                                  l&apos;interconnexion électrique entre la Tunisie et
-                                  l&apos;Italie, ainsi que la création d&apos;une autorité de
-                                  régulation du secteur électrique en Tunisie.
-                                </span>
-                                <span className="block h-3 md:h-4" aria-hidden="true" />
-                                <span className="block">Nos interventions :</span>
-                                <span className="block">• Analyse du cadre réglementaire tunisien applicable au secteur de l&apos;électricité et aux énergies renouvelables</span>
-                                <span className="block">• Actualisation des textes réglementaires relatifs à la création de l&apos;autorité de régulation du secteur électrique</span>
-                                <span className="block">• Assistance à la mise en place d&apos;un cadre réglementaire et contractuel propice à l&apos;exportation d&apos;électricité via ELMED</span>
-                              </p>
+                              <div className="relative max-h-[228px] overflow-hidden">
+                                <p
+                                  className="font-[Geist] font-normal text-white"
+                                  style={{
+                                    width: '380px',
+                                    maxWidth: '100%',
+                                    fontSize: 'clamp(11px, 2.5vw, 14px)',
+                                    lineHeight: 'clamp(13px, 2.5vw, 16px)',
+                                  }}
+                                >
+                                  <span className="block">
+                                    Étude juridique et institutionnelle pour la mise en
+                                    place d&apos;un cadre réglementaire propice à
+                                    l&apos;interconnexion électrique entre la Tunisie et
+                                    l&apos;Italie, ainsi que la création d&apos;une autorité de
+                                    régulation du secteur électrique en Tunisie.
+                                  </span>
+                                  <span className="block h-2 md:h-3" aria-hidden="true" />
+                                  <span className="block font-semibold">Nos interventions :</span>
+                                  <span className="block">• Analyse du cadre réglementaire tunisien</span>
+                                  <span className="block">• Actualisation des textes réglementaires</span>
+                                  <span className="block">• Assistance à la mise en place cadre réglementaire</span>
+                                </p>
 
-                              <div
-                                className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-[rgba(71,71,71,0.96)] via-[rgba(71,71,71,0.72)] to-transparent transition-all duration-500 ${isInterconnectionReadMoreOpening ? 'h-28 md:h-36' : isInterconnectionReadMoreOpenState ? 'h-24 md:h-28' : 'h-16 md:h-20'}`}
-                              />
+                                <div
+                                  className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-[rgba(0,0,0,0.96)] via-[rgba(0,0,0,0.72)] to-transparent transition-all duration-500 ${isInterconnectionReadMoreOpening ? 'h-28 md:h-36' : isInterconnectionReadMoreOpenState ? 'h-24 md:h-28' : 'h-16 md:h-20'}`}
+                                />
+                              </div>
                             </div>
                           </div>
 
                           <div
-                            className={`absolute flex justify-center transition-[height,background-color,box-shadow] duration-500 ${
+                            className={`absolute flex justify-center transition-all duration-500 ${
                               isInterconnectionReadMoreOpening
                                 ? 'inset-0 h-full items-start rounded-[18px] pt-[75px]'
-                                : isInterconnectionReadMoreOpenState
-                                ? 'inset-x-0 bottom-0 h-[128px] items-end rounded-b-[18px] sm:h-[136px] md:h-[143px]'
-                                : 'inset-x-0 bottom-0 h-[76px] items-end rounded-b-[18px]'
+                                : 'items-end'
                             }`}
                             style={{
+                              width: '505px',
+                              height: isInterconnectionReadMoreOpening ? '100%' : '143px',
+                              top: isInterconnectionReadMoreOpening ? '0' : '390px',
+                              left: 'calc(50% - 505px/2)',
                               background: isInterconnectionReadMoreOpening
                                 ? 'rgba(0, 0, 0, 0.20)'
-                                : isInterconnectionReadMoreOpenState
-                                ? 'rgba(0, 0, 0, 0.18)'
                                 : 'rgba(0, 0, 0, 0.10)',
+                              backdropFilter: 'blur(8px)',
+                              WebkitBackdropFilter: 'blur(8px)',
                               boxShadow: '2px 4px 22.3px rgba(0, 0, 0, 0.6)',
+                              borderRadius: isInterconnectionReadMoreOpening ? '18px' : '0 0 18px 18px',
                             }}
                           >
                             <div
-                              className={`flex w-[102px] flex-col items-center transition-all duration-500 ${isInterconnectionReadMoreOpening ? 'h-[102px] justify-end pb-0' : 'h-full justify-end pb-[16px] md:pb-[20px]'}`}
+                              className={`flex w-[102px] flex-col items-center justify-end transition-all duration-500 ${isInterconnectionReadMoreOpening ? 'h-[95px] pb-0' : 'h-full pb-[16px] md:pb-[20px]'}`}
                               style={{
                                 gap: isInterconnectionReadMoreOpening ? '19px' : isInterconnectionReadMoreOpenState ? '25px' : '10px',
-                                opacity: isInterconnectionReadMoreOpenState ? 1 : 0.74,
+                                opacity: isInterconnectionReadMoreOpenState || isInterconnectionReadMoreOpening ? 1 : 0.74,
                                 transform: isInterconnectionReadMoreOpenState ? 'translateY(-1px) scale(1.02)' : 'translateY(0) scale(1)',
                               }}
                             >
                               <div
                                 className="relative h-[22px] w-[22px] transition-all duration-500"
                                 style={{
-                                  opacity: isInterconnectionReadMoreOpenState ? 1 : 0.35,
-                                  transform: isInterconnectionReadMoreOpenState ? 'translateY(0)' : 'translateY(8px)',
+                                  opacity: isInterconnectionReadMoreOpenState || isInterconnectionReadMoreOpening ? 1 : 0.35,
+                                  transform: isInterconnectionReadMoreOpenState || isInterconnectionReadMoreOpening ? 'translateY(0)' : 'translateY(8px)',
                                 }}
                               >
                                 <Image
@@ -2541,7 +2606,7 @@ export default function Home() {
 
                               <button
                                 type="button"
-                                className="inline-flex h-[48px] w-[102px] items-center justify-center rounded-[120px] bg-white px-0 font-[Geist] text-[11px] font-bold leading-[14px] text-black transition-all duration-500"
+                                className="inline-flex h-[48px] w-[114px] items-center justify-center rounded-[120px] bg-white px-0 font-[Geist] text-[11px] font-bold leading-[14px] text-black transition-all duration-500"
                                 onClick={openStrategicPopupWithTouchAnimation}
                                 onTouchStart={triggerInterconnectionCardTouchFeedback}
                               >
@@ -2550,27 +2615,27 @@ export default function Home() {
                             </div>
                           </div>
                         </div>
+                      </div>
+                    </div>
 
                         <div className="flex items-center gap-2">
-                          <span className="h-[11.73px] w-[11.73px] rounded-full bg-[#ECECEC]" />
-                          <span className="h-[10.16px] w-[10.16px] rounded-full bg-white/30" />
-                          <span className="h-[10.16px] w-[10.16px] rounded-full bg-white/30" />
+                          <span className="h-[8px] w-[8px] rounded-full bg-[#ECECEC]" />
+                          <span className="h-[7px] w-[7px] rounded-full bg-white/30" />
+                          <span className="h-[7px] w-[7px] rounded-full bg-white/30" />
                         </div>
-                      </div>
 
-                      <div className="mt-2 flex min-h-[100px] w-full max-w-[317px] flex-col items-center gap-[26px] md:mt-3">
+                      <div className="mt-1 flex min-h-[80px] w-full max-w-[280px] flex-col items-center gap-[20px]">
                         <a
                           href="/contact"
-                          className="flex h-[53px] w-[225px] max-w-full items-center justify-center rounded-[18px] bg-white px-[28px] py-[18px] font-[Geist] text-[16px] font-bold leading-[20px] text-black whitespace-nowrap"
+                          className="flex h-[45px] w-[200px] max-w-full items-center justify-center rounded-[14px] bg-white px-[24px] py-[14px] font-[Geist] text-[14px] font-bold leading-[18px] text-black whitespace-nowrap"
                         >
                           Sécuriser mon projet
                         </a>
 
-                        <p className="w-full max-w-[317px] text-center font-[Geist] font-medium text-[15.3706px] leading-[21px] text-white/50">
+                        <p className="w-full max-w-[280px] text-center font-[Geist] font-medium text-[12px] leading-[16px] text-white/50">
                           &copy; 2026 RNJ Advisory. Tous droits réservés.
                         </p>
                       </div>
-                    </div>
                   </div>
                 </article>
 
@@ -2671,7 +2736,7 @@ export default function Home() {
                   src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778052436/rnj/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc-0151df33.jpg"
                   alt=""
                   aria-hidden="true"
-                  style={{ position: 'absolute', height: '100%', width: '100%', left: 0, top: 0, right: 0, bottom: 0, objectFit: 'cover', objectPosition: 'center 70%', color: 'transparent' }}
+                  style={{ position: 'absolute', height: '100%', width: '100%', left: 0, top: 0, right: 0, bottom: 0, objectFit: 'cover', objectPosition: 'center 80%', color: 'transparent' }}
                 />
               </div>
 
@@ -2687,7 +2752,7 @@ export default function Home() {
 
               <div className="relative z-[20] w-full">
                 <div className="mx-auto w-full max-w-none px-0">
-                  <div className="mx-auto mt-16 flex w-full max-w-[774px] flex-col items-center gap-5 px-4 text-center sm:mt-20 sm:gap-6 sm:px-6 md:mt-24 md:gap-[41.6px] md:px-0 lg:mt-28 xl:mt-32">
+                  <div className="mx-auto mt-16 flex w-full max-w-[776px] flex-col items-center gap-5 px-4 text-center sm:mt-20 sm:gap-6 sm:px-6 md:mt-24 md:gap-[41.6px] md:px-0 lg:mt-28 xl:mt-32">
                     <h2
                       className="w-full max-w-[813px] font-[EB_Garamond] font-semibold tracking-[-0.03em] text-[#003300]"
                       style={{
@@ -2724,7 +2789,7 @@ export default function Home() {
                   </div>
 
                   <div
-                    className="relative mt-14 md:mt-20 lg:mt-24 xl:mt-28"
+                    className="relative mt-14 md:mt-20 lg:mt-24 xl:mt-28 pb-[4%]"
                     onMouseEnter={() => setIsInstitutionalCarouselPaused(true)}
                     onMouseLeave={() => setIsInstitutionalCarouselPaused(false)}
                     onTouchStart={() => setIsInstitutionalCarouselPaused(true)}
@@ -2810,6 +2875,7 @@ export default function Home() {
                         ref={institutionalCarouselRef}
                         className="relative z-10 mx-auto flex w-full max-w-[1500px] snap-x snap-mandatory flex-nowrap gap-4 overflow-x-auto overflow-y-hidden px-3 py-3 touch-pan-x overscroll-x-contain scroll-smooth sm:px-4 md:gap-5 md:px-6 md:py-4 lg:px-8 xl:gap-[10px] xl:px-[52px] [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
                         style={{ WebkitOverflowScrolling: 'touch' }}
+                        onScroll={(e) => handleInstitutionalCarouselScroll(e.currentTarget)}
                       >
                         {[...institutionalCarouselCards, ...institutionalCarouselCards].map((card, index) => (
                           <article
@@ -2934,7 +3000,34 @@ export default function Home() {
                           )}
                         </article>
                       ))}
-                    </div>
+
+                      {/* Pagination dots */}
+                      <div className="relative z-[25] mx-auto mt-6 flex w-full items-center justify-center gap-3 sm:gap-4 md:gap-5">
+                        {institutionalCarouselCards.map((_, dotIndex) => (
+                          <button
+                            key={`dot-${dotIndex}`}
+                            type="button"
+                            aria-label={`Aller au slide ${dotIndex + 1}`}
+                            onClick={() => {
+                              const carousel = institutionalCarouselRef.current;
+                              if (!carousel) return;
+                              const firstCard = carousel.querySelector('[data-institutional-card]') as HTMLElement | null;
+                              if (!firstCard) return;
+                              const styles = getComputedStyle(carousel);
+                              const gap = Number.parseFloat(styles.columnGap || styles.gap || '0') || 0;
+                              const cardWidth = firstCard.getBoundingClientRect().width;
+                              const step = cardWidth + gap;
+                              carousel.scrollTo({ left: step * dotIndex, behavior: 'smooth' });
+                            }}
+                            className={`h-[10px] w-[10px] rounded-full border-2 transition-all duration-300 sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px] ${
+                              activeInstitutionalSlide === dotIndex
+                                ? 'scale-125 border-[#003300] bg-[#003300]'
+                                : 'scale-100 border-[#003300]/40 bg-transparent hover:border-[#003300]/70'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                      </div>
                     </div>
                   </div>
 
@@ -3406,14 +3499,14 @@ export default function Home() {
                         <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334064/rnj/e-sdg-print-08-1-53b17059.svg" alt="SDG 8" className="h-[34px] w-[34px] sm:h-[36px] sm:w-[36px]" />
                       </div>
                     </div>
-                    <div className="bento-card bento-d7 relative flex h-[91px] w-full items-center justify-center gap-[6px] rounded-[20px] bg-[#406640] px-4 sm:px-8">
+                    <Link href="/contact" className="bento-card bento-d7 relative flex h-[91px] w-full items-center justify-center gap-[6px] rounded-[20px] bg-[#406640] px-4 sm:px-8 transition-colors hover:bg-[#4a754a]">
                       <div className="flex h-[44px] w-[45px] items-center justify-center rounded-full bg-white">
                         <span className="text-[#003300]">→</span>
                       </div>
                       <div className="flex h-[43px] min-w-[115px] items-center justify-center rounded-full bg-white px-4">
                         <span className="font-[Geist] text-[16px] font-semibold text-[#003300]">Contact</span>
                       </div>
-                    </div>
+                    </Link>
                   </div>
 
                   {/* Concentric circles card */}

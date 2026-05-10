@@ -1,0 +1,996 @@
+{
+  "analysis_date": "2026-05-10",
+  "summary": {
+    "total_cloudinary_urls": 118,
+    "total_local_paths": 8,
+    "total_cloudinary_assets": 142,
+    "used_assets": 118,
+    "unused_assets": 142,
+    "unused_size_bytes": 175504529,
+    "unused_size_mb": 167.37
+  },
+  "used_cloudinary_urls": [
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334038/rnj/jakub-zerdzicki-yknibjv0rby-unsplash-1-1b22cd9c.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778065554/rnj/optimized/image-droit-des-contrats-securite-commerciale-1.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310357/rnj/group-555-a5305936.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310359/rnj/layer-1-27-a0d86191.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333867/rnj/asset-26-1-3d6250e2.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333996/rnj/openai-jake-stangel-1-c442a239.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410416/rnj/mask-group-39-06a5eb07.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310340/rnj/group-349075-a2bbf73f.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335425/rnj/optimized/group-541-1-5b55b5e0.webp",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376840/rnj/nahla-eae48fe8.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333857/rnj/asset-15-1-7f0249bf.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333875/rnj/vector-18-18cc905b.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410425/rnj/group-482-365877a7.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333876/rnj/mask-group-11-4a32da53.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376835/rnj/handshake-387c4c1d.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334123/rnj/mask-group-21-d1c01771.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132763/rnj/eya-44c9ccac.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132735/rnj/tn-map-7a9a40cd.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334126/rnj/group-73892e5a.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132776/rnj/beautiful-architecture-building-exterior-cityscape-2026-01-05-01-06-47-utc-2-8e38423b.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334018/rnj/mask-group-16-f5d02d69.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334110/rnj/mask-group-24-fd4f223e.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334064/rnj/e-sdg-print-08-1-53b17059.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376829/rnj/check-mark-89a3c66e.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376884/rnj/optimized/mask-group-36-61b10456.webp",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778052436/rnj/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc-0151df33.jpg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051883/rnj/optimized/group-352-3-8e109b3c.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051889/rnj/optimized/group-363-1-a0d0a075.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132743/rnj/ne-27d79c5a.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334075/rnj/group-67-4180bee4.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334015/rnj/layer-1-2-1d375d74.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334004/rnj/group-1-23b4740e.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333970/rnj/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc-1-72edb5b8.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334069/rnj/group-2-8d410a01.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410428/rnj/group-484-04b278f7.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376826/rnj/users-f9417797.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410434/rnj/mask-group-38-09146cc3.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132738/rnj/sn-fa0dd3fe.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334060/rnj/group-558-46fa6f2f.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334109/rnj/mask-group-23-1ce30be9.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778038594/Group_349101_cbdiuf.png",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333866/rnj/asset-24-1-1c05ea09.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334091/rnj/layer-1-24-5765da83.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051879/rnj/optimized/group-444-70554d8f.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389844/rnj/og-contact-af2e1910.jpg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051896/rnj/optimized/profile-investisseur-7de68e69.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132737/rnj/mr-f851e151.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335426/rnj/optimized/group-541-2-59ca9193.webp",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132766/rnj/chahine-88336938.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334067/rnj/vector-2-8beb62fa.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376885/rnj/optimized/wind-energy-wind-power-sustainable-renewable-en-2026-03-18-04-35-53-utc-1-84fe3c19.webp",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310353/rnj/blog-0f03cf9e.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132741/rnj/bf-82043e17.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333864/rnj/asset-23-1-9c5664dc.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410422/rnj/group-483-89ee6676.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051902/rnj/optimized/profile-autre-07e379c1.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333855/rnj/asset-14-1-cda0f5e7.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333861/rnj/asset-21-1-6ad9b68e.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132761/rnj/ramzi-05917bd9.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310333/rnj/group-527-v2-03944abc.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334115/rnj/mask-group-27-5870749d.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334061/rnj/e-sdg-print-07-1-af43b2fc.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376883/rnj/optimized/esg-conformit-appels-projets-b1d37fff.webp",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132739/rnj/gn-09d6746e.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132770/rnj/group-349020-a82fd32c.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333859/rnj/asset-17-1-5077f95f.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334077/rnj/vector-20-25c3631c.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334065/rnj/group-559-aaf6f0b3.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333873/rnj/vector-19-81ce45a8.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334111/rnj/mask-group-25-516d2f88.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310363/rnj/business-people-meeting-to-join-with-partner-team-2026-03-25-03-32-06-utc-10a13933.jpg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333869/rnj/asset-27-1-8679f4ab.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389405/rnj/group-349031-1-46313aad.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333870/rnj/asset-28-1-d6d25061.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334055/rnj/beci-2-1-241bb936.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333990/rnj/group-541-2a130507.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310349/rnj/pins-951a2bbe.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389845/rnj/og-home-f960652e.jpg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333984/rnj/layer-4-955dc651.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335427/rnj/optimized/group-65-16f18ed1.webp",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051869/rnj/optimized/mask-group-44-3cbc4b7d.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334022/rnj/mask-group-17-57db8ebe.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376833/rnj/earth-c9fdae9d.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132753/rnj/maps-10375837.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778032115/Group_391_euee0h.png",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132780/rnj/map-3-380cf512.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132742/rnj/bj-46e4c23a.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310361/rnj/layer-1-26-33e2a54e.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334072/rnj/group-4-c8bc5566.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333858/rnj/asset-16-1-41dc72e6.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051894/rnj/optimized/profile-entrepreneur-bbe709fa.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334113/rnj/mask-group-26-a7a619cb.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410430/rnj/group-481-8071b8c8.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334070/rnj/group-3-ab3adbb8.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334127/rnj/asset-96a86689.png",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051878/rnj/optimized/group-444-left-68489dda.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333987/rnj/light-bulb-1-1-aa32136c.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333881/rnj/mask-group-5-c793fd9f.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410436/rnj/optimized/frame-559.webp",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333879/rnj/mask-group-4-f2eb00c6.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376831/rnj/methologie-648e7fd2.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334107/rnj/frame-487-5f9f4c30.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132745/rnj/cd-c076eecb.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376827/rnj/law-ec037074.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376864/rnj/group-349012-8572149e.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333878/rnj/mask-group-3-2ece0ef0.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333999/rnj/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc-1-a731531a.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051900/rnj/optimized/profile-institution-b9c718be.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778101215/rnj/optimized/mask-group-40-37d12ade.webp",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334020/rnj/image-2-2c9f497b.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051891/rnj/optimized/group-349091-1-144384f9.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389845/rnj/twitter-contact-b57c71ae.jpg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778101216/rnj/optimized/partenariats-public-priv-concessions-image-c255db89.webp",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334073/rnj/layer-1-3-08f03874.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389846/rnj/twitter-home-0741522b.jpg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333863/rnj/asset-22-1-ac5775de.svg",
+    "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333872/rnj/mask-group-12-bfc180ab.svg"
+  ],
+  "local_image_paths": [
+    "/optimized/wind-turbines-on-golden-green-field-in-summer-aer-2026-03-24-13-00-37-utc 1.svg",
+    "/optimized/Mask%20group%20(6).png",
+    "/optimized/Group 349040.svg",
+    "public/Group 23.svg",
+    "/optimized/Mask%20group%20(45).svg",
+    "/optimized/group-349025.webp",
+    "/optimized/Group 348987 (1).svg",
+    "public/world-map.svg"
+  ],
+  "unused_assets": [
+    {
+      "public_id": "rnj/optimized/mask-group-43-a1d5b8c4",
+      "format": "webp",
+      "bytes": 261344,
+      "created_at": "2026-05-06T21:01:23Z"
+    },
+    {
+      "public_id": "rnj/optimized/partenariats-public-priv-concessions-image-c255db89",
+      "format": "webp",
+      "bytes": 40850,
+      "created_at": "2026-05-06T21:00:16Z"
+    },
+    {
+      "public_id": "rnj/optimized/mask-group-40-37d12ade",
+      "format": "webp",
+      "bytes": 68718,
+      "created_at": "2026-05-06T21:00:15Z"
+    },
+    {
+      "public_id": "rnj/optimized/whatsapp-image-2026-04-19-12-51-04-pm",
+      "format": "jpg",
+      "bytes": 267255,
+      "created_at": "2026-05-06T11:07:01Z"
+    },
+    {
+      "public_id": "rnj/optimized/image-droit-des-contrats-securite-commerciale-1",
+      "format": "svg",
+      "bytes": 7357855,
+      "created_at": "2026-05-06T11:05:54Z"
+    },
+    {
+      "public_id": "rnj/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc-0151df33",
+      "format": "jpg",
+      "bytes": 2109526,
+      "created_at": "2026-05-06T07:27:16Z"
+    },
+    {
+      "public_id": "rnj/optimized/profile-autre-07e379c1",
+      "format": "svg",
+      "bytes": 99050,
+      "created_at": "2026-05-06T07:18:22Z"
+    },
+    {
+      "public_id": "rnj/optimized/profile-institution-b9c718be",
+      "format": "svg",
+      "bytes": 138134,
+      "created_at": "2026-05-06T07:18:20Z"
+    },
+    {
+      "public_id": "rnj/optimized/profile-investisseur-7de68e69",
+      "format": "svg",
+      "bytes": 134549,
+      "created_at": "2026-05-06T07:18:16Z"
+    },
+    {
+      "public_id": "rnj/optimized/profile-entrepreneur-bbe709fa",
+      "format": "svg",
+      "bytes": 140774,
+      "created_at": "2026-05-06T07:18:14Z"
+    },
+    {
+      "public_id": "rnj/optimized/group-349091-1-144384f9",
+      "format": "svg",
+      "bytes": 54861,
+      "created_at": "2026-05-06T07:18:11Z"
+    },
+    {
+      "public_id": "rnj/optimized/group-363-1-a0d0a075",
+      "format": "svg",
+      "bytes": 922642,
+      "created_at": "2026-05-06T07:18:09Z"
+    },
+    {
+      "public_id": "rnj/optimized/group-352-3-8e109b3c",
+      "format": "svg",
+      "bytes": 10460944,
+      "created_at": "2026-05-06T07:18:03Z"
+    },
+    {
+      "public_id": "rnj/optimized/group-444-70554d8f",
+      "format": "svg",
+      "bytes": 298,
+      "created_at": "2026-05-06T07:17:59Z"
+    },
+    {
+      "public_id": "rnj/optimized/group-444-left-68489dda",
+      "format": "svg",
+      "bytes": 298,
+      "created_at": "2026-05-06T07:17:58Z"
+    },
+    {
+      "public_id": "rnj/optimized/vector-22-5240d59f",
+      "format": "svg",
+      "bytes": 3352,
+      "created_at": "2026-05-06T07:17:55Z"
+    },
+    {
+      "public_id": "rnj/optimized/mask-group-44-3cbc4b7d",
+      "format": "svg",
+      "bytes": 8325816,
+      "created_at": "2026-05-06T07:17:49Z"
+    },
+    {
+      "public_id": "rnj/mask-group-38-09146cc3",
+      "format": "svg",
+      "bytes": 12456,
+      "created_at": "2026-04-28T21:07:14Z"
+    },
+    {
+      "public_id": "rnj/mask-group-39-06a5eb07",
+      "format": "svg",
+      "bytes": 7721602,
+      "created_at": "2026-04-28T21:06:56Z"
+    },
+    {
+      "public_id": "rnj/image-droit-des-contrats-se-curite-commerciale-5fe5d7a2",
+      "format": "svg",
+      "bytes": 7357855,
+      "created_at": "2026-04-28T21:06:50Z"
+    },
+    {
+      "public_id": "rnj/optimized/wind-energy-wind-power-sustainable-renewable-en-2026-03-18-04-35-53-utc-1-84fe3c19",
+      "format": "webp",
+      "bytes": 405648,
+      "created_at": "2026-04-28T11:48:05Z"
+    },
+    {
+      "public_id": "rnj/optimized/mask-group-36-61b10456",
+      "format": "webp",
+      "bytes": 60116,
+      "created_at": "2026-04-28T11:48:04Z"
+    },
+    {
+      "public_id": "rnj/optimized/esg-conformit-appels-projets-b1d37fff",
+      "format": "webp",
+      "bytes": 52748,
+      "created_at": "2026-04-28T11:48:03Z"
+    },
+    {
+      "public_id": "rnj/group-349012-8572149e",
+      "format": "svg",
+      "bytes": 14647,
+      "created_at": "2026-04-28T11:47:44Z"
+    },
+    {
+      "public_id": "rnj/group-349017-391749d4",
+      "format": "svg",
+      "bytes": 10018919,
+      "created_at": "2026-04-28T11:47:40Z"
+    },
+    {
+      "public_id": "rnj/handshake-387c4c1d",
+      "format": "svg",
+      "bytes": 6658,
+      "created_at": "2026-04-28T11:47:15Z"
+    },
+    {
+      "public_id": "rnj/earth-c9fdae9d",
+      "format": "svg",
+      "bytes": 5034,
+      "created_at": "2026-04-28T11:47:13Z"
+    },
+    {
+      "public_id": "rnj/methologie-648e7fd2",
+      "format": "svg",
+      "bytes": 1572,
+      "created_at": "2026-04-28T11:47:11Z"
+    },
+    {
+      "public_id": "rnj/check-mark-89a3c66e",
+      "format": "svg",
+      "bytes": 223,
+      "created_at": "2026-04-28T11:47:09Z"
+    },
+    {
+      "public_id": "rnj/law-ec037074",
+      "format": "svg",
+      "bytes": 1727,
+      "created_at": "2026-04-28T11:47:07Z"
+    },
+    {
+      "public_id": "rnj/users-f9417797",
+      "format": "svg",
+      "bytes": 1328,
+      "created_at": "2026-04-28T11:47:06Z"
+    },
+    {
+      "public_id": "rnj/optimized/mask-group-34-8516afa4",
+      "format": "webp",
+      "bytes": 32790,
+      "created_at": "2026-04-27T17:21:54Z"
+    },
+    {
+      "public_id": "rnj/business-people-meeting-to-join-with-partner-team-2026-03-25-03-32-06-utc-10a13933",
+      "format": "jpg",
+      "bytes": 5499494,
+      "created_at": "2026-04-27T17:19:23Z"
+    },
+    {
+      "public_id": "rnj/layer-1-26-33e2a54e",
+      "format": "svg",
+      "bytes": 1056,
+      "created_at": "2026-04-27T17:19:21Z"
+    },
+    {
+      "public_id": "rnj/layer-1-27-a0d86191",
+      "format": "svg",
+      "bytes": 943,
+      "created_at": "2026-04-27T17:19:19Z"
+    },
+    {
+      "public_id": "rnj/group-555-a5305936",
+      "format": "svg",
+      "bytes": 45985,
+      "created_at": "2026-04-27T17:19:17Z"
+    },
+    {
+      "public_id": "rnj/blog-0f03cf9e",
+      "format": "svg",
+      "bytes": 8776468,
+      "created_at": "2026-04-27T17:19:13Z"
+    },
+    {
+      "public_id": "rnj/whatsapp-image-2026-04-19-at-12.52.25-pm-1-84a926a6",
+      "format": "svg",
+      "bytes": 394289,
+      "created_at": "2026-04-27T17:19:04Z"
+    },
+    {
+      "public_id": "rnj/group-349075-a2bbf73f",
+      "format": "svg",
+      "bytes": 549,
+      "created_at": "2026-04-27T17:19:00Z"
+    },
+    {
+      "public_id": "rnj/group-527-v2-03944abc",
+      "format": "svg",
+      "bytes": 7409195,
+      "created_at": "2026-04-27T17:18:53Z"
+    },
+    {
+      "public_id": "rnj/beautiful-architecture-building-exterior-cityscape-2026-01-05-01-06-47-utc-2-8e38423b",
+      "format": "svg",
+      "bytes": 6767330,
+      "created_at": "2026-04-25T15:59:36Z"
+    },
+    {
+      "public_id": "rnj/frame-16-8d976706",
+      "format": "svg",
+      "bytes": 70712,
+      "created_at": "2026-04-25T15:59:34Z"
+    },
+    {
+      "public_id": "rnj/business-meeting-background-b7be96e9",
+      "format": "jpg",
+      "bytes": 7132565,
+      "created_at": "2026-04-25T15:59:33Z"
+    },
+    {
+      "public_id": "rnj/group-349020-a82fd32c",
+      "format": "svg",
+      "bytes": 5356378,
+      "created_at": "2026-04-25T15:59:30Z"
+    },
+    {
+      "public_id": "rnj/chahine-88336938",
+      "format": "svg",
+      "bytes": 4803619,
+      "created_at": "2026-04-25T15:59:26Z"
+    },
+    {
+      "public_id": "rnj/eya-44c9ccac",
+      "format": "svg",
+      "bytes": 2775349,
+      "created_at": "2026-04-25T15:59:23Z"
+    },
+    {
+      "public_id": "rnj/ramzi-05917bd9",
+      "format": "svg",
+      "bytes": 3347743,
+      "created_at": "2026-04-25T15:59:21Z"
+    },
+    {
+      "public_id": "rnj/nahla-eae48fe8",
+      "format": "svg",
+      "bytes": 10018919,
+      "created_at": "2026-04-25T15:59:18Z"
+    },
+    {
+      "public_id": "rnj/pins-951a2bbe",
+      "format": "svg",
+      "bytes": 13841,
+      "created_at": "2026-04-25T15:59:16Z"
+    },
+    {
+      "public_id": "rnj/maps-10375837",
+      "format": "svg",
+      "bytes": 236504,
+      "created_at": "2026-04-25T15:59:13Z"
+    },
+    {
+      "public_id": "rnj/cd-c076eecb",
+      "format": "svg",
+      "bytes": 2179,
+      "created_at": "2026-04-25T15:59:05Z"
+    },
+    {
+      "public_id": "rnj/ne-27d79c5a",
+      "format": "svg",
+      "bytes": 1122,
+      "created_at": "2026-04-25T15:59:03Z"
+    },
+    {
+      "public_id": "rnj/bj-46e4c23a",
+      "format": "svg",
+      "bytes": 608,
+      "created_at": "2026-04-25T15:59:02Z"
+    },
+    {
+      "public_id": "rnj/bf-82043e17",
+      "format": "svg",
+      "bytes": 834,
+      "created_at": "2026-04-25T15:59:01Z"
+    },
+    {
+      "public_id": "rnj/gn-09d6746e",
+      "format": "svg",
+      "bytes": 1300,
+      "created_at": "2026-04-25T15:58:59Z"
+    },
+    {
+      "public_id": "rnj/sn-fa0dd3fe",
+      "format": "svg",
+      "bytes": 894,
+      "created_at": "2026-04-25T15:58:58Z"
+    },
+    {
+      "public_id": "rnj/mr-f851e151",
+      "format": "svg",
+      "bytes": 819,
+      "created_at": "2026-04-25T15:58:57Z"
+    },
+    {
+      "public_id": "rnj/tn-map-7a9a40cd",
+      "format": "svg",
+      "bytes": 704,
+      "created_at": "2026-04-25T15:58:55Z"
+    },
+    {
+      "public_id": "rnj/twitter-home-0741522b",
+      "format": "jpg",
+      "bytes": 87939,
+      "created_at": "2026-04-17T01:37:26Z"
+    },
+    {
+      "public_id": "rnj/og-home-f960652e",
+      "format": "jpg",
+      "bytes": 87939,
+      "created_at": "2026-04-17T01:37:25Z"
+    },
+    {
+      "public_id": "rnj/twitter-contact-b57c71ae",
+      "format": "jpg",
+      "bytes": 99058,
+      "created_at": "2026-04-17T01:37:25Z"
+    },
+    {
+      "public_id": "rnj/og-contact-af2e1910",
+      "format": "jpg",
+      "bytes": 99058,
+      "created_at": "2026-04-17T01:37:24Z"
+    },
+    {
+      "public_id": "rnj/group-349031-1-46313aad",
+      "format": "svg",
+      "bytes": 31658,
+      "created_at": "2026-04-17T01:30:05Z"
+    },
+    {
+      "public_id": "rnj/optimized/group-65-16f18ed1",
+      "format": "webp",
+      "bytes": 13236,
+      "created_at": "2026-04-16T10:30:27Z"
+    },
+    {
+      "public_id": "rnj/optimized/frame-559-7811d1b0",
+      "format": "webp",
+      "bytes": 38318,
+      "created_at": "2026-04-16T10:30:27Z"
+    },
+    {
+      "public_id": "rnj/optimized/group-541-2-59ca9193",
+      "format": "webp",
+      "bytes": 56176,
+      "created_at": "2026-04-16T10:30:26Z"
+    },
+    {
+      "public_id": "rnj/optimized/group-541-1-5b55b5e0",
+      "format": "webp",
+      "bytes": 44210,
+      "created_at": "2026-04-16T10:30:25Z"
+    },
+    {
+      "public_id": "rnj/optimized/business-meeting-2026-01-08-00-07-57-utc-3-971f8e8a",
+      "format": "webp",
+      "bytes": 30422,
+      "created_at": "2026-04-16T10:30:24Z"
+    },
+    {
+      "public_id": "rnj/optimized/multinational-company-headquarters-office-with-a-b-2026-01-08-02-30-05-utc-1-bb7b9def",
+      "format": "webp",
+      "bytes": 37676,
+      "created_at": "2026-04-16T10:30:23Z"
+    },
+    {
+      "public_id": "rnj/asset-96a86689",
+      "format": "png",
+      "bytes": 626,
+      "created_at": "2026-04-16T10:08:47Z"
+    },
+    {
+      "public_id": "rnj/group-73892e5a",
+      "format": "svg",
+      "bytes": 37915,
+      "created_at": "2026-04-16T10:08:46Z"
+    },
+    {
+      "public_id": "rnj/mask-group-21-d1c01771",
+      "format": "svg",
+      "bytes": 1183,
+      "created_at": "2026-04-16T10:08:43Z"
+    },
+    {
+      "public_id": "rnj/mask-group-20-0d9c29f8",
+      "format": "svg",
+      "bytes": 4045776,
+      "created_at": "2026-04-16T10:08:41Z"
+    },
+    {
+      "public_id": "rnj/mask-group-27-5870749d",
+      "format": "svg",
+      "bytes": 6061,
+      "created_at": "2026-04-16T10:08:35Z"
+    },
+    {
+      "public_id": "rnj/mask-group-26-a7a619cb",
+      "format": "svg",
+      "bytes": 4600,
+      "created_at": "2026-04-16T10:08:33Z"
+    },
+    {
+      "public_id": "rnj/mask-group-25-516d2f88",
+      "format": "svg",
+      "bytes": 7587,
+      "created_at": "2026-04-16T10:08:31Z"
+    },
+    {
+      "public_id": "rnj/mask-group-24-fd4f223e",
+      "format": "svg",
+      "bytes": 4856,
+      "created_at": "2026-04-16T10:08:30Z"
+    },
+    {
+      "public_id": "rnj/mask-group-23-1ce30be9",
+      "format": "svg",
+      "bytes": 11068,
+      "created_at": "2026-04-16T10:08:29Z"
+    },
+    {
+      "public_id": "rnj/frame-487-5f9f4c30",
+      "format": "svg",
+      "bytes": 1423,
+      "created_at": "2026-04-16T10:08:27Z"
+    },
+    {
+      "public_id": "rnj/map-3-380cf512",
+      "format": "svg",
+      "bytes": 112988,
+      "created_at": "2026-04-16T10:08:23Z"
+    },
+    {
+      "public_id": "rnj/group-481-8071b8c8",
+      "format": "svg",
+      "bytes": 5883417,
+      "created_at": "2026-04-16T10:08:20Z"
+    },
+    {
+      "public_id": "rnj/group-484-04b278f7",
+      "format": "svg",
+      "bytes": 153557,
+      "created_at": "2026-04-16T10:08:17Z"
+    },
+    {
+      "public_id": "rnj/group-482-365877a7",
+      "format": "svg",
+      "bytes": 437068,
+      "created_at": "2026-04-16T10:08:15Z"
+    },
+    {
+      "public_id": "rnj/group-483-89ee6676",
+      "format": "svg",
+      "bytes": 215212,
+      "created_at": "2026-04-16T10:08:13Z"
+    },
+    {
+      "public_id": "rnj/layer-1-24-5765da83",
+      "format": "svg",
+      "bytes": 1784,
+      "created_at": "2026-04-16T10:08:11Z"
+    },
+    {
+      "public_id": "rnj/autre-3a5ebc68",
+      "format": "svg",
+      "bytes": 98914,
+      "created_at": "2026-04-16T10:08:09Z"
+    },
+    {
+      "public_id": "rnj/entrepreneur-855980d1",
+      "format": "svg",
+      "bytes": 140658,
+      "created_at": "2026-04-16T10:08:07Z"
+    },
+    {
+      "public_id": "rnj/investisseur-b14c1fbc",
+      "format": "svg",
+      "bytes": 134333,
+      "created_at": "2026-04-16T10:08:05Z"
+    },
+    {
+      "public_id": "rnj/institution-ff95583d",
+      "format": "svg",
+      "bytes": 138264,
+      "created_at": "2026-04-16T10:08:02Z"
+    },
+    {
+      "public_id": "rnj/frame-391-96629423",
+      "format": "svg",
+      "bytes": 1863157,
+      "created_at": "2026-04-16T10:07:58Z"
+    },
+    {
+      "public_id": "rnj/vector-20-25c3631c",
+      "format": "svg",
+      "bytes": 238,
+      "created_at": "2026-04-16T10:07:57Z"
+    },
+    {
+      "public_id": "rnj/group-67-4180bee4",
+      "format": "svg",
+      "bytes": 356,
+      "created_at": "2026-04-16T10:07:55Z"
+    },
+    {
+      "public_id": "rnj/layer-1-3-08f03874",
+      "format": "svg",
+      "bytes": 6256,
+      "created_at": "2026-04-16T10:07:53Z"
+    },
+    {
+      "public_id": "rnj/group-4-c8bc5566",
+      "format": "svg",
+      "bytes": 755,
+      "created_at": "2026-04-16T10:07:52Z"
+    },
+    {
+      "public_id": "rnj/group-3-ab3adbb8",
+      "format": "svg",
+      "bytes": 3288,
+      "created_at": "2026-04-16T10:07:50Z"
+    },
+    {
+      "public_id": "rnj/group-2-8d410a01",
+      "format": "svg",
+      "bytes": 2355,
+      "created_at": "2026-04-16T10:07:49Z"
+    },
+    {
+      "public_id": "rnj/vector-2-8beb62fa",
+      "format": "svg",
+      "bytes": 8069,
+      "created_at": "2026-04-16T10:07:47Z"
+    },
+    {
+      "public_id": "rnj/group-559-aaf6f0b3",
+      "format": "svg",
+      "bytes": 7421,
+      "created_at": "2026-04-16T10:07:45Z"
+    },
+    {
+      "public_id": "rnj/e-sdg-print-08-1-53b17059",
+      "format": "svg",
+      "bytes": 152079,
+      "created_at": "2026-04-16T10:07:44Z"
+    },
+    {
+      "public_id": "rnj/e-sdg-print-07-1-af43b2fc",
+      "format": "svg",
+      "bytes": 130703,
+      "created_at": "2026-04-16T10:07:41Z"
+    },
+    {
+      "public_id": "rnj/group-558-46fa6f2f",
+      "format": "svg",
+      "bytes": 8076,
+      "created_at": "2026-04-16T10:07:40Z"
+    },
+    {
+      "public_id": "rnj/group-352-32f4e599",
+      "format": "svg",
+      "bytes": 122654,
+      "created_at": "2026-04-16T10:07:38Z"
+    },
+    {
+      "public_id": "rnj/beci-2-1-241bb936",
+      "format": "svg",
+      "bytes": 244037,
+      "created_at": "2026-04-16T10:07:35Z"
+    },
+    {
+      "public_id": "rnj/group-353-8693f0d7",
+      "format": "svg",
+      "bytes": 722318,
+      "created_at": "2026-04-16T10:07:25Z"
+    },
+    {
+      "public_id": "rnj/group-363-02f81f30",
+      "format": "svg",
+      "bytes": 1219161,
+      "created_at": "2026-04-16T10:07:22Z"
+    },
+    {
+      "public_id": "rnj/businessfotografie-bewerbungsfotos-berlin-kopf-kragen-1-f0daffa4",
+      "format": "svg",
+      "bytes": 92123,
+      "created_at": "2026-04-16T10:07:20Z"
+    },
+    {
+      "public_id": "rnj/jakub-zerdzicki-yknibjv0rby-unsplash-1-1b22cd9c",
+      "format": "svg",
+      "bytes": 630619,
+      "created_at": "2026-04-16T10:07:18Z"
+    },
+    {
+      "public_id": "rnj/group-349051-d2f123fc",
+      "format": "svg",
+      "bytes": 190108,
+      "created_at": "2026-04-16T10:07:16Z"
+    },
+    {
+      "public_id": "rnj/mask-group-18-c3bd04c7",
+      "format": "svg",
+      "bytes": 8470748,
+      "created_at": "2026-04-16T10:07:11Z"
+    },
+    {
+      "public_id": "rnj/minimal-horizontal-logo-white-1-317aafcc",
+      "format": "svg",
+      "bytes": 46074,
+      "created_at": "2026-04-16T10:07:07Z"
+    },
+    {
+      "public_id": "rnj/group-349040-b40f156d",
+      "format": "svg",
+      "bytes": 151740,
+      "created_at": "2026-04-16T10:07:06Z"
+    },
+    {
+      "public_id": "rnj/mask-group-17-57db8ebe",
+      "format": "svg",
+      "bytes": 527101,
+      "created_at": "2026-04-16T10:07:02Z"
+    },
+    {
+      "public_id": "rnj/image-2-2c9f497b",
+      "format": "svg",
+      "bytes": 18089,
+      "created_at": "2026-04-16T10:07:00Z"
+    },
+    {
+      "public_id": "rnj/mask-group-16-f5d02d69",
+      "format": "svg",
+      "bytes": 235269,
+      "created_at": "2026-04-16T10:06:58Z"
+    },
+    {
+      "public_id": "rnj/layer-1-2-1d375d74",
+      "format": "svg",
+      "bytes": 3937,
+      "created_at": "2026-04-16T10:06:55Z"
+    },
+    {
+      "public_id": "rnj/group-1-23b4740e",
+      "format": "svg",
+      "bytes": 3375,
+      "created_at": "2026-04-16T10:06:44Z"
+    },
+    {
+      "public_id": "rnj/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc-1-a731531a",
+      "format": "svg",
+      "bytes": 9426441,
+      "created_at": "2026-04-16T10:06:39Z"
+    },
+    {
+      "public_id": "rnj/openai-jake-stangel-1-c442a239",
+      "format": "svg",
+      "bytes": 138103,
+      "created_at": "2026-04-16T10:06:36Z"
+    },
+    {
+      "public_id": "rnj/vector-17-f73f224f",
+      "format": "svg",
+      "bytes": 714,
+      "created_at": "2026-04-16T10:06:35Z"
+    },
+    {
+      "public_id": "rnj/group-541-2a130507",
+      "format": "svg",
+      "bytes": 146952,
+      "created_at": "2026-04-16T10:06:30Z"
+    },
+    {
+      "public_id": "rnj/light-bulb-1-1-aa32136c",
+      "format": "svg",
+      "bytes": 4089,
+      "created_at": "2026-04-16T10:06:27Z"
+    },
+    {
+      "public_id": "rnj/layer-4-955dc651",
+      "format": "svg",
+      "bytes": 41142,
+      "created_at": "2026-04-16T10:06:24Z"
+    },
+    {
+      "public_id": "rnj/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc-1-72edb5b8",
+      "format": "svg",
+      "bytes": 10198115,
+      "created_at": "2026-04-16T10:06:10Z"
+    },
+    {
+      "public_id": "rnj/pexels-henri-mathieu-8348468-1-9eb7df36",
+      "format": "svg",
+      "bytes": 9666977,
+      "created_at": "2026-04-16T10:06:04Z"
+    },
+    {
+      "public_id": "rnj/mask-group-5-c793fd9f",
+      "format": "svg",
+      "bytes": 16829,
+      "created_at": "2026-04-16T10:04:41Z"
+    },
+    {
+      "public_id": "rnj/mask-group-4-f2eb00c6",
+      "format": "svg",
+      "bytes": 14535,
+      "created_at": "2026-04-16T10:04:39Z"
+    },
+    {
+      "public_id": "rnj/mask-group-3-2ece0ef0",
+      "format": "svg",
+      "bytes": 10626,
+      "created_at": "2026-04-16T10:04:38Z"
+    },
+    {
+      "public_id": "rnj/mask-group-11-4a32da53",
+      "format": "svg",
+      "bytes": 14479,
+      "created_at": "2026-04-16T10:04:36Z"
+    },
+    {
+      "public_id": "rnj/vector-18-18cc905b",
+      "format": "svg",
+      "bytes": 711,
+      "created_at": "2026-04-16T10:04:35Z"
+    },
+    {
+      "public_id": "rnj/vector-19-81ce45a8",
+      "format": "svg",
+      "bytes": 809,
+      "created_at": "2026-04-16T10:04:33Z"
+    },
+    {
+      "public_id": "rnj/mask-group-12-bfc180ab",
+      "format": "svg",
+      "bytes": 26443,
+      "created_at": "2026-04-16T10:04:32Z"
+    },
+    {
+      "public_id": "rnj/asset-28-1-d6d25061",
+      "format": "svg",
+      "bytes": 11980,
+      "created_at": "2026-04-16T10:04:30Z"
+    },
+    {
+      "public_id": "rnj/asset-27-1-8679f4ab",
+      "format": "svg",
+      "bytes": 13942,
+      "created_at": "2026-04-16T10:04:29Z"
+    },
+    {
+      "public_id": "rnj/asset-26-1-3d6250e2",
+      "format": "svg",
+      "bytes": 4097,
+      "created_at": "2026-04-16T10:04:27Z"
+    },
+    {
+      "public_id": "rnj/asset-24-1-1c05ea09",
+      "format": "svg",
+      "bytes": 20409,
+      "created_at": "2026-04-16T10:04:26Z"
+    },
+    {
+      "public_id": "rnj/asset-23-1-9c5664dc",
+      "format": "svg",
+      "bytes": 6953,
+      "created_at": "2026-04-16T10:04:24Z"
+    },
+    {
+      "public_id": "rnj/asset-22-1-ac5775de",
+      "format": "svg",
+      "bytes": 5492,
+      "created_at": "2026-04-16T10:04:23Z"
+    },
+    {
+      "public_id": "rnj/asset-21-1-6ad9b68e",
+      "format": "svg",
+      "bytes": 15686,
+      "created_at": "2026-04-16T10:04:21Z"
+    },
+    {
+      "public_id": "rnj/asset-17-1-5077f95f",
+      "format": "svg",
+      "bytes": 11905,
+      "created_at": "2026-04-16T10:04:19Z"
+    },
+    {
+      "public_id": "rnj/asset-16-1-41dc72e6",
+      "format": "svg",
+      "bytes": 31715,
+      "created_at": "2026-04-16T10:04:18Z"
+    },
+    {
+      "public_id": "rnj/asset-15-1-7f0249bf",
+      "format": "svg",
+      "bytes": 8102,
+      "created_at": "2026-04-16T10:04:17Z"
+    },
+    {
+      "public_id": "rnj/asset-14-1-cda0f5e7",
+      "format": "svg",
+      "bytes": 5209,
+      "created_at": "2026-04-16T10:04:15Z"
+    }
+  ]
+}
