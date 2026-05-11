@@ -97,13 +97,12 @@ export default function TeamCard({ name, role, tone, image, className }: TeamCar
           aria-label={`Ouvrir le profil LinkedIn de ${name}`}
         >
           <div className="relative flex h-full w-full items-center justify-center gap-3">
-            <Image
-              src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410434/rnj/mask-group-38-09146cc3.svg"
+            <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777410434/rnj/mask-group-38-09146cc3.svg"
               alt="LinkedIn"
               width={27}
               height={27}
               className="h-[27px] w-[27px]"
-            />
+             priority/>
             <span className="font-[Geist] text-[15px] font-semibold leading-[16px] text-[#003300]">
               Check LinkedIn
             </span>

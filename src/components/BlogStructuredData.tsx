@@ -10,7 +10,7 @@ const blogPosts = [
     datePublished: '2025-12-21',
     url: 'https://rnj-advisory.be/blogs#workshop-becentral-digitalisation-durable',
     image:
-      'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310353/rnj/blog-0f03cf9e.svg',
+      'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310353/rnj/blog-0f03cf9e.svg',
   },
   {
     title: "Principes et fonctionnement des garanties d'origine",
@@ -18,7 +18,7 @@ const blogPosts = [
     datePublished: '2025-12-15',
     url: 'https://rnj-advisory.be/blogs#garanties-origine',
     image:
-      'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310353/rnj/blog-0f03cf9e.svg',
+      'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310353/rnj/blog-0f03cf9e.svg',
   },
   {
     title: 'Branding Excellence : Une approche unique',
@@ -27,7 +27,7 @@ const blogPosts = [
     datePublished: '2025-12-10',
     url: 'https://rnj-advisory.be/blogs#branding-excellence',
     image:
-      'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310353/rnj/blog-0f03cf9e.svg',
+      'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310353/rnj/blog-0f03cf9e.svg',
   },
 ] as const;
 

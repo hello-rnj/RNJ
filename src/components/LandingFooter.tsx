@@ -58,23 +58,23 @@ const footerColumns: FooterColumn[] = [
 const socialIcons = [
   {
     name: 'Instagram',
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334109/rnj/mask-group-23-1ce30be9.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334109/rnj/mask-group-23-1ce30be9.svg',
   },
   {
     name: 'LinkedIn',
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334110/rnj/mask-group-24-fd4f223e.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334110/rnj/mask-group-24-fd4f223e.svg',
   },
   {
     name: 'Telegram',
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334111/rnj/mask-group-25-516d2f88.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334111/rnj/mask-group-25-516d2f88.svg',
   },
   {
     name: 'Twitter',
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334113/rnj/mask-group-26-a7a619cb.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334113/rnj/mask-group-26-a7a619cb.svg',
   },
   {
     name: 'Facebook',
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334115/rnj/mask-group-27-5870749d.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334115/rnj/mask-group-27-5870749d.svg',
   },
 ] as const;
 
@@ -185,19 +185,24 @@ export default function LandingFooter() {
   const isContactExpanded = isExtraLargeViewport && (isContactNear || isContactFocused);
 
   return (
-    <footer className="relative isolate w-full overflow-hidden bg-[#BBCB2E]">
-      <div className="relative w-full overflow-hidden lg:min-h-[816px]">
-        <div className="absolute inset-0 bg-[#BBCB2E]" aria-hidden="true" />
-
-        <Image
-          src={footerBackgroundMask}
-          alt=""
-          fill
-          aria-hidden="true"
-          className="pointer-events-none object-cover object-center"
+    <footer className="relative w-full overflow-hidden">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 h-[1765.79px] w-[1580px] -translate-x-1/2 bottom-[-82.96px]">
+          <Image
+            src={footerBackgroundMask}
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div 
+          className="absolute left-1/2 h-[1676px] w-[1513px] -translate-x-1/2 bottom-[-122px]"
+          style={{ background: 'linear-gradient(rgba(217, 217, 217, 0) 17.92%, rgb(115, 115, 115) 74.61%)' }}
         />
+      </div>
 
-        <div className="relative z-10 flex h-full w-full px-4 py-10 sm:px-6 lg:px-[25px] lg:py-[40px]">
+      <div className="relative z-10 flex flex-col">
+        <div className="flex h-full w-full px-4 py-10 sm:px-6 lg:px-[25px] lg:py-[40px]">
           <div className="mx-auto flex w-full max-w-[1462px] flex-col gap-[40px]">
             <div className="flex w-full flex-col items-center gap-5 xl:flex-row xl:justify-between xl:gap-[209px]">
               <div className="w-full max-w-[454px] rounded-[23px] bg-[#F7FCFF] p-[5px]">
@@ -218,12 +223,11 @@ export default function LandingFooter() {
               </div>
 
               <div className="relative hidden h-[49px] w-[175px] shrink-0 xl:block">
-                <Image
-                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334123/rnj/mask-group-21-d1c01771.svg"
+                <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334123/rnj/mask-group-21-d1c01771.svg"
                   alt="Décor"
                   fill
                   className="object-contain"
-                />
+                 loading="lazy"/>
               </div>
 
               <div className="relative h-[78px] w-full max-w-[359px] sm:h-[92px] xl:ml-auto xl:h-[106px]">
@@ -260,12 +264,11 @@ export default function LandingFooter() {
                     </span>
 
                     <span className="relative h-[49px] w-[175px] shrink-0">
-                      <Image
-                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334123/rnj/mask-group-21-d1c01771.svg"
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334123/rnj/mask-group-21-d1c01771.svg"
                         alt="Flèches"
                         fill
                         className="object-contain"
-                      />
+                       loading="lazy"/>
                     </span>
                   </span>
                 </Link>
@@ -276,13 +279,12 @@ export default function LandingFooter() {
               <div className="flex flex-col gap-12">
                 <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
                   <div className="flex max-w-[352px] flex-col gap-[30px]">
-                    <Image
-                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                       alt="RNJ Advisory"
                       width={233}
                       height={58}
                       className="h-auto w-[233px]"
-                    />
+                     priority/>
 
                     <p className="font-[Geist] text-[16px] font-medium leading-4 text-white opacity-50">
                       Cabinet de conseil stratégique et réglementaire accompagnant acteurs publics,
@@ -338,6 +340,11 @@ export default function LandingFooter() {
 
                 <div className="flex flex-col gap-5 pt-5 lg:flex-row lg:items-end lg:justify-between">
                   <div className="flex flex-nowrap items-center justify-center gap-[12px] sm:gap-[14px]">
+                    {/* Newsletter/Headphones icon */}
+                    <span className="relative h-[28.92px] w-[28.92px] overflow-hidden rounded-full bg-black bg-opacity-[0.004]" aria-label="Newsletter">
+                      <Image src="/optimized/Frame 192 (5).svg" alt="Newsletter" fill className="object-contain" />
+                    </span>
+                    {/* Social icons */}
                     {socialIcons.map((social) => (
                       <span
                         key={social.name}
@@ -353,12 +360,11 @@ export default function LandingFooter() {
                     <div className="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-8 lg:gap-[78px]">
                       <div className="flex items-center gap-5">
                         <div className="relative h-[22px] w-[22px] shrink-0">
-                          <Image
-                            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310359/rnj/layer-1-27-a0d86191.svg"
+                          <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310359/rnj/layer-1-27-a0d86191.svg"
                             alt="Téléphone"
                             fill
                             className="object-contain"
-                          />
+                           loading="lazy"/>
                         </div>
 
                         <span className="font-[Geist] text-[13px] font-medium leading-[18px] tracking-[0.03em] text-white sm:text-[15.37px] sm:leading-[21px] sm:tracking-[0.05em]">
@@ -368,12 +374,11 @@ export default function LandingFooter() {
 
                       <div className="flex items-center gap-5">
                         <div className="relative h-[15.47px] w-[22px] shrink-0">
-                          <Image
-                            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310361/rnj/layer-1-26-33e2a54e.svg"
+                          <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310361/rnj/layer-1-26-33e2a54e.svg"
                             alt="E-mail"
                             fill
                             className="object-contain"
-                          />
+                           loading="lazy"/>
                         </div>
 
                         <span className="break-all text-center font-[Geist] text-[13px] font-medium leading-[18px] tracking-[0.03em] text-white sm:text-left sm:text-[15.37px] sm:leading-[21px] sm:tracking-[0.05em]">

@@ -607,7 +607,7 @@ export default function ContactPageClient({
         }`}
         style={{
           backgroundImage:
-            'url("https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778032115/Group_391_euee0h.png")',
+            'url("https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_800,h_600,c_limit/v1778032115/Group_391_euee0h.png")',
         }}
       >
         <div className="relative z-10">
@@ -633,32 +633,31 @@ export default function ContactPageClient({
             </section>
           ) : null}
 
-          <section className="relative w-full overflow-hidden" style={{ minHeight: '10vh' }}>
-            <div className="relative z-10 flex flex-col items-center">
+          <section className={`relative w-full overflow-hidden px-4 sm:px-6 ${view === 'initial' ? 'flex min-h-[calc(100vh-64px)] items-center justify-center py-10 sm:py-14' : 'h-0 p-0'}`}>
+            <div className="relative z-10 flex w-full flex-col items-center">
               <div
-                className={`flex w-full max-w-[604px] flex-col items-center justify-center gap-[8.56px] rounded-[28px] bg-white px-6 py-10 shadow-[0px_3.42px_48px_rgba(0,0,0,0.25)] transition-all duration-700 ease-in-out sm:rounded-[42.78px] sm:px-10 sm:py-14 md:px-12 ${
+                className={`flex w-full max-w-[604px] flex-col items-center justify-center gap-[8px] rounded-[22px] bg-white px-5 py-8 shadow-[0px_3.42px_48px_rgba(0,0,0,0.25)] transition-all duration-700 ease-in-out sm:gap-[8.56px] sm:rounded-[32px] sm:px-8 sm:py-12 md:rounded-[42.78px] md:px-12 md:py-14 ${
                   view === 'initial'
-                    ? 'mx-auto mt-[20vh] mb-[20vh] translate-x-0 opacity-100'
+                    ? 'translate-x-0 opacity-100'
                     : '-translate-x-[200%] absolute opacity-0 pointer-events-none'
                 }`}
-                style={{ minHeight: view === 'initial' ? 'clamp(480px, 56vw, 652.81px)' : undefined }}
               >
-                <div className="flex flex-col items-center justify-center gap-[68.45px]">
-                  <div className="flex flex-col items-center justify-center gap-[27.38px]">
-                    <Image
-                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                <div className="flex flex-col items-center justify-center gap-[40px] sm:gap-[55px] md:gap-[68.45px]">
+                  <div className="flex flex-col items-center justify-center gap-[18px] sm:gap-[22px] md:gap-[27.38px]">
+                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                       alt="RNJ Advisory"
                       width={199}
                       height={49}
-                      className="h-auto w-[120px] brightness-0 sm:w-[150px] md:w-[199px]"
-                    />
+                      className="h-auto w-[100px] brightness-0 sm:w-[140px] md:w-[199px]"
+                     priority/>
                     <h1
-                      className={`${ebGaramond.className} max-w-[465px] text-center text-[clamp(36px,8vw,82.14px)] font-normal leading-[0.67] text-[#003300]`}
+                      className={`${ebGaramond.className} max-w-[465px] text-center font-normal leading-[0.8] text-[#003300]`}
+                      style={{ fontSize: 'clamp(28px, 8vw, 82.14px)' }}
                     >
                       Parlons de votre projet
                     </h1>
                     <p
-                      className={`${geist.className} max-w-[356px] text-center text-[11px] font-medium leading-[15px] text-[#003300]/40 sm:text-[12px] md:text-[13.69px]`}
+                      className={`${geist.className} max-w-[320px] text-center text-[11px] font-medium leading-[15px] text-[#003300]/40 sm:max-w-[356px] sm:text-[12px] md:text-[13.69px]`}
                     >
                       Vous avez une question ou un projet en tête ? Contactez notre équipe et
                       nous vous répondrons dès que possible.
@@ -666,18 +665,18 @@ export default function ContactPageClient({
                   </div>
                 </div>
 
-                <div className="flex w-full max-w-[546px] flex-col items-center gap-[8.56px]">
+                <div className="flex w-full max-w-[546px] flex-col items-center gap-[8px] sm:gap-[8.56px]">
                   <button
                     type="button"
                     onClick={() => openBookingView()}
-                    className={`${poppins.className} flex h-[60px] w-full items-center justify-center rounded-[59.89px] bg-[#BBCB2E] text-[16px] font-medium text-[#003300] transition hover:brightness-95 sm:h-[72px] sm:text-[18px] md:h-[88.12px] md:text-[20.53px]`}
+                    className={`${poppins.className} flex h-[52px] w-full items-center justify-center rounded-[59.89px] bg-[#BBCB2E] text-[15px] font-medium text-[#003300] transition hover:brightness-95 sm:h-[64px] sm:text-[17px] md:h-[88.12px] md:text-[20.53px]`}
                   >
                     Rendez-vous
                   </button>
                   <button
                     type="button"
                     onClick={() => openMessageView(undefined, { mode: 'contact', preferredDate: null })}
-                    className={`${poppins.className} flex h-[60px] w-full items-center justify-center rounded-[59.89px] bg-[#406640] text-[16px] font-medium text-[#BFCCBF] transition hover:opacity-90 sm:h-[72px] sm:text-[18px] md:h-[88.12px] md:text-[20.53px]`}
+                    className={`${poppins.className} flex h-[52px] w-full items-center justify-center rounded-[59.89px] bg-[#406640] text-[15px] font-medium text-[#BFCCBF] transition hover:opacity-90 sm:h-[64px] sm:text-[17px] md:h-[88.12px] md:text-[20.53px]`}
                   >
                     Message
                   </button>
@@ -688,35 +687,34 @@ export default function ContactPageClient({
 
 
           {view === 'booking' ? (
-            <section className="relative z-20 flex min-h-screen w-full items-center justify-center px-4 py-8 sm:px-6 md:py-12">
+            <section className="relative z-20 flex min-h-screen w-full items-center justify-center px-3 py-6 sm:px-6 md:py-12">
               <div
-                className="relative mx-auto w-full max-w-[1512px] overflow-hidden rounded-[34px] bg-white shadow-[0px_4px_57px_rgba(0,0,0,0.25)] sm:rounded-[44px] lg:rounded-[50px]"
+                className="relative mx-auto w-full max-w-[1512px] overflow-hidden rounded-[22px] bg-white shadow-[0px_4px_57px_rgba(0,0,0,0.25)] sm:rounded-[34px] lg:rounded-[50px]"
               >
                 <div
                   className="flex w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
                   style={{ transform: `translate3d(-${(bookingStep - 1) * 100}%, 0, 0)` }}
                 >
-                  <article className="min-w-full px-4 py-8 sm:px-8 sm:py-10">
-                    <div className="mx-auto grid min-h-[730px] w-full max-w-[1350px] gap-8 rounded-[30px] bg-white p-6 md:grid-cols-[1.1fr_0.9fr] md:items-center md:p-10">
+                  <article className="min-w-full px-3 py-6 sm:px-8 sm:py-10">
+                    <div className="mx-auto grid w-full max-w-[1350px] gap-5 rounded-[18px] bg-white p-3 sm:gap-7 sm:rounded-[28px] sm:p-6 md:gap-8 md:rounded-[30px] md:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center" style={{ minHeight: 'clamp(420px, 80vh, 730px)' }}>
                       <div className="max-w-[620px]">
-                        <Image
-                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                        <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                           alt="RNJ Advisory"
                           width={199}
                           height={49}
                           className="h-auto w-[160px] brightness-0 sm:w-[210px]"
-                        />
-                        <h2 className={`${ebGaramond.className} mt-6 text-[clamp(38px,7vw,74px)] leading-[0.95] text-[#003300] sm:mt-8`}>
+                         priority/>
+                        <h2 className={`${ebGaramond.className} mt-4 leading-[0.95] text-[#003300] sm:mt-8`} style={{ fontSize: 'clamp(26px, 6vw, 74px)' }}>
                           Quel est le sujet de votre demande ?
                         </h2>
 
-                        <div className="mt-8 flex max-w-[520px] flex-wrap gap-3">
+                        <div className="mt-5 flex max-w-[520px] flex-wrap gap-2 sm:mt-8 sm:gap-3">
                           {subjects.map((subject) => (
                             <button
                               key={subject.label}
                               type="button"
                               onClick={() => setSelectedSubject(subject.label)}
-                              className={`${poppins.className} flex min-h-[62px] w-full items-center justify-center rounded-[17px] px-5 text-[17px] font-medium transition sm:w-auto sm:text-[21px] ${
+                              className={`${poppins.className} flex min-h-[44px] w-full items-center justify-center rounded-[12px] px-3 text-[13px] font-medium transition sm:min-h-[52px] sm:w-auto sm:rounded-[14px] sm:px-4 sm:text-[16px] md:min-h-[62px] md:rounded-[17px] md:text-[21px] ${
                                 selectedSubject === subject.label
                                   ? 'border-[2px] border-[#003300] bg-[#DDE597] text-[#003300]'
                                   : 'bg-[#E8ECCE] text-[#748974]'
@@ -738,16 +736,16 @@ export default function ContactPageClient({
                         <button
                           type="button"
                           onClick={() => nextBookingStep()}
-                          className={`${ebGaramond.className} mt-10 inline-flex h-[66px] min-w-[190px] items-center justify-center rounded-[30px] bg-[#BBCB2E] px-7 text-[34px] font-bold leading-none text-[#003300] shadow-[0px_4px_0px_#003300] transition hover:brightness-95 sm:mt-16 sm:h-[74px] sm:min-w-[220px] sm:rounded-[34px] sm:px-8 sm:text-[42px]`}
+                          className={`${ebGaramond.className} mt-5 inline-flex h-[52px] min-w-[150px] items-center justify-center rounded-[24px] bg-[#BBCB2E] px-5 text-[26px] font-bold leading-none text-[#003300] shadow-[0px_4px_0px_#003300] transition hover:brightness-95 sm:mt-10 sm:h-[66px] sm:min-w-[190px] sm:rounded-[30px] sm:px-7 sm:text-[34px] md:mt-16 md:h-[74px] md:min-w-[220px] md:rounded-[34px] md:px-8 md:text-[42px]`}
                         >
                           Soumettre
                         </button>
                       </div>
 
-                      <div className="rounded-[38px] border-[2px] border-[#0E3F13] bg-[#F5F5F2] px-4 py-5 shadow-[4px_4px_0px_#0E3F13] sm:px-6 sm:py-7">
-                        <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
+                      <div className="rounded-[22px] border-[2px] border-[#0E3F13] bg-[#F5F5F2] px-3 py-4 shadow-[4px_4px_0px_#0E3F13] sm:rounded-[38px] sm:px-6 sm:py-7">
+                        <div className="mb-4 flex flex-wrap items-start justify-between gap-3 sm:mb-6">
                           <div>
-                            <p className={`${poppins.className} text-[34px] font-medium leading-none text-[#003300] sm:text-[44px]`}>
+                            <p className={`${poppins.className} text-[24px] font-medium leading-none text-[#003300] sm:text-[34px] md:text-[44px]`}>
                               calendrier
                             </p>
                             <div className="mt-2 flex items-center gap-2">
@@ -762,7 +760,7 @@ export default function ContactPageClient({
                                   <path d="M2 12 L5.5 8.5 L9 12" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </button>
-                              <span className={`${geist.className} text-[20px] font-medium text-[#748974] sm:text-[30px]`}>
+                              <span className={`${geist.className} text-[16px] font-medium text-[#748974] sm:text-[22px] md:text-[30px]`}>
                                 {formatMonthLabel(displayedMonth)}
                               </span>
                             </div>
@@ -826,7 +824,7 @@ export default function ContactPageClient({
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-7 gap-2.5">
+                        <div className="grid grid-cols-7 gap-1 sm:gap-2">
                           {calendarRows.flat().map((day, index) => {
                             const isSelected = day.iso === selectedBookingDate;
                             const isDisabled = day.isUnavailable || day.isOutsideMonth;
@@ -836,7 +834,7 @@ export default function ContactPageClient({
                                 type="button"
                                 onClick={() => !isDisabled && setSelectedBookingDate(day.iso)}
                                 disabled={isDisabled}
-                                className={`${poppins.className} flex h-[46px] w-full items-center justify-center rounded-full text-[14px] font-medium transition sm:h-[52px] sm:text-[16px] ${
+                                className={`${poppins.className} flex h-[32px] w-full items-center justify-center rounded-full text-[11px] font-medium transition sm:h-[40px] sm:text-[13px] md:h-[46px] md:text-[14px] lg:h-[52px] lg:text-[16px] ${
                                   day.isOutsideMonth
                                     ? 'bg-[#E6E6DA] text-[#A8B8A6] disabled:cursor-default'
                                     : day.isUnavailable
@@ -857,22 +855,22 @@ export default function ContactPageClient({
 
                   <article className="min-w-full p-0">
                     <div
-                      className="mx-auto flex min-h-[560px] w-full max-w-[1360px] items-center justify-center rounded-[30px] bg-cover bg-center bg-no-repeat px-4 py-8 sm:min-h-[620px] sm:px-8 sm:py-10 lg:min-h-[730px]"
+                      className="mx-auto flex w-full max-w-[1360px] items-center justify-center rounded-[20px] bg-cover bg-center bg-no-repeat px-4 py-8 sm:rounded-[30px] sm:px-8 sm:py-10"
                       style={{
-                        backgroundImage: 'url("https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051891/rnj/optimized/group-349091-1-144384f9.svg")',
+                        backgroundImage: 'url("https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778051891/rnj/optimized/group-349091-1-144384f9.svg")',
+                        minHeight: 'clamp(400px, 75vh, 730px)',
                       }}
                     >
                       <div className="w-full max-w-[700px]">
                         <div className="mx-auto flex w-full max-w-[700px] flex-col items-center justify-center">
-                      <Image
-                        src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                         alt="RNJ Advisory"
                         width={220}
                         height={54}
-                        className="h-auto w-[150px] brightness-0 sm:w-[220px]"
-                      />
+                        className="h-auto w-[110px] brightness-0 sm:w-[160px] md:w-[220px]"
+                       priority/>
 
-                      <div className="mt-8 w-full space-y-3 sm:mt-10 sm:space-y-4">
+                      <div className="mt-5 w-full space-y-2 sm:mt-8 sm:space-y-3 md:mt-10 md:space-y-4">
                         <input
                           type="text"
                           value={messageForm.name}
@@ -880,7 +878,7 @@ export default function ContactPageClient({
                             setMessageForm((current) => ({ ...current, name: event.target.value }))
                           }
                           placeholder="Nom"
-                          className={`${geist.className} h-[66px] w-full rounded-[16px] bg-[#E9EDCC] px-5 text-center text-[20px] font-medium text-[#7C9678] outline-none transition placeholder:text-[#7C9678] focus:bg-white sm:h-[92px] sm:rounded-[18px] sm:px-6 sm:text-[38px]`}
+                          className={`${geist.className} h-[52px] w-full rounded-[14px] bg-[#E9EDCC] px-4 text-center text-[16px] font-medium text-[#7C9678] outline-none transition placeholder:text-[#7C9678] focus:bg-white sm:h-[70px] sm:rounded-[16px] sm:px-5 sm:text-[26px] md:h-[92px] md:rounded-[18px] md:px-6 md:text-[38px]`}
                           required
                         />
                         <input
@@ -890,7 +888,7 @@ export default function ContactPageClient({
                             setMessageForm((current) => ({ ...current, email: event.target.value }))
                           }
                           placeholder="Email"
-                          className={`${geist.className} h-[66px] w-full rounded-[16px] bg-[#E9EDCC] px-5 text-center text-[20px] font-medium text-[#7C9678] outline-none transition placeholder:text-[#7C9678] focus:bg-white sm:h-[92px] sm:rounded-[18px] sm:px-6 sm:text-[38px]`}
+                          className={`${geist.className} h-[52px] w-full rounded-[14px] bg-[#E9EDCC] px-4 text-center text-[16px] font-medium text-[#7C9678] outline-none transition placeholder:text-[#7C9678] focus:bg-white sm:h-[70px] sm:rounded-[16px] sm:px-5 sm:text-[26px] md:h-[92px] md:rounded-[18px] md:px-6 md:text-[38px]`}
                           required
                         />
                         <input
@@ -900,7 +898,7 @@ export default function ContactPageClient({
                             setMessageForm((current) => ({ ...current, phone: event.target.value }))
                           }
                           placeholder="Telephone"
-                          className={`${geist.className} h-[66px] w-full rounded-[16px] bg-[#E9EDCC] px-5 text-center text-[20px] font-medium text-[#7C9678] outline-none transition placeholder:text-[#7C9678] focus:bg-white sm:h-[92px] sm:rounded-[18px] sm:px-6 sm:text-[38px]`}
+                          className={`${geist.className} h-[52px] w-full rounded-[14px] bg-[#E9EDCC] px-4 text-center text-[16px] font-medium text-[#7C9678] outline-none transition placeholder:text-[#7C9678] focus:bg-white sm:h-[70px] sm:rounded-[16px] sm:px-5 sm:text-[26px] md:h-[92px] md:rounded-[18px] md:px-6 md:text-[38px]`}
                           required
                         />
                       </div>
@@ -909,7 +907,7 @@ export default function ContactPageClient({
                         type="button"
                         onClick={() => nextBookingStep()}
                         disabled={!messageForm.name.trim() || !messageForm.email.trim() || !messageForm.phone.trim()}
-                        className={`${ebGaramond.className} mt-3 flex h-[70px] w-full items-center justify-center rounded-[18px] bg-[#BBCB2E] text-[40px] font-bold leading-none text-[#003300] shadow-[0px_5px_0px_#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-55 sm:mt-4 sm:h-[92px] sm:rounded-[20px] sm:text-[52px]`}
+                        className={`${ebGaramond.className} mt-3 flex h-[54px] w-full items-center justify-center rounded-[16px] bg-[#BBCB2E] text-[28px] font-bold leading-none text-[#003300] shadow-[0px_4px_0px_#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-55 sm:mt-4 sm:h-[70px] sm:rounded-[18px] sm:text-[40px] md:h-[92px] md:rounded-[20px] md:text-[52px]`}
                       >
                         Soumettre
                       </button>
@@ -920,34 +918,35 @@ export default function ContactPageClient({
 
                   <article className="min-w-full p-0">
                     <div
-                      className="mx-auto flex min-h-[560px] w-full max-w-[1360px] items-center justify-center rounded-[30px] bg-cover bg-center bg-no-repeat px-4 py-8 sm:min-h-[620px] sm:px-8 sm:py-10 lg:min-h-[730px]"
+                      className="mx-auto flex w-full max-w-[1360px] items-center justify-center rounded-[20px] bg-cover bg-center bg-no-repeat px-4 py-8 sm:rounded-[30px] sm:px-8 sm:py-10"
                       style={{
                         backgroundImage:
-                          'url("https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778038594/Group_349101_cbdiuf.png")',
+                          'url("https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_800,h_600,c_limit/v1778038594/Group_349101_cbdiuf.png")',
+                        minHeight: 'clamp(400px, 75vh, 730px)',
                       }}
                     >
                       <div
-                        className="w-full max-w-[560px] overflow-hidden rounded-[24px] bg-white shadow-[0px_18px_45px_rgba(0,0,0,0.16)] sm:rounded-[30px]"
+                        className="w-full max-w-[560px] overflow-hidden rounded-[18px] bg-white shadow-[0px_18px_45px_rgba(0,0,0,0.16)] sm:rounded-[24px] md:rounded-[30px]"
                       >
-                        <div className="bg-[#003300] px-5 py-6 sm:px-8 sm:py-9">
-                          <p className={`${geist.className} text-[20px] font-medium text-white/55 sm:text-[24px]`}>Montant</p>
-                          <p className={`${ebGaramond.className} mt-1 text-[52px] font-semibold leading-[0.95] text-white sm:text-[68px]`}>{BOOKING_FEE_LABEL}</p>
-                          <p className={`${geist.className} mt-3 max-w-[430px] text-[14px] font-medium leading-[1.35] text-white/55 sm:text-[17px]`}>
+                        <div className="bg-[#003300] px-4 py-5 sm:px-6 sm:py-7 md:px-8 md:py-9">
+                          <p className={`${geist.className} text-[16px] font-medium text-white/55 sm:text-[20px] md:text-[24px]`}>Montant</p>
+                          <p className={`${ebGaramond.className} mt-1 text-[38px] font-semibold leading-[0.95] text-white sm:text-[52px] md:text-[68px]`}>{BOOKING_FEE_LABEL}</p>
+                          <p className={`${geist.className} mt-2 max-w-[430px] text-[12px] font-medium leading-[1.35] text-white/55 sm:mt-3 sm:text-[14px] md:text-[17px]`}>
                             Le paiement Stripe des frais de dossier est demande avant l enregistrement definitif du rendez-vous.
                           </p>
                         </div>
 
-                        <div className="space-y-4 bg-white/95 px-5 py-5 sm:space-y-5 sm:px-8 sm:py-7">
-                          <div className="flex flex-wrap gap-2">
-                            <span className={`${geist.className} rounded-[10px] bg-[#C1CB82] px-3 py-2 text-[13px] font-medium text-[#406640] sm:px-4 sm:text-[16px]`}>
+                        <div className="space-y-3 bg-white/95 px-4 py-4 sm:space-y-4 sm:px-6 sm:py-5 md:space-y-5 md:px-8 md:py-7">
+                          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                            <span className={`${geist.className} rounded-[8px] bg-[#C1CB82] px-2.5 py-1.5 text-[11px] font-medium text-[#406640] sm:rounded-[10px] sm:px-3 sm:py-2 sm:text-[13px] md:px-4 md:text-[16px]`}>
                               Paiement securise Stripe
                             </span>
-                            <span className={`${geist.className} rounded-[10px] bg-[#C1CB82] px-3 py-2 text-[13px] font-medium text-[#406640] sm:px-4 sm:text-[16px]`}>
+                            <span className={`${geist.className} rounded-[8px] bg-[#C1CB82] px-2.5 py-1.5 text-[11px] font-medium text-[#406640] sm:rounded-[10px] sm:px-3 sm:py-2 sm:text-[13px] md:px-4 md:text-[16px]`}>
                               Validation avant confirmation
                             </span>
                           </div>
 
-                          <p className={`${geist.className} inline-block rounded-[8px] bg-[#BBCB2E] px-1 text-[36px] font-semibold leading-none text-[#003300] sm:text-[44px]`}>
+                          <p className={`${geist.className} inline-block rounded-[8px] bg-[#BBCB2E] px-1 text-[26px] font-semibold leading-none text-[#003300] sm:text-[36px] md:text-[44px]`}>
                             {bookingDateTimeLabel}
                           </p>
 
@@ -974,7 +973,7 @@ export default function ContactPageClient({
                               const checkoutUrl = await startBookingCheckout(bookingPayload);
                               window.location.assign(checkoutUrl);
                             }}
-                            className={`${ebGaramond.className} mt-2 flex h-[72px] w-full items-center justify-center rounded-[18px] bg-[#BBCB2E] text-[40px] font-bold leading-none text-[#003300] shadow-[0px_5px_0px_#003300] transition hover:brightness-95 sm:mt-3 sm:h-[82px] sm:rounded-[22px] sm:text-[52px]`}
+                            className={`${ebGaramond.className} mt-2 flex h-[54px] w-full items-center justify-center rounded-[16px] bg-[#BBCB2E] text-[28px] font-bold leading-none text-[#003300] shadow-[0px_4px_0px_#003300] transition hover:brightness-95 sm:mt-3 sm:h-[66px] sm:rounded-[18px] sm:text-[38px] md:h-[82px] md:rounded-[22px] md:text-[52px]`}
                           >
                             Soumettre
                           </button>
@@ -984,7 +983,7 @@ export default function ContactPageClient({
                   </article>
 
                   <article className="min-w-full p-0">
-                    <div className="mx-auto flex min-h-[560px] w-full max-w-[1360px] items-center justify-center rounded-[30px] bg-[linear-gradient(135deg,#F5F5F2_0%,#EDF2D1_48%,#DDE6B5_100%)] px-4 py-8 sm:min-h-[620px] sm:px-8 sm:py-10 lg:min-h-[730px]">
+                    <div className="mx-auto flex w-full max-w-[1360px] items-center justify-center rounded-[20px] bg-[linear-gradient(135deg,#F5F5F2_0%,#EDF2D1_48%,#DDE6B5_100%)] px-4 py-8 sm:rounded-[30px] sm:px-8 sm:py-10" style={{ minHeight: 'clamp(400px, 75vh, 730px)' }}>
                       <div className="w-full max-w-[880px] overflow-hidden rounded-[24px] border border-[#003300]/10 bg-white shadow-[0px_20px_50px_rgba(0,0,0,0.18)]">
                         <div className="grid gap-0 lg:grid-cols-[0.92fr_1.08fr]">
                           <div className="bg-[#003300] p-6 text-white sm:p-8">
@@ -1129,18 +1128,19 @@ export default function ContactPageClient({
           ) : null}
 
           {view === 'message' ? (
-              <section className="relative z-20 w-full px-4 py-10 sm:px-6 sm:py-12 md:py-16">
-                <div className="mx-auto w-full max-w-[1512px] overflow-hidden rounded-[34px] bg-[#BBCB2E] shadow-[0px_4px_56px_rgba(0,0,0,0.18)] sm:rounded-[44px] lg:rounded-[50px]">
-                  <div className="relative overflow-hidden px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
+              <section className="relative z-20 w-full px-3 py-8 sm:px-6 sm:py-12 md:py-16">
+                <div className="mx-auto w-full max-w-[1512px] overflow-hidden rounded-[22px] bg-[#BBCB2E] shadow-[0px_4px_56px_rgba(0,0,0,0.18)] sm:rounded-[34px] lg:rounded-[50px]">
+                  <div className="relative overflow-hidden px-3 py-5 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
                     <div className="absolute -left-16 top-[-90px] h-[260px] w-[260px] rounded-full border border-white/25 bg-white/10 blur-2xl" />
                     <div className="absolute -right-10 bottom-[-60px] h-[220px] w-[220px] rounded-full border border-[#003300]/10 bg-[#DDE597]/50 blur-2xl" />
 
                     <div className="relative z-10 flex w-full justify-center">
-                      <div className="mx-auto w-full max-w-[667.57px] rounded-[28px] bg-white px-5 py-6 shadow-[0px_4px_40px_rgba(0,0,0,0.12)] sm:px-7 sm:py-8 lg:rounded-[42px] lg:px-10 lg:py-10">
-                        <div className="mb-[13.69px] flex items-start justify-between gap-4">
+                      <div className="mx-auto w-full max-w-[667.57px] rounded-[20px] bg-white px-4 py-5 shadow-[0px_4px_40px_rgba(0,0,0,0.12)] sm:rounded-[28px] sm:px-7 sm:py-8 lg:rounded-[42px] lg:px-10 lg:py-10">
+                        <div className="mb-3 flex items-start justify-between gap-3 sm:mb-[13.69px] sm:gap-4">
                           <div>
                             <h3
-                              className={`${ebGaramond.className} text-[54.76px] leading-[47px] text-[#003300]`}
+                              className={`${ebGaramond.className} leading-[0.92] text-[#003300]`}
+                              style={{ fontSize: 'clamp(24px, 5vw, 54.76px)' }}
                             >
                               Let&apos;s Talk About Your Project
                             </h3>
@@ -1169,7 +1169,7 @@ export default function ContactPageClient({
                                 setMessageForm((current) => ({ ...current, name: event.target.value }))
                               }
                               placeholder="Nom *"
-                              className={`${geist.className} h-[83.76px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
+                              className={`${geist.className} h-[56px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-4 py-3 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 sm:h-[70px] sm:px-6 sm:py-4 sm:text-[18px] md:h-[83.76px] md:px-[31.66px] md:py-[30.80px] md:text-[20.53px]`}
                               required
                             />
                             <input
@@ -1179,7 +1179,7 @@ export default function ContactPageClient({
                                 setMessageForm((current) => ({ ...current, phone: event.target.value }))
                               }
                               placeholder="(+216) Telephone *"
-                              className={`${geist.className} h-[83.76px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
+                              className={`${geist.className} h-[56px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-4 py-3 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 sm:h-[70px] sm:px-6 sm:py-4 sm:text-[18px] md:h-[83.76px] md:px-[31.66px] md:py-[30.80px] md:text-[20.53px]`}
                               required
                             />
                           </div>
@@ -1192,7 +1192,7 @@ export default function ContactPageClient({
                                 setMessageForm((current) => ({ ...current, email: event.target.value }))
                               }
                               placeholder="Votre email *"
-                              className={`${geist.className} h-[83.76px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
+                              className={`${geist.className} h-[56px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-4 py-3 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 sm:h-[70px] sm:px-6 sm:py-4 sm:text-[18px] md:h-[83.76px] md:px-[31.66px] md:py-[30.80px] md:text-[20.53px]`}
                               required
                             />
                             <input
@@ -1202,7 +1202,7 @@ export default function ContactPageClient({
                                 setMessageForm((current) => ({ ...current, company: event.target.value }))
                               }
                               placeholder="Votre societe"
-                              className={`${geist.className} h-[83.76px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
+                              className={`${geist.className} h-[56px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-4 py-3 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 sm:h-[70px] sm:px-6 sm:py-4 sm:text-[18px] md:h-[83.76px] md:px-[31.66px] md:py-[30.80px] md:text-[20.53px]`}
                             />
                           </div>
 
@@ -1213,7 +1213,7 @@ export default function ContactPageClient({
                               setMessageForm((current) => ({ ...current, subject: event.target.value }))
                             }
                             placeholder="Sujet *"
-                            className={`${geist.className} h-[88.19px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30`}
+                            className={`${geist.className} h-[56px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-4 py-3 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 sm:h-[70px] sm:px-6 sm:py-4 sm:text-[18px] md:h-[88.19px] md:px-[31.66px] md:py-[30.80px] md:text-[20.53px]`}
                             required
                           />
                           <textarea
@@ -1222,21 +1222,21 @@ export default function ContactPageClient({
                               setMessageForm((current) => ({ ...current, message: event.target.value }))
                             }
                             placeholder="Votre question *"
-                            className={`${geist.className} h-[204.57px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-[31.66px] py-[30.80px] text-[20.53px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 resize-none`}
+                            className={`${geist.className} h-[140px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-4 py-3 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 resize-none sm:h-[170px] sm:px-6 sm:py-4 sm:text-[18px] md:h-[204.57px] md:px-[31.66px] md:py-[30.80px] md:text-[20.53px]`}
                             required
                           />
                           <div className="grid gap-[8.56px] md:grid-cols-2">
                             <button
                               type="submit"
                               disabled={isSubmitting}
-                              className={`${ebGaramond.className} h-[88.19px] w-full items-center justify-center rounded-[12.83px] bg-[#BBCB2E] text-[34.22px] font-bold leading-[35px] text-[#003300] transition hover:bg-[#dde597] disabled:cursor-not-allowed disabled:opacity-60`}
+                              className={`${ebGaramond.className} h-[56px] w-full items-center justify-center rounded-[12.83px] bg-[#BBCB2E] text-[20px] font-bold leading-tight text-[#003300] transition hover:bg-[#dde597] disabled:cursor-not-allowed disabled:opacity-60 sm:h-[70px] sm:text-[28px] md:h-[88.19px] md:text-[34.22px] md:leading-[35px]`}
                             >
                               {isSubmitting ? 'Envoi...' : 'Soumettre'}
                             </button>
                             <button
                               type="button"
                               onClick={() => openBookingView()}
-                              className={`${ebGaramond.className} h-[88.19px] w-full items-center justify-center rounded-[12.83px] bg-[#003300] text-[34.22px] font-bold leading-[35px] text-[#BBCB2E] transition hover:bg-[#004400]`}
+                              className={`${ebGaramond.className} h-[56px] w-full items-center justify-center rounded-[12.83px] bg-[#003300] text-[20px] font-bold leading-tight text-[#BBCB2E] transition hover:bg-[#004400] sm:h-[70px] sm:text-[28px] md:h-[88.19px] md:text-[34.22px] md:leading-[35px]`}
                             >
                               Rendez-vous
                             </button>
@@ -1255,7 +1255,7 @@ export default function ContactPageClient({
         <div className="fixed inset-0 z-[200] flex items-center justify-center bg-[rgba(0,0,0,0.22)] px-4 backdrop-blur-sm">
           <div className="w-full max-w-[360px] rounded-[44px] bg-white px-7 py-8 text-center shadow-[0px_20px_70px_rgba(0,0,0,0.22)] md:max-w-[520px] md:rounded-[70px] md:px-14 md:py-12">
             <div className="relative mx-auto mb-6 h-[88px] w-[120px] md:mb-8 md:h-[150px] md:w-[205px]">
-              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334091/rnj/layer-1-24-5765da83.svg" alt="Message envoye" fill className="object-contain" />
+              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334091/rnj/layer-1-24-5765da83.svg" alt="Message envoye" fill className="object-contain"  loading="lazy"/>
             </div>
 
             <h2

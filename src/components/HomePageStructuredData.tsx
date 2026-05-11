@@ -20,8 +20,8 @@ export default function HomePageStructuredData() {
     '@id': professionalServiceId,
     name: 'RNJ Advisory',
     url: 'https://rnj-advisory.be/',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389845/rnj/og-home-f960652e.jpg',
-    logo: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_630,c_limit/v1776389845/rnj/og-home-f960652e.jpg',
+    logo: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg',
     telephone: '+32 474 03 22 66',
     email: 'info@rnj-advisory.be',
     description:
@@ -75,7 +75,7 @@ export default function HomePageStructuredData() {
     })),
     primaryImageOfPage: {
       '@type': 'ImageObject',
-      url: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389845/rnj/og-home-f960652e.jpg',
+      url: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_630,c_limit/v1776389845/rnj/og-home-f960652e.jpg',
     },
     potentialAction: {
       '@type': 'ContactAction',

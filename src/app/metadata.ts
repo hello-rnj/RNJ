@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: 'https://rnj-advisory.be',
     images: [
       {
-        url: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389845/rnj/og-home-f960652e.jpg',
+        url: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_630,c_limit/v1776389845/rnj/og-home-f960652e.jpg',
         width: 1200,
         height: 630,
         alt: 'RNJ Advisory - Conseil juridique et stratégique à Bruxelles',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: 'RNJ Advisory | Conseil juridique, RGPD, ESG et conformité',
     description:
       'Accompagnement stratégique et réglementaire pour entrepreneurs, PME, investisseurs et institutions entre Bruxelles, la Belgique et la Tunisie.',
-    images: ['https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389846/rnj/twitter-home-0741522b.jpg'],
+    images: ['https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_630,c_limit/v1776389846/rnj/twitter-home-0741522b.jpg'],
   },
   other: {
     'geo.region': 'BE-BRU',

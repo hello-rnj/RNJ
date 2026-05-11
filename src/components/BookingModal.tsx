@@ -36,25 +36,25 @@ const profiles = [
     id: 'entrepreneur',
     label: 'Entrepreneur',
     description: 'Vous développez un projet et recherchez un accompagnement structuré.',
-    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051894/rnj/optimized/profile-entrepreneur-bbe709fa.svg',
+    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778051894/rnj/optimized/profile-entrepreneur-bbe709fa.svg',
   },
   {
     id: 'investisseur',
     label: 'Investisseur',
     description: 'Vous identifiez des opportunités et souhaitez sécuriser vos décisions.',
-    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051896/rnj/optimized/profile-investisseur-7de68e69.svg',
+    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778051896/rnj/optimized/profile-investisseur-7de68e69.svg',
   },
   {
     id: 'institution',
     label: 'Institution',
     description: 'Vous représentez une organisation impliquée dans des enjeux stratégiques et réglementaires.',
-    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051900/rnj/optimized/profile-institution-b9c718be.svg',
+    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778051900/rnj/optimized/profile-institution-b9c718be.svg',
   },
   {
     id: 'autre',
     label: 'Autre',
     description: 'Votre besoin ne correspond pas aux profils ci-dessus.',
-    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051902/rnj/optimized/profile-autre-07e379c1.svg',
+    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778051902/rnj/optimized/profile-autre-07e379c1.svg',
   },
 ] as const;
 
@@ -299,13 +299,12 @@ export default function BookingModal({ open, onClose, initialMode = null }: Book
           <div className="mx-auto flex w-full max-w-[604px] flex-col items-center justify-center gap-[8.56px] rounded-[43px] bg-white px-6 py-10 shadow-[0px_3.42px_48px_rgba(0,0,0,0.25)] sm:px-10 sm:py-14">
             <div className="flex flex-col items-center justify-center gap-12">
               <div className="flex flex-col items-center gap-6">
-                <Image
-                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                   alt="RNJ Advisory"
                   width={199}
                   height={49}
                   className="h-auto w-[140px] brightness-0 sm:w-[180px] md:w-[199px]"
-                />
+                 priority/>
                 <div className="flex flex-col items-center gap-4 text-center">
                   <h2 className={`${ebGaramond.className} max-w-[465px] text-[clamp(40px,8vw,82px)] font-normal leading-[0.9] text-[#003300]`}>
                     Parlons de votre projet
@@ -428,13 +427,12 @@ export default function BookingModal({ open, onClose, initialMode = null }: Book
             {/* Left card */}
             <div className="flex w-full flex-col justify-between gap-8 rounded-[34px] bg-white px-6 py-8 shadow-[0px_4px_40px_rgba(0,0,0,0.12)] sm:max-w-[300px] sm:rounded-[42px] sm:px-8 sm:py-10 lg:max-w-[360px]">
               <div className="space-y-6">
-                <Image
-                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                   alt="RNJ Advisory"
                   width={199}
                   height={49}
                   className="h-auto w-[130px] brightness-0 sm:w-[160px]"
-                />
+                 priority/>
                 <div className="space-y-3">
                   <h2 className={`${ebGaramond.className} text-[clamp(38px,5vw,64px)] font-normal leading-[0.92] text-[#003300]`}>
                     Parlons de votre projet
@@ -716,8 +714,8 @@ export default function BookingModal({ open, onClose, initialMode = null }: Book
         <div className="absolute inset-0 z-[320] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
           <div className="w-full max-w-[420px] rounded-[44px] bg-white px-8 py-10 text-center shadow-[0px_20px_70px_rgba(0,0,0,0.22)]">
             <div className="relative mx-auto mb-6 h-[100px] w-[140px]">
-              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334091/rnj/layer-1-24-5765da83.svg"
-                alt="Message envoyé" fill className="object-contain" />
+              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334091/rnj/layer-1-24-5765da83.svg"
+                alt="Message envoyé" fill className="object-contain"  loading="lazy"/>
             </div>
             <h2 className={`${ebGaramond.className} text-[clamp(28px,5vw,48px)] leading-[0.95] text-[#003300]`}>
               Votre message a été envoyé

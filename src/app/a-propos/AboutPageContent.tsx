@@ -52,43 +52,43 @@ const teamMembers = [
     role: 'Co-Founder & CEO',
     initials: 'NA',
     tone: '#EEF2CA',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376840/rnj/nahla-eae48fe8.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376840/rnj/nahla-eae48fe8.svg',
   },
   {
     name: 'Ramzi Jelalia',
     role: 'Co-founder & CTO',
     initials: 'RJ',
     tone: '#DDE597',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132761/rnj/ramzi-05917bd9.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132761/rnj/ramzi-05917bd9.svg',
   },
   {
     name: 'Eya Mhamed',
     role: 'Tech Lead',
     initials: 'EM',
     tone: '#CCD862',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132763/rnj/eya-44c9ccac.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132763/rnj/eya-44c9ccac.svg',
   },
   {
     name: 'Chahine Fehri',
     role: 'Creative Director',
     initials: 'CF',
     tone: '#EEF2CA',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132766/rnj/chahine-88336938.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132766/rnj/chahine-88336938.svg',
   },
 ];
 
 const partnerAssetLogos = [
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333855/rnj/asset-14-1-cda0f5e7.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333857/rnj/asset-15-1-7f0249bf.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333858/rnj/asset-16-1-41dc72e6.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333859/rnj/asset-17-1-5077f95f.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333861/rnj/asset-21-1-6ad9b68e.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333863/rnj/asset-22-1-ac5775de.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333864/rnj/asset-23-1-9c5664dc.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333866/rnj/asset-24-1-1c05ea09.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333867/rnj/asset-26-1-3d6250e2.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333869/rnj/asset-27-1-8679f4ab.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333870/rnj/asset-28-1-d6d25061.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333855/rnj/asset-14-1-cda0f5e7.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333857/rnj/asset-15-1-7f0249bf.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333858/rnj/asset-16-1-41dc72e6.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333859/rnj/asset-17-1-5077f95f.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333861/rnj/asset-21-1-6ad9b68e.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333863/rnj/asset-22-1-ac5775de.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333864/rnj/asset-23-1-9c5664dc.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333866/rnj/asset-24-1-1c05ea09.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333867/rnj/asset-26-1-3d6250e2.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333869/rnj/asset-27-1-8679f4ab.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333870/rnj/asset-28-1-d6d25061.svg',
 ] as const;
 
 const approachSteps = [
@@ -138,7 +138,7 @@ export default function AboutPage() {
 
       <section className="relative h-[360px] overflow-hidden bg-[#737373] md:h-[500px] lg:h-[569px]">
         <Image
-          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132770/rnj/group-349020-a82fd32c.svg"
+          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132770/rnj/group-349020-a82fd32c.svg"
           alt="Architecture institutionnelle"
           fill
           priority
@@ -219,13 +219,12 @@ export default function AboutPage() {
 
           <div className="grid gap-12 lg:grid-cols-[435px_1fr] lg:items-start">
             <div className="relative aspect-[435/382] overflow-hidden rounded-[8px] bg-[#D9D9D9]">
-              <Image
-                src="/optimized/group-349025.webp"
+              <Image src="/optimized/group-349025.webp"
                 alt="Réunion de conseil stratégique"
                 fill
                 sizes="(max-width: 1024px) 92vw, 435px"
                 className="object-cover"
-              />
+               loading="lazy"/>
             </div>
 
             <div className="flex flex-col">
@@ -275,13 +274,12 @@ export default function AboutPage() {
 
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-          <Image
-            src="/optimized/Mask%20group%20(6).png"
+          <Image src="/optimized/Mask%20group%20(6).png"
             alt=""
             fill
             className="object-cover object-bottom"
             sizes="100vw"
-          />
+           loading="lazy"/>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10" />
         </div>
 

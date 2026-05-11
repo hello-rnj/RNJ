@@ -17,7 +17,7 @@ export default function BlogsPage() {
       description: 'Retour sur un échange autour des enjeux de la digitalisation responsable.',
       date: '21 déc. 2025',
       category: 'Sustain Digitalization',
-      image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310353/rnj/blog-0f03cf9e.svg',
+      image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310353/rnj/blog-0f03cf9e.svg',
       views: '13k',
       likes: '13k',
       comments: '13k',
@@ -28,7 +28,7 @@ export default function BlogsPage() {
       description: 'Informations de base sur les garanties d\'origine (GO).',
       date: '15 déc. 2025',
       category: 'Énergie',
-      image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310353/rnj/blog-0f03cf9e.svg',
+      image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310353/rnj/blog-0f03cf9e.svg',
       views: '13k',
       likes: '13k',
       comments: '13k',
@@ -39,7 +39,7 @@ export default function BlogsPage() {
       description: 'Comment développer une stratégie de marque distinctive et durable.',
       date: '10 déc. 2025',
       category: 'Stratégie',
-      image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310353/rnj/blog-0f03cf9e.svg',
+      image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310353/rnj/blog-0f03cf9e.svg',
       views: '13k',
       likes: '13k',
       comments: '13k',
@@ -55,13 +55,12 @@ export default function BlogsPage() {
           <div className="flex items-center justify-between rounded-[19.6104px] bg-[#F7FCFF] px-6 py-[13.8772px] shadow-[0px_3.23873px_28.9866px_rgba(0,51,0,0.25)]">
             <div className="flex items-center gap-[261px]">
               <Link href="/" className="flex items-center gap-4">
-                <Image
-                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310357/rnj/group-555-a5305936.svg"
+                <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310357/rnj/group-555-a5305936.svg"
                   alt="RNJ Advisory"
                   width={180}
                   height={44}
                   className="h-auto w-[180px]"
-                />
+                 loading="lazy"/>
               </Link>
               <nav className="hidden items-center gap-[29.36px] md:flex">
                 <Link href="/" className="font-[Geist] text-[17.1349px] font-semibold leading-[19px] text-[#003300]">
@@ -101,23 +100,21 @@ export default function BlogsPage() {
       {/* Hero Section */}
       <div className="relative w-full">
         <div className="relative h-[1016px] w-full">
-          <Image
-            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310353/rnj/blog-0f03cf9e.svg"
+          <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310353/rnj/blog-0f03cf9e.svg"
             alt="Blog background"
             fill
             className="object-cover"
-          />
+           loading="lazy"/>
         </div>
 
         {/* Logo overlay */}
         <div className="absolute left-[84px] top-[277px]">
-          <Image
-            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310357/rnj/group-555-a5305936.svg"
+          <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310357/rnj/group-555-a5305936.svg"
             alt="RNJ Advisory"
             width={319}
             height={78.81}
             className="h-auto w-[319px]"
-          />
+           loading="lazy"/>
         </div>
 
         {/* Content overlay */}
@@ -139,13 +136,13 @@ export default function BlogsPage() {
         {/* Social icons */}
         <div className="absolute left-[84px] top-[553px] flex items-center gap-[20px]">
           <div className="h-[84px] w-[84px] rounded-[169.5px] bg-white flex items-center justify-center">
-            <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310357/rnj/group-555-a5305936.svg" alt="Social" width={40} height={40} />
+            <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310357/rnj/group-555-a5305936.svg" alt="Social" width={40} height={40}  loading="lazy"/>
           </div>
           <div className="h-[84px] w-[84px] rounded-[169.5px] bg-white flex items-center justify-center">
-            <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310357/rnj/group-555-a5305936.svg" alt="Social" width={40} height={40} />
+            <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310357/rnj/group-555-a5305936.svg" alt="Social" width={40} height={40}  loading="lazy"/>
           </div>
           <div className="h-[84px] w-[84px] rounded-[169.5px] bg-white flex items-center justify-center">
-            <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310357/rnj/group-555-a5305936.svg" alt="Social" width={40} height={40} />
+            <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310357/rnj/group-555-a5305936.svg" alt="Social" width={40} height={40}  loading="lazy"/>
           </div>
         </div>
       </div>
@@ -285,13 +282,12 @@ export default function BlogsPage() {
           <div className="flex flex-col gap-[25px]">
             <div className="flex flex-col gap-[30px] lg:flex-row lg:justify-between">
               <div className="flex flex-col gap-[30px] max-w-[352px]">
-                <Image
-                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                   alt="RNJ Advisory"
                   width={233}
                   height={58}
                   className="h-auto w-[180px] sm:w-[233px]"
-                />
+                 priority/>
                 <p className="font-[Geist] text-[16px] font-medium leading-[16px] text-white opacity-50 sm:text-[16px]">
                   Cabinet de conseil stratégique et réglementaire accompagnant acteurs publics, entreprises privées et investisseurs dans la sécurisation de leurs projets et la maîtrise des environnements institutionnels complexes.
                 </p>
@@ -338,14 +334,24 @@ export default function BlogsPage() {
 
             <div className="flex flex-col items-center gap-6 border-t border-white/15 pt-6 w-full sm:flex-row sm:items-center sm:justify-between sm:gap-[20px] md:gap-[60px] lg:gap-[215px]">
               <div className="flex flex-row items-center gap-[20px]">
+                {/* Newsletter/Headphones icon */}
+                <div className="relative h-[28.92px] w-[28.92px] overflow-hidden rounded-full bg-black bg-opacity-[0.004]">
+                  <Image 
+                    src="/optimized/Frame 192 (5).svg" 
+                    alt="Newsletter" 
+                    fill 
+                    className="object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                {/* Social icons */}
                 {['Instagram', 'LinkedIn', 'Telegram', 'Twitter', 'Facebook'].map((social) => (
-                  <div key={social} className="relative h-[29.2px] w-[29.2px] overflow-hidden rounded-full">
-                    <Image
-                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334109/rnj/mask-group-23-1ce30be9.svg"
+                  <div key={social} className="relative h-[29.2px] w-[29.2px] overflow-hidden rounded-full bg-white">
+                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334109/rnj/mask-group-23-1ce30be9.svg"
                       alt={social}
                       fill
                       className="object-contain"
-                    />
+                     loading="lazy"/>
                   </div>
                 ))}
               </div>
@@ -354,7 +360,7 @@ export default function BlogsPage() {
                 <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-[20px] md:gap-[78px]">
                   <div className="flex flex-row items-center gap-[20px]">
                     <div className="relative h-[22px] w-[21.92px] shrink-0">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310359/rnj/layer-1-27-a0d86191.svg" alt="Téléphone" fill className="object-contain" />
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310359/rnj/layer-1-27-a0d86191.svg" alt="Téléphone" fill className="object-contain"  loading="lazy"/>
                     </div>
                     <span className="font-[Geist] text-[14px] font-medium tracking-[0.05em] text-white sm:text-[15.37px] whitespace-nowrap">
                       +32 474 03 22 66
@@ -362,7 +368,7 @@ export default function BlogsPage() {
                   </div>
                   <div className="flex flex-row items-center gap-[20px]">
                     <div className="relative h-[15.47px] w-[22px] shrink-0">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310361/rnj/layer-1-26-33e2a54e.svg" alt="E-mail" fill className="object-contain" />
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310361/rnj/layer-1-26-33e2a54e.svg" alt="E-mail" fill className="object-contain"  loading="lazy"/>
                     </div>
                     <span className="break-all font-[Geist] text-[14px] font-medium tracking-[0.05em] text-white sm:text-[15.37px]">
                       info@rnj-advisory.be

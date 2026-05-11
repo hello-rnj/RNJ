@@ -1,10 +1,10 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
-
 
 const ebGaramond = EB_Garamond({
   subsets: ['latin'],
@@ -18,6 +18,144 @@ const geist = Geist({
   display: 'swap',
 });
 
+type MapPin = {
+  id: string;
+  country: string;
+  countryCode: string;
+  client: string;
+  sector: string;
+  description: string;
+  year: string;
+  /** % left on the equirectangular map SVG */
+  left: number;
+  /** % top on the equirectangular map SVG */
+  top: number;
+  color: '#839705' | '#DDE597';
+};
+
+const MAP_PINS: MapPin[] = [
+  {
+    id: 'TN',
+    country: 'Tunisie',
+    countryCode: 'TN',
+    client: 'STEG / Ministère de l'Énergie',
+    sector: 'Interconnexion électrique',
+    description: 'Étude juridique et institutionnelle pour la mise en place d'un cadre réglementaire propice à l'interconnexion électrique entre la Tunisie et l'Italie.',
+    year: '2024',
+    left: 56.8,
+    top: 29.5,
+    color: '#839705',
+  },
+  {
+    id: 'MA',
+    country: 'Maroc',
+    countryCode: 'MA',
+    client: 'Ministère de la Transition Énergétique',
+    sector: 'Transition énergétique',
+    description: 'Analyse du cadre réglementaire et institutionnel pour le développement des énergies renouvelables.',
+    year: '2023',
+    left: 52.5,
+    top: 32.5,
+    color: '#DDE597',
+  },
+  {
+    id: 'SN',
+    country: 'Sénégal',
+    countryCode: 'SN',
+    client: 'SENELEC',
+    sector: 'Énergie',
+    description: 'Conseil juridique pour la structuration du cadre réglementaire du secteur de l'électricité.',
+    year: '2024',
+    left: 47.2,
+    top: 51.8,
+    color: '#839705',
+  },
+  {
+    id: 'MR',
+    country: 'Mauritanie',
+    countryCode: 'MR',
+    client: 'Gouvernement mauritanien',
+    sector: 'Analyse institutionnelle',
+    description: 'Étude institutionnelle et réglementaire pour la mise en place d'un cadre de gouvernance du secteur énergétique.',
+    year: '2023',
+    left: 49.2,
+    top: 43.5,
+    color: '#839705',
+  },
+  {
+    id: 'GN',
+    country: 'Guinée',
+    countryCode: 'GN',
+    client: 'EDG',
+    sector: 'Électricité',
+    description: 'Assistance juridique pour la mise en place d'un cadre réglementaire du secteur de l'électricité.',
+    year: '2023',
+    left: 48.8,
+    top: 55.2,
+    color: '#839705',
+  },
+  {
+    id: 'BF',
+    country: 'Burkina Faso',
+    countryCode: 'BF',
+    client: 'SONABEL',
+    sector: 'Énergie renouvelable',
+    description: 'Conseil juridique pour le développement des énergies renouvelables et la transition énergétique.',
+    year: '2022',
+    left: 53.3,
+    top: 52.2,
+    color: '#839705',
+  },
+  {
+    id: 'NE',
+    country: 'Niger',
+    countryCode: 'NE',
+    client: 'NIGELEC',
+    sector: 'Secteur électrique',
+    description: 'Analyse juridique et institutionnelle pour la réforme du secteur électrique.',
+    year: '2023',
+    left: 56.2,
+    top: 48.5,
+    color: '#839705',
+  },
+  {
+    id: 'BJ',
+    country: 'Bénin',
+    countryCode: 'BJ',
+    client: 'SBEE',
+    sector: 'Énergie',
+    description: 'Structuration réglementaire pour l'accès à l'énergie et la gestion des concessions électriques.',
+    year: '2024',
+    left: 55.2,
+    top: 56.5,
+    color: '#839705',
+  },
+  {
+    id: 'CD',
+    country: 'RD Congo',
+    countryCode: 'CD',
+    client: 'SNEL',
+    sector: 'Hydraulique',
+    description: 'Conseil juridique pour la structuration des projets hydroélectriques et la réforme institutionnelle du secteur.',
+    year: '2024',
+    left: 61.8,
+    top: 64.5,
+    color: '#839705',
+  },
+  {
+    id: 'GH',
+    country: 'Ghana',
+    countryCode: 'GH',
+    client: 'ECG',
+    sector: 'Distribution électrique',
+    description: 'Assistance à la mise en place d'un cadre réglementaire pour la distribution d'électricité.',
+    year: '2023',
+    left: 52.8,
+    top: 58.2,
+    color: '#DDE597',
+  },
+];
+
 const relatedCategories = [
   { label: 'Juridique', widthClass: 'w-[131px]', active: false },
   { label: 'Strategie', widthClass: 'w-[134px]', active: false },
@@ -28,25 +166,25 @@ const relatedCategories = [
 
 const relatedCards = [
   {
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410422/rnj/group-483-89ee6676.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777410422/rnj/group-483-89ee6676.svg',
     year: '2026',
     title: 'Workshop BeCentral : digitalisation durable',
     description: 'Retour sur un échange autour des enjeux de la digitalisation responsable.',
   },
   {
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410425/rnj/group-482-365877a7.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777410425/rnj/group-482-365877a7.svg',
     year: '2024',
     title: "Informations de base sur les garanties d'origine (GO).",
     description: "Principes et fonctionnement des garanties d'origine dans le marché de l'énergie.",
   },
   {
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410428/rnj/group-484-04b278f7.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777410428/rnj/group-484-04b278f7.svg',
     year: '2025',
     title: 'Accélération de la transition énergétique en Tunisie',
     description: 'Focus sur les initiatives et leviers pour accélérer la transition énergétique.',
   },
   {
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410430/rnj/group-481-8071b8c8.svg',
+    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777410430/rnj/group-481-8071b8c8.svg',
     year: '2025',
     title: 'CSR en Tunisie : cadre réglementaire',
     description: "Analyse du cadre juridique et des enjeux liés à l'utilisation du CSR en Tunisie.",
@@ -54,77 +192,194 @@ const relatedCards = [
 ] as const;
 
 export default function AnalyseInstitutionnelleClient() {
+  const [activePin, setActivePin] = useState<string | null>(null);
+  const [hoveredPin, setHoveredPin] = useState<string | null>(null);
+
+  const activePinData = MAP_PINS.find((p) => p.id === (activePin ?? hoveredPin));
+
   return (
     <main className="min-h-screen bg-[#F7FCFF]">
       <Navbar />
 
+      {/* ── Hero: full-width map + pins ── */}
       <section className="relative isolate w-full overflow-hidden bg-[#0E434F] min-h-[480px] sm:min-h-[560px] md:min-h-[700px] lg:h-[1048px] lg:min-h-[1048px]">
-        <div
-          className="absolute overflow-hidden"
-          style={{ inset: 0, transform: 'scale(1.15) translateX(5%)' }}
-        >
+
+        {/* Map — no zoom, full cover */}
+        <div className="absolute inset-0">
           <img
-            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132780/rnj/map-3-380cf512.svg"
+            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132780/rnj/map-3-380cf512.svg"
             alt=""
             aria-hidden="true"
-            className="h-full w-full"
+            className="h-full w-full object-cover"
             loading="eager"
             decoding="async"
           />
         </div>
 
-        <div className="pointer-events-none relative z-10 mx-auto min-h-[480px] w-full max-w-[1544px] px-5 pb-12 pt-28 sm:min-h-[560px] sm:px-6 sm:pt-32 md:min-h-[700px] md:px-10 md:pt-36 lg:h-[1048px] lg:min-h-[1048px] lg:max-w-[1544px] lg:px-0 lg:pb-0 lg:pt-0">
-          <div className="flex w-full flex-col justify-center lg:absolute lg:left-[5.69%] lg:right-[39.79%] lg:top-[21.58%] lg:max-w-[765.06px] lg:items-start lg:gap-[37.79px]">
-            <div className={`${geist.className} inline-flex items-center gap-2 text-[#9CD5E6] sm:gap-3 lg:gap-[10.21px]`}>
-              <span className="text-[14px] font-semibold leading-none sm:text-[16px] md:text-[20px] lg:text-[20.43px] lg:leading-[17px]">&lt;</span>
-              <div className="flex flex-col items-center gap-1.5 leading-none sm:gap-2 lg:gap-[16.34px]">
-                <span className="text-[9px] font-semibold uppercase text-white/30 sm:text-[10px] md:text-[12px] lg:text-[15.32px] lg:leading-[17px]">
-                  Asie
-                </span>
-                <span className="text-[14px] font-semibold uppercase text-white sm:text-[16px] md:text-[20px] lg:text-[20.43px] lg:leading-[17px]">
-                  Afrique
-                </span>
-                <span className="text-[9px] font-semibold uppercase text-white/30 sm:text-[10px] md:text-[12px] lg:text-[15.32px] lg:leading-[17px]">
-                  Europe
-                </span>
+        {/* Dark vignette — keeps text readable */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ background: 'linear-gradient(135deg, rgba(14,67,79,0.82) 0%, rgba(14,67,79,0.35) 55%, rgba(14,67,79,0.1) 100%)' }}
+        />
+
+        {/* ── Country pins ── */}
+        {MAP_PINS.map((pin) => {
+          const isActive = activePin === pin.id || hoveredPin === pin.id;
+          return (
+            <button
+              key={pin.id}
+              type="button"
+              aria-label={pin.country}
+              className="absolute z-20 -translate-x-1/2 -translate-y-full transition-transform duration-200"
+              style={{ left: `${pin.left}%`, top: `${pin.top}%`, transform: `translate(-50%, -100%) scale(${isActive ? 1.25 : 1})` }}
+              onMouseEnter={() => setHoveredPin(pin.id)}
+              onMouseLeave={() => setHoveredPin(null)}
+              onClick={() => setActivePin(activePin === pin.id ? null : pin.id)}
+            >
+              {/* Teardrop pin shape — Figma Layer */}
+              <svg
+                width="20"
+                height="28"
+                viewBox="0 0 20 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="drop-shadow-[0px_4px_10px_rgba(0,0,0,0.5)]"
+              >
+                <path
+                  d="M10 0C4.477 0 0 4.477 0 10C0 17.5 10 28 10 28C10 28 20 17.5 20 10C20 4.477 15.523 0 10 0Z"
+                  fill={isActive ? '#E94625' : pin.color}
+                />
+                <circle cx="10" cy="10" r="4" fill="white" opacity="0.9" />
+              </svg>
+              {/* Pulse ring on active */}
+              {isActive && (
+                <span
+                  className="pointer-events-none absolute left-1/2 top-[10px] -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full"
+                  style={{ width: 28, height: 28, background: 'rgba(233,70,37,0.35)' }}
+                />
+              )}
+            </button>
+          );
+        })}
+
+        {/* ── Info panel (left side) ── */}
+        <div className="pointer-events-none relative z-10 mx-auto h-full w-full max-w-[1544px] px-5 sm:px-6 md:px-10 lg:px-0">
+          <div className="flex h-full flex-col justify-between pb-10 pt-28 sm:pb-12 sm:pt-32 md:pb-14 md:pt-36 lg:pb-[58px] lg:pt-[226px]">
+
+            {/* Text block */}
+            <div className="flex w-full flex-col lg:absolute lg:left-[5.69%] lg:top-[21.58%] lg:max-w-[765.06px] lg:items-start lg:gap-[37.79px]">
+              <div className={`${geist.className} inline-flex items-center gap-2 text-[#9CD5E6] sm:gap-3 lg:gap-[10.21px]`}>
+                <span className="text-[14px] font-semibold leading-none sm:text-[16px] lg:text-[20.43px] lg:leading-[17px]">&lt;</span>
+                <div className="flex flex-col items-center gap-1.5 leading-none sm:gap-2 lg:gap-[16.34px]">
+                  <span className="text-[9px] font-semibold uppercase text-white/30 sm:text-[10px] md:text-[12px] lg:text-[15.32px] lg:leading-[17px]">Asie</span>
+                  <span className="text-[14px] font-semibold uppercase text-white sm:text-[16px] md:text-[20px] lg:text-[20.43px] lg:leading-[17px]">Afrique</span>
+                  <span className="text-[9px] font-semibold uppercase text-white/30 sm:text-[10px] md:text-[12px] lg:text-[15.32px] lg:leading-[17px]">Europe</span>
+                </div>
+                <span className="text-[14px] font-semibold leading-none sm:text-[16px] lg:text-[20.43px] lg:leading-[17px]">&gt;</span>
               </div>
-              <span className="text-[14px] font-semibold leading-none sm:text-[16px] md:text-[20px] lg:text-[20.43px] lg:leading-[17px]">&gt;</span>
+
+              <h1 className={`${ebGaramond.className} mt-4 text-[clamp(28px,7vw,98px)] font-bold leading-[0.95] tracking-[-0.04em] text-white sm:mt-6 md:mt-8 lg:mt-[37.79px] lg:w-[634.32px] lg:text-[98.06px] lg:leading-[93px]`}>
+                Nos projets
+              </h1>
+
+              <div className="mt-4 flex flex-col items-start gap-3 sm:mt-5 sm:gap-4 md:mt-7 lg:mt-[37.79px] lg:w-[765.06px] lg:gap-[33px]">
+                <div className="inline-block max-w-full bg-[#DDE597] px-2 py-1 sm:px-2.5 lg:h-[30.64px] lg:w-[699.69px] lg:px-[14.3px] lg:py-[7.15px]">
+                  <p className={`${geist.className} whitespace-normal text-[8px] font-black uppercase leading-tight tracking-[0.03em] text-[#0E434F] sm:text-[9px] sm:whitespace-nowrap md:text-[11px] lg:text-[12.96px] lg:leading-[15px]`}>
+                    Comprendre les environnements publics pour s&eacute;curiser vos d&eacute;cisions strat&eacute;giques
+                  </p>
+                </div>
+
+                <p className={`${geist.className} max-w-full text-[11px] font-semibold leading-[1.3] text-white/50 sm:text-[12px] md:text-[14px] lg:w-[785.49px] lg:max-w-none lg:text-[16.34px] lg:leading-[17px]`}>
+                  RNJ Advisory accompagne les entreprises, institutions et investisseurs dans l&rsquo;analyse des cadres institutionnels et r&eacute;glementaires. Nos &eacute;tudes permettent de s&eacute;curiser les projets, d&rsquo;assurer leur conformit&eacute; et d&rsquo;orienter les d&eacute;cisions dans des environnements complexes.
+                </p>
+
+                <Link
+                  href="/contact?mode=message&subject=Analyse%20institutionnelle"
+                  className={`${geist.className} pointer-events-auto mt-3 inline-flex h-[44px] items-center justify-between gap-2 rounded-[105px] bg-[#839705] pl-5 pr-[3px] text-[13px] font-extrabold text-[#E7E7E7] shadow-[0_10px_24px_rgba(0,0,0,0.22)] transition hover:brightness-105 sm:mt-4 sm:h-[52px] sm:gap-3 sm:pl-6 sm:pr-[4px] sm:text-[15px] md:mt-6 md:h-[64px] md:gap-4 md:pl-7 md:pr-[5px] md:text-[18px] lg:mt-0 lg:h-[63.47px] lg:w-[224px] lg:rounded-[89.6px] lg:pl-[41.07px] lg:pr-[4.48px] lg:text-[17.24px] lg:leading-[19px]`}
+                >
+                  <span>Contact us</span>
+                  <span className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-[#DDE597] sm:h-[44px] sm:w-[44px] md:h-[56px] md:w-[56px] lg:h-[54.51px] lg:w-[54.51px]">
+                    <span className="inline-block h-[12px] w-[12px] border-r-[2px] border-t-[2px] border-[#839705] rotate-45 translate-x-[-2px] sm:h-[14px] sm:w-[14px] sm:border-r-[2.5px] sm:border-t-[2.5px] md:h-[18px] md:w-[18px] md:border-r-[3px] md:border-t-[3px] lg:h-[19.05px] lg:w-[19.05px] lg:border-r-[2.74px] lg:border-t-[2.74px]" />
+                  </span>
+                </Link>
+              </div>
             </div>
 
-            <h1
-              className={`${ebGaramond.className} mt-4 text-[clamp(28px,7vw,98px)] font-bold leading-[0.95] tracking-[-0.04em] text-white sm:mt-6 md:mt-8 lg:mt-[37.79px] lg:w-[634.32px] lg:text-[98.06px] lg:leading-[93px]`}
-            >
-              Nos projets
-            </h1>
-
-            <div className="mt-4 flex flex-col items-start gap-3 sm:mt-5 sm:gap-4 md:mt-7 md:gap-[18.39px] lg:mt-[37.79px] lg:w-[765.06px] lg:max-w-none lg:gap-[33px]">
-              <div className="inline-block max-w-full bg-[#DDE597] px-2 py-1 sm:px-2.5 lg:h-[30.64px] lg:w-[699.69px] lg:px-[14.3px] lg:py-[7.15px]">
-                <p
-                  className={`${geist.className} whitespace-normal text-[8px] font-black uppercase leading-tight tracking-[0.03em] text-[#0E434F] sm:text-[9px] sm:whitespace-nowrap md:text-[11px] lg:text-[12.96px] lg:leading-[15px]`}
-                >
-                  Comprendre les environnements publics pour s&eacute;curiser vos d&eacute;cisions strat&eacute;giques
-                </p>
+            {/* Pin count indicator — bottom left */}
+            <div className={`${geist.className} pointer-events-none mt-auto flex items-center gap-3 lg:absolute lg:bottom-[58px] lg:left-[5.69%]`}>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/40 sm:text-[12px] lg:text-[13px]">
+                {MAP_PINS.length} pays d&apos;intervention
+              </span>
+              <div className="flex gap-1.5">
+                {MAP_PINS.map((p) => (
+                  <div
+                    key={p.id}
+                    className="h-[5px] w-[5px] rounded-full transition-all duration-200"
+                    style={{ background: activePin === p.id || hoveredPin === p.id ? '#E94625' : 'rgba(255,255,255,0.25)' }}
+                  />
+                ))}
               </div>
-
-              <p
-                className={`${geist.className} max-w-full text-[11px] font-semibold leading-[1.3] text-white/50 sm:text-[12px] md:text-[14px] lg:w-[785.49px] lg:max-w-none lg:text-[16.34px] lg:leading-[17px]`}
-              >
-                RNJ Advisory accompagne les entreprises, institutions et investisseurs dans l&rsquo;analyse des cadres
-                institutionnels et r&eacute;glementaires. Nos &eacute;tudes permettent de s&eacute;curiser les projets, d&rsquo;assurer
-                leur conformit&eacute; et d&rsquo;orienter les d&eacute;cisions dans des environnements complexes.
-              </p>
-
-              <Link
-                href="/contact?mode=message&subject=Analyse%20institutionnelle"
-                className={`${geist.className} pointer-events-auto mt-3 inline-flex h-[44px] items-center justify-between gap-2 rounded-[105px] bg-[#839705] pl-5 pr-[3px] text-[13px] font-extrabold text-[#E7E7E7] shadow-[0_10px_24px_rgba(0,0,0,0.22)] transition hover:brightness-105 sm:mt-4 sm:h-[52px] sm:gap-3 sm:pl-6 sm:pr-[4px] sm:text-[15px] md:mt-6 md:h-[64px] md:gap-4 md:pl-7 md:pr-[5px] md:text-[18px] lg:mt-0 lg:h-[63.47px] lg:w-[224px] lg:rounded-[89.6px] lg:pl-[41.07px] lg:pr-[4.48px] lg:text-[17.24px] lg:leading-[19px]`}
-              >
-                <span>Contact us</span>
-                <span className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-[#DDE597] sm:h-[44px] sm:w-[44px] md:h-[56px] md:w-[56px] lg:h-[54.51px] lg:w-[54.51px]">
-                  <span className="inline-block h-[12px] w-[12px] border-r-[2px] border-t-[2px] border-[#839705] rotate-45 translate-x-[-2px] sm:h-[14px] sm:w-[14px] sm:border-r-[2.5px] sm:border-t-[2.5px] md:h-[18px] md:w-[18px] md:border-r-[3px] md:border-t-[3px] lg:h-[19.05px] lg:w-[19.05px] lg:border-r-[2.74px] lg:border-t-[2.74px]" />
-                </span>
-              </Link>
             </div>
           </div>
+        </div>
+
+        {/* ── Active pin detail card (glass panel, bottom-right) ── */}
+        <div
+          className="pointer-events-none absolute bottom-0 right-0 z-30 transition-all duration-400"
+          style={{
+            width: activePinData ? 'min(100%, 633px)' : '0px',
+            height: activePinData ? 'min(100%, 940px)' : '0px',
+            opacity: activePinData ? 1 : 0,
+          }}
+        >
+          {activePinData && (
+            <div className="pointer-events-auto flex h-full w-full flex-col overflow-hidden"
+              style={{ background: activePinData.color === '#839705' ? '#BBCB2E' : '#B5E0EC' }}
+            >
+              {/* Image placeholder */}
+              <div className="relative w-full" style={{ height: '245px', background: '#D9D9D9' }}>
+                <div className="absolute inset-0 bg-black/10" />
+                <div className={`${geist.className} absolute bottom-4 left-6 text-[11px] font-medium uppercase tracking-[0.12em] text-black/40`}>
+                  {activePinData.countryCode} — {activePinData.year}
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-1 flex-col gap-5 px-[51px] pb-[40px] pt-[79px]">
+                {/* Client label */}
+                <span className={`${geist.className} text-[12.26px] font-medium uppercase leading-[12px] tracking-[-0.02em] text-[#003300]`}>
+                  Client&nbsp;: {activePinData.client}
+                </span>
+
+                {/* Sector title */}
+                <h3 className={`${ebGaramond.className} text-[40.86px] font-extrabold leading-[43px] tracking-[-0.02em] text-[#003300]`}>
+                  {activePinData.sector}
+                </h3>
+
+                {/* Description */}
+                <p className={`${geist.className} max-w-[464px] text-[16.34px] font-medium leading-[18px] tracking-[-0.02em] text-[#003300]/60`}>
+                  {activePinData.description}
+                </p>
+
+                {/* Country + year */}
+                <span className={`${geist.className} text-[12.26px] font-medium uppercase leading-[12px] tracking-[-0.02em] text-[#003300]/35`}>
+                  Pays&nbsp;: {activePinData.country} — {activePinData.year}
+                </span>
+              </div>
+
+              {/* Close button */}
+              <button
+                type="button"
+                aria-label="Fermer"
+                className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-black/10 text-[#003300] transition hover:bg-black/20"
+                onClick={() => setActivePin(null)}
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L13 13M13 1L1 13" stroke="#003300" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -136,7 +391,7 @@ export default function AnalyseInstitutionnelleClient() {
           <div className="mx-auto flex w-full max-w-[2043px] flex-col gap-6 sm:gap-8 lg:gap-[44px]">
             <div className="flex flex-col gap-5 sm:gap-7 lg:h-[52px] lg:flex-row lg:items-center lg:justify-between lg:gap-[301px]">
               <h2 className={`${geist.className} text-[24px] font-medium leading-[1] text-black/80 sm:text-[32px] md:text-[40px]`}>
-                contenu associ&eacute;
+                Contenu associ&eacute;
               </h2>
 
               <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:h-[52px] lg:gap-4">
@@ -208,13 +463,12 @@ export default function AnalyseInstitutionnelleClient() {
         {/* Background layers from Figma: cityscape + Rectangle 490 gradient */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/2 h-[1765.79px] w-[1580px] -translate-x-1/2 bottom-[-82.96px]">
-            <Image
-              src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132776/rnj/beautiful-architecture-building-exterior-cityscape-2026-01-05-01-06-47-utc-2-8e38423b.svg"
+            <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132776/rnj/beautiful-architecture-building-exterior-cityscape-2026-01-05-01-06-47-utc-2-8e38423b.svg"
               alt=""
               fill
               sizes="100vw"
               className="object-cover"
-            />
+             loading="lazy"/>
           </div>
           <div
             className="absolute left-1/2 h-[1676px] w-[1513px] -translate-x-1/2 bottom-[-122px]"
@@ -255,7 +509,7 @@ export default function AnalyseInstitutionnelleClient() {
                 <button type="button" className="shrink-0 self-start sm:self-end">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334107/rnj/frame-487-5f9f4c30.svg"
+                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334107/rnj/frame-487-5f9f4c30.svg"
                     alt="Voir plus"
                     className="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] lg:h-[116px] lg:w-[116px]"
                   />
@@ -272,13 +526,12 @@ export default function AnalyseInstitutionnelleClient() {
                 <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
                   {/* Logo + description */}
                   <div className="flex max-w-[352px] flex-col gap-[30px]">
-                    <Image
-                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                       alt="Logo RNJ Advisory"
                       width={233}
                       height={58}
                       className="h-auto w-[180px] sm:w-[233px]"
-                    />
+                     priority/>
                     <p className={`${geist.className} text-[14px] font-medium leading-[16px] text-white/50 sm:text-[16px]`}>
                       Cabinet de conseil strat&eacute;gique et r&eacute;glementaire accompagnant acteurs publics, entreprises priv&eacute;es et investisseurs dans la s&eacute;curisation de leurs projets et la ma&icirc;trise des environnements institutionnels complexes.
                     </p>
@@ -332,11 +585,11 @@ export default function AnalyseInstitutionnelleClient() {
                   {/* Group 334 — social icons */}
                   <div className="flex flex-row items-center gap-[20px]">
                     {[
-                      { name: 'Instagram', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334109/rnj/mask-group-23-1ce30be9.svg' },
-                      { name: 'LinkedIn', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334110/rnj/mask-group-24-fd4f223e.svg' },
-                      { name: 'Telegram', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334111/rnj/mask-group-25-516d2f88.svg' },
-                      { name: 'Twitter', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334113/rnj/mask-group-26-a7a619cb.svg' },
-                      { name: 'Facebook', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334115/rnj/mask-group-27-5870749d.svg' },
+                      { name: 'Instagram', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334109/rnj/mask-group-23-1ce30be9.svg' },
+                      { name: 'LinkedIn', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334110/rnj/mask-group-24-fd4f223e.svg' },
+                      { name: 'Telegram', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334111/rnj/mask-group-25-516d2f88.svg' },
+                      { name: 'Twitter', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334113/rnj/mask-group-26-a7a619cb.svg' },
+                      { name: 'Facebook', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334115/rnj/mask-group-27-5870749d.svg' },
                     ].map((social) => (
                       <div key={social.name} className="relative h-[29.2px] w-[29.2px] overflow-hidden rounded-full">
                         <Image src={social.src} alt={social.name} fill className="object-contain" />
@@ -346,24 +599,21 @@ export default function AnalyseInstitutionnelleClient() {
 
                   {/* Frame 345 — contact + copyright row */}
                   <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-[20px] md:gap-[78px] lg:gap-[142px] w-full">
-                    {/* Frame 336 — phone + email */}
-                    <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-[20px] md:gap-[78px]">
-                      {/* Frame 201 — phone */}
-                      <div className="flex flex-row items-center gap-[20px]">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310359/rnj/layer-1-27-a0d86191.svg" alt="" className="h-[22px] w-[21.92px] shrink-0" />
-                        <span className={`${geist.className} text-[13px] font-medium leading-[21px] tracking-[0.05em] text-white sm:text-[15.37px] whitespace-nowrap`}>
-                          +32 474 03 22 66
-                        </span>
-                      </div>
-                      {/* Frame 202 — email */}
-                      <div className="flex flex-row items-center gap-[20px]">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310361/rnj/layer-1-26-33e2a54e.svg" alt="" className="h-[15.47px] w-[22px] shrink-0" />
-                        <span className={`${geist.className} text-[13px] font-medium leading-[21px] tracking-[0.05em] text-white sm:text-[15.37px]`}>
-                          info@rnj-advisory.be
-                        </span>
-                      </div>
+                    {/* Frame 201 — phone */}
+                    <div className="flex flex-row items-center gap-[20px]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310359/rnj/layer-1-27-a0d86191.svg" alt="" className="h-[22px] w-[21.92px] shrink-0" />
+                      <span className={`${geist.className} text-[13px] font-medium leading-[21px] tracking-[0.05em] text-white sm:text-[15.37px] whitespace-nowrap`}>
+                        +32 474 03 22 66
+                      </span>
+                    </div>
+                    {/* Frame 202 — email */}
+                    <div className="flex flex-row items-center gap-[20px]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310361/rnj/layer-1-26-33e2a54e.svg" alt="" className="h-[15.47px] w-[22px] shrink-0" />
+                      <span className={`${geist.className} text-[13px] font-medium leading-[21px] tracking-[0.05em] text-white sm:text-[15.37px]`}>
+                        info@rnj-advisory.be
+                      </span>
                     </div>
                     {/* Copyright */}
                     <span className={`${geist.className} text-[12px] font-medium leading-[21px] text-white/50 sm:text-[15.37px] whitespace-nowrap`}>

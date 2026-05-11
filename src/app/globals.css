@@ -226,10 +226,10 @@
 
   @keyframes scroll {
     0% {
-      transform: translateX(0);
+      transform: translate3d(0, 0, 0);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translate3d(-50%, 0, 0);
     }
   }
 }
@@ -716,9 +716,16 @@
 }
 
 .map-country-card-shell {
-  left: var(--card-left, 50%);
-  top: var(--card-top, 50%);
-  transform: translate(var(--card-translate-x, -50%), var(--card-translate-y, -50%));
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: min(88vw, 320px);
+}
+
+@media (min-width: 640px) {
+  .map-country-card-shell {
+    max-width: min(88vw, 389px);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -726,6 +733,7 @@
     left: var(--card-left);
     top: var(--card-top);
     transform: translate(var(--card-translate-x, 0), var(--card-translate-y, 0));
+    max-width: 389px;
   }
 }
 
@@ -1382,4 +1390,27 @@
 
 .team-card-initials {
   animation: fadeInScale 0.5s var(--team-card-ease) 0.2s both;
+}
+
+.bento-d3 {
+  aspect-ratio: 3 / 4;
+}
+.bento-d3 img {
+  object-position: top center;
+}
+@media (min-width: 480px) {
+  .bento-d3 { aspect-ratio: 3 / 4; }
+}
+@media (min-width: 640px) {
+  .bento-d3 { aspect-ratio: unset; height: 420px; }
+  .bento-d3 img { object-position: center; }
+}
+@media (min-width: 768px) {
+  .bento-d3 { aspect-ratio: unset; height: 540px; }
+}
+@media (min-width: 1024px) {
+  .bento-d3 { aspect-ratio: unset; height: 620px; }
+}
+@media (min-width: 1280px) {
+  .bento-d3 { aspect-ratio: unset; height: 691px; }
 }

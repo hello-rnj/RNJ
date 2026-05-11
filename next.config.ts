@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
         hostname: "res.cloudinary.com",
       },
     ],
+    minimumCacheTTL: 60 * 60 * 24 * 365,
   },
 };
 

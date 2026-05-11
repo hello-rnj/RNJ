@@ -17,7 +17,7 @@ export default function Navbar() {
       >
         <Link href="/" className="flex min-w-0 items-center gap-2 md:gap-2.5">
           <Image
-            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333984/rnj/layer-4-955dc651.svg"
+            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333984/rnj/layer-4-955dc651.svg"
             alt="Logo icon"
             width={32}
             height={34}
@@ -25,7 +25,7 @@ export default function Navbar() {
             priority
           />
           <Image
-            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334126/rnj/group-73892e5a.svg"
+            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334126/rnj/group-73892e5a.svg"
             alt="Logo text"
             width={162}
             height={43}
@@ -79,13 +79,12 @@ export default function Navbar() {
         </div>
 
         <div className="hidden flex-row items-center gap-2 xl:flex xl:gap-[10px]">
-          <Image
-            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334127/rnj/asset-96a86689.png"
+          <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_800,h_600,c_limit/v1776334127/rnj/asset-96a86689.png"
             alt="Drapeau Belgique"
             width={20}
             height={30}
             className="h-[26px] w-[18px] object-contain 2xl:h-[30px] 2xl:w-[20px]"
-          />
+           loading="lazy"/>
           <Link
             href="/a-propos"
             className="flex h-[39px] items-center justify-center rounded-[10px] border-[1.5px] border-[#003300] px-4 text-center font-[Geist] text-[14px] font-semibold text-[#003300] transition hover:bg-[#003300]/5 2xl:h-[41px] 2xl:px-[17px] 2xl:text-[15px]"
@@ -97,7 +96,7 @@ export default function Navbar() {
             href="/contact"
             className="flex h-[41px] w-[100px] items-center justify-center rounded-[10px] px-4 text-center font-[Geist] text-[15.0249px] font-extrabold leading-[17px] text-white transition hover:opacity-90 relative overflow-hidden"
             style={{
-              backgroundImage: "url('https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376864/rnj/group-349012-8572149e.svg')",
+              backgroundImage: "url('https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376864/rnj/group-349012-8572149e.svg')",
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -192,7 +191,7 @@ export default function Navbar() {
                 href="/contact"
                 className="w-full rounded-xl py-3 text-center font-[Geist] font-extrabold text-white transition hover:opacity-90 relative overflow-hidden"
                 style={{
-                  backgroundImage: "url('https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376864/rnj/group-349012-8572149e.svg')",
+                  backgroundImage: "url('https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376864/rnj/group-349012-8572149e.svg')",
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}

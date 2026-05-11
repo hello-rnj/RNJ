@@ -8,7 +8,7 @@ export default function JsonLd() {
     '@id': organizationId,
     name: 'RNJ Advisory',
     url: 'https://rnj-advisory.be',
-    logo: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg',
+    logo: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg',
     description:
       "Cabinet de conseil stratégique et réglementaire spécialisé dans l'analyse institutionnelle, la conformité réglementaire et le développement économique durable.",
     address: {
