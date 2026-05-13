@@ -334,19 +334,8 @@ export default function BlogsPage() {
 
             <div className="flex flex-col items-center gap-6 border-t border-white/15 pt-6 w-full sm:flex-row sm:items-center sm:justify-between sm:gap-[20px] md:gap-[60px] lg:gap-[215px]">
               <div className="flex flex-row items-center gap-[20px]">
-                {/* Newsletter/Headphones icon */}
-                <div className="relative h-[28.92px] w-[28.92px] overflow-hidden rounded-full bg-black bg-opacity-[0.004]">
-                  <Image 
-                    src="/optimized/Frame 192 (5).svg" 
-                    alt="Newsletter" 
-                    fill 
-                    className="object-contain"
-                    loading="lazy"
-                  />
-                </div>
-                {/* Social icons */}
                 {['Instagram', 'LinkedIn', 'Telegram', 'Twitter', 'Facebook'].map((social) => (
-                  <div key={social} className="relative h-[29.2px] w-[29.2px] overflow-hidden rounded-full bg-white">
+                  <div key={social} className="relative h-[29.2px] w-[29.2px] overflow-hidden rounded-full">
                     <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334109/rnj/mask-group-23-1ce30be9.svg"
                       alt={social}
                       fill

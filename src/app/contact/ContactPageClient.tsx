@@ -689,7 +689,7 @@ export default function ContactPageClient({
           {view === 'booking' ? (
             <section className="relative z-20 flex min-h-screen w-full items-center justify-center px-3 py-6 sm:px-6 md:py-12">
               <div
-                className="relative mx-auto w-full max-w-[1512px] overflow-hidden rounded-[22px] bg-white shadow-[0px_4px_57px_rgba(0,0,0,0.25)] sm:rounded-[34px] lg:rounded-[50px]"
+                className="relative mx-auto w-full max-w-[1512px]"
               >
                 <div
                   className="flex w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
@@ -1128,26 +1128,23 @@ export default function ContactPageClient({
           ) : null}
 
           {view === 'message' ? (
-              <section className="relative z-20 w-full px-3 py-8 sm:px-6 sm:py-12 md:py-16">
-                <div className="mx-auto w-full max-w-[1512px] overflow-hidden rounded-[22px] bg-[#BBCB2E] shadow-[0px_4px_56px_rgba(0,0,0,0.18)] sm:rounded-[34px] lg:rounded-[50px]">
+              <div className="relative z-10 flex w-full justify-center">
+                <div className="pt-20">
                   <div className="relative overflow-hidden px-3 py-5 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
-                    <div className="absolute -left-16 top-[-90px] h-[260px] w-[260px] rounded-full border border-white/25 bg-white/10 blur-2xl" />
-                    <div className="absolute -right-10 bottom-[-60px] h-[220px] w-[220px] rounded-full border border-[#003300]/10 bg-[#DDE597]/50 blur-2xl" />
-
                     <div className="relative z-10 flex w-full justify-center">
-                      <div className="mx-auto w-full max-w-[667.57px] rounded-[20px] bg-white px-4 py-5 shadow-[0px_4px_40px_rgba(0,0,0,0.12)] sm:rounded-[28px] sm:px-7 sm:py-8 lg:rounded-[42px] lg:px-10 lg:py-10">
+                      <div className="mx-auto w-full max-w-[667.57px]">
                         <div className="mb-3 flex items-start justify-between gap-3 sm:mb-[13.69px] sm:gap-4">
                           <div>
                             <h3
                               className={`${ebGaramond.className} leading-[0.92] text-[#003300]`}
                               style={{ fontSize: 'clamp(24px, 5vw, 54.76px)' }}
                             >
-                              Let&apos;s Talk About Your Project
+                              Parlons de votre projet
                             </h3>
                             <p
                               className={`${geist.className} mt-[21px] max-w-[355.92px] text-[13.69px] font-medium leading-[15px] text-[#003300]/40`}
                             >
-                              Have a question or a project in mind? Get in touch with our team and we&apos;ll respond as soon as possible.
+                              Vous avez une question ou un projet en tête ? Contactez notre équipe et nous vous répondrons dès que possible.
                             </p>
                           </div>
 
@@ -1246,7 +1243,7 @@ export default function ContactPageClient({
                     </div>
                   </div>
                 </div>
-            </section>
+              </div>
           ) : null}
         </div>
       </main>

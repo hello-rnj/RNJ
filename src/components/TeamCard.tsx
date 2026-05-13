@@ -8,10 +8,11 @@ interface TeamCardProps {
   role: string;
   tone: string;
   image?: string;
+  linkedinUrl?: string;
   className?: string;
 }
 
-export default function TeamCard({ name, role, tone, image, className }: TeamCardProps) {
+export default function TeamCard({ name, role, tone, image, linkedinUrl, className }: TeamCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -28,6 +29,9 @@ export default function TeamCard({ name, role, tone, image, className }: TeamCar
 
   const handleLinkedInClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+    if (linkedinUrl) {
+      window.open(linkedinUrl, '_blank', 'noopener,noreferrer');
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {

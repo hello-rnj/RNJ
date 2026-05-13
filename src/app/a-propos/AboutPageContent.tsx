@@ -53,6 +53,7 @@ const teamMembers = [
     initials: 'NA',
     tone: '#EEF2CA',
     image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376840/rnj/nahla-eae48fe8.svg',
+    linkedinUrl: 'https://www.linkedin.com/in/nahla-aschi-/',
   },
   {
     name: 'Ramzi Jelalia',
@@ -60,6 +61,7 @@ const teamMembers = [
     initials: 'RJ',
     tone: '#DDE597',
     image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132761/rnj/ramzi-05917bd9.svg',
+    linkedinUrl: 'https://www.linkedin.com/in/ramzi-jelalia-%F0%9F%90%BB-94856b45/',
   },
   {
     name: 'Eya Mhamed',
@@ -67,6 +69,7 @@ const teamMembers = [
     initials: 'EM',
     tone: '#CCD862',
     image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132763/rnj/eya-44c9ccac.svg',
+    linkedinUrl: 'https://www.linkedin.com/in/eya-mhamed-',
   },
   {
     name: 'Chahine Fehri',
@@ -74,6 +77,7 @@ const teamMembers = [
     initials: 'CF',
     tone: '#EEF2CA',
     image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132766/rnj/chahine-88336938.svg',
+    linkedinUrl: 'https://www.linkedin.com/in/chahine-fehri-5a0267276/',
   },
 ];
 
@@ -198,6 +202,7 @@ export default function AboutPage() {
                 role={member.role}
                 tone={member.tone}
                 image={member.image}
+                linkedinUrl={member.linkedinUrl}
                 className="w-full max-w-[352px] justify-self-center sm:max-w-none"
               />
             ))}
@@ -219,7 +224,7 @@ export default function AboutPage() {
 
           <div className="grid gap-12 lg:grid-cols-[435px_1fr] lg:items-start">
             <div className="relative aspect-[435/382] overflow-hidden rounded-[8px] bg-[#D9D9D9]">
-              <Image src="/optimized/group-349025.webp"
+              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667551/rnj/optimized/group-349025-b7221354.webp"
                 alt="Réunion de conseil stratégique"
                 fill
                 sizes="(max-width: 1024px) 92vw, 435px"
@@ -274,7 +279,7 @@ export default function AboutPage() {
 
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-          <Image src="/optimized/Mask%20group%20(6).png"
+          <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667552/rnj/optimized/mask-group-6-e75a83b2.png"
             alt=""
             fill
             className="object-cover object-bottom"

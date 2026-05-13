@@ -148,57 +148,41 @@ export default function Footer({ showTopRow = true }: FooterProps) {
               </div>
             </div>
 
-            <div className="mt-10 flex w-full flex-col items-center gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-[20px] md:gap-[60px] lg:mt-[40px] lg:gap-[215px]">
-              {/* Newsletter icon + Social icons */}
-              <div className="flex flex-row items-center gap-[20px]">
-                {/* Newsletter/Headphones icon */}
-                <div className="relative h-[28.92px] w-[28.92px] overflow-hidden rounded-full bg-black bg-opacity-[0.004]">
-                  <Image 
-                    src="/optimized/Frame 192 (5).svg" 
-                    alt="Newsletter" 
-                    fill 
-                    className="object-contain" 
-                  />
-                </div>
-                {/* Social icons */}
+            <div className="mt-10 flex w-full flex-col items-center gap-6 md:flex-row md:items-center md:justify-between md:gap-8 lg:mt-auto lg:pt-8 lg:gap-[214.86px]">
+              {/* Frame 334 — social icons */}
+              <div className="flex flex-row flex-wrap items-center justify-center gap-[14px] sm:gap-[19.99px]">
                 {socialIcons.map((social) => (
-                  <div key={social.name} className="relative h-[29.2px] w-[29.2px] overflow-hidden rounded-full ">
+                  <div key={social.name} className="relative h-[29.2px] w-[29.2px] overflow-hidden rounded-full">
                     <Image src={social.src} alt={social.name} fill className="object-contain" />
                   </div>
                 ))}
               </div>
 
-              {/* Contact info + copyright */}
-              <div className="flex w-full flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-[20px] md:gap-[78px] lg:gap-[142px]">
-                {/* Phone + email */}
-                <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-[20px] md:gap-[78px]">
-                  <div className="flex flex-row items-center gap-[20px]">
-                    <Image
-                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310359/rnj/layer-1-27-a0d86191.svg"
-                      alt=""
-                      width={22}
-                      height={22}
-                      className="h-[22px] w-[21.92px] shrink-0"
-                    />
-                    <span className="font-[Geist] text-[13px] font-medium leading-[21px] tracking-[0.05em] text-white sm:text-[15.37px] whitespace-nowrap">
+              {/* Frame 345 — contact + copyright row */}
+              <div className="flex w-full flex-col items-center gap-4 md:w-auto md:flex-row md:items-end md:justify-end md:gap-8 lg:gap-[141.91px]">
+                {/* Frame 336 — phone + email */}
+                <div className="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-5 lg:gap-[77.95px]">
+                  {/* Frame 201 — phone */}
+                  <div className="flex flex-row items-center gap-[19.99px]">
+                    <div className="relative h-[22px] w-[21.92px] shrink-0">
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310359/rnj/layer-1-27-a0d86191.svg" alt="Téléphone" fill className="object-contain"  loading="lazy"/>
+                    </div>
+                    <span className="font-[Geist] text-[13px] font-medium leading-[19px] tracking-[0.04em] text-white sm:text-[14px] sm:leading-[20px] lg:text-[15.3604px] lg:leading-[21px] lg:tracking-[0.05em] whitespace-nowrap">
                       +32 474 03 22 66
                     </span>
                   </div>
-                  <div className="flex flex-row items-center gap-[20px]">
-                    <Image
-                      src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310361/rnj/layer-1-26-33e2a54e.svg"
-                      alt=""
-                      width={22}
-                      height={15.47}
-                      className="h-[15.47px] w-[22px] shrink-0"
-                    />
-                    <span className="font-[Geist] text-[13px] font-medium leading-[21px] tracking-[0.05em] text-white sm:text-[15.37px]">
+                  {/* Frame 202 — email */}
+                  <div className="flex max-w-full flex-row items-center gap-[12px] sm:gap-[19.99px]">
+                    <div className="relative h-[15.47px] w-[22px] shrink-0">
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310361/rnj/layer-1-26-33e2a54e.svg" alt="E-mail" fill className="object-contain"  loading="lazy"/>
+                    </div>
+                    <span className="break-words text-center font-[Geist] text-[13px] font-medium leading-[19px] tracking-[0.04em] text-white sm:text-left sm:text-[14px] sm:leading-[20px] lg:text-[15.3604px] lg:leading-[21px] lg:tracking-[0.05em]">
                       info@rnj-advisory.be
                     </span>
                   </div>
                 </div>
                 {/* Copyright */}
-                <span className="font-[Geist] text-[12px] font-medium leading-[21px] text-white/50 sm:text-[15.37px] whitespace-nowrap">
+                <span className="max-w-full text-center font-[Geist] text-[12px] font-medium leading-[18px] text-white opacity-50 sm:text-[13px] sm:leading-[19px] md:text-right lg:text-[15.3604px] lg:leading-[21px] lg:whitespace-nowrap">
                   © 2026 RNJ Advisory. Tous droits réservés.
                 </span>
               </div>

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import AnalyseInstitutionnelleClient from './AnalyseInstitutionnelleClient';
 import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 
 export const metadata: Metadata = {
@@ -34,11 +33,7 @@ export default function AnalyseInstitutionnellePage() {
           },
         ]}
       />
-      <div className="flex min-h-screen flex-col bg-[#F7FCFF]">
-        <Navbar />
-        <div className="flex-grow" />
-        <Footer />
-      </div>
+      <AnalyseInstitutionnelleClient />
     </>
   );
 }

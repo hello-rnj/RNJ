@@ -138,17 +138,17 @@ const glowShapes = [
 ];
 
 const partnerAssetLogos = [
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333855/rnj/asset-14-1-cda0f5e7.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333857/rnj/asset-15-1-7f0249bf.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333858/rnj/asset-16-1-41dc72e6.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333859/rnj/asset-17-1-5077f95f.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333861/rnj/asset-21-1-6ad9b68e.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333863/rnj/asset-22-1-ac5775de.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333864/rnj/asset-23-1-9c5664dc.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333866/rnj/asset-24-1-1c05ea09.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333867/rnj/asset-26-1-3d6250e2.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333869/rnj/asset-27-1-8679f4ab.svg',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333870/rnj/asset-28-1-d6d25061.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333855/rnj/asset-14-1-cda0f5e7.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333857/rnj/asset-15-1-7f0249bf.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333858/rnj/asset-16-1-41dc72e6.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333859/rnj/asset-17-1-5077f95f.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333861/rnj/asset-21-1-6ad9b68e.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333863/rnj/asset-22-1-ac5775de.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333864/rnj/asset-23-1-9c5664dc.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333866/rnj/asset-24-1-1c05ea09.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333867/rnj/asset-26-1-3d6250e2.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333869/rnj/asset-27-1-8679f4ab.svg',
+  'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333870/rnj/asset-28-1-d6d25061.svg',
 ] as const;
 
 type ImpactCountryId = 'tn' | 'mr' | 'sn' | 'gn' | 'bf' | 'ne' | 'bj' | 'cd';
@@ -207,7 +207,7 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '45 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132735/rnj/tn-map-7a9a40cd.svg',
+    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132735/rnj/tn-map-7a9a40cd.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "En Tunisie, RNJ Advisory accompagne institutions, investisseurs et entrepreneurs sur des projets à forte composante réglementaire. Nos missions couvrent l'analyse institutionnelle, la structuration juridique, la conformité et l'intégration des critères ESG afin de sécuriser les décisions et renforcer la viabilité à long terme.",
     tags: ['energy', 'durability', 'gouvernance'],
@@ -232,7 +232,7 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '02 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132737/rnj/mr-f851e151.svg',
+    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132737/rnj/mr-f851e151.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "En Mauritanie, nous accompagnons les acteurs publics et privés sur la gouvernance de projet, le cadrage juridique et l'architecture institutionnelle. Notre approche aligne les initiatives d'investissement avec les obligations réglementaires et les objectifs de performance durable.",
     tags: ['energy', 'durability'],
@@ -257,7 +257,7 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '14 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132738/rnj/sn-fa0dd3fe.svg',
+    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132738/rnj/sn-fa0dd3fe.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "Au Sénégal, nous intervenons sur des dossiers à forte valeur stratégique : diagnostics institutionnels, analyse des risques réglementaires et mise en conformité opérationnelle. Notre objectif est de rendre les projets plus robustes, plus finançables et plus rapides à déployer.",
     tags: ['energy', 'durability'],
@@ -282,7 +282,7 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '05 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132739/rnj/gn-09d6746e.svg',
+    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132739/rnj/gn-09d6746e.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "En Guinée, RNJ Advisory appuie la conception de cadres d'opération conformes, la coordination des parties prenantes et l'intégration des standards ESG. Nous facilitons le passage de la stratégie à une exécution opérationnelle mesurable.",
     tags: ['energy', 'durability'],
@@ -307,7 +307,7 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '02 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132741/rnj/bf-82043e17.svg',
+    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132741/rnj/bf-82043e17.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "Au Burkina Faso, nous accompagnons la structuration de projets complexes avec une approche juridique, institutionnelle et de durabilité. Nos recommandations couvrent la gouvernance, la conformité et la feuille de route de mise en oeuvre.",
     tags: ['energy', 'durability'],
@@ -332,7 +332,7 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '12 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132743/rnj/ne-27d79c5a.svg',
+    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132743/rnj/ne-27d79c5a.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "Au Niger, RNJ Advisory intervient sur la sécurisation des programmes d'investissement et des partenariats. Nous réalisons les analyses juridiques, réglementaires et institutionnelles nécessaires pour fiabiliser la décision et réduire les risques d'exécution.",
     tags: ['energy', 'durability'],
@@ -357,7 +357,7 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '11 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132742/rnj/bj-46e4c23a.svg',
+    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132742/rnj/bj-46e4c23a.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "Au Bénin, nous accompagnons la structuration des cadres de gouvernance, la clarté des responsabilités institutionnelles et l'alignement des dispositifs juridiques. L'objectif est de garantir la cohérence entre stratégie, exécution et impact.",
     tags: ['energy', 'durability'],
@@ -382,7 +382,7 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '12 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132745/rnj/cd-c076eecb.svg',
+    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132745/rnj/cd-c076eecb.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "En République démocratique du Congo, RNJ Advisory accompagne acteurs institutionnels et investisseurs dans la conception de projets durables et conformes. Nos interventions portent sur l'analyse réglementaire, les montages juridiques et les mécanismes de suivi de performance.",
     tags: ['energy', 'durability'],
@@ -405,28 +405,28 @@ const impactCountries: readonly ImpactCountry[] = [
 const entrepreneurshipCards = [
   {
     title: 'Choix du statut juridique adapté',
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333872/rnj/mask-group-12-bfc180ab.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333872/rnj/mask-group-12-bfc180ab.svg',
     iconWidth: 75.19,
     iconHeight: 75.19,
     titleWidth: 176.02,
   },
   {
     title: 'Faisabilité & plan financier',
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333873/rnj/vector-19-81ce45a8.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333873/rnj/vector-19-81ce45a8.svg',
     iconWidth: 75.19,
     iconHeight: 75.19,
     titleWidth: 140.59,
   },
   {
     title: 'Démarches administratives',
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333875/rnj/vector-18-18cc905b.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333875/rnj/vector-18-18cc905b.svg',
     iconWidth: 65.55,
     iconHeight: 75.19,
     titleWidth: 176.02,
   },
   {
     title: 'Conformité réglementaire',
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333876/rnj/mask-group-11-4a32da53.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333876/rnj/mask-group-11-4a32da53.svg',
     iconWidth: 75.19,
     iconHeight: 75.19,
     titleWidth: 176.02,
@@ -437,21 +437,21 @@ const servicesFocusCards = [
   {
     title: 'Créer mon entreprise en Belgique',
     description: "Je lance mon activité avec un cadre juridique clair.",
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333878/rnj/mask-group-3-2ece0ef0.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333878/rnj/mask-group-3-2ece0ef0.svg',
     iconWidth: 67.41,
     iconHeight: 67.41,
   },
   {
     title: 'Obtenir un conseil juridique',
     description: "Je sécurise un projet complexe ou réglementé.",
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333879/rnj/mask-group-4-f2eb00c6.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333879/rnj/mask-group-4-f2eb00c6.svg',
     iconWidth: 77.59,
     iconHeight: 79.26,
   },
   {
     title: 'Accélérer ma croissance  Recruter hors UE',
     description: "Je développe mon organisation et je recrute à l'international.",
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333881/rnj/mask-group-5-c793fd9f.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333881/rnj/mask-group-5-c793fd9f.svg',
     iconWidth: 77,
     iconHeight: 77,
   },
@@ -477,7 +477,7 @@ const institutionalCarouselCards = [
     title: 'Analyse Institutionnelle & Réglementaire',
     description:
       'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778425127/rnj/optimized/group-348987.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good/v1778425127/rnj/optimized/group-348987.webp',
     panelBg: '#406640',
     titleColor: '#BFCCBF',
     descriptionColor: '#BFCCBF',
@@ -489,7 +489,7 @@ const institutionalCarouselCards = [
     title: 'Structuration Juridique & Gouvernance',
     description:
       'Choix de la forme juridique (Belgique, Tunisie, international), création et transformation de sociétés, gouvernance, pactes d’associés, conventions de partenariat et opérations de transmission (M&A).',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_800,h_800,c_limit/v1778101215/rnj/optimized/mask-group-40-37d12ade.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_800,h_800,c_limit/v1778101215/rnj/optimized/mask-group-40-37d12ade.webp',
     panelBg: '#BFCCBF',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -501,7 +501,7 @@ const institutionalCarouselCards = [
     title: 'Droit Des Contrats & Sécurité Commerciale',
     description:
       'Rédaction, revue et négociation de contrats (clients, fournisseurs, partenaires), sous-traitance, licences et confidentialité. Nous réduisons les risques et sécurisons la relation commerciale à chaque étape clé.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778065554/rnj/optimized/image-droit-des-contrats-securite-commerciale-1.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778065554/rnj/optimized/image-droit-des-contrats-securite-commerciale-1.svg',
     panelBg: '#A2B144',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -513,7 +513,7 @@ const institutionalCarouselCards = [
     title: 'Partenariats Public-Privé & Concessions',
     description:
       'Structuration juridique de projets PPP et concessions, appui aux entreprises, collectivités et institutions. Interventions sur l’énergie, les infrastructures et les projets d’intérêt général.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_800,h_600,c_limit/v1778101216/rnj/optimized/partenariats-public-priv-concessions-image-c255db89.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_800,h_600,c_limit/v1778101216/rnj/optimized/partenariats-public-priv-concessions-image-c255db89.webp',
     panelBg: '#E0E5C0',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -525,7 +525,7 @@ const institutionalCarouselCards = [
     title: 'ESG, Conformité & Appels À Projets',
     description:
       'Audit juridique et compliance, protection des données (RGPD), mise en conformité opérationnelle. Accompagnement sur les appels à projets : éligibilité, cadrage juridique, rédaction et sécurisation contractuelle.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_900,c_limit/v1777376883/rnj/optimized/esg-conformit-appels-projets-b1d37fff.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_1200,h_900,c_limit/v1777376883/rnj/optimized/esg-conformit-appels-projets-b1d37fff.webp',
     panelBg: '#DDE597',
     titleColor: '#003300',
     descriptionColor: '#003300',
@@ -537,7 +537,7 @@ const institutionalCarouselCards = [
     title: 'Veille Juridique & Anticipation Réglementaire',
     description:
       'Surveillance active des évolutions législatives et réglementaires en Belgique, en Europe et en Tunisie. Alertes ciblées sur les impacts potentiels et accompagnement dans l’anticipation des changements.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_900,c_limit/v1777376884/rnj/optimized/mask-group-36-61b10456.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_1200,h_900,c_limit/v1777376884/rnj/optimized/mask-group-36-61b10456.webp',
     panelBg: '#CCD862',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -617,7 +617,7 @@ const whyChooseAnimatedCards = [
     title: 'Approche humaine & multilingue',
     description: 'Une approche humaine, claire et multilingue.',
     hideIcon: false,
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376826/rnj/users-f9417797.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376826/rnj/users-f9417797.svg',
     iconWidth: 58.33,
     iconHeight: 61.14,
   },
@@ -626,7 +626,7 @@ const whyChooseAnimatedCards = [
     description:
       'Expertise en droit public, énergie, stratégie et transformation.',
     hideIcon: false,
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376827/rnj/law-ec037074.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376827/rnj/law-ec037074.svg',
     iconWidth: 60.38,
     iconHeight: 61.08,
   },
@@ -634,7 +634,7 @@ const whyChooseAnimatedCards = [
     title: 'Performances & fiabilité',
     description: 'Un service rapide, sécurisé et orienté résultats.',
     hideIcon: false,
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376829/rnj/check-mark-89a3c66e.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376829/rnj/check-mark-89a3c66e.svg',
     iconWidth: 54.62,
     iconHeight: 41.8,
   },
@@ -642,7 +642,7 @@ const whyChooseAnimatedCards = [
     title: 'Méthodologie et durabilité',
     description: 'Un cadre structuré pour une croissance agile et durable.',
     hideIcon: false,
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376831/rnj/methologie-648e7fd2.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376831/rnj/methologie-648e7fd2.svg',
     iconWidth: 51.95,
     iconHeight: 60.34,
   },
@@ -650,7 +650,7 @@ const whyChooseAnimatedCards = [
     title: 'Ancrage local et ouverture internationale',
     description: 'Bruxelles et Tunis : un accompagnement local et international.',
     hideIcon: false,
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376833/rnj/earth-c9fdae9d.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376833/rnj/earth-c9fdae9d.svg',
     iconWidth: 59.77,
     iconHeight: 59.77,
   },
@@ -658,7 +658,7 @@ const whyChooseAnimatedCards = [
     title: 'Partenariats stratégiques avec des acteurs reconnus',
     description: 'Un réseau de partenaires actifs en Belgique et en Tunisie.',
     hideIcon: false,
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376835/rnj/handshake-387c4c1d.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376835/rnj/handshake-387c4c1d.svg',
     iconWidth: 83.23,
     iconHeight: 59,
   },
@@ -717,7 +717,7 @@ const whyChooseGridCards = [
     title: 'Expertise juridique & stratégique',
     description:
       "Notre accompagnement repose sur la rigueur d'un pool d'experts spécialisés en droit public, énergie, stratégie entrepreneuriale, gestion de projet et transformation opérationnelle.",
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376827/rnj/law-ec037074.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376827/rnj/law-ec037074.svg',
     iconWidth: 97,
     iconHeight: 97,
     titleWidth: '270px',
@@ -727,7 +727,7 @@ const whyChooseGridCards = [
     title: 'Performances & fiabilité',
     description:
       'Nous nous engageons à vous offrir un service professionnel, rapide et sécurisé. Nos outils réduisent les temps morts, fluidifient les démarches administratives et optimisent vos résultats.',
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376829/rnj/check-mark-89a3c66e.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376829/rnj/check-mark-89a3c66e.svg',
     iconWidth: 82,
     iconHeight: 64,
     titleWidth: '178px',
@@ -737,7 +737,7 @@ const whyChooseGridCards = [
     title: 'Méthodologie et durabilité',
     description:
       "Notre cadre d'accompagnement structuré permet de clarifier les priorités, de construire une base solide et de déployer votre activité avec agilité et vision long terme.",
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376831/rnj/methologie-648e7fd2.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376831/rnj/methologie-648e7fd2.svg',
     iconWidth: 86,
     iconHeight: 78,
     titleWidth: '270px',
@@ -747,7 +747,7 @@ const whyChooseGridCards = [
     title: 'Accompagnement humain, multilingue & engagé',
     description:
       "Proximité, écoute active et respect de votre rythme : chez RNJ Advisory, nous mettons l'humain au cœur de chaque projet. Nous intervenons en français, anglais et arabe.",
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376826/rnj/users-f9417797.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376826/rnj/users-f9417797.svg',
     iconWidth: 55,
     iconHeight: 87,
     titleWidth: '326px',
@@ -757,7 +757,7 @@ const whyChooseGridCards = [
     title: 'Ancrage local et ouverture internationale',
     description:
       'Basés à Bruxelles et à Tunis, nous accompagnons les porteurs de projet installés en Belgique, les entrepreneurs hors UE et les institutions souhaitant structurer ou étendre leur impact.',
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376833/rnj/earth-c9fdae9d.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376833/rnj/earth-c9fdae9d.svg',
     iconWidth: 52,
     iconHeight: 75,
     titleWidth: '310px',
@@ -767,7 +767,7 @@ const whyChooseGridCards = [
     title: 'Partenariats stratégiques avec des acteurs reconnus',
     description:
       "Nous collaborons avec un réseau solide d'acteurs publics, privés et associatifs, en Belgique comme en Tunisie.",
-    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376835/rnj/handshake-387c4c1d.svg',
+    icon: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376835/rnj/handshake-387c4c1d.svg',
     iconWidth: 77,
     iconHeight: 72,
     titleWidth: '330px',
@@ -840,7 +840,7 @@ function RegulationAnalysisSection() {
 
         <div className="mx-auto w-full max-w-[220px] sm:max-w-[280px] md:max-w-[320px] lg:max-w-[340px] xl:max-w-[360px] 2xl:mx-0 2xl:w-[364.57px] 2xl:max-w-[364.57px]">
           <div className="relative h-[240px] w-full sm:h-[320px] md:h-[400px] lg:h-[460px] xl:h-[520px] 2xl:h-[580.66px]">
-            <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333987/rnj/light-bulb-1-1-aa32136c.svg"
+            <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333987/rnj/light-bulb-1-1-aa32136c.svg"
               alt="Ampoule - Analyse réglementaire"
               fill
               sizes="(min-width: 1536px) 364.57px, (min-width: 1280px) 360px, (min-width: 1024px) 340px, (min-width: 768px) 320px, (min-width: 640px) 280px, 220px"
@@ -952,7 +952,7 @@ const entrepreneuriatTabs: Array<{
     textColor: '#003300',
     buttonOutlineColor: '#003300',
     buttonFilledBg: '#003300',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333990/rnj/group-541-2a130507.svg',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333990/rnj/group-541-2a130507.svg',
   },
   {
     key: 'structurer',
@@ -965,7 +965,7 @@ const entrepreneuriatTabs: Array<{
     textColor: '#003300',
     buttonOutlineColor: '#003300',
     buttonFilledBg: '#003300',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_900,c_limit/v1776335425/rnj/optimized/group-541-1-5b55b5e0.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_1200,h_900,c_limit/v1776335425/rnj/optimized/group-541-1-5b55b5e0.webp',
   },
   {
     key: 'developper',
@@ -980,7 +980,7 @@ const entrepreneuriatTabs: Array<{
     textColor: '#003300',
     buttonOutlineColor: '#003300',
     buttonFilledBg: '#003300',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_900,c_limit/v1776335426/rnj/optimized/group-541-2-59ca9193.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_1200,h_900,c_limit/v1776335426/rnj/optimized/group-541-2-59ca9193.webp',
   },
 ];
 
@@ -1011,7 +1011,7 @@ function EntrepreneuriatTabsSection() {
     ),
   );
   const active = entrepreneuriatTabs[activeIndex] ?? entrepreneuriatTabs[0];
-  const activeImageSrc = active?.image ?? 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333990/rnj/group-541-2a130507.svg';
+  const activeImageSrc = active?.image ?? 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333990/rnj/group-541-2a130507.svg';
 
   const firstStepPercent = 100 / entrepreneuriatTabs.length;
   const progressPercent = Math.min(
@@ -1484,13 +1484,15 @@ export default function Home() {
 
       <div className="relative w-full">
         <div className="relative w-full overflow-hidden pb-8 sm:pb-10 md:pb-12 xl:pb-14 min-h-[760px] sm:min-h-[820px] md:min-h-[900px] lg:min-h-[940px] xl:min-h-[983px]">
-          <div
+          <Image
+            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_1920,c_limit/v1777376885/rnj/optimized/wind-energy-wind-power-sustainable-renewable-en-2026-03-18-04-35-53-utc-1-84fe3c19.webp"
+            alt=""
+            fill
+            priority
+            unoptimized
+            sizes="(max-width: 640px) 640px, (max-width: 1024px) 1200px, 1920px"
+            className="object-cover object-center"
             aria-hidden="true"
-            className="absolute inset-0 bg-no-repeat bg-cover"
-            style={{
-              backgroundImage: "url('https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_800,h_600,c_limit/v1777376885/rnj/optimized/wind-energy-wind-power-sustainable-renewable-en-2026-03-18-04-35-53-utc-1-84fe3c19.webp')",
-              backgroundPosition: 'center right',
-            }}
           />
 
           <div
@@ -1499,7 +1501,7 @@ export default function Home() {
             <div className="flex flex-col items-center gap-6 md:gap-10 xl:items-start xl:gap-[59px]">
               <div className="flex w-full flex-col items-center gap-4 md:gap-[24px] xl:items-start xl:gap-[32px]">
                 <h1
-                  className="about-hero-title eb_garamond_e16653e1-module__s6IC3q__className w-full max-w-[744px] text-center font-medium leading-[0.95] text-[#003300] text-[clamp(34px,9.5vw,64px)] xl:text-left"
+                  className="about-hero-title eb_garamond_e16653e1-module__s6IC3q__className w-full max-w-[744px] text-center font-bold leading-[0.95] text-[#003300] text-[clamp(34px,9.5vw,64px)] xl:text-left"
                   style={{  color: '#003300' }}
                 >
                   <span className="block">Conseil stratégique pour</span>
@@ -1568,7 +1570,7 @@ export default function Home() {
                       borderRadius: 'clamp(14px, 2.5vw, 36px)',
                     }}
                   >
-                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310333/rnj/group-527-v2-03944abc.svg"
+                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310333/rnj/group-527-v2-03944abc.svg"
                       alt="Quand la durabilité rencontre la stratégie"
                       fill
                       className="object-cover"
@@ -1615,9 +1617,9 @@ export default function Home() {
                   }}
                 >
                   {[
-                    { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333996/rnj/openai-jake-stangel-1-c442a239.svg', alt: 'Customer 1', left: '0' },
-                    { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333999/rnj/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc-1-a731531a.svg', alt: 'Customer 2', left: 'clamp(28px, 3.7vw, 53px)' },
-                    { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333970/rnj/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc-1-72edb5b8.svg', alt: 'Customer 3', left: 'clamp(56px, 7.5vw, 106px)' },
+                    { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333996/rnj/openai-jake-stangel-1-c442a239.svg', alt: 'Customer 1', left: '0' },
+                    { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333999/rnj/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc-1-a731531a.svg', alt: 'Customer 2', left: 'clamp(28px, 3.7vw, 53px)' },
+                    { src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333970/rnj/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc-1-72edb5b8.svg', alt: 'Customer 3', left: 'clamp(56px, 7.5vw, 106px)' },
                   ].map((c) => (
                     <div
                       key={c.alt}
@@ -1810,17 +1812,16 @@ export default function Home() {
             <div className="flex w-full flex-col gap-8 lg:gap-10 xl:grid xl:grid-cols-[minmax(0,1fr)_minmax(380px,464.65px)] xl:items-start xl:gap-[56px]">
               <div className="flex w-full max-w-[779px] flex-col items-center gap-8 text-center lg:items-start lg:gap-10 lg:text-left xl:gap-[66px]">
                 <div className="relative h-[30px] w-[225px]">
-                  <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334004/rnj/group-1-23b4740e.svg"
+                  <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334004/rnj/group-1-23b4740e.svg"
                     alt="RNJ Advisory"
                     fill
                     className="object-contain object-center lg:object-left"
                    loading="lazy"/>
                 </div>
 
-                <div className="flex w-full max-w-[779px] flex-col gap-7 lg:gap-9 xl:gap-[43.92px]">
-                  <h2 className="w-full font-[EB_Garamond] text-[clamp(30px,8.8vw,62.7408px)] font-semibold italic leading-[0.92] tracking-[-0.03em] text-white lg:leading-[0.9] xl:leading-[54px]">
-                    Concrétisez vos ambitions avec un cabinet de conseil juridique
-                    et stratégique à Bruxelles
+                <div className="flex w-full max-w-[783.11px] flex-col gap-7 lg:gap-9 xl:gap-[43.92px]">
+                  <h2 className="w-full max-w-[783.11px] flex-none grow-0 font-[EB_Garamond] text-[clamp(30px,8.8vw,63.0719px)] font-semibold italic capitalize leading-[0.92] tracking-[-0.03em] text-white lg:leading-[0.9] xl:h-[164px] xl:text-[63.0719px] xl:leading-[54px]">
+                    Concrétisez vos idées avec un cabinet de conseils juridiques &amp; stratégiques à Bruxelles
                   </h2>
 
                   <p className="mx-auto w-full max-w-[567px] font-[Geist] text-[14px] font-medium leading-[1.35] text-white/70 sm:text-[15px] md:text-[16px] md:leading-[1.25] lg:mx-0">
@@ -1845,9 +1846,9 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="relative mx-auto h-[220px] w-full max-w-[320px] sm:h-[300px] sm:max-w-[380px] md:h-[360px] md:max-w-[430px] lg:h-[420px] lg:max-w-[464.65px] xl:mx-0 xl:ml-auto xl:h-[529.93px] xl:w-full xl:max-w-[464.65px] hidden sm:block">
+              <div className="relative mx-auto h-[180px] w-full max-w-[280px] sm:h-[300px] sm:max-w-[380px] md:h-[360px] md:max-w-[430px] lg:h-[420px] lg:max-w-[464.65px] xl:mx-0 xl:ml-auto xl:h-[529.93px] xl:w-full xl:max-w-[464.65px]">
                 <img
-                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777410416/rnj/mask-group-39-06a5eb07.svg"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777410416/rnj/mask-group-39-06a5eb07.svg"
                   alt="Partenaires en réunion"
                   className="h-full w-full object-contain"
                 />
@@ -1881,14 +1882,14 @@ export default function Home() {
           <div ref={lightBulbSectionRef} className="mx-auto mt-10 flex w-full max-w-[1392px] flex-col items-center gap-5 px-4 pb-8 text-center sm:px-6 md:px-8 lg:mt-16 lg:gap-[20px] lg:px-0 lg:pb-[46px] xl:mt-20">
             <div className={`relative h-[110px] w-[70px] ${isLightBulbAnimated ? 'lightbulb-scroll-active' : ''}`} style={{ marginBottom: '10px' }}>
               <div className={`lightbulb-lines absolute left-0 -top-20 h-full w-full transition-opacity duration-300 ${isLightBulbAnimated ? 'opacity-100' : 'opacity-0'}`}>
-                <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310340/rnj/group-349075-a2bbf73f.svg"
+                <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777310340/rnj/group-349075-a2bbf73f.svg"
                   alt="Light bulb lines"
                   fill
                   className="object-contain"
                   unoptimized
                  loading="lazy"/>
               </div>
-              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334015/rnj/layer-1-2-1d375d74.svg"
+              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334015/rnj/layer-1-2-1d375d74.svg"
                 alt="Light bulb icon"
                 fill
                 sizes="120px"
@@ -1957,7 +1958,7 @@ export default function Home() {
               <div className="relative h-[390px] w-full sm:h-[500px] md:h-[560px] xl:h-[566.12px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_800,h_600,c_limit/v1777410436/rnj/optimized/frame-559.webp"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_800,h_600,c_limit/v1777410436/rnj/optimized/frame-559.webp"
                   alt="Illustration Analyse Réglementaire"
                   className="h-full w-full object-contain object-center"
                 />
@@ -1971,12 +1972,12 @@ export default function Home() {
           <div className="mx-auto w-full max-w-[1680px] px-0">
             <div className="relative min-h-[560px] overflow-hidden bg-[#003300] sm:min-h-[620px] md:min-h-[680px] lg:min-h-[760px]">
               <Image
-                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334026/rnj/group-349040-b40f156d.svg"
+                src="/optimized/Group 349040 (1).svg"
                 alt=""
                 fill
                 className="object-cover object-center"
                 unoptimized
-                priority={false}
+                priority
               />
 
               <div className="relative z-[1] mx-auto flex h-full w-full max-w-[1392px] flex-col gap-10 px-4 py-8 sm:gap-12 md:px-6 md:py-12 lg:justify-between lg:gap-16 lg:px-[20px] lg:py-[80px]">
@@ -2031,13 +2032,14 @@ export default function Home() {
                     </p>
 
                     <div className="relative mx-auto h-[300px] w-[100%] overflow-hidden rounded-[16px] border-2 border-[#BBCB2E] sm:h-[190px] sm:w-[190px] sm:rounded-[20px] md:h-[230px] md:w-[230px] md:rounded-[24px] lg:mx-0 lg:h-[280px] lg:w-[280px] lg:rounded-[28px]">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333996/rnj/openai-jake-stangel-1-c442a239.svg"
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333996/rnj/openai-jake-stangel-1-c442a239.svg"
                         alt="Portrait entrepreneuriat"
                         fill
                         className="object-cover"
                         style={{ objectPosition: 'right' }}
                         unoptimized
-                       loading="lazy"/>
+                        priority
+                      />
                     </div>
                   </div>
                 </div>
@@ -2049,7 +2051,7 @@ export default function Home() {
         <EntrepreneuriatTabsSection />
 
         <section
-              className="w-full bg-[#F7FCFF] py-32 md:py-44"
+              className="w-full bg-[#F7FCFF] py-16 md:py-24"
               style={{
                 paddingBottom: 0,
               }}
@@ -2134,12 +2136,12 @@ export default function Home() {
               }}
             >
               {/* Mobile: stack vertical | md+: side by side 50/50 */}
-              <div className="flex min-h-[520px] flex-col md:flex-row md:h-[90vh]">
+              <div className="flex min-h-[420px] flex-col md:flex-row md:h-[70vh]">
 
                 {/* LEFT — image, order 2 on mobile (below text), order 1 on desktop */}
                 <div className="relative order-2 h-[280px] w-full flex-shrink-0 overflow-hidden sm:h-[360px] md:order-1 md:h-full md:w-1/2">
                   <Image
-                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_1200,c_fill,g_auto/v1778051869/rnj/optimized/mask-group-44-3cbc4b7d.svg"
+                    src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051869/rnj/optimized/mask-group-44-3cbc4b7d.svg"
                     alt="Accélération PME et ASBL"
                     fill
                     className="object-cover object-center"
@@ -2148,7 +2150,7 @@ export default function Home() {
                 </div>
 
                 {/* RIGHT — content, order 1 on mobile (above image), order 2 on desktop */}
-                <div className="order-1 flex w-full flex-col justify-between px-5 py-8 sm:px-8 sm:py-10 md:order-2 md:h-full md:w-1/2 md:px-10 md:py-12 xl:px-[60px] xl:py-[56px]">
+                <div className="order-1 flex w-full flex-col gap-6 px-5 py-8 sm:gap-7 sm:px-8 sm:py-10 md:order-2 md:w-1/2 md:gap-8 md:px-10 md:py-12 xl:px-[60px] xl:py-[56px]">
 
                   {/* Tag */}
                   <div className="flex items-center gap-2.5">
@@ -2159,39 +2161,37 @@ export default function Home() {
                   </div>
 
                   {/* Middle — title + paragraphs */}
-                  <div className="flex flex-col gap-[25px] xl:max-w-[554px]">
-                    <h3 className="font-[EB_Garamond] text-[34px] font-semibold capitalize leading-[0.95] text-[#BFCCBF] sm:text-[42px] md:text-[52px] md:leading-[0.94] xl:text-[64px] xl:leading-[56px]">
-                      accélération PME &amp;<br />
-                      ASBL recrutement<br />
-                      international &amp;<br />
-                      croissance
+                  <div className="flex flex-col gap-5 xl:max-w-[552px]">
+                    <h3 className="font-[EB_Garamond] text-[clamp(28px,7vw,64px)] font-semibold capitalize leading-[0.95] text-[#BFCCBF] md:leading-[0.94] xl:leading-[56px]">
+                      accélération PME &amp;<br />ASBL recrutement<br />international
                     </h3>
 
-                    <div className="flex flex-col gap-[10px] xl:max-w-[437px]">
-                      {/* Highlighted questions */}
-                      <div className="rounded-[4px] bg-[#BBCB2E] px-[11px] py-[6px]">
-                        <p className="font-[Geist] text-[14px] font-semibold leading-[28px] text-[#003300]/70 md:text-[16px]">
-                          Vous êtes une PME ou une ASBL en croissance ? Vous souhaitez recruter des talents hors UE ?
+                    <div className="flex flex-col gap-3 xl:max-w-[437px]">
+                      <div className="rounded-[4px] px-[11px] py-[6px]">
+                        <p className="font-[Geist] text-[14px] font-semibold leading-[1.6] text-[#BBCB2E] md:text-[16px]">
+                          Vous êtes une PME ou une ASBL en croissance ?
+                        </p>
+                        <p className="font-[Geist] text-[14px] font-semibold leading-[1.6] text-[#BBCB2E] md:text-[16px]">
+                          Vous souhaitez recruter des talents hors UE ?
                         </p>
                       </div>
-                      {/* Body text */}
                       <p className="font-[Geist] text-[13px] font-medium leading-[1.35] text-[#BFCCBF]/70 md:text-[16px] md:leading-[19px]">
                         Nous sécurisons vos recrutements internationaux pour vous concentrer sur votre développement.
                       </p>
                     </div>
                   </div>
 
-                  {/* Buttons */}
-                  <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-[9.8px]">
+                  {/* Buttons — pushed down with mt-auto on desktop, natural flow on mobile */}
+                  <div className="mt-2 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-[9.8px] md:mt-auto">
                     <Link
                       href="/a-propos"
-                      className="flex h-[56px] w-full items-center justify-center whitespace-nowrap rounded-full border-[1.97px] border-[#BFCCBF] px-8 font-[Geist] text-[16px] font-semibold leading-[20px] text-[#BFCCBF] transition-colors hover:bg-[#BFCCBF] hover:text-[#003300] sm:w-auto sm:min-w-[146px] md:h-[67px]"
+                      className="flex h-[52px] w-full items-center justify-center whitespace-nowrap rounded-full border-[1.97px] border-[#BFCCBF] px-6 font-[Geist] text-[15px] font-semibold leading-[20px] text-[#BFCCBF] transition-colors hover:bg-[#BFCCBF] hover:text-[#003300] sm:h-[56px] sm:w-auto sm:min-w-[146px] sm:px-8 sm:text-[16px] md:h-[67px]"
                     >
                       À propos
                     </Link>
                     <Link
                       href="/contact"
-                      className="flex h-[56px] w-full items-center justify-center rounded-full bg-[#BBCB2E] px-6 font-[Geist] text-[16px] font-semibold leading-[20px] text-[#003300] transition-colors hover:bg-[#D4E175] sm:w-auto sm:min-w-[260px] md:h-[67px] md:min-w-[331px]"
+                      className="flex h-[52px] w-full items-center justify-center rounded-full bg-[#BBCB2E] px-5 font-[Geist] text-[15px] font-semibold leading-[20px] text-[#003300] transition-colors hover:bg-[#D4E175] sm:h-[56px] sm:w-auto sm:min-w-[220px] sm:px-6 sm:text-[16px] md:h-[67px] md:min-w-[280px] lg:min-w-[331px]"
                     >
                       Planifier un entretien confidentiel
                     </Link>
@@ -2318,7 +2318,7 @@ export default function Home() {
 
                   <div className="flex flex-1 flex-col overflow-y-auto px-5 py-6 sm:px-7 md:px-10 md:py-10 lg:px-14 lg:py-12">
                     <div className="relative mb-8 h-[36px] w-[92px] md:mb-12 md:h-[52px] md:w-[132px]">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                         alt="RNJ Advisory"
                         fill
                         className="object-contain object-left"
@@ -2411,7 +2411,7 @@ export default function Home() {
 
                   <div className="flex flex-1 flex-col overflow-y-auto px-5 py-6 sm:px-7 md:px-10 md:py-10 lg:px-14 lg:py-12">
                     <div className="relative mb-8 h-[36px] w-[92px] md:mb-12 md:h-[52px] md:w-[132px]">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
                         alt="RNJ Advisory"
                         fill
                         className="object-contain object-left"
@@ -2452,8 +2452,8 @@ export default function Home() {
 
             <section className="w-full bg-[#F7FCFF] pb-10 pt-6 md:pb-12 md:pt-8 lg:pb-16 lg:pt-10">
               <div className="mx-auto grid w-full max-w-[1157px] grid-cols-1 gap-4 px-4 sm:px-5 md:px-6 lg:grid-cols-2 lg:gap-5 lg:px-8 xl:gap-[19px] xl:px-0">
-                <article className="relative min-h-[540px] overflow-hidden rounded-[25px] sm:min-h-[620px] md:min-h-[760px] md:rounded-[35px] lg:min-h-[816px]">
-                  <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334018/rnj/mask-group-16-f5d02d69.svg"
+                <article className="relative min-h-[480px] overflow-hidden rounded-[25px] sm:min-h-[580px] md:min-h-[760px] md:rounded-[35px] lg:min-h-[816px]">
+                  <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334018/rnj/mask-group-16-f5d02d69.svg"
                     alt="Interconnexion électrique Tunisie-Italie"
                     fill
                     className="object-cover"
@@ -2461,7 +2461,7 @@ export default function Home() {
                    loading="lazy"/>
 
                   <div className="relative z-[1] flex min-h-full flex-col items-center px-4 py-6 sm:px-5 sm:py-8 md:px-6 md:pb-10 md:pt-12 lg:px-8 lg:pb-[58px] lg:pt-[64px]">
-                    <div className="flex w-full max-w-[505px] flex-col items-center gap-[17px]">
+                    <div className="flex w-full max-w-[505px] flex-col items-center gap-[17px] pt-4 lg:pt-6">
                       <div className="flex w-full flex-col items-center gap-2 md:gap-[8px]">
                         <div
                           className="relative h-[clamp(360px,78vw,533px)] w-full cursor-pointer select-none overflow-hidden rounded-[18px] text-white"
@@ -2496,11 +2496,11 @@ export default function Home() {
                             className="relative z-[1] transition-opacity duration-500"
                             style={{
                               opacity: isInterconnectionReadMoreOpening ? 0.7 : 1,
-                              padding: '45px 41px 0 41px',
+                              padding: 'clamp(20px, 5vw, 45px) clamp(16px, 4vw, 41px) 0',
                             }}
                           >
                             <div className="relative mb-[20px] h-[44px] w-[111px]">
-                              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334020/rnj/image-2-2c9f497b.svg"
+                              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334020/rnj/image-2-2c9f497b.svg"
                                 alt="RNJ Advisory"
                                 fill
                                 className="object-contain object-left"
@@ -2508,19 +2508,16 @@ export default function Home() {
                             </div>
 
                             <div
-                              className="flex flex-col gap-[26px]"
-                              style={{
-                                width: '439px',
-                                maxWidth: '100%',
-                              }}
+                              className="flex flex-col gap-[clamp(14px,3vw,26px)]"
+                              style={{ width: '100%', maxWidth: '100%' }}
                             >
                               <h3
                                 className="font-[Geist] font-normal text-white"
                                 style={{
-                                  width: '438px',
+                                  width: '100%',
                                   maxWidth: '100%',
-                                  fontSize: 'clamp(22px, 5vw, 40px)',
-                                  lineHeight: 'clamp(24px, 5.2vw, 43px)',
+                                  fontSize: 'clamp(18px, 4.5vw, 40px)',
+                                  lineHeight: 'clamp(22px, 5vw, 43px)',
                                 }}
                               >
                                 Interconnexion électrique Tunisie-Italie
@@ -2530,10 +2527,10 @@ export default function Home() {
                                 <p
                                   className="font-[Geist] font-normal text-white"
                                   style={{
-                                    width: '439px',
+                                    width: '100%',
                                     maxWidth: '100%',
-                                    fontSize: 'clamp(12px, 2.2vw, 16px)',
-                                    lineHeight: 'clamp(14px, 2.4vw, 18px)',
+                                    fontSize: 'clamp(11px, 2.5vw, 16px)',
+                                    lineHeight: 'clamp(14px, 2.8vw, 18px)',
                                   }}
                                 >
                                   <span className="block">
@@ -2607,16 +2604,16 @@ export default function Home() {
                       </div>
                     </div>
 
-                        <div className="flex items-center gap-2">
+                        <div className="mt-6 flex items-center gap-2">
                           <span className="h-[8px] w-[8px] rounded-full bg-[#ECECEC]" />
                           <span className="h-[7px] w-[7px] rounded-full bg-white/30" />
                           <span className="h-[7px] w-[7px] rounded-full bg-white/30" />
                         </div>
 
-                      <div className="mt-1 flex min-h-[80px] w-full max-w-[280px] flex-col items-center gap-[20px]">
+                      <div className="mt-5 flex min-h-[80px] w-full max-w-[280px] flex-col items-center gap-[20px]">
                         <a
                           href="/contact"
-                          className="flex h-[45px] w-[200px] max-w-full items-center justify-center rounded-[14px] bg-white px-[24px] py-[14px] font-[Geist] text-[14px] font-bold leading-[18px] text-black whitespace-nowrap"
+                          className="flex h-[45px] w-full max-w-[280px] items-center justify-center rounded-[14px] bg-white px-[24px] py-[14px] font-[Geist] text-[14px] font-bold leading-[18px] text-black whitespace-nowrap"
                         >
                           Sécuriser mon projet
                         </a>
@@ -2628,8 +2625,8 @@ export default function Home() {
                   </div>
                 </article>
 
-                <article className="relative min-h-[540px] overflow-hidden rounded-[25px] sm:min-h-[620px] md:min-h-[760px] md:rounded-[35px] lg:min-h-[816px]">
-                  <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334022/rnj/mask-group-17-57db8ebe.svg"
+                <article className="relative min-h-[480px] overflow-hidden rounded-[25px] sm:min-h-[580px] md:min-h-[760px] md:rounded-[35px] lg:min-h-[816px]">
+                  <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334022/rnj/mask-group-17-57db8ebe.svg"
                     alt="Decision strategique"
                     fill
                     className="object-cover"
@@ -2656,7 +2653,7 @@ export default function Home() {
                           <div className="mx-auto flex w-full max-w-[463px] flex-col items-start gap-6 sm:gap-7 md:gap-[34px]">
                             <div className="relative h-[220px] w-full max-w-[463px] sm:h-[280px] md:h-[349px]">
                               <div className="absolute inset-0 rounded-[13px] bg-[#F7FCFF]" />
-                              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_900,c_limit/v1776335427/rnj/optimized/group-65-16f18ed1.webp"
+                              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_1200,h_900,c_limit/v1776335427/rnj/optimized/group-65-16f18ed1.webp"
                                 alt="Graphique de performance"
                                 fill
                                 className="rounded-[13px] object-cover"
@@ -2679,10 +2676,10 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <div className="mt-2 flex h-auto w-full max-w-[375px] flex-wrap items-center gap-[10px] sm:h-[53px] sm:flex-nowrap">
+                      <div className="mt-2 flex w-full max-w-[375px] flex-row items-center gap-3">
                         <button
                           type="button"
-                          className="flex h-[53px] w-full items-center justify-center rounded-full border-2 border-[#F7FCFF] px-[26px] py-[19px] font-[Geist] text-[16px] font-medium leading-[16px] text-white whitespace-nowrap transition-all duration-300 hover:bg-[#F7FCFF] hover:text-black sm:w-[140px] sm:px-[53px]"
+                          className="flex h-[48px] flex-1 items-center justify-center rounded-full border-2 border-[#F7FCFF] px-3 font-[Geist] text-[13px] font-medium leading-tight text-white transition-all duration-300 hover:bg-[#F7FCFF] hover:text-black sm:h-[53px] sm:text-[15px] sm:px-6"
                           style={{ touchAction: 'manipulation' }}
                           onClick={() => setShowCertificatesPopup(true)}
                         >
@@ -2691,7 +2688,7 @@ export default function Home() {
 
                         <a
                           href="/contact"
-                          className="flex h-[53px] w-full items-center justify-center rounded-full bg-white px-[28px] py-[19px] font-[Geist] text-[16px] font-bold leading-[16px] text-black whitespace-nowrap sm:w-[225px] sm:px-[34px]"
+                          className="flex h-[48px] flex-1 items-center justify-center rounded-full bg-white px-3 font-[Geist] text-[13px] font-bold leading-tight text-black sm:h-[53px] sm:text-[15px] sm:px-6"
                           style={{ touchAction: 'manipulation' }}
                         >
                           Sécuriser mon projet
@@ -2720,7 +2717,7 @@ export default function Home() {
               <div className="absolute inset-0 block opacity-60 sm:opacity-70 md:opacity-100">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_800,h_600,c_limit/v1778052436/rnj/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc-0151df33.jpg"
+                  src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_800,h_600,c_limit/v1778052436/rnj/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc-0151df33.jpg"
                   alt=""
                   aria-hidden="true"
                   style={{ position: 'absolute', height: '100%', width: '100%', left: 0, top: 0, right: 0, bottom: 0, objectFit: 'cover', objectPosition: 'center 80%', color: 'transparent' }}
@@ -2860,7 +2857,7 @@ export default function Home() {
                                 className="flex justify-center rounded-[24px] px-5 py-6 sm:px-6 md:min-h-[554px] md:w-[clamp(320px,36vw,480.51px)] md:flex-none md:rounded-[119px_119px_119px_0px] md:px-[28px] md:py-[56px] lg:px-[32px] lg:py-[70px] xl:w-[480.51px] xl:px-[47px] xl:py-[95px]"
                                 style={{ backgroundColor: card.panelBg }}
                               >
-                                <div className="flex h-full w-full max-w-none flex-col justify-between md:max-w-[356.49px]">
+                                <div className="flex h-full w-full max-w-none flex-col justify-start md:max-w-[356.49px]">
                                   <div className="flex flex-col gap-[14.18px]">
                                     <h3
                                       className="font-[Geist] font-semibold"
@@ -2887,12 +2884,10 @@ export default function Home() {
                                   </div>
                                   <button
                                     type="button"
-                                    className="inline-flex h-[38px] w-auto items-center justify-center rounded-[8px] px-[39px] font-[Geist] font-medium md:h-[38px]"
+                                    className="mt-6 inline-flex h-[46px] w-auto shrink-0 items-center justify-center rounded-full px-[39px] font-[Geist] text-[14px] font-semibold leading-[1.1] transition-opacity hover:opacity-90 sm:h-[48px] sm:text-[15px] md:mt-auto md:h-[52px] md:text-[15.52px] md:leading-[16px]"
                                     style={{
                                       backgroundColor: card.buttonBg,
                                       color: card.buttonTextColor,
-                                      fontSize: 'clamp(12px, 1.1vw, 15.4px)',
-                                      lineHeight: '20px',
                                     }}
                                   >
                                     Demander une consultation
@@ -2917,7 +2912,7 @@ export default function Home() {
                                 className="flex justify-center rounded-[24px] px-5 py-6 sm:px-6 md:min-h-[554px] md:w-[clamp(320px,36vw,480.51px)] md:flex-none md:rounded-[119px_119px_119px_0px] md:px-[28px] md:py-[56px] lg:px-[32px] lg:py-[70px] xl:w-[480.51px] xl:px-[47px] xl:py-[95px]"
                                 style={{ backgroundColor: card.panelBg }}
                               >
-                                <div className="flex h-full w-full max-w-none flex-col justify-between md:max-w-[356.49px]">
+                                <div className="flex h-full w-full max-w-none flex-col justify-start md:max-w-[356.49px]">
                                   <div className="flex flex-col gap-[14.18px]">
                                     <h3
                                       className="font-[Geist] font-semibold"
@@ -2944,12 +2939,10 @@ export default function Home() {
                                   </div>
                                   <button
                                     type="button"
-                                    className="inline-flex h-[38px] w-auto items-center justify-center rounded-[8px] px-[39px] font-[Geist] font-medium md:h-[38px]"
+                                    className="mt-6 inline-flex h-[46px] w-auto shrink-0 items-center justify-center rounded-full px-[39px] font-[Geist] text-[14px] font-semibold leading-[1.1] transition-opacity hover:opacity-90 sm:h-[48px] sm:text-[15px] md:mt-auto md:h-[52px] md:text-[15.52px] md:leading-[16px]"
                                     style={{
                                       backgroundColor: card.buttonBg,
                                       color: card.buttonTextColor,
-                                      fontSize: 'clamp(12px, 1.1vw, 15.4px)',
-                                      lineHeight: '20px',
                                     }}
                                   >
                                     Demander une consultation
@@ -3003,13 +2996,13 @@ export default function Home() {
                 marginRight: 'calc(50% - 50vw)',
               }}
             >
-              <div className="mx-auto w-full px-4">
+              <div className="mx-auto w-full">
                 <div
-                  className="mx-auto mt-10 grid w-full max-w-[1299.66px] grid-cols-1 gap-4 sm:mt-12 sm:gap-5 md:mt-16 md:grid-cols-2 lg:mt-20 xl:mt-[131px] xl:grid-cols-3 xl:gap-[19px]"
+                  className="mx-auto mt-10 grid w-full max-w-[1299.66px] grid-cols-1 gap-4 px-4 sm:mt-12 sm:gap-5 md:mt-16 md:grid-cols-3 lg:mt-20 xl:mt-[131px] xl:gap-[19px]"
                   style={{ filter: 'drop-shadow(0px 4px 47.1px rgba(0, 0, 0, 0.09))' }}
                 >
                   <article
-                    className="relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-[24px] bg-[#D9D9D9] transition-all duration-500 sm:min-h-[390px] md:min-h-[420px] md:rounded-[30px] lg:min-h-[450px] xl:rounded-[34.8794px]"
+                    className="relative flex h-full w-full min-h-[360px] flex-col overflow-hidden rounded-[20px] bg-[#D9D9D9] transition-all duration-500 md:min-h-[420px] md:rounded-[30px] lg:min-h-[450px] xl:rounded-[34.8794px]"
                     style={{
                       border:
                         esgActiveCardIndex === 0 ? '2px solid #003300' : '2px solid transparent',
@@ -3021,7 +3014,7 @@ export default function Home() {
                     }}
                   >
                     <div className="relative h-[210px] w-full sm:h-[230px] md:h-[220px] lg:h-[240px] xl:h-[285px]">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334038/rnj/jakub-zerdzicki-yknibjv0rby-unsplash-1-1b22cd9c.svg"
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334038/rnj/jakub-zerdzicki-yknibjv0rby-unsplash-1-1b22cd9c.svg"
                         alt="ESG et financements"
                         fill
                         className="object-cover object-top"
@@ -3043,7 +3036,7 @@ export default function Home() {
                   </article>
 
                   <article
-                    className="relative flex h-full min-h-[360px] flex-col items-center justify-center rounded-[24px] bg-[#F9FFC4] px-5 py-7 text-center transition-all duration-500 sm:min-h-[390px] md:min-h-[420px] md:rounded-[30px] md:px-5 lg:min-h-[450px] lg:px-6 xl:rounded-[34.8794px] xl:px-8"
+                    className="relative flex h-full w-full min-h-[360px] flex-col items-center justify-center rounded-[20px] bg-[#F9FFC4] px-5 py-7 text-center transition-all duration-500 md:min-h-[420px] md:rounded-[30px] md:px-5 lg:min-h-[450px] lg:px-6 xl:rounded-[34.8794px] xl:px-8"
                     style={{
                       border:
                         esgActiveCardIndex === 1 ? '2px solid #003300' : '2px solid transparent',
@@ -3072,7 +3065,7 @@ export default function Home() {
                     </div>
 
                     <Link
-                      href="/services"
+                      href="/contact"
                       className="inline-flex h-[50px] items-center justify-center rounded-full bg-[#BBCB2E] px-6 font-[Geist] font-semibold text-[#003300] transition-all duration-500 sm:h-[52px] sm:px-8 xl:h-[56.29px] xl:px-[37px]"
                       style={{
                         fontSize: '14.6036px',
@@ -3089,7 +3082,7 @@ export default function Home() {
                   </article>
 
                   <article
-                    className="relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-[24px] bg-[#D9D9D9] transition-all duration-500 sm:min-h-[390px] md:col-span-2 md:min-h-[420px] md:rounded-[30px] lg:min-h-[450px] xl:col-span-1 xl:rounded-[34.8794px]"
+                    className="relative flex h-full w-full min-h-[360px] flex-col overflow-hidden rounded-[20px] bg-[#D9D9D9] transition-all duration-500 md:min-h-[420px] md:rounded-[30px] lg:min-h-[450px] xl:rounded-[34.8794px]"
                     style={{
                       border:
                         esgActiveCardIndex === 2 ? '2px solid #003300' : '2px solid transparent',
@@ -3163,7 +3156,7 @@ export default function Home() {
                   className="map-fade-in map-impact-map-frame relative w-full max-w-[1346px] overflow-visible"
                 >
                   <div className="absolute inset-0 overflow-hidden rounded-[28px] md:rounded-[40px]">
-                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132753/rnj/maps-10375837.svg"
+                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132753/rnj/maps-10375837.svg"
                       alt="World Map"
                       fill
                       className="object-contain"
@@ -3361,16 +3354,16 @@ export default function Home() {
             >
               <div className="mx-auto my-2 w-full max-w-[1393px] px-3 sm:my-3 sm:px-4 md:px-5 lg:px-6">
                 <div
-                  className="grid w-full grid-cols-2 gap-2 sm:gap-4 md:gap-[19px] md:grid-cols-2 xl:grid-cols-[334px_334px_minmax(0,1fr)]"
+                  className="grid w-full grid-cols-2 gap-4 sm:gap-4 md:gap-[19px] md:grid-cols-2 xl:grid-cols-[334px_334px_minmax(0,1fr)]"
                   style={{ filter: 'drop-shadow(2px 2px 24.5px rgba(0,0,0,0.21))' }}
                 >
                 {/* Column 1: BECI + Pills — side by side on mobile, stacked on md+ */}
-                <div className="col-span-2 grid grid-cols-2 gap-2 sm:gap-4 md:col-span-1 md:flex md:flex-col md:gap-[23px]">
+                <div className="col-span-2 grid grid-cols-2 gap-4 sm:gap-4 md:col-span-1 md:flex md:flex-col md:gap-[23px]">
                   {/* BECI card */}
                   <div className="bento-card bento-d1 relative h-[180px] w-full overflow-hidden rounded-[14px] bg-[#bbcb2e] sm:h-[220px] sm:rounded-[16px] md:h-[300px] md:rounded-[20px] lg:h-[334px]">
                     <div className="absolute left-1/2 top-1/2 flex h-[155px] w-[min(145px,calc(100%-20px))] -translate-x-1/2 -translate-y-1/2 flex-col items-start rounded-[18px] bg-white px-[10px] pt-[12px] shadow-[0_0_43px_-5px_rgba(255,255,255,0.33)] sm:h-[180px] sm:w-[min(170px,calc(100%-28px))] sm:rounded-[22px] sm:px-[13px] sm:pt-[16px] md:h-[230px] md:w-[min(208px,calc(100%-40px))] md:rounded-[30px] md:px-[18px] md:pt-[27px]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334055/rnj/beci-2-1-241bb936.svg" alt="BECI" className="h-[34px] w-[30px] object-contain sm:h-[42px] sm:w-[37px] md:h-[65px] md:w-[57px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334055/rnj/beci-2-1-241bb936.svg" alt="BECI" className="h-[34px] w-[30px] object-contain sm:h-[42px] sm:w-[37px] md:h-[65px] md:w-[57px]" />
                       <p className="mt-[10px] w-full font-[Geist] text-[12px] font-semibold leading-[14px] text-[#003300] sm:mt-[13px] sm:text-[14px] sm:leading-[16px] md:mt-[27px] md:text-[20px] md:leading-[22px]">
                         RNJ Advisory membre de BECI
                       </p>
@@ -3410,31 +3403,31 @@ export default function Home() {
                 </div>
 
                 {/* Column 2: Tall photo card — full width on mobile */}
-                <div className="bento-card bento-d3 col-span-2 relative w-full overflow-hidden rounded-[16px] bg-[#6F6F6F] sm:col-span-1 sm:rounded-[18px] md:rounded-[20px]">
-                  <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778051883/rnj/optimized/group-352-3-8e109b3c.svg"
+                <div className="bento-card bento-d3 order-last col-span-2 w-full overflow-hidden rounded-[16px] bg-[#6F6F6F] sm:order-none sm:col-span-1 sm:rounded-[18px] md:rounded-[20px]">
+                  <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051883/rnj/optimized/group-352-3-8e109b3c.svg"
                     alt=""
-                    fill
+                    width={334}
+                    height={700}
                     unoptimized
-                    sizes="(min-width: 768px) 334px, 100vw"
-                    className="object-cover"
-                   loading="lazy"/>
+                    priority
+                    className="h-auto w-full object-contain"/>
                 </div>
 
                 {/* Column 3: responsive sub-grid — 2-col on mobile */}
-                <div className="col-span-2 grid grid-cols-2 gap-2 sm:gap-3 md:col-span-2 md:gap-4 md:gap-x-[19px] md:gap-y-4 lg:gap-[23px] xl:col-span-1">
+                <div className="col-span-2 grid grid-cols-2 gap-4 sm:gap-3 md:col-span-2 md:gap-4 md:gap-x-[19px] md:gap-y-4 lg:gap-[23px] xl:col-span-1">
                   {/* Yoga blurred */}
                   <div className="bento-card bento-d4 relative h-[180px] w-full overflow-hidden rounded-[14px] sm:h-[220px] sm:rounded-[16px] md:h-[300px] md:rounded-[20px] lg:h-[334px]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778051889/rnj/optimized/group-363-1-a0d0a075.svg" alt="" className="h-full w-full object-cover" />
+                    <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778051889/rnj/optimized/group-363-1-a0d0a075.svg" alt="" className="h-full w-full object-cover" />
                   </div>
 
                   {/* Belgique card */}
                   <div className="bento-card bento-d5 relative h-[180px] w-full overflow-hidden rounded-[14px] bg-white sm:h-[220px] sm:rounded-[16px] md:h-[300px] md:rounded-[20px] lg:h-[334px]">
                     <div
-                      className="mt-[12px] flex h-[48px] w-full items-center px-2 transition-all duration-500 sm:mt-[18px] sm:h-[58px] sm:px-3 md:mt-[30px] md:h-[74px] md:px-[23px]"
+                      className="mt-[8px] flex h-[36px] w-full items-center px-1.5 transition-all duration-500 sm:mt-[18px] sm:h-[58px] sm:px-3 md:mt-[30px] md:h-[74px] md:px-[23px]"
                       style={{ background: `linear-gradient(90deg, #DDE597 ${belgiumSteps[belgiumStep].gradientWidth}, rgba(123,127,84,0.17) 100%)` }}
                     >
-                      <div className="flex w-full items-center justify-between gap-3 sm:justify-start sm:gap-[29px]">
+                      <div className="flex w-full origin-left scale-[0.55] items-center justify-between gap-3 sm:scale-100 sm:justify-start sm:gap-[29px]">
                         {belgiumSteps[belgiumStep].circles.map((circle, index) => (
                           <div
                             key={index}
@@ -3470,13 +3463,13 @@ export default function Home() {
                       <div className="flex items-start justify-between gap-3">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334060/rnj/group-558-46fa6f2f.svg"
+                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334060/rnj/group-558-46fa6f2f.svg"
                           alt="Shifting Academy"
                           className="h-[20px] w-[76px] object-contain sm:h-[24px] sm:w-[90px] md:h-[31px] md:w-[118px]"
                         />
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776389405/rnj/group-349031-1-46313aad.svg"
+                          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776389405/rnj/group-349031-1-46313aad.svg"
                           alt=""
                           aria-hidden="true"
                           className="h-[24px] w-[56px] object-contain sm:h-[28px] sm:w-[68px] md:h-[38px] md:w-[90px]"
@@ -3489,9 +3482,9 @@ export default function Home() {
 
                       <div className="mt-2 flex items-center gap-[5px] sm:mt-3 md:mt-5 sm:mt-6">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334061/rnj/e-sdg-print-07-1-af43b2fc.svg" alt="SDG 7" className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px] md:h-[36px] md:w-[36px]" />
+                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334061/rnj/e-sdg-print-07-1-af43b2fc.svg" alt="SDG 7" className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px] md:h-[36px] md:w-[36px]" />
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334064/rnj/e-sdg-print-08-1-53b17059.svg" alt="SDG 8" className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px] md:h-[36px] md:w-[36px]" />
+                        <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334064/rnj/e-sdg-print-08-1-53b17059.svg" alt="SDG 8" className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px] md:h-[36px] md:w-[36px]" />
                       </div>
                     </div>
                     <Link href="/contact" className="bento-card bento-d7 relative flex h-[48px] w-full items-center justify-center gap-[5px] rounded-[14px] bg-[#406640] px-2 transition-colors hover:bg-[#4a754a] sm:h-[58px] sm:rounded-[16px] sm:px-4 md:h-[91px] md:rounded-[20px] md:px-8">
@@ -3510,32 +3503,32 @@ export default function Home() {
                       className="absolute inset-0 rounded-[20px]"
                       style={{ background: 'radial-gradient(50% 61.83% at 50% 50%, #DDE597 60.08%, rgba(123,127,84,0) 100%)' }}
                     />
-                    <span className="ring-pulse pointer-events-none absolute left-1/2 top-1/2 h-[220px] w-[220px] rounded-full border-[3px] border-white/80 sm:h-[260px] sm:w-[260px] md:h-[300px] md:w-[300px] lg:h-[378px] lg:w-[378px] lg:border-[4px]" />
-                    <span className="ring-pulse ring-pulse-delay-1 pointer-events-none absolute left-1/2 top-1/2 h-[155px] w-[155px] rounded-full border-[3px] border-white/80 sm:h-[185px] sm:w-[185px] md:h-[210px] md:w-[210px] lg:h-[270px] lg:w-[270px] lg:border-[4px]" />
-                    <span className="ring-pulse ring-pulse-delay-2 pointer-events-none absolute left-1/2 top-1/2 h-[90px] w-[90px] rounded-full border-[3px] border-white sm:h-[108px] sm:w-[108px] md:h-[124px] md:w-[124px] lg:h-[152px] lg:w-[152px] lg:border-[4px]" />
-                    <div className="absolute left-1/2 top-1/2 flex h-[52px] w-[52px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#003300] sm:h-[62px] sm:w-[62px] md:h-[72px] md:w-[72px] lg:h-[84px] lg:w-[84px]">
+                    <span className="ring-pulse pointer-events-none absolute left-1/2 top-1/2 h-[150px] w-[150px] rounded-full border-[2px] border-white/80 sm:h-[220px] sm:w-[220px] sm:border-[3px] md:h-[300px] md:w-[300px] lg:h-[378px] lg:w-[378px] lg:border-[4px]" />
+                    <span className="ring-pulse ring-pulse-delay-1 pointer-events-none absolute left-1/2 top-1/2 h-[105px] w-[105px] rounded-full border-[2px] border-white/80 sm:h-[155px] sm:w-[155px] sm:border-[3px] md:h-[210px] md:w-[210px] lg:h-[270px] lg:w-[270px] lg:border-[4px]" />
+                    <span className="ring-pulse ring-pulse-delay-2 pointer-events-none absolute left-1/2 top-1/2 h-[62px] w-[62px] rounded-full border-[2px] border-white sm:h-[90px] sm:w-[90px] sm:border-[3px] md:h-[124px] md:w-[124px] lg:h-[152px] lg:w-[152px] lg:border-[4px]" />
+                    <div className="absolute left-1/2 top-1/2 flex h-[36px] w-[36px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#003300] sm:h-[52px] sm:w-[52px] md:h-[72px] md:w-[72px] lg:h-[84px] lg:w-[84px]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334065/rnj/group-559-aaf6f0b3.svg" alt="" className="h-[26px] w-[26px] sm:h-[30px] sm:w-[30px] md:h-[36px] md:w-[36px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334065/rnj/group-559-aaf6f0b3.svg" alt="" className="h-[26px] w-[26px] sm:h-[30px] sm:w-[30px] md:h-[36px] md:w-[36px]" />
                     </div>
-                    <div className="float-icon absolute flex h-[38px] w-[38px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[44px] sm:w-[44px] md:h-[51px] md:w-[51px]" style={{ left: '17%', top: '14%', animationDelay: '0s' }}>
+                    <div className="float-icon absolute flex h-[24px] w-[24px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[38px] sm:w-[38px] md:h-[51px] md:w-[51px]" style={{ left: '17%', top: '14%', animationDelay: '0s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334067/rnj/vector-2-8beb62fa.svg" alt="" className="h-[16px] w-[16px] sm:h-[18px] sm:w-[18px] md:h-[22px] md:w-[22px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334067/rnj/vector-2-8beb62fa.svg" alt="" className="h-[16px] w-[16px] sm:h-[18px] sm:w-[18px] md:h-[22px] md:w-[22px]" />
                     </div>
-                    <div className="float-icon absolute flex h-[40px] w-[40px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[48px] sm:w-[48px] md:h-[57px] md:w-[57px]" style={{ left: '74%', top: '20%', animationDelay: '0.4s' }}>
+                    <div className="float-icon absolute flex h-[26px] w-[26px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[40px] sm:w-[40px] md:h-[57px] md:w-[57px]" style={{ left: '74%', top: '20%', animationDelay: '0.4s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334069/rnj/group-2-8d410a01.svg" alt="" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334069/rnj/group-2-8d410a01.svg" alt="" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
                     </div>
-                    <div className="float-icon absolute flex h-[40px] w-[40px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[48px] sm:w-[48px] md:h-[57px] md:w-[57px]" style={{ left: '73%', top: '66%', animationDelay: '0.8s' }}>
+                    <div className="float-icon absolute flex h-[26px] w-[26px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[40px] sm:w-[40px] md:h-[57px] md:w-[57px]" style={{ left: '73%', top: '66%', animationDelay: '0.8s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334070/rnj/group-3-ab3adbb8.svg" alt="" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334070/rnj/group-3-ab3adbb8.svg" alt="" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
                     </div>
-                    <div className="float-icon absolute flex h-[40px] w-[40px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[48px] sm:w-[48px] md:h-[57px] md:w-[57px]" style={{ left: '15%', top: '70%', animationDelay: '1.2s' }}>
+                    <div className="float-icon absolute flex h-[26px] w-[26px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[40px] sm:w-[40px] md:h-[57px] md:w-[57px]" style={{ left: '15%', top: '70%', animationDelay: '1.2s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334072/rnj/group-4-c8bc5566.svg" alt="" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334072/rnj/group-4-c8bc5566.svg" alt="" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
                     </div>
-                    <div className="float-icon absolute flex h-[40px] w-[40px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[48px] sm:w-[48px] md:h-[57px] md:w-[57px]" style={{ left: '51%', top: '89%', animationDelay: '1.6s' }}>
+                    <div className="float-icon absolute flex h-[26px] w-[26px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[40px] sm:w-[40px] md:h-[57px] md:w-[57px]" style={{ left: '51%', top: '89%', animationDelay: '1.6s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334073/rnj/layer-1-3-08f03874.svg" alt="" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
+                      <img src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334073/rnj/layer-1-3-08f03874.svg" alt="" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
                     </div>
                   </div>
                 </div>
@@ -3625,7 +3618,7 @@ export default function Home() {
                   {/* Right Image */}
                   <div className="flex-1 order-1 lg:order-2 flex justify-center lg:justify-end">
                     <div className="relative w-full max-w-[364px] md:max-w-[400px] lg:max-w-[500px] h-[400px] md:h-[500px] lg:h-[580px]">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333987/rnj/light-bulb-1-1-aa32136c.svg"
+                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333987/rnj/light-bulb-1-1-aa32136c.svg"
                         alt="Light bulb - Analyse Réglementaire"
                         fill
                         className="object-contain"
@@ -3731,8 +3724,8 @@ export default function Home() {
                               >
                                 <Image
                                   src={isEmphasized
-                                    ? 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334075/rnj/group-67-4180bee4.svg'
-                                    : 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334077/rnj/vector-20-25c3631c.svg'}
+                                    ? 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334075/rnj/group-67-4180bee4.svg'
+                                    : 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334077/rnj/vector-20-25c3631c.svg'}
                                   alt={isExpanded ? 'Réduire' : 'Développer'}
                                   fill
                                   className="object-contain"

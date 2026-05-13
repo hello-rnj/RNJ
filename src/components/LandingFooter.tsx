@@ -59,22 +59,27 @@ const socialIcons = [
   {
     name: 'Instagram',
     src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334109/rnj/mask-group-23-1ce30be9.svg',
+    href: 'https://instagram.com',
   },
   {
     name: 'LinkedIn',
     src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334110/rnj/mask-group-24-fd4f223e.svg',
+    href: 'https://linkedin.com',
   },
   {
     name: 'Telegram',
     src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334111/rnj/mask-group-25-516d2f88.svg',
+    href: 'https://t.me',
   },
   {
     name: 'Twitter',
     src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334113/rnj/mask-group-26-a7a619cb.svg',
+    href: 'https://twitter.com',
   },
   {
     name: 'Facebook',
     src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334115/rnj/mask-group-27-5870749d.svg',
+    href: 'https://facebook.com',
   },
 ] as const;
 
@@ -185,30 +190,25 @@ export default function LandingFooter() {
   const isContactExpanded = isExtraLargeViewport && (isContactNear || isContactFocused);
 
   return (
-    <footer className="relative w-full overflow-hidden">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 h-[1765.79px] w-[1580px] -translate-x-1/2 bottom-[-82.96px]">
-          <Image
-            src={footerBackgroundMask}
-            alt=""
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div 
-          className="absolute left-1/2 h-[1676px] w-[1513px] -translate-x-1/2 bottom-[-122px]"
-          style={{ background: 'linear-gradient(rgba(217, 217, 217, 0) 17.92%, rgb(115, 115, 115) 74.61%)' }}
-        />
-      </div>
+    <footer className="relative isolate w-full overflow-hidden bg-[#BBCB2E]">
+      <div className="relative w-full overflow-hidden lg:min-h-[816px]">
+        <div className="absolute inset-0 bg-[#BBCB2E]" aria-hidden="true" />
 
-      <div className="relative z-10 flex flex-col">
-        <div className="flex h-full w-full px-4 py-10 sm:px-6 lg:px-[25px] lg:py-[40px]">
+        <Image
+          src={footerBackgroundMask}
+          alt=""
+          fill
+          aria-hidden="true"
+          className="pointer-events-none object-cover object-center"
+        />
+
+        <div className="relative z-10 flex h-full w-full px-4 py-10 sm:px-6 lg:px-[25px] lg:py-[40px]">
           <div className="mx-auto flex w-full max-w-[1462px] flex-col gap-[40px]">
             <div className="flex w-full flex-col items-center gap-5 xl:flex-row xl:justify-between xl:gap-[209px]">
               <div className="w-full max-w-[454px] rounded-[23px] bg-[#F7FCFF] p-[5px]">
                 <div className="flex min-h-[74px] items-center justify-between gap-3 rounded-[18px] bg-[#F7FCFF] pl-5 pr-[5px] sm:min-h-[92px] sm:pl-10">
                   <span className="font-[Geist] text-[15px] font-medium leading-4 text-[#003300] opacity-50 sm:text-[20px]">
-                    Our Newsletter
+                    Notre Newsletter
                   </span>
 
                   <button
@@ -216,7 +216,7 @@ export default function LandingFooter() {
                     className="flex h-[64px] min-w-[122px] items-center justify-center rounded-[18px] bg-[#C1CB82] px-5 transition hover:opacity-90 sm:h-[92px] sm:min-w-[156px] sm:px-[28px]"
                   >
                     <span className="font-[Geist] text-[14px] font-extrabold leading-4 text-[#003300] sm:text-[16px]">
-                      Subscribe
+                      S'abonner
                     </span>
                   </button>
                 </div>
@@ -236,7 +236,7 @@ export default function LandingFooter() {
                   href="/contact"
                   onFocus={() => setIsContactFocused(true)}
                   onBlur={() => setIsContactFocused(false)}
-                  className={`absolute right-0 top-0 z-[12] flex h-[78px] items-center overflow-hidden rounded-[451.572px] bg-[#BBCB2E] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-[92px] xl:h-[106px] ${
+                  className={`absolute right-0 top-0 z-[12] flex h-[78px] items-center overflow-hidden rounded-[451.572px] bg-[#C1CB82] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-[92px] xl:h-[106px] ${
                     isContactExpanded
                       ? 'w-full justify-center px-5 xl:w-[580px] xl:justify-between xl:pl-[6px] xl:pr-[54px]'
                       : 'w-full justify-center px-5 xl:px-[52px]'
@@ -340,19 +340,17 @@ export default function LandingFooter() {
 
                 <div className="flex flex-col gap-5 pt-5 lg:flex-row lg:items-end lg:justify-between">
                   <div className="flex flex-nowrap items-center justify-center gap-[12px] sm:gap-[14px]">
-                    {/* Newsletter/Headphones icon */}
-                    <span className="relative h-[28.92px] w-[28.92px] overflow-hidden rounded-full bg-black bg-opacity-[0.004]" aria-label="Newsletter">
-                      <Image src="/optimized/Frame 192 (5).svg" alt="Newsletter" fill className="object-contain" />
-                    </span>
-                    {/* Social icons */}
                     {socialIcons.map((social) => (
-                      <span
+                      <a
                         key={social.name}
-                        className="relative h-[29.2px] w-[29.2px] overflow-hidden rounded-full bg-white"
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative flex h-[40px] w-[40px] items-center justify-center overflow-hidden rounded-full border-[1.5px] border-white/20 transition-all duration-200 hover:border-white/40 hover:bg-white/5 sm:h-[44px] sm:w-[44px]"
                         aria-label={social.name}
                       >
-                        <Image src={social.src} alt={social.name} fill className="object-contain" />
-                      </span>
+                        <Image src={social.src} alt={social.name} fill className="object-contain p-[8px]" unoptimized />
+                      </a>
                     ))}
                   </div>
 
