@@ -477,7 +477,7 @@ const institutionalCarouselCards = [
     title: 'Analyse Institutionnelle & Réglementaire',
     description:
       'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good/v1778425127/rnj/optimized/group-348987.webp',
+    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778675944/rnj/ramzi-image-1778675943285.png',
     panelBg: '#406640',
     titleColor: '#BFCCBF',
     descriptionColor: '#BFCCBF',
@@ -1504,8 +1504,11 @@ export default function Home() {
                   className="about-hero-title eb_garamond_e16653e1-module__s6IC3q__className w-full max-w-[744px] text-center font-bold leading-[0.95] text-[#003300] text-[clamp(34px,9.5vw,64px)] xl:text-left"
                   style={{  color: '#003300' }}
                 >
-                  <span className="block">Conseil stratégique pour</span>
-                  <span className="block">une performance durable</span>
+                  <span className="block sm:hidden">Conseil stratégique</span>
+                  <span className="block sm:hidden">pour une performance</span>
+                  <span className="block sm:hidden">durable</span>
+                  <span className="hidden sm:block">Conseil stratégique pour</span>
+                  <span className="hidden sm:block">une performance durable</span>
                 </h1>
                 <p
                   className="w-full max-w-[680px] text-center font-[Geist] text-[14px] font-normal leading-[1.45] sm:text-[15px] md:text-[16px] md:leading-[20px] xl:max-w-[618px] xl:text-left"
@@ -3021,7 +3024,7 @@ export default function Home() {
                        loading="lazy"/>
                     </div>
 
-                    <div className="flex flex-1 flex-col bg-[#A2B144] px-5 py-5 sm:px-6 md:px-[33.11px] md:pt-[15px]">
+                    <div className="flex flex-1 flex-col bg-[#CCD862] px-5 py-5 sm:px-6 md:px-[33.11px] md:pt-[15px]">
                       <h3
                         className="font-[EB_Garamond] font-semibold text-[#003300] text-[24px] leading-[24px] sm:text-[26px] sm:leading-[25px] lg:text-[28px] lg:leading-[27px] xl:text-[31.3914px] xl:leading-[28px]"
                       >
@@ -3036,7 +3039,7 @@ export default function Home() {
                   </article>
 
                   <article
-                    className="relative flex h-full w-full min-h-[360px] flex-col items-center justify-center rounded-[20px] bg-[#F9FFC4] px-5 py-7 text-center transition-all duration-500 md:min-h-[420px] md:rounded-[30px] md:px-5 lg:min-h-[450px] lg:px-6 xl:rounded-[34.8794px] xl:px-8"
+                    className="relative flex h-full w-full min-h-[360px] flex-col items-center justify-center rounded-[20px] bg-[#BBCB2E] px-5 py-7 text-center transition-all duration-500 md:min-h-[420px] md:rounded-[30px] md:px-5 lg:min-h-[450px] lg:px-6 xl:rounded-[34.8794px] xl:px-8"
                     style={{
                       border:
                         esgActiveCardIndex === 1 ? '2px solid #003300' : '2px solid transparent',
@@ -3066,7 +3069,7 @@ export default function Home() {
 
                     <Link
                       href="/contact"
-                      className="inline-flex h-[50px] items-center justify-center rounded-full bg-[#BBCB2E] px-6 font-[Geist] font-semibold text-[#003300] transition-all duration-500 sm:h-[52px] sm:px-8 xl:h-[56.29px] xl:px-[37px]"
+                      className="inline-flex h-[50px] items-center justify-center rounded-full bg-[#003300] px-6 font-[Geist] font-semibold text-white transition-all duration-500 sm:h-[52px] sm:px-8 xl:h-[56.29px] xl:px-[37px]"
                       style={{
                         fontSize: '14.6036px',
                         lineHeight: '23px',
@@ -3101,7 +3104,7 @@ export default function Home() {
                        loading="lazy"/>
                     </div>
 
-                    <div className="flex flex-1 flex-col bg-[#CCD862] px-5 py-5 sm:px-6 md:px-[33px] md:pt-[15px]">
+                    <div className="flex flex-1 flex-col bg-[#EEF2CA] px-5 py-5 sm:px-6 md:px-[33px] md:pt-[15px]">
                       <h3
                         className="font-[EB_Garamond] font-semibold text-[#003300] text-[24px] leading-[24px] sm:text-[26px] sm:leading-[25px] lg:text-[28px] lg:leading-[27px] xl:text-[31.3914px] xl:leading-[28px]"
                       >
@@ -3775,8 +3778,8 @@ export default function Home() {
                         setFaqShowAll(true);
                       }
                     }}
-                    className="flex h-[64px] w-[64px] items-center justify-center rounded-full bg-[#BBCB2E] transition-all duration-300 hover:scale-110 hover:bg-[#ccd93a] sm:h-[78px] sm:w-[78px]"
-                    style={{ boxShadow: '2px 4px 33.5px rgba(0, 0, 0, 0.12)' }}
+                    className="flex h-[64px] w-[64px] items-center justify-center rounded-full bg-[#FFFFFF] transition-all duration-300 hover:scale-110 sm:h-[78px] sm:w-[78px]"
+                    style={{ boxShadow: '2.01055px 4.02111px 33.6768px rgba(0, 0, 0, 0.12)' }}
                     aria-label={faqShowAll ? 'Voir moins' : 'Voir plus de questions'}
                   >
                     <span
