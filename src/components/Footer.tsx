@@ -6,7 +6,7 @@ import Link from 'next/link';
 const footerColumns = [
   {
     title: 'Cabinet',
-    items: ['Accueil', 'À propos', 'Notre approche', "Zones d'intervention"],
+    items: ['Accueil', 'À propos', 'Notre approche'],
   },
   {
     title: 'Expertise',
@@ -14,13 +14,12 @@ const footerColumns = [
       'Conseil stratégique',
       'Analyse institutionnelle',
       'Conformité réglementaire',
-      'Transition énergétique',
       "Structuration d'entreprise",
     ],
   },
   {
     title: 'Publications',
-    items: ['Articles', 'Analyses', 'PME & ASBL', 'Études sectorielles'],
+    items: ['Articles', 'PME & ASBL'],
   },
 ];
 
@@ -36,11 +35,9 @@ const footerItemLinks: Record<string, string> = {
   Accueil: '/',
   'À propos': '/a-propos',
   'Notre approche': '/a-propos#approche',
-  "Zones d'intervention": '/#impact-map',
   'Conseil stratégique': '/services',
   'Analyse institutionnelle': '/services/analyse-institutionnelle',
   'Conformité réglementaire': '/services',
-  'Transition énergétique': '/services',
   "Structuration d'entreprise": '/services',
 };
 

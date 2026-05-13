@@ -101,7 +101,7 @@ export default function ContactFormFigmaCard({
                 onChange={(e) => updateField('name', e.target.value)}
               />
               <input
-                placeholder="(+216) Telephone *"
+                placeholder="(+32) Telephone *"
                 className={`${geist.className} h-[56px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-4 py-3 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 sm:h-[70px] sm:px-6 sm:py-4 sm:text-[18px] md:h-[83.76px] md:px-[31.66px] md:py-[30.80px] md:text-[20.53px]`}
                 required
                 type="tel"
@@ -145,14 +145,14 @@ export default function ContactFormFigmaCard({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`${ebGaramond.className} h-[56px] w-full items-center justify-center rounded-[12.83px] bg-[#BBCB2E] text-[20px] font-bold leading-tight text-[#003300] transition hover:bg-[#dde597] disabled:cursor-not-allowed disabled:opacity-60 sm:h-[70px] sm:text-[28px] md:h-[88.19px] md:text-[34.22px] md:leading-[35px]`}
+                className={`${ebGaramond.className} flex h-[56px] w-full items-center justify-center rounded-[12.83px] bg-[#BBCB2E] text-[20px] font-bold leading-tight text-[#003300] transition hover:bg-[#dde597] disabled:cursor-not-allowed disabled:opacity-60 sm:h-[70px] sm:text-[28px] md:h-[88.19px] md:px-[36.79px] md:py-[22.25px] md:text-[34.22px] md:leading-[35px]`}
               >
                 {isSubmitting ? 'Envoi...' : 'Soumettre'}
               </button>
               <button
                 type="button"
                 onClick={onRequestAppointment}
-                className={`${ebGaramond.className} h-[56px] w-full items-center justify-center rounded-[12.83px] bg-[#003300] text-[20px] font-bold leading-tight text-[#BBCB2E] transition hover:bg-[#004400] sm:h-[70px] sm:text-[28px] md:h-[88.19px] md:text-[34.22px] md:leading-[35px]`}
+                className={`${ebGaramond.className} flex h-[56px] w-full items-center justify-center rounded-[12.83px] bg-[#003300] text-[20px] font-bold leading-tight text-[#BBCB2E] transition hover:bg-[#004400] sm:h-[70px] sm:text-[28px] md:h-[88.19px] md:px-[36.79px] md:py-[22.25px] md:text-[34.22px] md:leading-[35px]`}
               >
                 Rendez-vous
               </button>

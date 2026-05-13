@@ -484,7 +484,7 @@ export default function BookingModal({ open, onClose, initialMode = null }: Book
                   <input type="text" placeholder="Nom *" required value={form.name}
                     onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                     className={`${geist.className} ${fieldCls}`} />
-                  <input type="tel" placeholder="(+216) Téléphone *" required value={form.phone}
+                  <input type="tel" placeholder="(+32) Téléphone *" required value={form.phone}
                     onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
                     className={`${geist.className} ${fieldCls}`} />
                 </div>

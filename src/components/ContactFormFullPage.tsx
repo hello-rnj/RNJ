@@ -104,7 +104,7 @@ export default function ContactFormFullPage({
                   onChange={(e) => updateField('name', e.target.value)}
                 />
                 <input
-                  placeholder="(+216) Telephone *"
+                  placeholder="(+32) Telephone *"
                   className={`${geist.className} h-[56px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-4 py-3 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 sm:h-[70px] sm:px-6 sm:py-4 sm:text-[18px] md:h-[83.76px] md:px-[31.66px] md:py-[30.80px] md:text-[20.53px]`}
                   required
                   type="tel"

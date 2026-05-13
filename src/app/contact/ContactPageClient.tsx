@@ -1128,10 +1128,18 @@ export default function ContactPageClient({
           ) : null}
 
           {view === 'message' ? (
-              <div className="relative z-10 flex w-full justify-center">
-                <div className="pt-20">
-                  <div className="relative overflow-hidden px-3 py-5 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
-                    <div className="relative z-10 flex w-full justify-center">
+              <section className="relative z-10 flex min-h-[calc(100vh-64px)] w-full items-center justify-center px-4 pb-10 pt-28 sm:min-h-[calc(100vh-80px)] sm:px-6 sm:pb-12 sm:pt-32">
+                <div className="mx-auto mt-6 w-full max-w-[753px] sm:mt-8">
+                  <div
+                    className="relative overflow-hidden rounded-[28px] sm:rounded-[36px] lg:rounded-[42.7791px]"
+                    style={{
+                      backgroundColor: '#FFFFFF',
+                      boxShadow: '0px 3.42233px 47.9982px rgba(0, 0, 0, 0.25)',
+                      border: '1px solid rgba(0, 0, 0, 0.06)',
+                      borderRadius: '42.7791px',
+                    }}
+                  >
+                    <div className="relative z-10 px-3 py-5 sm:px-6 sm:py-8 lg:px-[42.82px] lg:pb-[39.19px] lg:pt-[50.48px]">
                       <div className="mx-auto w-full max-w-[667.57px]">
                         <div className="mb-3 flex items-start justify-between gap-3 sm:mb-[13.69px] sm:gap-4">
                           <div>
@@ -1157,8 +1165,8 @@ export default function ContactPageClient({
                           </button>
                         </div>
 
-                        <form className="space-y-0" onSubmit={handleMessageSubmit}>
-                          <div className="grid gap-[8.56px] md:grid-cols-2">
+                        <form className="space-y-[10px] sm:space-y-[12px] md:space-y-[14px]" onSubmit={handleMessageSubmit}>
+                          <div className="grid gap-[10px] sm:gap-[12px] md:grid-cols-2 md:gap-[14px]">
                             <input
                               type="text"
                               value={messageForm.name}
@@ -1175,13 +1183,13 @@ export default function ContactPageClient({
                               onChange={(event) =>
                                 setMessageForm((current) => ({ ...current, phone: event.target.value }))
                               }
-                              placeholder="(+216) Telephone *"
+                              placeholder="(+32) Telephone *"
                               className={`${geist.className} h-[56px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-4 py-3 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 sm:h-[70px] sm:px-6 sm:py-4 sm:text-[18px] md:h-[83.76px] md:px-[31.66px] md:py-[30.80px] md:text-[20.53px]`}
                               required
                             />
                           </div>
 
-                          <div className="grid gap-[8.56px] md:grid-cols-2">
+                          <div className="grid gap-[10px] sm:gap-[12px] md:grid-cols-2 md:gap-[14px]">
                             <input
                               type="email"
                               value={messageForm.email}
@@ -1222,7 +1230,7 @@ export default function ContactPageClient({
                             className={`${geist.className} h-[140px] w-full rounded-[12.83px] border border-transparent bg-[#F0F3F0] px-4 py-3 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 resize-none sm:h-[170px] sm:px-6 sm:py-4 sm:text-[18px] md:h-[204.57px] md:px-[31.66px] md:py-[30.80px] md:text-[20.53px]`}
                             required
                           />
-                          <div className="grid gap-[8.56px] md:grid-cols-2">
+                          <div className="grid gap-[10px] sm:gap-[12px] md:grid-cols-2 md:gap-[14px]">
                             <button
                               type="submit"
                               disabled={isSubmitting}
@@ -1243,7 +1251,7 @@ export default function ContactPageClient({
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
           ) : null}
         </div>
       </main>

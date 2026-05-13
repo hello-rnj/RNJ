@@ -21,7 +21,6 @@ const footerColumns: FooterColumn[] = [
       { label: 'Accueil', href: '/' },
       { label: 'À propos', href: '/a-propos' },
       { label: 'Projet', href: '/projets' },
-      { label: 'Zones d’intervention', href: '/#impact-map' },
     ],
   },
   {
@@ -30,27 +29,20 @@ const footerColumns: FooterColumn[] = [
       { label: 'Conseil stratégique', href: '/services' },
       { label: 'Analyse institutionnelle', href: '/services/analyse-institutionnelle' },
       { label: 'Conformité réglementaire', href: '/services' },
-      { label: 'Transition énergétique', href: '/services' },
       { label: 'Structuration d’entreprise', href: '/services' },
     ],
   },
   {
     title: 'Secteurs',
     items: [
-      { label: 'Acteurs publics' },
-      { label: 'Investisseurs & bailleurs' },
       { label: 'PME & ASBL' },
-      { label: 'Indépendants' },
-      { label: 'Exportateurs' },
     ],
   },
   {
     title: 'Publications',
     items: [
       { label: 'Articles', href: '/blogs' },
-      { label: 'Analyses', href: '/blogs' },
       { label: 'PME & ASBL', href: '/blogs' },
-      { label: 'Études sectorielles', href: '/blogs' },
     ],
   },
 ];
@@ -216,7 +208,7 @@ export default function LandingFooter() {
                     className="flex h-[64px] min-w-[122px] items-center justify-center rounded-[18px] bg-[#C1CB82] px-5 transition hover:opacity-90 sm:h-[92px] sm:min-w-[156px] sm:px-[28px]"
                   >
                     <span className="font-[Geist] text-[14px] font-extrabold leading-4 text-[#003300] sm:text-[16px]">
-                      S'abonner
+                      S&apos;abonner
                     </span>
                   </button>
                 </div>
@@ -293,14 +285,14 @@ export default function LandingFooter() {
                     </p>
                   </div>
 
-                  <div className="grid w-full max-w-[916px] grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4 xl:gap-5">
+                  <div className="grid w-full max-w-[916px] grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-8 xl:grid-cols-4 xl:gap-5">
                     {footerColumns.map((column) => (
-                      <div key={column.title} className="flex flex-col gap-6">
+                      <div key={column.title} className="flex flex-col gap-4 sm:gap-6">
                         <h3 className="font-[Geist] text-[20px] font-semibold leading-4 text-white">
                           {column.title}
                         </h3>
 
-                        <div className="flex flex-col items-start gap-[17px]">
+                        <div className="flex flex-col items-start gap-[6px] sm:gap-[17px]">
                           {column.items.map((item) => {
                             const content = (
                               <>
@@ -316,7 +308,7 @@ export default function LandingFooter() {
                                 <Link
                                   key={`${column.title}-${item.label}`}
                                   href={item.href}
-                                  className="flex items-center gap-[14px] transition-opacity hover:opacity-100"
+                                  className="flex items-center gap-[8px] transition-opacity hover:opacity-100 sm:gap-[14px]"
                                 >
                                   {content}
                                 </Link>
@@ -326,7 +318,7 @@ export default function LandingFooter() {
                             return (
                               <div
                                 key={`${column.title}-${item.label}`}
-                                className="flex items-center gap-[14px]"
+                                className="flex items-center gap-[8px] sm:gap-[14px]"
                               >
                                 {content}
                               </div>
