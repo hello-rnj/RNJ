@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
-import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 
@@ -721,9 +721,14 @@ export default function AnalyseInstitutionnelleClient() {
   const [activeProjectIdx, setActiveProjectIdx] = useState(0);
   const [bgImgReady, setBgImgReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isPhone, setIsPhone] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
+  const touchStartXRef = useRef<number | null>(null);
   const activeCountry = countryPins.find((p) => p.id === activePin) ?? null;
   const activeProject = activeCountry ? (activeCountry.projects[activeProjectIdx] ?? activeCountry.projects[0]) : null;
   const panelTextColor = activeProject?.tone === '#B5E0EC' ? '#0E434F' : '#003300';
+  const canGoPrev = !!activeCountry && activeProjectIdx > 0;
+  const canGoNext = !!activeCountry && activeProjectIdx < activeCountry.projects.length - 1;
 
   useEffect(() => {
     const srcs = [...new Set(countryPins.flatMap((p) => p.projects.map((proj) => proj.image)))];
@@ -731,11 +736,31 @@ export default function AnalyseInstitutionnelleClient() {
   }, []);
 
   useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
     const mq = window.matchMedia('(max-width: 1023px)');
     const handler = () => setIsMobile(mq.matches);
     handler();
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
+    if (typeof mq.addEventListener === 'function') {
+      mq.addEventListener('change', handler);
+      return () => mq.removeEventListener('change', handler);
+    }
+    mq.addListener(handler);
+    return () => mq.removeListener(handler);
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const handler = () => setIsPhone(mq.matches);
+    handler();
+    if (typeof mq.addEventListener === 'function') {
+      mq.addEventListener('change', handler);
+      return () => mq.removeEventListener('change', handler);
+    }
+    mq.addListener(handler);
+    return () => mq.removeListener(handler);
   }, []);
 
 
@@ -757,7 +782,53 @@ export default function AnalyseInstitutionnelleClient() {
     if (activePin === id) { setActivePin(null); }
     else { setActivePin(id); setActiveProjectIdx(0); setBgImgReady(false); }
   }
-  function closePanel() { setActivePin(null); setActiveProjectIdx(0); setBgImgReady(false); }
+  const closePanel = useCallback(() => {
+    setActivePin(null);
+    setActiveProjectIdx(0);
+    setBgImgReady(false);
+  }, []);
+  const goToPrevProject = useCallback(() => {
+    if (!activeCountry || !canGoPrev) return;
+    setBgImgReady(false);
+    setActiveProjectIdx((idx) => Math.max(0, idx - 1));
+  }, [activeCountry, canGoPrev]);
+  const goToNextProject = useCallback(() => {
+    if (!activeCountry || !canGoNext) return;
+    setBgImgReady(false);
+    setActiveProjectIdx((idx) => Math.min(activeCountry.projects.length - 1, idx + 1));
+  }, [activeCountry, canGoNext]);
+  function onPanelTouchStart(event: React.TouchEvent<HTMLDivElement>) {
+    touchStartXRef.current = event.changedTouches[0]?.clientX ?? null;
+  }
+  function onPanelTouchEnd(event: React.TouchEvent<HTMLDivElement>) {
+    if (!isMobile || !activeCountry || activeCountry.projects.length <= 1) return;
+    const startX = touchStartXRef.current;
+    touchStartXRef.current = null;
+    if (startX == null) return;
+    const endX = event.changedTouches[0]?.clientX;
+    if (typeof endX !== 'number') return;
+    const deltaX = endX - startX;
+    if (Math.abs(deltaX) < 56) return;
+    if (deltaX < 0) goToNextProject();
+    else goToPrevProject();
+  }
+
+  useEffect(() => {
+    if (!activeCountry) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closePanel();
+        return;
+      }
+      if (event.key === 'ArrowLeft') {
+        goToPrevProject();
+      } else if (event.key === 'ArrowRight') {
+        goToNextProject();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [activeCountry, closePanel, goToNextProject, goToPrevProject]);
 
   return (
     <main className="min-h-screen bg-[#F7FCFF]">
@@ -828,15 +899,15 @@ export default function AnalyseInstitutionnelleClient() {
         </div>
       </nav>
 
-      <section className="relative isolate w-full overflow-hidden bg-[#0E434F] min-h-[100svh] sm:min-h-[640px] md:min-h-[900px] lg:h-[1048px] lg:min-h-[1048px]">
+      <section className="relative isolate w-full overflow-hidden bg-[#0E434F] min-h-screen min-h-[100svh] sm:min-h-[640px] md:min-h-[1120px] lg:h-[1180px] lg:min-h-[1180px]">
         {/* Single SVG: map background + interactive pins in one coordinate space */}
         <div
           className="absolute overflow-hidden"
-          style={{ inset: 0, transform: isMobile ? 'none' : 'scale(1.05)' }}
+          style={{ inset: 0, transform: isPhone ? 'none' : 'scale(1.05)' }}
         >
           <svg
-            viewBox={isMobile ? '560 80 920 960' : '0 0 1440 1024'}
-            preserveAspectRatio={isMobile ? 'xMidYMid meet' : 'xMidYMid slice'}
+            viewBox={isPhone ? '560 80 920 960' : '0 0 1440 1024'}
+            preserveAspectRatio="xMidYMid slice"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
@@ -914,7 +985,7 @@ export default function AnalyseInstitutionnelleClient() {
         </div>
 
         {/* ── Mobile/tablet hero layout: title top, button bottom, map visible middle ── */}
-        <div className="pointer-events-none relative z-10 mx-auto flex h-[100svh] w-full flex-col px-5 pb-8 pt-[72px] sm:h-[640px] sm:px-6 sm:pb-12 sm:pt-[80px] md:h-[900px] md:px-12 md:pb-16 md:pt-[100px] lg:hidden">
+        <div className="pointer-events-none relative z-10 mx-auto flex h-screen h-[100svh] w-full flex-col px-5 pb-[calc(2rem+env(safe-area-inset-bottom))] pt-[72px] sm:h-[640px] sm:px-6 sm:pb-[calc(3rem+env(safe-area-inset-bottom))] sm:pt-[80px] md:h-[1120px] md:px-12 md:pb-[calc(4rem+env(safe-area-inset-bottom))] md:pt-[100px] lg:hidden">
           {/* Top block: region selector + title */}
           <div className="flex flex-col gap-3 md:gap-6">
             <div className={`${geist.className} inline-flex items-center gap-2 md:gap-3 text-[#9CD5E6]`}>
@@ -992,188 +1063,133 @@ export default function AnalyseInstitutionnelleClient() {
           </div>
         </div>
         {/* Country detail — full-width active state slides in as ONE unit (Figma Group 531) */}
-        {activeCountry && (
-          <div className="pointer-events-none fixed inset-0 z-[9999]">
+        {hasMounted && activeCountry && createPortal(
+          <div className="pointer-events-none fixed inset-0 z-[9999] overscroll-none [overscroll-behavior:contain]">
             {/* click-away backdrop */}
             <div className="pointer-events-auto absolute inset-0" onClick={closePanel} />
 
             {/* Clip container */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              {/* Blurred background — mobile: fadeIn, desktop: slideInRight */}
+              {/* Background image kept visible on the left */}
               <img
                 src={activeProject!.image}
                 alt=""
                 aria-hidden="true"
                 className="absolute inset-0 h-full w-full object-cover"
                 onLoad={() => setBgImgReady(true)}
-                style={{ transform: 'scale(1.08)', transformOrigin: 'center', filter: 'blur(9px)', animation: isMobile ? 'fadeIn 500ms ease both' : 'slideInRight 750ms cubic-bezier(0.22,1,0.36,1) both' }}
+                style={{ transform: 'scale(1.02)', transformOrigin: 'center', animation: 'fadeIn 500ms ease both' }}
               />
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.22)_55%,rgba(0,0,0,0.34)_100%)]" aria-hidden="true" />
 
-              {/* Panel — mobile: bottom-sheet, desktop: right panel */}
+              {/* Panel — desktop-like right drawer on all devices */}
               <div
-                className="pointer-events-auto absolute bottom-0 left-0 right-0 top-[25%] overflow-hidden rounded-t-[24px] md:top-[20%] lg:bottom-auto lg:left-auto lg:right-0 lg:top-0 lg:h-full lg:w-[min(633px,44vw)] lg:rounded-none"
-                style={{ background: activeProject!.tone, animation: bgImgReady ? `${isMobile ? 'slideInUp' : 'slideInRight'} 550ms cubic-bezier(0.22,1,0.36,1) ${isMobile ? '80ms' : '80ms'} both` : 'none', opacity: bgImgReady ? undefined : 0 }}
+                className="pointer-events-auto absolute right-0 top-0 h-full w-[min(74vw,380px)] overflow-hidden border-l border-black/10 shadow-[-18px_0_36px_rgba(0,0,0,0.22)] sm:w-[min(66vw,430px)] md:w-[min(60vw,560px)] lg:w-[min(633px,44vw)]"
+                style={{ background: activeProject!.tone, animation: bgImgReady ? 'slideInRight 550ms cubic-bezier(0.22,1,0.36,1) 80ms both' : 'none', opacity: bgImgReady ? undefined : 0 }}
                 onClick={(e) => e.stopPropagation()}
+                onTouchStart={onPanelTouchStart}
+                onTouchEnd={onPanelTouchEnd}
               >
-              {/* Close button */}
-              <button
-                type="button"
-                onClick={closePanel}
-                className="absolute right-3 top-3 z-30 flex h-10 w-10 items-center justify-center rounded-full bg-black/10 transition hover:bg-black/20 sm:right-4 sm:top-4"
-                style={{ color: panelTextColor }}
-                aria-label="Fermer"
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </button>
+                <div className="relative flex h-full min-h-0 w-full flex-col">
+                  {/* Close button */}
+                  <button
+                    type="button"
+                    onClick={closePanel}
+                    className="absolute right-3 top-[calc(env(safe-area-inset-top)+12px)] z-30 flex h-10 w-10 items-center justify-center rounded-full bg-black/10 transition hover:bg-black/20 sm:right-4 sm:top-[calc(env(safe-area-inset-top)+16px)]"
+                    style={{ color: panelTextColor }}
+                    aria-label="Fermer"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  </button>
 
-              {/* ── Mobile/tablet layout (bottom-sheet) ── */}
-              <div className="flex h-full flex-col lg:hidden">
-                {/* Drag handle */}
-                <div className="flex flex-shrink-0 justify-center pt-2.5 pb-2">
-                  <div className="h-[4px] w-[40px] rounded-full bg-black/20" />
-                </div>
-                {/* Project image */}
-                <div className="relative mx-4 mb-3 flex-shrink-0 overflow-hidden rounded-[10px] bg-black/10 sm:mx-6 md:mx-8" style={{ height: 'clamp(120px, 22vw, 240px)' }}>
-                  <img src={activeProject!.image} alt={activeProject!.sector} className="h-full w-full object-cover" style={{ animation: 'panelImageIn 500ms cubic-bezier(0.22,1,0.36,1) 200ms both' }} />
-                </div>
-                {/* Scrollable content */}
-                <div className="flex flex-1 flex-col gap-2.5 overflow-y-auto px-4 pb-4 sm:gap-3 sm:px-6 sm:pb-5 md:gap-4 md:px-8 md:pb-6">
-                  <p className={`${geist.className} text-[10px] font-medium tracking-[-0.02em] sm:text-[11px] md:text-[13px]`} style={{ color: panelTextColor, opacity: 0.5 }}>
+                  {/* Image */}
+                  <div
+                    className="mx-4 mt-[calc(env(safe-area-inset-top)+48px)] flex-shrink-0 overflow-hidden rounded-[12px] bg-black/10 sm:mx-6 md:mx-8 lg:mx-[clamp(30px,8%,51px)]"
+                    style={{ height: 'clamp(128px,19vh,210px)' }}
+                  >
+                    <img
+                      src={activeProject!.image}
+                      alt={activeProject!.sector}
+                      className="h-full w-full object-cover"
+                      style={{ animation: 'panelImageIn 500ms cubic-bezier(0.22,1,0.36,1) 200ms both' }}
+                    />
+                  </div>
+
+                  {/* Project counter */}
+                  <p
+                    className={`${geist.className} mt-3 px-4 text-[11px] font-medium tracking-[-0.02em] sm:px-6 sm:text-[12px] md:px-8 md:text-[13px] lg:px-[clamp(30px,8%,51px)]`}
+                    style={{ color: panelTextColor, opacity: 0.5 }}
+                  >
                     Project {activeProjectIdx + 1}/{activeCountry.projects.length}
                   </p>
-                  <p className={`${geist.className} text-[11px] font-medium uppercase leading-tight tracking-[-0.02em] sm:text-[12px] md:text-[14px]`} style={{ color: panelTextColor }}>
-                    Client : {activeProject!.client}
-                  </p>
-                  <h3 className={`${ebGaramond.className} text-[clamp(22px,6vw,36px)] font-extrabold leading-[1.05] tracking-[-0.02em] md:text-[clamp(30px,4vw,44px)]`} style={{ color: panelTextColor }}>
-                    {activeProject!.sector}
-                  </h3>
-                  <p className={`${geist.className} text-[12px] font-medium leading-[1.45] tracking-[-0.02em] sm:text-[13px] md:text-[15px]`} style={{ color: panelTextColor, opacity: 0.6 }}>
-                    {activeProject!.description}
-                  </p>
-                  <p className={`${geist.className} text-[11px] font-medium uppercase leading-tight tracking-[-0.02em] md:text-[13px]`} style={{ color: panelTextColor, opacity: 0.35 }}>
-                    Pays : {activeProject!.pays}
-                  </p>
-                </div>
-                {/* Nav buttons — bottom right */}
-                {activeCountry.projects.length > 1 && (
-                  <div className="flex flex-shrink-0 justify-between px-4 pb-4 sm:px-8 sm:pb-5 md:px-10 md:pb-6">
-                    <button
-                      type="button"
-                      onClick={() => setActiveProjectIdx((i) => (i - 1 + activeCountry.projects.length) % activeCountry.projects.length)}
-                      className="flex h-12 w-12 items-center justify-center rounded-full transition hover:brightness-110 sm:h-14 sm:w-14 md:h-16 md:w-16"
-                      style={{ background: panelTextColor === '#0E434F' ? '#0E434F' : '#003300', opacity: activeProjectIdx > 0 ? 1 : 0.3 }}
-                      aria-label="Projet précédent"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                        <path d="M13 4L7 10L13 16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setActiveProjectIdx((i) => (i + 1) % activeCountry.projects.length)}
-                      className="flex h-12 w-12 items-center justify-center rounded-full transition hover:brightness-110 sm:h-14 sm:w-14 md:h-16 md:w-16"
-                      style={{ background: panelTextColor === '#0E434F' ? '#0E434F' : '#003300', opacity: activeProjectIdx < activeCountry.projects.length - 1 ? 1 : 0.3 }}
-                      aria-label="Projet suivant"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                        <path d="M7 4L13 10L7 16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </button>
-                  </div>
-                )}
-              </div>
 
-              {/* ── Desktop layout: flex-based responsive ── */}
-              <div className="relative hidden h-full w-full lg:flex lg:flex-col">
-                {/* Image */}
-                <div
-                  className="mx-[clamp(30px,8%,51px)] mt-[clamp(50px,7.5%,79px)] flex-shrink-0 overflow-hidden bg-[#D9D9D9]"
-                  style={{ height: 'clamp(160px,23%,245px)' }}
-                >
-                  <img
-                    src={activeProject!.image}
-                    alt={activeProject!.sector}
-                    className="h-full w-full object-cover"
-                    style={{ animation: 'panelImageIn 500ms cubic-bezier(0.22,1,0.36,1) 200ms both' }}
-                  />
-                </div>
-
-                {/* Project counter */}
-                <p
-                  className={`${geist.className} mt-3 px-[clamp(30px,8%,51px)] text-[clamp(10px,1.1vw,12px)] font-medium tracking-[-0.02em]`}
-                  style={{ color: panelTextColor, opacity: 0.5 }}
-                >
-                  Project {activeProjectIdx + 1}/{activeCountry.projects.length}
-                </p>
-
-                {/* Scrollable content */}
-                <div className="flex-1 overflow-y-auto px-[clamp(30px,8%,51px)] pb-[100px] pt-[clamp(16px,3%,32px)]">
-                  <div className="flex flex-col gap-[clamp(24px,4%,51px)]">
-                    <div className="flex flex-col gap-[clamp(12px,2%,20px)]">
-                      <div className="flex flex-col gap-[clamp(12px,2%,20px)]">
+                  {/* Scrollable content */}
+                  <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-[calc(126px+env(safe-area-inset-bottom))] pt-3 sm:px-6 sm:pb-[calc(132px+env(safe-area-inset-bottom))] sm:pt-4 md:px-8 md:pb-[calc(140px+env(safe-area-inset-bottom))] md:pt-5 lg:px-[clamp(30px,8%,51px)] lg:pb-[126px] lg:pt-[clamp(16px,3%,32px)]">
+                    <div className="flex flex-col gap-5 sm:gap-6 lg:gap-[clamp(24px,4%,51px)]">
+                      <div className="flex flex-col gap-4 sm:gap-5 lg:gap-[clamp(12px,2%,20px)]">
                         <p
-                          className={`${geist.className} text-[clamp(10px,1.1vw,12px)] font-medium uppercase leading-tight tracking-[-0.02em]`}
+                          className={`${geist.className} text-[11px] font-medium uppercase leading-tight tracking-[-0.02em] sm:text-[12px] md:text-[13px]`}
                           style={{ color: panelTextColor }}
                         >
                           Client : {activeProject!.client}
                         </p>
                         <h3
-                          className={`${ebGaramond.className} text-[clamp(28px,3.5vw,41px)] font-extrabold leading-[1.05] tracking-[-0.02em]`}
+                          className={`${ebGaramond.className} text-[clamp(24px,5.8vw,41px)] font-extrabold leading-[1.05] tracking-[-0.02em]`}
                           style={{ color: panelTextColor }}
                         >
                           {activeProject!.sector}
                         </h3>
                         <p
-                          className={`${geist.className} text-[clamp(12px,1.14vw,16px)] font-medium leading-[1.5] tracking-[-0.02em]`}
+                          className={`${geist.className} text-[13px] font-medium leading-[1.5] tracking-[-0.02em] sm:text-[14px] md:text-[14px] lg:text-[clamp(12px,1.14vw,16px)]`}
                           style={{ color: panelTextColor, opacity: 0.6 }}
                         >
                           {activeProject!.description}
                         </p>
                       </div>
                       <p
-                        className={`${geist.className} text-[clamp(10px,1.1vw,12px)] font-medium uppercase leading-tight tracking-[-0.02em]`}
+                        className={`${geist.className} text-[11px] font-medium uppercase leading-tight tracking-[-0.02em] sm:text-[12px]`}
                         style={{ color: panelTextColor, opacity: 0.35 }}
                       >
                         Pays : {activeProject!.pays}
                       </p>
                     </div>
                   </div>
-                </div>
 
-                {/* Nav circles — bottom */}
-                {activeCountry.projects.length > 1 && (
-                  <>
-                    <button
-                      type="button"
-                      onClick={() => setActiveProjectIdx((i) => (i - 1 + activeCountry.projects.length) % activeCountry.projects.length)}
-                      className="absolute bottom-[40px] left-[clamp(30px,8%,51px)] flex h-[clamp(48px,4.5vw,64px)] w-[clamp(48px,4.5vw,64px)] items-center justify-center rounded-full transition hover:brightness-110"
-                      style={{ background: panelTextColor === '#0E434F' ? '#0E434F' : '#003300', opacity: activeProjectIdx > 0 ? 1 : 0.3 }}
-                      aria-label="Projet précédent"
-                    >
-                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M13 4L7 10L13 16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setActiveProjectIdx((i) => (i + 1) % activeCountry.projects.length)}
-                      className="absolute bottom-[40px] right-[clamp(30px,8%,51px)] flex h-[clamp(48px,4.5vw,64px)] w-[clamp(48px,4.5vw,64px)] items-center justify-center rounded-full transition hover:brightness-110"
-                      style={{ background: panelTextColor === '#0E434F' ? '#0E434F' : '#003300', opacity: activeProjectIdx < activeCountry.projects.length - 1 ? 1 : 0.3 }}
-                      aria-label="Projet suivant"
-                    >
-                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M7 4L13 10L7 16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </button>
-                  </>
-                )}
+                  {/* Nav circles — absolute bottom, always visible */}
+                  {activeCountry.projects.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={goToPrevProject}
+                        disabled={!canGoPrev}
+                        className="absolute bottom-[calc(16px+env(safe-area-inset-bottom))] left-4 flex h-12 w-12 items-center justify-center rounded-full transition hover:brightness-110 sm:left-6 sm:h-14 sm:w-14 md:left-8 md:h-16 md:w-16 lg:bottom-[40px] lg:left-[clamp(30px,8%,51px)] lg:h-[clamp(48px,4.5vw,64px)] lg:w-[clamp(48px,4.5vw,64px)]"
+                        style={{ background: panelTextColor === '#0E434F' ? '#0E434F' : '#003300', opacity: canGoPrev ? 1 : 0.3 }}
+                        aria-label="Projet précédent"
+                      >
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M13 4L7 10L13 16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={goToNextProject}
+                        disabled={!canGoNext}
+                        className="absolute bottom-[calc(16px+env(safe-area-inset-bottom))] right-4 flex h-12 w-12 items-center justify-center rounded-full transition hover:brightness-110 sm:right-6 sm:h-14 sm:w-14 md:right-8 md:h-16 md:w-16 lg:bottom-[40px] lg:right-[clamp(30px,8%,51px)] lg:h-[clamp(48px,4.5vw,64px)] lg:w-[clamp(48px,4.5vw,64px)]"
+                        style={{ background: panelTextColor === '#0E434F' ? '#0E434F' : '#003300', opacity: canGoNext ? 1 : 0.3 }}
+                        aria-label="Projet suivant"
+                      >
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M7 4L13 10L7 16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
-            </div>
           </div>
-        )}
+        , document.body)}
       </section>
 
       <section

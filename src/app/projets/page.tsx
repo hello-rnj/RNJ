@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import AnalyseInstitutionnelleClient from '../services/analyse-institutionnelle/AnalyseInstitutionnelleClient';
 import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Projets et réalisations | RNJ Advisory',
   description:
