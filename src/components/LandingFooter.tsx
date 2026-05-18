@@ -293,37 +293,18 @@ export default function LandingFooter() {
                         </h3>
 
                         <div className="flex flex-col items-start gap-[6px] sm:gap-[17px]">
-                          {column.items.map((item) => {
-                            const content = (
-                              <>
-                                <span className="h-[6px] w-[6px] rounded-full bg-white" aria-hidden="true" />
-                                <span className="font-[Geist] text-[16px] font-medium leading-4 text-white opacity-80">
-                                  {item.label}
-                                </span>
-                              </>
-                            );
-
-                            if (item.href) {
-                              return (
-                                <Link
-                                  key={`${column.title}-${item.label}`}
-                                  href={item.href}
-                                  className="flex items-center gap-[8px] transition-opacity hover:opacity-100 sm:gap-[14px]"
-                                >
-                                  {content}
-                                </Link>
-                              );
-                            }
-
-                            return (
-                              <div
-                                key={`${column.title}-${item.label}`}
-                                className="flex items-center gap-[8px] sm:gap-[14px]"
-                              >
-                                {content}
-                              </div>
-                            );
-                          })}
+                          {column.items.map((item) => (
+                            <div
+                              key={`${column.title}-${item.label}`}
+                              aria-disabled="true"
+                              className="flex cursor-default items-center gap-[8px] sm:gap-[14px]"
+                            >
+                              <span className="h-[6px] w-[6px] rounded-full bg-white" aria-hidden="true" />
+                              <span className="font-[Geist] text-[16px] font-medium leading-4 text-white opacity-80">
+                                {item.label}
+                              </span>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     ))}

@@ -19,7 +19,7 @@ const footerColumns = [
   },
   {
     title: 'Publications',
-    items: ['Articles', 'PME & ASBL'],
+    items: ['Articles'],
   },
 ];
 

@@ -1660,7 +1660,7 @@ export default function Home() {
               >
                 <div className="flex max-w-[336px] flex-col" style={{ gap: 'clamp(4px, 0.9vw, 13px)' }}>
                     <h3 className="font-[Geist] font-medium text-white" style={{ fontSize: 'clamp(15px, 2.25vw, 32px)', lineHeight: 'clamp(17px, 2.4vw, 34px)' }}>
-                      Une méthode claire, du cadrage au déploiement
+                      Un parcours solide de plus que 30 ans
                     </h3>
                     <p className="font-[Geist] font-medium text-white/60" style={{ fontSize: 'clamp(11px, 1.15vw, 16px)', lineHeight: 'clamp(14px, 1.4vw, 20px)' }}>
                       Nous transformons la complexité réglementaire en plan d&apos;action concret.
@@ -2723,7 +2723,7 @@ export default function Home() {
                   src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_800,h_600,c_limit/v1778052436/rnj/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc-0151df33.jpg"
                   alt=""
                   aria-hidden="true"
-                  style={{ position: 'absolute', height: '100%', width: '100%', left: 0, top: 0, right: 0, bottom: 0, objectFit: 'cover', objectPosition: 'center 80%', color: 'transparent' }}
+                  style={{ position: 'absolute', height: '100%', width: '100%', left: 0, top: 0, right: 0, bottom: 0, objectFit: 'cover', objectPosition: 'center 70%', color: 'transparent' }}
                 />
               </div>
 
