@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { ArrowLeft, CalendarDays, CheckCircle2, Download, Home, RefreshCw, XCircle } from 'lucide-react';
+import { ArrowLeft, CalendarDays, CheckCircle2, Download, Home, XCircle } from 'lucide-react';
 import { EB_Garamond, Geist, Poppins } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import { BOOKING_FEE_LABEL } from '@/lib/booking';
@@ -29,6 +29,7 @@ type BookingStep = 1 | 2 | 3 | 4;
 type View = 'initial' | 'booking' | 'message';
 type SubmissionMode = 'contact' | 'booking';
 type PaymentState = 'success' | 'cancelled';
+type PaymentVerificationState = 'idle' | 'loading' | 'paid' | 'rejected' | 'error';
 type CalendarMonth = {
   year: number;
   month: number;
@@ -46,6 +47,29 @@ type ContactPayload = {
 type BookingPayload = ContactPayload & {
   preferred_date: string;
   preferred_time?: string;
+};
+type BookingSnapshot = {
+  subject?: string;
+  preferred_date?: string;
+  preferred_time?: string | null;
+  payment_amount?: number | null;
+  payment_currency?: string | null;
+  name?: string;
+  email?: string;
+  phone?: string;
+  reference?: string;
+};
+type PaymentStatusResponse = {
+  message?: string;
+  is_paid?: boolean;
+  payment_status?: string;
+  paid_at?: string | null;
+  booking?: BookingSnapshot;
+  invoice_upload?: {
+    uploaded?: boolean;
+    filename?: string | null;
+    uploaded_at?: string | null;
+  };
 };
 type CalendarDateParts = CalendarMonth & {
   day: number;
@@ -66,8 +90,6 @@ const initialMessageForm: ContactPayload = {
   message: '',
 };
 
-const fieldClassName =
-  'w-full rounded-[18px] border border-transparent bg-[#F0F3F0] px-5 py-4 text-[15px] font-medium text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:border-[#BBCB2E] focus:bg-white focus:ring-2 focus:ring-[#BBCB2E]/30 sm:px-6 sm:py-5 sm:text-[16px]';
 const pendingBookingStorageKey = 'rnj-pending-booking';
 const defaultBookingSubject = "Creation d'entreprise";
 const defaultCalendarMonth: CalendarMonth = { year: 2026, month: 3 };
@@ -235,16 +257,247 @@ function formatBookingMessage(date: string | null, time: string) {
   return `Je souhaite planifier un rendez-vous le ${formatLongDateLabel(date)} a ${time}.`;
 }
 
+function escapePdfText(value: string) {
+  return value.replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
+}
+
+function formatEuropeanAmount(
+  amountCents: number | null | undefined,
+  currencyCode: string | null | undefined
+) {
+  if (typeof amountCents !== 'number' || Number.isNaN(amountCents)) {
+    return BOOKING_FEE_LABEL;
+  }
+
+  const currency = (currencyCode || 'EUR').toUpperCase();
+  const absolute = Math.abs(amountCents);
+  const cents = absolute % 100;
+  const units = Math.floor(absolute / 100);
+  const groupedUnits = String(units).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const sign = amountCents < 0 ? '-' : '';
+
+  return `${sign}${groupedUnits},${String(cents).padStart(2, '0')} ${currency}`;
+}
+
+function formatFrenchDateTime(value: string | null | undefined) {
+  if (!value) {
+    return 'Non disponible';
+  }
+
+  const parsedDate = new Date(value);
+  if (Number.isNaN(parsedDate.getTime())) {
+    return 'Non disponible';
+  }
+
+  return parsedDate.toLocaleString('fr-FR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+
+function buildEuropeanInvoicePdf(payload: {
+  reference: string;
+  paymentStatus: string;
+  amountLabel: string;
+  issueDateLabel: string;
+  paidAtLabel: string;
+  appointmentLabel: string;
+  subjectLabel: string;
+  clientName: string;
+  clientEmail: string;
+  clientPhone: string;
+}) {
+  const lineItemTotal = payload.amountLabel;
+  const streamLines = [
+    '0.968 0.976 0.956 rg',
+    '0 0 595 842 re',
+    'f',
+    '0.102 0.274 0.129 rg',
+    '0 732 595 110 re',
+    'f',
+    'BT',
+    '1 1 1 rg',
+    '/F2 22 Tf',
+    '1 0 0 1 42 800 Tm',
+    '(RNJ ADVISORY) Tj',
+    'ET',
+    'BT',
+    '1 1 1 rg',
+    '/F1 12 Tf',
+    '1 0 0 1 42 778 Tm',
+    '(Conseil juridique et strategique) Tj',
+    'ET',
+    'BT',
+    '1 1 1 rg',
+    '/F2 18 Tf',
+    '1 0 0 1 430 800 Tm',
+    '(FACTURE) Tj',
+    'ET',
+    'BT',
+    '1 1 1 rg',
+    '/F1 11 Tf',
+    `1 0 0 1 430 780 Tm (${escapePdfText(`Ref: ${payload.reference}`)}) Tj`,
+    'ET',
+    'BT',
+    '0.102 0.274 0.129 rg',
+    '/F2 12 Tf',
+    '1 0 0 1 42 700 Tm',
+    '(Facture emise pour paiement confirme Stripe) Tj',
+    'ET',
+    '0.855 0.909 0.765 rg',
+    '40 645 515 1 re',
+    'f',
+    'BT',
+    '0.102 0.274 0.129 rg',
+    '/F2 12 Tf',
+    '1 0 0 1 42 620 Tm',
+    '(Informations facture) Tj',
+    'ET',
+    'BT',
+    '0.149 0.211 0.149 rg',
+    '/F1 11 Tf',
+    `1 0 0 1 42 596 Tm (${escapePdfText(`Date d emission: ${payload.issueDateLabel}`)}) Tj`,
+    'ET',
+    'BT',
+    '0.149 0.211 0.149 rg',
+    '/F1 11 Tf',
+    `1 0 0 1 42 578 Tm (${escapePdfText(`Paiement confirme le: ${payload.paidAtLabel}`)}) Tj`,
+    'ET',
+    'BT',
+    '0.149 0.211 0.149 rg',
+    '/F1 11 Tf',
+    `1 0 0 1 42 560 Tm (${escapePdfText(`Statut paiement: ${payload.paymentStatus}`)}) Tj`,
+    'ET',
+    'BT',
+    '0.149 0.211 0.149 rg',
+    '/F1 11 Tf',
+    `1 0 0 1 42 542 Tm (${escapePdfText(`Date rendez-vous: ${payload.appointmentLabel}`)}) Tj`,
+    'ET',
+    'BT',
+    '0.149 0.211 0.149 rg',
+    '/F1 11 Tf',
+    `1 0 0 1 42 524 Tm (${escapePdfText(`Objet: ${payload.subjectLabel}`)}) Tj`,
+    'ET',
+    '0.937 0.949 0.910 rg',
+    '40 480 515 28 re',
+    'f',
+    'BT',
+    '0.102 0.274 0.129 rg',
+    '/F2 11 Tf',
+    '1 0 0 1 48 490 Tm',
+    '(Description) Tj',
+    'ET',
+    'BT',
+    '0.102 0.274 0.129 rg',
+    '/F2 11 Tf',
+    '1 0 0 1 420 490 Tm',
+    '(Montant) Tj',
+    'ET',
+    'BT',
+    '0.149 0.211 0.149 rg',
+    '/F1 11 Tf',
+    '1 0 0 1 48 466 Tm',
+    '(Frais de dossier RNJ Advisory) Tj',
+    'ET',
+    'BT',
+    '0.149 0.211 0.149 rg',
+    '/F1 11 Tf',
+    `1 0 0 1 420 466 Tm (${escapePdfText(lineItemTotal)}) Tj`,
+    'ET',
+    '0.855 0.909 0.765 rg',
+    '40 446 515 1 re',
+    'f',
+    'BT',
+    '0.102 0.274 0.129 rg',
+    '/F2 12 Tf',
+    '1 0 0 1 360 424 Tm',
+    '(Total TTC) Tj',
+    'ET',
+    'BT',
+    '0.102 0.274 0.129 rg',
+    '/F2 16 Tf',
+    `1 0 0 1 438 422 Tm (${escapePdfText(lineItemTotal)}) Tj`,
+    'ET',
+    'BT',
+    '0.149 0.211 0.149 rg',
+    '/F2 12 Tf',
+    '1 0 0 1 42 380 Tm',
+    '(Facture client) Tj',
+    'ET',
+    'BT',
+    '0.149 0.211 0.149 rg',
+    '/F1 11 Tf',
+    `1 0 0 1 42 362 Tm (${escapePdfText(`Nom: ${payload.clientName}`)}) Tj`,
+    'ET',
+    'BT',
+    '0.149 0.211 0.149 rg',
+    '/F1 11 Tf',
+    `1 0 0 1 42 344 Tm (${escapePdfText(`Email: ${payload.clientEmail}`)}) Tj`,
+    'ET',
+    'BT',
+    '0.149 0.211 0.149 rg',
+    '/F1 11 Tf',
+    `1 0 0 1 42 326 Tm (${escapePdfText(`Telephone: ${payload.clientPhone}`)}) Tj`,
+    'ET',
+    'BT',
+    '0.349 0.435 0.302 rg',
+    '/F1 10 Tf',
+    '1 0 0 1 42 130 Tm',
+    '(Paiement Stripe confirme - facture generee automatiquement.) Tj',
+    'ET',
+    'BT',
+    '0.349 0.435 0.302 rg',
+    '/F1 10 Tf',
+    '1 0 0 1 42 114 Tm',
+    '(TVA: selon regime applicable.) Tj',
+    'ET',
+  ];
+  const contentStream = streamLines.join('\n');
+
+  const object1 = '1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n';
+  const object2 = '2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n';
+  const object3 =
+    '3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>\nendobj\n';
+  const object4 = `4 0 obj\n<< /Length ${contentStream.length} >>\nstream\n${contentStream}\nendstream\nendobj\n`;
+  const object5 = '5 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n';
+  const object6 = '6 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>\nendobj\n';
+  const objects = [object1, object2, object3, object4, object5, object6];
+
+  let pdf = '%PDF-1.4\n';
+  const offsets = [0];
+
+  objects.forEach((objectContent) => {
+    offsets.push(pdf.length);
+    pdf += objectContent;
+  });
+
+  const xrefOffset = pdf.length;
+
+  pdf += `xref\n0 ${objects.length + 1}\n`;
+  pdf += '0000000000 65535 f \n';
+  offsets.slice(1).forEach((offset) => {
+    pdf += `${String(offset).padStart(10, '0')} 00000 n \n`;
+  });
+  pdf += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`;
+
+  return pdf;
+}
+
 type ContactPageClientProps = {
   initialMode?: 'message' | 'booking' | null;
   initialSubject?: string;
   initialPaymentState?: PaymentState | null;
+  initialCheckoutSessionId?: string | null;
 };
 
 export default function ContactPageClient({
   initialMode = null,
   initialSubject = '',
   initialPaymentState = null,
+  initialCheckoutSessionId = null,
 }: ContactPageClientProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -260,7 +513,12 @@ export default function ContactPageClient({
   const [selectedBookingDate, setSelectedBookingDate] = useState<string | null>(defaultBookingDate);
   const [selectedBookingTime, setSelectedBookingTime] = useState(defaultBookingTime);
   const [messageForm, setMessageForm] = useState<ContactPayload>(initialMessageForm);
-  const [mockPaymentState, setMockPaymentState] = useState<PaymentState | null>(initialPaymentState);
+  const [paymentVerificationState, setPaymentVerificationState] = useState<PaymentVerificationState>('idle');
+  const [paymentVerificationMessage, setPaymentVerificationMessage] = useState('');
+  const [bookingReferenceOverride, setBookingReferenceOverride] = useState<string | null>(null);
+  const [backendPaymentAmountCents, setBackendPaymentAmountCents] = useState<number | null>(null);
+  const [backendPaymentCurrency, setBackendPaymentCurrency] = useState<string | null>(null);
+  const [paidAtIsoValue, setPaidAtIsoValue] = useState<string | null>(null);
 
   const subjects = [
     { label: "Creation d'entreprise" },
@@ -271,41 +529,63 @@ export default function ContactPageClient({
   ];
   const requestedMode = initialMode;
   const requestedSubject = initialSubject.trim();
+  const displayedFeeLabel =
+    backendPaymentAmountCents !== null
+      ? formatEuropeanAmount(backendPaymentAmountCents, backendPaymentCurrency || 'EUR')
+      : BOOKING_FEE_LABEL;
+  const paidAtLabel = formatFrenchDateTime(paidAtIsoValue);
   const calendarRows = getCalendarRows(displayedMonth);
   const selectedTimeIndex = Math.max(0, timeOptions.indexOf(selectedBookingTime as (typeof timeOptions)[number]));
   const [selectedHourPart, selectedMinutePart] = selectedBookingTime.split(':');
   const isMorningTime = Number(selectedHourPart) < 12;
   const isAfternoon = !isMorningTime;
+  const isPaymentConfirmed = paymentVerificationState === 'paid';
+  const isPaymentRejected =
+    paymentVerificationState === 'rejected' || initialPaymentState === 'cancelled';
+  const canAccessInvoice = isPaymentConfirmed;
   const paymentNotice =
     initialPaymentState === 'success'
-      ? {
-          title: 'Paiement confirme',
-          copy: `Vos frais de dossier de ${BOOKING_FEE_LABEL} ont ete recus. Le rendez-vous reste visible dans le dashboard admin pour validation finale.`,
-        }
+      ? paymentVerificationState === 'loading' || paymentVerificationState === 'idle'
+        ? {
+            title: 'Verification du paiement',
+            copy: 'Nous validons actuellement votre paiement Stripe avant de vous autoriser la facture.',
+          }
+        : isPaymentConfirmed
+          ? {
+              title: 'Paiement confirme',
+              copy: `Vos frais de dossier de ${displayedFeeLabel} ont ete recus. Vous pouvez maintenant telecharger votre facture.`,
+            }
+          : {
+              title: 'Paiement non valide',
+              copy:
+                paymentVerificationMessage ||
+                'La facture reste indisponible tant que le paiement Stripe n est pas confirme.',
+            }
       : initialPaymentState === 'cancelled'
         ? {
             title: 'Paiement annule',
-            copy: `Le paiement des frais de dossier de ${BOOKING_FEE_LABEL} a ete annule. Vous pouvez reprendre votre reservation et relancer Stripe ci-dessous.`,
+            copy: `Le paiement des frais de dossier de ${displayedFeeLabel} a ete annule. Vous pouvez reprendre votre reservation et relancer Stripe ci-dessous.`,
           }
         : null;
-  const paymentStatusTitle =
-    mockPaymentState === 'success'
-      ? 'Paiement confirme'
-      : mockPaymentState === 'cancelled'
-        ? 'Paiement a reprendre'
-        : 'Retour du paiement';
-  const paymentStatusCopy =
-    mockPaymentState === 'success'
-      ? `Le paiement de ${BOOKING_FEE_LABEL} est valide. Votre demande est prete pour validation finale par RNJ.`
-      : mockPaymentState === 'cancelled'
-        ? `Le paiement de ${BOOKING_FEE_LABEL} n a pas abouti. Vous pouvez relancer le paiement ou revenir au recapitulatif.`
-        : `Selectionnez un etat de paiement pour previsualiser le retour du prestataire tiers.`;
-  const paymentStatusLabel =
-    mockPaymentState === 'success' ? 'Paye' : mockPaymentState === 'cancelled' ? 'Non paye' : 'En attente';
-
-  useEffect(() => {
-    setMockPaymentState(initialPaymentState);
-  }, [initialPaymentState]);
+  const paymentStatusTitle = isPaymentConfirmed
+    ? 'Paiement confirme'
+    : isPaymentRejected
+      ? 'Paiement a reprendre'
+      : paymentVerificationState === 'loading' || paymentVerificationState === 'idle'
+        ? 'Verification en cours'
+        : 'Paiement en attente';
+  const paymentStatusCopy = isPaymentConfirmed
+    ? `Le paiement de ${displayedFeeLabel} est valide. Votre facture est maintenant disponible.`
+    : isPaymentRejected
+      ? `Le paiement de ${displayedFeeLabel} n a pas abouti. Vous pouvez relancer le paiement depuis l etape precedente.`
+      : paymentVerificationState === 'loading' || paymentVerificationState === 'idle'
+        ? 'Nous verifions actuellement le statut Stripe de votre transaction.'
+        : 'La facture sera visible uniquement apres validation reelle du paiement Stripe.';
+  const paymentStatusLabel = isPaymentConfirmed
+    ? 'Paye'
+    : isPaymentRejected
+      ? 'Non paye'
+      : 'En attente';
 
   useEffect(() => {
     if (requestedMode === 'message') {
@@ -339,79 +619,205 @@ export default function ContactPageClient({
       return;
     }
 
-    if (initialPaymentState === 'success') {
-      const savedBooking = window.sessionStorage.getItem(pendingBookingStorageKey);
+    const savedBooking = window.sessionStorage.getItem(pendingBookingStorageKey);
 
-      if (savedBooking) {
-        try {
-          const parsedBooking = JSON.parse(savedBooking) as BookingPayload;
-          const parsedDate = parseIsoDate(parsedBooking.preferred_date);
-          setSelectedSubject(parsedBooking.subject);
-          setSelectedBookingDate(parsedBooking.preferred_date);
-          setSelectedBookingTime(parsedBooking.preferred_time || defaultBookingTime);
-          if (parsedDate) {
-            setDisplayedMonth({
-              year: parsedDate.year,
-              month: parsedDate.month,
-            });
-          }
-          setMessageForm({
-            name: parsedBooking.name,
-            phone: parsedBooking.phone,
-            email: parsedBooking.email,
-            company: parsedBooking.company,
-            subject: parsedBooking.subject,
-            message: parsedBooking.message,
+    if (savedBooking) {
+      try {
+        const parsedBooking = JSON.parse(savedBooking) as BookingPayload;
+        const parsedDate = parseIsoDate(parsedBooking.preferred_date);
+        setSelectedSubject(parsedBooking.subject);
+        setSelectedBookingDate(parsedBooking.preferred_date);
+        setSelectedBookingTime(parsedBooking.preferred_time || defaultBookingTime);
+        if (parsedDate) {
+          setDisplayedMonth({
+            year: parsedDate.year,
+            month: parsedDate.month,
           });
-        } catch {
-          window.sessionStorage.removeItem(pendingBookingStorageKey);
+        }
+        setMessageForm((current) => ({
+          ...current,
+          name: parsedBooking.name,
+          phone: parsedBooking.phone,
+          email: parsedBooking.email,
+          company: parsedBooking.company,
+          subject: parsedBooking.subject,
+          message: parsedBooking.message,
+        }));
+      } catch {
+        window.sessionStorage.removeItem(pendingBookingStorageKey);
+      }
+    }
+
+    if (initialPaymentState === 'success') {
+      setSubmissionMode('booking');
+      setView('booking');
+      setBookingStep(4);
+      const checkoutSessionId = initialCheckoutSessionId;
+
+      if (!checkoutSessionId) {
+        setPaymentVerificationState('rejected');
+        setPaymentVerificationMessage(
+          'Session Stripe manquante. Le paiement doit etre verifie avant affichage de la facture.'
+        );
+        return;
+      }
+      const verifiedCheckoutSessionId: string = checkoutSessionId;
+
+      let active = true;
+      const controller = new AbortController();
+      const maxAttempts = 120;
+      const retryDelayMs = 3000;
+
+      async function verifyPaymentStatusWithRetry() {
+        setPaymentVerificationState('loading');
+        setPaymentVerificationMessage('');
+
+        for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+          if (!active) {
+            return;
+          }
+
+          if (attempt > 1) {
+            setPaymentVerificationMessage(
+              `Confirmation webhook en cours (${attempt}/${maxAttempts})...`
+            );
+          }
+
+          try {
+            const response = await fetch(
+              `/api/bookings/payment-status?session_id=${encodeURIComponent(verifiedCheckoutSessionId)}`,
+              {
+                method: 'GET',
+                cache: 'no-store',
+                signal: controller.signal,
+              }
+            );
+            const data = (await response.json().catch(() => null)) as PaymentStatusResponse | null;
+
+            if (!response.ok) {
+              throw new Error(data?.message || 'Verification du paiement impossible.');
+            }
+
+            if (!active) {
+              return;
+            }
+
+            setPaidAtIsoValue(typeof data?.paid_at === 'string' ? data.paid_at : null);
+            if (typeof data?.booking?.payment_amount === 'number') {
+              setBackendPaymentAmountCents(data.booking.payment_amount);
+            }
+            if (typeof data?.booking?.payment_currency === 'string') {
+              setBackendPaymentCurrency(data.booking.payment_currency);
+            }
+
+            if (data?.booking?.reference) {
+              setBookingReferenceOverride(data.booking.reference);
+            }
+            if (data?.booking?.subject) {
+              setSelectedSubject(data.booking.subject);
+            }
+            if (data?.booking?.preferred_date) {
+              setSelectedBookingDate(data.booking.preferred_date);
+              const parsedDate = parseIsoDate(data.booking.preferred_date);
+              if (parsedDate) {
+                setDisplayedMonth({
+                  year: parsedDate.year,
+                  month: parsedDate.month,
+                });
+              }
+            }
+            if (data?.booking?.preferred_time) {
+              setSelectedBookingTime(data.booking.preferred_time);
+            }
+            if (data?.booking?.name || data?.booking?.email || data?.booking?.phone) {
+              setMessageForm((current) => ({
+                ...current,
+                name: data?.booking?.name || current.name,
+                email: data?.booking?.email || current.email,
+                phone: data?.booking?.phone || current.phone,
+              }));
+            }
+
+            const normalizedStatus = (data?.payment_status || '').toLowerCase();
+            const shouldRetry =
+              normalizedStatus === '' ||
+              normalizedStatus === 'awaiting_payment' ||
+              normalizedStatus === 'pending' ||
+              normalizedStatus === 'unpaid' ||
+              normalizedStatus === 'open';
+
+            if (data?.is_paid || normalizedStatus === 'paid') {
+              setPaymentVerificationState('paid');
+              setPaymentVerificationMessage('');
+              window.sessionStorage.removeItem(pendingBookingStorageKey);
+              return;
+            }
+
+            if (normalizedStatus === 'failed' || normalizedStatus === 'cancelled') {
+              setPaymentVerificationState('rejected');
+              setPaymentVerificationMessage(
+                'Le paiement Stripe a ete refuse. La facture reste indisponible.'
+              );
+              return;
+            }
+
+            if (shouldRetry && attempt < maxAttempts) {
+              await new Promise<void>((resolve) => {
+                setTimeout(resolve, retryDelayMs);
+              });
+              continue;
+            }
+
+            setPaymentVerificationState(shouldRetry ? 'loading' : 'rejected');
+            setPaymentVerificationMessage(
+              shouldRetry
+                ? 'Paiement Stripe recu, validation bancaire en cours. Rechargez la page dans quelques instants si la facture reste masquee.'
+                : `Paiement non confirme (statut: ${normalizedStatus || 'inconnu'}).`
+            );
+            return;
+          } catch (error) {
+            if (!active || controller.signal.aborted) {
+              return;
+            }
+
+            if (attempt < maxAttempts) {
+              await new Promise<void>((resolve) => {
+                setTimeout(resolve, retryDelayMs);
+              });
+              continue;
+            }
+
+            setPaymentVerificationState('error');
+            setPaymentVerificationMessage(
+              error instanceof Error
+                ? error.message
+                : 'Erreur technique pendant la verification du paiement.'
+            );
+            return;
+          }
         }
       }
 
-      window.sessionStorage.removeItem(pendingBookingStorageKey);
+      void verifyPaymentStatusWithRetry();
+
+      return () => {
+        active = false;
+        controller.abort();
+      };
+    }
+
+    if (initialPaymentState === 'cancelled') {
       setSubmissionMode('booking');
       setView('booking');
       setBookingStep(4);
+      setPaymentVerificationState('rejected');
+      setPaymentVerificationMessage('Paiement annule. Facture indisponible.');
       return;
     }
 
-    if (initialPaymentState !== 'cancelled') {
-      return;
-    }
-
-    const savedBooking = window.sessionStorage.getItem(pendingBookingStorageKey);
-
-    if (!savedBooking) {
-      return;
-    }
-
-    try {
-      const parsedBooking = JSON.parse(savedBooking) as BookingPayload;
-      const parsedDate = parseIsoDate(parsedBooking.preferred_date);
-      setSubmissionMode('booking');
-      setSelectedSubject(parsedBooking.subject);
-      setSelectedBookingDate(parsedBooking.preferred_date);
-      setSelectedBookingTime(parsedBooking.preferred_time || defaultBookingTime);
-      if (parsedDate) {
-        setDisplayedMonth({
-          year: parsedDate.year,
-          month: parsedDate.month,
-        });
-      }
-      setMessageForm({
-        name: parsedBooking.name,
-        phone: parsedBooking.phone,
-        email: parsedBooking.email,
-        company: parsedBooking.company,
-        subject: parsedBooking.subject,
-        message: parsedBooking.message,
-      });
-      setView('booking');
-      setBookingStep(4);
-    } catch {
-      window.sessionStorage.removeItem(pendingBookingStorageKey);
-    }
-  }, [initialPaymentState]);
+    setPaymentVerificationState('idle');
+    setPaymentVerificationMessage('');
+  }, [initialCheckoutSessionId, initialPaymentState]);
 
   async function sendContact(payload: ContactPayload) {
     const response = await fetch('/api/contact', {
@@ -564,35 +970,41 @@ export default function ContactPageClient({
   }
 
   const bookingDateTimeLabel = `${formatLongDateLabel(selectedBookingDate)} a ${selectedBookingTime}`;
-  const bookingReference = `RNJ-${(selectedBookingDate || defaultBookingDate).replaceAll('-', '')}-${selectedBookingTime.replace(':', '')}`;
+  const fallbackBookingReference = `RNJ-${(selectedBookingDate || defaultBookingDate).replaceAll('-', '')}-${selectedBookingTime.replace(':', '')}`;
+  const bookingReference = bookingReferenceOverride || fallbackBookingReference;
 
-  function downloadMockInvoice() {
+  function downloadInvoicePdf() {
+    if (!canAccessInvoice) {
+      setPaymentVerificationMessage(
+        'La facture est verrouillee tant que le paiement Stripe n est pas confirme.'
+      );
+      return;
+    }
+
     if (typeof window === 'undefined') {
       return;
     }
 
-    const invoice = [
-      'RNJ Advisory',
-      'Facture - frais de dossier',
-      '',
-      `Reference: ${bookingReference}`,
-      `Statut paiement: ${paymentStatusLabel}`,
-      `Montant: ${BOOKING_FEE_LABEL}`,
-      `Date rendez-vous: ${bookingDateTimeLabel}`,
-      `Sujet: ${selectedSubject || 'Rendez-vous'}`,
-      '',
-      `Client: ${messageForm.name || 'Client RNJ'}`,
-      `Email: ${messageForm.email || 'Non renseigne'}`,
-      `Telephone: ${messageForm.phone || 'Non renseigne'}`,
-      '',
-      'Document genere pour previsualisation du parcours de paiement.',
-    ].join('\n');
+    const invoicePdf = buildEuropeanInvoicePdf({
+      reference: bookingReference,
+      paymentStatus: paymentStatusLabel,
+      amountLabel: displayedFeeLabel,
+      issueDateLabel: formatFrenchDateTime(new Date().toISOString()),
+      paidAtLabel,
+      appointmentLabel: bookingDateTimeLabel,
+      subjectLabel: selectedSubject || 'Rendez-vous',
+      clientName: messageForm.name || 'Client RNJ',
+      clientEmail: messageForm.email || 'Non renseigne',
+      clientPhone: messageForm.phone || 'Non renseigne',
+    });
 
-    const blob = new Blob([invoice], { type: 'text/plain;charset=utf-8' });
+    const blob = new Blob([invoicePdf], {
+      type: 'application/pdf',
+    });
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `facture-${bookingReference}.txt`;
+    link.download = `facture-${bookingReference}.pdf`;
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -629,6 +1041,14 @@ export default function ContactPageClient({
                     {paymentNotice.copy}
                   </p>
                 </div>
+              </div>
+            </section>
+          ) : null}
+
+          {submitState === 'error' && submitMessage ? (
+            <section className="relative z-20 px-4 pt-4 sm:px-6">
+              <div className={`${geist.className} mx-auto max-w-[1040px] rounded-[16px] border border-[#7A0F0F]/20 bg-[#FFF2F2] px-4 py-3 text-[14px] font-medium text-[#7A0F0F]`}>
+                {submitMessage}
               </div>
             </section>
           ) : null}
@@ -930,7 +1350,7 @@ export default function ContactPageClient({
                       >
                         <div className="bg-[#003300] px-4 py-5 sm:px-6 sm:py-7 md:px-8 md:py-9">
                           <p className={`${geist.className} text-[16px] font-medium text-white/55 sm:text-[20px] md:text-[24px]`}>Montant</p>
-                          <p className={`${ebGaramond.className} mt-1 text-[38px] font-semibold leading-[0.95] text-white sm:text-[52px] md:text-[68px]`}>{BOOKING_FEE_LABEL}</p>
+                          <p className={`${ebGaramond.className} mt-1 text-[38px] font-semibold leading-[0.95] text-white sm:text-[52px] md:text-[68px]`}>{displayedFeeLabel}</p>
                           <p className={`${geist.className} mt-2 max-w-[430px] text-[12px] font-medium leading-[1.35] text-white/55 sm:mt-3 sm:text-[14px] md:text-[17px]`}>
                             Le paiement Stripe des frais de dossier est demande avant l enregistrement definitif du rendez-vous.
                           </p>
@@ -970,6 +1390,9 @@ export default function ContactPageClient({
                                 preferred_date: selectedBookingDate,
                                 preferred_time: selectedBookingTime,
                               };
+                              if (typeof window !== 'undefined') {
+                                window.sessionStorage.setItem(pendingBookingStorageKey, JSON.stringify(bookingPayload));
+                              }
                               const checkoutUrl = await startBookingCheckout(bookingPayload);
                               window.location.assign(checkoutUrl);
                             }}
@@ -989,10 +1412,10 @@ export default function ContactPageClient({
                           <div className="bg-[#003300] p-6 text-white sm:p-8">
                             <div
                               className={`mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full ${
-                                mockPaymentState === 'success' ? 'bg-[#C1CB82] text-[#003300]' : 'bg-white/12 text-white'
+                                isPaymentConfirmed ? 'bg-[#C1CB82] text-[#003300]' : 'bg-white/12 text-white'
                               }`}
                             >
-                              {mockPaymentState === 'cancelled' ? <XCircle size={26} /> : <CheckCircle2 size={26} />}
+                              {isPaymentRejected ? <XCircle size={26} /> : <CheckCircle2 size={26} />}
                             </div>
                             <p className={`${geist.className} text-[12px] font-semibold uppercase tracking-[0.16em] text-white/45`}>
                               Paiement tiers
@@ -1037,7 +1460,7 @@ export default function ContactPageClient({
                                 <CheckCircle2 className="h-5 w-5 text-[#406640]" />
                                 <div>
                                   <p className={`${geist.className} text-[12px] font-semibold text-[#003300]/40`}>Montant</p>
-                                  <p className={`${geist.className} text-[15px] font-semibold text-[#003300]`}>{BOOKING_FEE_LABEL}</p>
+                                  <p className={`${geist.className} text-[15px] font-semibold text-[#003300]`}>{displayedFeeLabel}</p>
                                 </div>
                               </div>
                               <div>
@@ -1050,17 +1473,39 @@ export default function ContactPageClient({
                                   {messageForm.email || messageForm.phone || 'A confirmer'}
                                 </p>
                               </div>
+                              <div>
+                                <p className={`${geist.className} text-[12px] font-semibold text-[#003300]/40`}>Paiement confirme</p>
+                                <p className={`${geist.className} text-[15px] font-semibold text-[#003300]`}>{paidAtLabel}</p>
+                              </div>
                             </div>
 
+                            {paymentVerificationState === 'loading' ? (
+                              <div className={`${geist.className} mt-4 rounded-[14px] border border-[#003300]/10 bg-[#F5F8EE] px-4 py-3 text-[14px] font-medium text-[#003300]/80`}>
+                                {paymentVerificationMessage || 'Verification du paiement Stripe en cours...'}
+                              </div>
+                            ) : null}
+
+                            {canAccessInvoice ? (
+                              <div className="pt-5">
+                                <div className="grid gap-3">
+                                  <button
+                                    type="button"
+                                    onClick={downloadInvoicePdf}
+                                    className={`${geist.className} flex h-[54px] items-center justify-center gap-2 rounded-[14px] bg-[#BBCB2E] px-4 text-[15px] font-semibold text-[#003300] transition hover:brightness-95`}
+                                  >
+                                    <Download size={18} />
+                                    Telecharger facture
+                                  </button>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className={`${geist.className} mt-5 rounded-[14px] border border-[#003300]/10 bg-[#F5F8EE] px-4 py-4 text-[14px] font-medium leading-[1.5] text-[#003300]/80`}>
+                                La facture est masquee et le televersement est bloque tant que le paiement Stripe n est pas valide.
+                                {paymentVerificationMessage ? ` ${paymentVerificationMessage}` : ''}
+                              </div>
+                            )}
+
                             <div className="grid gap-3 pt-5 sm:grid-cols-2">
-                              <button
-                                type="button"
-                                onClick={downloadMockInvoice}
-                                className={`${geist.className} flex h-[54px] items-center justify-center gap-2 rounded-[14px] bg-[#BBCB2E] px-4 text-[15px] font-semibold text-[#003300] transition hover:brightness-95`}
-                              >
-                                <Download size={18} />
-                                Telecharger facture
-                              </button>
                               <button
                                 type="button"
                                 onClick={() => setBookingStep(3)}
@@ -1071,16 +1516,8 @@ export default function ContactPageClient({
                               </button>
                               <button
                                 type="button"
-                                onClick={() => setMockPaymentState('success')}
-                                className={`${geist.className} flex h-[50px] items-center justify-center gap-2 rounded-[14px] bg-[#EEF2EA] px-4 text-[14px] font-semibold text-[#003300] transition hover:bg-[#E1E8D8]`}
-                              >
-                                <RefreshCw size={16} />
-                                Simuler succes
-                              </button>
-                              <button
-                                type="button"
                                 onClick={() => setView('initial')}
-                                className={`${geist.className} flex h-[50px] items-center justify-center gap-2 rounded-[14px] bg-[#EEF2EA] px-4 text-[14px] font-semibold text-[#003300] transition hover:bg-[#E1E8D8]`}
+                                className={`${geist.className} flex h-[54px] items-center justify-center gap-2 rounded-[14px] bg-[#EEF2EA] px-4 text-[15px] font-semibold text-[#003300] transition hover:bg-[#E1E8D8]`}
                               >
                                 <Home size={16} />
                                 Retour accueil

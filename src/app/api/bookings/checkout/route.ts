@@ -42,6 +42,11 @@ function getPublicSiteUrl(request: NextRequest) {
   return request.nextUrl.origin;
 }
 
+function withCheckoutSessionTemplate(url: string) {
+  // Stripe requires the literal token `{CHECKOUT_SESSION_ID}` (non URL-encoded).
+  return url.replace('%7BCHECKOUT_SESSION_ID%7D', '{CHECKOUT_SESSION_ID}');
+}
+
 function normalizeText(value: unknown) {
   return typeof value === 'string' ? value.trim() : '';
 }
@@ -99,21 +104,22 @@ export async function POST(request: NextRequest) {
   try {
     const stripe = getStripeClient();
     const siteUrl = getPublicSiteUrl(request);
-    const successUrl = new URL('/contact', siteUrl);
-    successUrl.searchParams.set('payment', 'success');
+    const successUrl = withCheckoutSessionTemplate(
+      `${siteUrl.replace(/\/$/, '')}/contact?payment=success&session_id={CHECKOUT_SESSION_ID}`
+    );
+    const cancelUrl = withCheckoutSessionTemplate(
+      `${siteUrl.replace(/\/$/, '')}/contact?payment=cancelled&session_id={CHECKOUT_SESSION_ID}`
+    );
 
-    const cancelUrl = new URL('/contact', siteUrl);
-    cancelUrl.searchParams.set('payment', 'cancelled');
-
-    // Montant unique des frais de dossier (500 EUR) pour tous les profils
+    // Montant des frais de dossier (configuré via BOOKING_FEE_CENTS côté frontend)
     const priceCents = BOOKING_PRICE_CENTS;
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       customer_email: payload.email,
       billing_address_collection: 'auto',
-      success_url: successUrl.toString(),
-      cancel_url: cancelUrl.toString(),
+      success_url: successUrl,
+      cancel_url: cancelUrl,
       line_items: [
         {
           quantity: 1,

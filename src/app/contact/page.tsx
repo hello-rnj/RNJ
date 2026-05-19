@@ -8,6 +8,7 @@ type ContactPageSearchParams = Promise<{
   mode?: string | string[];
   subject?: string | string[];
   payment?: string | string[];
+  session_id?: string | string[];
 }>;
 
 type ContactPageProps = {
@@ -25,6 +26,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   const payment = Array.isArray(resolvedSearchParams.payment)
     ? resolvedSearchParams.payment[0]
     : resolvedSearchParams.payment;
+  const sessionId = Array.isArray(resolvedSearchParams.session_id)
+    ? resolvedSearchParams.session_id[0]
+    : resolvedSearchParams.session_id;
   const initialMode = mode === 'message' || mode === 'booking' ? mode : null;
   const initialPaymentState =
     payment === 'success' || payment === 'cancelled' ? payment : null;
@@ -41,6 +45,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         initialMode={initialMode}
         initialSubject={subject ?? ''}
         initialPaymentState={initialPaymentState}
+        initialCheckoutSessionId={sessionId ?? null}
       />
     </>
   );
