@@ -1177,6 +1177,8 @@ export default function Home() {
   const [hoveredScrollCardIndex, setHoveredScrollCardIndex] = useState<number | null>(null);
   const [hoveredFaqIndex, setHoveredFaqIndex] = useState<number | null>(null);
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
+  const [showAllFaq, setShowAllFaq] = useState(false);
+  const faqSectionRef = useRef<HTMLDivElement | null>(null);
   const [servicesFocusStage, setServicesFocusStage] = useState(0);
   const [belgiumStep, setBelgiumStep] = useState(0);
   const [isInstitutionalCarouselPaused, setIsInstitutionalCarouselPaused] = useState(false);
@@ -1391,6 +1393,19 @@ export default function Home() {
         observer.unobserve(lightBulbSectionRef.current);
       }
     };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!faqSectionRef.current) return;
+      const rect = faqSectionRef.current.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) {
+        setShowAllFaq(false);
+        setExpandedFaqIndex(null);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -2893,7 +2908,7 @@ export default function Home() {
                       />
                     </div>
 
-                    <div className="flex flex-1 flex-col bg-[#A2B144] px-5 py-5 sm:px-6 md:px-[33.11px] md:pt-[15px]">
+                    <div className="flex flex-1 flex-col bg-[#CCD862] px-5 py-5 sm:px-6 md:px-[33.11px] md:pt-[15px]">
                       <h3
                         className="font-[EB_Garamond] font-semibold text-[#003300] text-[24px] leading-[24px] sm:text-[26px] sm:leading-[25px] lg:text-[28px] lg:leading-[27px] xl:text-[31.3914px] xl:leading-[28px]"
                       >
@@ -2908,7 +2923,7 @@ export default function Home() {
                   </article>
 
                   <article
-                    className="relative flex h-full min-h-[360px] flex-col items-center justify-center rounded-[24px] bg-[#F9FFC4] px-5 py-7 text-center transition-all duration-500 sm:min-h-[390px] md:min-h-[420px] md:rounded-[30px] md:px-5 lg:min-h-[450px] lg:px-6 xl:rounded-[34.8794px] xl:px-8"
+                    className="relative flex h-full min-h-[360px] flex-col items-center justify-center rounded-[24px] bg-[#BBCB2E] px-5 py-7 text-center transition-all duration-500 sm:min-h-[390px] md:min-h-[420px] md:rounded-[30px] md:px-5 lg:min-h-[450px] lg:px-6 xl:rounded-[34.8794px] xl:px-8"
                     style={{
                       border:
                         esgActiveCardIndex === 1 ? '2px solid #003300' : '2px solid transparent',
@@ -2938,7 +2953,7 @@ export default function Home() {
 
                     <Link
                       href="/services"
-                      className="inline-flex h-[50px] items-center justify-center rounded-full bg-[#BBCB2E] px-6 font-[Geist] font-semibold text-[#003300] transition-all duration-500 sm:h-[52px] sm:px-8 xl:h-[56.29px] xl:px-[37px]"
+                      className="inline-flex h-[50px] items-center justify-center rounded-full bg-[#003300] px-6 font-[Geist] font-semibold text-[#E0E5C0] transition-all duration-500 sm:h-[52px] sm:px-8 xl:h-[56.29px] xl:px-[37px]"
                       style={{
                         fontSize: '14.6036px',
                         lineHeight: '23px',
@@ -2974,7 +2989,7 @@ export default function Home() {
                       />
                     </div>
 
-                    <div className="flex flex-1 flex-col bg-[#CCD862] px-5 py-5 sm:px-6 md:px-[33px] md:pt-[15px]">
+                    <div className="flex flex-1 flex-col bg-[#EEF2CA] px-5 py-5 sm:px-6 md:px-[33px] md:pt-[15px]">
                       <h3
                         className="font-[EB_Garamond] font-semibold text-[#003300] text-[24px] leading-[24px] sm:text-[26px] sm:leading-[25px] lg:text-[28px] lg:leading-[27px] xl:text-[31.3914px] xl:leading-[28px]"
                       >
@@ -3469,6 +3484,7 @@ export default function Home() {
             )}
 
             <section
+              ref={faqSectionRef}
               className="relative w-screen bg-[#003300] py-8"
               style={{
                 marginLeft: 'calc(50% - 50vw)',
@@ -3503,7 +3519,7 @@ export default function Home() {
                   </div>
 
                   <div className={`flex w-full max-w-full flex-col gap-[10px] ${faqRowsMaxWidthClass}`}>
-                    {faqItems.map((item, index) => {
+                    {(showAllFaq ? faqItems : faqItems.slice(0, 4)).map((item, index) => {
                       const isHovered = hoveredFaqIndex === index;
                       const isExpanded = expandedFaqIndex === index;
                       const isEmphasized = isExpanded || isHovered;
@@ -3581,6 +3597,7 @@ export default function Home() {
                         </div>
                       );
                     })}
+
                   </div>
                 </div>
               </div>
@@ -3589,18 +3606,16 @@ export default function Home() {
                 className="flex flex-col items-center gap-3 sm:gap-[14px]"
                 style={{ marginTop: '40px' }}
               >
-                <div
-                  className={`flex items-center justify-center rounded-full bg-white transition-all duration-[400ms] ${
-                    faqLayoutState === 'default'
-                      ? 'h-[64px] w-[64px] sm:h-[78px] sm:w-[78px]'
-                      : 'h-[78px] w-[78px] border-[4px] border-[#BBCB2E] sm:h-[90px] sm:w-[90px]'
-                  }`}
-                  style={{ boxShadow: '2px 4px 33.5px rgba(0, 0, 0, 0.12)' }}
+                <button
+                  type="button"
+                  onClick={() => setShowAllFaq(true)}
+                  className="flex h-[78px] w-[78px] shrink-0 items-center justify-center rounded-full bg-white p-[26px]"
+                  style={{ boxShadow: '2.01px 4.02px 33.68px rgba(0, 0, 0, 0.12)' }}
                 >
-                  <div className={`relative transition-all duration-[400ms] ${faqLayoutState === 'default' ? 'h-[22px] w-[22px] sm:h-[26px] sm:w-[26px]' : 'h-[26px] w-[26px] sm:h-[30px] sm:w-[30px]'}`}>
-                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333875/rnj/vector-18-18cc905b.svg" alt="Question icon" fill className="object-contain" />
+                  <div className="relative h-[26px] w-[26px] shrink-0 opacity-50">
+                    <Image src="/optimized/Vector (23).svg" alt="Question icon" fill className="object-contain" />
                   </div>
-                </div>
+                </button>
 
                 <p
                   className="font-[Geist] font-medium text-[#003300]"
