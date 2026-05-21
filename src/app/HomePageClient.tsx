@@ -477,7 +477,7 @@ const institutionalCarouselCards = [
     title: 'Analyse Institutionnelle & Réglementaire',
     description:
       'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
-    image: '/optimized/group-348987-2.svg',
+    image: '/optimized/group-348987-2.webp',
     panelBg: '#406640',
     titleColor: '#BFCCBF',
     descriptionColor: '#BFCCBF',
@@ -489,7 +489,7 @@ const institutionalCarouselCards = [
     title: 'Structuration Juridique & Gouvernance',
     description:
       'Choix de la forme juridique (Belgique, Tunisie, international), création et transformation de sociétés, gouvernance, pactes d’associés, conventions de partenariat et opérations de transmission (M&A).',
-    image: '/optimized/group-348987-3.svg',
+    image: '/optimized/group-348987-3.webp',
     panelBg: '#BFCCBF',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -513,7 +513,7 @@ const institutionalCarouselCards = [
     title: 'Partenariats Public-Privé & Concessions',
     description:
       'Structuration juridique de projets PPP et concessions, appui aux entreprises, collectivités et institutions. Interventions sur l’énergie, les infrastructures et les projets d’intérêt général.',
-    image: '/optimized/partenariats-concessions.svg',
+    image: '/optimized/partenariats-concessions.webp',
     panelBg: '#E0E5C0',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -525,7 +525,7 @@ const institutionalCarouselCards = [
     title: 'ESG, Conformité & Appels À Projets',
     description:
       'Audit juridique et compliance, protection des données (RGPD), mise en conformité opérationnelle. Accompagnement sur les appels à projets : éligibilité, cadrage juridique, rédaction et sécurisation contractuelle.',
-    image: '/optimized/esg-conformite.png',
+    image: '/optimized/esg-conformite.webp',
     panelBg: '#DDE597',
     titleColor: '#003300',
     descriptionColor: '#003300',
@@ -537,7 +537,7 @@ const institutionalCarouselCards = [
     title: 'Veille Juridique & Anticipation Réglementaire',
     description:
       'Surveillance active des évolutions législatives et réglementaires en Belgique, en Europe et en Tunisie. Alertes ciblées sur les impacts potentiels et accompagnement dans l’anticipation des changements.',
-    image: '/optimized/veille-juridique.png',
+    image: '/optimized/veille-juridique.webp',
     panelBg: '#CCD862',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
