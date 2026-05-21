@@ -477,7 +477,7 @@ const institutionalCarouselCards = [
     title: 'Analyse Institutionnelle & Réglementaire',
     description:
       'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
-    image: '/optimized/Group 348987 (1).svg',
+    image: '/optimized/group-348987.webp',
     panelBg: '#406640',
     titleColor: '#BFCCBF',
     descriptionColor: '#BFCCBF',
@@ -501,7 +501,7 @@ const institutionalCarouselCards = [
     title: 'Droit Des Contrats & Sécurité Commerciale',
     description:
       'Rédaction, revue et négociation de contrats (clients, fournisseurs, partenaires), sous-traitance, licences et confidentialité. Nous réduisons les risques et sécurisons la relation commerciale à chaque étape clé.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778065554/rnj/optimized/image-droit-des-contrats-securite-commerciale-1.svg',
+    image: '/optimized/image-droit-des-contrats.webp',
     panelBg: '#A2B144',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -2656,7 +2656,7 @@ export default function Home() {
                           <div className="mx-auto flex w-full max-w-[463px] flex-col items-start gap-6 sm:gap-7 md:gap-[34px]">
                             <div className="relative h-[220px] w-full max-w-[463px] sm:h-[280px] md:h-[349px]">
                               <div className="absolute inset-0 rounded-[13px] bg-[#F7FCFF]" />
-                              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_1200,h_900,c_limit/v1776335427/rnj/optimized/group-65-16f18ed1.webp"
+                              <Image src="/optimized/group-65.webp"
                                 alt="Graphique de performance"
                                 fill
                                 className="rounded-[13px] object-cover"
