@@ -6,6 +6,7 @@ import JsonLd from "@/components/JsonLd";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -16,8 +17,8 @@ const geistMono = Geist_Mono({
 const ebGaramond = EB_Garamond({
   variable: "--font-eb-garamond",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  style: ["normal", "italic"],
+  weight: ["400", "600"],
+  style: ["normal"],
   display: "swap",
 });
 
@@ -101,8 +102,14 @@ export default function RootLayout({
   return (
     <html lang="fr" data-scroll-behavior="smooth">
       <head>
-        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link
+          rel="preload"
+          as="image"
+          href="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376885/rnj/optimized/wind-energy-wind-power-sustainable-renewable-en-2026-03-18-04-35-53-utc-1-84fe3c19.webp"
+          fetchPriority="high"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable} antialiased`}

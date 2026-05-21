@@ -878,34 +878,29 @@
 .ring-pulse-delay-2   { animation-delay: 1.2s; }
 
 @keyframes stepShine {
-  0% {
-    box-shadow: 0 0 0 0 rgba(187, 203, 46, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 0 10px rgba(187, 203, 46, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(187, 203, 46, 0);
-  }
+  0%   { opacity: 0.7; transform: scale(1); }
+  50%  { opacity: 0;   transform: scale(1.4); }
+  100% { opacity: 0;   transform: scale(1.6); }
 }
 
 .step-shine {
-  animation: stepShine 0.8s ease-out;
+  position: relative;
+}
+.step-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(187, 203, 46, 0.5);
+  animation: stepShine 0.8s ease-out forwards;
+  pointer-events: none;
+  will-change: transform, opacity;
 }
 
 @keyframes lightbulbPulse {
-  0% {
-    transform: scale(1) translateY(0);
-    filter: drop-shadow(0 0 0px rgba(187, 203, 46, 0));
-  }
-  50% {
-    transform: scale(1.08) translateY(-4px);
-    filter: drop-shadow(0 0 12px rgba(187, 203, 46, 0.6));
-  }
-  100% {
-    transform: scale(1) translateY(0);
-    filter: drop-shadow(0 0 0px rgba(187, 203, 46, 0));
-  }
+  0%   { transform: scale(1) translateY(0); }
+  50%  { transform: scale(1.08) translateY(-4px); }
+  100% { transform: scale(1) translateY(0); }
 }
 
 .lightbulb-hover {
