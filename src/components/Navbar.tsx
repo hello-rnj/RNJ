@@ -89,10 +89,11 @@ export default function Navbar({ dark = false }: { dark?: boolean }) {
         </div>
 
         <div className="hidden flex-row items-center gap-2 xl:flex xl:gap-[10px]">
-          <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_800,h_600,c_limit/v1776334127/rnj/asset-96a86689.png"
+          <Image src="/optimized/belgium-flag.svg"
             alt="Drapeau Belgique"
             width={20}
             height={30}
+            unoptimized
             className="h-[26px] w-[18px] object-contain 2xl:h-[30px] 2xl:w-[20px]"
            loading="lazy"/>
           <Link
