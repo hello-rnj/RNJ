@@ -124,7 +124,7 @@ export default function AboutHero({ titleClassName }: AboutHeroProps) {
 
             <div className="about-hero-card relative overflow-hidden rounded-[16px] bg-[#D9D9D9] shadow-[0px_2px_20px_rgba(0,0,0,0.2)]">
               <Image
-                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_900,c_limit/v1777310363/rnj/business-people-meeting-to-join-with-partner-team-2026-03-25-03-32-06-utc-10a13933.jpg"
+                src="/optimized/group-349069.png"
                 alt="Équipe RNJ Advisory"
                 fill
                 priority
