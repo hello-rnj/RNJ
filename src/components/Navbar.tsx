@@ -89,13 +89,10 @@ export default function Navbar({ dark = false }: { dark?: boolean }) {
         </div>
 
         <div className="hidden flex-row items-center gap-2 xl:flex xl:gap-[10px]">
-          <Image src="/optimized/belgium-flag.svg"
-            alt="Drapeau Belgique"
-            width={20}
-            height={30}
-            unoptimized
-            className="h-[26px] w-[18px] object-contain 2xl:h-[30px] 2xl:w-[20px]"
-           loading="lazy"/>
+          <span
+            aria-label="Drapeau Belgique"
+            className="flex h-[26px] w-[18px] items-center justify-center text-center font-[Geist] text-[20px] font-medium leading-[29px] text-black 2xl:h-[30px] 2xl:w-[20px]"
+          >🇧🇪</span>
           <Link
             href="/a-propos"
             className="flex h-[39px] items-center justify-center rounded-[10px] border-[1.5px] px-4 text-center font-[Geist] text-[14px] font-semibold transition 2xl:h-[41px] 2xl:px-[17px] 2xl:text-[15px]"
