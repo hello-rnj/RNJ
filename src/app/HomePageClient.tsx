@@ -477,7 +477,7 @@ const institutionalCarouselCards = [
     title: 'Analyse Institutionnelle & Réglementaire',
     description:
       'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
-    image: '/optimized/group-348987.webp',
+    image: '/optimized/group-348987-2.svg',
     panelBg: '#406640',
     titleColor: '#BFCCBF',
     descriptionColor: '#BFCCBF',
@@ -489,7 +489,7 @@ const institutionalCarouselCards = [
     title: 'Structuration Juridique & Gouvernance',
     description:
       'Choix de la forme juridique (Belgique, Tunisie, international), création et transformation de sociétés, gouvernance, pactes d’associés, conventions de partenariat et opérations de transmission (M&A).',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_800,h_800,c_limit/v1778101215/rnj/optimized/mask-group-40-37d12ade.webp',
+    image: '/optimized/group-348987-3.svg',
     panelBg: '#BFCCBF',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -513,7 +513,7 @@ const institutionalCarouselCards = [
     title: 'Partenariats Public-Privé & Concessions',
     description:
       'Structuration juridique de projets PPP et concessions, appui aux entreprises, collectivités et institutions. Interventions sur l’énergie, les infrastructures et les projets d’intérêt général.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_800,h_600,c_limit/v1778101216/rnj/optimized/partenariats-public-priv-concessions-image-c255db89.webp',
+    image: '/optimized/partenariats-concessions.svg',
     panelBg: '#E0E5C0',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -525,7 +525,7 @@ const institutionalCarouselCards = [
     title: 'ESG, Conformité & Appels À Projets',
     description:
       'Audit juridique et compliance, protection des données (RGPD), mise en conformité opérationnelle. Accompagnement sur les appels à projets : éligibilité, cadrage juridique, rédaction et sécurisation contractuelle.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_1200,h_900,c_limit/v1777376883/rnj/optimized/esg-conformit-appels-projets-b1d37fff.webp',
+    image: '/optimized/esg-conformite.png',
     panelBg: '#DDE597',
     titleColor: '#003300',
     descriptionColor: '#003300',
@@ -2900,7 +2900,7 @@ export default function Home() {
                               <div
                                 className="relative h-[240px] overflow-hidden rounded-[22px] md:h-[554px] md:min-w-0 md:flex-1 md:rounded-[0px_119px_119px_119px] xl:w-[886.72px]"
                               >
-                                <Image src={card.image} alt={card.title} fill className="object-cover" />
+                                <Image src={card.image} alt={card.title} fill className="object-cover" unoptimized={card.image.endsWith('.svg')} />
                               </div>
                             </>
                           ) : (
@@ -2909,7 +2909,7 @@ export default function Home() {
                               <div
                                 className="relative h-[240px] overflow-hidden rounded-[22px] md:h-[554px] md:min-w-0 md:flex-1 md:rounded-[119px_0px_119px_119px] xl:w-[886.72px]"
                               >
-                                <Image src={card.image} alt={card.title} fill className="object-cover" />
+                                <Image src={card.image} alt={card.title} fill className="object-cover" unoptimized={card.image.endsWith('.svg')} />
                               </div>
                               <div
                                 className="flex justify-center rounded-[24px] px-5 py-6 sm:px-6 md:min-h-[554px] md:w-[clamp(320px,36vw,480.51px)] md:flex-none md:rounded-[119px_119px_119px_0px] md:px-[28px] md:py-[56px] lg:px-[32px] lg:py-[70px] xl:w-[480.51px] xl:px-[47px] xl:py-[95px]"
