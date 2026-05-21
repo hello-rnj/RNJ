@@ -477,7 +477,7 @@ const institutionalCarouselCards = [
     title: 'Analyse Institutionnelle & Réglementaire',
     description:
       'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778675944/rnj/ramzi-image-1778675943285.png',
+    image: '/optimized/Group 348987 (1).svg',
     panelBg: '#406640',
     titleColor: '#BFCCBF',
     descriptionColor: '#BFCCBF',
@@ -1975,7 +1975,7 @@ export default function Home() {
           <div className="mx-auto w-full max-w-[1680px] px-0">
             <div className="relative min-h-[560px] overflow-hidden bg-[#003300] sm:min-h-[620px] md:min-h-[680px] lg:min-h-[760px]">
               <Image
-                src="/optimized/Group 349040 (1).svg"
+                src="/optimized/Group 349040.svg"
                 alt=""
                 fill
                 className="object-cover object-center"
