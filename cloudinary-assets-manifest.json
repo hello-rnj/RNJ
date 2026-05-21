@@ -1,18 +1,51 @@
 {
   "version": 1,
-  "generatedAt": "2026-05-13T10:19:19.449Z",
+  "generatedAt": "2026-05-21T11:13:10.098Z",
   "cloudName": "dmrtdo9z3",
   "folder": "rnj",
   "assets": [
     {
-      "repoPath": "public/optimized/cranes-bg.webp",
-      "publicId": "rnj/optimized/cranes-bg-2b71b295",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667553/rnj/optimized/cranes-bg-2b71b295.webp",
+      "repoPath": "public/optimized/belgium-flag.png",
+      "publicId": "rnj/optimized/belgium-flag-bc434b7e",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361989/rnj/optimized/belgium-flag-bc434b7e.png",
       "references": [
-        "/optimized/cranes-bg.webp"
+        "/optimized/belgium-flag.png"
       ],
       "sourceFiles": [
-        "src/app/services/analyse-institutionnelle/AnalyseInstitutionnelleClient.tsx"
+        "src/components/Navbar.tsx"
+      ]
+    },
+    {
+      "repoPath": "public/optimized/esg-conformite.webp",
+      "publicId": "rnj/optimized/esg-conformite-058a9e79",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361984/rnj/optimized/esg-conformite-058a9e79.webp",
+      "references": [
+        "/optimized/esg-conformite.webp"
+      ],
+      "sourceFiles": [
+        "src/app/HomePageClient.tsx"
+      ]
+    },
+    {
+      "repoPath": "public/optimized/group-348987-2.webp",
+      "publicId": "rnj/optimized/group-348987-2-ed616861",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361982/rnj/optimized/group-348987-2-ed616861.webp",
+      "references": [
+        "/optimized/group-348987-2.webp"
+      ],
+      "sourceFiles": [
+        "src/app/HomePageClient.tsx"
+      ]
+    },
+    {
+      "repoPath": "public/optimized/group-348987-3.webp",
+      "publicId": "rnj/optimized/group-348987-3-5f3fce10",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361983/rnj/optimized/group-348987-3-5f3fce10.webp",
+      "references": [
+        "/optimized/group-348987-3.webp"
+      ],
+      "sourceFiles": [
+        "src/app/HomePageClient.tsx"
       ]
     },
     {
@@ -27,58 +60,57 @@
       ]
     },
     {
-      "repoPath": "public/optimized/map-3-no-pins.svg",
-      "publicId": "rnj/optimized/map-3-no-pins-72bd5ddf",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667556/rnj/optimized/map-3-no-pins-72bd5ddf.svg",
+      "repoPath": "public/optimized/group-65.webp",
+      "publicId": "rnj/optimized/group-65-16f18ed1",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335427/rnj/optimized/group-65-16f18ed1.webp",
       "references": [
-        "/optimized/map-3-no-pins.svg"
+        "/optimized/group-65.webp"
       ],
       "sourceFiles": [
-        "src/app/services/analyse-institutionnelle/AnalyseInstitutionnelleClient.tsx"
+        "src/app/HomePageClient.tsx"
       ]
     },
     {
-      "repoPath": "public/optimized/Mask group (6).png",
-      "publicId": "rnj/optimized/mask-group-6-e75a83b2",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667552/rnj/optimized/mask-group-6-e75a83b2.png",
+      "repoPath": "public/optimized/image-droit-des-contrats.webp",
+      "publicId": "rnj/optimized/image-droit-des-contrats-068dc084",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361983/rnj/optimized/image-droit-des-contrats-068dc084.webp",
       "references": [
-        "/optimized/Mask%20group%20(6).png"
+        "/optimized/image-droit-des-contrats.webp"
       ],
       "sourceFiles": [
-        "src/app/a-propos/AboutPageContent.tsx",
-        "src/app/services/analyse-institutionnelle/AnalyseInstitutionnelleClient.tsx"
+        "src/app/HomePageClient.tsx"
       ]
     },
     {
-      "repoPath": "public/optimized/sensor-bg.webp",
-      "publicId": "rnj/optimized/sensor-bg-280a37b8",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667554/rnj/optimized/sensor-bg-280a37b8.webp",
+      "repoPath": "public/optimized/partenariats-concessions.webp",
+      "publicId": "rnj/optimized/partenariats-concessions-24d462c1",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361984/rnj/optimized/partenariats-concessions-24d462c1.webp",
       "references": [
-        "/optimized/sensor-bg.webp"
+        "/optimized/partenariats-concessions.webp"
       ],
       "sourceFiles": [
-        "src/app/services/analyse-institutionnelle/AnalyseInstitutionnelleClient.tsx"
+        "src/app/HomePageClient.tsx"
       ]
     },
     {
-      "repoPath": "public/optimized/windmill-bg.webp",
-      "publicId": "rnj/optimized/windmill-bg-9a2625d0",
-      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667552/rnj/optimized/windmill-bg-9a2625d0.webp",
+      "repoPath": "public/optimized/veille-juridique.webp",
+      "publicId": "rnj/optimized/veille-juridique-2d8d4e82",
+      "secureUrl": "https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361985/rnj/optimized/veille-juridique-2d8d4e82.webp",
       "references": [
-        "/optimized/windmill-bg.webp"
+        "/optimized/veille-juridique.webp"
       ],
       "sourceFiles": [
-        "src/app/services/analyse-institutionnelle/AnalyseInstitutionnelleClient.tsx"
+        "src/app/HomePageClient.tsx"
       ]
     }
   ],
   "failures": [
     {
-      "repoPath": "public/optimized/Group 349040 (1).svg",
-      "publicId": "rnj/optimized/group-349040-1-90a5e1b6",
-      "message": "Cloudinary upload failed for public/optimized/Group 349040 (1).svg: File size too large. Got 12806805. Maximum is 10485760. Upgrade your plan to enjoy higher limits https://www.cloudinary.com/pricing/upgrades/file-limit",
+      "repoPath": "public/optimized/Group 349040.svg",
+      "publicId": "rnj/optimized/group-349040-a51dbd64",
+      "message": "Cloudinary upload failed for public/optimized/Group 349040.svg: File size too large. Got 12806805. Maximum is 10485760. Upgrade your plan to enjoy higher limits https://www.cloudinary.com/pricing/upgrades/file-limit",
       "references": [
-        "/optimized/Group 349040 (1).svg"
+        "/optimized/Group 349040.svg"
       ],
       "sourceFiles": [
         "src/app/HomePageClient.tsx"
