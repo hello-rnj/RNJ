@@ -477,7 +477,7 @@ const institutionalCarouselCards = [
     title: 'Analyse Institutionnelle & Réglementaire',
     description:
       'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361982/rnj/optimized/group-348987-2-ed616861.webp',
+    image: '/optimized/group-348987-2.webp',
     panelBg: '#406640',
     titleColor: '#BFCCBF',
     descriptionColor: '#BFCCBF',
@@ -489,7 +489,7 @@ const institutionalCarouselCards = [
     title: 'Structuration Juridique & Gouvernance',
     description:
       'Choix de la forme juridique (Belgique, Tunisie, international), création et transformation de sociétés, gouvernance, pactes d’associés, conventions de partenariat et opérations de transmission (M&A).',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361983/rnj/optimized/group-348987-3-5f3fce10.webp',
+    image: '/optimized/group-348987-3.webp',
     panelBg: '#BFCCBF',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -501,7 +501,7 @@ const institutionalCarouselCards = [
     title: 'Droit Des Contrats & Sécurité Commerciale',
     description:
       'Rédaction, revue et négociation de contrats (clients, fournisseurs, partenaires), sous-traitance, licences et confidentialité. Nous réduisons les risques et sécurisons la relation commerciale à chaque étape clé.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361983/rnj/optimized/image-droit-des-contrats-068dc084.webp',
+    image: '/optimized/image-droit-des-contrats.webp',
     panelBg: '#A2B144',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -513,7 +513,7 @@ const institutionalCarouselCards = [
     title: 'Partenariats Public-Privé & Concessions',
     description:
       'Structuration juridique de projets PPP et concessions, appui aux entreprises, collectivités et institutions. Interventions sur l’énergie, les infrastructures et les projets d’intérêt général.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361984/rnj/optimized/partenariats-concessions-24d462c1.webp',
+    image: '/optimized/partenariats-concessions.webp',
     panelBg: '#E0E5C0',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -525,7 +525,7 @@ const institutionalCarouselCards = [
     title: 'ESG, Conformité & Appels À Projets',
     description:
       'Audit juridique et compliance, protection des données (RGPD), mise en conformité opérationnelle. Accompagnement sur les appels à projets : éligibilité, cadrage juridique, rédaction et sécurisation contractuelle.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361984/rnj/optimized/esg-conformite-058a9e79.webp',
+    image: '/optimized/esg-conformite.webp',
     panelBg: '#DDE597',
     titleColor: '#003300',
     descriptionColor: '#003300',
@@ -537,7 +537,7 @@ const institutionalCarouselCards = [
     title: 'Veille Juridique & Anticipation Réglementaire',
     description:
       'Surveillance active des évolutions législatives et réglementaires en Belgique, en Europe et en Tunisie. Alertes ciblées sur les impacts potentiels et accompagnement dans l’anticipation des changements.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1779361985/rnj/optimized/veille-juridique-2d8d4e82.webp',
+    image: '/optimized/veille-juridique.webp',
     panelBg: '#CCD862',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
@@ -2656,7 +2656,7 @@ export default function Home() {
                           <div className="mx-auto flex w-full max-w-[463px] flex-col items-start gap-6 sm:gap-7 md:gap-[34px]">
                             <div className="relative h-[220px] w-full max-w-[463px] sm:h-[280px] md:h-[349px]">
                               <div className="absolute inset-0 rounded-[13px] bg-[#F7FCFF]" />
-                              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776335427/rnj/optimized/group-65-16f18ed1.webp"
+                              <Image src="/optimized/group-65.webp"
                                 alt="Graphique de performance"
                                 fill
                                 className="rounded-[13px] object-cover"

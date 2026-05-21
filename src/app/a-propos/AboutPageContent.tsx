@@ -224,7 +224,7 @@ export default function AboutPage() {
 
           <div className="grid gap-12 lg:grid-cols-[435px_1fr] lg:items-start">
             <div className="relative aspect-[435/382] overflow-hidden rounded-[8px] bg-[#D9D9D9]">
-              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667551/rnj/optimized/group-349025-b7221354.webp"
+              <Image src="/optimized/group-349025.webp"
                 alt="Réunion de conseil stratégique"
                 fill
                 sizes="(max-width: 1024px) 92vw, 435px"
