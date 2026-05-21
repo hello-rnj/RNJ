@@ -537,7 +537,7 @@ const institutionalCarouselCards = [
     title: 'Veille Juridique & Anticipation Réglementaire',
     description:
       'Surveillance active des évolutions législatives et réglementaires en Belgique, en Europe et en Tunisie. Alertes ciblées sur les impacts potentiels et accompagnement dans l’anticipation des changements.',
-    image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:good,w_1200,h_900,c_limit/v1777376884/rnj/optimized/mask-group-36-61b10456.webp',
+    image: '/optimized/veille-juridique.png',
     panelBg: '#CCD862',
     titleColor: '#003300',
     descriptionColor: 'rgba(0, 51, 0, 0.6)',
