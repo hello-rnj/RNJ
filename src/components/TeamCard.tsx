@@ -80,7 +80,7 @@ export default function TeamCard({ name, role, tone, image, linkedinUrl, classNa
 
         {/* Role badge */}
         <div
-          className="absolute left-1/2 top-[72%] flex min-h-[30px] w-[calc(100%-20px)] -translate-x-1/2 items-center justify-center rounded-full bg-white px-3 py-1 text-center transition-all duration-500"
+          className="absolute left-1/2 top-[58%] flex min-h-[30px] w-[calc(100%-20px)] -translate-x-1/2 items-center justify-center rounded-full bg-white px-3 py-1 text-center transition-all duration-500"
           style={{
             opacity: isHovered ? 1 : 0,
             transform: isHovered ? 'translate(-50%, 0)' : 'translate(-50%, 24px)',
