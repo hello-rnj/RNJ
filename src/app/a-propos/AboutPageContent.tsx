@@ -57,7 +57,7 @@ const teamMembers = [
   },
   {
     name: 'Ramzi Jelalia',
-    role: 'Co-founder & CTO',
+    role: 'Partner | Legal & Energy Strategy',
     initials: 'RJ',
     tone: '#DDE597',
     image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777132761/rnj/ramzi-05917bd9.svg',
