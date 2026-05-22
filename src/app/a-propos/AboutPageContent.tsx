@@ -49,7 +49,7 @@ const values = [
 const teamMembers = [
   {
     name: 'Nahla Aschi',
-    role: 'Co-Founder & CEO',
+    role: 'Partner & CEO',
     initials: 'NA',
     tone: '#EEF2CA',
     image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777376840/rnj/nahla-eae48fe8.svg',
