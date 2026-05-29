@@ -33,12 +33,6 @@ const footerColumns: FooterColumn[] = [
     ],
   },
   {
-    title: 'Secteurs',
-    items: [
-      { label: 'PME & ASBL' },
-    ],
-  },
-  {
     title: 'Publications',
     items: [
       { label: 'Articles', href: '/blogs' },
@@ -50,27 +44,27 @@ const footerColumns: FooterColumn[] = [
 const socialIcons = [
   {
     name: 'Instagram',
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334109/rnj/mask-group-23-1ce30be9.svg',
+    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677785/rnj/mask-group-23-1ce30be9.png',
     href: 'https://instagram.com',
   },
   {
     name: 'LinkedIn',
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334110/rnj/mask-group-24-fd4f223e.svg',
+    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677785/rnj/mask-group-24-fd4f223e.png',
     href: 'https://linkedin.com',
   },
   {
     name: 'Telegram',
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334111/rnj/mask-group-25-516d2f88.svg',
+    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677786/rnj/mask-group-25-516d2f88.png',
     href: 'https://t.me',
   },
   {
     name: 'Twitter',
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334113/rnj/mask-group-26-a7a619cb.svg',
+    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677787/rnj/mask-group-26-a7a619cb.svg',
     href: 'https://twitter.com',
   },
   {
     name: 'Facebook',
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334115/rnj/mask-group-27-5870749d.svg',
+    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677788/rnj/mask-group-27-5870749d.png',
     href: 'https://facebook.com',
   },
 ] as const;
@@ -215,7 +209,7 @@ export default function LandingFooter() {
               </div>
 
               <div className="relative hidden h-[49px] w-[175px] shrink-0 xl:block">
-                <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334123/rnj/mask-group-21-d1c01771.svg"
+                <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678185/rnj/mask-group-21-d1c01771.png"
                   alt="Décor"
                   fill
                   className="object-contain"
@@ -256,7 +250,7 @@ export default function LandingFooter() {
                     </span>
 
                     <span className="relative h-[49px] w-[175px] shrink-0">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334123/rnj/mask-group-21-d1c01771.svg"
+                      <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678185/rnj/mask-group-21-d1c01771.png"
                         alt="Flèches"
                         fill
                         className="object-contain"
@@ -268,10 +262,10 @@ export default function LandingFooter() {
             </div>
 
             <div className="rounded-[30px] bg-[rgba(0,51,0,0.09)] px-5 pb-7 pt-8 shadow-[2px_4px_39.6px_rgba(0,0,0,0.69)] backdrop-blur-[3px] sm:px-8 sm:pt-10 lg:min-h-[553px] lg:px-[35px] lg:pb-[40px] lg:pt-[35px]">
-              <div className="flex flex-col gap-12">
+              <div className="flex h-full flex-col justify-between gap-12">
                 <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
                   <div className="flex max-w-[352px] flex-col gap-[30px]">
-                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                    <Image src="/optimized/minimal horizontal logo white 1.png"
                       alt="RNJ Advisory"
                       width={233}
                       height={58}
@@ -331,7 +325,7 @@ export default function LandingFooter() {
                     <div className="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-8 lg:gap-[78px]">
                       <div className="flex items-center gap-5">
                         <div className="relative h-[22px] w-[22px] shrink-0">
-                          <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310359/rnj/layer-1-27-a0d86191.svg"
+                          <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-27-a0d86191.png"
                             alt="Téléphone"
                             fill
                             className="object-contain"
@@ -345,7 +339,7 @@ export default function LandingFooter() {
 
                       <div className="flex items-center gap-5">
                         <div className="relative h-[15.47px] w-[22px] shrink-0">
-                          <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310361/rnj/layer-1-26-33e2a54e.svg"
+                          <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-26-33e2a54e.png"
                             alt="E-mail"
                             fill
                             className="object-contain"
