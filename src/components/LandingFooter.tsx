@@ -36,7 +36,6 @@ const footerColumns: FooterColumn[] = [
     title: 'Publications',
     items: [
       { label: 'Articles', href: '/blogs' },
-      { label: 'PME & ASBL', href: '/blogs' },
     ],
   },
 ];
