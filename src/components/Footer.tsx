@@ -24,11 +24,11 @@ const footerColumns = [
 ];
 
 const socialIcons = [
-  { name: 'Instagram', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334109/rnj/mask-group-23-1ce30be9.svg' },
-  { name: 'LinkedIn', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334110/rnj/mask-group-24-fd4f223e.svg' },
-  { name: 'Telegram', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334111/rnj/mask-group-25-516d2f88.svg' },
-  { name: 'Twitter', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334113/rnj/mask-group-26-a7a619cb.svg' },
-  { name: 'Facebook', src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334115/rnj/mask-group-27-5870749d.svg' },
+  { name: 'Instagram', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677785/rnj/mask-group-23-1ce30be9.png' },
+  { name: 'LinkedIn', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677785/rnj/mask-group-24-fd4f223e.png' },
+  { name: 'Telegram', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677786/rnj/mask-group-25-516d2f88.png' },
+  { name: 'Twitter', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677787/rnj/mask-group-26-a7a619cb.svg' },
+  { name: 'Facebook', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677788/rnj/mask-group-27-5870749d.png' },
 ];
 
 const footerItemLinks: Record<string, string> = {
@@ -68,7 +68,7 @@ export default function Footer({ showTopRow = true }: FooterProps) {
             </div>
 
             <div className="relative hidden h-[49px] w-[175px] shrink-0 lg:block">
-              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334123/rnj/mask-group-21-d1c01771.svg" alt="Flèches décoratives" fill className="object-contain"  loading="lazy"/>
+              <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678185/rnj/mask-group-21-d1c01771.png" alt="Flèches décoratives" fill className="object-contain"  loading="lazy"/>
             </div>
 
             <Link
@@ -86,7 +86,7 @@ export default function Footer({ showTopRow = true }: FooterProps) {
           <div className="flex h-full flex-col gap-10 lg:gap-12">
             <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
               <div className="flex max-w-[351.77px] flex-col gap-[29.98px]">
-                <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                <Image src="/optimized/minimal horizontal logo white 1.png"
                   alt="Logo RNJ Advisory"
                   width={233}
                   height={58}
@@ -162,7 +162,7 @@ export default function Footer({ showTopRow = true }: FooterProps) {
                   {/* Frame 201 — phone */}
                   <div className="flex flex-row items-center gap-[19.99px]">
                     <div className="relative h-[22px] w-[21.92px] shrink-0">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310359/rnj/layer-1-27-a0d86191.svg" alt="Téléphone" fill className="object-contain"  loading="lazy"/>
+                      <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-27-a0d86191.png" alt="Téléphone" fill className="object-contain"  loading="lazy"/>
                     </div>
                     <span className="font-[Geist] text-[13px] font-medium leading-[19px] tracking-[0.04em] text-white sm:text-[14px] sm:leading-[20px] lg:text-[15.3604px] lg:leading-[21px] lg:tracking-[0.05em] whitespace-nowrap">
                       +32 474 03 22 66
@@ -171,7 +171,7 @@ export default function Footer({ showTopRow = true }: FooterProps) {
                   {/* Frame 202 — email */}
                   <div className="flex max-w-full flex-row items-center gap-[12px] sm:gap-[19.99px]">
                     <div className="relative h-[15.47px] w-[22px] shrink-0">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310361/rnj/layer-1-26-33e2a54e.svg" alt="E-mail" fill className="object-contain"  loading="lazy"/>
+                      <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-26-33e2a54e.png" alt="E-mail" fill className="object-contain"  loading="lazy"/>
                     </div>
                     <span className="break-words text-center font-[Geist] text-[13px] font-medium leading-[19px] tracking-[0.04em] text-white sm:text-left sm:text-[14px] sm:leading-[20px] lg:text-[15.3604px] lg:leading-[21px] lg:tracking-[0.05em]">
                       info@rnj-advisory.be

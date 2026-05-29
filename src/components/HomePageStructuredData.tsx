@@ -21,7 +21,7 @@ export default function HomePageStructuredData() {
     name: 'RNJ Advisory',
     url: 'https://rnj-advisory.be/',
     image: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_630,c_limit/v1776389845/rnj/og-home-f960652e.jpg',
-    logo: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg',
+    logo: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677463/rnj/minimal-horizontal-logo-white-1-317aafcc.png',
     telephone: '+32 474 03 22 66',
     email: 'info@rnj-advisory.be',
     description:

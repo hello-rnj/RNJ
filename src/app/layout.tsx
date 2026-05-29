@@ -107,7 +107,7 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376885/rnj/optimized/wind-energy-wind-power-sustainable-renewable-en-2026-03-18-04-35-53-utc-1-84fe3c19.webp"
+          href="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671376/rnj/optimized/wind-energy-wind-power-sustainable-renewable-en-2026-03-18-04-35-53-utc-1-84fe3c19.webp"
           fetchPriority="high"
         />
       </head>

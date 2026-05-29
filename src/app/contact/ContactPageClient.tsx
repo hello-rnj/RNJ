@@ -1064,7 +1064,7 @@ export default function ContactPageClient({
               >
                 <div className="flex flex-col items-center justify-center gap-[40px] sm:gap-[55px] md:gap-[68.45px]">
                   <div className="flex flex-col items-center justify-center gap-[18px] sm:gap-[22px] md:gap-[27.38px]">
-                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                    <Image src="/optimized/minimal horizontal logo white 1.png"
                       alt="RNJ Advisory"
                       width={199}
                       height={49}
@@ -1118,7 +1118,7 @@ export default function ContactPageClient({
                   <article className="min-w-full px-3 py-6 sm:px-8 sm:py-10">
                     <div className="mx-auto grid w-full max-w-[1350px] gap-5 rounded-[18px] bg-white p-3 sm:gap-7 sm:rounded-[28px] sm:p-6 md:gap-8 md:rounded-[30px] md:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center" style={{ minHeight: 'clamp(420px, 80vh, 730px)' }}>
                       <div className="max-w-[620px]">
-                        <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                        <Image src="/optimized/minimal horizontal logo white 1.png"
                           alt="RNJ Advisory"
                           width={199}
                           height={49}
@@ -1277,13 +1277,13 @@ export default function ContactPageClient({
                     <div
                       className="mx-auto flex w-full max-w-[1360px] items-center justify-center rounded-[20px] bg-cover bg-center bg-no-repeat px-4 py-8 sm:rounded-[30px] sm:px-8 sm:py-10"
                       style={{
-                        backgroundImage: 'url("https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778051891/rnj/optimized/group-349091-1-144384f9.svg")',
+                        backgroundImage: 'url("https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779671231/rnj/optimized/group-349091-1-144384f9.svg")',
                         minHeight: 'clamp(400px, 75vh, 730px)',
                       }}
                     >
                       <div className="w-full max-w-[700px]">
                         <div className="mx-auto flex w-full max-w-[700px] flex-col items-center justify-center">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                      <Image src="/optimized/minimal horizontal logo white 1.png"
                         alt="RNJ Advisory"
                         width={220}
                         height={54}

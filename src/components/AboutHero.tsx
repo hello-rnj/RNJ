@@ -153,12 +153,12 @@ export default function AboutHero({ titleClassName }: AboutHeroProps) {
         </div>
 
         <div className="flex flex-col gap-8 lg:gap-10">
-          <div className="about-hero-logo relative h-[58px] w-[233px]">
-            <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+          <div className="about-hero-logo relative h-[60px] w-[233px]">
+            <Image src="/optimized/logo.svg"
               alt="RNJ Advisory"
               fill
               sizes="233px"
-              className="object-contain invert"
+              className="object-contain"
              priority/>
           </div>
 

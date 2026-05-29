@@ -36,25 +36,25 @@ const profiles = [
     id: 'entrepreneur',
     label: 'Entrepreneur',
     description: 'Vous développez un projet et recherchez un accompagnement structuré.',
-    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778051894/rnj/optimized/profile-entrepreneur-bbe709fa.svg',
+    illustration: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779671350/rnj/optimized/profile-entrepreneur-bbe709fa.svg',
   },
   {
     id: 'investisseur',
     label: 'Investisseur',
     description: 'Vous identifiez des opportunités et souhaitez sécuriser vos décisions.',
-    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778051896/rnj/optimized/profile-investisseur-7de68e69.svg',
+    illustration: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779671354/rnj/optimized/profile-investisseur-7de68e69.svg',
   },
   {
     id: 'institution',
     label: 'Institution',
     description: 'Vous représentez une organisation impliquée dans des enjeux stratégiques et réglementaires.',
-    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778051900/rnj/optimized/profile-institution-b9c718be.svg',
+    illustration: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779671352/rnj/optimized/profile-institution-b9c718be.svg',
   },
   {
     id: 'autre',
     label: 'Autre',
     description: 'Votre besoin ne correspond pas aux profils ci-dessus.',
-    illustration: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1778051902/rnj/optimized/profile-autre-07e379c1.svg',
+    illustration: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779671348/rnj/optimized/profile-autre-07e379c1.svg',
   },
 ] as const;
 
@@ -299,7 +299,7 @@ export default function BookingModal({ open, onClose, initialMode = null }: Book
           <div className="mx-auto flex w-full max-w-[604px] flex-col items-center justify-center gap-[8.56px] rounded-[43px] bg-white px-6 py-10 shadow-[0px_3.42px_48px_rgba(0,0,0,0.25)] sm:px-10 sm:py-14">
             <div className="flex flex-col items-center justify-center gap-12">
               <div className="flex flex-col items-center gap-6">
-                <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                <Image src="/optimized/minimal horizontal logo white 1.png"
                   alt="RNJ Advisory"
                   width={199}
                   height={49}
@@ -427,7 +427,7 @@ export default function BookingModal({ open, onClose, initialMode = null }: Book
             {/* Left card */}
             <div className="flex w-full flex-col justify-between gap-8 rounded-[34px] bg-white px-6 py-8 shadow-[0px_4px_40px_rgba(0,0,0,0.12)] sm:max-w-[300px] sm:rounded-[42px] sm:px-8 sm:py-10 lg:max-w-[360px]">
               <div className="space-y-6">
-                <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                <Image src="/optimized/minimal horizontal logo white 1.png"
                   alt="RNJ Advisory"
                   width={199}
                   height={49}

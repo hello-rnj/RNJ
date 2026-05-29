@@ -282,7 +282,7 @@ export default function BlogsPage() {
           <div className="flex flex-col gap-[25px]">
             <div className="flex flex-col gap-[30px] lg:flex-row lg:justify-between">
               <div className="flex flex-col gap-[30px] max-w-[352px]">
-                <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334027/rnj/minimal-horizontal-logo-white-1-317aafcc.svg"
+                <Image src="/optimized/minimal horizontal logo white 1.png"
                   alt="RNJ Advisory"
                   width={233}
                   height={58}
@@ -336,7 +336,7 @@ export default function BlogsPage() {
               <div className="flex flex-row items-center gap-[20px]">
                 {['Instagram', 'LinkedIn', 'Telegram', 'Twitter', 'Facebook'].map((social) => (
                   <div key={social} className="relative h-[29.2px] w-[29.2px] overflow-hidden rounded-full">
-                    <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334109/rnj/mask-group-23-1ce30be9.svg"
+                    <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677785/rnj/mask-group-23-1ce30be9.png"
                       alt={social}
                       fill
                       className="object-contain"
@@ -349,7 +349,7 @@ export default function BlogsPage() {
                 <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-[20px] md:gap-[78px]">
                   <div className="flex flex-row items-center gap-[20px]">
                     <div className="relative h-[22px] w-[21.92px] shrink-0">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310359/rnj/layer-1-27-a0d86191.svg" alt="Téléphone" fill className="object-contain"  loading="lazy"/>
+                      <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-27-a0d86191.png" alt="Téléphone" fill className="object-contain"  loading="lazy"/>
                     </div>
                     <span className="font-[Geist] text-[14px] font-medium tracking-[0.05em] text-white sm:text-[15.37px] whitespace-nowrap">
                       +32 474 03 22 66
@@ -357,7 +357,7 @@ export default function BlogsPage() {
                   </div>
                   <div className="flex flex-row items-center gap-[20px]">
                     <div className="relative h-[15.47px] w-[22px] shrink-0">
-                      <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310361/rnj/layer-1-26-33e2a54e.svg" alt="E-mail" fill className="object-contain"  loading="lazy"/>
+                      <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-26-33e2a54e.png" alt="E-mail" fill className="object-contain"  loading="lazy"/>
                     </div>
                     <span className="break-all font-[Geist] text-[14px] font-medium tracking-[0.05em] text-white sm:text-[15.37px]">
                       info@rnj-advisory.be

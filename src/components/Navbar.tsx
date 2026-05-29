@@ -21,7 +21,7 @@ export default function Navbar({ dark = false }: { dark?: boolean }) {
       >
         <Link href="/" className="flex min-w-0 items-center gap-2 md:gap-2.5">
           <Image
-            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776333984/rnj/layer-4-955dc651.svg"
+            src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672853/rnj/layer-4-955dc651.png"
             alt="Logo icon"
             width={32}
             height={34}
@@ -30,7 +30,7 @@ export default function Navbar({ dark = false }: { dark?: boolean }) {
             unoptimized
           />
           <Image
-            src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1776334126/rnj/group-73892e5a.svg"
+            src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672854/rnj/group-73892e5a.png"
             alt="Logo text"
             width={162}
             height={43}
@@ -107,7 +107,7 @@ export default function Navbar({ dark = false }: { dark?: boolean }) {
             href="/contact"
             className="flex h-[41px] w-[100px] items-center justify-center rounded-[10px] px-4 text-center font-[Geist] text-[15.0249px] font-extrabold leading-[17px] text-white transition hover:opacity-90 relative overflow-hidden"
             style={{
-              backgroundImage: "url('https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376864/rnj/group-349012-8572149e.svg')",
+              backgroundImage: "url('https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672854/rnj/group-349012-8572149e.png')",
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
@@ -210,7 +210,7 @@ export default function Navbar({ dark = false }: { dark?: boolean }) {
                 href="/contact"
                 className="w-full rounded-xl py-3 text-center font-[Geist] font-extrabold text-white transition hover:opacity-90 relative overflow-hidden"
                 style={{
-                  backgroundImage: "url('https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777376864/rnj/group-349012-8572149e.svg')",
+                  backgroundImage: "url('https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672854/rnj/group-349012-8572149e.png')",
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}

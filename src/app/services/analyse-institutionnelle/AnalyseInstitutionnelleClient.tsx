@@ -38,9 +38,9 @@ type CountryPin = {
   }>;
 };
 
-const IMG_WINDMILL  = 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667552/rnj/optimized/windmill-bg-9a2625d0.webp';
-const IMG_CRANES    = 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667553/rnj/optimized/cranes-bg-2b71b295.webp';
-const IMG_SENSOR    = 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667554/rnj/optimized/sensor-bg-280a37b8.webp';
+const IMG_WINDMILL  = 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671380/rnj/optimized/windmill-bg-9a2625d0.webp';
+const IMG_CRANES    = 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671315/rnj/optimized/cranes-bg-2b71b295.webp';
+const IMG_SENSOR    = 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671364/rnj/optimized/sensor-bg-280a37b8.webp';
 
 const countryPins: CountryPin[] = [
   {
@@ -691,25 +691,25 @@ const relatedCategories = [
 
 const relatedCards = [
   {
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777410422/rnj/group-483-89ee6676.svg',
+    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679638/rnj/group-483-89ee6676.png',
     year: '2026',
     title: 'Workshop BeCentral : digitalisation durable',
     description: 'Retour sur un échange autour des enjeux de la digitalisation responsable.',
   },
   {
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777410425/rnj/group-482-365877a7.svg',
+    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679639/rnj/group-482-365877a7.png',
     year: '2024',
     title: "Informations de base sur les garanties d'origine (GO).",
     description: "Principes et fonctionnement des garanties d'origine dans le marché de l'énergie.",
   },
   {
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777410428/rnj/group-484-04b278f7.svg',
+    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679639/rnj/group-484-04b278f7.png',
     year: '2025',
     title: 'Accélération de la transition énergétique en Tunisie',
     description: 'Focus sur les initiatives et leviers pour accélérer la transition énergétique.',
   },
   {
-    src: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777410430/rnj/group-481-8071b8c8.svg',
+    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679640/rnj/group-481-8071b8c8.png',
     year: '2025',
     title: 'CSR en Tunisie : cadre réglementaire',
     description: "Analyse du cadre juridique et des enjeux liés à l'utilisation du CSR en Tunisie.",
@@ -836,7 +836,7 @@ export default function AnalyseInstitutionnelleClient() {
       <nav className="absolute left-1/2 top-3 z-50 -translate-x-1/2 flex flex-row items-center gap-1.5 sm:top-5 sm:gap-2 md:top-[30px] md:gap-[8px] lg:top-[47px] lg:gap-[10px]">
         {/* Logo icon */}
         <Image
-          src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333984/rnj/layer-4-955dc651.svg"
+          src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779672853/rnj/layer-4-955dc651.png"
           alt="RNJ"
           width={35}
           height={40}
@@ -914,7 +914,7 @@ export default function AnalyseInstitutionnelleClient() {
           >
             {/* Map background — always at full 1440×1024 coords */}
             <image
-              href="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667556/rnj/optimized/map-3-no-pins-72bd5ddf.svg"
+              href="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671333/rnj/optimized/map-3-no-pins-72bd5ddf.svg"
               x="0" y="0" width="1440" height="1024"
               preserveAspectRatio="xMidYMid slice"
             />
@@ -1268,7 +1268,7 @@ export default function AnalyseInstitutionnelleClient() {
 
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-          <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/v1778667552/rnj/optimized/mask-group-6-e75a83b2.png"
+          <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671296/rnj/optimized/mask-group-6-e75a83b2.png"
             alt=""
             fill
             className="object-cover object-bottom"
@@ -1303,7 +1303,7 @@ export default function AnalyseInstitutionnelleClient() {
             <button type="button" className="shrink-0 self-start sm:self-end">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334107/rnj/frame-487-5f9f4c30.svg"
+                src="/optimized/Frame 487.svg"
                 alt="Voir plus"
                 className="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] lg:h-[116px] lg:w-[116px]"
               />
