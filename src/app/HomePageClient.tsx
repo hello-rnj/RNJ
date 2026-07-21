@@ -1764,7 +1764,7 @@ export default function Home() {
       <Navbar />
 
       <div className="relative w-full">
-        <div className="relative w-full overflow-hidden pb-8 sm:pb-10 md:pb-12 xl:pb-14 min-h-[760px] sm:min-h-[820px] md:min-h-[900px] lg:min-h-[940px] xl:min-h-[983px]">
+        <div className="relative w-full overflow-hidden pb-4 sm:pb-6 md:pb-8 xl:pb-10 min-h-[760px] sm:min-h-[820px] md:min-h-[900px] lg:min-h-[940px] xl:min-h-[983px]">
           <Image
             src="/optimized/Frame 349083.png"
             alt=""
@@ -1826,7 +1826,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative z-[1] mx-auto mt-[520px] w-full max-w-[1421px] px-4 sm:mt-[560px] sm:px-6 md:mt-[640px] lg:mt-[680px] xl:mt-[670px] xl:px-0">
+          <div className="relative z-[1] mx-auto mt-[470px] w-full max-w-[1421px] px-4 sm:mt-[505px] sm:px-6 md:mt-[580px] lg:mt-[615px] xl:mt-[605px] xl:px-0">
             {/* Mobile: horizontal swipe (scroll-snap). md+: grid with fluid clamp sizes */}
             <div
               className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-4 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:px-6 md:mx-0 md:grid md:w-full md:grid-cols-[1.95fr_0.9fr_1.2fr] md:items-stretch md:overflow-visible md:px-0 md:pb-0"
@@ -1953,11 +1953,11 @@ export default function Home() {
 
         </div>
 
-        <section className="relative z-[2] -mt-8 w-full bg-[#003300]/60 py-3 backdrop-blur-md sm:-mt-10 sm:py-3 md:-mt-12 md:py-4 xl:-mt-14">
+        <section className="relative z-[2] w-full bg-[#D9D9D9] py-3 sm:py-3 md:py-4">
           <div className="w-full px-0">
             <div className="relative min-h-[42px] overflow-hidden sm:min-h-[46px] md:min-h-[52px] lg:min-h-[58px]">
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-[#003300]/60 to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-[#003300]/60 to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-[#D9D9D9] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-[#D9D9D9] to-transparent" />
 
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div
@@ -1976,7 +1976,7 @@ export default function Home() {
                         src={logo}
                         alt={`Logo partenaire ${index % partnerAssetLogos.length + 1}`}
                         fill
-                        className="object-contain [filter:brightness(0)_saturate(100%)_invert(100%)]"
+                        className="object-contain [filter:brightness(0)_saturate(100%)]"
                       />
                     </div>
                   ))}
