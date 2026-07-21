@@ -1764,7 +1764,7 @@ export default function Home() {
       <Navbar />
 
       <div className="relative w-full">
-        <div className="relative w-full overflow-hidden pb-4 sm:pb-6 md:pb-8 xl:pb-10 min-h-[760px] sm:min-h-[820px] md:min-h-[900px] lg:min-h-[940px] xl:min-h-[983px]">
+        <div className="relative w-full overflow-hidden pb-[95px] sm:pb-[105px] md:pb-[120px] xl:pb-[130px] min-h-[760px] sm:min-h-[820px] md:min-h-[900px] lg:min-h-[940px] xl:min-h-[983px]">
           <Image
             src="/optimized/Frame 349083.png"
             alt=""
@@ -1776,7 +1776,7 @@ export default function Home() {
           />
 
           <div
-            className="absolute left-1/2 top-[104px] w-full max-w-[814px] -translate-x-1/2 px-4 sm:top-[122px] sm:px-6 md:top-[146px] md:px-8 lg:top-[190px] lg:px-10 xl:top-[232px] xl:px-0"
+            className="absolute left-1/2 top-[95px] w-full max-w-[814px] -translate-x-1/2 px-4 sm:top-[115px] sm:px-6 md:top-[125px] md:px-8 lg:top-[150px] lg:px-10 xl:top-[185px] xl:px-0"
           >
             <div className="flex flex-col items-center gap-6 md:gap-10 xl:items-start xl:gap-[59px]">
               <div className="flex w-full flex-col items-center gap-4 md:gap-[24px] xl:items-start xl:gap-[32px]">
@@ -1826,7 +1826,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative z-[1] mx-auto mt-[470px] w-full max-w-[1421px] px-4 sm:mt-[505px] sm:px-6 md:mt-[580px] lg:mt-[615px] xl:mt-[605px] xl:px-0">
+          <div className="relative z-[1] mx-auto mt-[480px] w-full max-w-[1421px] px-4 sm:mt-[540px] sm:px-6 md:mt-[510px] lg:mt-[535px] xl:mt-[520px] xl:px-0">
             {/* Mobile: horizontal swipe (scroll-snap). md+: grid with fluid clamp sizes */}
             <div
               className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-4 pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:px-6 md:mx-0 md:grid md:w-full md:grid-cols-[1.95fr_0.9fr_1.2fr] md:items-stretch md:overflow-visible md:px-0 md:pb-0"
