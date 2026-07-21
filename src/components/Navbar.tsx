@@ -4,40 +4,76 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function Navbar({ dark = false }: { dark?: boolean }) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const SERVICES_LINKS = [
+  { label: "Création d'entreprise", href: '/services/creation-entreprise' },
+  { label: 'Accompagnement juridique', href: '/services/conseil-juridique' },
+  { label: 'Accélérer mon business', href: '/services/accelerer-mon-business' },
+];
 
-  const navBg   = dark ? '#002600' : '#F7FCFF';
-  const textCol = dark ? '#FFFFFF' : '#003300';
+export default function Navbar({ dark = false, glass = false }: { dark?: boolean; glass?: boolean }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+
+  const navBg   = glass ? 'rgba(247, 252, 255, 0.1)' : dark ? '#002600' : '#F7FCFF';
+  const textCol = dark || glass ? '#FFFFFF' : '#003300';
+  const glassPanel = glass
+    ? { border: '1px solid rgba(255, 255, 255, 0.34)', backdropFilter: 'blur(49.2px)', WebkitBackdropFilter: 'blur(49.2px)' }
+    : {};
 
   return (
-    <nav className="absolute left-1/2 top-3 z-50 w-[95%] max-w-[1450px] -translate-x-1/2 sm:top-4 sm:w-[94%] md:top-8 md:w-[92%] lg:top-10 lg:w-[90%] xl:top-12">
+    <nav
+      className={
+        glass
+          ? 'absolute left-0 top-0 z-50 w-full'
+          : 'absolute left-1/2 top-3 z-50 w-[95%] max-w-[1450px] -translate-x-1/2 sm:top-4 sm:w-[94%] md:top-8 md:w-[92%] lg:top-10 lg:w-[90%] xl:top-12'
+      }
+    >
       <div
-        className="flex flex-row items-center justify-between gap-3 rounded-[16px] px-3 py-3 sm:px-4 md:rounded-[19.6104px] md:px-5 md:py-[13.8772px] lg:px-6 xl:px-[25px]"
+        className={
+          glass
+            ? 'flex flex-row items-center justify-between gap-3 px-4 py-4 sm:px-6 md:px-[34px] md:py-[34px]'
+            : 'flex flex-row items-center justify-between gap-3 rounded-[16px] px-3 py-3 sm:px-4 md:rounded-[19.6104px] md:px-5 md:py-[13.8772px] lg:px-6 xl:px-[25px]'
+        }
         style={{
           background: navBg,
           boxShadow: '0px 3.23873px 28.9866px rgba(0, 51, 0, 0.25)',
+          ...glassPanel,
         }}
       >
         <Link href="/" className="flex min-w-0 items-center gap-2 md:gap-2.5">
-          <Image
-            src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672853/rnj/layer-4-955dc651.png"
-            alt="Logo icon"
-            width={32}
-            height={34}
-            className="h-[30px] w-[28px] sm:h-[34px] sm:w-[32px] md:h-[41px] md:w-[39px]"
-            priority
-            unoptimized
-          />
-          <Image
-            src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672854/rnj/group-73892e5a.png"
-            alt="Logo text"
-            width={162}
-            height={43}
-            className="h-auto w-[110px] sm:w-[150px] md:w-[162px]"
-            priority
-            unoptimized
-          />
+          {glass ? (
+            <Image
+              src="/optimized/Group (11).png"
+              alt="RNJ Advisory"
+              width={180}
+              height={45}
+              className="h-auto w-[130px] sm:w-[160px] md:w-[180px]"
+              priority
+              unoptimized
+            />
+          ) : (
+            <>
+              <Image
+                src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672853/rnj/layer-4-955dc651.png"
+                alt="Logo icon"
+                width={32}
+                height={34}
+                className="h-[30px] w-[28px] sm:h-[34px] sm:w-[32px] md:h-[41px] md:w-[39px]"
+                priority
+                unoptimized
+              />
+              <Image
+                src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672854/rnj/group-73892e5a.png"
+                alt="Logo text"
+                width={162}
+                height={43}
+                className="h-auto w-[110px] sm:w-[150px] md:w-[162px]"
+                priority
+                unoptimized
+              />
+            </>
+          )}
         </Link>
 
         <div className="hidden flex-row items-center gap-6 xl:flex 2xl:gap-[29.36px]">
@@ -49,11 +85,15 @@ export default function Navbar({ dark = false }: { dark?: boolean }) {
             Accueil
           </Link>
 
-          <div className="relative">
+          <div
+            className="relative"
+            onMouseEnter={() => setIsServicesOpen(true)}
+            onMouseLeave={() => setIsServicesOpen(false)}
+          >
             <button
               type="button"
-              disabled
-              className="flex items-center gap-1.5 text-center font-[Geist] text-[15px] font-semibold opacity-50 transition hover:opacity-75 2xl:text-[17px] cursor-not-allowed"
+              onClick={() => setIsServicesOpen(!isServicesOpen)}
+              className="flex items-center gap-1.5 text-center font-[Geist] text-[15px] font-semibold transition hover:opacity-75 2xl:text-[17px]"
               style={{ color: textCol }}
             >
               <span>Services</span>
@@ -64,11 +104,36 @@ export default function Navbar({ dark = false }: { dark?: boolean }) {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2.5"
-                className="transition-transform rotate-180"
+                className={`transition-transform ${isServicesOpen ? '' : 'rotate-180'}`}
               >
                 <path d="M1 5 L6 1 L11 5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
+
+            {isServicesOpen && (
+              <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3">
+                <div
+                  className="flex w-[240px] flex-col overflow-hidden rounded-[14px] py-2"
+                  style={{
+                    background: navBg,
+                    boxShadow: '0px 3.23873px 28.9866px rgba(0, 51, 0, 0.25)',
+                    ...glassPanel,
+                  }}
+                >
+                  {SERVICES_LINKS.map((service) => (
+                    <Link
+                      key={service.label}
+                      href={service.href}
+                      onClick={() => setIsServicesOpen(false)}
+                      className="px-5 py-2.5 font-[Geist] text-[15px] font-semibold transition hover:opacity-75"
+                      style={{ color: textCol }}
+                    >
+                      {service.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <Link
@@ -145,7 +210,7 @@ export default function Navbar({ dark = false }: { dark?: boolean }) {
       {isMobileMenuOpen && (
         <div
           className="mt-2 rounded-2xl p-4 shadow-lg xl:hidden"
-          style={{ background: navBg, boxShadow: '0px 3px 20px rgba(0, 51, 0, 0.2)' }}
+          style={{ background: navBg, boxShadow: '0px 3px 20px rgba(0, 51, 0, 0.2)', ...glassPanel }}
         >
           <div className="flex flex-col gap-4">
             <Link
@@ -160,8 +225,8 @@ export default function Navbar({ dark = false }: { dark?: boolean }) {
             <div>
               <button
                 type="button"
-                disabled
-                className="flex w-full items-center justify-between border-b py-2 font-[Geist] text-lg font-semibold cursor-not-allowed opacity-50"
+                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                className="flex w-full items-center justify-between border-b py-2 font-[Geist] text-lg font-semibold"
                 style={{ color: textCol, borderColor: `${textCol}1a` }}
               >
                 <span>Services</span>
@@ -172,11 +237,30 @@ export default function Navbar({ dark = false }: { dark?: boolean }) {
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2.5"
-                  className="transition-transform rotate-180"
+                  className={`transition-transform ${isMobileServicesOpen ? '' : 'rotate-180'}`}
                 >
                   <path d="M1 5 L6 1 L11 5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
+
+              {isMobileServicesOpen && (
+                <div className="flex flex-col gap-1 py-2 pl-4">
+                  {SERVICES_LINKS.map((service) => (
+                    <Link
+                      key={service.label}
+                      href={service.href}
+                      onClick={() => {
+                        setIsMobileServicesOpen(false);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="py-2 font-[Geist] text-base font-semibold opacity-80"
+                      style={{ color: textCol }}
+                    >
+                      {service.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
 
             <Link

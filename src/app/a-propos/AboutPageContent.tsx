@@ -84,15 +84,15 @@ const teamMembers = [
 const partnerAssetLogos = [
   'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678791/rnj/asset-14-1-cda0f5e7.png',
   'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678792/rnj/asset-15-1-7f0249bf.png',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333858/rnj/asset-16-1-41dc72e6.svg',
   'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679416/rnj/asset-17-1-5077f95f.png',
-  'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776333861/rnj/asset-21-1-6ad9b68e.svg',
   'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678793/rnj/asset-22-1-ac5775de.png',
   'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678793/rnj/asset-23-1-9c5664dc.png',
   'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678793/rnj/asset-24-1-1c05ea09.png',
   'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678794/rnj/asset-26-1-3d6250e2.png',
   'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678795/rnj/asset-27-1-8679f4ab.png',
   'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679414/rnj/asset-28-1-d6d25061.png',
+  '/optimized/Layer 1 (22).png',
+  '/optimized/Layer 1 (23).png',
 ] as const;
 
 const approachSteps = [
@@ -279,12 +279,12 @@ export default function AboutPage() {
 
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-          <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671296/rnj/optimized/mask-group-6-e75a83b2.png"
+          <Image src="/optimized/mask-group-6.webp"
             alt=""
             fill
             className="object-cover object-bottom"
             sizes="100vw"
-           loading="lazy"/>
+            loading="lazy"/>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10" />
         </div>
 

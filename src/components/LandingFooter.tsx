@@ -68,7 +68,7 @@ const socialIcons = [
   },
 ] as const;
 
-const footerBackgroundMask = '/optimized/Mask%20group%20(45).svg';
+const footerBackgroundMask = '/optimized/mask-group-45.webp';
 
 export default function LandingFooter() {
   const contactButtonRef = useRef<HTMLAnchorElement | null>(null);
@@ -184,6 +184,7 @@ export default function LandingFooter() {
           alt=""
           fill
           aria-hidden="true"
+          loading="lazy"
           className="pointer-events-none object-cover object-center"
         />
 
@@ -315,7 +316,7 @@ export default function LandingFooter() {
                         className="relative flex h-[40px] w-[40px] items-center justify-center overflow-hidden rounded-full border-[1.5px] border-white/20 transition-all duration-200 hover:border-white/40 hover:bg-white/5 sm:h-[44px] sm:w-[44px]"
                         aria-label={social.name}
                       >
-                        <Image src={social.src} alt={social.name} fill className="object-contain p-[8px]" unoptimized />
+                        <Image src={social.src} alt={social.name} fill sizes="44px" loading="lazy" className="object-contain p-[8px]" unoptimized />
                       </a>
                     ))}
                   </div>

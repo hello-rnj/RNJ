@@ -1,0 +1,190 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{mdframed}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{parskip}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.8cm, right=2.8cm}
+
+\definecolor{rnjdark}{HTML}{0E434F}
+\definecolor{rnjolive}{HTML}{839705}
+\definecolor{rnjcream}{HTML}{F5FAC7}
+\definecolor{rnjlight}{HTML}{C1CB82}
+\definecolor{rouge}{HTML}{C0392B}
+\definecolor{orange}{HTML}{E67E22}
+\definecolor{vert}{HTML}{27AE60}
+\definecolor{gris}{HTML}{7F8C8D}
+
+\titleformat{\section}{\large\bfseries\color{rnjdark}}{\thesection.}{0.8em}{}[\color{rnjolive}\titlerule]
+\titleformat{\subsection}{\normalsize\bfseries\color{rnjdark}}{\thesubsection.}{0.6em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{gris} RNJ Advisory --- Audit SEO}
+\fancyhead[R]{\small\color{gris} rnj-advisory.be}
+\fancyfoot[C]{\small\color{gris}\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+
+\newmdenv[linecolor=rouge,linewidth=1.5pt,backgroundcolor=rouge!6,
+  innerleftmargin=10pt,innerrightmargin=10pt,innertopmargin=8pt,innerbottommargin=8pt]{alertbox}
+
+\newmdenv[linecolor=rnjolive,linewidth=1.5pt,backgroundcolor=rnjcream!60,
+  innerleftmargin=10pt,innerrightmargin=10pt,innertopmargin=8pt,innerbottommargin=8pt]{infobox}
+
+\newmdenv[linecolor=vert,linewidth=1.5pt,backgroundcolor=vert!6,
+  innerleftmargin=10pt,innerrightmargin=10pt,innertopmargin=8pt,innerbottommargin=8pt]{okbox}
+
+\hypersetup{colorlinks=true,linkcolor=rnjdark,urlcolor=rnjolive}
+\newcommand{\f}[1]{\texttt{\small\color{rnjdark}#1}}
+
+\begin{document}
+
+%% -- Titre -------------------------------------------------------------------
+\begin{center}
+  {\LARGE\bfseries\color{rnjdark} Audit SEO --- rnj-advisory.be}\\[0.8em]
+  \textcolor{gris}{\small Cabinet RNJ Advisory}
+\end{center}
+
+\vspace{0.5em}
+\textcolor{rnjolive}{\rule{\linewidth}{1pt}}
+\vspace{1em}
+
+%% -- 1. Ce qui fonctionne ----------------------------------------------------
+\section{Ce qui fonctionne}
+
+\begin{okbox}
+Metadonnees (titre, description, canonical) sur chaque page $\cdot$
+Open Graph et Twitter Card $\cdot$
+\f{robots.txt} correct $\cdot$
+\f{sitemap.xml} present $\cdot$
+JSON-LD \texttt{ProfessionalService} + \texttt{FAQPage} sur l'accueil.
+\end{okbox}
+
+%% -- 2. Problemes critiques --------------------------------------------------
+\section{Problemes critiques}
+
+\subsection{P1 --- 76 projets invisibles pour Google}
+
+\begin{alertbox}
+Tous les projets (67 Tunisie + 9 autres pays) sont affiches dans des
+\textbf{modales JavaScript}. Google ne peut pas indexer leur contenu.
+C'est la quasi-totalite de la valeur SEO du site qui est inaccessible
+aux moteurs de recherche.
+\end{alertbox}
+
+\textbf{Solution :} Creer des routes \f{/projets/[slug]} --- une page HTML par
+projet, avec \texttt{generateMetadata()} et un schema.org \texttt{CreativeWork}.
+
+\textbf{Exemples de requetes actuellement perdues :}
+\begin{itemize}[leftmargin=1.5em, topsep=4pt]
+  \item \emph{interconnexion electrique Tunisie Italie reglementation}
+  \item \emph{garanties d'origine energie Tunisie}
+  \item \emph{PPP eau potable zone rurale Benin}
+  \item \emph{analyse institutionnelle Mauritanie conseil}
+\end{itemize}
+
+\subsection{P2 --- Contenu duplique}
+
+\f{/projets/page.tsx} affiche exactement le meme composant que
+\f{/services/analyse-institutionnelle}. Google penalise les URLs jumelles.
+
+\textbf{Solution :} Balise \texttt{canonical} sur \f{/projets} pointant vers
+\f{/services/analyse-institutionnelle}.
+
+\subsection{P3 --- Double URL pour la page A propos}
+
+\f{/about} et \f{/a-propos} coexistent, divisant l'autorite de la page.
+
+\textbf{Solution :} Redirection 301 de \f{/about} vers \f{/a-propos} dans
+\f{next.config.ts}.
+
+\subsection{P4 --- Date du sitemap figee}
+
+\begin{verbatim}
+const LAST_MODIFIED = new Date('2026-05-06T00:00:00.000Z');
+\end{verbatim}
+
+Google interprete cette date comme un signe que le site n'evolue pas.
+
+\textbf{Solution :}
+\begin{verbatim}
+const LAST_MODIFIED = new Date(
+  process.env.SITE_LAST_MODIFIED ?? Date.now()
+);
+\end{verbatim}
+
+%% -- 3. Opportunites manquees ------------------------------------------------
+\section{Opportunites manquees}
+
+\subsection{Blog vide}
+
+La page \f{/blogs} existe sans aucun article. Sujets a fort potentiel :
+\begin{itemize}[leftmargin=1.5em, topsep=4pt]
+  \item \emph{Cadre reglementaire des energies renouvelables en Tunisie}
+  \item \emph{PPP en Afrique de l'Ouest : bonnes pratiques}
+  \item \emph{RGPD et PME belges : erreurs frequentes}
+  \item \emph{Structurer juridiquement une entreprise en Belgique (hors UE)}
+\end{itemize}
+
+\subsection{Pages de services manquantes}
+
+1 seule page de service indexable sur 6 metiers couverts.
+
+\begin{tabularx}{\linewidth}{lX}
+  \toprule
+  \textbf{Route a creer} & \textbf{Service} \\
+  \midrule
+  \f{/services/structuration-juridique} & Gouvernance, creation, transmission \\
+  \f{/services/droit-des-contrats} & Redaction, negociation \\
+  \f{/services/ppp-concessions} & Partenariats public-prive \\
+  \f{/services/rgpd-conformite} & Compliance, audit \\
+  \f{/services/esg-impact} & ESG, durabilite \\
+  \f{/services/recrutement-international} & Mobilite, talents hors UE \\
+  \bottomrule
+\end{tabularx}
+
+%% -- 4. Plan d'action --------------------------------------------------------
+\section{Plan d'action}
+
+\begin{longtable}{p{0.5cm}p{5.5cm}p{3cm}p{2cm}p{2.2cm}}
+  \toprule
+  & \textbf{Action} & \textbf{Fichier} & \textbf{Impact} & \textbf{Effort} \\
+  \midrule
+  \endfirsthead
+  \midrule
+  & \textbf{Action} & \textbf{Fichier} & \textbf{Impact} & \textbf{Effort} \\
+  \midrule
+  \endhead
+  P1 & Pages \f{/projets/[slug]} & \f{src/app/projets/} & \textcolor{rouge}{\textbf{Tres eleve}} & Eleve \\[4pt]
+  P2 & Canonical \f{/projets} & \f{projets/page.tsx} & Moyen & Tres faible \\[4pt]
+  P3 & Redirect \f{/about} & \f{next.config.ts} & Moyen & Tres faible \\[4pt]
+  P4 & Date sitemap dynamique & \f{sitemap.ts} & Faible & Tres faible \\[4pt]
+  P5 & Blog : 2 articles/mois & \f{src/app/blogs/} & Eleve (long terme) & Continu \\[4pt]
+  P6 & Pages services & \f{src/app/services/} & Eleve & Moyen \\
+  \bottomrule
+\end{longtable}
+
+\begin{infobox}
+\textbf{Priorite absolue :} Sans les 76 pages projets individuelles, le potentiel
+SEO du site reste bloque. Avec elles, plusieurs centaines de requetes de longue
+traine deviennent accessibles, ciblant exactement les secteurs d'expertise du cabinet.
+\end{infobox}
+
+\vspace{2em}
+\textcolor{rnjolive}{\rule{\linewidth}{0.4pt}}
+\begin{center}
+  \textcolor{gris}{\small Audit etabli sur code source direct $\cdot$ RNJ Advisory $\cdot$ Confidentiel}
+\end{center}
+
+\end{document}

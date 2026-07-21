@@ -7,6 +7,20 @@ import { X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import LandingFooter from '@/components/LandingFooter';
 
+const partnerAssetLogos = [
+  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678791/rnj/asset-14-1-cda0f5e7.png',
+  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678792/rnj/asset-15-1-7f0249bf.png',
+  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679416/rnj/asset-17-1-5077f95f.png',
+  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678793/rnj/asset-22-1-ac5775de.png',
+  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678793/rnj/asset-23-1-9c5664dc.png',
+  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678793/rnj/asset-24-1-1c05ea09.png',
+  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678794/rnj/asset-26-1-3d6250e2.png',
+  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678795/rnj/asset-27-1-8679f4ab.png',
+  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679414/rnj/asset-28-1-d6d25061.png',
+  '/optimized/Layer 1 (22).png',
+  '/optimized/Layer 1 (23).png',
+] as const;
+
 const glowShapes = [
   {
     width: '404.34px',
@@ -138,7 +152,7 @@ const glowShapes = [
 ];
 
 
-type ImpactCountryId = 'tn' | 'mr' | 'sn' | 'gn' | 'bf' | 'ne' | 'bj' | 'cd';
+type ImpactCountryId = 'tn' | 'mr' | 'sn' | 'gn' | 'bf' | 'ne' | 'bj' | 'cd' | 'ae' | 'it' | 'fr' | 'be';
 
 type ImpactCountry = {
   id: ImpactCountryId;
@@ -173,6 +187,65 @@ function readPercentValue(value: unknown) {
   return Number.isFinite(number) ? number : 0;
 }
 
+// Each country's center, expressed as a percentage of the FULL map frame
+// (pinStyle values are percentages of the small impactPinsFrame sub-box, so
+// they're converted into the same coordinate space as a click on the map).
+function getImpactCountryFrameCenter(country: ImpactCountry) {
+  const localX = readPercentValue(country.pinStyle.left) + readPercentValue(country.pinStyle.width) / 2;
+  const localY = readPercentValue(country.pinStyle.top) + readPercentValue(country.pinStyle.height) / 2;
+  return {
+    x: impactPinsFrame.left + (localX / 100) * impactPinsFrame.width,
+    y: impactPinsFrame.top + (localY / 100) * impactPinsFrame.height,
+  };
+}
+
+// The highlighted countries on the map image can be small and are sometimes packed
+// close together (West Africa) or far apart (Belgium vs. UAE). Instead of relying on
+// small fixed hitboxes — which either overlap (false positives) or leave gaps a real
+// tap can miss (false negatives) — any click/tap on the map resolves to whichever
+// country's center is nearest, as long as it's within a reasonable radius.
+const IMPACT_COUNTRY_HIT_RADIUS_PERCENT = 9;
+
+function resolveNearestImpactCountry(
+  clientX: number,
+  clientY: number,
+  frameEl: HTMLElement | null
+): ImpactCountry | null {
+  if (!frameEl) return null;
+  const rect = frameEl.getBoundingClientRect();
+  if (rect.width === 0 || rect.height === 0) return null;
+  const x = ((clientX - rect.left) / rect.width) * 100;
+  const y = ((clientY - rect.top) / rect.height) * 100;
+
+  // 1) Test precis: le point tombe-t-il dans la forme reelle d'un pays
+  // (contour extrait de l'image de fond) ? Fonctionne identiquement sur
+  // n'importe quel device puisque x/y et les polygones sont tous les deux
+  // exprimes en % du cadre de la carte.
+  const exactId = findCountryAtPoint(x, y);
+  if (exactId) {
+    const exact = impactCountries.find((country) => country.id === exactId);
+    if (exact) return exact;
+  }
+
+  // 2) Repli: le pays dont le centre du pin est le plus proche, pour les
+  // clics/tap juste a cote de la forme reelle (doigt imprecis sur mobile,
+  // pays trop fin pour etre touche pile dessus, etc.).
+  let closest: ImpactCountry | null = null;
+  let closestDistance = Infinity;
+  for (const country of impactCountries) {
+    const center = getImpactCountryFrameCenter(country);
+    const distance = (x - center.x) ** 2 + (y - center.y) ** 2;
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closest = country;
+    }
+  }
+  if (closest && closestDistance <= IMPACT_COUNTRY_HIT_RADIUS_PERCENT ** 2) {
+    return closest;
+  }
+  return null;
+}
+
 function getImpactPopupVars(country: ImpactCountry): CSSProperties {
   // Position spécifique pour chaque pays selon le design Figma
   const leftPercent = (country.cardPopupLeft / 1346) * 100;
@@ -185,6 +258,23 @@ function getImpactPopupVars(country: ImpactCountry): CSSProperties {
     '--card-translate-y': '-100%',
   } as CSSProperties;
 }
+
+// Local country-shape thumbnails (replaces the old mapSrc, which pointed at
+// the now-disabled dmrtdo9z3 Cloudinary account and 401'd).
+const countryShapeSrc: Record<string, string> = {
+  TN: '/optimized/TN.png',
+  MR: '/optimized/MR.png',
+  SN: '/optimized/SN.png',
+  GN: '/optimized/GN.png',
+  BF: '/optimized/BF.png',
+  NE: '/optimized/NE.png',
+  BJ: '/optimized/BJ.png',
+  CD: '/optimized/CD.png',
+  AE: '/optimized/AE.png',
+  IT: '/optimized/Group 349135.png',
+  FR: '/optimized/Vector (7).png',
+  BE: '/optimized/BE (1).png',
+};
 
 const impactCountries: readonly ImpactCountry[] = [
   {
@@ -206,10 +296,10 @@ const impactCountries: readonly ImpactCountry[] = [
     cardPopupLeft: 713,
     cardPopupTop: 488,
     pinStyle: {
-      left: '48.92%',
-      top: '-0.19%',
-      width: '18.39%',
-      height: '27.88%',
+      left: '54.62%',
+      top: '17.69%',
+      width: '7%',
+      height: '10%',
     },
   },
   {
@@ -231,10 +321,10 @@ const impactCountries: readonly ImpactCountry[] = [
     cardPopupLeft: 580,
     cardPopupTop: 559,
     pinStyle: {
-      left: '12.65%',
-      top: '26.55%',
-      width: '18.39%',
-      height: '27.88%',
+      left: '18.35%',
+      top: '44.43%',
+      width: '7%',
+      height: '10%',
     },
   },
   {
@@ -256,10 +346,10 @@ const impactCountries: readonly ImpactCountry[] = [
     cardPopupLeft: 563,
     cardPopupTop: 582,
     pinStyle: {
-      left: '4.06%',
-      top: '34.91%',
-      width: '18.39%',
-      height: '27.88%',
+      left: '9.76%',
+      top: '52.79%',
+      width: '7%',
+      height: '10%',
     },
   },
   {
@@ -281,10 +371,10 @@ const impactCountries: readonly ImpactCountry[] = [
     cardPopupLeft: 580,
     cardPopupTop: 604,
     pinStyle: {
-      left: '11.74%',
-      top: '42.91%',
-      width: '18.39%',
-      height: '27.88%',
+      left: '17.44%',
+      top: '60.79%',
+      width: '7%',
+      height: '10%',
     },
   },
   {
@@ -306,10 +396,10 @@ const impactCountries: readonly ImpactCountry[] = [
     cardPopupLeft: 617,
     cardPopupTop: 595,
     pinStyle: {
-      left: '28.48%',
-      top: '39.64%',
-      width: '18.39%',
-      height: '27.88%',
+      left: '34.18%',
+      top: '57.52%',
+      width: '7%',
+      height: '10%',
     },
   },
   {
@@ -331,10 +421,10 @@ const impactCountries: readonly ImpactCountry[] = [
     cardPopupLeft: 663,
     cardPopupTop: 568,
     pinStyle: {
-      left: '50.39%',
-      top: '29.82%',
-      width: '18.39%',
-      height: '27.88%',
+      left: '56.09%',
+      top: '47.70%',
+      width: '7%',
+      height: '10%',
     },
   },
   {
@@ -356,10 +446,10 @@ const impactCountries: readonly ImpactCountry[] = [
     cardPopupLeft: 685,
     cardPopupTop: 620,
     pinStyle: {
-      left: '36.18%',
-      top: '44.36%',
-      width: '18.39%',
-      height: '27.88%',
+      left: '41.88%',
+      top: '62.24%',
+      width: '7%',
+      height: '10%',
     },
   },
   {
@@ -381,13 +471,164 @@ const impactCountries: readonly ImpactCountry[] = [
     cardPopupLeft: 776,
     cardPopupTop: 677,
     pinStyle: {
-      left: '77.36%',
-      top: '66.18%',
-      width: '18.39%',
-      height: '27.88%',
+      left: '83.06%',
+      top: '84.06%',
+      width: '7%',
+      height: '10%',
+    },
+  },
+  {
+    id: 'ae',
+    code: 'AE',
+    name: 'UAE',
+    years: '2024-2026',
+    focusYear: '2026',
+    projects: '01 Projet',
+    mapSrc: '',
+    summary: 'Conseil Stratégique & Réglementaire',
+    description: "Aux Émirats arabes unis, RNJ Advisory accompagne les acteurs institutionnels et privés sur des projets à forte composante réglementaire et stratégique.",
+    tags: ['energy', 'durability'],
+    miniMapWidth: 136,
+    miniMapHeight: 120,
+    miniMapBorder: '1px solid #003300',
+    cardLeft: '57%',
+    cardTop: '50%',
+    cardPopupLeft: 766,
+    cardPopupTop: 600,
+    pinStyle: {
+      left: '126.36%',
+      top: '65.81%',
+      width: '7%',
+      height: '10%',
+    },
+  },
+  {
+    id: 'it',
+    code: 'IT',
+    name: 'Italy',
+    years: '2024-2026',
+    focusYear: '2026',
+    projects: '01 Projet',
+    mapSrc: '',
+    summary: 'Conseil Stratégique & Réglementaire',
+    description: "En Italie, RNJ Advisory accompagne les acteurs institutionnels et privés sur des projets à forte composante réglementaire et stratégique.",
+    tags: ['energy', 'durability'],
+    miniMapWidth: 134.53,
+    miniMapHeight: 155.51,
+    miniMapBorder: '1.13836px solid #003300',
+    cardLeft: '46%',
+    cardTop: '33%',
+    cardPopupLeft: 625,
+    cardPopupTop: 600,
+    pinStyle: {
+      left: '59.96%',
+      top: '7.13%',
+      width: '7%',
+      height: '10%',
+    },
+  },
+  {
+    id: 'fr',
+    code: 'FR',
+    name: 'France',
+    years: '2024-2026',
+    focusYear: '2026',
+    projects: '01 Projet',
+    mapSrc: '',
+    summary: 'Conseil Stratégique & Réglementaire',
+    description: "En France, RNJ Advisory accompagne les acteurs institutionnels et privés sur des projets à forte composante réglementaire et stratégique.",
+    tags: ['energy', 'durability'],
+    miniMapWidth: 147.55,
+    miniMapHeight: 129.52,
+    miniMapBorder: '1.23265px solid #003300',
+    cardLeft: '47%',
+    cardTop: '27%',
+    cardPopupLeft: 634,
+    cardPopupTop: 600,
+    pinStyle: {
+      left: '39.62%',
+      top: '0.03%',
+      width: '7%',
+      height: '10%',
+    },
+  },
+  {
+    id: 'be',
+    code: 'BE',
+    name: 'Belgium',
+    years: '2024-2026',
+    focusYear: '2026',
+    projects: '01 Projet',
+    mapSrc: '',
+    summary: 'Conseil Stratégique & Réglementaire',
+    description: "En Belgique, RNJ Advisory accompagne les acteurs institutionnels et privés sur des projets à forte composante réglementaire et stratégique.",
+    tags: ['energy', 'durability'],
+    miniMapWidth: 151,
+    miniMapHeight: 102,
+    miniMapBorder: '1px solid #003300',
+    cardLeft: '47%',
+    cardTop: '21%',
+    cardPopupLeft: 639,
+    cardPopupTop: 600,
+    pinStyle: {
+      left: '44.70%',
+      top: '-8.6%',
+      width: '7%',
+      height: '10%',
     },
   },
 ] as const;
+
+// Contour precis de chaque pays mis en avant sur l'image de fond de la
+// carte (maps-10375837.png), en % des dimensions de l'image (0-100 sur x
+// et y). Extrait par analyse de pixels (composantes connexes + contours),
+// pas dessine a la main -- ca colle exactement a la forme visible.
+// Certains pays ont plusieurs anneaux (ex. l'Italie: le corps principal +
+// un petit fragment de talon separe par l'anti-aliasing du trait de
+// frontiere sur cette carte basse-resolution).
+// Cette precision au pixel pres est ce qui permet a resolveNearestImpactCountry
+// de detecter un clic/hover exact plutot qu'un simple point + rayon fixe --
+// et comme tout est exprime en %, ca marche pareil sur n'importe quelle
+// taille d'ecran (mobile, tablette, desktop).
+const countryHitPolygons: Record<ImpactCountryId, readonly (readonly [number, number])[][]> = {
+  tn: [[[46.30,30.72], [46.16,30.87], [46.09,31.17], [46.16,31.32], [46.16,32.20], [46.09,32.35], [46.09,32.64], [45.95,32.94], [45.95,33.38], [46.16,33.68], [46.45,34.42], [46.52,35.45], [46.52,34.86], [46.73,34.56], [46.87,34.12], [46.94,34.12], [46.94,33.83], [46.80,33.38], [46.66,33.38], [46.52,32.94], [46.52,32.64], [46.73,32.20], [46.66,31.17], [46.52,31.02], [46.52,30.72]]],
+  mr: [[[41.03,38.26], [41.03,39.14], [40.96,39.29], [40.04,39.29], [40.04,40.92], [39.90,41.21], [39.69,41.21], [39.62,41.51], [39.69,41.65], [39.69,42.54], [39.62,42.69], [38.42,42.69], [38.63,43.28], [38.63,44.61], [38.70,44.76], [38.56,45.94], [39.06,45.79], [39.34,46.09], [39.83,47.27], [39.83,46.82], [39.90,46.68], [40.11,46.68], [40.18,46.82], [40.53,46.82], [40.60,46.68], [41.80,46.68], [41.80,45.94], [41.73,45.79], [41.73,44.31], [41.66,44.16], [41.66,42.69], [41.59,42.54], [41.59,41.06], [41.52,40.92], [41.52,39.73], [41.59,39.59], [41.87,39.59]]],
+  sn: [[[38.56,46.38], [38.42,47.12], [38.28,47.41], [38.35,47.56], [38.35,47.86], [38.42,48.01], [38.70,48.01], [38.78,47.86], [39.13,48.01], [39.20,47.86], [39.34,48.15], [39.34,48.45], [39.13,48.74], [38.85,48.60], [38.56,48.89], [38.42,48.74], [38.42,48.89], [38.63,48.89], [38.70,48.74], [39.41,48.74], [39.69,49.04], [39.76,48.89], [39.90,48.89], [39.76,48.45], [39.69,47.56], [39.34,46.53], [39.20,46.53], [39.06,46.23]]],
+  gn: [[[38.99,50.07], [39.06,50.22], [39.06,50.52], [39.41,51.26], [39.41,51.40], [39.48,51.40], [39.69,50.81], [39.83,50.66], [40.11,50.66], [40.32,51.26], [40.39,51.99], [40.53,51.85], [40.68,52.14], [40.75,52.73], [40.75,52.59], [40.89,52.44], [40.89,52.14], [41.03,51.85], [40.89,51.26], [40.89,50.52], [40.82,50.37], [40.82,49.78], [40.75,49.48], [40.60,49.48], [40.46,49.78], [40.25,49.78], [40.11,49.48], [39.97,49.63], [39.90,49.34], [39.76,49.34], [39.69,49.48], [39.41,49.19], [39.41,49.63], [39.27,49.93]]],
+  bf: [[[43.63,47.41], [43.28,47.41], [42.86,48.01], [42.58,48.60], [42.37,48.60], [42.29,49.19], [42.08,49.63], [42.08,49.93], [42.01,50.07], [42.01,50.52], [42.15,50.96], [42.29,50.81], [42.58,50.81], [42.58,50.22], [42.65,50.07], [42.79,50.07], [42.86,49.93], [43.21,49.93], [43.28,50.07], [43.42,49.93], [43.91,49.93], [43.91,49.78], [44.19,49.34], [44.19,49.19], [43.91,49.04], [43.77,48.74], [43.77,48.45], [43.56,47.71]]],
+  ne: [[[48.06,41.65], [47.92,41.80], [47.71,41.36], [47.29,41.06], [46.30,42.39], [45.46,43.87], [45.18,44.16], [45.04,44.16], [45.04,45.79], [44.83,46.38], [44.83,46.82], [44.55,47.12], [44.05,47.12], [43.98,47.41], [43.77,47.41], [43.77,47.71], [43.98,48.30], [43.98,48.60], [44.27,48.74], [44.41,49.04], [44.62,49.19], [44.76,48.60], [44.76,48.30], [45.04,47.86], [45.39,47.86], [45.67,48.15], [45.74,48.45], [46.16,48.30], [46.38,48.60], [46.59,48.60], [46.73,48.30], [47.01,48.30], [47.08,48.15], [47.43,48.45], [47.64,48.01], [47.85,48.30], [47.85,48.01], [47.71,47.56], [47.78,47.41], [47.85,46.68], [48.20,45.94], [48.28,44.16], [48.35,44.02], [48.35,43.13], [48.13,42.54], [48.13,41.95]]],
+  bj: [[[44.48,49.48], [44.41,49.48], [44.27,49.93], [44.12,49.93], [43.91,50.52], [44.12,50.96], [44.12,51.40], [44.19,51.55], [44.19,53.47], [44.27,53.62], [44.34,53.62], [44.34,51.85], [44.55,51.26], [44.62,50.52], [44.69,50.37], [44.62,49.78]]],
+  cd: [[[49.68,54.95], [49.54,55.24], [49.47,56.42], [49.33,57.02], [49.33,57.61], [49.26,57.76], [49.33,57.90], [49.33,58.35], [49.26,58.49], [49.26,58.94], [48.84,59.82], [48.70,60.56], [48.70,61.30], [48.20,62.33], [48.06,62.33], [47.99,62.04], [47.92,62.04], [47.78,62.33], [47.64,62.33], [47.57,62.78], [47.71,62.63], [48.77,62.63], [48.84,62.78], [48.91,63.52], [49.12,64.25], [49.54,64.11], [49.75,63.52], [49.89,63.52], [49.97,63.37], [50.18,63.66], [50.46,63.66], [50.53,63.81], [50.53,64.40], [50.60,64.55], [50.53,65.44], [50.67,65.88], [50.67,66.47], [50.88,66.47], [50.95,66.32], [51.02,66.47], [51.23,66.47], [51.58,66.77], [51.87,67.21], [52.15,66.91], [52.22,67.06], [52.22,67.36], [52.36,67.36], [52.36,67.06], [52.43,66.91], [52.43,66.03], [52.50,65.88], [52.43,65.14], [52.64,64.55], [52.99,64.40], [52.99,63.96], [52.71,63.22], [52.71,62.48], [52.64,62.33], [52.71,60.86], [52.64,60.71], [52.64,60.12], [52.78,59.53], [52.78,58.94], [52.92,58.49], [52.92,57.76], [53.27,56.87], [53.20,56.72], [53.20,55.84], [53.13,55.84], [52.92,55.24], [52.78,55.39], [52.36,55.39], [52.15,54.80], [51.16,54.95], [50.95,55.24], [50.81,55.10], [50.67,55.69], [50.32,55.39], [50.11,55.39], [49.97,55.10]]],
+  ae: [[[60.73,39.29], [60.17,40.62], [59.61,40.62], [59.68,41.06], [60.52,41.36], [60.52,40.92], [60.66,40.33]]],
+  it: [[[47.36,30.13], [47.43,30.28], [47.78,30.43], [47.99,30.72], [47.92,30.43], [47.99,30.13]], [[45.67,24.37], [45.60,24.96], [45.81,25.41], [45.95,25.11], [46.23,25.11], [46.52,25.41], [46.66,25.85], [46.66,26.14], [47.08,27.03], [47.29,27.33], [47.50,27.33], [47.71,27.77], [47.85,27.77], [47.99,28.21], [48.20,28.51], [48.35,29.10], [48.49,29.10], [48.28,28.51], [48.35,28.21], [48.56,27.92], [48.20,27.62], [48.06,27.33], [48.13,27.18], [47.99,27.33], [47.85,27.18], [46.94,25.11], [47.01,24.82], [46.94,24.52], [47.08,24.23], [47.36,24.08], [47.36,23.78], [47.08,23.78], [46.94,23.49], [46.80,23.49], [46.73,23.63], [46.59,23.63], [46.59,23.78], [46.38,24.08], [46.23,23.93], [46.16,24.23]]],
+  fr: [[[42.44,22.30], [42.44,22.45], [42.86,22.75], [43.35,23.93], [43.35,25.11], [43.21,25.85], [43.28,26.14], [43.42,26.14], [43.49,26.29], [43.91,26.29], [44.12,26.59], [44.19,26.44], [44.34,26.44], [44.41,26.14], [44.62,25.85], [44.83,25.85], [44.90,25.70], [44.97,25.85], [45.32,25.85], [45.39,26.00], [45.60,25.70], [45.60,25.55], [45.46,25.41], [45.46,25.11], [45.39,24.96], [45.39,24.67], [45.46,24.52], [45.39,23.93], [45.25,24.08], [45.18,23.93], [45.18,23.49], [45.46,22.75], [45.60,22.75], [45.60,22.16], [45.67,22.01], [45.11,21.71], [44.97,21.42], [44.76,21.42], [44.12,20.53], [44.12,20.83], [43.98,21.27], [43.70,21.42], [43.35,21.86], [43.21,21.71], [43.21,22.16], [43.14,22.30], [42.93,22.30], [42.86,22.16], [42.51,22.16]]],
+  be: [[[45.39,18.91], [45.25,18.76], [45.04,19.05], [44.90,19.05], [44.90,19.35], [44.76,19.94], [44.97,19.79], [45.11,20.09], [45.11,19.79], [45.18,19.64], [45.32,19.64]]],
+};
+
+// Ray casting standard (Jordan curve theorem): point dans un polygone ferme.
+function isPointInRing(x: number, y: number, ring: readonly (readonly [number, number])[]): boolean {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const [xi, yi] = ring[i];
+    const [xj, yj] = ring[j];
+    const intersects = yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi;
+    if (intersects) inside = !inside;
+  }
+  return inside;
+}
+
+// x,y en % de l'image de fond (0-100). Un pays peut avoir plusieurs
+// anneaux disjoints (ex. Italie + son fragment de talon) -> on teste tous
+// les anneaux, un point dans N'IMPORTE LEQUEL suffit.
+function findCountryAtPoint(x: number, y: number): ImpactCountryId | null {
+  for (const id of Object.keys(countryHitPolygons) as ImpactCountryId[]) {
+    const rings = countryHitPolygons[id];
+    if (rings.some((ring) => isPointInRing(x, y, ring))) {
+      return id;
+    }
+  }
+  return null;
+}
 
 const entrepreneurshipCards = [
   {
@@ -465,72 +706,54 @@ const institutionalCarouselCards = [
     description:
       'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
     image: '/optimized/group-348987-2.webp',
-    panelBg: '#406640',
-    titleColor: '#BFCCBF',
-    descriptionColor: '#BFCCBF',
-    buttonBg: '#BFCCBF',
-    buttonTextColor: '#003300',
-    panelFirst: false,
+    bandBg: '#003300',
+    textColor: '#FFFFFF',
+    mirror: false,
   },
   {
     title: 'Structuration Juridique & Gouvernance',
     description:
       'Choix de la forme juridique (Belgique, Tunisie, international), création et transformation de sociétés, gouvernance, pactes d’associés, conventions de partenariat et opérations de transmission (M&A).',
-    image: '/optimized/group-348987-3.webp',
-    panelBg: '#BFCCBF',
-    titleColor: '#003300',
-    descriptionColor: 'rgba(0, 51, 0, 0.6)',
-    buttonBg: '#003300',
-    buttonTextColor: '#FFFFFF',
-    panelFirst: false,
+    image: '/optimized/1768510829069%201.webp',
+    bandBg: '#BBCB2E',
+    textColor: '#FFFFFF',
+    mirror: false,
   },
   {
     title: 'Droit Des Contrats & Sécurité Commerciale',
     description:
       'Rédaction, revue et négociation de contrats (clients, fournisseurs, partenaires), sous-traitance, licences et confidentialité. Nous réduisons les risques et sécurisons la relation commerciale à chaque étape clé.',
-    image: '/optimized/image-droit-des-contrats.webp',
-    panelBg: '#A2B144',
-    titleColor: '#003300',
-    descriptionColor: 'rgba(0, 51, 0, 0.6)',
-    buttonBg: '#003300',
-    buttonTextColor: '#FFFFFF',
-    panelFirst: false,
+    image: '/optimized/1768510829154%201.webp',
+    bandBg: '#E0E5C0',
+    textColor: '#003300',
+    mirror: false,
   },
   {
     title: 'Partenariats Public-Privé & Concessions',
     description:
       'Structuration juridique de projets PPP et concessions, appui aux entreprises, collectivités et institutions. Interventions sur l’énergie, les infrastructures et les projets d’intérêt général.',
-    image: '/optimized/partenariats-concessions.webp',
-    panelBg: '#E0E5C0',
-    titleColor: '#003300',
-    descriptionColor: 'rgba(0, 51, 0, 0.6)',
-    buttonBg: '#003300',
-    buttonTextColor: '#FFFFFF',
-    panelFirst: false,
+    image: '/optimized/1775236031682%201.webp',
+    bandBg: '#DDE597',
+    textColor: '#003300',
+    mirror: false,
   },
   {
     title: 'ESG, Conformité & Appels À Projets',
     description:
       'Audit juridique et compliance, protection des données (RGPD), mise en conformité opérationnelle. Accompagnement sur les appels à projets : éligibilité, cadrage juridique, rédaction et sécurisation contractuelle.',
-    image: '/optimized/esg-conformite.webp',
-    panelBg: '#DDE597',
-    titleColor: '#003300',
-    descriptionColor: '#003300',
-    buttonBg: '#003300',
-    buttonTextColor: '#FFFFFF',
-    panelFirst: false,
+    image: '/optimized/1775236032125%201.webp',
+    bandBg: '#C2D0D3',
+    textColor: '#0E434F',
+    mirror: false,
   },
   {
     title: 'Veille Juridique & Anticipation Réglementaire',
     description:
       'Surveillance active des évolutions législatives et réglementaires en Belgique, en Europe et en Tunisie. Alertes ciblées sur les impacts potentiels et accompagnement dans l’anticipation des changements.',
-    image: '/optimized/veille-juridique.webp',
-    panelBg: '#CCD862',
-    titleColor: '#003300',
-    descriptionColor: 'rgba(0, 51, 0, 0.6)',
-    buttonBg: '#003300',
-    buttonTextColor: '#FFFFFF',
-    panelFirst: false,
+    image: '/optimized/1778491345670%201.webp',
+    bandBg: '#406640',
+    textColor: '#FFFFFF',
+    mirror: true,
   },
 ] as const;
 
@@ -761,6 +984,49 @@ const whyChooseGridCards = [
     descriptionWidth: '344px',
   },
 ];
+
+const projectsCarouselData = [
+  {
+    id: 'elmed',
+    client: "MINISTÈRE DE L'INDUSTRIE, DES MINES ET DES ÉNERGIES RENOUVELABLES",
+    title: 'Projet Elmed',
+    description: "Conseil juridique pour la mise en place d'un cadre réglementaire favorisant le développement du projet Elmed et l'exportation de l'électricité verte entre la Tunisie et l'Europe.",
+    interventions: [
+      "Création d'un cadre réglementaire propice au projet Elmed.",
+      "Mise en place des bases juridiques d'une autorité de régulation du secteur électrique.",
+    ],
+    pays: 'TUNISIE, ITALIE',
+    flagEmojis: ['🇹🇳', '🇮🇹'],
+    image: 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672109/rnj/mask-group-16-f5d02d69.webp',
+  },
+  {
+    id: 'eac',
+    client: "MINISTÈRE DE L'ÉNERGIE ET DES MINES",
+    title: "Certificats d'Attributs Énergétiques",
+    description: "RNJ Advisory a contribué à la première phase de l'étude sur la conceptualisation des EAC en Tunisie, avec un atelier organisé à Tunis auprès du Ministère de l'Énergie et des Mines et des parties prenantes.",
+    interventions: [
+      "Analyse du cadre réglementaire des EAC.",
+      "Organisation d'ateliers de consultation avec les parties prenantes.",
+    ],
+    pays: 'TUNISIE',
+    flagEmojis: ['🇹🇳'],
+    image: '/optimized/group-65.webp',
+  },
+  {
+    id: 'interconnexion',
+    client: "CLIENT INSTITUTIONNEL / SECTEUR ÉNERGÉTIQUE",
+    title: "Interconnexion électrique Tunisie-Italie",
+    description: "Étude juridique et institutionnelle pour la mise en place d'un cadre réglementaire propice à l'interconnexion électrique entre la Tunisie et l'Italie, ainsi que la création d'une autorité de régulation du secteur électrique en Tunisie.",
+    interventions: [
+      "Analyse du cadre réglementaire tunisien.",
+      "Actualisation des textes réglementaires.",
+      "Assistance à la mise en place du cadre réglementaire.",
+    ],
+    pays: 'TUNISIE, ITALIE',
+    flagEmojis: ['🇹🇳', '🇮🇹'],
+    image: 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672110/rnj/mask-group-17-57db8ebe.webp',
+  },
+] as const;
 
 
 function RegulationAnalysisSection() {
@@ -1149,6 +1415,8 @@ function EntrepreneuriatTabsSection() {
 
 export default function Home() {
   const [activeImpactCountry, setActiveImpactCountry] = useState<ImpactCountryId | null>(null);
+  const impactPinsFrameRef = useRef<HTMLDivElement>(null);
+  const mapFrameRef = useRef<HTMLDivElement>(null);
   const [showStrategicPopup, setShowStrategicPopup] = useState(false);
   const [showCertificatesPopup, setShowCertificatesPopup] = useState(false);
   const [isInterconnectionCardActive, setIsInterconnectionCardActive] = useState(false);
@@ -1165,14 +1433,17 @@ export default function Home() {
   const [servicesFocusStage, setServicesFocusStage] = useState(0);
   const [belgiumStep, setBelgiumStep] = useState(0);
   const [isInstitutionalCarouselPaused, setIsInstitutionalCarouselPaused] = useState(false);
+  const [isInstitutionalCarouselInView, setIsInstitutionalCarouselInView] = useState(false);
   const [activeInstitutionalSlide, setActiveInstitutionalSlide] = useState(0);
-  const [isLeftNavHovered, setIsLeftNavHovered] = useState(false);
-  const [isRightNavHovered, setIsRightNavHovered] = useState(false);
   const institutionalCarouselRef = useRef<HTMLDivElement | null>(null);
+  const institutionalCarouselSectionRef = useRef<HTMLDivElement | null>(null);
+  const prevInstitutionalInView = useRef(false);
   const interconnectionCardTouchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const interconnectionPopupOpenTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isLightBulbAnimated, setIsLightBulbAnimated] = useState(false);
   const lightBulbSectionRef = useRef<HTMLDivElement | null>(null);
+  const [showProjectOverlay, setShowProjectOverlay] = useState(false);
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
   const faqAnswerRefs = useRef<Array<HTMLParagraphElement | null>>([]);
   const [faqAnswerHeights, setFaqAnswerHeights] = useState<number[]>(() => faqItems.map(() => 0));
   const faqLayoutState = expandedFaqIndex !== null
@@ -1305,17 +1576,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    return () => {
-      if (interconnectionCardTouchTimeoutRef.current) {
-        clearTimeout(interconnectionCardTouchTimeoutRef.current);
-      }
-      if (interconnectionPopupOpenTimeoutRef.current) {
-        clearTimeout(interconnectionPopupOpenTimeoutRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
     const updateFaqViewport = () => {
       setIsMobileFaqViewport(window.innerWidth < 768);
     };
@@ -1349,15 +1609,17 @@ export default function Home() {
 
   const servicesFocusActiveCount = servicesFocusAnimationStates[servicesFocusStage].activeCount;
   const servicesFocusLineFill = servicesFocusAnimationStates[servicesFocusStage].lineFill;
-  const isInterconnectionReadMoreOpenState =
-    isInterconnectionCardActive || isInterconnectionReadMoreOpening;
+  function closeStrategicPopup() {
+    setShowStrategicPopup(false);
+    setIsInterconnectionReadMoreOpening(false);
+    setIsInterconnectionCardActive(false);
+  }
 
   function triggerInterconnectionCardTouchFeedback() {
     if (interconnectionCardTouchTimeoutRef.current) {
       clearTimeout(interconnectionCardTouchTimeoutRef.current);
       interconnectionCardTouchTimeoutRef.current = null;
     }
-    // Toggle: if already active, dismiss; otherwise show
     if (isInterconnectionCardActive) {
       setIsInterconnectionCardActive(false);
     } else {
@@ -1367,28 +1629,19 @@ export default function Home() {
 
   function openStrategicPopupWithTouchAnimation() {
     if (showStrategicPopup || isInterconnectionReadMoreOpening) return;
-
     const isTouchDevice =
       typeof window !== 'undefined' &&
       window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-
     if (interconnectionPopupOpenTimeoutRef.current) {
       clearTimeout(interconnectionPopupOpenTimeoutRef.current);
       interconnectionPopupOpenTimeoutRef.current = null;
     }
     setIsInterconnectionCardActive(true);
     setIsInterconnectionReadMoreOpening(true);
-
     interconnectionPopupOpenTimeoutRef.current = setTimeout(() => {
       setShowStrategicPopup(true);
       interconnectionPopupOpenTimeoutRef.current = null;
     }, isTouchDevice ? 220 : 180);
-  }
-
-  function closeStrategicPopup() {
-    setShowStrategicPopup(false);
-    setIsInterconnectionReadMoreOpening(false);
-    setIsInterconnectionCardActive(false);
   }
 
   function scrollInstitutionalCarousel(direction: 'left' | 'right') {
@@ -1399,7 +1652,11 @@ export default function Home() {
     const styles = getComputedStyle(carousel);
     const gap = Number.parseFloat(styles.columnGap || styles.gap || '0') || 0;
     const cardWidth = firstCard?.getBoundingClientRect().width ?? carousel.clientWidth * 0.9;
-    const offset = (cardWidth + gap) * (direction === 'right' ? 1 : -1);
+    // Two full cards are visible per view from md breakpoint up — advance by a
+    // whole pair so we always land on a pair boundary and never reveal a
+    // partial third card mid-row.
+    const cardsPerView = window.innerWidth >= 768 ? 2 : 1;
+    const offset = (cardWidth + gap) * cardsPerView * (direction === 'right' ? 1 : -1);
     carousel.scrollBy({ left: offset, behavior: 'smooth' });
   }
 
@@ -1419,7 +1676,30 @@ export default function Home() {
   }
 
   useEffect(() => {
+    const section = institutionalCarouselSectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInstitutionalCarouselInView(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isInstitutionalCarouselInView && !prevInstitutionalInView.current) {
+      const carousel = institutionalCarouselRef.current;
+      if (carousel) {
+        carousel.scrollLeft = 0;
+        setActiveInstitutionalSlide(0);
+      }
+    }
+    prevInstitutionalInView.current = isInstitutionalCarouselInView;
+  }, [isInstitutionalCarouselInView]);
+
+  useEffect(() => {
     if (isInstitutionalCarouselPaused) return;
+    if (!isInstitutionalCarouselInView) return;
     if (window.innerWidth < 1024) return;
 
     const interval = setInterval(() => {
@@ -1432,10 +1712,10 @@ export default function Home() {
       }
 
       scrollInstitutionalCarousel('right');
-    }, 3500);
+    }, 5000);
 
     return () => clearInterval(interval);
-  }, [isInstitutionalCarouselPaused]);
+  }, [isInstitutionalCarouselPaused, isInstitutionalCarouselInView]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -1465,6 +1745,20 @@ export default function Home() {
     };
   }, []);
 
+  function navigateProject(dir: 'prev' | 'next') {
+    setActiveProjectIndex((prev) => {
+      if (dir === 'prev') return Math.max(0, prev - 1);
+      return Math.min(projectsCarouselData.length - 1, prev + 1);
+    });
+  }
+
+  function openProject(idx: number) {
+    setActiveProjectIndex(idx);
+    setShowProjectOverlay(true);
+  }
+
+  const activeProject = projectsCarouselData[activeProjectIndex] ?? projectsCarouselData[0];
+
   return (
     <main className="relative min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-[#F7FCFF] to-white">
       <Navbar />
@@ -1472,11 +1766,10 @@ export default function Home() {
       <div className="relative w-full">
         <div className="relative w-full overflow-hidden pb-8 sm:pb-10 md:pb-12 xl:pb-14 min-h-[760px] sm:min-h-[820px] md:min-h-[900px] lg:min-h-[940px] xl:min-h-[983px]">
           <Image
-            src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:good,w_1920,c_limit/v1779671376/rnj/optimized/wind-energy-wind-power-sustainable-renewable-en-2026-03-18-04-35-53-utc-1-84fe3c19.webp"
+            src="/optimized/Frame 349083.png"
             alt=""
             fill
             priority
-            unoptimized
             sizes="(max-width: 640px) 640px, (max-width: 1024px) 1200px, 1920px"
             className="object-cover object-center"
             aria-hidden="true"
@@ -1563,9 +1856,10 @@ export default function Home() {
                     <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672106/rnj/group-527-v2-03944abc.webp"
                       alt="Quand la durabilité rencontre la stratégie"
                       fill
+                      sizes="(min-width: 1487px) 267px, 18vw"
                       className="object-cover"
                       unoptimized
-                     loading="lazy"/>
+                      loading="eager"/>
                   </div>
 
                   <div className="flex flex-1 flex-col" style={{ width: 'clamp(100px, 23vw, 336px)', gap: 'clamp(4px, 0.9vw, 13px)' }}>
@@ -1659,6 +1953,38 @@ export default function Home() {
 
         </div>
 
+        <section className="relative z-[2] w-full bg-[#003300] py-3 sm:py-3 md:py-4">
+          <div className="w-full px-0">
+            <div className="relative min-h-[42px] overflow-hidden sm:min-h-[46px] md:min-h-[52px] lg:min-h-[58px]">
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-[#003300] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-[#003300] to-transparent" />
+
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div
+                  className="flex w-max items-center gap-[clamp(24px,4.5vw,73px)]"
+                  style={{
+                    animation: 'scroll 26s linear infinite',
+                    willChange: 'transform',
+                  }}
+                >
+                  {[...partnerAssetLogos, ...partnerAssetLogos].map((logo, index) => (
+                    <div
+                      key={`partner-asset-logo-home-${index}-${logo}`}
+                      className="relative h-[clamp(22px,3.3vw,38px)] w-[clamp(80px,11vw,140px)] shrink-0 opacity-90"
+                    >
+                      <Image
+                        src={logo}
+                        alt={`Logo partenaire ${index % partnerAssetLogos.length + 1}`}
+                        fill
+                        className="object-contain [filter:brightness(0)_saturate(100%)_invert(100%)]"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <div className="relative w-full overflow-hidden bg-[#F7FCFF] py-8 sm:py-10 md:py-12 lg:min-h-[782px] lg:py-16">
           <div className="relative z-[2] mx-auto flex w-full max-w-[1395px] flex-col items-center gap-6 px-4 sm:gap-8 md:gap-10 lg:gap-[60px]">
@@ -1815,6 +2141,8 @@ export default function Home() {
                 <img
                   src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779673027/rnj/mask-group-39-06a5eb07.png"
                   alt="Partenaires en réunion"
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-contain"
                 />
               </div>
@@ -1925,6 +2253,8 @@ export default function Home() {
                 <img
                   src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:good,w_800,h_600,c_limit/v1779672109/rnj/optimized/frame-559.webp"
                   alt="Illustration Analyse Réglementaire"
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-contain object-center"
                 />
               </div>
@@ -1937,12 +2267,12 @@ export default function Home() {
           <div className="mx-auto w-full max-w-[1680px] px-0">
             <div className="relative min-h-[560px] overflow-hidden bg-[#003300] sm:min-h-[620px] md:min-h-[680px] lg:min-h-[760px]">
               <Image
-                src="/optimized/Group 349040.svg"
+                src="/optimized/entreprise.svg"
                 alt=""
                 fill
                 className="object-cover object-center"
                 unoptimized
-                priority
+                loading="lazy"
               />
 
               <div className="relative z-[1] mx-auto flex h-full w-full max-w-[1392px] flex-col gap-10 px-4 py-8 sm:gap-12 md:px-6 md:py-12 lg:justify-between lg:gap-16 lg:px-[20px] lg:py-[80px]">
@@ -1994,6 +2324,7 @@ export default function Home() {
                       alt=""
                       width={238}
                       height={294}
+                      loading="lazy"
                       className="w-full"
                     />
                   </div>
@@ -2405,260 +2736,307 @@ export default function Home() {
               </div>
             )}
 
-            <section className="w-full bg-[#F7FCFF] pb-10 pt-6 md:pb-12 md:pt-8 lg:pb-16 lg:pt-10">
-              <div className="mx-auto grid w-full max-w-[1157px] grid-cols-1 gap-4 px-4 sm:px-5 md:px-6 lg:grid-cols-2 lg:gap-5 lg:px-8 xl:gap-[19px] xl:px-0">
-                <article className="relative min-h-[480px] overflow-hidden rounded-[25px] sm:min-h-[580px] md:min-h-[760px] md:rounded-[35px] lg:min-h-[816px]">
-                  <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672109/rnj/mask-group-16-f5d02d69.webp"
-                    alt="Interconnexion électrique Tunisie-Italie"
+            {/* ===== FRAME 349336 — Three-card projects showcase (removed) ===== */}
+            {false && <section className="w-full bg-[#F7FCFF] pb-10 pt-6 md:pb-12 md:pt-8 lg:pb-16 lg:pt-10">
+              <div className="mx-auto grid w-full max-w-[1416px] grid-cols-1 gap-5 px-4 sm:px-5 md:px-6 lg:grid-cols-3 lg:gap-[27px] lg:px-8 xl:px-0">
+
+                {/* Card 1 — Énergies Renouvelables (Group 349346) */}
+                <article className="relative min-h-[520px] overflow-hidden rounded-[12px] lg:min-h-[626px]">
+                  <Image src="/optimized/team-of-four-engineers-in-white-hard-hats-and-high-2026-03-27-00-39-32-utc%201.webp"
+                    alt="Équipe d'ingénieurs — énergies renouvelables"
                     fill
                     className="object-cover"
                     unoptimized
-                   loading="lazy"/>
+                    loading="lazy"/>
 
-                  <div className="relative z-[1] flex min-h-full flex-col items-center px-4 py-6 sm:px-5 sm:py-8 md:px-6 md:pb-10 md:pt-12 lg:px-8 lg:pb-[58px] lg:pt-[64px]">
-                    <div className="flex w-full max-w-[505px] flex-col items-center gap-[17px] pt-4 lg:pt-6">
-                      <div className="flex w-full flex-col items-center gap-2 md:gap-[8px]">
-                        <div
-                          className="relative h-[clamp(360px,78vw,533px)] w-full cursor-pointer select-none overflow-hidden rounded-[18px] text-white"
-                          onMouseEnter={() => setIsInterconnectionCardActive(true)}
-                          onMouseLeave={() => setIsInterconnectionCardActive(false)}
-                          onTouchStart={triggerInterconnectionCardTouchFeedback}
-                          style={{
-                            width: '100%',
-                            maxWidth: '505px',
-                            height: 'clamp(360px,78vw,533px)',
-                            transition: 'transform 500ms ease-out, box-shadow 500ms ease-out, background-color 500ms ease-out, border-color 500ms ease-out',
-                            background: 'rgba(255, 255, 255, 0.14)',
-                            boxShadow: '2px 4px 22.3px rgba(0, 0, 0, 0.6)',
-                            border: isInterconnectionCardActive
-                              ? '1px solid rgba(255, 255, 255, 0.40)'
-                              : '1px solid rgba(255, 255, 255, 0.14)',
-                            transform: isInterconnectionCardActive
-                              ? 'translateY(-4px) scale(1.006)'
-                              : 'translateY(0) scale(1)',
-                          }}
-                        >
-                          {/* Figma Rectangle 56 — white gradient mask over the card background image */}
-                          <div
-                            className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-500"
-                            style={{
-                              background: 'linear-gradient(180deg, rgba(255,255,255,0.22) 65.38%, rgba(255,255,255,0) 100%)',
-                              opacity: isInterconnectionCardActive ? 0.6 : 1,
-                            }}
-                          />
+                  <span
+                    className="absolute left-[20px] top-[48px] inline-flex items-center justify-center px-5"
+                    style={{
+                      height: '30.37px',
+                      background: '#003300',
+                      borderRadius: '20.5224px',
+                      fontFamily: 'Geist',
+                      fontWeight: 400,
+                      fontSize: '12.4919px',
+                      color: 'rgba(255,255,255,0.7)',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    Énergies Renouvelables
+                  </span>
 
-                          <div
-                            className="relative z-[1] transition-opacity duration-500"
-                            style={{
-                              opacity: isInterconnectionReadMoreOpening ? 0.7 : 1,
-                              padding: 'clamp(20px, 5vw, 45px) clamp(16px, 4vw, 41px) 0',
-                            }}
-                          >
-                            <div className="relative mb-[20px] h-[44px] w-[111px]">
-                              <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779676561/rnj/image-2-2c9f497b.png"
-                                alt="RNJ Advisory"
-                                fill
-                                className="object-contain object-left"
-                               loading="lazy"/>
-                            </div>
-
-                            <div
-                              className="flex flex-col gap-[clamp(14px,3vw,26px)]"
-                              style={{ width: '100%', maxWidth: '100%' }}
-                            >
-                              <h3
-                                className="font-[Geist] font-normal text-white"
-                                style={{
-                                  width: '100%',
-                                  maxWidth: '100%',
-                                  fontSize: 'clamp(18px, 4.5vw, 40px)',
-                                  lineHeight: 'clamp(22px, 5vw, 43px)',
-                                }}
-                              >
-                                Interconnexion électrique Tunisie-Italie
-                              </h3>
-
-                              <div className="relative max-h-[228px] overflow-hidden">
-                                <p
-                                  className="font-[Geist] font-normal text-white"
-                                  style={{
-                                    width: '100%',
-                                    maxWidth: '100%',
-                                    fontSize: 'clamp(11px, 2.5vw, 16px)',
-                                    lineHeight: 'clamp(14px, 2.8vw, 18px)',
-                                  }}
-                                >
-                                  <span className="block">
-                                    Étude juridique et institutionnelle pour la mise en
-                                    place d&apos;un cadre réglementaire propice à
-                                    l&apos;interconnexion électrique entre la Tunisie et
-                                    l&apos;Italie, ainsi que la création d&apos;une autorité de
-                                    régulation du secteur électrique en Tunisie.
-                                  </span>
-                                  <span className="block h-2 md:h-3" aria-hidden="true" />
-                                  <span className="block font-semibold">Nos interventions :</span>
-                                  <span className="block">• Analyse du cadre réglementaire tunisien</span>
-                                  <span className="block">• Actualisation des textes réglementaires</span>
-                                  <span className="block">• Assistance à la mise en place cadre réglementaire</span>
-                                </p>
-
-                                <div
-                                  className="absolute inset-x-0 bottom-0 transition-opacity duration-500"
-                                  style={{
-                                    height: '60px',
-                                    background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)',
-                                    opacity: isInterconnectionCardActive ? 1 : 0,
-                                  }}
-                                />
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Read more bar — hidden at rest, slides up on hover/touch */}
-                          <div
-                            className="absolute left-0 right-0 bottom-0 flex items-end justify-center overflow-hidden"
-                            style={{
-                              height: isInterconnectionReadMoreOpening ? '100%' : isInterconnectionCardActive ? '26.83%' : '0%',
-                              background: isInterconnectionCardActive ? 'rgba(0,0,0,0.35)' : 'transparent',
-                              backdropFilter: isInterconnectionCardActive ? 'blur(22px)' : 'none',
-                              WebkitBackdropFilter: isInterconnectionCardActive ? 'blur(22px)' : 'none',
-                              borderTop: isInterconnectionCardActive ? '1px solid rgba(255,255,255,0.10)' : 'none',
-                              boxShadow: isInterconnectionCardActive ? '2px 4px 22.3px rgba(0,0,0,0.6)' : 'none',
-                              borderRadius: isInterconnectionReadMoreOpening ? '18px' : '0 0 18px 18px',
-                              transition: 'height 400ms cubic-bezier(0.22,1,0.36,1), background 400ms ease, box-shadow 400ms ease, border-color 400ms ease',
-                            }}
-                          >
-                            <div
-                              className="flex w-[102px] flex-col items-center justify-end pb-[18px] transition-all duration-500"
-                              style={{ gap: '25px' }}
-                            >
-                              {/* Double chevron up — Figma Group 67 */}
-                              <svg
-                                aria-hidden="true"
-                                width="22"
-                                height="22"
-                                viewBox="0 0 22 22"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path d="M4 14L11 7L18 14" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M4 20L11 13L18 20" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                              </svg>
-
-                              <button
-                                type="button"
-                                className="inline-flex h-[48px] w-[114px] items-center justify-center rounded-[120px] bg-white px-0 font-[Geist] text-[11px] font-bold leading-[14px] text-black transition-all duration-500"
-                                onClick={openStrategicPopupWithTouchAnimation}
-                                onTouchStart={triggerInterconnectionCardTouchFeedback}
-                              >
-                                En savoir plus...
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                        <div className="mt-6 flex items-center gap-2">
-                          <span className="h-[8px] w-[8px] rounded-full bg-[#ECECEC]" />
-                          <span className="h-[7px] w-[7px] rounded-full bg-white/30" />
-                          <span className="h-[7px] w-[7px] rounded-full bg-white/30" />
-                        </div>
-
-                      <div className="mt-5 flex min-h-[80px] w-full max-w-[280px] flex-col items-center gap-[20px]">
-                        <a
-                          href="/contact"
-                          className="flex h-[45px] w-full max-w-[280px] items-center justify-center rounded-[14px] bg-white px-[24px] py-[14px] font-[Geist] text-[14px] font-bold leading-[18px] text-black whitespace-nowrap"
-                        >
-                          Sécuriser mon projet
-                        </a>
-
-                        <p className="w-full max-w-[280px] text-center font-[Geist] font-medium text-[12px] leading-[16px] text-white/50">
-                          &copy; 2026 RNJ Advisory. Tous droits réservés.
-                        </p>
-                      </div>
+                  <div
+                    className="absolute inset-x-[6px] bottom-[8px] flex flex-col justify-end rounded-[14px] px-[14px] pb-[14px] pt-[18px]"
+                    style={{ background: 'rgba(0, 51, 0, 0.7)' }}
+                  >
+                    <h3
+                      className="font-[EB_Garamond] font-normal"
+                      style={{ fontSize: '24px', lineHeight: '41px', color: '#F5FAC7' }}
+                    >
+                      Transition Énergétique Durable
+                    </h3>
+                    <p
+                      className="mb-[18px] font-[Geist] font-normal"
+                      style={{ fontSize: '11px', lineHeight: '13px', color: '#F5FAC7', opacity: 0.6 }}
+                    >
+                      RNJ Advisory accompagne les institutions dans l&apos;élaboration de politiques publiques
+                      favorisant les investissements et le développement des énergies renouvelables.
+                    </p>
+                    <Link
+                      href="/contact"
+                      className="flex w-full items-center justify-center font-[Geist] font-bold"
+                      style={{
+                        height: '70.49px',
+                        background: '#F5FAC7',
+                        borderRadius: '52px',
+                        fontSize: '13.3842px',
+                        color: '#003300',
+                      }}
+                    >
+                      Un projet en tête ?
+                    </Link>
                   </div>
                 </article>
 
-                <article className="relative min-h-[480px] overflow-hidden rounded-[25px] sm:min-h-[580px] md:min-h-[760px] md:rounded-[35px] lg:min-h-[816px]">
-                  <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672110/rnj/mask-group-17-57db8ebe.webp"
-                    alt="Decision strategique"
+                {/* Card 2 — Interconnexion électrique (Group 349347) */}
+                <article
+                  className="relative flex min-h-[520px] flex-col justify-end rounded-[12px] px-5 pb-[22px] pt-8 lg:min-h-[626px]"
+                  style={{ background: '#C1CB82' }}
+                >
+                  <div className="flex flex-1 flex-col gap-[24px]">
+                    <span className="flex items-center gap-2">
+                      <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672853/rnj/layer-4-955dc651.png"
+                        alt=""
+                        width={36}
+                        height={40}
+                        style={{ width: '36px', height: 'auto' }}
+                        unoptimized
+                        loading="lazy"/>
+                      <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672854/rnj/group-73892e5a.png"
+                        alt="RNJ Advisory"
+                        width={138}
+                        height={37}
+                        style={{ width: '138px', height: 'auto' }}
+                        unoptimized
+                        loading="lazy"/>
+                    </span>
+
+                    <h3
+                      className="font-[EB_Garamond] font-normal capitalize"
+                      style={{ fontSize: '40px', lineHeight: '47px', letterSpacing: '-0.03em', color: '#003300', maxWidth: '393.78px' }}
+                    >
+                      Interconnexion électrique Tunisie-Italie
+                    </h3>
+
+                    <p
+                      className="font-[Geist] font-normal"
+                      style={{ fontSize: '14.3518px', lineHeight: '20px', letterSpacing: '0.03em', color: '#003300', opacity: 0.6 }}
+                    >
+                      <span className="block">
+                        Étude juridique et institutionnelle pour la mise en place d&apos;un cadre réglementaire
+                        propice à l&apos;interconnexion électrique entre la Tunisie et l&apos;Italie, ainsi que la
+                        création d&apos;une autorité de régulation du secteur électrique en Tunisie.
+                      </span>
+                      <span className="block h-2" aria-hidden="true" />
+                      <span className="block">Nos interventions :</span>
+                      <span className="block">• Analyse du cadre réglementaire tunisien applicable au secteur de l&apos;électricité et aux énergies renouvelables</span>
+                      <span className="block">• Actualisation des textes réglementaires relatifs à la création de l&apos;autorité de régulation du secteur électrique</span>
+                      <span className="block">• Assistance à la mise en place d&apos;un cadre réglementaire et contractuel propice à l&apos;exportation d&apos;électricité via ELMED</span>
+                    </p>
+                  </div>
+
+                  <Link
+                    href="/contact"
+                    className="mt-[24px] flex w-full items-center justify-center font-[Geist] font-bold"
+                    style={{
+                      height: '70.49px',
+                      background: '#FFFFFF',
+                      borderRadius: '53px',
+                      fontSize: '13.3842px',
+                      color: '#003300',
+                    }}
+                  >
+                    Discutons de vos enjeux.
+                  </Link>
+                </article>
+
+                {/* Card 3 — Certificats d'Attributs Énergétiques (Group 349348) */}
+                <article className="relative min-h-[520px] overflow-hidden rounded-[12px] lg:min-h-[626px]">
+                  <Image src="/optimized/aerial-view-of-empty-stadium-surrounded-by-green-t-2026-03-18-09-51-08-utc%201.webp"
+                    alt="Vue aérienne — certificats d'attributs énergétiques"
                     fill
                     className="object-cover"
-                   loading="lazy"/>
+                    unoptimized
+                    loading="lazy"/>
 
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/70" />
-                  <div className="relative z-[1] flex min-h-full flex-col items-center px-4 py-6 text-white sm:px-5 sm:py-8 md:px-6 md:pb-10 md:pt-12 lg:px-8 lg:pb-[58px] lg:pt-[64px]">
-                    <div className="flex w-full max-w-[505px] flex-col items-center gap-[14px] sm:gap-[16px]">
-                      <div className="flex w-full items-center gap-[8px]">
-                        <span className="h-[8px] w-[8px] rounded-full bg-white" />
-                        <span className="font-[Geist] text-[14px] font-bold leading-[1.1] text-white sm:text-[15px] md:text-[16.8333px] md:leading-[18px]">
-                          Conseil Stratégique
-                        </span>
-                      </div>
-
-                      <div
-                        className="w-full overflow-hidden rounded-[18px] text-white"
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.14)',
-                          boxShadow: '2px 4px 22.3px rgba(0, 0, 0, 0.6)',
-                        }}
-                      >
-                        <div className="flex h-full w-full flex-col px-4 pb-6 pt-4 sm:px-5 sm:pb-7 sm:pt-5 md:px-[21px] md:pb-[26px] md:pt-4">
-                          <div className="mx-auto flex w-full max-w-[463px] flex-col items-start gap-6 sm:gap-7 md:gap-[34px]">
-                            <div className="relative h-[220px] w-full max-w-[463px] sm:h-[280px] md:h-[349px]">
-                              <div className="absolute inset-0 rounded-[13px] bg-[#F7FCFF]" />
-                              <Image src="/optimized/group-65.webp"
-                                alt="Graphique de performance"
-                                fill
-                                className="rounded-[13px] object-cover"
-                               loading="lazy"/>
-                            </div>
-
-                            <div className="flex w-full max-w-[439px] flex-col items-start gap-[10px] md:gap-[13px]">
-                              <h3 className="font-[EB_Garamond] text-[24px] font-normal leading-[1.05] text-white sm:text-[28px] md:text-[31.25px] md:leading-[31px]">
-                                Certificats d&apos;Attributs Énergétiques
-                              </h3>
-                              <p className="font-[Geist] text-[13px] font-normal leading-[1.3] text-white/60 sm:text-[14px] md:text-[16px] md:leading-[16px]">
-                                RNJ Advisory a contribué à la première phase de
-                                l&apos;étude sur la conceptualisation des EAC en
-                                Tunisie, avec un atelier organisé à Tunis auprès du
-                                Ministère de l&apos;Énergie et des Mines et des
-                                parties prenantes.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="mt-2 flex w-full max-w-[375px] flex-row items-center gap-3">
-                        <button
-                          type="button"
-                          className="flex h-[48px] flex-1 items-center justify-center rounded-full border-2 border-[#F7FCFF] px-3 font-[Geist] text-[13px] font-medium leading-tight text-white transition-all duration-300 hover:bg-[#F7FCFF] hover:text-black sm:h-[53px] sm:text-[15px] sm:px-6"
-                          style={{ touchAction: 'manipulation' }}
-                          onClick={() => setShowCertificatesPopup(true)}
-                        >
-                          En savoir plus
-                        </button>
-
-                        <a
-                          href="/contact"
-                          className="flex h-[48px] flex-1 items-center justify-center rounded-full bg-white px-3 font-[Geist] text-[13px] font-bold leading-tight text-black sm:h-[53px] sm:text-[15px] sm:px-6"
-                          style={{ touchAction: 'manipulation' }}
-                        >
-                          Sécuriser mon projet
-                        </a>
-                      </div>
-
-                      <div className="mt-2 w-full max-w-[420px] font-[Geist] text-[14px] font-normal leading-[1.3] text-white/60 sm:text-[15px] md:mt-[24px] md:text-[16px] md:leading-[16px]">
-                        Une expertise indépendante au service de décisions
-                        stratégiques sécurisées.
-                      </div>
-                    </div>
+                  <div
+                    className="absolute inset-x-[6px] top-[16px] flex flex-col rounded-[14px] px-[14px] pb-[14px] pt-[20px]"
+                    style={{ background: '#F5FAC7' }}
+                  >
+                    <h3
+                      className="font-[EB_Garamond] font-normal"
+                      style={{ fontSize: '38.9175px', lineHeight: '41px', color: '#003300', maxWidth: '357.81px' }}
+                    >
+                      Certificats d&apos;Attributs Énergétiques
+                    </h3>
+                    <p
+                      className="mb-[20px] mt-[16px] font-[Geist] font-normal"
+                      style={{ fontSize: '13.0409px', lineHeight: '13px', color: '#003300', opacity: 0.6 }}
+                    >
+                      RNJ Advisory a contribué à la première phase de l&apos;étude sur la conceptualisation des EAC
+                      en Tunisie, avec un atelier organisé à Tunis auprès du Ministère de l&apos;Énergie et des Mines
+                      et des parties prenantes.
+                    </p>
+                    <Link
+                      href="/contact"
+                      className="flex w-full items-center justify-center font-[Geist] font-bold"
+                      style={{
+                        height: '70.49px',
+                        background: '#003300',
+                        borderRadius: '52px',
+                        fontSize: '13.3842px',
+                        color: '#F5FAC7',
+                      }}
+                    >
+                      intéressée
+                    </Link>
                   </div>
                 </article>
               </div>
-            </section>
+            </section>}
+
+            {/* ===== PROJECT OVERLAY PANEL ===== */}
+            {showProjectOverlay && (
+              <div className="pointer-events-none fixed inset-0 z-[9999] overscroll-none [overscroll-behavior:contain]">
+                {/* Backdrop click-to-close */}
+                <div
+                  className="pointer-events-auto absolute inset-0"
+                  onClick={() => setShowProjectOverlay(false)}
+                />
+
+                {/* Background image + gradient + panel */}
+                <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 h-full w-full object-cover"
+                    src={activeProject.image}
+                    style={{ transform: 'scale(1.02)', transformOrigin: 'center center', animation: '500ms ease 0s 1 normal both running fadeIn' }}
+                  />
+                  <div
+                    className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.12)_0%,rgba(0,0,0,0.22)_55%,rgba(0,0,0,0.34)_100%)]"
+                    aria-hidden="true"
+                  />
+
+                  {/* Sliding panel from the right */}
+                  <div
+                    className="pointer-events-auto absolute right-0 top-0 h-full w-[min(74vw,380px)] overflow-hidden border-l border-black/10 shadow-[-18px_0_36px_rgba(0,0,0,0.22)] sm:w-[min(66vw,430px)] md:w-[min(60vw,560px)] lg:w-[min(633px,44vw)]"
+                    style={{ background: 'rgb(221, 229, 151)', animation: '550ms cubic-bezier(0.22, 1, 0.36, 1) 80ms 1 normal both running slideInRight' }}
+                  >
+                    <div className="relative flex h-full min-h-0 w-full flex-col">
+
+                      {/* Close button */}
+                      <button
+                        type="button"
+                        className="absolute right-3 top-[calc(env(safe-area-inset-top)+12px)] z-30 flex h-10 w-10 items-center justify-center rounded-full bg-black/10 transition hover:bg-black/20 sm:right-4 sm:top-[calc(env(safe-area-inset-top)+16px)]"
+                        aria-label="Fermer"
+                        style={{ color: 'rgb(0, 51, 0)' }}
+                        onClick={() => setShowProjectOverlay(false)}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                      </button>
+
+                      {/* Project image */}
+                      <div
+                        className="mx-4 mt-[calc(env(safe-area-inset-top)+48px)] flex-shrink-0 overflow-hidden rounded-[12px] bg-black/10 sm:mx-6 md:mx-8 lg:mx-[clamp(30px,8%,51px)]"
+                        style={{ height: 'clamp(128px, 19vh, 210px)' }}
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          alt={activeProject.title}
+                          className="h-full w-full object-cover"
+                          src={activeProject.image}
+                          style={{ animation: '500ms cubic-bezier(0.22, 1, 0.36, 1) 200ms 1 normal both running panelImageIn' }}
+                        />
+                      </div>
+
+                      {/* Counter */}
+                      <p
+                        className="mt-3 px-4 font-[Geist] text-[11px] font-medium tracking-[-0.02em] sm:px-6 sm:text-[12px] md:px-8 md:text-[13px] lg:px-[clamp(30px,8%,51px)]"
+                        style={{ color: 'rgb(0, 51, 0)', opacity: 0.5 }}
+                      >
+                        Projet {activeProjectIndex + 1}/{projectsCarouselData.length}
+                      </p>
+
+                      {/* Scrollable content */}
+                      <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-[calc(126px+env(safe-area-inset-bottom))] pt-3 sm:px-6 sm:pb-[calc(132px+env(safe-area-inset-bottom))] sm:pt-4 md:px-8 md:pb-[calc(140px+env(safe-area-inset-bottom))] md:pt-5 lg:px-[clamp(30px,8%,51px)] lg:pb-[126px] lg:pt-[clamp(16px,3%,32px)]">
+                        <div className="flex flex-col gap-5 sm:gap-6 lg:gap-[clamp(24px,4%,51px)]">
+                          <div className="flex flex-col gap-4 sm:gap-5 lg:gap-[clamp(12px,2%,20px)]">
+                            <p
+                              className="font-[Geist] text-[11px] font-medium uppercase leading-tight tracking-[-0.02em] sm:text-[12px] md:text-[13px]"
+                              style={{ color: 'rgb(0, 51, 0)' }}
+                            >
+                              Client : {activeProject.client}
+                            </p>
+                            <h3
+                              className="font-[EB_Garamond] font-extrabold leading-[1.05] tracking-[-0.02em]"
+                              style={{ color: 'rgb(0, 51, 0)', fontSize: 'clamp(24px, 5.8vw, 41px)' }}
+                            >
+                              {activeProject.title}
+                            </h3>
+                            <p
+                              className="font-[Geist] text-[13px] font-medium leading-[1.5] tracking-[-0.02em] sm:text-[14px] lg:text-[clamp(12px,1.14vw,16px)]"
+                              style={{ color: 'rgb(0, 51, 0)', opacity: 0.6 }}
+                            >
+                              {activeProject.description}
+                            </p>
+                          </div>
+                          <p
+                            className="font-[Geist] text-[11px] font-medium uppercase leading-tight tracking-[-0.02em] sm:text-[12px]"
+                            style={{ color: 'rgb(0, 51, 0)', opacity: 0.35 }}
+                          >
+                            Pays : {activeProject.pays}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Prev button */}
+                      <button
+                        type="button"
+                        disabled={activeProjectIndex === 0}
+                        className="absolute bottom-[calc(16px+env(safe-area-inset-bottom))] left-4 flex h-12 w-12 items-center justify-center rounded-full transition hover:brightness-110 sm:left-6 sm:h-14 sm:w-14 md:left-8 md:h-16 md:w-16 lg:bottom-[40px] lg:left-[clamp(30px,8%,51px)] lg:h-[clamp(48px,4.5vw,64px)] lg:w-[clamp(48px,4.5vw,64px)]"
+                        aria-label="Projet précédent"
+                        style={{ background: 'rgb(0, 51, 0)', opacity: activeProjectIndex === 0 ? 0.3 : 1 }}
+                        onClick={() => navigateProject('prev')}
+                      >
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M13 4L7 10L13 16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+
+                      {/* Next button */}
+                      <button
+                        type="button"
+                        disabled={activeProjectIndex === projectsCarouselData.length - 1}
+                        className="absolute bottom-[calc(16px+env(safe-area-inset-bottom))] right-4 flex h-12 w-12 items-center justify-center rounded-full transition hover:brightness-110 sm:right-6 sm:h-14 sm:w-14 md:right-8 md:h-16 md:w-16 lg:bottom-[40px] lg:right-[clamp(30px,8%,51px)] lg:h-[clamp(48px,4.5vw,64px)] lg:w-[clamp(48px,4.5vw,64px)]"
+                        aria-label="Projet suivant"
+                        style={{ background: 'rgb(0, 51, 0)', opacity: activeProjectIndex === projectsCarouselData.length - 1 ? 0.3 : 1 }}
+                        onClick={() => navigateProject('next')}
+                      >
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M7 4L13 10L7 16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            {/* ===== FIN PROJECTS SECTION ===== */}
 
             <section
               className="relative w-screen overflow-hidden bg-[#fff] py-12 md:pt-[94.3px] md:pb-[80px] lg:pt-[94.3px] lg:pb-[100px]"
@@ -2669,66 +3047,47 @@ export default function Home() {
             >
               <div className="absolute inset-0 bg-[#fff]" />
 
-              <div className="absolute inset-0 block opacity-60 sm:opacity-70 md:opacity-100">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:good,w_800,h_600,c_limit/v1779671309/rnj/optimized/beautiful-forest-against-the-green-field-at-sunset-2026-03-18-07-47-34-utc-0151df33.jpg"
-                  alt=""
-                  aria-hidden="true"
-                  style={{ position: 'absolute', height: '100%', width: '100%', left: 0, top: 0, right: 0, bottom: 0, objectFit: 'cover', objectPosition: 'center 70%', color: 'transparent' }}
-                />
-              </div>
-
-              {/* White shadow overlay at top */}
-              <div
-                className="pointer-events-none absolute inset-x-0 top-0 z-[9] h-[320px] sm:h-[420px] md:h-[520px]"
-                style={{  
-                  background:
-                    'linear-gradient(180deg, rgba(255, 255, 255, 1) -5%, rgba(255, 255, 255, 0.58) 28%, rgba(255, 255, 255, 0.28) 52%, rgba(255, 255, 255, 0.08) 72%, rgba(255, 255, 255, 0) 100%)',
-                  filter: 'blur(0.4px)',
-                }}
-              />
-
               <div className="relative z-[20] w-full">
                 <div className="mx-auto w-full max-w-none px-0">
-                  <div className="mx-auto mt-16 flex w-full max-w-[776px] flex-col items-center gap-5 px-4 text-center sm:mt-20 sm:gap-6 sm:px-6 md:mt-24 md:gap-[41.6px] md:px-0 lg:mt-28 xl:mt-32">
-                    <h2
-                      className="w-full max-w-[813px] font-[EB_Garamond] font-semibold tracking-[-0.03em] text-[#003300]"
-                      style={{
-                        fontSize: 'clamp(26px, 6vw, 83.0753px)',
-                        lineHeight: 'clamp(28px, 5.5vw, 68px)',
-                      }}
-                    >
-                      <span className="block">Analyse Institutionnelle &amp; Réglementaire</span>
-                    
-                    </h2>
+                  <div className="flex w-full flex-col gap-8 px-4 sm:px-6 md:flex-row md:items-start md:justify-between lg:px-8 xl:px-[52px]">
+                    <div className="flex max-w-[774px] flex-col gap-6 md:gap-[36px]">
+                      <h2
+                        className="font-[EB_Garamond] font-semibold tracking-[-0.03em] text-[#003300]"
+                        style={{
+                          fontSize: 'clamp(34px, 5.5vw, 83.0753px)',
+                          lineHeight: 'clamp(36px, 4.6vw, 68px)',
+                        }}
+                      >
+                        Analyse Institutionnelle &amp; Réglementaire
+                      </h2>
 
-                    <p
-                      className="max-w-[774px] font-[Geist] font-medium text-[#003300]"
-                      style={{ fontSize: 'clamp(13px, 2vw, 16px)', lineHeight: 'clamp(17px, 2.5vw, 19px)', opacity: 0.8 }}
-                    >
-                      Vous êtes un organisme public, une institution privée, un investisseur ou un bailleur de fonds ?
-                      RNJ Advisory vous accompagne dans l’analyse approfondie des environnements institutionnels,
-                      juridiques et réglementaires afin de sécuriser vos décisions stratégiques.
-                    </p>
+                      <p
+                        className="max-w-[774px] font-[Geist] font-medium text-[#003300]"
+                        style={{ fontSize: 'clamp(13px, 2vw, 16px)', lineHeight: 'clamp(17px, 2.5vw, 19px)', opacity: 0.8 }}
+                      >
+                        Vous êtes un organisme public, une institution privée, un investisseur ou un bailleur de fonds ?
+                        RNJ Advisory vous accompagne dans l’analyse approfondie des environnements institutionnels,
+                        juridiques et réglementaires afin de sécuriser vos décisions stratégiques.
+                      </p>
+                    </div>
 
                     <Link
                       href="/contact"
-                      className="contact-btn inline-flex items-center justify-center rounded-full bg-[#BBCB2E] font-[Geist] font-semibold text-[#003300] shadow-[0_4px_20px_rgba(0,0,0,0.18)]"
+                      className="contact-btn inline-flex shrink-0 items-center justify-center rounded-full bg-[#003300] font-[Geist] font-semibold text-[#BBCB2E]"
                       style={{
-                        height: 'clamp(44px, 7vw, 59.85px)',
-                        minWidth: 'clamp(140px, 20vw, 195px)',
-                        padding: '0 clamp(20px, 3vw, 40px)',
-                        fontSize: 'clamp(14px, 2vw, 18px)',
-                        lineHeight: 1,
+                        width: '200px',
+                        height: '59.85px',
+                        fontSize: '20px',
+                        lineHeight: '25px',
                       }}
                     >
-                      Contact
+                      contact
                     </Link>
                   </div>
 
                   {/* Outer wrapper: relative, no overflow-hidden so nav buttons are not clipped */}
                   <div
+                    ref={institutionalCarouselSectionRef}
                     className="relative mt-10 md:mt-14 lg:mt-16 xl:mt-20"
                     onMouseEnter={() => setIsInstitutionalCarouselPaused(true)}
                     onMouseLeave={() => setIsInstitutionalCarouselPaused(false)}
@@ -2736,66 +3095,16 @@ export default function Home() {
                     onTouchMove={() => setIsInstitutionalCarouselPaused(true)}
                     onTouchEnd={() => setIsInstitutionalCarouselPaused(false)}
                   >
-                    {/* LEFT nav */}
-                    <div
-                      className="absolute bottom-0 left-0 top-0 z-[30] hidden xl:block"
-                      style={{ width: 'max(242px, calc((100vw - 1395.73px) / 2 + 242px))' }}
-                      onMouseEnter={() => setIsLeftNavHovered(true)}
-                      onMouseLeave={() => setIsLeftNavHovered(false)}
-                    >
-                      <div
-                        aria-hidden
-                        className="pointer-events-none absolute inset-0 transition-opacity duration-300"
-                        style={{
-                          background: 'linear-gradient(90deg, #F9FFC4 0%, rgba(255,255,255,0) 100%)',
-                          opacity: isLeftNavHovered ? 1 : 0,
-                        }}
-                      />
-                      <button
-                        type="button"
-                        aria-label="Précédent"
-                        onClick={() => scrollInstitutionalCarousel('left')}
-                        className="absolute top-1/2 -translate-y-1/2 inline-flex h-[98px] w-[98px] items-center justify-center rounded-full transition-transform duration-200 hover:scale-105 active:scale-95"
-                        style={{ background: 'rgba(187, 203, 46, 0.4)', left: '30px' }}
-                      >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M15 18L9 12L15 6" stroke="#003300" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
-                    </div>
-
-                    {/* RIGHT nav */}
-                    <div
-                      className="absolute bottom-0 right-0 top-0 z-[30] hidden xl:block"
-                      style={{ width: 'max(242px, calc((100vw - 1395.73px) / 2 + 242px))' }}
-                      onMouseEnter={() => setIsRightNavHovered(true)}
-                      onMouseLeave={() => setIsRightNavHovered(false)}
-                    >
-                      <div
-                        aria-hidden
-                        className="pointer-events-none absolute inset-0 transition-opacity duration-300"
-                        style={{
-                          background: 'linear-gradient(270deg, #F9FFC4 0%, rgba(255,255,255,0) 100%)',
-                          opacity: isRightNavHovered ? 1 : 0,
-                        }}
-                      />
-                      <button
-                        type="button"
-                        aria-label="Suivant"
-                        onClick={() => scrollInstitutionalCarousel('right')}
-                        className="absolute top-1/2 -translate-y-1/2 inline-flex h-[98px] w-[98px] items-center justify-center rounded-full transition-transform duration-200 hover:scale-105 active:scale-95"
-                        style={{ background: 'rgba(187, 203, 46, 0.4)', right: '30px' }}
-                      >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9 18L15 12L9 6" stroke="#003300" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
-                    </div>
-
-                    <div className="relative z-[20]">
+                    {/* Padding lives on this non-scrolling wrapper (not on the scroll
+                        container itself) so the scroll container's own content-box
+                        width exactly equals its visible clientWidth — needed for the
+                        `calc((100% - gap)/2)` card-width math below to land on clean
+                        pair boundaries instead of leaking a padding-sized sliver of
+                        the next card. */}
+                    <div className="relative z-[20] w-full px-4 sm:px-6 lg:px-8 xl:px-[52px]">
                       <div
                         ref={institutionalCarouselRef}
-                        className="relative z-10 mx-auto flex w-full max-w-[1500px] snap-x snap-mandatory flex-nowrap gap-4 overflow-x-auto px-3 py-0 touch-pan-x overscroll-x-contain scroll-smooth sm:px-4 md:gap-[21.98px] md:px-6 lg:px-8 xl:gap-[21.98px] xl:px-[52px] [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
+                        className="relative z-10 flex w-full snap-x snap-mandatory flex-nowrap gap-4 overflow-x-auto py-0 touch-pan-x overscroll-x-contain scroll-smooth md:gap-[18px] xl:gap-[18px] [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
                         style={{ WebkitOverflowScrolling: 'touch' }}
                         onScroll={(e) => handleInstitutionalCarouselScroll(e.currentTarget)}
                       >
@@ -2803,110 +3112,50 @@ export default function Home() {
                           <article
                             key={`${card.title}-${index}`}
                             data-institutional-card
-                            className="flex w-[94vw] max-w-[1395.73px] shrink-0 snap-start flex-col gap-3 sm:w-[90vw] md:w-[min(94vw,1300px)] md:flex-row md:items-stretch md:gap-5 xl:h-[554px] xl:w-[1395.73px] xl:gap-[28.5px]"
+                            className="relative h-[380px] w-[94vw] shrink-0 snap-start overflow-hidden rounded-[16px] sm:h-[420px] sm:w-[86vw] sm:rounded-[20px] md:h-[473.78px] md:w-[calc((100%-18px)/2)]"
                           >
-                          {card.panelFirst ? (
-                            <>
-                              {/* Panel first: panel gauche + image droite */}
-                              <div
-                                className="flex justify-center rounded-[24px] px-5 py-6 sm:px-6 md:min-h-[554px] md:w-[clamp(320px,36vw,480.51px)] md:flex-none md:rounded-[119px_119px_119px_0px] md:px-[28px] md:py-[56px] lg:px-[32px] lg:py-[70px] xl:w-[480.51px] xl:px-[47px] xl:py-[95px]"
-                                style={{ backgroundColor: card.panelBg }}
+                            <Image
+                              src={card.image}
+                              alt={card.title}
+                              fill
+                              className="object-cover"
+                              unoptimized
+                              style={card.mirror ? { transform: 'scaleX(-1)' } : undefined}
+                            />
+                            {/* Bottom color band (Rectangle 821) — exact Figma spec: solid color, 188.04/473.78 = 39.7% height, hard edge.
+                                Text lives inside this same box, vertically centered, so the gap above and below it stays equal
+                                regardless of how many lines the description wraps to. */}
+                            <div
+                              className="absolute inset-x-0 bottom-0 flex flex-col justify-center gap-[12px] px-[24px] md:gap-[14px] md:px-[40px]"
+                              style={{ height: '39.7%', background: card.bandBg }}
+                            >
+                              <h3
+                                className="font-[Geist] font-semibold"
+                                style={{
+                                  fontSize: 'clamp(22px, 2.15vw, 31.112px)',
+                                  lineHeight: 'clamp(28px, 2.8vw, 40px)',
+                                  textTransform: 'capitalize',
+                                  maxWidth: '460px',
+                                  color: card.textColor,
+                                }}
                               >
-                                <div className="flex h-full w-full max-w-none flex-col justify-start md:max-w-[356.49px]">
-                                  <div className="flex flex-col gap-[14.18px]">
-                                    <h3
-                                      className="font-[Geist] font-semibold"
-                                      style={{
-                                        fontSize: 'clamp(24px, 2.15vw, 31.112px)',
-                                        lineHeight: 'clamp(31px, 2.8vw, 40px)',
-                                        textTransform: 'capitalize',
-                                        color: card.titleColor,
-                                      }}
-                                    >
-                                      {card.title}
-                                    </h3>
-                                    <p
-                                      className="max-w-full font-[Geist] font-medium md:max-w-[265.39px]"
-                                      style={{
-                                        fontSize: 'clamp(15px, 1.35vw, 19.445px)',
-                                        lineHeight: 'clamp(20px, 1.75vw, 25px)',
-                                        textTransform: 'capitalize',
-                                        color: card.descriptionColor,
-                                      }}
-                                    >
-                                      {card.description}
-                                    </p>
-                                  </div>
-                                  <button
-                                    type="button"
-                                    className="mt-6 inline-flex h-[46px] w-auto shrink-0 items-center justify-center rounded-full px-[39px] font-[Geist] text-[14px] font-semibold leading-[1.1] transition-opacity hover:opacity-90 sm:h-[48px] sm:text-[15px] md:mt-auto md:h-[52px] md:text-[15.52px] md:leading-[16px]"
-                                    style={{
-                                      backgroundColor: card.buttonBg,
-                                      color: card.buttonTextColor,
-                                    }}
-                                  >
-                                    Demander une consultation
-                                  </button>
-                                </div>
-                              </div>
-                              <div
-                                className="relative h-[240px] overflow-hidden rounded-[22px] md:h-[554px] md:min-w-0 md:flex-1 md:rounded-[0px_119px_119px_119px] xl:w-[886.72px]"
+                                {card.title}
+                              </h3>
+                              <p
+                                className="font-[Geist] font-medium"
+                                style={{
+                                  fontSize: '13px',
+                                  lineHeight: '17px',
+                                  textTransform: 'capitalize',
+                                  opacity: 0.8,
+                                  maxWidth: '584.17px',
+                                  color: card.textColor,
+                                }}
                               >
-                                <Image src={card.image} alt={card.title} fill className="object-cover" unoptimized={card.image.endsWith('.svg')} />
-                              </div>
-                            </>
-                          ) : (
-                            <>
-                              {/* Image gauche + panel droit */}
-                              <div
-                                className="relative h-[240px] overflow-hidden rounded-[22px] md:h-[554px] md:min-w-0 md:flex-1 md:rounded-[119px_0px_119px_119px] xl:w-[886.72px]"
-                              >
-                                <Image src={card.image} alt={card.title} fill className="object-cover" unoptimized={card.image.endsWith('.svg')} />
-                              </div>
-                              <div
-                                className="flex justify-center rounded-[24px] px-5 py-6 sm:px-6 md:min-h-[554px] md:w-[clamp(320px,36vw,480.51px)] md:flex-none md:rounded-[119px_119px_119px_0px] md:px-[28px] md:py-[56px] lg:px-[32px] lg:py-[70px] xl:w-[480.51px] xl:px-[47px] xl:py-[95px]"
-                                style={{ backgroundColor: card.panelBg }}
-                              >
-                                <div className="flex h-full w-full max-w-none flex-col justify-start md:max-w-[356.49px]">
-                                  <div className="flex flex-col gap-[14.18px]">
-                                    <h3
-                                      className="font-[Geist] font-semibold"
-                                      style={{
-                                        fontSize: 'clamp(24px, 2.15vw, 31.112px)',
-                                        lineHeight: 'clamp(31px, 2.8vw, 40px)',
-                                        textTransform: 'capitalize',
-                                        color: card.titleColor,
-                                      }}
-                                    >
-                                      {card.title}
-                                    </h3>
-                                    <p
-                                      className="max-w-full font-[Geist] font-medium md:max-w-[265.39px]"
-                                      style={{
-                                        fontSize: 'clamp(15px, 1.35vw, 19.445px)',
-                                        lineHeight: 'clamp(20px, 1.75vw, 25px)',
-                                        textTransform: 'capitalize',
-                                        color: card.descriptionColor,
-                                      }}
-                                    >
-                                      {card.description}
-                                    </p>
-                                  </div>
-                                  <button
-                                    type="button"
-                                    className="mt-6 inline-flex h-[46px] w-auto shrink-0 items-center justify-center rounded-full px-[39px] font-[Geist] text-[14px] font-semibold leading-[1.1] transition-opacity hover:opacity-90 sm:h-[48px] sm:text-[15px] md:mt-auto md:h-[52px] md:text-[15.52px] md:leading-[16px]"
-                                    style={{
-                                      backgroundColor: card.buttonBg,
-                                      color: card.buttonTextColor,
-                                    }}
-                                  >
-                                    Demander une consultation
-                                  </button>
-                                </div>
-                              </div>
-                            </>
-                          )}
-                        </article>
+                                {card.description}
+                              </p>
+                            </div>
+                          </article>
                       ))}
 
                       {/* Pagination dots */}
@@ -2925,7 +3174,9 @@ export default function Home() {
                               const gap = Number.parseFloat(styles.columnGap || styles.gap || '0') || 0;
                               const cardWidth = firstCard.getBoundingClientRect().width;
                               const step = cardWidth + gap;
-                              carousel.scrollTo({ left: step * dotIndex, behavior: 'smooth' });
+                              const cardsPerView = window.innerWidth >= 768 ? 2 : 1;
+                              const pairIndex = Math.floor(dotIndex / cardsPerView);
+                              carousel.scrollTo({ left: step * cardsPerView * pairIndex, behavior: 'smooth' });
                             }}
                             className="rounded-full transition-all duration-300"
                             style={{
@@ -3108,7 +3359,20 @@ export default function Home() {
 
                 {/* World Map Container */}
                 <div
+                  ref={mapFrameRef}
                   className="map-fade-in map-impact-map-frame relative w-full max-w-[1346px] overflow-visible"
+                  onMouseMove={(event) => {
+                    const nearest = resolveNearestImpactCountry(event.clientX, event.clientY, mapFrameRef.current);
+                    setActiveImpactCountry(nearest ? nearest.id : null);
+                  }}
+                  onMouseLeave={() => setActiveImpactCountry(null)}
+                  onClick={(event) => {
+                    // Don't toggle: a tap/click is always preceded by its own mousemove/hover,
+                    // which may have already set this same country active — toggling here would
+                    // immediately close what the hover just opened.
+                    const nearest = resolveNearestImpactCountry(event.clientX, event.clientY, mapFrameRef.current);
+                    setActiveImpactCountry(nearest ? nearest.id : null);
+                  }}
                 >
                   <div className="absolute inset-0 overflow-hidden rounded-[28px] md:rounded-[40px]">
                     <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779676562/rnj/maps-10375837.png"
@@ -3118,7 +3382,11 @@ export default function Home() {
                      loading="lazy"/>
                   </div>
 
-                  <div className="absolute z-20" style={{ left: '37.74%', top: '21.70%', width: '14.75%', height: '39.40%' }}>
+                  <div
+                    ref={impactPinsFrameRef}
+                    className="absolute z-40"
+                    style={{ left: '37.74%', top: '21.70%', width: '14.75%', height: '39.40%' }}
+                  >
                     {impactCountries.map((country, index) => {
                       const isActive = activeImpactCountry === country.id;
 
@@ -3129,18 +3397,28 @@ export default function Home() {
                           style={{
                             ...country.pinStyle,
                             touchAction: 'manipulation',
-                            minWidth: '30px',
-                            minHeight: '30px',
+                            minWidth: '16px',
+                            minHeight: '16px',
                           }}
                           aria-label={`Show ${country.name} details`}
                           aria-expanded={isActive}
-                          onMouseEnter={() => setActiveImpactCountry(country.id)}
-                          onMouseLeave={() => setActiveImpactCountry(null)}
-                          onClick={() => setActiveImpactCountry(isActive ? null : country.id)}
+                          onClick={(event) => {
+                            // Resolve via nearest-neighbor (same as the outer frame), not this
+                            // pin's own id: these tiny hitboxes sit right next to each other
+                            // (e.g. France/Italy/Tunisia/Belgium), so a tap that's slightly off
+                            // could land inside the WRONG neighboring pin's box. Using the click's
+                            // real coordinates keeps every click path consistent and accurate.
+                            // Also don't toggle: a click is always preceded by its own hover
+                            // (mousemove/tap), which may have already made this active — toggling
+                            // here would immediately close what hover just opened.
+                            event.stopPropagation();
+                            const nearest = resolveNearestImpactCountry(event.clientX, event.clientY, mapFrameRef.current);
+                            setActiveImpactCountry(nearest ? nearest.id : country.id);
+                          }}
                         >
                           <span
                             className="map-pin-visual"
-                            style={{ '--pin-delay': `${index * 80}ms` } as React.CSSProperties}
+                            style={{ '--pin-delay': `${index * 80}ms`, display: 'none' } as React.CSSProperties}
                             aria-hidden
                           >
                             <svg
@@ -3178,24 +3456,23 @@ export default function Home() {
                       className="map-country-card-shell absolute z-30 w-[min(88vw,389px)] max-w-[389px]"
                       style={getImpactPopupVars(activeImpactCountryData)}
                       onMouseEnter={() => setActiveImpactCountry(activeImpactCountryData.id)}
+                      onMouseMove={(event) => event.stopPropagation()}
                       onMouseLeave={() => setActiveImpactCountry(null)}
+                      onClick={(event) => event.stopPropagation()}
                     >
                       <div
-                        className="map-country-card pointer-events-auto w-full px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.28)] backdrop-blur-[14px] sm:px-7 sm:py-6 md:px-8 md:py-[35px]"
+                        className="map-country-card pointer-events-auto w-full px-4 py-4 sm:px-7 sm:py-6 md:px-8 md:py-[35px]"
                         style={{
-                          background: 'rgba(0, 0, 0, 0.32)',
-                          borderRadius: '0 35px 35px 35px',
+                          background: '#EEF2CA',
+                          borderRadius: '0 45px 45px 45px',
                         }}
                         onClick={(event) => event.stopPropagation()}
                       >
                         <div className="flex flex-col items-start gap-2 sm:gap-5 md:gap-[26px]">
-                          <div className="flex w-full items-start justify-between">
-                            <span className="font-[Geist] text-[11px] font-medium leading-[22px] text-white opacity-50 sm:text-[13px]">
-                              {activeImpactCountryData.years}
-                            </span>
+                          <div className="flex w-full items-start justify-end">
                             <button
                               type="button"
-                              className="flex h-6 w-6 items-center justify-center text-white/60 hover:text-white lg:hidden"
+                              className="flex h-6 w-6 items-center justify-center text-[#003300]/50 hover:text-[#003300] lg:hidden"
                               onClick={() => setActiveImpactCountry(null)}
                               aria-label="Fermer"
                             >
@@ -3205,45 +3482,48 @@ export default function Home() {
                             </button>
                           </div>
 
-                          <div className="flex flex-col items-start gap-2 sm:gap-5 md:gap-[30px]">
-                            <div className="flex items-start gap-3 sm:gap-4 md:gap-[29px]">
+                          <div className="flex flex-col items-start gap-2 sm:gap-5 md:gap-[26px]">
+                            <div className="flex items-center gap-3 sm:gap-6 md:gap-[45px]">
                               <div
-                                className="relative shrink-0 overflow-hidden bg-[#BBCB2E]"
+                                className="relative shrink-0 overflow-hidden"
                                 style={{
                                   width: `${Math.round(activeImpactCountryData.miniMapWidth * 0.6)}px`,
                                   height: `${Math.round(activeImpactCountryData.miniMapHeight * 0.6)}px`,
-                                  border: activeImpactCountryData.miniMapBorder,
                                 }}
                               >
                                 <Image
-                                  src={activeImpactCountryData.mapSrc}
+                                  src={countryShapeSrc[activeImpactCountryData.code] ?? activeImpactCountryData.mapSrc}
                                   alt={activeImpactCountryData.name}
                                   fill
                                   className="object-contain p-1"
+                                  unoptimized
                                 />
                               </div>
 
-                              <div className="flex min-w-0 flex-1 flex-col gap-1 sm:gap-2 md:gap-[5px]">
-                                <div className="flex flex-col items-start gap-0.5 sm:gap-1 md:gap-[15px]">
-                                  <h3 className="font-[Geist] text-[16px] font-normal leading-[24px] text-white sm:text-[20px] sm:leading-[32px]">
-                                    {activeImpactCountryData.name}
-                                  </h3>
-                                  <p className="font-[Geist] text-[22px] font-bold leading-[26px] text-white sm:text-[32px] sm:leading-[32px]">
-                                    {activeImpactCountryData.projects}
-                                  </p>
-                                </div>
+                              <div className="flex min-w-0 flex-1 flex-col gap-2 sm:gap-3 md:gap-[13px]">
+                                <span className="font-[Geist] text-[14px] font-normal leading-[20px] capitalize text-[#003300] sm:text-[16px]">
+                                  {activeImpactCountryData.projects}
+                                </span>
 
-                                <div className="flex flex-wrap gap-[4px]">
+                                <h3 className="font-[Geist] text-[24px] font-bold leading-[28px] capitalize text-[#003300] sm:text-[32px] sm:leading-[32px]">
+                                  {activeImpactCountryData.name}
+                                </h3>
+
+                                <div className="flex flex-wrap gap-[7px]">
                                   {activeImpactCountryData.tags.map((tag) => (
                                     <span
                                       key={tag}
-                                      className="inline-flex h-[20px] items-center justify-center rounded-[70px] bg-white px-[12px] text-[9px] font-normal capitalize text-[#003300] opacity-60 sm:h-[22px] sm:px-[18px] sm:text-[10px]"
+                                      className="inline-flex h-[24px] items-center justify-center rounded-[105px] bg-[#003300] px-[16px] text-[10px] font-normal capitalize text-white sm:h-[33px] sm:px-[20px] sm:text-[12px]"
                                       style={{ fontFamily: 'Geist' }}
                                     >
                                       {tag}
                                     </span>
                                   ))}
                                 </div>
+
+                                <span className="font-[Geist] text-[10px] font-medium leading-[15px] capitalize text-[#003300] opacity-50 sm:text-[12px]">
+                                  {activeImpactCountryData.years}
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -3318,7 +3598,7 @@ export default function Home() {
                   <div className="bento-card bento-d1 relative h-[180px] w-full overflow-hidden rounded-[14px] bg-[#bbcb2e] sm:h-[220px] sm:rounded-[16px] md:h-[300px] md:rounded-[20px] lg:h-[334px]">
                     <div className="absolute left-1/2 top-1/2 flex h-[155px] w-[min(145px,calc(100%-20px))] -translate-x-1/2 -translate-y-1/2 flex-col items-start rounded-[18px] bg-white px-[10px] pt-[12px] shadow-[0_0_43px_-5px_rgba(255,255,255,0.33)] sm:h-[180px] sm:w-[min(170px,calc(100%-28px))] sm:rounded-[22px] sm:px-[13px] sm:pt-[16px] md:h-[230px] md:w-[min(208px,calc(100%-40px))] md:rounded-[30px] md:px-[18px] md:pt-[27px]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="/optimized/beci-2-1.svg" alt="BECI" className="h-[34px] w-[30px] object-contain sm:h-[42px] sm:w-[37px] md:h-[65px] md:w-[57px]" />
+                      <img src="/optimized/beci-2-1.svg" alt="BECI" loading="lazy" className="h-[34px] w-[30px] object-contain sm:h-[42px] sm:w-[37px] md:h-[65px] md:w-[57px]" />
                       <p className="mt-[10px] w-full font-[Geist] text-[12px] font-semibold leading-[14px] text-[#003300] sm:mt-[13px] sm:text-[14px] sm:leading-[16px] md:mt-[27px] md:text-[20px] md:leading-[22px]">
                         RNJ Advisory membre de BECI
                       </p>
@@ -3358,14 +3638,13 @@ export default function Home() {
                 </div>
 
                 {/* Column 2: Tall photo card — full width on mobile */}
-                <div className="bento-card bento-d3 order-last col-span-2 w-full overflow-hidden rounded-[16px] bg-[#6F6F6F] sm:order-none sm:col-span-1 sm:rounded-[18px] md:rounded-[20px]">
+                <div className="bento-card bento-d3 relative order-last col-span-2 w-full overflow-hidden rounded-[16px] bg-[#6F6F6F] sm:order-none sm:col-span-1 sm:rounded-[18px] md:rounded-[20px]">
                   <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671241/rnj/optimized/group-352-3-8e109b3c.svg"
                     alt=""
-                    width={334}
-                    height={700}
+                    fill
                     unoptimized
-                    priority
-                    className="h-auto w-full object-contain"/>
+                    loading="lazy"
+                    className="object-contain"/>
                 </div>
 
                 {/* Column 3: responsive sub-grid — 2-col on mobile */}
@@ -3373,7 +3652,7 @@ export default function Home() {
                   {/* Yoga blurred */}
                   <div className="bento-card bento-d4 relative h-[180px] w-full overflow-hidden rounded-[14px] sm:h-[220px] sm:rounded-[16px] md:h-[300px] md:rounded-[20px] lg:h-[334px]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671250/rnj/optimized/group-363-1-a0d0a075.svg" alt="" className="h-full w-full object-cover" />
+                    <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671250/rnj/optimized/group-363-1-a0d0a075.svg" alt="" loading="lazy" className="h-full w-full object-cover" />
                   </div>
 
                   {/* Belgique card */}
@@ -3437,9 +3716,9 @@ export default function Home() {
 
                       <div className="mt-2 flex items-center gap-[5px] sm:mt-3 md:mt-5 sm:mt-6">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779676711/rnj/e-sdg-print-07-1-af43b2fc.png" alt="SDG 7" className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px] md:h-[36px] md:w-[36px]" />
+                        <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779676711/rnj/e-sdg-print-07-1-af43b2fc.png" alt="SDG 7" loading="lazy" className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px] md:h-[36px] md:w-[36px]" />
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779676712/rnj/e-sdg-print-08-1-53b17059.png" alt="SDG 8" className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px] md:h-[36px] md:w-[36px]" />
+                        <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779676712/rnj/e-sdg-print-08-1-53b17059.png" alt="SDG 8" loading="lazy" className="h-[24px] w-[24px] sm:h-[28px] sm:w-[28px] md:h-[36px] md:w-[36px]" />
                       </div>
                     </div>
                     <Link href="/contact" className="bento-card bento-d7 relative flex h-[48px] w-full items-center justify-center gap-[5px] rounded-[14px] bg-[#406640] px-2 transition-colors hover:bg-[#4a754a] sm:h-[58px] sm:rounded-[16px] sm:px-4 md:h-[91px] md:rounded-[20px] md:px-8">
@@ -3463,27 +3742,27 @@ export default function Home() {
                     <span className="ring-pulse ring-pulse-delay-2 pointer-events-none absolute left-1/2 top-1/2 h-[62px] w-[62px] rounded-full border-[2px] border-white sm:h-[90px] sm:w-[90px] sm:border-[3px] md:h-[124px] md:w-[124px] lg:h-[152px] lg:w-[152px] lg:border-[4px]" />
                     <div className="absolute left-1/2 top-1/2 flex h-[36px] w-[36px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#003300] sm:h-[52px] sm:w-[52px] md:h-[72px] md:w-[72px] lg:h-[84px] lg:w-[84px]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779677102/rnj/group-559-aaf6f0b3.png" alt="" className="h-[26px] w-[26px] sm:h-[30px] sm:w-[30px] md:h-[36px] md:w-[36px]" />
+                      <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779677102/rnj/group-559-aaf6f0b3.png" alt="" loading="lazy" className="h-[26px] w-[26px] sm:h-[30px] sm:w-[30px] md:h-[36px] md:w-[36px]" />
                     </div>
                     <div className="float-icon absolute flex h-[24px] w-[24px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[38px] sm:w-[38px] md:h-[51px] md:w-[51px]" style={{ left: '17%', top: '14%', animationDelay: '0s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779677103/rnj/vector-2-8beb62fa.png" alt="" className="h-[16px] w-[16px] sm:h-[18px] sm:w-[18px] md:h-[22px] md:w-[22px]" />
+                      <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779677103/rnj/vector-2-8beb62fa.png" alt="" loading="lazy" className="h-[16px] w-[16px] sm:h-[18px] sm:w-[18px] md:h-[22px] md:w-[22px]" />
                     </div>
                     <div className="float-icon absolute flex h-[26px] w-[26px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[40px] sm:w-[40px] md:h-[57px] md:w-[57px]" style={{ left: '74%', top: '20%', animationDelay: '0.4s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779677104/rnj/group-2-8d410a01.png" alt="" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
+                      <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779677104/rnj/group-2-8d410a01.png" alt="" loading="lazy" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
                     </div>
                     <div className="float-icon absolute flex h-[26px] w-[26px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[40px] sm:w-[40px] md:h-[57px] md:w-[57px]" style={{ left: '73%', top: '66%', animationDelay: '0.8s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779677105/rnj/group-3-ab3adbb8.png" alt="" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
+                      <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779677105/rnj/group-3-ab3adbb8.png" alt="" loading="lazy" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
                     </div>
                     <div className="float-icon absolute flex h-[26px] w-[26px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[40px] sm:w-[40px] md:h-[57px] md:w-[57px]" style={{ left: '15%', top: '70%', animationDelay: '1.2s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779677105/rnj/group-4-c8bc5566.png" alt="" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
+                      <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779677105/rnj/group-4-c8bc5566.png" alt="" loading="lazy" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
                     </div>
                     <div className="float-icon absolute flex h-[26px] w-[26px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#DDE597] sm:h-[40px] sm:w-[40px] md:h-[57px] md:w-[57px]" style={{ left: '51%', top: '89%', animationDelay: '1.6s' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779678009/rnj/layer-1-3-08f03874.png" alt="" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
+                      <img src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779678009/rnj/layer-1-3-08f03874.png" alt="" loading="lazy" className="h-[18px] w-[18px] sm:h-[20px] sm:w-[20px] md:h-[24px] md:w-[24px]" />
                     </div>
                   </div>
                 </div>
@@ -3496,7 +3775,150 @@ export default function Home() {
               </p>
             </section>
 
-            {/* Ã‰tudes & Analyse RÃ©glementaire Section */}
+            {/* ===== PROJETS RÉCENTS Section ===== */}
+            <section
+              className="relative w-screen bg-[#003300] pb-16 pt-16 sm:pb-20 sm:pt-20 md:pb-24 md:pt-24"
+              style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}
+            >
+              {/* Header */}
+              <div className="mx-auto mb-10 max-w-[1272px] px-4 text-center sm:mb-12 sm:px-6 md:mb-[120px] lg:px-8">
+                <h2
+                  className="font-[EB_Garamond] font-medium capitalize text-white"
+                  style={{ fontSize: 'clamp(40px, 4.5vw, 64px)', lineHeight: '103%' }}
+                >
+                  nos projets récents
+                </h2>
+                <p
+                  className="mx-auto mt-5 max-w-[600px] font-[Geist] font-normal text-white"
+                  style={{ fontSize: '16px', lineHeight: '130%', opacity: 0.5 }}
+                >
+                  Découvrez une sélection de missions récentes illustrant notre expertise en conseil juridique,
+                  réglementaire et stratégique au service de projets à fort impact.
+                </p>
+              </div>
+
+              {/* Cards row — center card raised 82px above side cards */}
+              <div className="mx-auto flex max-w-[1272px] flex-col gap-5 px-4 sm:px-6 md:flex-row md:items-end lg:px-8">
+                {/* Left card — cream #F5FAC7 */}
+                <article
+                  className="relative w-full flex-1 overflow-hidden rounded-[15px]"
+                  style={{
+                    height: 'clamp(420px, 44vw, 596px)',
+                    background: '#C1CB82',
+                    filter: 'drop-shadow(0px 2px 26.1px rgba(0,0,0,0.15))',
+                    opacity: 0.8,
+                  }}
+                >
+                  {/* Inner image block */}
+                  <div
+                    className="absolute overflow-hidden rounded-[15px]"
+                    style={{ inset: '21px 27px 44% 27px' }}
+                  >
+                    <Image
+                      src="/optimized/group-348987-2.webp"
+                      alt="Des stratégies qui créent de l'impact"
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                  {/* Text */}
+                  <div className="absolute bottom-[28px] left-[28px] right-[28px]">
+                    <h3
+                      className="font-[Geist] font-medium text-[#003300]"
+                      style={{ fontSize: '24px', lineHeight: '31px' }}
+                    >
+                      Des stratégies qui créent de l&apos;impact.
+                    </h3>
+                    <p
+                      className="mt-[15px] font-[Geist] font-normal text-[#003300]"
+                      style={{ fontSize: '15px', lineHeight: '20px', letterSpacing: '0.02em', opacity: 0.6 }}
+                    >
+                      Des solutions juridiques et réglementaires conçues pour accompagner les décisions qui façonnent l&apos;avenir.
+                    </p>
+                  </div>
+                </article>
+
+                {/* Center card — dark #1E1E1E, taller & elevated */}
+                <article
+                  className="relative w-full flex-1 overflow-hidden rounded-[19px] md:-mt-[82px]"
+                  style={{
+                    height: 'clamp(480px, 56vw, 760px)',
+                    background: '#1E1E1E',
+                    filter: 'drop-shadow(0px 1px 170.5px rgba(0,0,0,0.33))',
+                  }}
+                >
+                  <Image
+                    src={`/optimized/wind-turbine-against-clear-blue-sky-on-sunny-day-2026-03-25-01-46-08-utc%201.png`}
+                    alt="Le droit au service de la transformation"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                    style={{ transform: 'rotate(2.38deg)', transformOrigin: 'center center' }}
+                  />
+                  <div className="absolute inset-0 p-[49px]">
+                    <h3
+                      className="max-w-[316px] font-[Geist] font-medium text-[#BBCB2E]"
+                      style={{ fontSize: '30px', lineHeight: '40px' }}
+                    >
+                      Le droit au service de la transformation.
+                    </h3>
+                    <p
+                      className="mt-[25px] max-w-[278px] font-[Geist] font-normal text-[#BBCB2E]"
+                      style={{ fontSize: '20px', lineHeight: '25px', letterSpacing: '0.02em' }}
+                    >
+                      Nous aidons les organisations à évoluer dans un environnement réglementaire complexe avec confiance.
+                    </p>
+                  </div>
+                </article>
+
+                {/* Right card — #BBCB2E, power lines, Figma-centered layout */}
+                <article
+                  className="relative w-full flex-1 overflow-hidden rounded-[15px]"
+                  style={{
+                    height: 'clamp(420px, 44vw, 596px)',
+                    background: '#BBCB2E',
+                    filter: 'drop-shadow(0px 2px 26.1px rgba(0,0,0,0.15))',
+                    opacity: 0.8,
+                  }}
+                >
+                  <Image
+                    src="/optimized/power-lines-against-a-dramatic-orange-sky-2026-03-09-23-50-51-utc%201%20(1).png"
+                    alt="Accélérer la transition énergétique"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                    style={{ mixBlendMode: 'multiply' }}
+                  />
+                  <div className="absolute inset-0 flex flex-col items-center text-center px-[44px]" style={{ paddingTop: '58px' }}>
+                    {/* Icon */}
+                    <Image
+                      src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672853/rnj/layer-4-955dc651.png"
+                      alt="RNJ"
+                      width={42}
+                      height={48}
+                      unoptimized
+                    />
+                    {/* Title — 18px below icon */}
+                    <h3
+                      className="mt-[18px] w-full text-center font-[Geist] font-bold text-[#003300]"
+                      style={{ fontSize: '32px', lineHeight: '36px', letterSpacing: '-0.02em' }}
+                    >
+                      Accélérer la transition énergétique.
+                    </h3>
+                    {/* Description — 16px below title */}
+                    <p
+                      className="mt-[16px] w-full text-center font-[Geist] font-normal text-[#003300]"
+                      style={{ fontSize: '12px', lineHeight: '16px', letterSpacing: '0.02em' }}
+                    >
+                      Des cadres réglementaires solides pour soutenir les infrastructures, les marchés et l&apos;innovation énergétique.
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            {/* Études & Analyse Réglementaire Section (hidden) */}
             {false && (
             <section className="relative w-full py-16 md:py-20 lg:py-24 bg-[#F7FCFF] overflow-hidden">
               <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">

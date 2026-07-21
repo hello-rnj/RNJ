@@ -674,8 +674,8 @@
 }
 
 .map-pin-button {
-  min-width: 34px;
-  min-height: 54px;
+  min-width: 16px;
+  min-height: 16px;
   border-radius: 999px;
   transform-origin: center bottom;
 }
@@ -723,6 +723,16 @@
 @keyframes panelImageIn {
   from { transform: translateY(18px); opacity: 0.5; }
   to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes cardIn {
+  from { transform: translateX(80px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes panelSlideIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
 }
 
 @keyframes slideInUp {
