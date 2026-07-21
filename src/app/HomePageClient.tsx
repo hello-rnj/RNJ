@@ -1953,11 +1953,11 @@ export default function Home() {
 
         </div>
 
-        <section className="relative z-[2] w-full bg-[#003300] py-3 sm:py-3 md:py-4">
+        <section className="relative z-[2] -mt-8 w-full bg-[#003300]/60 py-3 backdrop-blur-md sm:-mt-10 sm:py-3 md:-mt-12 md:py-4 xl:-mt-14">
           <div className="w-full px-0">
             <div className="relative min-h-[42px] overflow-hidden sm:min-h-[46px] md:min-h-[52px] lg:min-h-[58px]">
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-[#003300] to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-[#003300] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-[#003300]/60 to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-[#003300]/60 to-transparent" />
 
               <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div
