@@ -1951,40 +1951,39 @@ export default function Home() {
             </div>
           </div>
 
-        </div>
+          <section className="absolute inset-x-0 bottom-0 z-[2] w-full bg-white/20 py-3 backdrop-blur-md sm:py-3 md:py-4">
+            <div className="w-full px-0">
+              <div className="relative min-h-[42px] overflow-hidden sm:min-h-[46px] md:min-h-[52px] lg:min-h-[58px]">
+                <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-white/30 to-transparent" />
+                <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-white/30 to-transparent" />
 
-        <section className="relative z-[2] w-full bg-[#D9D9D9] py-3 sm:py-3 md:py-4">
-          <div className="w-full px-0">
-            <div className="relative min-h-[42px] overflow-hidden sm:min-h-[46px] md:min-h-[52px] lg:min-h-[58px]">
-              <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-[#D9D9D9] to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-[#D9D9D9] to-transparent" />
-
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div
-                  className="flex w-max items-center gap-[clamp(24px,4.5vw,73px)]"
-                  style={{
-                    animation: 'scroll 26s linear infinite',
-                    willChange: 'transform',
-                  }}
-                >
-                  {[...partnerAssetLogos, ...partnerAssetLogos].map((logo, index) => (
-                    <div
-                      key={`partner-asset-logo-home-${index}-${logo}`}
-                      className="relative h-[clamp(22px,3.3vw,38px)] w-[clamp(80px,11vw,140px)] shrink-0 opacity-90"
-                    >
-                      <Image
-                        src={logo}
-                        alt={`Logo partenaire ${index % partnerAssetLogos.length + 1}`}
-                        fill
-                        className="object-contain [filter:brightness(0)_saturate(100%)]"
-                      />
-                    </div>
-                  ))}
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <div
+                    className="flex w-max items-center gap-[clamp(24px,4.5vw,73px)]"
+                    style={{
+                      animation: 'scroll 26s linear infinite',
+                      willChange: 'transform',
+                    }}
+                  >
+                    {[...partnerAssetLogos, ...partnerAssetLogos].map((logo, index) => (
+                      <div
+                        key={`partner-asset-logo-home-${index}-${logo}`}
+                        className="relative h-[clamp(22px,3.3vw,38px)] w-[clamp(80px,11vw,140px)] shrink-0 opacity-90"
+                      >
+                        <Image
+                          src={logo}
+                          alt={`Logo partenaire ${index % partnerAssetLogos.length + 1}`}
+                          fill
+                          className="object-contain [filter:brightness(0)_saturate(100%)]"
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
 
         <div className="relative w-full overflow-hidden bg-[#F7FCFF] py-8 sm:py-10 md:py-12 lg:min-h-[782px] lg:py-16">
           <div className="relative z-[2] mx-auto flex w-full max-w-[1395px] flex-col items-center gap-6 px-4 sm:gap-8 md:gap-10 lg:gap-[60px]">
