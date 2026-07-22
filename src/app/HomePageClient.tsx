@@ -1953,11 +1953,14 @@ export default function Home() {
 
           <section className="absolute inset-x-0 bottom-0 z-[2] w-full border-t border-white/40 bg-white/10 py-3 backdrop-blur-sm sm:py-3 md:py-4">
             <div className="w-full px-0">
-              <div className="relative min-h-[50px] overflow-hidden sm:min-h-[56px] md:min-h-[64px] lg:min-h-[70px]">
+              <div className="relative min-h-[58px] overflow-hidden sm:min-h-[66px] md:min-h-[74px] lg:min-h-[82px]">
                 <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-white/15 to-transparent" />
                 <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-white/15 to-transparent" />
 
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                {/* Anchored to the left edge, not centered: a centered track
+                    would slide its right edge into view mid-animation and
+                    leave the right half of the band empty at the loop wrap. */}
+                <div className="absolute left-0 top-1/2 -translate-y-1/2">
                   <div
                     className="flex w-max items-center"
                     style={{
@@ -1968,7 +1971,7 @@ export default function Home() {
                     {[...partnerAssetLogos, ...partnerAssetLogos].map((logo, index) => (
                       <div
                         key={`partner-asset-logo-home-${index}-${logo}`}
-                        className="relative h-[clamp(28px,4.1vw,48px)] w-[clamp(96px,13.5vw,170px)] shrink-0 opacity-90 mr-[clamp(24px,4.5vw,73px)]"
+                        className="relative h-[clamp(34px,5vw,58px)] w-[clamp(116px,16vw,205px)] shrink-0 opacity-90 mr-[clamp(24px,4.5vw,73px)]"
                       >
                         <Image
                           src={logo}
