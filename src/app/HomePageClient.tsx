@@ -1951,7 +1951,7 @@ export default function Home() {
             </div>
           </div>
 
-          <section className="absolute inset-x-0 bottom-0 z-[2] w-full bg-white/10 py-3 backdrop-blur-sm sm:py-3 md:py-4">
+          <section className="absolute inset-x-0 bottom-0 z-[2] w-full border-t border-white/40 bg-white/10 py-3 backdrop-blur-sm sm:py-3 md:py-4">
             <div className="w-full px-0">
               <div className="relative min-h-[42px] overflow-hidden sm:min-h-[46px] md:min-h-[52px] lg:min-h-[58px]">
                 <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-white/15 to-transparent" />
