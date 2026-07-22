@@ -1974,7 +1974,7 @@ export default function Home() {
                           src={logo}
                           alt={`Logo partenaire ${index % partnerAssetLogos.length + 1}`}
                           fill
-                          className="object-contain [filter:brightness(0)_saturate(100%)]"
+                          className="object-contain [filter:brightness(0)_saturate(100%)_invert(100%)]"
                         />
                       </div>
                     ))}
