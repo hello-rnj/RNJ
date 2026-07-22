@@ -1959,7 +1959,7 @@ export default function Home() {
 
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                   <div
-                    className="flex w-max items-center gap-[clamp(24px,4.5vw,73px)]"
+                    className="flex w-max items-center"
                     style={{
                       animation: 'scroll 26s linear infinite',
                       willChange: 'transform',
@@ -1968,7 +1968,7 @@ export default function Home() {
                     {[...partnerAssetLogos, ...partnerAssetLogos].map((logo, index) => (
                       <div
                         key={`partner-asset-logo-home-${index}-${logo}`}
-                        className="relative h-[clamp(28px,4.1vw,48px)] w-[clamp(96px,13.5vw,170px)] shrink-0 opacity-90"
+                        className="relative h-[clamp(28px,4.1vw,48px)] w-[clamp(96px,13.5vw,170px)] shrink-0 opacity-90 mr-[clamp(24px,4.5vw,73px)]"
                       >
                         <Image
                           src={logo}
