@@ -985,6 +985,14 @@ const whyChooseGridCards = [
   },
 ];
 
+// Both carousels advance one card at this cadence, and both pause while the
+// pointer is held on them.
+const PROJECTS_AUTOPLAY_MS = 3000;
+const INSTITUTIONAL_AUTOPLAY_MS = 3000;
+// How far a cursor/finger has to travel horizontally before a drag counts as
+// a swipe to the next project.
+const PROJECTS_DRAG_THRESHOLD_PX = 50;
+
 const projectsCarouselData = [
   {
     id: 'elmed',
@@ -1444,6 +1452,9 @@ export default function Home() {
   const lightBulbSectionRef = useRef<HTMLDivElement | null>(null);
   const [showProjectOverlay, setShowProjectOverlay] = useState(false);
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
+  const [isProjectsPanelPaused, setIsProjectsPanelPaused] = useState(false);
+  const projectsDragRef = useRef({ active: false, startX: 0, handled: false });
+  const institutionalDragRef = useRef({ active: false, startX: 0, startScroll: 0 });
   const faqAnswerRefs = useRef<Array<HTMLParagraphElement | null>>([]);
   const [faqAnswerHeights, setFaqAnswerHeights] = useState<number[]>(() => faqItems.map(() => 0));
   const faqLayoutState = expandedFaqIndex !== null
@@ -1700,22 +1711,58 @@ export default function Home() {
   useEffect(() => {
     if (isInstitutionalCarouselPaused) return;
     if (!isInstitutionalCarouselInView) return;
-    if (window.innerWidth < 1024) return;
 
     const interval = setInterval(() => {
       const carousel = institutionalCarouselRef.current;
       if (!carousel) return;
 
+      // The cards are rendered twice; once we've scrolled past the first copy
+      // we jump back by exactly one copy's width, which is invisible because
+      // the same cards sit at both positions.
+      // The jump has to be instant: the container sets `scroll-behavior:
+      // smooth`, which would turn it into an animation that the scrollBy below
+      // immediately cancels — leaving the carousel to run to the end and stick
+      // there instead of looping.
       const loopWidth = carousel.scrollWidth / 2;
       if (loopWidth > 0 && carousel.scrollLeft >= loopWidth) {
+        const previousBehavior = carousel.style.scrollBehavior;
+        carousel.style.scrollBehavior = 'auto';
         carousel.scrollLeft -= loopWidth;
+        carousel.style.scrollBehavior = previousBehavior;
       }
 
       scrollInstitutionalCarousel('right');
-    }, 5000);
+    }, INSTITUTIONAL_AUTOPLAY_MS);
 
     return () => clearInterval(interval);
   }, [isInstitutionalCarouselPaused, isInstitutionalCarouselInView]);
+
+  // Cursor drag on the institutional carousel. Touch is left to the browser's
+  // native momentum scrolling, so this only handles mouse pointers.
+  function handleInstitutionalPointerDown(e: React.PointerEvent<HTMLDivElement>) {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    const carousel = institutionalCarouselRef.current;
+    if (!carousel) return;
+    institutionalDragRef.current = { active: true, startX: e.clientX, startScroll: carousel.scrollLeft };
+    // `scroll-smooth` on the container would animate every scrollLeft write and
+    // make the drag lag behind the cursor.
+    carousel.style.scrollBehavior = 'auto';
+    setIsInstitutionalCarouselPaused(true);
+  }
+
+  function handleInstitutionalPointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    const drag = institutionalDragRef.current;
+    const carousel = institutionalCarouselRef.current;
+    if (!drag.active || !carousel) return;
+    carousel.scrollLeft = drag.startScroll - (e.clientX - drag.startX);
+  }
+
+  function endInstitutionalDrag() {
+    const carousel = institutionalCarouselRef.current;
+    if (carousel) carousel.style.scrollBehavior = '';
+    institutionalDragRef.current.active = false;
+    setIsInstitutionalCarouselPaused(false);
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -1745,11 +1792,48 @@ export default function Home() {
     };
   }, []);
 
+  // Wraps around in both directions, so the panel keeps cycling instead of
+  // dead-ending on the first/last project.
   function navigateProject(dir: 'prev' | 'next') {
     setActiveProjectIndex((prev) => {
-      if (dir === 'prev') return Math.max(0, prev - 1);
-      return Math.min(projectsCarouselData.length - 1, prev + 1);
+      const count = projectsCarouselData.length;
+      return dir === 'prev' ? (prev - 1 + count) % count : (prev + 1) % count;
     });
+  }
+
+  // Auto-advance the projects panel, paused while the pointer is held down on
+  // it (or hovering) and resumed on release.
+  useEffect(() => {
+    // The panel only exists while the overlay is open — no point cycling
+    // through projects that nobody can see.
+    if (!showProjectOverlay) return;
+    if (isProjectsPanelPaused) return;
+    const interval = setInterval(() => {
+      setActiveProjectIndex((prev) => (prev + 1) % projectsCarouselData.length);
+    }, PROJECTS_AUTOPLAY_MS);
+    return () => clearInterval(interval);
+  }, [isProjectsPanelPaused, showProjectOverlay]);
+
+  // Horizontal drag/swipe on the panel switches project, so it can be driven
+  // with the cursor instead of the arrow buttons.
+  function handleProjectsPointerDown(e: React.PointerEvent<HTMLDivElement>) {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    projectsDragRef.current = { active: true, startX: e.clientX, handled: false };
+    setIsProjectsPanelPaused(true);
+  }
+
+  function handleProjectsPointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    const drag = projectsDragRef.current;
+    if (!drag.active || drag.handled) return;
+    const dx = e.clientX - drag.startX;
+    if (Math.abs(dx) < PROJECTS_DRAG_THRESHOLD_PX) return;
+    drag.handled = true;
+    navigateProject(dx < 0 ? 'next' : 'prev');
+  }
+
+  function endProjectsDrag() {
+    projectsDragRef.current.active = false;
+    setIsProjectsPanelPaused(false);
   }
 
   function openProject(idx: number) {
@@ -2936,7 +3020,15 @@ export default function Home() {
                     className="pointer-events-auto absolute right-0 top-0 h-full w-[min(74vw,380px)] overflow-hidden border-l border-black/10 shadow-[-18px_0_36px_rgba(0,0,0,0.22)] sm:w-[min(66vw,430px)] md:w-[min(60vw,560px)] lg:w-[min(633px,44vw)]"
                     style={{ background: 'rgb(221, 229, 151)', animation: '550ms cubic-bezier(0.22, 1, 0.36, 1) 80ms 1 normal both running slideInRight' }}
                   >
-                    <div className="relative flex h-full min-h-0 w-full flex-col">
+                    <div
+                      className="relative flex h-full min-h-0 w-full flex-col"
+                      onMouseEnter={() => setIsProjectsPanelPaused(true)}
+                      onMouseLeave={() => setIsProjectsPanelPaused(false)}
+                      onPointerDown={handleProjectsPointerDown}
+                      onPointerMove={handleProjectsPointerMove}
+                      onPointerUp={endProjectsDrag}
+                      onPointerCancel={endProjectsDrag}
+                    >
 
                       {/* Close button */}
                       <button
@@ -3008,10 +3100,9 @@ export default function Home() {
                       {/* Prev button */}
                       <button
                         type="button"
-                        disabled={activeProjectIndex === 0}
                         className="absolute bottom-[calc(16px+env(safe-area-inset-bottom))] left-4 flex h-12 w-12 items-center justify-center rounded-full transition hover:brightness-110 sm:left-6 sm:h-14 sm:w-14 md:left-8 md:h-16 md:w-16 lg:bottom-[40px] lg:left-[clamp(30px,8%,51px)] lg:h-[clamp(48px,4.5vw,64px)] lg:w-[clamp(48px,4.5vw,64px)]"
                         aria-label="Projet précédent"
-                        style={{ background: 'rgb(0, 51, 0)', opacity: activeProjectIndex === 0 ? 0.3 : 1 }}
+                        style={{ background: 'rgb(0, 51, 0)' }}
                         onClick={() => navigateProject('prev')}
                       >
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -3022,10 +3113,9 @@ export default function Home() {
                       {/* Next button */}
                       <button
                         type="button"
-                        disabled={activeProjectIndex === projectsCarouselData.length - 1}
                         className="absolute bottom-[calc(16px+env(safe-area-inset-bottom))] right-4 flex h-12 w-12 items-center justify-center rounded-full transition hover:brightness-110 sm:right-6 sm:h-14 sm:w-14 md:right-8 md:h-16 md:w-16 lg:bottom-[40px] lg:right-[clamp(30px,8%,51px)] lg:h-[clamp(48px,4.5vw,64px)] lg:w-[clamp(48px,4.5vw,64px)]"
                         aria-label="Projet suivant"
-                        style={{ background: 'rgb(0, 51, 0)', opacity: activeProjectIndex === projectsCarouselData.length - 1 ? 0.3 : 1 }}
+                        style={{ background: 'rgb(0, 51, 0)' }}
                         onClick={() => navigateProject('next')}
                       >
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -3106,9 +3196,15 @@ export default function Home() {
                     <div className="relative z-[20] w-full px-4 sm:px-6 lg:px-8 xl:px-[52px]">
                       <div
                         ref={institutionalCarouselRef}
-                        className="relative z-10 flex w-full snap-x snap-mandatory flex-nowrap gap-4 overflow-x-auto py-0 touch-pan-x overscroll-x-contain scroll-smooth md:gap-[18px] xl:gap-[18px] [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
+                        className="relative z-10 flex w-full cursor-grab snap-x snap-mandatory flex-nowrap gap-4 overflow-x-auto py-0 touch-pan-x overscroll-x-contain scroll-smooth active:cursor-grabbing md:gap-[18px] xl:gap-[18px] [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
                         style={{ WebkitOverflowScrolling: 'touch' }}
                         onScroll={(e) => handleInstitutionalCarouselScroll(e.currentTarget)}
+                        onPointerDown={handleInstitutionalPointerDown}
+                        onPointerMove={handleInstitutionalPointerMove}
+                        onPointerUp={endInstitutionalDrag}
+                        onPointerCancel={endInstitutionalDrag}
+                        onPointerLeave={endInstitutionalDrag}
+                        onDragStart={(e) => e.preventDefault()}
                       >
                         {[...institutionalCarouselCards, ...institutionalCarouselCards].map((card, index) => (
                           <article
