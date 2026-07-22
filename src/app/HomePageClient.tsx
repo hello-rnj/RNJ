@@ -1791,8 +1791,8 @@ export default function Home() {
                   <span className="hidden sm:block">une performance durable</span>
                 </h1>
                 <p
-                  className="w-full max-w-[680px] text-center font-[Geist] text-[14px] font-normal leading-[1.45] sm:text-[15px] md:text-[16px] md:leading-[20px] xl:max-w-[618px] xl:text-left"
-                  style={{ color: 'rgba(0, 51, 0, 0.7)' }}
+                  className="w-full max-w-[680px] text-center font-[Geist] text-[14px] font-bold leading-[1.45] sm:text-[15px] md:text-[16px] md:leading-[20px] xl:max-w-[618px] xl:text-left"
+                  style={{ color: '#FFFFFF', textShadow: '0 1px 6px rgba(0, 0, 0, 0.35)' }}
                 >
                   RNJ Advisory accompagne entrepreneurs, PME, ASBL, investisseurs et institutions en Belgique, en Europe et en Afrique pour structurer, sécuriser et accélérer leurs projets.
                 </p>
