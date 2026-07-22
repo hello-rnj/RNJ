@@ -1839,7 +1839,7 @@ export default function Home() {
                   borderRadius: 'clamp(20px, 3.5vw, 50px)',
                   padding: 'clamp(8px, 1vw, 14px)',
                   background: 'rgba(0, 0, 0, 0.15)',
-                  boxShadow: '0px 4.31034px 27.4138px rgba(0, 0, 0, 0.5)',
+                  boxShadow: '0px 4px 18px rgba(0, 0, 0, 0.22)',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                 }}
@@ -1887,7 +1887,7 @@ export default function Home() {
                   borderRadius: 'clamp(18px, 3.5vw, 50px)',
                   padding: 'clamp(14px, 2.5vw, 45px) clamp(14px, 3vw, 48px)',
                   background: 'rgba(0, 0, 0, 0.15)',
-                  boxShadow: '0px 4.31034px 27.4138px rgba(0, 0, 0, 0.5)',
+                  boxShadow: '0px 4px 18px rgba(0, 0, 0, 0.22)',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                 }}
@@ -1934,7 +1934,7 @@ export default function Home() {
                   borderRadius: 'clamp(18px, 3.5vw, 50px)',
                   padding: 'clamp(14px, 2vw, 40px) clamp(16px, 2.5vw, 40px)',
                   background: 'rgba(0, 0, 0, 0.15)',
-                  boxShadow: '0px 4.31034px 27.4138px rgba(0, 0, 0, 0.5)',
+                  boxShadow: '0px 4px 18px rgba(0, 0, 0, 0.22)',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                 }}
