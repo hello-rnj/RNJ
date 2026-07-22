@@ -36,7 +36,11 @@ const visionSteps = [
 const parcoursCards = [
   { title: 'Entrepreneur en Belgique', caption: 'Créer une activité solide dès le premier jour.', icon: '/optimized/BE.png', iconW: 150, iconH: 99 },
   { title: 'Entrepreneur international', caption: 'Vous installer en Belgique en toute sécurité.', icon: '/optimized/Group%20(9).png', iconW: 160, iconH: 160 },
-  { title: 'PME en croissance', caption: 'Structurer votre développement.', icon: '/optimized/Layer%201%20(18).png', iconW: 170, iconH: 137 },
+  // Box kept at the same 137px height as the others so the card layout below
+  // doesn't shift; only the width grows, because this artwork is a wide
+  // 341x109 strip (3.13:1) and object-fit:contain would otherwise shrink it
+  // to a sliver inside a 170px-wide box.
+  { title: 'PME en croissance', caption: 'Structurer votre développement.', icon: '/optimized/Layer%201%20(24).png', iconW: 250, iconH: 137 },
 ];
 
 // Flags are images rather than emoji: Windows ships no flag glyphs at all, so
