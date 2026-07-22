@@ -281,11 +281,15 @@ export default function CreationEntrepriseClient() {
       </section>
 
       <style>{`
+        /* Figma gives these as section-space offsets (177 / -294 / -764), one
+           per variant. The stack now lives inside the 733px window that starts
+           at y=37, so each value is shifted up by 37 to stay in the window's
+           coordinate space. Each stop centres one card in the window. */
         @keyframes situationCycle {
-          0%, 8%   { top: 177px; }
-          25%, 33% { top: -294px; }
-          50%, 58% { top: -764px; }
-          75%, 100% { top: 177px; }
+          0%, 8%    { transform: translateY(140px); }
+          25%, 33%  { transform: translateY(-331px); }
+          50%, 58%  { transform: translateY(-801px); }
+          75%, 100% { transform: translateY(140px); }
         }
         @keyframes journeyCycle {
           0%, 8%   { transform: translateX(0px); }
@@ -330,8 +334,13 @@ export default function CreationEntrepriseClient() {
             </div>
           </div>
 
-          {/* Mask group / Rectangle 642 — placeholder box (image to be
-              injected later); exact Figma position/size, no fill for now. */}
+          {/* Mask group / Rectangle 642 — the fixed window the stack travels
+              behind (Figma: left 982, top 37, 470x733), carrying Rectangle
+              642's own gradient stops as the top/bottom fade.
+              The fade belongs here rather than on the stack: a mask set on the
+              moving element travels with it, so the same card stayed lit while
+              the whole column slid up and down, and the rest spilled outside
+              the window instead of being cropped by it. */}
           <div
             style={{
               position: 'absolute',
@@ -339,28 +348,27 @@ export default function CreationEntrepriseClient() {
               top: '37px',
               width: '470px',
               height: '733px',
-            }}
-          />
-
-          {/* Frame 349155 — the 3-card stack, exact Figma position (top:765
-              page-space → -294 here). Faded top/bottom via a mask built from
-              Rectangle 642's own gradient stops, converted into this stack's
-              local coordinate space, so the crop against the section's
-              808px window looks intentional rather than a hard cut. */}
-          <div
-            style={{
-              position: 'absolute',
-              left: '982px',
-              width: '470px',
-              height: '1394px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '16px',
-              WebkitMaskImage: 'linear-gradient(180deg, transparent 0%, transparent 27%, black 35%, black 65%, transparent 73%, transparent 100%)',
-              maskImage: 'linear-gradient(180deg, transparent 0%, transparent 27%, black 35%, black 65%, transparent 73%, transparent 100%)',
-              animation: 'situationCycle 12s ease-in-out infinite',
+              overflow: 'hidden',
+              WebkitMaskImage: 'linear-gradient(180deg, transparent 5.57%, #000 21.94%, #000 77.95%, transparent 92.25%)',
+              maskImage: 'linear-gradient(180deg, transparent 5.57%, #000 21.94%, #000 77.95%, transparent 92.25%)',
             }}
           >
+            {/* Frame 349155 — the 3-card stack. Each keyframe parks one card in
+                the middle of the window above, matching the three Figma
+                variants of this section. */}
+            <div
+              style={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                width: '470px',
+                height: '1394px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+                animation: 'situationCycle 12s ease-in-out infinite',
+              }}
+            >
             {situations.map((s) => (
               <Link
                 key={s.title}
@@ -386,6 +394,7 @@ export default function CreationEntrepriseClient() {
                 </div>
               </Link>
             ))}
+            </div>
           </div>
         </div>
       </section>
