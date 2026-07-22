@@ -369,6 +369,28 @@ export default function ConseilJuridiqueClient() {
             croissance durable.
           </p>
 
+          {/* Figma animates the photo between two states as a row opens: in the
+              closed variant it sits at opacity 0, rotated -13.01deg and scaled
+              right down (its 46x28 box against the open 475x293 one, ~0.1), and
+              in the open variant it lands at full size, opacity 1, rotate
+              3.25deg. Only transform/opacity are animated — the drop-shadow is
+              left static since animating a filter costs a repaint per frame and
+              the difference is imperceptible over half a second. */}
+          <style>{`
+            @keyframes expertisePhotoIn {
+              from { opacity: 0; transform: rotate(-13.01deg) scale(0.1); }
+              to   { opacity: 1; transform: rotate(3.25deg) scale(1); }
+            }
+            @keyframes expertisePhotoInMobile {
+              from { opacity: 0; transform: scale(0.94); }
+              to   { opacity: 1; transform: scale(1); }
+            }
+            @media (prefers-reduced-motion: reduce) {
+              @keyframes expertisePhotoIn { from { opacity: 1; } to { opacity: 1; } }
+              @keyframes expertisePhotoInMobile { from { opacity: 1; } to { opacity: 1; } }
+            }
+          `}</style>
+
           {/* Expertise accordion */}
           <div style={{ position: 'absolute', left: '88.28px', top: '559px', width: '1335.43px', display: 'flex', flexDirection: 'column' }}>
             {EXPERTISES.map((e, i) =>
@@ -410,6 +432,8 @@ export default function ConseilJuridiqueClient() {
                       transform: 'rotate(3.25deg)',
                       filter: 'drop-shadow(0px 4px 72.6px rgba(0, 0, 0, 0.3))',
                       pointerEvents: 'none',
+                      transformOrigin: 'center',
+                      animation: 'expertisePhotoIn 520ms cubic-bezier(0.22, 1, 0.36, 1) both',
                     }}
                   >
                     <Image src={CARD_IMG} alt="" fill style={{ objectFit: 'cover' }} unoptimized />
@@ -477,7 +501,10 @@ export default function ConseilJuridiqueClient() {
                 <p style={{ fontWeight: 500, fontSize: '15px', lineHeight: '131%', color: '#DDE597', opacity: 0.7, margin: 0 }}>
                   {e.desc}
                 </p>
-                <div className="relative mt-6 overflow-hidden rounded-[14px]" style={{ height: '180px' }}>
+                <div
+                  className="relative mt-6 overflow-hidden rounded-[14px]"
+                  style={{ height: '180px', animation: 'expertisePhotoInMobile 420ms cubic-bezier(0.22, 1, 0.36, 1) both' }}
+                >
                   <Image src={CARD_IMG} alt="" fill style={{ objectFit: 'cover' }} unoptimized />
                 </div>
               </div>
