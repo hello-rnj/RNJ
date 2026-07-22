@@ -1953,7 +1953,7 @@ export default function Home() {
 
           <section className="absolute inset-x-0 bottom-0 z-[2] w-full border-t border-white/40 bg-white/10 py-3 backdrop-blur-sm sm:py-3 md:py-4">
             <div className="w-full px-0">
-              <div className="relative min-h-[42px] overflow-hidden sm:min-h-[46px] md:min-h-[52px] lg:min-h-[58px]">
+              <div className="relative min-h-[50px] overflow-hidden sm:min-h-[56px] md:min-h-[64px] lg:min-h-[70px]">
                 <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-white/15 to-transparent" />
                 <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-white/15 to-transparent" />
 
@@ -1968,7 +1968,7 @@ export default function Home() {
                     {[...partnerAssetLogos, ...partnerAssetLogos].map((logo, index) => (
                       <div
                         key={`partner-asset-logo-home-${index}-${logo}`}
-                        className="relative h-[clamp(22px,3.3vw,38px)] w-[clamp(80px,11vw,140px)] shrink-0 opacity-90"
+                        className="relative h-[clamp(28px,4.1vw,48px)] w-[clamp(96px,13.5vw,170px)] shrink-0 opacity-90"
                       >
                         <Image
                           src={logo}
