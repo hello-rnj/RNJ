@@ -1778,7 +1778,7 @@ export default function Home() {
           <div
             className="absolute left-1/2 top-[95px] w-full max-w-[814px] -translate-x-1/2 px-4 sm:top-[115px] sm:px-6 md:top-[125px] md:px-8 lg:top-[150px] lg:px-10 xl:top-[185px] xl:px-0"
           >
-            <div className="flex flex-col items-center gap-6 md:gap-10 xl:items-start xl:gap-[59px]">
+            <div className="flex flex-col items-center gap-4 md:gap-6 xl:items-start xl:gap-[32px]">
               <div className="flex w-full flex-col items-center gap-4 md:gap-[24px] xl:items-start xl:gap-[32px]">
                 <h1
                   className="about-hero-title eb_garamond_e16653e1-module__s6IC3q__className w-full max-w-[744px] text-center font-bold leading-[0.95] text-[#003300] text-[clamp(34px,9.5vw,64px)] xl:text-left"
