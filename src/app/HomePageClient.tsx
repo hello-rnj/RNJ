@@ -1663,11 +1663,14 @@ export default function Home() {
     const styles = getComputedStyle(carousel);
     const gap = Number.parseFloat(styles.columnGap || styles.gap || '0') || 0;
     const cardWidth = firstCard?.getBoundingClientRect().width ?? carousel.clientWidth * 0.9;
-    // Two full cards are visible per view from md breakpoint up — advance by a
-    // whole pair so we always land on a pair boundary and never reveal a
-    // partial third card mid-row.
-    const cardsPerView = window.innerWidth >= 768 ? 2 : 1;
-    const offset = (cardWidth + gap) * cardsPerView * (direction === 'right' ? 1 : -1);
+    // Advance by however many whole cards are actually on screen (two from the
+    // md breakpoint up, one below it) so we always land on a card boundary and
+    // never reveal a partial card mid-row. Measured from the real layout rather
+    // than assumed from a viewport breakpoint, which drifts out of sync with
+    // the card widths whenever those change.
+    const step = cardWidth + gap;
+    const cardsPerView = step > 0 ? Math.max(1, Math.round(carousel.clientWidth / step)) : 1;
+    const offset = step * cardsPerView * (direction === 'right' ? 1 : -1);
     carousel.scrollBy({ left: offset, behavior: 'smooth' });
   }
 
@@ -3736,7 +3739,10 @@ export default function Home() {
                 </div>
 
                 {/* Column 2: Tall photo card — full width on mobile */}
-                <div className="bento-card bento-d3 relative order-last col-span-2 w-full overflow-hidden rounded-[16px] bg-[#6F6F6F] sm:order-none sm:col-span-1 sm:rounded-[18px] md:rounded-[20px]">
+                {/* No background colour here: the artwork is a 336x695 portrait
+                    and the card is much wider than that on mobile, so a solid
+                    background would show as grey bars either side of it. */}
+                <div className="bento-card bento-d3 relative order-last col-span-2 w-full overflow-hidden rounded-[16px] sm:order-none sm:col-span-1 sm:rounded-[18px] md:rounded-[20px]">
                   <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671241/rnj/optimized/group-352-3-8e109b3c.svg"
                     alt=""
                     fill
