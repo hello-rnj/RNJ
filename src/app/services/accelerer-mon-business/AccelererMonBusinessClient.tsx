@@ -13,7 +13,9 @@ const ebGaramond = EB_Garamond({ subsets: ['latin'], weight: ['400', '500'], dis
 /* Figma canvas: 1512 wide */
 const W = 1512;
 const HERO_H = 1004;
-const SOLUTIONS_H = 2155.43;
+// 4-card row ends at 1025.49, then the same 171px gap the removed heading used
+// to sit in, the 72px CTA, and 171px of bottom padding.
+const SOLUTIONS_H = 1439.52;
 const APPROACH_H = 505.29;
 const RECRUIT_H = 1197.26;
 
@@ -21,9 +23,6 @@ const MESH_IMG = '/optimized/abstract-wireframe-mesh-on-a-black-background-2026-
 const RECRUIT_IMG = '/optimized/business-professionals-waiting-in-line-for-a-meeti-2026-01-08-05-33-14-utc%201.webp';
 
 const HERO_IMG = '/optimized/beautiful-architecture-office-business-building-wi-2026-03-09-05-47-32-utc%201.webp';
-const CARD1_IMG = '/optimized/large-building-under-construction-on-a-chicago-str-2026-04-14-01-37-22-utc%201.webp';
-const CARD2_IMG = '/optimized/business-woman-posing-elegantly-at-workplace-2026-01-09-10-58-00-utc%201.webp';
-const CARD3_IMG = '/optimized/modern-building-closeup-in-shanghai-at-dusk-2026-03-18-04-57-49-utc%201.webp';
 
 const SOLUTION_CARDS = [
   {
@@ -435,82 +434,11 @@ export default function AccelererMonBusinessClient() {
             ))}
           </div>
 
-          {/* Centered heading between the 4-card row and the 3 photo cards */}
-          <h2
-            style={{
-              position: 'absolute', left: 'calc(50% - 946.93px/2)', top: '1196.52px', width: '946.93px',
-              fontWeight: 500, fontSize: '48px', lineHeight: '108%', textAlign: 'center', letterSpacing: '-0.02em',
-              color: '#003300', margin: 0,
-            }}
-          >
-            Des solutions pour accompagner chaque étape de votre développement.
-          </h2>
-
-          {/* 3 photo cards */}
-          <div style={{ position: 'absolute', left: '60px', top: '1396.81px', width: '1392px', height: '452px', display: 'flex', gap: '18px' }}>
-            {/* Card 1 — Procédures administratives */}
-            <div style={{ position: 'relative', width: '452px', height: '452px', overflow: 'hidden', background: '#D9D9D9', flexShrink: 0 }}>
-              <Image src={CARD1_IMG} alt="Procédures administratives" fill style={{ objectFit: 'cover' }} unoptimized />
-              <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%)' }} />
-              <span style={{ position: 'absolute', left: '50%', top: '55.55px', transform: 'translateX(-50%)', width: '252.45px', textAlign: 'center', fontWeight: 500, fontSize: '32px', lineHeight: '108%', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
-                Procédures administratives
-              </span>
-              <span style={{ position: 'absolute', left: '50%', top: '339.4px', transform: 'translateX(-50%)', width: '309.73px', textAlign: 'center', fontWeight: 400, fontSize: '16px', lineHeight: '108%', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
-                Helping companies identify new opportunities and structure their growth.
-              </span>
-              <Link
-                href="/contact"
-                style={{
-                  position: 'absolute', left: '168.93px', top: '394.11px',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  width: '114.15px', height: '33.44px',
-                  background: '#FFFFFF', borderRadius: '23px',
-                  fontWeight: 700, fontSize: '12px', color: '#0E434F', textDecoration: 'none',
-                }}
-              >
-                intéressée
-              </Link>
-            </div>
-
-            {/* Card 2 — Recrutement & Talents (no CTA — this is the current page's focus) */}
-            <div style={{ position: 'relative', width: '452px', height: '452px', overflow: 'hidden', background: '#D9D9D9', flexShrink: 0 }}>
-              <Image src={CARD2_IMG} alt="Recrutement talents Hors UE" fill style={{ objectFit: 'cover' }} unoptimized />
-              <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.55) 100%)' }} />
-              <span style={{ position: 'absolute', left: '50%', top: '341.94px', transform: 'translateX(-50%)', width: '207.05px', textAlign: 'center', fontWeight: 500, fontSize: '32px', lineHeight: '108%', letterSpacing: '-0.02em', color: '#003300' }}>
-                Recrutement talents Hors UE
-              </span>
-            </div>
-
-            {/* Card 3 — Expansion internationale */}
-            <div style={{ position: 'relative', width: '452px', height: '452px', overflow: 'hidden', background: '#D9D9D9', flexShrink: 0 }}>
-              <Image src={CARD3_IMG} alt="Expansion internationale" fill style={{ objectFit: 'cover' }} unoptimized />
-              <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%)' }} />
-              <span style={{ position: 'absolute', left: '50%', top: '55.55px', transform: 'translateX(-50%)', width: '252.45px', textAlign: 'center', fontWeight: 500, fontSize: '32px', lineHeight: '108%', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
-                Expansion internationale
-              </span>
-              <span style={{ position: 'absolute', left: '50%', top: '339.4px', transform: 'translateX(-50%)', width: '309.73px', textAlign: 'center', fontWeight: 400, fontSize: '16px', lineHeight: '108%', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
-                Supporting companies entering new markets with legal and strategic guidance.
-              </span>
-              <Link
-                href="/contact"
-                style={{
-                  position: 'absolute', left: '168.93px', top: '394.11px',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  width: '114.15px', height: '33.44px',
-                  background: '#FFFFFF', borderRadius: '23px',
-                  fontWeight: 700, fontSize: '12px', color: '#0E434F', textDecoration: 'none',
-                }}
-              >
-                intéressée
-              </Link>
-            </div>
-          </div>
-
           {/* CTA */}
           <Link
             href="/contact"
             style={{
-              position: 'absolute', left: '50%', top: '1912.43px', transform: 'translateX(-50%)',
+              position: 'absolute', left: '50%', top: '1196.52px', transform: 'translateX(-50%)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               width: '252.03px', height: '72px',
               background: '#BBCB2E', borderRadius: '57.3292px',
@@ -550,44 +478,6 @@ export default function AccelererMonBusinessClient() {
               <p style={{ fontWeight: 500, fontSize: '14px', lineHeight: '130%', color: c.color, opacity: 0.7, margin: 0 }}>{c.desc}</p>
             </div>
           ))}
-        </div>
-
-        <div className="mb-10 flex flex-col gap-4">
-          <div className="relative overflow-hidden rounded-[16px]" style={{ height: '320px' }}>
-            <Image src={CARD1_IMG} alt="Procédures administratives" fill style={{ objectFit: 'cover' }} unoptimized />
-            <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%)' }} />
-            <span className="absolute left-1/2 top-8 w-[80%] -translate-x-1/2 text-center text-white" style={{ fontWeight: 500, fontSize: '24px', lineHeight: '108%' }}>
-              Procédures administratives
-            </span>
-            <span className="absolute bottom-16 left-1/2 w-[80%] -translate-x-1/2 text-center text-white" style={{ fontSize: '13px' }}>
-              Helping companies identify new opportunities and structure their growth.
-            </span>
-            <Link href="/contact" className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex items-center justify-center rounded-full px-6 py-2.5" style={{ background: '#FFFFFF', fontWeight: 700, fontSize: '12px', color: '#0E434F' }}>
-              intéressée
-            </Link>
-          </div>
-
-          <div className="relative overflow-hidden rounded-[16px]" style={{ height: '260px' }}>
-            <Image src={CARD2_IMG} alt="Recrutement talents Hors UE" fill style={{ objectFit: 'cover' }} unoptimized />
-            <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(255,255,255,0.6) 100%)' }} />
-            <span className="absolute bottom-8 left-1/2 w-[80%] -translate-x-1/2 text-center" style={{ fontWeight: 500, fontSize: '24px', lineHeight: '108%', color: '#003300' }}>
-              Recrutement talents Hors UE
-            </span>
-          </div>
-
-          <div className="relative overflow-hidden rounded-[16px]" style={{ height: '320px' }}>
-            <Image src={CARD3_IMG} alt="Expansion internationale" fill style={{ objectFit: 'cover' }} unoptimized />
-            <div aria-hidden className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%)' }} />
-            <span className="absolute left-1/2 top-8 w-[80%] -translate-x-1/2 text-center text-white" style={{ fontWeight: 500, fontSize: '24px', lineHeight: '108%' }}>
-              Expansion internationale
-            </span>
-            <span className="absolute bottom-16 left-1/2 w-[80%] -translate-x-1/2 text-center text-white" style={{ fontSize: '13px' }}>
-              Supporting companies entering new markets with legal and strategic guidance.
-            </span>
-            <Link href="/contact" className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex items-center justify-center rounded-full px-6 py-2.5" style={{ background: '#FFFFFF', fontWeight: 700, fontSize: '12px', color: '#0E434F' }}>
-              intéressée
-            </Link>
-          </div>
         </div>
 
         <div className="flex justify-center">
