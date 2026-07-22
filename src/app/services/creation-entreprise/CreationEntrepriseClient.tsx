@@ -39,10 +39,12 @@ const parcoursCards = [
   { title: 'PME en croissance', caption: 'Structurer votre développement.', icon: '/optimized/Layer%201%20(18).png', iconW: 170, iconH: 137 },
 ];
 
+// Flags are images rather than emoji: Windows ships no flag glyphs at all, so
+// 🇧🇪/🇪🇺 fell back to an empty box or bare letters there.
 const situations = [
-  { title: 'Je réside en Belgique 🇧🇪', link: 'Créer mon entreprise' },
-  { title: 'Je suis citoyen européen 🇪🇺', link: 'Entreprendre en Belgique' },
-  { title: 'Je viens hors Union Européenne', link: 'Carte professionnelle' },
+  { title: 'Je réside en Belgique', link: 'Créer mon entreprise', flag: '/optimized/be-flag.svg', flagAlt: 'Drapeau de la Belgique' },
+  { title: 'Je suis citoyen européen', link: 'Entreprendre en Belgique', flag: '/optimized/eu-flag.svg', flagAlt: "Drapeau de l'Union européenne" },
+  { title: 'Je viens hors Union Européenne', link: 'Carte professionnelle', flag: null, flagAlt: '' },
 ];
 
 /* Figma shows steps 2-4 as their base color at group-opacity 0.4 — but
@@ -379,6 +381,15 @@ export default function CreationEntrepriseClient() {
                   <span className={ebGaramond.className}
                     style={{ fontWeight: 500, fontSize: '48px', lineHeight: '63px', textTransform: 'capitalize', color: '#003300' }}>
                     {s.title}
+                    {s.flag && (
+                      <Image
+                        src={s.flag}
+                        alt={s.flagAlt}
+                        width={69}
+                        height={46}
+                        style={{ display: 'inline-block', width: '69px', height: '46px', marginLeft: '14px', verticalAlign: '-6px', borderRadius: '5px' }}
+                      />
+                    )}
                   </span>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '11px', opacity: 0.4 }}>
                     <span className={geist.className}
@@ -415,6 +426,15 @@ export default function CreationEntrepriseClient() {
             <Link key={s.title} href="/contact" className="flex flex-col gap-6 rounded-[40px] px-8 py-9" style={{ background: '#DDE597' }}>
               <span className={ebGaramond.className} style={{ fontSize: '28px', lineHeight: '1.2em', fontWeight: 500, textTransform: 'capitalize', color: '#003300' }}>
                 {s.title}
+                {s.flag && (
+                  <Image
+                    src={s.flag}
+                    alt={s.flagAlt}
+                    width={42}
+                    height={28}
+                    style={{ display: 'inline-block', width: '42px', height: '28px', marginLeft: '10px', verticalAlign: '-4px', borderRadius: '4px' }}
+                  />
+                )}
               </span>
               <span className="flex items-center gap-3" style={{ opacity: 0.4 }}>
                 <span style={{ color: '#003300', fontWeight: 600, fontSize: '16px', textDecoration: 'underline' }}>{s.link}</span>
