@@ -3781,9 +3781,8 @@ export default function Home() {
                   className="relative w-full flex-1 overflow-hidden rounded-[15px]"
                   style={{
                     height: 'clamp(420px, 44vw, 596px)',
-                    background: '#C1CB82',
+                    background: '#F5FAC7',
                     filter: 'drop-shadow(0px 2px 26.1px rgba(0,0,0,0.15))',
-                    opacity: 0.8,
                   }}
                 >
                   {/* Inner image block */}
@@ -3792,11 +3791,21 @@ export default function Home() {
                     style={{ inset: '21px 27px 44% 27px' }}
                   >
                     <Image
-                      src="/optimized/group-348987-2.webp"
+                      src="/optimized/wind-power-generation-2026-03-25-03-13-10-utc%201.png"
                       alt="Des stratégies qui créent de l'impact"
                       fill
                       className="object-cover"
                       unoptimized
+                    />
+                    {/* RNJ badge (Group 349363) — bottom-right of the image */}
+                    <Image
+                      src="/optimized/Group%20349363.png"
+                      alt="RNJ Advisory"
+                      width={80}
+                      height={80}
+                      unoptimized
+                      className="absolute"
+                      style={{ right: '10px', bottom: '10px', width: 'clamp(52px, 6vw, 80px)', height: 'auto' }}
                     />
                   </div>
                   {/* Text */}
