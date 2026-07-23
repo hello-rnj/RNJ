@@ -250,9 +250,15 @@ export default function AboutPage() {
             <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-[#BBCB2E] to-transparent" />
             <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-[#BBCB2E] to-transparent" />
 
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            {/* Left-anchored track with per-item right margin instead of a
+                centered track + flex gap — same seamless-loop setup as the
+                homepage band. A centered track slides its right edge into
+                view mid-animation (empty right half at the wrap), and a flex
+                gap gives 2N-1 gaps for a doubled N-item track so -50% lands
+                half a gap short. */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2">
               <div
-                className="flex w-max items-center gap-[clamp(24px,4.5vw,73px)]"
+                className="flex w-max items-center"
                 style={{
                   animation: 'scroll 26s linear infinite',
                   willChange: 'transform',
@@ -261,7 +267,7 @@ export default function AboutPage() {
                 {[...partnerAssetLogos, ...partnerAssetLogos].map((logo, index) => (
                   <div
                     key={`partner-asset-logo-about-${index}-${logo}`}
-                    className="relative h-[clamp(30px,4.6vw,52px)] w-[clamp(108px,15vw,190px)] shrink-0"
+                    className="relative h-[clamp(30px,4.6vw,52px)] w-[clamp(108px,15vw,190px)] shrink-0 mr-[clamp(24px,4.5vw,73px)]"
                   >
                     <Image
                       src={logo}

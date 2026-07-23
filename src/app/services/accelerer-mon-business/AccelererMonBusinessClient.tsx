@@ -737,22 +737,35 @@ export default function AccelererMonBusinessClient() {
                 >
                   <Image src={c.icon} alt="" width={c.iconW} height={c.iconH} unoptimized />
                 </div>
-                <span
+                {/* Title + caption share one flex column instead of two
+                    fixed-top spans. With separate tops a two-line title (e.g.
+                    "Permis unique et autorisation de travail") overran the
+                    caption pinned just 37px below it. Anchored at the original
+                    title top and flowing downward keeps the single-line cards
+                    looking the same while the caption is always pushed clear. */}
+                <div
                   style={{
-                    position: 'absolute', left: '50%', top: '185.47px', transform: 'translateX(-50%)', width: '253px',
-                    textAlign: 'center', fontWeight: 500, fontSize: '20px', lineHeight: '121%', letterSpacing: '-0.01em', color: '#003300',
+                    position: 'absolute', left: '50%', top: '185.47px', transform: 'translateX(-50%)',
+                    width: '253px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
                   }}
                 >
-                  {c.title}
-                </span>
-                <span
-                  style={{
-                    position: 'absolute', left: '50%', top: '222.27px', transform: 'translateX(-50%)', width: '236px',
-                    textAlign: 'center', fontWeight: 400, fontSize: '16px', lineHeight: '128%', letterSpacing: '-0.01em', color: '#406640',
-                  }}
-                >
-                  {c.desc}
-                </span>
+                  <span
+                    style={{
+                      width: '253px', textAlign: 'center', fontWeight: 500, fontSize: '20px',
+                      lineHeight: '121%', letterSpacing: '-0.01em', color: '#003300',
+                    }}
+                  >
+                    {c.title}
+                  </span>
+                  <span
+                    style={{
+                      width: '236px', textAlign: 'center', fontWeight: 400, fontSize: '16px',
+                      lineHeight: '128%', letterSpacing: '-0.01em', color: '#406640',
+                    }}
+                  >
+                    {c.desc}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
