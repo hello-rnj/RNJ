@@ -29,11 +29,17 @@ const STATS = [
   { value: '30+', label: 'Institutions' },
 ];
 
+// One pre-composited photo per row, matched to the Figma layer names
+// (a-woman-and-two-men-sitting-in-armchairs / scales-of-justice /
+// close-up-of-coworkers-shaking-hands / business-professionals-meeting).
+// Each export already carries the 3.25deg tilt, the 18px rounded corners and
+// the drop shadow, sitting inside a transparent margin — so none of those are
+// re-applied in CSS below, or they would double up.
 const EXPERTISES = [
-  { title: 'Droit des affaires', desc: 'Sécuriser les décisions stratégiques de votre entreprise.' },
-  { title: 'Conformité réglementaire', desc: 'Anticiper les évolutions réglementaires et limiter les risques.' },
-  { title: 'Contrats & Négociation', desc: 'Structurer des relations contractuelles solides.' },
-  { title: 'Gouvernance & Institutions', desc: 'Accompagner les acteurs publics et privés.' },
+  { title: 'Droit des affaires', desc: 'Sécuriser les décisions stratégiques de votre entreprise.', img: '/optimized/Group%20349379.png' },
+  { title: 'Conformité réglementaire', desc: 'Anticiper les évolutions réglementaires et limiter les risques.', img: '/optimized/Group%20349379%20(1).png' },
+  { title: 'Contrats & Négociation', desc: 'Structurer des relations contractuelles solides.', img: '/optimized/Group%20349379%20(3).png' },
+  { title: 'Gouvernance & Institutions', desc: 'Accompagner les acteurs publics et privés.', img: '/optimized/Group%20349379%20(4).png' },
 ];
 
 /* Chunky north-east arrow from Figma (Rectangle 839 + Line 11) */
@@ -377,9 +383,12 @@ export default function ConseilJuridiqueClient() {
               left static since animating a filter costs a repaint per frame and
               the difference is imperceptible over half a second. */}
           <style>{`
+            /* The artwork already carries Figma's final 3.25deg tilt, so these
+               angles are relative to it: -16.26deg lands the card at the
+               closed variant's -13.01deg, and 0deg leaves it at 3.25deg. */
             @keyframes expertisePhotoIn {
-              from { opacity: 0; transform: rotate(-13.01deg) scale(0.1); }
-              to   { opacity: 1; transform: rotate(3.25deg) scale(1); }
+              from { opacity: 0; transform: rotate(-16.26deg) scale(0.1); }
+              to   { opacity: 1; transform: rotate(0deg) scale(1); }
             }
             @keyframes expertisePhotoInMobile {
               from { opacity: 0; transform: scale(0.94); }
@@ -418,25 +427,25 @@ export default function ConseilJuridiqueClient() {
                       <ArrowIcon color="#DDE597" />
                     </span>
                   </button>
-                  {/* Tilted photo card (Group 349379) */}
+                  {/* Tilted photo card (Group 349379). Box is sized so the
+                      card baked into the export lands at Figma's 475x293: it
+                      fills 487/634 of the artwork's width, the rest being the
+                      transparent shadow margin. Positioned to keep that card's
+                      centre where the old CSS-rotated box put it. */}
                   <div
                     aria-hidden
                     style={{
                       position: 'absolute',
-                      left: '718.27px',
-                      top: '-70.17px',
-                      width: '475.12px',
-                      height: '292.74px',
-                      borderRadius: '18px',
-                      overflow: 'hidden',
-                      transform: 'rotate(3.25deg)',
-                      filter: 'drop-shadow(0px 4px 72.6px rgba(0, 0, 0, 0.3))',
+                      left: '637px',
+                      top: '-152px',
+                      width: '639px',
+                      height: '466px',
                       pointerEvents: 'none',
                       transformOrigin: 'center',
                       animation: 'expertisePhotoIn 520ms cubic-bezier(0.22, 1, 0.36, 1) both',
                     }}
                   >
-                    <Image src={CARD_IMG} alt="" fill style={{ objectFit: 'cover' }} unoptimized />
+                    <Image src={e.img} alt="" fill style={{ objectFit: 'contain' }} unoptimized />
                   </div>
                 </div>
               ) : (
@@ -501,11 +510,13 @@ export default function ConseilJuridiqueClient() {
                 <p style={{ fontWeight: 500, fontSize: '15px', lineHeight: '131%', color: '#DDE597', opacity: 0.7, margin: 0 }}>
                   {e.desc}
                 </p>
+                {/* contain, and no rounding/clipping: the corners and shadow
+                    are part of the export, and cover would crop into them. */}
                 <div
-                  className="relative mt-6 overflow-hidden rounded-[14px]"
-                  style={{ height: '180px', animation: 'expertisePhotoInMobile 420ms cubic-bezier(0.22, 1, 0.36, 1) both' }}
+                  className="relative mt-4"
+                  style={{ height: '210px', animation: 'expertisePhotoInMobile 420ms cubic-bezier(0.22, 1, 0.36, 1) both' }}
                 >
-                  <Image src={CARD_IMG} alt="" fill style={{ objectFit: 'cover' }} unoptimized />
+                  <Image src={e.img} alt="" fill style={{ objectFit: 'contain' }} unoptimized />
                 </div>
               </div>
             ) : (
@@ -630,7 +641,7 @@ export default function ConseilJuridiqueClient() {
             </span>
           </div>
 
-          {/* Card 2 — white "Think. Beyond." (Group 349385) */}
+          {/* Card 2 — white "Penser. Au-delà." tagline (Group 349385) */}
           <div style={{ position: 'absolute', left: '544.56px', top: '224.39px', width: '423px', height: '457.22px', background: '#FFFFFF' }}>
             <span style={{ position: 'absolute', left: '36.87px', top: '36.19px', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <Image
@@ -651,8 +662,8 @@ export default function ConseilJuridiqueClient() {
               />
             </span>
             <div style={{ position: 'absolute', left: '36.5px', top: '184.79px', width: '350px', display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ fontWeight: 600, fontSize: '38px', lineHeight: '105.97%', color: '#003300' }}>Think.</span>
-              <span style={{ fontWeight: 600, fontSize: '38px', lineHeight: '105.97%', color: '#003300' }}>Beyond.</span>
+              <span style={{ fontWeight: 600, fontSize: '38px', lineHeight: '105.97%', color: '#003300' }}>Penser.</span>
+              <span style={{ fontWeight: 600, fontSize: '38px', lineHeight: '105.97%', color: '#003300' }}>Au-delà.</span>
             </div>
             <span
               style={{
@@ -660,7 +671,7 @@ export default function ConseilJuridiqueClient() {
                 fontWeight: 600, fontSize: '38.4393px', lineHeight: '105.97%', textAlign: 'right', color: '#003300',
               }}
             >
-              Solutions that last.
+              Des solutions qui durent.
             </span>
             <p
               style={{
@@ -739,11 +750,11 @@ export default function ConseilJuridiqueClient() {
             </span>
             <div className="absolute left-7 right-7" style={{ top: '38%' }}>
               <div className="flex justify-between">
-                <span style={{ fontWeight: 600, fontSize: '30px', color: '#003300' }}>Think.</span>
-                <span style={{ fontWeight: 600, fontSize: '30px', color: '#003300' }}>Beyond.</span>
+                <span style={{ fontWeight: 600, fontSize: '30px', color: '#003300' }}>Penser.</span>
+                <span style={{ fontWeight: 600, fontSize: '30px', color: '#003300' }}>Au-delà.</span>
               </div>
               <div className="text-right" style={{ fontWeight: 600, fontSize: '30px', lineHeight: '106%', color: '#003300' }}>
-                Solutions that last.
+                Des solutions qui durent.
               </div>
             </div>
             <p className="absolute bottom-7 left-7 right-7" style={{ fontWeight: 400, fontSize: '14px', lineHeight: '119%', color: '#003300', margin: 0 }}>
