@@ -83,22 +83,32 @@ export default function Footer({ showTopRow = true }: FooterProps) {
 
         <div className="rounded-[29.9802px] bg-[rgba(0,0,0,0.17)] p-5 shadow-[1.99868px_3.99736px_39.5738px_rgba(0,0,0,0.69)] backdrop-blur-[10px] backdrop-saturate-150 sm:p-7 md:p-9 lg:min-h-[552.63px] lg:px-[34.98px] lg:pb-[39px] lg:pt-[85.94px]">
           <div className="flex h-full flex-col gap-10 lg:gap-12">
-            <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
+            {/* Mise cote a cote a partir de xl seulement. Entre 1024 et 1279px
+                (iPad Pro), le bloc de gauche prend 352px sur les 890px de la
+                carte : il ne restait que 490px pour les colonnes, trop peu pour
+                trois, et « Publications » retombait sur une deuxieme rangee. */}
+            <div className="flex flex-col gap-10 xl:flex-row xl:justify-between">
               <div className="flex max-w-[352px] flex-col gap-[30px]">
-                <Image src="/optimized/minimal horizontal logo white 1.png"
+                <Image src="/optimized/rnj-logo-white.png"
                   alt="Logo RNJ Advisory"
-                  width={233}
-                  height={58}
+                  width={700}
+                  height={136}
                   className="h-auto w-[180px] sm:w-[233px]"
                  priority/>
-                <p className="font-[Geist] text-[16px] font-medium leading-4 text-white opacity-50">
+                {/* `leading-4` valait 16px d'interligne pour un texte de 16px :
+                    les lignes se touchaient et le paragraphe devenait un bloc
+                    compact. 1,6 laisse respirer les quatre lignes. */}
+                <p className="font-[Geist] text-[16px] font-medium leading-[1.6] text-white opacity-50">
                   Cabinet de conseil stratégique et réglementaire accompagnant acteurs publics,
                   entreprises privées et investisseurs dans la sécurisation de leurs projets et la
                   maîtrise des environnements institutionnels complexes.
                 </p>
               </div>
 
-              <div className="grid w-full max-w-[916px] grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-8 xl:grid-cols-4 xl:gap-5">
+              {/* Trois colonnes, pas quatre : la grille en comptait une de plus
+                  que de contenu, ce qui laissait un vide a droite et serrait les
+                  trois autres sur la gauche. */}
+              <div className="grid w-full max-w-[916px] grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 xl:gap-5">
                 {footerColumns.map((column) => (
                   <div key={column.title} className="flex flex-col gap-4 sm:gap-6">
                     <h3 className="font-[Geist] text-[20px] font-semibold leading-4 text-white">
@@ -149,7 +159,7 @@ export default function Footer({ showTopRow = true }: FooterProps) {
                 sa propre ligne en dessous. Le sortir de la rangee evite qu'il
                 dispute la largeur aux trois coordonnees, ce qui cassait le
                 telephone et l'e-mail sur plusieurs lignes. */}
-            <div className="flex flex-col gap-5 pt-5 lg:flex-row lg:items-end lg:justify-between">
+            <div className="flex flex-col gap-5 pt-5 xl:flex-row xl:items-end xl:justify-between">
               {/* Frame 334 — social icons */}
               <div className="flex flex-nowrap items-center justify-center gap-[12px] sm:gap-[14px]">
                 {socialIcons.map((social) => (
@@ -167,8 +177,13 @@ export default function Footer({ showTopRow = true }: FooterProps) {
               </div>
 
               {/* Frame 336 — telephone + e-mail + adresse */}
-              <div className="flex w-full flex-col items-center gap-3 whitespace-nowrap sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-8 sm:gap-y-3 lg:flex-nowrap lg:gap-x-[40px]">
-                <div className="flex items-center gap-5">
+              {/* En colonne, chaque ligne se centrait pour elle-meme : les trois
+                  icones se retrouvaient a trois abscisses differentes, celle de
+                  l'adresse nettement plus a gauche que les deux autres. Le bloc
+                  se dimensionne maintenant sur sa ligne la plus large et se centre
+                  d'un seul tenant, ce qui aligne les icones. */}
+              <div className="mx-auto flex w-fit max-w-full flex-col items-start gap-3 whitespace-nowrap sm:mx-0 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-8 sm:gap-y-3 xl:flex-nowrap xl:gap-x-[40px]">
+                <div className="flex items-center gap-3 sm:gap-5">
                   <div className="relative h-[22px] w-[22px] shrink-0">
                     <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-27-a0d86191.png" alt="Téléphone" fill className="object-contain" loading="lazy"/>
                   </div>
@@ -177,7 +192,7 @@ export default function Footer({ showTopRow = true }: FooterProps) {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-3 sm:gap-5">
                   <div className="relative h-[15.47px] w-[22px] shrink-0">
                     <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-26-33e2a54e.png" alt="E-mail" fill className="object-contain" loading="lazy"/>
                   </div>
@@ -186,11 +201,20 @@ export default function Footer({ showTopRow = true }: FooterProps) {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-3 sm:gap-5">
                   <div className="relative h-[22px] w-[18.76px] shrink-0">
                     <Image src="/optimized/localisation%20icon.svg" alt="Adresse" fill className="object-contain [filter:brightness(0)_saturate(100%)_invert(100%)]" loading="lazy"/>
                   </div>
-                  <span className="flex items-center gap-2 text-center font-[Geist] text-[13px] font-medium leading-[18px] tracking-[0.03em] text-white sm:text-left sm:text-[15.37px] sm:leading-[21px] sm:tracking-[0.05em] lg:whitespace-nowrap">
+                  {/* L'adresse fait 439px et la rangee entiere 913px : elle ne
+                      tient d'un seul tenant qu'a partir de xl. En dessous, le
+                      `whitespace-nowrap` du conteneur la faisait deborder de la
+                      carte, ou elle etait coupee par `overflow-hidden`. Le
+                      telephone et l'e-mail gardent leur nowrap.
+                      Pas de `flex-wrap` ici : le drapeau est un element flex et
+                      passait seul a la ligne des qu'il manquait quelques pixels.
+                      Sans lui, c'est le texte qui se replie et le drapeau reste
+                      colle a sa droite. */}
+                  <span className="flex items-center gap-2 whitespace-normal text-left font-[Geist] text-[13px] font-medium leading-[18px] tracking-[0.03em] text-white sm:text-[15.37px] sm:leading-[21px] sm:tracking-[0.05em] xl:whitespace-nowrap">
                     Avenue Louise 500, Ixelles Bruxelles Belgique
                     <Image
                       src="/optimized/be-flag.png"
