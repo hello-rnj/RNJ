@@ -153,12 +153,15 @@ export default function AboutHero({ titleClassName }: AboutHeroProps) {
         </div>
 
         <div className="flex flex-col gap-8 lg:gap-10">
-          <div className="about-hero-logo relative h-[60px] w-[233px]">
-            <Image src="/optimized/logo.svg"
+          {/* Hauteur calee sur le ratio du logo (233 / 5,15) : avec `object-contain`
+              une boite plus haute laisserait une bande vide sous le dessin. */}
+          <div className="about-hero-logo relative h-[45px] w-[233px]">
+            <Image src="/optimized/rnj-logo.png"
               alt="RNJ Advisory"
               fill
               sizes="233px"
               className="object-contain"
+              unoptimized
              priority/>
           </div>
 

@@ -1083,10 +1083,10 @@ export default function ContactPageClient({
                     {/* La barre de navigation est masquee sur cette page : le logo
                         sert de retour vers l'accueil. */}
                     <Link href="/" aria-label="Retour a l'accueil RNJ Advisory" className="transition hover:opacity-80">
-                      <Image src="/optimized/Group (13).png"
+                      <Image src="/optimized/rnj-logo.png"
                         alt="RNJ Advisory"
-                        width={199}
-                        height={49}
+                        width={700}
+                        height={136}
                         className="h-auto w-[100px] sm:w-[140px] md:w-[199px]"
                        priority/>
                     </Link>
@@ -1159,13 +1159,13 @@ export default function ContactPageClient({
                     <div className="mx-auto grid w-full max-w-[1392px] gap-5 rounded-[24px] bg-white p-3 shadow-[0px_4px_57.4px_rgba(0,0,0,0.25)] sm:gap-7 sm:rounded-[36px] sm:p-6 md:gap-8 md:rounded-[50px] md:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center" style={{ minHeight: 'clamp(420px, 80vh, 730px)' }}>
                       <div className="max-w-[620px]">
                         <Link href="/" aria-label="Retour a l'accueil RNJ Advisory" className="inline-block transition hover:opacity-80">
-                          {/* `Group (13).png` est deja le logo vert fonce : pas de
+                          {/* `rnj-logo.png` est deja le logo vert fonce : pas de
                               `brightness-0` ici, ce filtre servait a assombrir la
                               version blanche et l'aurait rendu noir. */}
-                          <Image src="/optimized/Group (13).png"
+                          <Image src="/optimized/rnj-logo.png"
                             alt="RNJ Advisory"
-                            width={180}
-                            height={45}
+                            width={700}
+                            height={136}
                             className="h-auto w-[160px] sm:w-[210px]"
                            priority/>
                         </Link>
@@ -1349,10 +1349,10 @@ export default function ContactPageClient({
                       <div className="w-full max-w-[505px]">
                         <div className="mx-auto flex w-full flex-col items-center justify-center gap-[28px] sm:gap-[38px] md:gap-[50px]">
                       <Link href="/" aria-label="Retour a l'accueil RNJ Advisory" className="transition hover:opacity-80">
-                        <Image src="/optimized/Group (13).png"
+                        <Image src="/optimized/rnj-logo.png"
                           alt="RNJ Advisory"
-                          width={233}
-                          height={58}
+                          width={700}
+                          height={136}
                           className="h-auto w-[120px] sm:w-[170px] md:w-[233px]"
                          priority/>
                       </Link>

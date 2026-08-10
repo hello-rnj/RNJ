@@ -61,32 +61,19 @@ export default function Navbar({
         }}
       >
         <Link href="/" className="flex min-w-0 items-center gap-2 md:gap-2.5">
-          {useLightLogo ? (
-            <Image
-              src="/optimized/Group (11).png"
-              alt="RNJ Advisory"
-              width={180}
-              height={45}
-              className="h-auto w-[130px] sm:w-[160px] md:w-[180px]"
-              priority
-              unoptimized
-            />
-          ) : (
-            /* Logo fonce, recolore en #0E434F. Le fichier d'origine etait un
-               aplat vert #003300 : on l'a recolore en preservant la couche alpha,
-               a partir de la version 319x79 plutot que du 180x45 — le logo est
-               affiche jusqu'a 180 px de large, la source la plus fine reste donc
-               nette sur les ecrans a haute densite. */
-            <Image
-              src="/optimized/rnj-logo-navbar-blue.png"
-              alt="RNJ Advisory"
-              width={319}
-              height={79}
-              className="h-auto w-[130px] sm:w-[160px] md:w-[180px]"
-              priority
-              unoptimized
-            />
-          )}
+          {/* Deux declinaisons du meme dessin : blanche sur les fonds sombres,
+              verte sur les fonds clairs. Servies en 700 px de large, soit 3x le
+              plus grand affichage du site (233 px dans le pied de page), ce qui
+              suffit a rester net sur les ecrans a haute densite. */}
+          <Image
+            src={useLightLogo ? '/optimized/rnj-logo-white.png' : '/optimized/rnj-logo.png'}
+            alt="RNJ Advisory"
+            width={700}
+            height={136}
+            className="h-auto w-[130px] sm:w-[160px] md:w-[180px]"
+            priority
+            unoptimized
+          />
         </Link>
 
         <div className="hidden flex-row items-center gap-6 xl:flex 2xl:gap-[29.36px]">
