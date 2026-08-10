@@ -67,6 +67,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
+    images: ['/opengraph-image.png'],
     type: "website",
     locale: "fr_FR",
     url: "https://rnj-advisory.be",

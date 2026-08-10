@@ -1,35 +1,22 @@
+import { blogPosts } from '@/data/blogPosts';
+
 const organizationId = 'https://rnj-advisory.be/#organization';
 const websiteId = 'https://rnj-advisory.be/#website';
 const blogsPageId = 'https://rnj-advisory.be/blogs#webpage';
 
-const blogPosts = [
-  {
-    title: 'Workshop BeCentral : digitalisation durable',
-    description:
-      'Retour sur un échange autour des enjeux de la digitalisation responsable.',
-    datePublished: '2025-12-21',
-    url: 'https://rnj-advisory.be/blogs#workshop-becentral-digitalisation-durable',
-    image:
-      'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310353/rnj/blog-0f03cf9e.svg',
-  },
-  {
-    title: "Principes et fonctionnement des garanties d'origine",
-    description: "Informations de base sur les garanties d'origine (GO).",
-    datePublished: '2025-12-15',
-    url: 'https://rnj-advisory.be/blogs#garanties-origine',
-    image:
-      'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310353/rnj/blog-0f03cf9e.svg',
-  },
-  {
-    title: 'Branding Excellence : Une approche unique',
-    description:
-      'Comment développer une stratégie de marque distinctive et durable.',
-    datePublished: '2025-12-10',
-    url: 'https://rnj-advisory.be/blogs#branding-excellence',
-    image:
-      'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1777310353/rnj/blog-0f03cf9e.svg',
-  },
-] as const;
+/**
+ * Les articles sont lus depuis la source partagee plutot que redecrits ici : cette
+ * liste etait figee sur trois billets obsoletes (dont un supprime depuis) avec des
+ * ancres et des images qui n'existaient plus. Google recevait donc un balisage
+ * decrivant un blog different de celui reellement affiche.
+ */
+const structuredPosts = blogPosts.map((post) => ({
+  title: post.title,
+  description: post.description,
+  datePublished: post.publishedAt,
+  url: post.href ? `https://rnj-advisory.be${post.href}` : 'https://rnj-advisory.be/blogs',
+  image: `https://rnj-advisory.be${encodeURI(post.image)}`,
+}));
 
 export default function BlogStructuredData() {
   const collectionPageData = {
@@ -49,7 +36,7 @@ export default function BlogStructuredData() {
     },
     mainEntity: {
       '@type': 'ItemList',
-      itemListElement: blogPosts.map((post, index) => ({
+      itemListElement: structuredPosts.map((post, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         item: {

@@ -1,5 +1,6 @@
 'use client';
 
+import { partnerAssetLogos, logoHeightFactor, logoScrollSeconds, LOGO_WHITE_FILTER } from '@/data/partnerLogos';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,149 +8,14 @@ import { X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import LandingFooter from '@/components/LandingFooter';
 
-const partnerAssetLogos = [
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678791/rnj/asset-14-1-cda0f5e7.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678792/rnj/asset-15-1-7f0249bf.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679416/rnj/asset-17-1-5077f95f.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678793/rnj/asset-22-1-ac5775de.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678793/rnj/asset-23-1-9c5664dc.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678793/rnj/asset-24-1-1c05ea09.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678794/rnj/asset-26-1-3d6250e2.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678795/rnj/asset-27-1-8679f4ab.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679414/rnj/asset-28-1-d6d25061.png',
-  '/optimized/Layer 1 (22).png',
-  '/optimized/Layer 1 (23).png',
-] as const;
+/**
+ * Bande de logos partenaires. Le `ratio` (largeur / hauteur du fichier) sert a
+ * donner a chaque emplacement sa largeur propre : ils vont de 0,52 (portrait) a
+ * 4,68 (bandeau tres large). Avec une largeur fixe, un logo portrait n'occupait
+ * qu'un sixieme de son emplacement et laissait un grand vide avant le suivant.
+ */
 
-const glowShapes = [
-  {
-    width: '404.34px',
-    height: '423.25px',
-    left: '913.7px',
-    top: '262.27px',
-    background: '#BBCB2E',
-    filter: 'blur(160.282px)',
-  },
-  {
-    width: '743.57px',
-    height: '572.38px',
-    left: '123.93px',
-    top: '285.38px',
-    background: '#BBCB2E',
-    filter: 'blur(160.282px)',
-  },
-  {
-    width: '534.82px',
-    height: '411.69px',
-    left: '1.05px',
-    top: '63.78px',
-    background: '#BBCB2E',
-    filter: 'blur(115.285px)',
-  },
-  {
-    width: '881.15px',
-    height: '889.55px',
-    left: '361.28px',
-    top: '16.52px',
-    background: '#F9FFC4',
-    filter: 'blur(248.223px)',
-  },
-  {
-    width: '742.52px',
-    height: '726.76px',
-    left: '361.28px',
-    top: '16.52px',
-    background: '#F9FFC4',
-    filter: 'blur(248.223px)',
-  },
-  {
-    width: '467.35px',
-    height: '457.9px',
-    left: '706.81px',
-    top: '393.55px',
-    background: '#F9FFC4',
-    filter: 'blur(248.223px)',
-  },
-  {
-    width: '276.21px',
-    height: '269.91px',
-    left: '966.21px',
-    top: '636.15px',
-    background: '#F9FFC4',
-  },
-  {
-    width: '502.01px',
-    height: '437.95px',
-    left: '1043.93px',
-    top: '407.2px',
-    background: '#F9FFC4',
-    filter: 'blur(248.223px)',
-  },
-  {
-    width: '350.78px',
-    height: '350.78px',
-    left: '0px',
-    top: '179.3px',
-    background: '#BBCB2E',
-    filter: 'blur(306.248px)',
-  },
-  {
-    width: '412.74px',
-    height: '425.34px',
-    left: '39.91px',
-    top: '530.08px',
-    background: '#839705',
-    filter: 'blur(318.798px)',
-  },
-  {
-    width: '673.2px',
-    height: '693.15px',
-    left: '928.41px',
-    top: '-0.29px',
-    background: '#003300',
-    filter: 'blur(413.257px)',
-  },
-  {
-    width: '834.94px',
-    height: '859.09px',
-    left: '963.06px',
-    top: '1029.99px',
-    background: '#F5FFA1',
-    filter: 'blur(413.257px)',
-  },
-  {
-    width: '599.68px',
-    height: '617.54px',
-    left: '35.71px',
-    top: '1278.9px',
-    background: '#BBCB2E',
-    filter: 'blur(413.257px)',
-  },
-  {
-    width: '673.2px',
-    height: '693.15px',
-    left: '130.23px',
-    top: '636.15px',
-    background: '#003300',
-    filter: 'blur(413.257px)',
-  },
-  {
-    width: '412.74px',
-    height: '425.34px',
-    left: '1295.99px',
-    top: '180.35px',
-    background: '#839705',
-    filter: 'blur(318.798px)',
-  },
-  {
-    width: '169.09px',
-    height: '174.34px',
-    left: '1483.98px',
-    top: '262.27px',
-    background: '#839705',
-    filter: 'blur(158.533px)',
-  },
-];
+
 
 
 type ImpactCountryId = 'tn' | 'mr' | 'sn' | 'gn' | 'bf' | 'ne' | 'bj' | 'cd' | 'ae' | 'it' | 'fr' | 'be';
@@ -687,38 +553,20 @@ const servicesFocusCards = [
 
 const strategicTrustCards = [
   {
-    title: 'Cadre européen',
-    description: 'Accès direct aux institutions et aux cadres réglementaires belges et européens.',
+    title: 'Écosystème international',
+    description: 'Bruxelles réunit entreprises, institutions européennes, organisations internationales et investisseurs du monde entier.',
   },
   {
-    title: 'Expertise locale',
-    description: 'Connaissance approfondie du marché belge et des écosystèmes à Bruxelles.',
+    title: 'Proximité et réactivité',
+    description: 'Une présence locale pour accompagner efficacement vos projets et vos démarches en Belgique.',
   },
   {
-    title: 'Conseil stratégique',
-    description: 'Des solutions juridiques et stratégiques adaptées à vos objectifs de croissance.',
+    title: 'Ouverture sur l\'Europe',
+    description: 'Un ancrage bruxellois associé à une vision internationale pour accompagner votre développement au-delà des frontières.',
   },
 ];
 
 const institutionalCarouselCards = [
-  {
-    title: 'Analyse Institutionnelle & Réglementaire',
-    description:
-      'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
-    image: '/optimized/group-348987-2.webp',
-    bandBg: '#003300',
-    textColor: '#FFFFFF',
-    mirror: false,
-  },
-  {
-    title: 'Structuration Juridique & Gouvernance',
-    description:
-      'Choix de la forme juridique (Belgique, Tunisie, international), création et transformation de sociétés, gouvernance, pactes d’associés, conventions de partenariat et opérations de transmission (M&A).',
-    image: '/optimized/1768510829069%201.webp',
-    bandBg: '#BBCB2E',
-    textColor: '#FFFFFF',
-    mirror: false,
-  },
   {
     title: 'Droit Des Contrats & Sécurité Commerciale',
     description:
@@ -727,6 +575,10 @@ const institutionalCarouselCards = [
     bandBg: '#E0E5C0',
     textColor: '#003300',
     mirror: false,
+    imgW: 1045.35,
+    imgH: 588.01,
+    imgLeft: -118.68,
+    imgTop: -131.39,
   },
   {
     title: 'Partenariats Public-Privé & Concessions',
@@ -736,15 +588,52 @@ const institutionalCarouselCards = [
     bandBg: '#DDE597',
     textColor: '#003300',
     mirror: false,
+    imgW: 929.41,
+    imgH: 697.06,
+    imgLeft: 0,
+    imgTop: -204.97,
+  },
+  {
+    title: 'Analyse Institutionnelle & Réglementaire',
+    description:
+      'Études sectorielles (énergie, numérique, santé, environnement), analyses d’impact réglementaire et recommandations alignées avec les législations belges, tunisiennes et européennes.',
+    // Pre-recadree en 808x474 (les cotes exacts de la carte), comme les quatre
+    // autres photos du carrousel : `object-cover` n'a plus rien a rogner ni a
+    // agrandir. Source : anlayse.jpeg (1600x900).
+    image: '/optimized/analyse-institutionnelle-card.webp' as string | null,
+    bandBg: '#003300',
+    textColor: '#FFFFFF',
+    mirror: false,
+    imgW: 1096,
+    imgH: 822,
+    imgLeft: -144,
+    imgTop: -210.45,
+  },
+  {
+    title: 'Structuration Juridique & Gouvernance',
+    description:
+      'Choix de la forme juridique (Belgique, Tunisie, international), création et transformation de sociétés, gouvernance, pactes d’associés, conventions de partenariat et opérations de transmission (M&A).',
+    image: '/optimized/1775236032125%201.webp' as string | null,
+    bandBg: '#BBCB2E',
+    textColor: '#FFFFFF',
+    mirror: false,
+    imgW: 808,
+    imgH: 454.5,
+    imgLeft: 0,
+    imgTop: -133.97,
   },
   {
     title: 'ESG, Conformité & Appels À Projets',
     description:
       'Audit juridique et compliance, protection des données (RGPD), mise en conformité opérationnelle. Accompagnement sur les appels à projets : éligibilité, cadrage juridique, rédaction et sécurisation contractuelle.',
-    image: '/optimized/1775236032125%201.webp',
+    image: '/optimized/esg-card-v2.webp',
     bandBg: '#C2D0D3',
     textColor: '#0E434F',
     mirror: false,
+    imgW: 826,
+    imgH: 619.5,
+    imgLeft: 0,
+    imgTop: -164.92,
   },
   {
     title: 'Veille Juridique & Anticipation Réglementaire',
@@ -754,6 +643,10 @@ const institutionalCarouselCards = [
     bandBg: '#406640',
     textColor: '#FFFFFF',
     mirror: true,
+    imgW: 808,
+    imgH: 1077.54,
+    imgLeft: 0,
+    imgTop: -259.24,
   },
 ] as const;
 
@@ -764,61 +657,7 @@ const servicesFocusAnimationStates = [
   { activeCount: 3, lineFill: 100 },
 ] as const;
 
-const whyChooseStripCards = [
-  {
-    title: 'Accompagnement humain, multilingue & engag\u00E9',
-    description:
-      "Proximit\u00E9, \u00E9coute active et respect de votre rythme : chez RNJ Advisory, nous mettons l'humain au c\u0153ur de chaque projet. Nous intervenons en fran\u00E7ais, en anglais et en arabe.",
-    titleWidth: '301px',
-    boxLeft: '-13.09%',
-    boxRight: '92.99%',
-  },
-  {
-    title: 'Expertise juridique & strat\u00E9gique',
-    description:
-      "Notre accompagnement repose sur la rigueur d'un pool d'experts sp\u00E9cialis\u00E9 en droit public, \u00E9nergie, strat\u00E9gie entrepreneuriale, gestion de projet et transformation op\u00E9rationnelle et digitale.",
-    titleWidth: '259px',
-    boxLeft: '8.13%',
-    boxRight: '71.78%',
-  },
-  {
-    title: 'Performances & fiabilit\u00E9',
-    description:
-      'Nous nous engageons \u00E0 vous offrir un service professionnel, rapide et s\u00E9curis\u00E9. Nos outils r\u00E9duisent les temps morts, fluidifient les d\u00E9marches administratives et renforcent vos r\u00E9sultats.',
-    titleWidth: '259px',
-    boxLeft: '29.35%',
-    boxRight: '50.56%',
-  },
-  {
-    title: 'M\u00E9thodologie et durabilit\u00E9',
-    description:
-      "Notre cadre d'accompagnement structur\u00E9 permet de clarifier les priorit\u00E9s, de construire une base solide et de d\u00E9ployer votre activit\u00E9 avec agilit\u00E9, automatisation et vision long terme.",
-    titleWidth: '259px',
-    boxLeft: '50.56%',
-    boxRight: '29.35%',
-  },
-  {
-    title: 'Ancrage local et ouverture internationale',
-    description:
-      'Bas\u00E9s \u00E0 Bruxelles et \u00E0 Tunis, nous accompagnons les porteurs de projet install\u00E9s en Belgique, les entrepreneurs hors UE et les institutions souhaitant structurer ou \u00E9tendre leur impact.',
-    titleWidth: '285px',
-    boxLeft: '71.78%',
-    boxRight: '8.13%',
-  },
-  {
-    title: 'Partenariats strat\u00E9giques avec des acteurs reconnus',
-    description:
-      "Nous collaborons avec un r\u00E9seau solide d'acteurs publics, priv\u00E9s et associatifs en Belgique comme en Tunisie.",
-    titleWidth: '303px',
-    boxLeft: '92.99%',
-    boxRight: '-13.09%',
-  },
-];
 
-const whyChooseCardGradients = [
-  'linear-gradient(180deg, #003300 0%, #009900 100%)',
-  'linear-gradient(180deg, #003300 0%, #BBCB2E 100%)',
-];
 const whyChooseCardActiveBackground = '#F7FCFF';
 const whyChooseCardActiveBorder = '#6C8B68';
 
@@ -922,68 +761,6 @@ const faqItems = [
   },
 ];
 
-const whyChooseGridCards = [
-  {
-    title: 'Expertise juridique & stratégique',
-    description:
-      "Notre accompagnement repose sur la rigueur d'un pool d'experts spécialisés en droit public, énergie, stratégie entrepreneuriale, gestion de projet et transformation opérationnelle.",
-    icon: 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779676400/rnj/law-ec037074.png',
-    iconWidth: 97,
-    iconHeight: 97,
-    titleWidth: '270px',
-    descriptionWidth: '344px',
-  },
-  {
-    title: 'Performances & fiabilité',
-    description:
-      'Nous nous engageons à vous offrir un service professionnel, rapide et sécurisé. Nos outils réduisent les temps morts, fluidifient les démarches administratives et optimisent vos résultats.',
-    icon: 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779676400/rnj/check-mark-89a3c66e.png',
-    iconWidth: 82,
-    iconHeight: 64,
-    titleWidth: '178px',
-    descriptionWidth: '344px',
-  },
-  {
-    title: 'Méthodologie et durabilité',
-    description:
-      "Notre cadre d'accompagnement structuré permet de clarifier les priorités, de construire une base solide et de déployer votre activité avec agilité et vision long terme.",
-    icon: 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779676401/rnj/methologie-648e7fd2.png',
-    iconWidth: 86,
-    iconHeight: 78,
-    titleWidth: '270px',
-    descriptionWidth: '368px',
-  },
-  {
-    title: 'Accompagnement humain, multilingue & engagé',
-    description:
-      "Proximité, écoute active et respect de votre rythme : chez RNJ Advisory, nous mettons l'humain au cœur de chaque projet. Nous intervenons en français, anglais et arabe.",
-    icon: 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779676399/rnj/users-f9417797.png',
-    iconWidth: 55,
-    iconHeight: 87,
-    titleWidth: '326px',
-    descriptionWidth: '376px',
-  },
-  {
-    title: 'Ancrage local et ouverture internationale',
-    description:
-      'Basés à Bruxelles et à Tunis, nous accompagnons les porteurs de projet installés en Belgique, les entrepreneurs hors UE et les institutions souhaitant structurer ou étendre leur impact.',
-    icon: 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779676401/rnj/earth-c9fdae9d.png',
-    iconWidth: 52,
-    iconHeight: 75,
-    titleWidth: '310px',
-    descriptionWidth: '344px',
-  },
-  {
-    title: 'Partenariats stratégiques avec des acteurs reconnus',
-    description:
-      "Nous collaborons avec un réseau solide d'acteurs publics, privés et associatifs, en Belgique comme en Tunisie.",
-    icon: 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779676402/rnj/handshake-387c4c1d.png',
-    iconWidth: 77,
-    iconHeight: 72,
-    titleWidth: '330px',
-    descriptionWidth: '344px',
-  },
-];
 
 // Both carousels advance one card at this cadence, and both pause while the
 // pointer is held on them.
@@ -1037,154 +814,7 @@ const projectsCarouselData = [
 ] as const;
 
 
-function RegulationAnalysisSection() {
-  return (
-    <section className="w-full bg-[#F7FCFF] py-16 md:py-20 lg:py-24">
-      <div className="mx-auto flex w-full max-w-[1321px] flex-col items-center justify-between gap-10 px-4 md:px-6 lg:gap-14 xl:gap-16 2xl:h-[582px] 2xl:flex-row 2xl:items-start 2xl:gap-0 2xl:px-0">
-        <div className="flex w-full max-w-[988px] flex-col items-center gap-[40px] text-center sm:gap-[48px] lg:max-w-[760px] lg:gap-12 2xl:h-[582px] 2xl:max-w-[988px] 2xl:items-start 2xl:justify-between 2xl:gap-[88.09px] 2xl:text-left">
-          <div className="flex items-center gap-3 2xl:w-[469.8px]">
-            <span className="h-[11.81px] w-[11.81px] rounded-full bg-[#003300]" />
-            <h3
-              className="font-[Geist] font-bold text-[#003300] text-[clamp(20px,2.2vw,27.9642px)] leading-[30px] 2xl:text-[27.9642px] 2xl:leading-[30px]"
-            >
-              Études & Analyse Réglementaire
-            </h3>
-          </div>
 
-          <div className="flex w-full flex-col items-center gap-10 lg:gap-10 2xl:w-[987.89px] 2xl:items-start 2xl:justify-center 2xl:gap-[65.02px]">
-            <div className="flex w-full max-w-[820.21px] flex-col items-center gap-6 sm:gap-8 lg:max-w-[640px] lg:gap-8 2xl:max-w-[820.21px] 2xl:items-start 2xl:gap-[41.6px]">
-              <h2
-                className="text-center font-[EB_Garamond] text-[#003300] text-[clamp(34px,8vw,83.0753px)] leading-[clamp(34px,7vw,68px)] md:text-[52px] md:leading-[46px] lg:text-[60px] lg:leading-[54px] 2xl:text-left 2xl:text-[83.0753px] 2xl:leading-[68px]"
-                style={{
-                  maxWidth: '773.41px',
-                  letterSpacing: '-0.03em',
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  fontVariationSettings: '"wght" 600',
-                  fontSynthesis: 'none',
-                }}
-              >
-                Analyse{'\u00A0'}Institutionnelle & Réglementaire
-              </h2>
-
-              <p
-                className="max-w-[820.21px] text-center font-[Geist] font-medium text-[#003300] text-[clamp(15px,3vw,20.9988px)] leading-[clamp(21px,3.3vw,23px)] md:max-w-[640px] lg:max-w-[620px] lg:text-[18px] lg:leading-[22px] 2xl:max-w-[820.21px] 2xl:text-left 2xl:text-[20.9988px] 2xl:leading-[23px]"
-                style={{
-                  opacity: 0.8,
-                }}
-              >
-                Vous êtes un organisme public, une institution privée, un investisseur ou un bailleur de fonds ? RNJ Advisory
-                vous accompagne dans l’analyse approfondie des environnements institutionnels, juridiques et réglementaires afin
-                de sécuriser vos décisions stratégiques.
-              </p>
-            </div>
-
-            <div className="flex w-full max-w-[634.22px] flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-start sm:justify-center sm:gap-[12.4px] lg:justify-center lg:gap-4 2xl:w-[634.22px] 2xl:max-w-[634.22px] 2xl:justify-start 2xl:gap-[12.4px]">
-              <Link
-                href="/contact"
-                className="flex h-[68px] w-full items-center justify-center rounded-[82.6547px] border-[2.48019px] border-[#003300] px-8 text-center font-[Geist] font-semibold text-[#003300] text-[clamp(18px,2vw,25.1616px)] leading-[25px] transition-colors hover:bg-[#003300] hover:text-[#F7FCFF] sm:h-[84.49px] sm:w-auto sm:px-[60px] lg:h-[72px] lg:min-w-[210px] lg:px-10 lg:text-[20px] lg:leading-[22px] 2xl:h-[84.49px] 2xl:w-[254.77px] 2xl:min-w-0 2xl:px-0 2xl:text-[25.1616px] 2xl:leading-[25px]"
-                style={{ touchAction: 'manipulation' }}
-              >
-                En savoir plus
-              </Link>
-
-              <button
-                type="button"
-                className="flex h-[68px] w-full items-center justify-center rounded-[141.694px] bg-[#003300] px-6 text-center font-[Geist] font-semibold text-[#F7FCFF] text-[clamp(18px,2vw,25.1616px)] leading-[25px] transition-colors hover:bg-[#002200] sm:h-[83.04px] sm:w-auto sm:px-10 lg:h-[72px] lg:min-w-[290px] lg:px-10 lg:text-[20px] lg:leading-[22px] 2xl:h-[83.04px] 2xl:w-[367.05px] 2xl:min-w-0 2xl:px-[12.401px] 2xl:text-[25.1616px] 2xl:leading-[25px]"
-                style={{ touchAction: 'manipulation' }}
-              >
-                Demander une analyse
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-auto w-full max-w-[220px] sm:max-w-[280px] md:max-w-[320px] lg:max-w-[340px] xl:max-w-[360px] 2xl:mx-0 2xl:w-[364.57px] 2xl:max-w-[364.57px]">
-          <div className="relative h-[240px] w-full sm:h-[320px] md:h-[400px] lg:h-[460px] xl:h-[520px] 2xl:h-[580.66px]">
-            <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779674333/rnj/light-bulb-1-1-aa32136c.png"
-              alt="Ampoule - Analyse réglementaire"
-              fill
-              sizes="(min-width: 1536px) 364.57px, (min-width: 1280px) 360px, (min-width: 1024px) 340px, (min-width: 768px) 320px, (min-width: 640px) 280px, 220px"
-              className="object-contain translate-y-2 md:translate-y-3 2xl:translate-y-4"
-             loading="lazy"/>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WhyChooseGridSection() {
-  return (
-    <section className="w-full bg-[#F7FCFF] px-4 py-16 md:px-6 md:py-20 lg:py-24">
-      <div className="mx-auto flex w-full max-w-[1320px] flex-col items-center gap-[40px] lg:gap-[90px]">
-        <div className="grid w-full justify-items-center gap-[16.16px] md:grid-cols-2 2xl:grid-cols-3">
-          {whyChooseGridCards.map((card) => (
-            <article
-              key={card.title}
-              className="relative mx-auto flex min-h-[360px] w-full max-w-[429.23px] flex-col items-center overflow-hidden rounded-[32px] border border-[#003300] bg-[#F7FCFF] px-5 pb-8 pt-9 text-center sm:min-h-[390px] sm:rounded-[40px] sm:px-7 sm:pb-10 sm:pt-10 2xl:h-[429.23px] 2xl:min-h-0 2xl:rounded-[70.6962px] 2xl:border-[2px] 2xl:px-0 2xl:pb-0 2xl:pt-0"
-              style={{ boxShadow: '4px 4px 1.5px #003300' }}
-            >
-              <div
-                className="relative left-auto top-auto mx-auto -translate-x-0 2xl:absolute 2xl:left-1/2 2xl:top-[58px] 2xl:-translate-x-1/2"
-                style={{
-                  width: `clamp(${Math.max(card.iconWidth - 24, 36)}px, 18vw, ${card.iconWidth}px)`,
-                  height: `clamp(${Math.max(card.iconHeight - 24, 36)}px, 18vw, ${card.iconHeight}px)`,
-                }}
-              >
-                <div
-                  className="relative"
-                  style={{
-                    width: `clamp(${Math.max(card.iconWidth - 24, 36)}px, 18vw, ${card.iconWidth}px)`,
-                    height: `clamp(${Math.max(card.iconHeight - 24, 36)}px, 18vw, ${card.iconHeight}px)`,
-                  }}
-                >
-                  <Image
-                    src={card.icon}
-                    alt=""
-                    fill
-                    sizes="(min-width: 1280px) 97px, (min-width: 768px) 86px, 72px"
-                    className="object-contain"
-                    aria-hidden="true"
-                  />
-                </div>
-              </div>
-
-              <div
-                className="relative left-auto mt-6 flex w-full max-w-[344px] -translate-x-0 flex-col items-center gap-4 px-1 sm:mt-8 sm:gap-4 2xl:absolute 2xl:left-1/2 2xl:top-[196.31px] 2xl:mt-0 2xl:-translate-x-1/2 2xl:gap-5 2xl:px-0"
-                style={{
-                  width: '100%',
-                }}
-              >
-                <h3
-                  className="break-words font-[Geist] font-extrabold text-[#003300]"
-                  style={{
-                    maxWidth: `min(100%, ${card.titleWidth})`,
-                    fontSize: 'clamp(19px, 4.7vw, 23.6774px)',
-                    lineHeight: 'clamp(23px, 5vw, 27px)',
-                  }}
-                >
-                  {card.title}
-                </h3>
-
-                <p
-                  className="break-words font-[Geist] font-medium text-[#003300]"
-                  style={{
-                    maxWidth: `min(100%, ${card.descriptionWidth})`,
-                    fontSize: 'clamp(13.5px, 3.45vw, 17.124px)',
-                    lineHeight: 'clamp(19px, 4.2vw, 20px)',
-                  }}
-                >
-                  {card.description}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 type TabKey = 'installer' | 'structurer' | 'developper';
 
@@ -1372,7 +1002,7 @@ function EntrepreneuriatTabsSection() {
 
                 <div className="flex w-full flex-col items-stretch gap-2 sm:flex-row sm:flex-wrap sm:items-start sm:gap-2.5 md:gap-[7.65px]">
                   <Link
-                    href="/services"
+                    href="/services/conseil-juridique"
                     className="inline-flex h-[46px] w-full items-center justify-center rounded-full px-5 font-[Geist] text-[14px] font-semibold leading-[1.1] transition-opacity hover:opacity-80 sm:h-[48px] sm:w-auto sm:min-w-[150px] sm:px-5 sm:text-[15px] md:h-[52px] md:min-w-[170px] md:px-[24px] md:text-[15.52px] md:leading-[16px]"
                     style={{
                       border: `1.53px solid ${active.buttonOutlineColor}`,
@@ -1421,16 +1051,32 @@ function EntrepreneuriatTabsSection() {
   );
 }
 
+/**
+ * Les trois emplacements du carrousel « Nos projets récents », repris de la
+ * maquette Figma (Frame 349353). Les cartes tournent entre ces emplacements :
+ * chacune garde son propre contenu, seule sa place change. Les trois ont
+ * exactement le meme rapport largeur/hauteur (0,684), donc rien ne se deforme
+ * en passant du bord au centre.
+ *
+ * Opacite, ombre et rayon appartiennent a l'emplacement et non a la carte :
+ * c'est la position centrale qui est mise en avant, quelle que soit la carte
+ * qui l'occupe.
+ */
+const PROJECT_SLOTS = [
+  { left: '0%', top: '0%', width: '32.06%', height: '100%', zIndex: 10, opacity: 0.8, borderRadius: '15px', filter: 'drop-shadow(0px 2px 26.1px rgba(0,0,0,0.15))' },
+  { left: '29.52%', top: '-13.81%', width: '40.91%', height: '127.62%', zIndex: 20, opacity: 1, borderRadius: '19px', filter: 'drop-shadow(0px 1px 170.5px rgba(0,0,0,0.33))' },
+  { left: '67.89%', top: '0%', width: '32.11%', height: '100%', zIndex: 10, opacity: 0.8, borderRadius: '15px', filter: 'drop-shadow(0px 2px 26.1px rgba(0,0,0,0.15))' },
+] as const;
+
+/** Meme courbe et meme duree que le carrousel de la page Creation d'entreprise. */
+const PROJECT_SLOT_TRANSITION = 'all 0.7s cubic-bezier(0.22, 1, 0.36, 1)';
+
 export default function Home() {
   const [activeImpactCountry, setActiveImpactCountry] = useState<ImpactCountryId | null>(null);
   const impactPinsFrameRef = useRef<HTMLDivElement>(null);
   const mapFrameRef = useRef<HTMLDivElement>(null);
   const [showStrategicPopup, setShowStrategicPopup] = useState(false);
   const [showCertificatesPopup, setShowCertificatesPopup] = useState(false);
-  const [isInterconnectionCardActive, setIsInterconnectionCardActive] = useState(false);
-  const [isInterconnectionReadMoreOpening, setIsInterconnectionReadMoreOpening] = useState(false);
-  const [esgActiveCardIndex, setEsgActiveCardIndex] = useState(0);
-  const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
   const [hoveredScrollCardIndex, setHoveredScrollCardIndex] = useState<number | null>(null);
   const [hoveredFaqIndex, setHoveredFaqIndex] = useState<number | null>(null);
   const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
@@ -1439,6 +1085,13 @@ export default function Home() {
   const faqSectionRef = useRef<HTMLDivElement | null>(null);
   const faqLastScrollY = useRef(0);
   const [servicesFocusStage, setServicesFocusStage] = useState(0);
+  /* Carrousel « Nos projets récents » : la carte au centre est mise en avant,
+     les deux autres restent en retrait. C'est l'index de la carte centrale — il
+     part a 1 pour que l'etat initial reproduise la maquette (carte du milieu au
+     centre). Meme mecanique que la section « De la vision a la realite ». */
+  const [activeProjectSlide, setActiveProjectSlide] = useState(1);
+  const [isProjectsRowWide, setIsProjectsRowWide] = useState(false);
+  const projectsRowRef = useRef<HTMLDivElement | null>(null);
   const [belgiumStep, setBelgiumStep] = useState(0);
   const [isInstitutionalCarouselPaused, setIsInstitutionalCarouselPaused] = useState(false);
   const [isInstitutionalCarouselInView, setIsInstitutionalCarouselInView] = useState(false);
@@ -1446,8 +1099,6 @@ export default function Home() {
   const institutionalCarouselRef = useRef<HTMLDivElement | null>(null);
   const institutionalCarouselSectionRef = useRef<HTMLDivElement | null>(null);
   const prevInstitutionalInView = useRef(false);
-  const interconnectionCardTouchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const interconnectionPopupOpenTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isLightBulbAnimated, setIsLightBulbAnimated] = useState(false);
   const lightBulbSectionRef = useRef<HTMLDivElement | null>(null);
   const [showProjectOverlay, setShowProjectOverlay] = useState(false);
@@ -1455,6 +1106,70 @@ export default function Home() {
   const [isProjectsPanelPaused, setIsProjectsPanelPaused] = useState(false);
   const projectsDragRef = useRef({ active: false, startX: 0, handled: false });
   const institutionalDragRef = useRef({ active: false, startX: 0, startScroll: 0 });
+  /* Le carrousel des projets recents ne se met en place qu'a partir de md :
+     en dessous les trois cartes s'empilent, et les styles de position en ligne
+     ne doivent surtout pas s'appliquer. Ce drapeau reproduit le point de
+     rupture Tailwind, un style en ligne ne pouvant pas porter de media query. */
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const sync = () => setIsProjectsRowWide(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
+
+  /* Rotation automatique, uniquement quand la rangee est visible : une
+     animation qui tourne hors ecran consomme sans rien apporter, et l'utilisateur
+     tomberait sur une position arbitraire en arrivant dessus. */
+  useEffect(() => {
+    const row = projectsRowRef.current;
+    if (!row || !isProjectsRowWide) return;
+
+    let timer: ReturnType<typeof setInterval> | null = null;
+    const start = () => {
+      if (timer) return;
+      timer = setInterval(() => setActiveProjectSlide((i) => (i + 1) % 3), 4000);
+    };
+    const stop = () => {
+      if (timer) clearInterval(timer);
+      timer = null;
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      { threshold: 0.35 },
+    );
+    observer.observe(row);
+    return () => {
+      observer.disconnect();
+      stop();
+    };
+  }, [isProjectsRowWide]);
+
+  /**
+   * Style de la carte `card` selon l'emplacement qu'elle occupe. Sous md la
+   * rangee s'empile : on ne renvoie alors que l'opacite et l'ombre, en laissant
+   * les cartes dans le flux.
+   */
+  const projectSlotStyle = (card: number): React.CSSProperties => {
+    const slot = PROJECT_SLOTS[(card - activeProjectSlide + 1 + 3) % 3];
+    if (!isProjectsRowWide) {
+      return { opacity: slot.opacity, filter: slot.filter, transition: PROJECT_SLOT_TRANSITION };
+    }
+    return {
+      position: 'absolute',
+      left: slot.left,
+      top: slot.top,
+      width: slot.width,
+      height: slot.height,
+      zIndex: slot.zIndex,
+      opacity: slot.opacity,
+      borderRadius: slot.borderRadius,
+      filter: slot.filter,
+      transition: PROJECT_SLOT_TRANSITION,
+    };
+  };
+
   const faqAnswerRefs = useRef<Array<HTMLParagraphElement | null>>([]);
   const [faqAnswerHeights, setFaqAnswerHeights] = useState<number[]>(() => faqItems.map(() => 0));
   const faqLayoutState = expandedFaqIndex !== null
@@ -1564,14 +1279,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setEsgActiveCardIndex((current) => (current + 1) % 3);
-    }, 1700);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     const updateFaqAnswerHeights = () => {
       setFaqAnswerHeights(
         faqItems.map((_, index) => faqAnswerRefs.current[index]?.scrollHeight ?? 0)
@@ -1622,38 +1329,9 @@ export default function Home() {
   const servicesFocusLineFill = servicesFocusAnimationStates[servicesFocusStage].lineFill;
   function closeStrategicPopup() {
     setShowStrategicPopup(false);
-    setIsInterconnectionReadMoreOpening(false);
-    setIsInterconnectionCardActive(false);
   }
 
-  function triggerInterconnectionCardTouchFeedback() {
-    if (interconnectionCardTouchTimeoutRef.current) {
-      clearTimeout(interconnectionCardTouchTimeoutRef.current);
-      interconnectionCardTouchTimeoutRef.current = null;
-    }
-    if (isInterconnectionCardActive) {
-      setIsInterconnectionCardActive(false);
-    } else {
-      setIsInterconnectionCardActive(true);
-    }
-  }
 
-  function openStrategicPopupWithTouchAnimation() {
-    if (showStrategicPopup || isInterconnectionReadMoreOpening) return;
-    const isTouchDevice =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-    if (interconnectionPopupOpenTimeoutRef.current) {
-      clearTimeout(interconnectionPopupOpenTimeoutRef.current);
-      interconnectionPopupOpenTimeoutRef.current = null;
-    }
-    setIsInterconnectionCardActive(true);
-    setIsInterconnectionReadMoreOpening(true);
-    interconnectionPopupOpenTimeoutRef.current = setTimeout(() => {
-      setShowStrategicPopup(true);
-      interconnectionPopupOpenTimeoutRef.current = null;
-    }, isTouchDevice ? 220 : 180);
-  }
 
   function scrollInstitutionalCarousel(direction: 'left' | 'right') {
     const carousel = institutionalCarouselRef.current;
@@ -1839,10 +1517,6 @@ export default function Home() {
     setIsProjectsPanelPaused(false);
   }
 
-  function openProject(idx: number) {
-    setActiveProjectIndex(idx);
-    setShowProjectOverlay(true);
-  }
 
   const activeProject = projectsCarouselData[activeProjectIndex] ?? projectsCarouselData[0];
 
@@ -1956,8 +1630,10 @@ export default function Home() {
                     <p className="font-[Geist] font-medium text-white/60" style={{ fontSize: 'clamp(11px, 1.15vw, 16px)', lineHeight: 'clamp(14px, 1.4vw, 20px)' }}>
                       Nous transformons vos contraintes juridiques et réglementaires en décisions claires et actionnables.
                     </p>
+                    {/* Ce lien s'intitule « Découvrez nos projets » mais menait
+                        a la page de services : il mene desormais aux projets. */}
                     <Link
-                      href="/services"
+                      href="/projets"
                       className="w-fit font-[Geist] font-medium text-white underline underline-offset-4 transition-opacity hover:opacity-80"
                       style={{ fontSize: 'clamp(12px, 1.4vw, 20px)', lineHeight: 'clamp(14px, 1.5vw, 20px)' }}
                     >
@@ -2038,11 +1714,9 @@ export default function Home() {
             </div>
           </div>
 
-          <section className="absolute inset-x-0 bottom-0 z-[2] w-full border-t border-white/40 bg-white/10 py-3 backdrop-blur-sm sm:py-3 md:py-4">
+          <section className="absolute inset-x-0 bottom-0 z-[2] w-full bg-black/[0.15] py-3 sm:py-3 md:py-4" style={{ backdropFilter: 'blur(10px)', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
             <div className="w-full px-0">
               <div className="relative min-h-[64px] overflow-hidden sm:min-h-[72px] md:min-h-[82px] lg:min-h-[92px]">
-                <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-white/15 to-transparent" />
-                <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-white/15 to-transparent" />
 
                 {/* Anchored to the left edge, not centered: a centered track
                     would slide its right edge into view mid-animation and
@@ -2051,20 +1725,32 @@ export default function Home() {
                   <div
                     className="flex w-max items-center"
                     style={{
-                      animation: 'scroll 26s linear infinite',
+                      animation: `scroll ${logoScrollSeconds}s linear infinite`,
                       willChange: 'transform',
                     }}
                   >
                     {[...partnerAssetLogos, ...partnerAssetLogos].map((logo, index) => (
                       <div
-                        key={`partner-asset-logo-home-${index}-${logo}`}
-                        className="relative h-[clamp(38px,5.6vw,66px)] w-[clamp(128px,17.5vw,228px)] shrink-0 opacity-90 mr-[clamp(18px,3.2vw,52px)]"
+                        key={`partner-asset-logo-home-${index}-${logo.src}`}
+                        className="relative w-auto shrink-0 opacity-90 mr-[clamp(18px,3.2vw,52px)]"
+                        /* La hauteur decroit quand le logo s'allonge : a hauteur
+                           egale, un bandeau de ratio 4,7 occupe neuf fois la largeur
+                           d'un logo carre et ecrase ses voisins. Le facteur en
+                           racine carree egalise les surfaces sans rapetisser
+                           excessivement les plus larges (plancher a 0,68). */
+                        style={{
+                          aspectRatio: String(logo.ratio),
+                          height: `calc(clamp(38px, 5.6vw, 66px) * ${logoHeightFactor(logo).toFixed(3)})`,
+                        }}
                       >
                         <Image
-                          src={logo}
+                          src={logo.src}
                           alt={`Logo partenaire ${index % partnerAssetLogos.length + 1}`}
                           fill
-                          className="object-contain [filter:brightness(0)_saturate(100%)_invert(100%)]"
+                          sizes="228px"
+                          loading="lazy"
+                          unoptimized={logo.src.endsWith('.svg')}
+                          className={`object-contain ${LOGO_WHITE_FILTER}`}
                         />
                       </div>
                     ))}
@@ -2205,7 +1891,9 @@ export default function Home() {
                   </div>
 
                   <p className="mx-auto w-full max-w-[567px] font-[Geist] text-[14px] font-medium leading-[1.35] text-white/70 sm:text-[15px] md:text-[16px] md:leading-[1.25] lg:mx-0">
-                    Basé à Bruxelles, au cœur des institutions européennes, RNJ Advisory combine expertise juridique, vision stratégique et exécution opérationnelle pour accompagner vos projets de bout en bout.
+                    Ancrés à Bruxelles. Ouverts sur le monde.<br /><br />
+                    Bruxelles est bien plus que notre lieu d&apos;implantation. C&apos;est un carrefour européen où se rencontrent entrepreneurs, investisseurs, institutions et talents internationaux.<br /><br />
+                    Chez RNJ Advisory, nous contribuons à cet écosystème en accompagnant les entreprises et les porteurs de projets dans leurs enjeux de création, de développement, de mobilité internationale et de gouvernance.
                   </p>
                 </div>
 
@@ -2295,61 +1983,6 @@ export default function Home() {
           </div>
 
           {/* Section masquée - Analyse Institutionnelle & Réglementaire */}
-          {false && (
-          <div className="mx-auto mt-10 mb-4 flex w-full max-w-[1392px] flex-col items-center gap-10 px-4 sm:px-6 md:px-8 lg:mt-14 lg:mb-6 xl:mt-16 xl:mb-8 xl:flex-row xl:items-center xl:justify-between xl:gap-8 xl:px-0">
-            <div className="flex w-full max-w-[988px] flex-col items-center gap-10 text-center xl:items-start xl:gap-[94px] xl:text-left">
-              <div className="flex items-center gap-[13px]">
-                <span className="h-[11.81px] w-[11.81px] rounded-full bg-[#003300]" />
-                <h3 className="font-[Geist] text-[22px] font-bold leading-[1.06] text-[#003300] sm:text-[24px] lg:text-[27.9642px] lg:leading-[30px]">
-                  Études &amp; Analyse Réglementaire
-                </h3>
-              </div>
-
-              <div className="flex w-full max-w-[987.89px] flex-col items-center gap-10 xl:items-start xl:gap-[102px]">
-                <div className="flex w-full max-w-[773.41px] flex-col items-center gap-7 xl:items-start xl:gap-[41.6px]">
-                  <h2 className="font-[EB_Garamond] text-[32px] font-semibold leading-[0.95] tracking-[-0.02em] text-[#003300] sm:text-[40px] md:text-[50px] lg:text-[58px] lg:leading-[50px] xl:text-[68px] xl:leading-[56px]">
-                    Analyse Institutionnelle &amp; Réglementaire
-                  </h2>
-
-                  <p className="max-w-[655px] font-[Geist] text-[15px] font-medium leading-[1.25] text-[#003300]/80 sm:text-[17px] md:text-[19px] lg:text-[20.9988px] lg:leading-[23px]">
-                    RNJ Advisory vous accompagne dans l&apos;analyse approfondie des
-                    environnements institutionnels, juridiques et réglementaires
-                    afin de sécuriser vos décisions stratégiques.
-                  </p>
-                </div>
-
-                <div className="flex w-full max-w-[634.22px] flex-col gap-3 sm:flex-row sm:items-start sm:justify-center sm:gap-[12.4px] xl:justify-start">
-                  <Link
-                    href="/a-propos"
-                    className="inline-flex h-[68px] w-full items-center justify-center rounded-[82.6547px] border-[2.48019px] border-[#003300] px-8 font-[Geist] text-[18px] font-semibold leading-[25px] text-[#003300] sm:h-[84.49px] sm:w-auto sm:min-w-[250px] sm:px-10 xl:text-[25.1616px]"
-                  >
-                    En savoir plus
-                  </Link>
-
-                  <Link
-                    href="/contact"
-                    className="inline-flex h-[68px] w-full items-center justify-center rounded-[141.694px] bg-[#003300] px-6 font-[Geist] text-[18px] font-semibold leading-[25px] text-[#F7FCFF] sm:h-[83.04px] sm:w-auto sm:min-w-[340px] sm:px-8 xl:text-[25.1616px]"
-                  >
-                    Demander une analyse
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative w-full max-w-[380px] sm:max-w-[480px] md:max-w-[540px] xl:w-[580px] xl:max-w-none">
-              <div className="relative h-[390px] w-full sm:h-[500px] md:h-[560px] xl:h-[566.12px]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:good,w_800,h_600,c_limit/v1779672109/rnj/optimized/frame-559.webp"
-                  alt="Illustration Analyse Réglementaire"
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-contain object-center"
-                />
-              </div>
-            </div>
-          </div>
-          )}
         </section>
 
         <section className="w-full bg-[#eff1ce] pb-10 pt-2 md:pb-12 md:pt-4 lg:pb-14">
@@ -2398,11 +2031,12 @@ export default function Home() {
                       de la création d&apos;entreprise à l&apos;accélération
                     </h2> 
                     <p
-                      className="mx-auto max-w-[520px] font-[Geist] font-semibold text-white/50 lg:mx-0"
+                      className="mx-auto max-w-[520px] font-[Geist] font-semibold text-white/80 lg:mx-0"
                       style={{ fontSize: 'clamp(13px, 2.5vw, 16px)', lineHeight: 1.25 }}
                     >
                       Nous analysons votre environnement institutionnel et réglementaire pour sécuriser vos décisions et garantir la conformité de vos projets.
                     </p>
+
 
                   
                   </div>
@@ -2826,173 +2460,6 @@ export default function Home() {
             )}
 
             {/* ===== FRAME 349336 — Three-card projects showcase (removed) ===== */}
-            {false && <section className="w-full bg-[#F7FCFF] pb-10 pt-6 md:pb-12 md:pt-8 lg:pb-16 lg:pt-10">
-              <div className="mx-auto grid w-full max-w-[1416px] grid-cols-1 gap-5 px-4 sm:px-5 md:px-6 lg:grid-cols-3 lg:gap-[27px] lg:px-8 xl:px-0">
-
-                {/* Card 1 — Énergies Renouvelables (Group 349346) */}
-                <article className="relative min-h-[520px] overflow-hidden rounded-[12px] lg:min-h-[626px]">
-                  <Image src="/optimized/team-of-four-engineers-in-white-hard-hats-and-high-2026-03-27-00-39-32-utc%201.webp"
-                    alt="Équipe d'ingénieurs — énergies renouvelables"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                    loading="lazy"/>
-
-                  <span
-                    className="absolute left-[20px] top-[48px] inline-flex items-center justify-center px-5"
-                    style={{
-                      height: '30.37px',
-                      background: '#003300',
-                      borderRadius: '20.5224px',
-                      fontFamily: 'Geist',
-                      fontWeight: 400,
-                      fontSize: '12.4919px',
-                      color: 'rgba(255,255,255,0.7)',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    Énergies Renouvelables
-                  </span>
-
-                  <div
-                    className="absolute inset-x-[6px] bottom-[8px] flex flex-col justify-end rounded-[14px] px-[14px] pb-[14px] pt-[18px]"
-                    style={{ background: 'rgba(0, 51, 0, 0.7)' }}
-                  >
-                    <h3
-                      className="font-[EB_Garamond] font-normal"
-                      style={{ fontSize: '24px', lineHeight: '41px', color: '#F5FAC7' }}
-                    >
-                      Transition Énergétique Durable
-                    </h3>
-                    <p
-                      className="mb-[18px] font-[Geist] font-normal"
-                      style={{ fontSize: '11px', lineHeight: '13px', color: '#F5FAC7', opacity: 0.6 }}
-                    >
-                      RNJ Advisory accompagne les institutions dans l&apos;élaboration de politiques publiques
-                      favorisant les investissements et le développement des énergies renouvelables.
-                    </p>
-                    <Link
-                      href="/contact"
-                      className="flex w-full items-center justify-center font-[Geist] font-bold"
-                      style={{
-                        height: '70.49px',
-                        background: '#F5FAC7',
-                        borderRadius: '52px',
-                        fontSize: '13.3842px',
-                        color: '#003300',
-                      }}
-                    >
-                      Un projet en tête ?
-                    </Link>
-                  </div>
-                </article>
-
-                {/* Card 2 — Interconnexion électrique (Group 349347) */}
-                <article
-                  className="relative flex min-h-[520px] flex-col justify-end rounded-[12px] px-5 pb-[22px] pt-8 lg:min-h-[626px]"
-                  style={{ background: '#C1CB82' }}
-                >
-                  <div className="flex flex-1 flex-col gap-[24px]">
-                    <span className="flex items-center gap-2">
-                      <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672853/rnj/layer-4-955dc651.png"
-                        alt=""
-                        width={36}
-                        height={40}
-                        style={{ width: '36px', height: 'auto' }}
-                        unoptimized
-                        loading="lazy"/>
-                      <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672854/rnj/group-73892e5a.png"
-                        alt="RNJ Advisory"
-                        width={138}
-                        height={37}
-                        style={{ width: '138px', height: 'auto' }}
-                        unoptimized
-                        loading="lazy"/>
-                    </span>
-
-                    <h3
-                      className="font-[EB_Garamond] font-normal capitalize"
-                      style={{ fontSize: '40px', lineHeight: '47px', letterSpacing: '-0.03em', color: '#003300', maxWidth: '393.78px' }}
-                    >
-                      Interconnexion électrique Tunisie-Italie
-                    </h3>
-
-                    <p
-                      className="font-[Geist] font-normal"
-                      style={{ fontSize: '14.3518px', lineHeight: '20px', letterSpacing: '0.03em', color: '#003300', opacity: 0.6 }}
-                    >
-                      <span className="block">
-                        Étude juridique et institutionnelle pour la mise en place d&apos;un cadre réglementaire
-                        propice à l&apos;interconnexion électrique entre la Tunisie et l&apos;Italie, ainsi que la
-                        création d&apos;une autorité de régulation du secteur électrique en Tunisie.
-                      </span>
-                      <span className="block h-2" aria-hidden="true" />
-                      <span className="block">Nos interventions :</span>
-                      <span className="block">• Analyse du cadre réglementaire tunisien applicable au secteur de l&apos;électricité et aux énergies renouvelables</span>
-                      <span className="block">• Actualisation des textes réglementaires relatifs à la création de l&apos;autorité de régulation du secteur électrique</span>
-                      <span className="block">• Assistance à la mise en place d&apos;un cadre réglementaire et contractuel propice à l&apos;exportation d&apos;électricité via ELMED</span>
-                    </p>
-                  </div>
-
-                  <Link
-                    href="/contact"
-                    className="mt-[24px] flex w-full items-center justify-center font-[Geist] font-bold"
-                    style={{
-                      height: '70.49px',
-                      background: '#FFFFFF',
-                      borderRadius: '53px',
-                      fontSize: '13.3842px',
-                      color: '#003300',
-                    }}
-                  >
-                    Discutons de vos enjeux.
-                  </Link>
-                </article>
-
-                {/* Card 3 — Certificats d'Attributs Énergétiques (Group 349348) */}
-                <article className="relative min-h-[520px] overflow-hidden rounded-[12px] lg:min-h-[626px]">
-                  <Image src="/optimized/aerial-view-of-empty-stadium-surrounded-by-green-t-2026-03-18-09-51-08-utc%201.webp"
-                    alt="Vue aérienne — certificats d'attributs énergétiques"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                    loading="lazy"/>
-
-                  <div
-                    className="absolute inset-x-[6px] top-[16px] flex flex-col rounded-[14px] px-[14px] pb-[14px] pt-[20px]"
-                    style={{ background: '#F5FAC7' }}
-                  >
-                    <h3
-                      className="font-[EB_Garamond] font-normal"
-                      style={{ fontSize: '38.9175px', lineHeight: '41px', color: '#003300', maxWidth: '357.81px' }}
-                    >
-                      Certificats d&apos;Attributs Énergétiques
-                    </h3>
-                    <p
-                      className="mb-[20px] mt-[16px] font-[Geist] font-normal"
-                      style={{ fontSize: '13.0409px', lineHeight: '13px', color: '#003300', opacity: 0.6 }}
-                    >
-                      RNJ Advisory a contribué à la première phase de l&apos;étude sur la conceptualisation des EAC
-                      en Tunisie, avec un atelier organisé à Tunis auprès du Ministère de l&apos;Énergie et des Mines
-                      et des parties prenantes.
-                    </p>
-                    <Link
-                      href="/contact"
-                      className="flex w-full items-center justify-center font-[Geist] font-bold"
-                      style={{
-                        height: '70.49px',
-                        background: '#003300',
-                        borderRadius: '52px',
-                        fontSize: '13.3842px',
-                        color: '#F5FAC7',
-                      }}
-                    >
-                      intéressée
-                    </Link>
-                  </div>
-                </article>
-              </div>
-            </section>}
 
             {/* ===== PROJECT OVERLAY PANEL ===== */}
             {showProjectOverlay && (
@@ -3176,7 +2643,7 @@ export default function Home() {
                         lineHeight: '25px',
                       }}
                     >
-                      contact
+                      Contact
                     </Link>
                   </div>
 
@@ -3213,16 +2680,31 @@ export default function Home() {
                           <article
                             key={`${card.title}-${index}`}
                             data-institutional-card
-                            className="relative h-[380px] w-[94vw] shrink-0 snap-start overflow-hidden rounded-[16px] sm:h-[420px] sm:w-[86vw] sm:rounded-[20px] md:h-[473.78px] md:w-[calc((100%-18px)/2)]"
+                            className="relative h-[380px] w-[94vw] shrink-0 snap-start overflow-hidden rounded-[16px] sm:h-[420px] sm:w-[86vw] sm:rounded-[20px] md:h-[473.78px] md:w-[808px]"
+                            // Sans photo, la carte serait transparente au-dessus
+                            // de la bande : on lui donne la couleur de la bande.
+                            style={card.image ? undefined : { background: card.bandBg }}
                           >
-                            <Image
-                              src={card.image}
-                              alt={card.title}
-                              fill
-                              className="object-cover"
-                              unoptimized
-                              style={card.mirror ? { transform: 'scaleX(-1)' } : undefined}
-                            />
+                            {/* object-cover et non object-contain : contain
+                                reduit les photos 4:3 a 631x474 dans une carte
+                                de 808px et laisse 88px de marge vide de chaque
+                                cote, ce qui casse le plein cadre.
+                                La bande coloree masquant 39.7% de la carte,
+                                seuls 47% de la hauteur des photos 4:3 restent
+                                visibles. Ancrees en haut, elles ne montraient
+                                que le plafond ou la baie vitree, sujets coupes.
+                                D'ou object-center pour ces deux-la ; les quatre
+                                autres sont pre-recadrees pour un ancrage haut. */}
+                            {card.image && (
+                              <Image
+                                src={card.image}
+                                alt={card.title}
+                                fill
+                                className="object-cover object-top"
+                                unoptimized
+                                style={card.mirror ? { transform: 'scaleX(-1)' } : undefined}
+                              />
+                            )}
                             {/* Bottom color band (Rectangle 821) — exact Figma spec: solid color, 188.04/473.78 = 39.7% height, hard edge.
                                 Text lives inside this same box, vertically centered, so the gap above and below it stays equal
                                 regardless of how many lines the description wraps to. */}
@@ -3774,224 +3256,259 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Cards row — center card raised 82px above side cards */}
-              <div className="mx-auto flex max-w-[1272px] flex-col gap-5 px-4 sm:px-6 md:flex-row md:items-end lg:px-8">
-                {/* Left card — cream #F5FAC7 */}
-                <article
-                  className="relative w-full flex-1 overflow-hidden rounded-[15px]"
-                  style={{
-                    height: 'clamp(420px, 44vw, 596px)',
-                    background: '#F5FAC7',
-                    filter: 'drop-shadow(0px 2px 26.1px rgba(0,0,0,0.15))',
-                  }}
-                >
-                  {/* Inner image block */}
-                  <div
-                    className="absolute overflow-hidden rounded-[15px]"
-                    style={{ inset: '21px 27px 44% 27px' }}
+              {/* Cards row — geometrie Figma (Frame 349353, 1271.52 x 595.67)
+                  reproduite au ratio pres : sur md+ les trois cartes sont
+                  positionnees en absolu, en % de la rangee, donc le
+                  chevauchement reste de 32.29px cote gauche ET cote droit a
+                  toutes les tailles (avant, les marges negatives faisaient
+                  recouvrir le texte des cartes laterales par la carte
+                  centrale). Sous md elles s'empilent en gardant le ratio
+                  Figma, ce qui garde le positionnement interne en % valable.
+                  Les tailles de texte sont en cqw (relatif a la largeur de la
+                  carte) : elles suivent exactement l'echelle du Figma au lieu
+                  de rester figees en px. */}
+              <div className="mx-auto max-w-[1272px] px-4 sm:px-6 lg:px-8">
+                <div ref={projectsRowRef} className="relative flex flex-col gap-5 md:block md:aspect-[1271.52/595.67]">
+                  {/* Left card — cream #F5FAC7 (Frame 349356) */}
+                  <article
+                    className="relative z-10 aspect-[407.64/595.67] w-full overflow-hidden rounded-[15px] md:absolute md:left-0 md:top-0 md:aspect-auto md:h-full md:w-[32.06%]"
+                    style={{
+                      containerType: 'inline-size',
+                      background: '#F5FAC7',
+                      ...projectSlotStyle(0),
+                    }}
+                  >
+                    {/* Inner image block (Group 349362) */}
+                    <div
+                      className="absolute overflow-hidden rounded-[15px]"
+                      style={{ inset: '3.59% 6.74% 44.70% 6.74%' }}
+                    >
+                      <Image
+                        src="/optimized/wind-power-generation-2026-03-25-03-13-10-utc%201.png"
+                        alt="Des stratégies qui créent de l'impact"
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                      {/* RNJ badge (Group 349363) — bottom-right of the image */}
+                      <Image
+                        src="/optimized/Group%20349363.png"
+                        alt="RNJ Advisory"
+                        width={80}
+                        height={80}
+                        unoptimized
+                        className="absolute"
+                        style={{ right: '2.73%', bottom: '3.28%', width: '22.58%', height: 'auto' }}
+                      />
+                    </div>
+                    {/* Text (Frame 349357) — largeur ramenee de 86.84% (Figma) a
+                        81% : la carte centrale recouvre les 32.29px de droite,
+                        soit a partir de 92.08%, et le bloc Figma s'arretait a
+                        93.82% -> les fins de lignes passaient sous la carte
+                        centrale. A 81% le texte s'arrete a 87.98% et reste
+                        entierement dans la partie visible. */}
+                    <div className="absolute" style={{ left: '6.98%', top: '59.81%', width: '81%' }}>
+                      <h3
+                        className="font-[Geist] font-medium text-[#003300]"
+                        style={{ fontSize: 'clamp(15px, 5.888cqw, 24px)', lineHeight: 1.292 }}
+                      >
+                        Interconnexion électrique Tunisie-Italie
+                      </h3>
+                      <p
+                        className="font-[Geist] font-normal text-[#003300]"
+                        style={{
+                          marginTop: '3.68cqw',
+                          fontSize: 'clamp(11px, 3.767cqw, 15.35px)',
+                          lineHeight: 1.302,
+                          letterSpacing: '0.02em',
+                        }}
+                      >
+                        Étude juridique et institutionnelle pour un cadre réglementaire propice à l&apos;interconnexion électrique Tunisie-Italie et à la création d&apos;une autorité de régulation. Nos interventions : analyse du cadre tunisien, actualisation des textes réglementaires et cadre contractuel pour l&apos;export via ELMED.
+                      </p>
+                    </div>
+                  </article>
+
+                  {/* Center card — dark #1E1E1E (Frame 349355), taller than the
+                      row and vertically centered on it: -13.81% top / 127.62%
+                      height reproduit le top:-82.25 / height:760.17 du Figma. */}
+                  <article
+                    className="relative z-20 aspect-[520.22/760.17] w-full overflow-hidden rounded-[19px] md:absolute md:left-[29.52%] md:top-[-13.81%] md:aspect-auto md:h-[127.62%] md:w-[40.91%]"
+                    style={{
+                      containerType: 'inline-size',
+                      background: '#1E1E1E',
+                      ...projectSlotStyle(1),
+                    }}
                   >
                     <Image
-                      src="/optimized/wind-power-generation-2026-03-25-03-13-10-utc%201.png"
-                      alt="Des stratégies qui créent de l'impact"
+                      src={`/optimized/wind-turbine-against-clear-blue-sky-on-sunny-day-2026-03-25-01-46-08-utc%201.png`}
+                      alt="Le droit au service de la transformation"
                       fill
                       className="object-cover"
                       unoptimized
+                      // scale(1.06) : la rotation de 2.38deg decouvrirait sinon
+                      // les coins du fond #1E1E1E (le Figma place une image plus
+                      // grande que la carte pour la meme raison).
+                      style={{ transform: 'rotate(2.38deg) scale(1.06)', transformOrigin: 'center center' }}
                     />
-                    {/* RNJ badge (Group 349363) — bottom-right of the image */}
+                    <h3
+                      className="absolute font-[Geist] font-medium text-[#BBCB2E]"
+                      style={{
+                        left: '9.47%',
+                        top: '12.47%',
+                        width: '60.82%',
+                        fontSize: 'clamp(18px, 5.888cqw, 30.63px)',
+                        lineHeight: 1.306,
+                      }}
+                    >
+                      Certificats d&apos;Attributs Énergétiques
+                    </h3>
+                    <p
+                      className="absolute font-[Geist] font-normal text-[#BBCB2E]"
+                      style={{
+                        left: '9.47%',
+                        // 28.26% -> 30% : le nouveau titre tient sur 3 lignes
+                        // (contre 2) et finissait pile a 214.8px, soit
+                        // exactement ou commencait ce paragraphe. 30% redonne
+                        // les 13px d'ecart du Figma.
+                        top: '30%',
+                        width: '53.47%',
+                        fontSize: 'clamp(12.5px, 3.766cqw, 19.6px)',
+                        lineHeight: 1.276,
+                        letterSpacing: '0.02em',
+                      }}
+                    >
+                      RNJ Advisory a contribué à la première phase de l&apos;étude sur la conceptualisation des EAC en Tunisie, avec un atelier organisé à Tunis auprès du Ministère de l&apos;Énergie et des Mines et des parties prenantes.
+                    </p>
+                  </article>
+
+                  {/* Right card — #BBCB2E (Frame 349354), power lines */}
+                  <article
+                    className="relative z-10 aspect-[408.24/595.67] w-full overflow-hidden rounded-[15px] md:absolute md:left-[67.89%] md:top-0 md:aspect-auto md:h-full md:w-[32.11%]"
+                    style={{
+                      containerType: 'inline-size',
+                      background: '#BBCB2E',
+                      ...projectSlotStyle(2),
+                    }}
+                  >
+                    {/* Image (Group 349361) — le Figma ne l'etire pas sur la
+                        carte : il la place a 474.57 x 691.26 en (-33.16, 0)
+                        dans un cadre de 408.24 x 595.67, donc elle deborde a
+                        gauche et en bas (l'overflow-hidden de la carte coupe).
+                        Le PNG fait 205x298, exactement le meme ratio (0.688)
+                        que ce cadre : le cadrage est donc reproduit a
+                        l'identique. mix-blend-multiply est conserve, c'est ce
+                        qui donne les lignes sombres sur le fond #BBCB2E. */}
                     <Image
-                      src="/optimized/Group%20349363.png"
-                      alt="RNJ Advisory"
-                      width={80}
-                      height={80}
+                      src="/optimized/power-lines-against-a-dramatic-orange-sky-2026-03-09-23-50-51-utc%201%20(1).png"
+                      alt="Assistance juridique ONAS"
+                      fill
+                      className="object-cover"
                       unoptimized
-                      className="absolute"
-                      style={{ right: '10px', bottom: '10px', width: 'clamp(52px, 6vw, 80px)', height: 'auto' }}
+                      style={{
+                        mixBlendMode: 'multiply',
+                        left: '-8.123%',
+                        top: 0,
+                        right: 'auto',
+                        bottom: 'auto',
+                        width: '116.248%',
+                        height: '116.048%',
+                      }}
                     />
-                  </div>
-                  {/* Text */}
-                  <div className="absolute bottom-[28px] left-[28px] right-[28px]">
-                    <h3
-                      className="font-[Geist] font-medium text-[#003300]"
-                      style={{ fontSize: '24px', lineHeight: '31px' }}
-                    >
-                      Des stratégies qui créent de l&apos;impact.
-                    </h3>
-                    <p
-                      className="mt-[15px] font-[Geist] font-normal text-[#003300]"
-                      style={{ fontSize: '15px', lineHeight: '20px', letterSpacing: '0.02em', opacity: 0.6 }}
-                    >
-                      Des solutions juridiques et réglementaires conçues pour accompagner les décisions qui façonnent l&apos;avenir.
-                    </p>
-                  </div>
-                </article>
-
-                {/* Center card — dark #1E1E1E, taller & elevated */}
-                <article
-                  className="relative w-full flex-1 overflow-hidden rounded-[19px] md:-mt-[82px]"
-                  style={{
-                    height: 'clamp(480px, 56vw, 760px)',
-                    background: '#1E1E1E',
-                    filter: 'drop-shadow(0px 1px 170.5px rgba(0,0,0,0.33))',
-                  }}
-                >
-                  <Image
-                    src={`/optimized/wind-turbine-against-clear-blue-sky-on-sunny-day-2026-03-25-01-46-08-utc%201.png`}
-                    alt="Le droit au service de la transformation"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                    style={{ transform: 'rotate(2.38deg)', transformOrigin: 'center center' }}
-                  />
-                  <div className="absolute inset-0 p-[49px]">
-                    <h3
-                      className="max-w-[316px] font-[Geist] font-medium text-[#BBCB2E]"
-                      style={{ fontSize: '30px', lineHeight: '40px' }}
-                    >
-                      Le droit au service de la transformation.
-                    </h3>
-                    <p
-                      className="mt-[25px] max-w-[278px] font-[Geist] font-normal text-[#BBCB2E]"
-                      style={{ fontSize: '20px', lineHeight: '25px', letterSpacing: '0.02em' }}
-                    >
-                      Nous aidons les organisations à évoluer dans un environnement réglementaire complexe avec confiance.
-                    </p>
-                  </div>
-                </article>
-
-                {/* Right card — #BBCB2E, power lines, Figma-centered layout */}
-                <article
-                  className="relative w-full flex-1 overflow-hidden rounded-[15px]"
-                  style={{
-                    height: 'clamp(420px, 44vw, 596px)',
-                    background: '#BBCB2E',
-                    filter: 'drop-shadow(0px 2px 26.1px rgba(0,0,0,0.15))',
-                    opacity: 0.8,
-                  }}
-                >
-                  <Image
-                    src="/optimized/power-lines-against-a-dramatic-orange-sky-2026-03-09-23-50-51-utc%201%20(1).png"
-                    alt="Accélérer la transition énergétique"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                    style={{ mixBlendMode: 'multiply' }}
-                  />
-                  <div className="absolute inset-0 flex flex-col items-center text-center px-[44px]" style={{ paddingTop: '58px' }}>
-                    {/* Icon */}
+                    {/* Shield (Group) — 41.82 x 47.97, left calc(50% - 41.82/2 - 1px),
+                        top 58.42. Le PNG source fait 38x44 sans marge, donc la
+                        largeur CSS correspond directement a celle du Figma. */}
                     <Image
                       src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672853/rnj/layer-4-955dc651.png"
                       alt="RNJ"
-                      width={42}
-                      height={48}
+                      width={38}
+                      height={44}
                       unoptimized
+                      className="absolute -translate-x-1/2"
+                      style={{ left: 'calc(50% - 1px)', top: '9.808%', width: '10.244%', height: 'auto' }}
                     />
-                    {/* Title — 18px below icon */}
                     <h3
-                      className="mt-[18px] w-full text-center font-[Geist] font-bold text-[#003300]"
-                      style={{ fontSize: '32px', lineHeight: '36px', letterSpacing: '-0.02em' }}
+                      className="absolute -translate-x-1/2 text-center font-[Geist] font-bold text-[#003300]"
+                      style={{
+                        left: '50%',
+                        top: '20.913%',
+                        width: '84.184%',
+                        fontSize: 'clamp(18px, 7.8385cqw, 32px)',
+                        lineHeight: 1.125,
+                        letterSpacing: '-0.02em',
+                      }}
                     >
-                      Accélérer la transition énergétique.
+                      Assistance juridique ONAS
                     </h3>
-                    {/* Description — 16px below title */}
                     <p
-                      className="mt-[16px] w-full text-center font-[Geist] font-normal text-[#003300]"
-                      style={{ fontSize: '12px', lineHeight: '16px', letterSpacing: '0.02em' }}
+                      className="absolute text-center font-[Geist] font-normal text-[#003300]"
+                      style={{
+                        left: '10.675%',
+                        top: '35.601%',
+                        width: '78.796%',
+                        fontSize: 'clamp(9.5px, 2.9394cqw, 12px)',
+                        lineHeight: 1.333,
+                        letterSpacing: '0.02em',
+                      }}
                     >
-                      Des cadres réglementaires solides pour soutenir les infrastructures, les marchés et l&apos;innovation énergétique.
+                      Mission d&apos;assistance et d&apos;accompagnement pour la gestion des contrats de concession de l&apos;ONAS — LOT 1 et LOT 2.
+                      <br />
+                      <br />
+                      Pays : Tunisie
+                      <br />
+                      Client : ONAS
+                      <br />
+                      Financement : Banque mondiale
+                      <br />
+                      Année : 2026
                     </p>
-                  </div>
-                </article>
+                  </article>
+
+                  {/* Navigation arrows — alignees sur les bords de la carte
+                      centrale (29.52% / 70.43%), comme dans la maquette. */}
+                  {/* Ces deux fleches etaient purement decoratives : aucun
+                      gestionnaire de clic. Elles pilotent maintenant le carrousel. */}
+                  <button
+                    type="button"
+                    onClick={() => setActiveProjectSlide((i) => (i + 2) % 3)}
+                    className="absolute top-1/2 z-30 hidden h-[44px] w-[44px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition hover:bg-white/40 md:flex"
+                    style={{ left: '29.52%' }}
+                    aria-label="Projet précédent"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveProjectSlide((i) => (i + 1) % 3)}
+                    className="absolute top-1/2 z-30 hidden h-[44px] w-[44px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition hover:bg-white/40 md:flex"
+                    style={{ left: '70.43%' }}
+                    aria-label="Projet suivant"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
+                </div>
+
+                {/* Pastilles de position, comme sur « De la vision a la realite ». */}
+                <div className="mt-8 hidden items-center justify-center gap-[8.29px] md:flex">
+                  {[0, 1, 2].map((i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setActiveProjectSlide(i)}
+                      aria-label={`Projet ${i + 1}`}
+                      aria-current={activeProjectSlide === i}
+                      className="rounded-full transition-all duration-300"
+                      style={{
+                        width: activeProjectSlide === i ? '17.53px' : '12.33px',
+                        height: activeProjectSlide === i ? '17.53px' : '12.33px',
+                        background: activeProjectSlide === i ? '#FFFFFF' : 'rgba(255,255,255,0.5)',
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
             </section>
 
             {/* Études & Analyse Réglementaire Section (hidden) */}
-            {false && (
-            <section className="relative w-full py-16 md:py-20 lg:py-24 bg-[#F7FCFF] overflow-hidden">
-              <div className="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
-                <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-16">
-                  {/* Left Content */}
-                  <div className="flex-1 order-2 lg:order-1">
-                    {/* Section Header */}
-                    <div className="flex items-center gap-3 mb-8">
-                      <div className="w-3 h-3 bg-[#003300] rounded-full"></div>
-                      <h3 
-                        className="font-[Geist] font-bold text-[#003300]"
-                        style={{ fontSize: 'clamp(20px, 3vw, 28px)', lineHeight: 'clamp(22px, 3.2vw, 30px)' }}
-                      >
-                        Études & Analyse Réglementaire
-                      </h3>
-                    </div>
-
-                    {/* Main Content */}
-                    <div className="space-y-6 md:space-y-8">
-                      <h2 
-                        className="font-[EB_Garamond] font-semibold text-[#003300]"
-                        style={{ fontSize: 'clamp(36px, 5vw, 83px)', lineHeight: 'clamp(32px, 4.5vw, 68px)', letterSpacing: '-0.03em' }}
-                      >
-                        Analyse Institutionnelle & Réglementaire
-                      </h2>
-                      
-                      <p 
-                        className="font-[Geist] font-medium text-[#003300] max-w-[100%] lg:max-w-[820px]"
-                        style={{ 
-                          fontSize: 'clamp(16px, 2.5vw, 21px)', 
-                          lineHeight: 'clamp(18px, 2.8vw, 23px)',
-                          opacity: 0.8 
-                        }}
-                      >
-                        Vous êtes un organisme public, une institution privée,
-                        un investisseur ou un bailleur de fonds ? RNJ Advisory
-                        vous accompagne dans l&apos;analyse approfondie des
-                        environnements institutionnels, juridiques et
-                        réglementaires afin de sécuriser vos décisions
-                        stratégiques.
-                      </p>
-
-                      {/* Buttons */}
-                      <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
-                        <button
-                          className="border-2 border-[#003300] rounded-full px-8 md:px-12 py-3 md:py-4 font-[Geist] font-semibold text-[#003300] hover:bg-[#003300] hover:text-[#F7FCFF] transition-colors active:scale-95"
-                          style={{ fontSize: 'clamp(18px, 2.5vw, 25px)' }}
-                          onTouchStart={(e) => {
-                            e.currentTarget.style.transform = 'scale(0.95)';
-                            setTimeout(() => {
-                              e.currentTarget.style.transform = 'scale(1)';
-                            }, 150);
-                          }}
-                        >
-                          En savoir plus
-                        </button>
-                        
-                        <button
-                          className="bg-[#003300] rounded-full px-6 md:px-8 py-3 md:py-4 font-[Geist] font-semibold text-[#F7FCFF] hover:bg-[#002200] transition-colors active:scale-95"
-                          style={{ fontSize: 'clamp(18px, 2.5vw, 25px)' }}
-                          onTouchStart={(e) => {
-                            e.currentTarget.style.transform = 'scale(0.95)';
-                            setTimeout(() => {
-                              e.currentTarget.style.transform = 'scale(1)';
-                            }, 150);
-                          }}
-                        >
-                          Demander une analyse
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right Image */}
-                  <div className="flex-1 order-1 lg:order-2 flex justify-center lg:justify-end">
-                    <div className="relative w-full max-w-[364px] md:max-w-[400px] lg:max-w-[500px] h-[400px] md:h-[500px] lg:h-[580px]">
-                      <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779674333/rnj/light-bulb-1-1-aa32136c.png"
-                        alt="Light bulb - Analyse Réglementaire"
-                        fill
-                        className="object-contain"
-                       loading="lazy"/>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            )}
 
             <section
               ref={faqSectionRef}

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact | Cabinet de conseil stratégique RNJ Advisory',
+  title: 'Contact — cabinet de conseil à Bruxelles',
   description:
     "Contactez RNJ Advisory pour votre projet de conseil stratégique et réglementaire. Notre équipe d'experts vous accompagne dans l'analyse institutionnelle, la conformité et le développement économique. Adresse : Avenue Louise 500, Ixelles, Bruxelles. Téléphone : +32 474 03 22 66.",
   keywords: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     url: 'https://rnj-advisory.be/contact',
     images: [
       {
-        url: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_630,c_limit/v1776389844/rnj/og-contact-af2e1910.jpg',
+        url: '/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'Contact RNJ Advisory - Cabinet de conseil',
@@ -36,6 +36,6 @@ export const metadata: Metadata = {
     title: 'Contactez RNJ Advisory',
     description:
       "Notre équipe d'experts vous accompagne dans vos projets stratégiques et réglementaires.",
-    images: ['https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_630,c_limit/v1776389845/rnj/twitter-contact-b57c71ae.jpg'],
+    images: ['/opengraph-image.png'],
   },
 };

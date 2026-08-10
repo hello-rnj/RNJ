@@ -2,7 +2,9 @@ import { Metadata } from 'next';
 import { homeSeoKeywords } from '@/lib/home-seo';
 
 export const metadata: Metadata = {
-  title: 'Conseil juridique et stratégique à Bruxelles | Conformité réglementaire, ESG et analyse institutionnelle',
+  /* `absolute` court-circuite la template « %s | RNJ Advisory » du layout : la
+     marque est deja dans le titre, sans quoi elle apparaissait deux fois. */
+  title: { absolute: 'Conseil juridique et stratégique à Bruxelles | RNJ Advisory' },
   description:
     "RNJ Advisory accompagne entrepreneurs, PME, ASBL, investisseurs et institutions à Bruxelles, en Belgique, en Tunisie et en Europe sur la conformité réglementaire, le RGPD, l'ESG, la structuration juridique, le recrutement international et l'analyse institutionnelle.",
   keywords: homeSeoKeywords,
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
     url: 'https://rnj-advisory.be',
     images: [
       {
-        url: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_630,c_limit/v1776389845/rnj/og-home-f960652e.jpg',
+        url: '/opengraph-image.png',
         width: 1200,
         height: 630,
         alt: 'RNJ Advisory - Conseil juridique et stratégique à Bruxelles',
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
     title: 'RNJ Advisory | Conseil juridique, RGPD, ESG et conformité',
     description:
       'Accompagnement stratégique et réglementaire pour entrepreneurs, PME, investisseurs et institutions entre Bruxelles, la Belgique et la Tunisie.',
-    images: ['https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_1200,h_630,c_limit/v1776389846/rnj/twitter-home-0741522b.jpg'],
+    images: ['/opengraph-image.png'],
   },
   other: {
     'geo.region': 'BE-BRU',

@@ -45,11 +45,25 @@ const parcoursCards = [
 
 // Flags are images rather than emoji: Windows ships no flag glyphs at all, so
 // 🇧🇪/🇪🇺 fell back to an empty box or bare letters there.
+//
+// be-flag.png et eu-flag.png sont des PNG emoji carres de 230x230 dont le
+// drapeau visible ne fait que 205x147, centre, avec 41px de marge transparente
+// en haut et en bas et 12px sur les cotes. Affiches en 69x46 (les dimensions
+// des anciens SVG, qui eux remplissaient toute leur boite) ils seraient
+// ecrases et remontes ; d'ou la boite carree plus grande -- 205/230 * 77 =
+// 68.7px de drapeau visible, soit la meme largeur qu'avant -- et le
+// vertical-align qui compense la marge transparente pour garder le centre
+// optique a la meme hauteur (baseline -17px en desktop, -10px en mobile).
+const flagGeometry = {
+  desktop: { w: 77, h: 77, marginLeft: 10, verticalAlign: '-21.5px' },
+  mobile: { w: 47, h: 47, marginLeft: 7.5, verticalAlign: '-13.6px' },
+} as const;
+
 const situations = [
-  { title: 'Je réside en Belgique', link: 'Créer mon entreprise', flag: '/optimized/be-flag.svg', flagAlt: 'Drapeau de la Belgique' },
-  { title: 'Je suis citoyen européen', link: 'Entreprendre en Belgique', flag: '/optimized/eu-flag.svg', flagAlt: "Drapeau de l'Union européenne" },
-  { title: 'Je viens hors Union Européenne', link: 'Carte professionnelle', flag: null, flagAlt: '' },
-];
+  { title: 'Je réside en Belgique', link: 'Créer mon entreprise', flag: '/optimized/be-flag.png', flagAlt: 'Drapeau de la Belgique' },
+  { title: 'Je suis citoyen européen', link: 'Entreprendre en Belgique', flag: '/optimized/eu-flag.png', flagAlt: "Drapeau de l'Union européenne" },
+  { title: 'Je suis citoyen hors Union européenne', link: 'Carte professionnelle', flag: null, flagAlt: '' },
+] as const;
 
 /* Figma shows steps 2-4 as their base color at group-opacity 0.4 — but
    composited against a light canvas, not this section's dark green
@@ -57,14 +71,51 @@ const situations = [
    (blends with #003300 behind it). Colors below are pre-flattened
    (base × 0.4 + white × 0.6) to match the pale, desaturated Figma look. */
 const journeySteps = [
-  { title: "L'idée", caption: 'Tout commence ici.', bg: '#003300', color: '#FFFFFF', captionColor: '#FFFFFF', captionOpacity: 0.6, arrowBg: '#BBCB2E', w: 501.7, h: 292.23, left: 35.18, top: 116.83, titleSize: 71.0367, titleLH: 95, captionSize: 17.7592, captionLH: 12, arrowSize: 70.07, arrowLeft: 395.75, arrowTop: 154.42, arrowFontSize: 26 },
-  { title: "L'analyse", caption: 'Évaluons votre projet.', bg: '#F1F5D5', color: '#99AD99', captionColor: '#C2CEC2', captionOpacity: 1, arrowBg: '#E4EAAB', w: 452, h: 263.28, left: 31.69, top: 104.72, titleSize: 64, titleLH: 86, captionSize: 16, captionLH: 11, arrowSize: 33.83, arrowLeft: 383.2, arrowTop: 175.22, arrowFontSize: 13 },
-  { title: 'Le plan', caption: 'Construisons votre stratégie.', bg: '#C0C3A5', color: '#99AD99', captionColor: '#C2CEC2', captionOpacity: 1, arrowBg: '#E4EAAB', w: 452, h: 263.28, left: 31.69, top: 104.06, titleSize: 64, titleLH: 86, captionSize: 16, captionLH: 11, arrowSize: 33.83, arrowLeft: 383.2, arrowTop: 175.22, arrowFontSize: 13 },
-  { title: 'Le statut', caption: 'Le statut', bg: '#406640', color: '#B3C2B3', captionColor: '#B3C2B3', captionOpacity: 0.6, arrowBg: '#8FA88F', w: 452, h: 263.28, left: 31.69, top: 104.06, titleSize: 64, titleLH: 86, captionSize: 16, captionLH: 11, arrowSize: 33.83, arrowLeft: 383.2, arrowTop: 175.22, arrowFontSize: 13 },
+  { title: "L'idée", caption: 'Tout commence ici.', bg: '#003300', color: '#FFFFFF', captionColor: '#FFFFFF', arrowBg: '#BBCB2E' },
+  { title: "L'analyse", caption: 'Évaluons votre projet.', bg: '#DDE597', color: '#003300', captionColor: '#003300', arrowBg: '#BBCB2E' },
+  { title: 'Le plan', caption: 'Construisons votre stratégie.', bg: '#626A1F', color: '#DDE597', captionColor: '#DDE597', arrowBg: '#BBCB2E' },
+  { title: 'Le statut', caption: 'Le statut', bg: '#406640', color: '#B3C2B3', captionColor: '#B3C2B3', arrowBg: '#BBCB2E' },
+];
+
+/* Decalage horizontal de la bande pour chaque etape active (Figma :
+   Frame 349326 left, une valeur par variante). Ramene la carte active dans
+   les 1512px visibles de la section. */
+const journeyStripOffsets = [0, -146.15, -194.13, -388.84];
+
+/* Figma has four variants of the filmstrip. Each card slides into its
+   active or inactive slot and changes size, opacity and arrow. */
+const journeyLayouts = [
+  [ // Step 0 (Default): L'idée active
+    { left: 0, top: 0, w: 501.7, h: 292.23, opacity: 1, z: 3, titleSize: 71.0367, titleLH: 95, captionSize: 17.7592, captionLH: 12, arrowSize: 70.07, arrowLeft: 395.75, arrowTop: 154.42, arrowFontSize: 26, arrowRotate: -90 },
+    { left: 515.7, top: 27.36, w: 407.74, h: 237.5, opacity: 0.4, z: 2, titleSize: 57.7332, titleLH: 78, captionSize: 14.4333, captionLH: 10, arrowSize: 30.52, arrowLeft: 345.68, arrowTop: 145.01, arrowFontSize: 13, arrowRotate: -60 },
+    { left: 937.44, top: 14.47, w: 452, h: 263.28, opacity: 0.4, z: 1, titleSize: 64, titleLH: 86, captionSize: 16, captionLH: 11, arrowSize: 33.83, arrowLeft: 383.2, arrowTop: 160.75, arrowFontSize: 13, arrowRotate: -60 },
+    { left: 1403.44, top: 14.47, w: 452, h: 263.28, opacity: 0.4, z: 0, titleSize: 64, titleLH: 86, captionSize: 16, captionLH: 11, arrowSize: 33.83, arrowLeft: 383.2, arrowTop: 160.75, arrowFontSize: 13, arrowRotate: -60 },
+  ],
+  [ // Step 1 (Variant2): L'analyse active
+    { left: 0, top: 14.47, w: 452, h: 263.28, opacity: 0.4, z: 3, titleSize: 64, titleLH: 86, captionSize: 16, captionLH: 11, arrowSize: 37.55, arrowLeft: 362.47 - 0, arrowTop: 164.51 - 14.47, arrowFontSize: 16, arrowRotate: -60 },
+    { left: 466, top: 0, w: 501.69, h: 292.23, opacity: 1, z: 2, titleSize: 71.0362, titleLH: 95, captionSize: 17.759, captionLH: 12, arrowSize: 63.13, arrowLeft: 399.47, arrowTop: 162.84, arrowFontSize: 26, arrowRotate: -90 },
+    { left: 981.69, top: 14.47, w: 452, h: 263.28, opacity: 0.4, z: 1, titleSize: 64, titleLH: 86, captionSize: 16, captionLH: 11, arrowSize: 33.83, arrowLeft: 383.2, arrowTop: 160.75, arrowFontSize: 13, arrowRotate: -60 },
+    { left: 1447.69, top: 14.47, w: 452, h: 263.28, opacity: 0.4, z: 0, titleSize: 64, titleLH: 86, captionSize: 16, captionLH: 11, arrowSize: 33.83, arrowLeft: 383.2, arrowTop: 160.75, arrowFontSize: 13, arrowRotate: -60 },
+  ],
+  [ // Step 2 (Variant3): Le plan active
+    { left: 0, top: 14.47, w: 452, h: 263.28, opacity: 0.4, z: 3, titleSize: 64, titleLH: 86, captionSize: 16, captionLH: 11, arrowSize: 37.55, arrowLeft: 362.47 - 0, arrowTop: 164.51 - 14.47, arrowFontSize: 16, arrowRotate: -60 },
+    { left: 466, top: 14.31, w: 452.57, h: 263.62, opacity: 0.4, z: 2, titleSize: 64.0808, titleLH: 86, captionSize: 16.0202, captionLH: 11, arrowSize: 37.55, arrowLeft: 381.18, arrowTop: 154.44, arrowFontSize: 16, arrowRotate: -60 },
+    { left: 932.57, top: 0, w: 501.7, h: 292.23, opacity: 1, z: 1, titleSize: 71.0366, titleLH: 95, captionSize: 17.7591, captionLH: 12, arrowSize: 56.95, arrowLeft: 409.51, arrowTop: 166.54, arrowFontSize: 24, arrowRotate: -90 },
+    { left: 1448.27, top: 14.47, w: 452, h: 263.28, opacity: 0.4, z: 0, titleSize: 64, titleLH: 86, captionSize: 16, captionLH: 11, arrowSize: 33.83, arrowLeft: 383.2, arrowTop: 160.75, arrowFontSize: 13, arrowRotate: -60 },
+  ],
+  [ // Step 3 (Variant4): Le statut active
+    { left: 0, top: 14.47, w: 452, h: 263.28, opacity: 0.4, z: 3, titleSize: 64, titleLH: 86, captionSize: 16, captionLH: 11, arrowSize: 37.55, arrowLeft: 362.47 - 0, arrowTop: 164.51 - 14.47, arrowFontSize: 16, arrowRotate: -60 },
+    { left: 466, top: 14.31, w: 452.57, h: 263.62, opacity: 0.4, z: 2, titleSize: 64.0808, titleLH: 86, captionSize: 16.0202, captionLH: 11, arrowSize: 37.55, arrowLeft: 381.18, arrowTop: 154.44, arrowFontSize: 16, arrowRotate: -60 },
+    { left: 932.57, top: 14.31, w: 452.57, h: 263.62, opacity: 0.4, z: 1, titleSize: 64.0808, titleLH: 86, captionSize: 16.0202, captionLH: 11, arrowSize: 37.55, arrowLeft: 381.18, arrowTop: 154.44, arrowFontSize: 16, arrowRotate: -60 },
+    { left: 1399.14, top: 0, w: 501.7, h: 292.23, opacity: 1, z: 0, titleSize: 71.0366, titleLH: 95, captionSize: 17.7591, captionLH: 12, arrowSize: 56.95, arrowLeft: 409.51, arrowTop: 167.54, arrowFontSize: 24, arrowRotate: -90 },
+  ],
 ];
 
 export default function CreationEntrepriseClient() {
   const [scale, setScale] = useState(1);
+  const [activeVision, setActiveVision] = useState(1);
+  const [activeJourney, setActiveJourney] = useState(0);
+  const [journeyHover, setJourneyHover] = useState<number | null>(null);
 
   useEffect(() => {
     const onResize = () => setScale(window.innerWidth / W);
@@ -73,12 +124,47 @@ export default function CreationEntrepriseClient() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveJourney((s) => (s + 1) % journeyLayouts.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveVision((v) => (v + 1) % visionSteps.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, []);
+
+  const visionPositions = [
+    {
+      left: 'calc(50% - 453px/2 - 387.5px)', top: '1426px', width: 453, height: 583, borderRadius: '60.21px',
+      zIndex: 1, padding: '0 34px', gap: '24px', shadow: false,
+      descWidth: '385.71px', descFontSize: '16.41px', descLineHeight: '19px',
+    },
+    {
+      left: 'calc(50% - 552px/2 + 6px)', top: '1394px', width: 552, height: 647, borderRadius: '73.36px',
+      zIndex: 2, padding: '0 40px', gap: '28px', shadow: true,
+      descWidth: '470px', descFontSize: '20px', descLineHeight: '23px',
+    },
+    {
+      left: 'calc(50% - 453px/2 + 398.5px)', top: '1426px', width: 453, height: 583, borderRadius: '60.21px',
+      zIndex: 1, padding: '0 34px', gap: '24px', shadow: false,
+      descWidth: '385.71px', descFontSize: '16.41px', descLineHeight: '19px',
+    },
+  ];
+
   return (
     <main className={geist.className}>
 
       {/* ── NAVBAR — floats above everything (absolute, 0-height wrapper) ── */}
       <div style={{ position: 'relative', zIndex: 50 }}>
-        <Navbar />
+        {/* Meme barre en verre que les autres pages de services, mais en texte
+            fonce : le hero de cette page est un degrade clair, sur lequel la
+            version blanche serait illisible. */}
+        <Navbar glass glassText="dark" />
       </div>
 
       {/* ── DESKTOP HERO (≥ 768 px) — exact Figma scaling ─────────────── */}
@@ -297,13 +383,7 @@ export default function CreationEntrepriseClient() {
           50%, 58%  { transform: translateY(-801px); }
           75%, 100% { transform: translateY(140px); }
         }
-        @keyframes journeyCycle {
-          0%, 8%   { transform: translateX(0px); }
-          25%, 33% { transform: translateX(-146.15px); }
-          50%, 58% { transform: translateX(-194.13px); }
-          75%, 83% { transform: translateX(-388.84px); }
-          100%     { transform: translateX(0px); }
-        }
+        /* Layouts are driven by React state, no keyframes needed. */
       `}</style>
 
       {/* ── QUELLE EST VOTRE SITUATION ? — exact Figma px, same scaled-frame
@@ -382,16 +462,27 @@ export default function CreationEntrepriseClient() {
                 style={{ position: 'relative', width: '470px', height: '454px', flexShrink: 0, background: '#DDE597', borderRadius: '83px', display: 'block' }}
               >
                 <div style={{ position: 'absolute', left: '40px', top: '75px', width: '390px', display: 'flex', flexDirection: 'column', gap: '154px' }}>
-                  <span className={ebGaramond.className}
+                  {/* Geist et non EB Garamond : c'est ce que specifie le Figma
+                      (Frame 349156, font-family 'Geist' 500 48/63). Geist est
+                      ~22% plus large a taille egale, donc « Je ne suis pas un
+                      citoyen europeen » passe de 2 a 3 lignes -- le bloc finit
+                      a 443px dans une carte de 454px, ca tient. */}
+                  <span className={geist.className}
                     style={{ fontWeight: 500, fontSize: '48px', lineHeight: '63px', textTransform: 'capitalize', color: '#003300' }}>
                     {s.title}
                     {s.flag && (
                       <Image
                         src={s.flag}
                         alt={s.flagAlt}
-                        width={69}
-                        height={46}
-                        style={{ display: 'inline-block', width: '69px', height: '46px', marginLeft: '14px', verticalAlign: '-6px', borderRadius: '5px' }}
+                        width={flagGeometry.desktop.w}
+                        height={flagGeometry.desktop.h}
+                        style={{
+                          display: 'inline-block',
+                          width: `${flagGeometry.desktop.w}px`,
+                          height: `${flagGeometry.desktop.h}px`,
+                          marginLeft: `${flagGeometry.desktop.marginLeft}px`,
+                          verticalAlign: flagGeometry.desktop.verticalAlign,
+                        }}
                       />
                     )}
                   </span>
@@ -428,15 +519,21 @@ export default function CreationEntrepriseClient() {
         <div className="flex flex-col gap-4">
           {situations.map((s) => (
             <Link key={s.title} href="/contact" className="flex flex-col gap-6 rounded-[40px] px-8 py-9" style={{ background: '#DDE597' }}>
-              <span className={ebGaramond.className} style={{ fontSize: '28px', lineHeight: '1.2em', fontWeight: 500, textTransform: 'capitalize', color: '#003300' }}>
+              <span className={geist.className} style={{ fontSize: '28px', lineHeight: '1.2em', fontWeight: 500, textTransform: 'capitalize', color: '#003300' }}>
                 {s.title}
                 {s.flag && (
                   <Image
                     src={s.flag}
                     alt={s.flagAlt}
-                    width={42}
-                    height={28}
-                    style={{ display: 'inline-block', width: '42px', height: '28px', marginLeft: '10px', verticalAlign: '-4px', borderRadius: '4px' }}
+                    width={flagGeometry.mobile.w}
+                    height={flagGeometry.mobile.h}
+                    style={{
+                      display: 'inline-block',
+                      width: `${flagGeometry.mobile.w}px`,
+                      height: `${flagGeometry.mobile.h}px`,
+                      marginLeft: `${flagGeometry.mobile.marginLeft}px`,
+                      verticalAlign: flagGeometry.mobile.verticalAlign,
+                    }}
                   />
                 )}
               </span>
@@ -455,7 +552,7 @@ export default function CreationEntrepriseClient() {
              deliberately peeks off the right edge (matches Figma). ────── */}
       <section
         className="hidden md:block"
-        style={{ position: 'relative', background: '#003300', overflow: 'hidden', height: `${845 * scale}px` }}
+        style={{ position: 'relative', background: '#F7FCFF', overflow: 'hidden', height: `${845 * scale}px` }}
       >
         <div
           style={{
@@ -468,6 +565,9 @@ export default function CreationEntrepriseClient() {
             transform: `translateX(-50%) scale(${scale})`,
           }}
         >
+          {/* Rectangle 800 — dark green top band, exact Figma */}
+          <div style={{ position: 'absolute', left: 0, top: '0.2px', width: '1512px', height: '552.51px', background: '#003300' }} />
+
           {/* Frame 349155 — header */}
           <div style={{ position: 'absolute', left: 'calc(50% - 378.485px)', top: '109.5px', width: '756.97px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '32px' }}>
             <span className={geist.className} style={{ fontWeight: 700, fontSize: '23.8077px', lineHeight: '25px', textAlign: 'center', color: '#BBCB2E' }}>
@@ -484,32 +584,65 @@ export default function CreationEntrepriseClient() {
             </div>
           </div>
 
-          {/* Frame 349326 — filmstrip */}
-          <div style={{ position: 'relative', left: 0, top: '552.71px', width: '1899.7px', height: '292.23px', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '14px', animation: 'journeyCycle 12s ease-in-out infinite' }}>
-            {journeySteps.map((s) => (
-              <div key={s.title} style={{ position: 'relative', flexShrink: 0, width: `${s.w}px`, height: `${s.h}px`, background: s.bg }}>
-                <div style={{ position: 'absolute', left: `${s.left}px`, top: `${s.top}px`, display: 'flex', flexDirection: 'column' }}>
-                  <span className={ebGaramond.className} style={{ fontWeight: 500, fontSize: `${s.titleSize}px`, lineHeight: `${s.titleLH}px`, textTransform: 'capitalize', color: s.color, whiteSpace: 'nowrap' }}>
-                    {s.title}
-                  </span>
-                  <span className={geist.className} style={{ fontWeight: 500, fontSize: `${s.captionSize}px`, lineHeight: `${s.captionLH}px`, textTransform: 'capitalize', color: s.captionColor, opacity: s.captionOpacity, whiteSpace: 'nowrap' }}>
-                    {s.caption}
-                  </span>
-                </div>
-                {/* connector arrow — nested inside its own card; bg color is
-                    pre-flattened per card to match Figma's pale look. */}
+          {/* Frame 349326 — filmstrip: exact Figma 4-step layout cycle.
+              La bande fait 1899.7px de large pour une section de 1512px : la
+              carte active ne rentre donc pas toujours dans le cadre. Le Figma
+              decale toute la bande a chaque variante (Frame 349326 left : 0 ->
+              -146.15 -> -194.13 -> -388.84) pour ramener la carte active dans
+              le champ. C'est ce decalage, anime, qui donne le "scroll"
+              horizontal : sans lui la 4e carte (Le statut, left 1399.14 +
+              501.7 = 1900.84) tombait entierement hors du cadre. */}
+          <div
+            style={{
+              position: 'relative',
+              left: `${journeyStripOffsets[activeJourney]}px`,
+              top: '552.71px',
+              width: '1899.7px',
+              height: '292.23px',
+              transition: 'left 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
+            }}
+            onMouseEnter={() => setJourneyHover(0)}
+            onMouseLeave={() => setJourneyHover(null)}
+          >
+            {journeySteps.map((s, i) => {
+              const lay = journeyLayouts[activeJourney][i];
+              return (
                 <div
+                  key={s.title}
                   style={{
-                    position: 'absolute', left: `${s.arrowLeft}px`, top: `${s.arrowTop}px`,
-                    width: `${s.arrowSize}px`, height: `${s.arrowSize}px`, borderRadius: '50%',
-                    background: s.arrowBg, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#003300', fontSize: `${s.arrowFontSize}px`,
+                    position: 'absolute',
+                    left: `${lay.left}px`,
+                    top: `${lay.top}px`,
+                    width: `${lay.w}px`,
+                    height: `${lay.h}px`,
+                    background: s.bg,
+                    zIndex: lay.z,
+                    transition: 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
+                    opacity: journeyHover != null ? 1 : lay.opacity,
                   }}
                 >
-                  ↗
+                  <div style={{ position: 'absolute', left: '31.7px', top: '104px', display: 'flex', flexDirection: 'column', transition: 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)' }}>
+                    <span className={ebGaramond.className} style={{ fontWeight: 500, fontSize: `${lay.titleSize}px`, lineHeight: `${lay.titleLH}px`, textTransform: 'capitalize', color: s.color, whiteSpace: 'nowrap', transition: 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)' }}>
+                      {s.title}
+                    </span>
+                    <span className={geist.className} style={{ fontWeight: 500, fontSize: `${lay.captionSize}px`, lineHeight: `${lay.captionLH}px`, textTransform: 'capitalize', color: s.captionColor, opacity: 0.6, whiteSpace: 'nowrap', transition: 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)' }}>
+                      {s.caption}
+                    </span>
+                  </div>
+                  <div
+                    style={{
+                      position: 'absolute', left: `${lay.arrowLeft}px`, top: `${lay.arrowTop}px`,
+                      width: `${lay.arrowSize}px`, height: `${lay.arrowSize}px`, borderRadius: '50%',
+                      background: s.arrowBg, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      color: '#003300', fontSize: `${lay.arrowFontSize}px`,
+                      transform: `rotate(${lay.arrowRotate}deg)`, transition: 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)',
+                    }}
+                  >
+                    ↗
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -534,7 +667,7 @@ export default function CreationEntrepriseClient() {
               <span className={ebGaramond.className} style={{ fontSize: '32px', lineHeight: '1.2em', fontWeight: 500, textTransform: 'capitalize', color: s.color }}>
                 {s.title}
               </span>
-              <span className={geist.className} style={{ fontSize: '14px', color: s.captionColor, opacity: s.captionOpacity }}>
+              <span className={geist.className} style={{ fontSize: '14px', color: s.captionColor, opacity: 0.6 }}>
                 {s.caption}
               </span>
             </div>
@@ -598,7 +731,7 @@ export default function CreationEntrepriseClient() {
             <span className={geist.className} style={{ position: 'absolute', left: '31.85px', top: '92.29px', width: '266px', fontWeight: 400, fontSize: '20px', lineHeight: '22px', color: '#003300', opacity: 0.6 }}>Toutes vos démarches réunies</span>
             <div style={{ position: 'absolute', left: '10.15px', top: '194.61px', width: '361.57px', height: '81.45px', background: '#BBCB2E', opacity: 0.6, borderRadius: '13px' }}>
               <span className={geist.className} style={{ position: 'absolute', left: '119.79px', top: '34.22px', fontWeight: 500, fontSize: '17.7592px', lineHeight: '12px', textTransform: 'capitalize', color: '#003300' }}>
-                commence ici.
+                Commence ici.
               </span>
             </div>
           </div>
@@ -700,7 +833,7 @@ export default function CreationEntrepriseClient() {
                 <div style={{ display: 'flex', flexDirection: 'row', gap: '9.85px' }}>
                   <Link href="/a-propos" className={geist.className}
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '22.66px 34px', background: '#CCD862', borderRadius: '65.67px', fontWeight: 600, fontSize: '16.0844px', lineHeight: '20px', color: '#003300', whiteSpace: 'nowrap' }}>
-                    About
+                    À propos
                   </Link>
                   <Link href="/contact" className={geist.className}
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '22.66px 24px', background: '#F5FAC7', borderRadius: '112.575px', fontWeight: 600, fontSize: '16.0844px', lineHeight: '20px', color: '#003300', whiteSpace: 'nowrap' }}>
@@ -733,7 +866,7 @@ export default function CreationEntrepriseClient() {
           <div className="flex flex-col gap-3">
             <Link href="/a-propos"
               className="flex items-center justify-center rounded-full py-4 text-center font-semibold" style={{ background: '#CCD862', color: '#003300', fontSize: '15px' }}>
-              About
+              À propos
             </Link>
             <Link href="/contact"
               className="flex items-center justify-center rounded-full py-4 text-center font-semibold" style={{ background: '#F5FAC7', color: '#003300', fontSize: '15px' }}>
@@ -775,7 +908,7 @@ export default function CreationEntrepriseClient() {
             {/* contact pill */}
             <Link href="/contact" className={geist.className}
               style={{ position: 'absolute', left: '1186.82px', top: '53.17px', width: '144.17px', height: '43.14px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#BBCB2E', borderRadius: '181.347px', fontWeight: 600, fontSize: '21.474px', lineHeight: '18px', color: '#003300' }}>
-              contact
+              Contact
             </Link>
 
             {/* text block */}
@@ -803,7 +936,7 @@ export default function CreationEntrepriseClient() {
             </div>
             <Link href="/contact" className={geist.className}
               style={{ padding: '10px 20px', background: '#BBCB2E', borderRadius: '181px', fontWeight: 600, fontSize: '14px', color: '#003300' }}>
-              contact
+              Contact
             </Link>
           </div>
           <div>
@@ -940,58 +1073,83 @@ export default function CreationEntrepriseClient() {
           {/* Vision → réalité, 4 steps */}
           <h2 className={geist.className}
             style={{ position: 'absolute', left: 'calc(50% - 621px/2 - 380.5px)', top: '1107px', width: '621px', fontWeight: 500, fontSize: '64px', lineHeight: '73px', letterSpacing: '-0.02em', textTransform: 'capitalize', color: '#003300', textAlign: 'center', margin: 0 }}>
-            De la vision à la Réalité en 4 étapes
+            De la vision à la Réalité en 3 étapes
           </h2>
 
-          {/* Left card — Établir des bases solides (static, exact Figma position) */}
-          <div style={{ position: 'absolute', left: 'calc(50% - 453px/2 - 387.5px)', top: '1426px', width: '453px', height: '583px', background: '#DDE597', borderRadius: '60.21px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '24px', padding: '0 34px', boxSizing: 'border-box' }}>
-            <h3 className={ebGaramond.className}
-              style={{ width: '385.71px', maxWidth: '100%', fontWeight: 500, fontSize: '52px', lineHeight: '52px', letterSpacing: '-0.02em', textTransform: 'capitalize', color: '#003300', textAlign: 'center', margin: 0 }}>
-              {visionSteps[0].title}
-            </h3>
-            <p className={geist.className}
-              style={{ width: '385.71px', maxWidth: '100%', fontWeight: 500, fontSize: '16.41px', lineHeight: '19px', letterSpacing: '-0.02em', textTransform: 'capitalize', color: '#003300', opacity: 0.7, textAlign: 'center', margin: 0 }}>
-              {visionSteps[0].desc}
-            </p>
+          {/* Vision carousel — each card animates through left/center/right */}
+          {visionSteps.map((step, i) => {
+            const pos = visionPositions[(i - activeVision + 1 + 3) % 3];
+            return (
+              <div
+                key={step.title}
+                style={{
+                  position: 'absolute',
+                  left: pos.left,
+                  top: pos.top,
+                  width: `${pos.width}px`,
+                  height: `${pos.height}px`,
+                  background: '#DDE597',
+                  borderRadius: pos.borderRadius,
+                  filter: pos.shadow ? 'drop-shadow(0px 2px 66.2px rgba(0,0,0,0.53))' : 'none',
+                  zIndex: pos.zIndex,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: pos.gap,
+                  padding: pos.padding,
+                  boxSizing: 'border-box',
+                  transition: 'all 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
+                }}
+              >
+                <h3 className={ebGaramond.className}
+                  style={{ width: '100%', maxWidth: '470px', fontWeight: 500, fontSize: '52px', lineHeight: '52px', letterSpacing: '-0.02em', textTransform: 'capitalize', color: '#003300', textAlign: 'center', margin: 0 }}>
+                  {step.title}
+                </h3>
+                <p className={geist.className}
+                  style={{ width: pos.descWidth, maxWidth: '100%', fontWeight: 500, fontSize: pos.descFontSize, lineHeight: pos.descLineHeight, letterSpacing: '-0.02em', textTransform: 'capitalize', color: '#003300', opacity: 0.7, textAlign: 'center', margin: 0, transition: 'all 0.7s cubic-bezier(0.22, 1, 0.36, 1)' }}>
+                  {step.desc}
+                </p>
+              </div>
+            );
+          })}
+
+          {/* pagination dots — 3 dots, active follows carousel */}
+          <div style={{ position: 'absolute', left: 'calc(50% - 60px/2)', top: '2090.25px', display: 'flex', alignItems: 'center', gap: '8.29px' }}>
+            {visionSteps.map((_, i) => (
+              <span
+                key={i}
+                style={{
+                  width: i === activeVision ? '17.53px' : '12.33px',
+                  height: i === activeVision ? '17.53px' : '12.33px',
+                  borderRadius: '50%',
+                  background: i === activeVision ? '#003300' : 'rgba(0,51,0,0.5)',
+                  display: 'inline-block',
+                  transition: 'all 0.3s ease',
+                }}
+              />
+            ))}
           </div>
 
-          {/* Center card (featured) — Concevoir un plan financier sur mesure */}
-          <div style={{ position: 'absolute', left: 'calc(50% - 552px/2 + 6px)', top: '1394px', width: '552px', height: '647px', background: '#DDE597', borderRadius: '73.36px', filter: 'drop-shadow(0px 2px 66.2px rgba(0,0,0,0.53))', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '28px', padding: '0 40px', boxSizing: 'border-box' }}>
-            <h3 className={ebGaramond.className}
-              style={{ width: '470px', maxWidth: '100%', fontWeight: 500, fontSize: '52px', lineHeight: '52px', letterSpacing: '-0.02em', textTransform: 'capitalize', color: '#003300', textAlign: 'center', margin: 0 }}>
-              {visionSteps[1].title}
-            </h3>
-            <p className={geist.className}
-              style={{ width: '470px', maxWidth: '100%', fontWeight: 500, fontSize: '20px', lineHeight: '23px', letterSpacing: '-0.02em', textTransform: 'capitalize', color: '#003300', opacity: 0.7, textAlign: 'center', margin: 0 }}>
-              {visionSteps[1].desc}
-            </p>
-          </div>
-
-          {/* Right card — Statuts & dossier administratif */}
-          <div style={{ position: 'absolute', left: 'calc(50% - 453px/2 + 398.5px)', top: '1426px', width: '453px', height: '583px', background: '#DDE597', borderRadius: '60.21px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '24px', padding: '0 34px', boxSizing: 'border-box' }}>
-            <h3 className={ebGaramond.className}
-              style={{ width: '385.71px', maxWidth: '100%', fontWeight: 500, fontSize: '52px', lineHeight: '52px', letterSpacing: '-0.02em', textTransform: 'capitalize', color: '#003300', textAlign: 'center', margin: 0 }}>
-              {visionSteps[2].title}
-            </h3>
-            <p className={geist.className}
-              style={{ width: '385.71px', maxWidth: '100%', fontWeight: 500, fontSize: '16.41px', lineHeight: '19px', letterSpacing: '-0.02em', textTransform: 'capitalize', color: '#003300', opacity: 0.7, textAlign: 'center', margin: 0 }}>
-              {visionSteps[2].desc}
-            </p>
-          </div>
-
-          {/* pagination dots — decorative, matches Figma (second dot active) */}
-          <div style={{ position: 'absolute', left: 'calc(50% - 79.36px/2 + 6.32px)', top: '2090.25px', display: 'flex', alignItems: 'center', gap: '8.29px' }}>
-            <span style={{ width: '12.33px', height: '12.33px', borderRadius: '50%', background: 'rgba(0,51,0,0.5)', display: 'inline-block' }} />
-            <span style={{ width: '17.53px', height: '17.53px', borderRadius: '50%', background: '#003300', display: 'inline-block' }} />
-            <span style={{ width: '12.33px', height: '12.33px', borderRadius: '50%', background: 'rgba(0,51,0,0.5)', display: 'inline-block' }} />
-            <span style={{ width: '12.33px', height: '12.33px', borderRadius: '50%', background: 'rgba(0,51,0,0.5)', display: 'inline-block' }} />
-          </div>
-
-          {/* prev/next arrows — decorative, matches Figma */}
-          <div style={{ position: 'absolute', left: '1396px', top: '1669px', width: '98px', height: '98px' }}>
+          {/* prev/next arrows — navigate the carousel */}
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => setActiveVision((v) => (v + 1) % visionSteps.length)}
+            onKeyDown={(e) => e.key === 'Enter' && setActiveVision((v) => (v + 1) % visionSteps.length)}
+            style={{ position: 'absolute', left: '1396px', top: '1669px', width: '98px', height: '98px', cursor: 'pointer' }}
+            aria-label="Projet suivant"
+          >
             <Image src="/optimized/Group%20444.png" alt="" fill unoptimized />
           </div>
-          <div style={{ position: 'absolute', left: '29px', top: '1669px', width: '98px', height: '98px' }}>
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => setActiveVision((v) => (v - 1 + visionSteps.length) % visionSteps.length)}
+            onKeyDown={(e) => e.key === 'Enter' && setActiveVision((v) => (v - 1 + visionSteps.length) % visionSteps.length)}
+            style={{ position: 'absolute', left: '29px', top: '1669px', width: '98px', height: '98px', cursor: 'pointer' }}
+            aria-label="Projet précédent"
+          >
             <Image src="/optimized/Group%20445.png" alt="" fill unoptimized />
           </div>
         </div>
@@ -1015,14 +1173,66 @@ export default function CreationEntrepriseClient() {
 
         <div className="mb-10" style={{ borderTop: '2px solid rgba(0,51,0,0.1)' }} />
         <h2 className={`${ebGaramond.className} mb-8 text-center text-[#003300]`} style={{ fontSize: '32px', lineHeight: '1.15em', fontWeight: 500, textTransform: 'capitalize' }}>
-          De la vision à la réalité en 4 étapes
+          De la vision à la réalité en 3 étapes
         </h2>
-        <div className="flex flex-col gap-4">
-          {visionSteps.map((s) => (
-            <div key={s.title} className="flex flex-col gap-3 rounded-[28px] px-7 py-9 text-center" style={{ background: '#DDE597' }}>
-              <h3 className={ebGaramond.className} style={{ fontSize: '26px', lineHeight: '1.1em', fontWeight: 500, color: '#003300' }}>{s.title}</h3>
-              <p className="text-[14px] leading-relaxed" style={{ color: '#003300', opacity: 0.7 }}>{s.desc}</p>
-            </div>
+
+        {/* Mobile animated carousel — cycles automatically with dots/arrows */}
+        <div className="relative mb-8 overflow-hidden rounded-[28px]">
+          {/* Chaque diapo doit faire toute la largeur du cadre : `w-1/3` la
+              rendait large d'un tiers d'ecran (~110px sur un 375px, dont 56px
+              de padding -> 54px de texte), donc les trois cartes s'entassaient
+              cote a cote et le titre debordait. La piste defile de 100% par
+              diapo, pas de 100/3%. */}
+          <div
+            className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            style={{ transform: `translateX(-${activeVision * 100}%)` }}
+          >
+            {visionSteps.map((s) => (
+              <div key={s.title} className="flex w-full shrink-0 flex-col gap-3 px-10 py-9 text-center" style={{ background: '#DDE597' }}>
+                <h3 className={ebGaramond.className} style={{ fontSize: '26px', lineHeight: '1.1em', fontWeight: 500, color: '#003300' }}>{s.title}</h3>
+                <p className="text-[14px] leading-relaxed" style={{ color: '#003300', opacity: 0.7 }}>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Arrows */}
+          <button
+            type="button"
+            onClick={() => setActiveVision((v) => (v - 1 + visionSteps.length) % visionSteps.length)}
+            /* 32px et colles au bord : en 40px a 8px du bord ils mordaient sur
+               le texte, qui ne commencait qu'a 28px (px-7). Le px-10 de la
+               diapo degage maintenant 40px, soit 4px de marge apres la
+               fleche (4 + 32 = 36). */
+            className="absolute left-1 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-[16px] leading-none text-[#003300] shadow"
+            aria-label="Précédent"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveVision((v) => (v + 1) % visionSteps.length)}
+            className="absolute right-1 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-[16px] leading-none text-[#003300] shadow"
+            aria-label="Suivant"
+          >
+            ›
+          </button>
+        </div>
+
+        {/* Pagination dots */}
+        <div className="mb-6 flex items-center justify-center gap-2">
+          {visionSteps.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => setActiveVision(i)}
+              className="rounded-full transition-all duration-300"
+              style={{
+                width: i === activeVision ? '17.53px' : '12.33px',
+                height: i === activeVision ? '17.53px' : '12.33px',
+                background: i === activeVision ? '#003300' : 'rgba(0,51,0,0.5)',
+              }}
+              aria-label={`Étape ${i + 1}`}
+            />
           ))}
         </div>
       </section>

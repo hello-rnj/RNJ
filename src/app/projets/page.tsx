@@ -5,13 +5,14 @@ import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Projets et réalisations | RNJ Advisory',
+  title: 'Projets et réalisations',
   description:
     'Explorez les projets et réalisations de RNJ Advisory en analyse institutionnelle, conformité réglementaire, énergie, gouvernance et structuration stratégique.',
   alternates: {
     canonical: '/projets',
   },
   openGraph: {
+    images: ['/opengraph-image.png'],
     title: 'Projets et réalisations | RNJ Advisory',
     description:
       'Références RNJ Advisory en conseil juridique, réglementaire et stratégique en Belgique, en Europe et en Afrique.',

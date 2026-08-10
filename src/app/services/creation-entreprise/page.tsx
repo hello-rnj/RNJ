@@ -3,13 +3,14 @@ import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 import CreationEntrepriseClient from './CreationEntrepriseClient';
 
 export const metadata: Metadata = {
-  title: "Création d'entreprise en Belgique | RNJ Advisory",
+  title: "Création d'entreprise en Belgique",
   description:
     "RNJ Advisory vous accompagne dans la création de votre entreprise en Belgique : immatriculation BCE, TVA, ONSS, carte professionnelle et business plan. Un accompagnement complet pour lancer votre activité en toute sérénité.",
   alternates: {
     canonical: '/services/creation-entreprise',
   },
   openGraph: {
+    images: ['/opengraph-image.png'],
     title: "Création d'entreprise en Belgique | RNJ Advisory",
     description:
       "Accompagnement complet pour créer votre entreprise en Belgique : BCE, TVA, ONSS, autorisations et obligations administratives.",
@@ -26,7 +27,6 @@ export default function CreationEntreprisePage() {
       <BreadcrumbStructuredData
         items={[
           { name: 'Accueil', item: 'https://rnj-advisory.be/' },
-          { name: 'Services', item: 'https://rnj-advisory.be/services' },
           {
             name: "Création d'entreprise",
             item: 'https://rnj-advisory.be/services/creation-entreprise',

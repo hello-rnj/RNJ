@@ -24,18 +24,19 @@ const footerColumns: FooterColumn[] = [
     ],
   },
   {
+    /* Trois des quatre intitules pointaient tous vers la meme page /services.
+       La colonne mene desormais aux trois pages de services. */
     title: 'Expertise',
     items: [
-      { label: 'Conseil stratégique', href: '/services' },
-      { label: 'Analyse institutionnelle', href: '/services/analyse-institutionnelle' },
-      { label: 'Conformité réglementaire', href: '/services' },
-      { label: 'Structuration d’entreprise', href: '/services' },
+      { label: "Création d'entreprise", href: '/services/creation-entreprise' },
+      { label: 'Accompagnement juridique', href: '/services/conseil-juridique' },
+      { label: 'Accélérer mon business', href: '/services/accelerer-mon-business' },
     ],
   },
   {
     title: 'Publications',
     items: [
-      { label: 'Articles', href: '/blogs' },
+      { label: 'Blog', href: '/blogs' },
     ],
   },
 ];
@@ -49,22 +50,12 @@ const socialIcons = [
   {
     name: 'LinkedIn',
     src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677785/rnj/mask-group-24-fd4f223e.png',
-    href: 'https://linkedin.com',
-  },
-  {
-    name: 'Telegram',
-    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677786/rnj/mask-group-25-516d2f88.png',
-    href: 'https://t.me',
-  },
-  {
-    name: 'Twitter',
-    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677787/rnj/mask-group-26-a7a619cb.svg',
-    href: 'https://twitter.com',
+    href: 'https://www.linkedin.com/company/84297679/',
   },
   {
     name: 'Facebook',
     src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677788/rnj/mask-group-27-5870749d.png',
-    href: 'https://facebook.com',
+    href: 'https://www.facebook.com/Nahlaaschijelalia/',
   },
 ] as const;
 
@@ -233,7 +224,7 @@ export default function LandingFooter() {
                       isContactExpanded ? 'scale-[0.92] opacity-0' : 'scale-100 opacity-100'
                     }`}
                   >
-                    contact
+                    Contact
                   </span>
 
                   <span
@@ -245,7 +236,7 @@ export default function LandingFooter() {
                   >
                     <span className="flex h-[94px] w-[320px] items-center justify-center rounded-[192px] bg-white px-[23px] py-[13px]">
                       <span className="font-[Geist] text-[45px] font-semibold leading-[48px] text-[#BBCB2E] sm:text-[50px] lg:text-[57.0372px]">
-                        contact
+                        Contact
                       </span>
                     </span>
 
@@ -286,19 +277,39 @@ export default function LandingFooter() {
                           {column.title}
                         </h3>
 
+                        {/* Chaque entree porte deja un `href` dans `footerColumns` ; il
+                            n'etait pas utilise et les liens etaient rendus comme des
+                            <div aria-disabled>, donc inertes alors que les pages
+                            existent. On rend un <Link> des qu'un href est defini. */}
                         <div className="flex flex-col items-start gap-[6px] sm:gap-[17px]">
-                          {column.items.map((item) => (
-                            <div
-                              key={`${column.title}-${item.label}`}
-                              aria-disabled="true"
-                              className="flex cursor-default items-center gap-[8px] sm:gap-[14px]"
-                            >
-                              <span className="h-[6px] w-[6px] rounded-full bg-white" aria-hidden="true" />
-                              <span className="font-[Geist] text-[16px] font-medium leading-4 text-white opacity-80">
-                                {item.label}
-                              </span>
-                            </div>
-                          ))}
+                          {column.items.map((item) => {
+                            const content = (
+                              <>
+                                <span className="h-[6px] w-[6px] rounded-full bg-white" aria-hidden="true" />
+                                <span className="whitespace-nowrap font-[Geist] text-[16px] font-medium leading-4 text-white opacity-80">
+                                  {item.label}
+                                </span>
+                              </>
+                            );
+
+                            return item.href ? (
+                              <Link
+                                key={`${column.title}-${item.label}`}
+                                href={item.href}
+                                className="flex items-center gap-[8px] transition-opacity hover:opacity-80 sm:gap-[14px]"
+                              >
+                                {content}
+                              </Link>
+                            ) : (
+                              <div
+                                key={`${column.title}-${item.label}`}
+                                aria-disabled="true"
+                                className="flex cursor-default items-center gap-[8px] sm:gap-[14px]"
+                              >
+                                {content}
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                     ))}
@@ -321,8 +332,14 @@ export default function LandingFooter() {
                     ))}
                   </div>
 
-                  <div className="flex w-full flex-col items-center gap-3 lg:w-auto lg:flex-row lg:items-end lg:gap-[142px]">
-                    <div className="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-8 lg:gap-[78px]">
+                  {/* Le copyright n'est plus a cote des coordonnees mais sur sa
+                      propre ligne, sous tout le bloc : a cote, il prenait de la
+                      largeur sur la meme rangee que les reseaux sociaux et les
+                      trois coordonnees, et le manque de place cassait le
+                      telephone et l'e-mail en quatre lignes chacun.
+                      min-w-0 + whitespace-nowrap garantissent qu'aucune des
+                      trois coordonnees ne se coupe. */}
+                  <div className="flex w-full flex-col items-center gap-3 whitespace-nowrap sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-8 sm:gap-y-3 lg:flex-nowrap lg:gap-x-[40px]">
                       <div className="flex items-center gap-5">
                         <div className="relative h-[22px] w-[22px] shrink-0">
                           <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-27-a0d86191.png"
@@ -350,13 +367,51 @@ export default function LandingFooter() {
                           info@rnj-advisory.be
                         </span>
                       </div>
-                    </div>
 
-                    <span className="text-center font-[Geist] text-[12px] font-medium leading-[18px] text-white opacity-50 sm:text-[15.37px] sm:leading-[21px]">
-                      © 2026 RNJ Advisory. Tous droits réservés.
-                    </span>
+                      {/* Adresse. L'icone source est en #332203 sur un footer
+                          sombre : on la blanchit avec le meme filtre que la
+                          bande de logos partenaires. Ratio du viewBox
+                          28.75x33.72 -> 18.76px de large pour 22px de haut,
+                          soit la hauteur des icones telephone et e-mail.
+                          Le drapeau est une image et non l'emoji 🇧🇪 : Windows
+                          ne fournit aucun glyphe de drapeau. */}
+                      <div className="flex items-center gap-5">
+                        <div className="relative h-[22px] w-[18.76px] shrink-0">
+                          <Image
+                            src="/optimized/localisation%20icon.svg"
+                            alt="Adresse"
+                            fill
+                            className="object-contain [filter:brightness(0)_saturate(100%)_invert(100%)]"
+                            loading="lazy"
+                          />
+                        </div>
+
+                        {/* whitespace-nowrap a partir de lg : l'adresse fait
+                            439px, la rangee entiere 913px, donc elle n'a pas
+                            besoin de se couper. */}
+                        <span className="flex items-center gap-2 text-center font-[Geist] text-[13px] font-medium leading-[18px] tracking-[0.03em] text-white sm:text-left sm:text-[15.37px] sm:leading-[21px] sm:tracking-[0.05em] lg:whitespace-nowrap">
+                          Avenue Louise 500, Ixelles Bruxelles Belgique
+                          {/* alt vide : le drapeau est decoratif, le mot
+                              « Belgique » est deja dans le texte juste avant.
+                              Avec alt="Belgique" il apparaissait en double a
+                              la copie du texte et pour les lecteurs d'ecran. */}
+                          <Image
+                            src="/optimized/be-flag.png"
+                            alt=""
+                            aria-hidden
+                            width={38}
+                            height={44}
+                            unoptimized
+                            className="inline-block h-auto w-[20px] shrink-0"
+                          />
+                        </span>
+                      </div>
                   </div>
                 </div>
+
+                <span className="block pt-4 text-center font-[Geist] text-[12px] font-medium leading-[18px] text-white opacity-50 sm:text-[15.37px] sm:leading-[21px]">
+                  © 2026 RNJ Advisory. Tous droits réservés.
+                </span>
               </div>
             </div>
           </div>

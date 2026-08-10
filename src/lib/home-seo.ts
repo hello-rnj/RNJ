@@ -27,31 +27,31 @@ export const homeSeoServiceCatalog = [
     name: 'Structuration juridique et gouvernance',
     description:
       'Choix de la forme juridique, structuration de sociétés, gouvernance, conventions de partenariat et opérations de transmission.',
-    path: '/services',
+    path: '/services/conseil-juridique',
   },
   {
     name: 'Droit des contrats et sécurité commerciale',
     description:
       'Rédaction, revue et négociation de contrats pour réduire les risques et sécuriser les relations commerciales.',
-    path: '/services',
+    path: '/services/conseil-juridique',
   },
   {
     name: 'Partenariats public-privé et concessions',
     description:
       'Appui juridique à la structuration de projets PPP et concessions pour entreprises, collectivités et institutions.',
-    path: '/services',
+    path: '/services/conseil-juridique',
   },
   {
     name: 'ESG, conformité et appels à projets',
     description:
       'Mise en conformité RGPD et ESG, cadrage juridique et sécurisation contractuelle des candidatures aux appels à projets.',
-    path: '/services',
+    path: '/services/conseil-juridique',
   },
   {
     name: 'Veille juridique et anticipation réglementaire',
     description:
       'Surveillance des évolutions réglementaires en Belgique et en Europe avec recommandations opérationnelles.',
-    path: '/services',
+    path: '/services/conseil-juridique',
   },
 ];
 
@@ -93,47 +93,4 @@ export const homeSeoAudienceCatalog = [
   'PME et ASBL en croissance',
   'Institutions publiques et privées',
   'Investisseurs et bailleurs de fonds',
-];
-
-export const homeSeoContentBlocks = [
-  {
-    title: 'Création d\'entreprise en Belgique et structuration juridique',
-    description:
-      'Nous accompagnons les entrepreneurs, PME et porteurs de projet sur la création d’entreprise, le choix de la forme juridique, la gouvernance et l’implantation à Bruxelles et en Belgique.',
-  },
-  {
-    title: 'Conformité réglementaire, RGPD et veille juridique',
-    description:
-      'RNJ Advisory intervient sur la mise en conformité, la protection des données, la cartographie des obligations, la veille réglementaire et la sécurisation des contrats et partenariats.',
-  },
-  {
-    title: 'ESG, appels à projets et partenariats public-privé',
-    description:
-      'Nous aidons les organisations à intégrer les critères ESG, répondre aux appels à projets et structurer des projets publics ou privés à forte dimension réglementaire.',
-  },
-];
-
-export const homeSeoSearchSignals = [
-  'Bruxelles & Belgique',
-  'Conformité réglementaire & RGPD',
-  'ESG & gouvernance',
-  'Création d\'entreprise',
-  'Recrutement international',
-  'Appels à projets',
-  'Veille réglementaire',
-];
-
-export const homeSeoLinks = [
-  {
-    href: '/services',
-    label: 'Explorer nos services',
-  },
-  {
-    href: '/services/analyse-institutionnelle',
-    label: 'Analyse institutionnelle',
-  },
-  {
-    href: '/contact',
-    label: 'Demander un cadrage',
-  },
 ];

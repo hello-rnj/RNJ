@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Geist } from 'next/font/google';
@@ -24,8 +24,8 @@ const BUILDING_IMG = '/optimized/abstract-modern-building-against-the-blue-sky-i
 const PYLON_IMG = '/optimized/pylon-power-electricity-tower-crossing-river-water-2026-03-26-03-29-42-utc%201.webp';
 
 const STATS = [
-  { value: '20+', label: "Années d'expertise" },
-  { value: '80+', label: 'Missions réalisées' },
+  { value: '30+', label: "Années d'expertise" },
+  { value: '150+', label: 'Missions réalisées' },
   { value: '30+', label: 'Institutions' },
 ];
 
@@ -54,7 +54,11 @@ function ArrowIcon({ color, size = 38 }: { color: string; size?: number }) {
 
 export default function ConseilJuridiqueClient() {
   const [scale, setScale] = useState(1);
-  const [openIndex, setOpenIndex] = useState(1); // Conformité réglementaire open by default (Figma)
+  const [openIndex, setOpenIndex] = useState(0); // Droit des affaires open by default
+  // Le Figma (Frame 349366) donne deux variantes du paragraphe : Default,
+  // texte a top -2.4 avec fondu en bas, et Variant2, texte a top -154.5 avec
+  // fondu en haut. C'est un defilement lent du texte dans sa fenetre.
+  const [conseilScrolled, setConseilScrolled] = useState(false);
 
   useEffect(() => {
     const onResize = () => setScale(window.innerWidth / W);
@@ -62,6 +66,28 @@ export default function ConseilJuridiqueClient() {
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
+
+  useEffect(() => {
+    const id = setInterval(() => setConseilScrolled((v) => !v), 5000);
+    return () => clearInterval(id);
+  }, []);
+
+  /* Accordeon mobile des expertises : le panneau ouvert fait ~380px (titre +
+     texte + photo de 210px) contre ~90px replie. Ouvrir un element deplace
+     donc de ~300px tout ce qui le suit, et celui qu'on vient d'ouvrir sort de
+     l'ecran -- on tape un titre et on ne voit pas ce qui s'ouvre. On ramene
+     donc l'element ouvert dans le champ.
+     Le drapeau evite de scroller au chargement (openIndex vaut 0 des le
+     depart), et le test de largeur evite de declencher ca sur la version
+     desktop, qui partage le meme openIndex et bascule a 1024px. */
+  const expertiseItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const expertiseOpenedByUser = useRef(false);
+
+  useEffect(() => {
+    if (!expertiseOpenedByUser.current) return;
+    if (window.matchMedia('(min-width: 1024px)').matches) return;
+    expertiseItemRefs.current[openIndex]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [openIndex]);
 
   return (
     <main className={geist.className} style={{ background: '#F7FCFF' }}>
@@ -118,15 +144,6 @@ export default function ConseilJuridiqueClient() {
               gap: '36px',
             }}
           >
-            <Image
-              src="/optimized/minimal horizontal logo white 1.png"
-              alt="RNJ Advisory"
-              width={204}
-              height={50}
-              style={{ width: '204px', height: 'auto' }}
-              unoptimized
-            />
-
             <h1
               style={{
                 fontWeight: 400,
@@ -167,7 +184,7 @@ export default function ConseilJuridiqueClient() {
                     color: '#003300', textDecoration: 'none', whiteSpace: 'nowrap',
                   }}
                 >
-                  how can we help you?
+                  Comment peut-on vous aider ?
                 </Link>
                 <Link
                   href="/contact"
@@ -210,7 +227,7 @@ export default function ConseilJuridiqueClient() {
           <div className="flex flex-col gap-3">
             <Link href="/contact" className="flex items-center justify-center rounded-full py-4 font-medium"
               style={{ background: '#F5FAC7', color: '#003300', fontSize: '15px' }}>
-              how can we help you?
+              Comment peut-on vous aider ?
             </Link>
             <Link href="/contact" className="flex items-center justify-center rounded-full py-4 font-medium"
               style={{ background: '#BBCB2E', color: '#003300', fontSize: '15px' }}>
@@ -257,24 +274,58 @@ export default function ConseilJuridiqueClient() {
 
             {/* Right column: big statement + stats */}
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '645px', height: '451px' }}>
-              <p
-                style={{
-                  fontWeight: 400,
-                  fontSize: '40px',
-                  lineHeight: '108%',
-                  letterSpacing: '-0.02em',
-                  color: '#1E1E1E',
-                  width: '669.7px',
-                  margin: 0,
-                  WebkitMaskImage: 'linear-gradient(180deg, black 51.5%, rgba(0,0,0,0) 92.98%)',
-                  maskImage: 'linear-gradient(180deg, black 51.5%, rgba(0,0,0,0) 92.98%)',
-                }}
-              >
-                Nous accompagnons les entreprises, les institutions et les organisations dans leurs enjeux juridiques,
-                réglementaires et stratégiques. De l&apos;analyse des risques à la mise en conformité, nous apportons des
-                solutions sur mesure qui sécurisent vos projets, facilitent vos décisions et soutiennent votre
-                développement à long terme.
-              </p>
+              {/* Group 349372 / Mask group — fenetre de 645x336.29 dans
+                  laquelle le paragraphe (669.7x430) defile : top -2.4 en
+                  Default, -154.5 en Variant2, soit 152.1px de course.
+                  Les deux fondus du Figma sont rendus par deux calques de
+                  degrade dont on anime l'OPACITE, et non par un mask-image
+                  anime : une transition entre deux gradients de mask n'est
+                  pas interpolee par les navigateurs, elle sauterait d'un
+                  etat a l'autre. Le fond de la section etant un aplat
+                  (#F7FCFF), un calque de degrade donne exactement le meme
+                  rendu qu'un masque. */}
+              <div style={{ position: 'relative', width: '645px', height: '336.29px', overflow: 'hidden' }}>
+                <p
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: `${conseilScrolled ? -154.5 : -2.4}px`,
+                    fontWeight: 400,
+                    fontSize: '40px',
+                    lineHeight: '108%',
+                    letterSpacing: '-0.02em',
+                    color: '#1E1E1E',
+                    width: '669.7px',
+                    margin: 0,
+                    transition: 'top 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
+                  }}
+                >
+                  Nous accompagnons les entreprises, les institutions et les organisations dans leurs enjeux juridiques,
+                  réglementaires et stratégiques. De l&apos;analyse des risques à la mise en conformité, nous apportons des
+                  solutions sur mesure qui sécurisent vos projets, facilitent vos décisions et soutiennent votre
+                  développement à long terme.
+                </p>
+                {/* Fondu bas (Default) : opaque de 38.24% a 88.87% */}
+                <div
+                  aria-hidden
+                  style={{
+                    position: 'absolute', inset: 0, pointerEvents: 'none',
+                    background: 'linear-gradient(180deg, rgba(247,252,255,0) 38.24%, #F7FCFF 88.87%)',
+                    opacity: conseilScrolled ? 0 : 1,
+                    transition: 'opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
+                  }}
+                />
+                {/* Fondu haut (Variant2) : opaque jusqu'a 5.68%, nul a 78.93% */}
+                <div
+                  aria-hidden
+                  style={{
+                    position: 'absolute', inset: 0, pointerEvents: 'none',
+                    background: 'linear-gradient(180deg, #F7FCFF 5.68%, rgba(247,252,255,0) 78.93%)',
+                    opacity: conseilScrolled ? 1 : 0,
+                    transition: 'opacity 1.6s cubic-bezier(0.22, 1, 0.36, 1)',
+                  }}
+                />
+              </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '31px', height: '115.08px' }}>
                 {STATS.map((s) => (
@@ -326,7 +377,7 @@ export default function ConseilJuridiqueClient() {
 
       {/* ── DES EXPERTISES — desktop (Rectangle 836: #DDE597, page 1823 → 0) ── */}
       <section
-        className="hidden md:block"
+        className="hidden lg:block"
         style={{ position: 'relative', background: '#DDE597', overflow: 'hidden', height: `${SERVICES_H * scale}px` }}
       >
         <div
@@ -482,7 +533,7 @@ export default function ConseilJuridiqueClient() {
       </section>
 
       {/* ── DES EXPERTISES — mobile ─────────────────────────────────────── */}
-      <section className="block px-6 py-16 md:hidden" style={{ background: '#DDE597' }}>
+      <section className="block px-6 py-16 lg:hidden" style={{ background: '#DDE597' }}>
         <div className="mb-8 flex justify-center">
           <span
             className="inline-flex items-center justify-center rounded-full px-6 py-2.5"
@@ -500,9 +551,13 @@ export default function ConseilJuridiqueClient() {
           croissance durable.
         </p>
         <div className="flex flex-col gap-6">
-          {EXPERTISES.map((e, i) =>
-            openIndex === i ? (
-              <div key={e.title} className="rounded-[24px] px-6 py-7" style={{ background: '#003300' }}>
+          {/* Chaque element est enveloppe dans un div stable : le noeud interne
+              change (bouton replie <-> carte ouverte), une ref posee dessus
+              serait perdue au moment ou on en a besoin pour scroller. */}
+          {EXPERTISES.map((e, i) => (
+            <div key={e.title} ref={(node) => { expertiseItemRefs.current[i] = node; }}>
+            {openIndex === i ? (
+              <div className="rounded-[24px] px-6 py-7" style={{ background: '#003300' }}>
                 <div className="mb-4 flex items-start justify-between gap-4">
                   <span style={{ fontWeight: 500, fontSize: '22px', lineHeight: '131%', color: '#DDE597' }}>{e.title}</span>
                   <ArrowIcon color="#DDE597" size={24} />
@@ -521,10 +576,9 @@ export default function ConseilJuridiqueClient() {
               </div>
             ) : (
               <button
-                key={e.title}
                 type="button"
-                onClick={() => setOpenIndex(i)}
-                className="flex items-start justify-between gap-4 pb-6 text-left"
+                onClick={() => { expertiseOpenedByUser.current = true; setOpenIndex(i); }}
+                className="flex w-full items-start justify-between gap-4 pb-6 text-left"
                 style={{ background: 'none', border: 'none', borderBottom: '2px solid rgba(0,51,0,0.5)', cursor: 'pointer', padding: 0, paddingBottom: '24px' }}
               >
                 <span className="flex flex-col gap-2">
@@ -533,8 +587,9 @@ export default function ConseilJuridiqueClient() {
                 </span>
                 <ArrowIcon color="#003300" size={24} />
               </button>
-            )
-          )}
+            )}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -661,14 +716,13 @@ export default function ConseilJuridiqueClient() {
                 unoptimized
               />
             </span>
-            <div style={{ position: 'absolute', left: '36.5px', top: '184.79px', width: '350px', display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ fontWeight: 600, fontSize: '38px', lineHeight: '105.97%', color: '#003300' }}>Penser.</span>
-              <span style={{ fontWeight: 600, fontSize: '38px', lineHeight: '105.97%', color: '#003300' }}>Au-delà.</span>
+            <div style={{ position: 'absolute', left: '36.5px', top: '184.79px', width: '350px', textAlign: 'center' }}>
+              <span style={{ fontWeight: 600, fontSize: '38px', lineHeight: '105.97%', color: '#003300' }}>Penser. Au-delà.</span>
             </div>
             <span
               style={{
                 position: 'absolute', left: '36.5px', top: '231.43px', width: '350px',
-                fontWeight: 600, fontSize: '38.4393px', lineHeight: '105.97%', textAlign: 'right', color: '#003300',
+                fontWeight: 600, fontSize: '38.4393px', lineHeight: '105.97%', textAlign: 'center', color: '#003300',
               }}
             >
               Des solutions qui durent.

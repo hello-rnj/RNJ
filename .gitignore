@@ -37,6 +37,18 @@ yarn-error.log*
 
 # editor / tooling
 .claude/
+.codex/
+.codex_tmp_*
+.windsurf/
+.idea/
+.vscode/
+
+# scratch : brouillons de rendu, resultats de tests, sauvegardes manuelles
+tmp-*
+test-results/
+*.backup
+*.bak
+*.orig
 
 # env files (can opt-in for committing if needed)
 .env*

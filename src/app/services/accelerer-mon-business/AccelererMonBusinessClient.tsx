@@ -153,7 +153,7 @@ export default function AccelererMonBusinessClient() {
             src={HERO_IMG}
             alt=""
             fill
-            style={{ objectFit: 'cover', objectPosition: 'center', transform: 'scaleX(-1)' }}
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
             priority
             unoptimized
           />
@@ -218,15 +218,6 @@ export default function AccelererMonBusinessClient() {
               gap: '53px',
             }}
           >
-            <Image
-              src="/optimized/minimal horizontal logo white 1.png"
-              alt="RNJ Advisory"
-              width={204}
-              height={50}
-              style={{ width: '204px', height: 'auto' }}
-              unoptimized
-            />
-
             <div style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}>
               <h1
                 style={{
@@ -297,7 +288,7 @@ export default function AccelererMonBusinessClient() {
 
       {/* Mobile */}
       <section className="relative block overflow-hidden md:hidden" style={{ background: '#003300' }}>
-        <Image src={HERO_IMG} alt="" fill style={{ objectFit: 'cover', transform: 'scaleX(-1)' }} priority unoptimized />
+        <Image src={HERO_IMG} alt="" fill style={{ objectFit: 'cover' }} priority unoptimized />
         <div aria-hidden className="absolute inset-0" style={{ background: 'rgba(0,38,0,0.78)' }} />
         <div className="relative z-10 px-6" style={{ paddingTop: '130px', paddingBottom: '56px' }}>
           <Image
@@ -372,7 +363,7 @@ export default function AccelererMonBusinessClient() {
                 color: '#003300', whiteSpace: 'nowrap', width: 'fit-content',
               }}
             >
-              HOW CAN WE HELP YOUR BUSINESS
+              COMMENT POUVONS-NOUS AIDER VOTRE ENTREPRISE
             </span>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '27px' }}>
@@ -457,7 +448,7 @@ export default function AccelererMonBusinessClient() {
           className="mb-8 inline-flex items-center justify-center rounded-full px-5 py-2.5 text-center"
           style={{ border: '2px solid #003300', fontWeight: 500, fontSize: '13px', letterSpacing: '-0.02em', color: '#003300' }}
         >
-          HOW CAN WE HELP YOUR BUSINESS
+          COMMENT POUVONS-NOUS AIDER VOTRE ENTREPRISE
         </span>
         <h2 className="mb-4" style={{ fontWeight: 500, fontSize: '30px', lineHeight: '110%', letterSpacing: '-0.02em', color: '#003300' }}>
           Des solutions pour accompagner chaque étape de votre développement.
@@ -545,14 +536,15 @@ export default function AccelererMonBusinessClient() {
             <h2
               style={{
                 fontWeight: 500,
-                fontSize: '128px',
+                fontSize: '84px',
                 lineHeight: '108%',
                 letterSpacing: '-0.06em',
                 color: '#003300',
                 margin: 0,
+                whiteSpace: 'nowrap',
               }}
             >
-              Think. Grow. Lead.
+              Penser. Grandir. Diriger.
             </h2>
             <p
               style={{
@@ -581,8 +573,8 @@ export default function AccelererMonBusinessClient() {
         >
           NOTRE APPROCHE
         </span>
-        <h2 className="mb-4" style={{ fontWeight: 500, fontSize: '42px', lineHeight: '100%', letterSpacing: '-0.03em', color: '#003300' }}>
-          Think. Grow. Lead.
+        <h2 className="mb-4" style={{ fontWeight: 500, fontSize: 'clamp(24px, 7vw, 34px)', lineHeight: '100%', letterSpacing: '-0.03em', color: '#003300', whiteSpace: 'nowrap' }}>
+          Penser. Grandir. Diriger.
         </h2>
         <p style={{ fontWeight: 400, fontSize: '15px', lineHeight: '140%', color: '#003300', opacity: 0.7 }}>
           Chez RNJ Advisory, nous croyons qu&apos;une croissance durable repose sur une stratégie claire, les bons
@@ -715,7 +707,7 @@ export default function AccelererMonBusinessClient() {
               fontWeight: 500, fontSize: '48px', lineHeight: '78%', letterSpacing: '-0.01em', color: '#003300', margin: 0,
             }}
           >
-            What we do
+            Notre métier
           </h2>
           <p
             style={{
@@ -775,7 +767,7 @@ export default function AccelererMonBusinessClient() {
       {/* Mobile */}
       <section className="block bg-[#F7FCFF] px-6 py-14 md:hidden">
         <h2 style={{ fontWeight: 500, fontSize: '32px', lineHeight: '90%', letterSpacing: '-0.01em', color: '#003300' }}>
-          What we do
+          Notre métier
         </h2>
         <p className="mt-4 mb-10" style={{ fontWeight: 500, fontSize: '15px', lineHeight: '140%', letterSpacing: '-0.01em', color: 'rgba(0,51,0,0.6)' }}>
           Nous vous accompagnons à chaque étape du recrutement et des démarches administratives.

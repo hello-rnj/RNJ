@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Footer from '@/components/Footer';
+import RelatedContent from '@/components/RelatedContent';
 
 
 const ebGaramond = EB_Garamond({
@@ -43,7 +44,7 @@ const IMG_WINDMILL  = 'https://res.cloudinary.com/dvyyce3ki/image/upload/v177967
 const IMG_CRANES    = 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671315/rnj/optimized/cranes-bg-2b71b295.webp';
 const IMG_SENSOR    = 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671364/rnj/optimized/sensor-bg-280a37b8.webp';
 const IMG_RECHARGE       = '/optimized/electric-car-chargers-at-a-gas-station-with-a-par-2026-03-16-05-14-33-utc.jpg';
-const IMG_PHOTOVOLTAIQUE = '/optimized/des%20Centrales%20photovolta%C3%AFques%20en%20auto%20production%20mutualis%C3%A9e.jpg';
+const IMG_PHOTOVOLTAIQUE = '/optimized/Quest-ce-que-lautoconsommation-collective-1024x576.jpg';
 const IMG_AUTOPRODUCTION = '/optimized/Projet%20autoproduction%20.jpg';
 const IMG_HAMMAM         = '/optimized/Strat%C3%A9gie%20d%E2%80%99%C3%89cologie%20Industrielle%20%E2%80%93%20Hammam%20Zriba2.jpg';
 const IMG_RENFORCEMENT   = '/optimized/signing-documents-at-a-business-meeting-2026-01-08-22-34-20-utc.JPG';
@@ -101,17 +102,15 @@ const IMG_DESSALEMENT    = '/optimized/eaid.jpg';
 const IMG_SNCFT_VOIES    = '/optimized/images%20(6).jpg';
 const IMG_CIMENTERIE     = '/optimized/cimentOmKelil-ciment-Tunisie.jpg';
 const IMG_SNCFT_LOCO     = '/optimized/sncft_locomotive_1480276453.jpg';
-const IMG_MAURITANIE     = '/optimized/68b8575674724328019906.jpeg';
 const IMG_SENEGAL        = '/optimized/transition-energetique-afrique1-1170x570.jpg';
 const IMG_GUINEE         = '/optimized/DSC04537.jpg';
 const IMG_BURKINA        = '/optimized/place_des_cineastes_ouaga.jpg';
 const IMG_BENIN_ENR      = '/optimized/Energie-Renouvelable-1.jpg';
 const IMG_BENIN_SONEB    = '/optimized/096580127520001657117147.jpg';
-const IMG_NIGER          = '/optimized/768ffc12ce5898bd767efaf25a7b9638.jpg';
 const IMG_CONGO          = '/optimized/thumbs_b_c_2483eeb694635f08af61b04412f44a43.jpg';
 
 
-const countryPins: CountryPin[] = [
+const rawCountryPins: CountryPin[] = [
   {
     id: 'tn', name: 'Tunisie', flag: '🇹🇳', cx: 1119.99, cy: 293.61, tailY: 349.56,
     projects: [
@@ -422,7 +421,7 @@ const countryPins: CountryPin[] = [
       {
         client: 'Ministère de l\'Environnement – Valorisation des déchet – Economie circulaire',
         sector: 'Cadre réglementaire valorisation des déchets – CSR',
-        description: "Conseiller juridique du Ministère chargé de l'environnement pour la mise en place d'un nouveau cadre réglementaire applicable à la valorisation des déchets et la fabrication d'un combustible alternatif de substitution. Préparation d'un projet d'arrêtés fixant les conditions de production, de transport et de commercialisation du Combustile solide de récupération (CSR).",
+        description: "Conseiller juridique du Ministère chargé de l'environnement pour la mise en place d'un nouveau cadre réglementaire applicable à la valorisation des déchets et la fabrication d'un combustible alternatif de substitution. Préparation d'un projet d'arrêtés fixant les conditions de production, de transport et de commercialisation du Combustible solide de récupération (CSR).",
         pays: 'Tunisie — 2024',
         image: IMG_DECHETS_CSR,
         tone: '#B5E0EC',
@@ -572,6 +571,14 @@ const countryPins: CountryPin[] = [
         tone: '#B5E0EC',
       },
       {
+        client: 'Dubai Properties (Projet PPP)',
+        sector: 'Projet Sama Dubai - Tunis MEDGATE',
+        description: "Conseiller de la société Dubai Properties dans le cadre du développement de ses projets immobiliers en Tunisie suivant la Convention d'Investissement signée avec l'Etat Tunisien.",
+        pays: 'Tunisie — 2019',
+        image: IMG_PORT_GFH,
+        tone: '#DDE597',
+      },
+      {
         client: 'GFH (Projet PPP)',
         sector: 'Projet Port Financier – GFH',
         description: "Conseiller du Groupe GFH dans le cadre du développement du projet du Port Financier dans la région de Raoud – Nord de la Tunisie. Développement du projet dans le cadre d'une Convention d'investissement signée avec l'Etat et fixant les droits et obligations du promoteur immobilier en relation avec la zone. Création de la société du projet et établissement des différents contrats de partenariat avec les investisseurs.",
@@ -654,51 +661,66 @@ const countryPins: CountryPin[] = [
     ],
   },
   {
-    id: 'mr', name: 'Mauritanie', flag: '🇲🇷', cx: 859.84, cy: 524.76, tailY: 580.72,
-    projects: [{
-      client: 'Ministère',
-      sector: 'Gouvernance & Réglementation',
-      description: "Analyse institutionnelle et appui à la structuration du cadre réglementaire pour les investissements dans le secteur des ressources naturelles en Mauritanie.",
-      pays: 'Mauritanie — 2024',
-      image: IMG_MAURITANIE,
-      tone: '#839705',
-    }],
-  },
-  {
     id: 'sn', name: 'Sénégal', flag: '🇸🇳', cx: 791.61, cy: 618.59, tailY: 674.54,
-    projects: [{
-      client: 'Investisseur Privé',
-      sector: 'Énergie & Transition',
-      description: "Accompagnement d'un investisseur dans l'analyse des opportunités et contraintes réglementaires dans le secteur énergétique sénégalais, en lien avec les objectifs de transition énergétique.",
-      pays: 'Sénégal — 2024',
-      image: IMG_SENEGAL,
-      tone: '#BBCB2E',
-    }],
+    projects: [
+      {
+        client: 'Ministère du Transport – CETUD',
+        sector: 'Projet : Valorisation des déchets - transformation en biocarburant',
+        description: "Conseiller juridique du Ministère du Transport et le CETUD dans la cadre de la réalisation d'une Étude technique, économique et juridique pour analyser la faisabilité de la valorisation des déchets pour la production du biocarburant à utiliser pour les transports urbains au Sénégal. Diagnostic du cadre réglementaire applicable à la filière. Identification des parties prenantes institutionnelles. Préparation de textes réglementaire pour compléter le cadre réglementaire en vigueur. Préparation d'une feuille de route pour la mise en place du projet.",
+        pays: 'Sénégal — 2022',
+        image: IMG_SENEGAL,
+        tone: '#BBCB2E',
+      },
+      {
+        client: 'FERA – Transport routier – Paige',
+        sector: 'Projet : Délégation de service public - Activité Péage routier sur route Nationale 1 – Sénégal',
+        description: "Conseiller juridique dans le cadre de la réalisation d'une étude de faisabilité juridique et financière portant sur un projet pilote ayant pour objet de confier l'activité de péage routier sur la route nationale N1 (Dakar Diamniadio – Mbour – Kaolack – Tambacounda – Kidia) à un partenaire privé dans le cadre du régime de partenariat Public Privé. Proposition des solutions contractuelles pour la délégation du service public. Identification des limites du cadre réglementaire actuel. Préparation d'une feuille de route. Préparation de la documentation contractuelle pour la sélection de l'opérateur privé.",
+        pays: 'Sénégal — 2022',
+        image: IMG_SENEGAL,
+        tone: '#DDE597',
+      },
+      {
+        client: 'Groupe Omranyoun',
+        sector: 'Projet développement de la zone de New Dakar City',
+        description: "Conseiller du Groupe Saoudien Oumranyoun dans le cadre de la réalisation du projet New Dakar City en partenariat avec le Gouvernement Sénégalais. Etablissement d'un MOU avec le Gouvernement Sénégalais. Rédaction des contrats de partenariat avec les investisseurs pour le développement des composantes du projet. Réalisation d'une feuille de route pour la mise en place du projet et la réalisation d'une étude de faisabilité juridique et financière pour le développement des différentes composantes du projet.",
+        pays: 'Sénégal — 2014',
+        image: IMG_SENEGAL,
+        tone: '#839705',
+      },
+    ],
   },
   {
     id: 'gn', name: 'Guinée', flag: '🇬🇳', cx: 853.87, cy: 689.38, tailY: 745.34,
     projects: [{
-      client: 'Partenaire Institutionnel',
-      sector: 'Conformité & ESG',
-      description: "Mission d'analyse des cadres institutionnels et de conformité ESG pour sécuriser les projets d'investissement en République de Guinée.",
-      pays: 'Guinée — 2024',
+      client: 'Ministère de l\'énergie',
+      sector: 'Réforme du secteur électrique - Etablissement d\'un code de l\'énergie',
+      description: "Conseiller du Gouvernement de la Guinée pour la réalisation d'une étude institutionnelle pour la réforme du secteur de l'électricité et l'adoption d'une nouvelle loi cadre ainsi que les textes d'application se rapportant à la création de : une Agence de Maîtrise de l'Energie, un Fond de Promotion des Énergies Renouvelables. Assurer une session de formation pour les cadres du Ministère de l'énergie, d'Electricité de Guinée et de l'AGER sur les principales nouveautés de la nouvelle réglementation sectorielle.",
+      pays: 'Guinée — 2018',
       image: IMG_GUINEE,
       tone: '#DDE597',
     }],
   },
   {
-    id: 'bf', name: 'Burkina Faso', flag: '🇧🇫', cx: 1028.73, cy: 701.32, tailY: 757.27,
+    // Coordonnees echangees avec le Benin : les deux epingles etaient
+    // interverties. Verifie en ajustant une transformation affine
+    // (lon,lat)->(x,y) sur les six autres epingles (ecart moyen 15px sur une
+    // carte de 1440px) : le Burkina tombait a 70px de sa position prevue et le
+    // Benin a 81px, alors qu'apres echange ils sont a 18 et 20px, en ligne
+    // avec les autres. Le Burkina Faso (-1.56E) doit etre a l'OUEST du Benin
+    // (2.32E) et plus au NORD (12.24N contre 9.31N).
+    id: 'bf', name: 'Burkina Faso', flag: '🇧🇫', cx: 969.02, cy: 656.12, tailY: 712.07,
     projects: [{
-      client: 'Institution Publique',
-      sector: 'Stratégie & Juridique',
-      description: "Conseil stratégique et juridique pour l'analyse du cadre institutionnel et des risques réglementaires liés aux projets d'infrastructure au Burkina Faso.",
-      pays: 'Burkina Faso — 2025',
+      client: 'Autorité de régulation du secteur d\'électricité – ARSE',
+      sector: 'Mise en place d\'un nouveau cadre réglementaire pour les énergies renouvelables – Burkina Faso',
+      description: "Conseiller du Ministère de l'énergie Burkinabé dans le cadre de la mise en place d'un nouveau cadre réglementaire applicable au secteur de l'énergie, permettant le développement des énergies renouvelables. Mise en place d'un manuel de procédure pour l'octroi des autorisations de production d'électricité. Préparation des projets de contrat d'achat d'électricité. Préparation manuelle de procédure des demandes de raccordement au réseau électrique.",
+      pays: 'Burkina Faso — 2016-2017',
       image: IMG_BURKINA,
       tone: '#839705',
     }],
   },
   {
-    id: 'bj', name: 'Bénin', flag: '🇧🇯', cx: 969.02, cy: 656.12, tailY: 712.07,
+    // Coordonnees echangees avec le Burkina Faso (voir la note ci-dessus).
+    id: 'bj', name: 'Bénin', flag: '🇧🇯', cx: 1028.73, cy: 701.32, tailY: 757.27,
     projects: [
       {
         client: 'SOBEE',
@@ -724,66 +746,69 @@ const countryPins: CountryPin[] = [
         image: IMG_BENIN_SONEB,
         tone: '#DDE597',
       },
+      {
+        client: 'Groupe Foras',
+        sector: 'Projet immobilier intégré – rénovation de la ville de Porto Nuvo',
+        description: "Conseiller du Groupe Saoudien Foras International Investment Company dans le cadre de la négociation des termes de la Convention d'Investissement pour la mise en place d'un projet immobilier intégré à Cotonou suivant la technique du PPP.",
+        pays: 'Bénin — 2010',
+        image: IMG_CRANES,
+        tone: '#BBCB2E',
+      },
     ],
-  },
-  {
-    id: 'ne', name: 'Niger', flag: '🇳🇪', cx: 1129.38, cy: 581.06, tailY: 637.01,
-    projects: [{
-      client: 'Bailleur de Fonds',
-      sector: 'Analyse Institutionnelle',
-      description: "Mission d'analyse institutionnelle pour un bailleur de fonds international, couvrant l'évaluation des cadres légaux et réglementaires dans le secteur des ressources au Niger.",
-      pays: 'Niger — 2024',
-      image: IMG_NIGER,
-      tone: '#DDE597',
-    }],
   },
   {
     id: 'cd', name: 'Congo RDC', flag: '🇨🇩', cx: 1338.24, cy: 907.07, tailY: 920.00,
     projects: [{
-      client: 'Groupe Industriel',
-      sector: 'Ressources Naturelles',
-      description: "Accompagnement d'un groupe industriel dans l'analyse du cadre légal minier et des enjeux de gouvernance en République Démocratique du Congo.",
-      pays: 'Congo RDC — 2025',
+      client: 'EPPM',
+      sector: 'Projet Extraction du méthane du lac Kivu pour la production d\'électricité',
+      description: "Conseiller juridique de EPPM dans le cadre de la réalisation d'un projet d'extraction de gaz méthane du lac Kivu en vue de son utilisation dans le cadre de la production d'électricité. Revue et commentaires des termes du Contrat de Concession. Revue et commentaires des termes du PPA. Revue des termes du contrat emphytéotique. Rédaction d'un projet de contrat de transport d'électricité.",
+      pays: 'République Démocratique du Congo — 2016',
       image: IMG_CONGO,
       tone: '#B5E0EC',
     }],
   },
 ];
 
-const relatedCategories = [
-  { label: 'Juridique', widthClass: 'w-[131px]', active: false },
-  { label: 'Strategie', widthClass: 'w-[134px]', active: false },
-  { label: 'Marches', widthClass: 'w-[124px]', active: false },
-  { label: 'Insights', widthClass: 'w-[117px]', active: false },
-  { label: 'All', widthClass: 'w-[90px]', active: true },
-] as const;
+/**
+ * Annee la plus recente citee dans `pays` : « Tunisie — 2024 » -> 2024, et
+ * « Burkina Faso — 2016-2017 » -> 2017. Renvoie 0 si aucune annee n'est trouvee,
+ * ce qui range l'entree en fin de liste plutot que de casser le tri.
+ */
+function projectYear(pays: string): number {
+  const years = pays.match(/\d{4}/g);
+  return years ? Math.max(...years.map(Number)) : 0;
+}
 
-const relatedCards = [
-  {
-    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679638/rnj/group-483-89ee6676.png',
-    year: '2026',
-    title: 'Workshop BeCentral : digitalisation durable',
-    description: 'Retour sur un échange autour des enjeux de la digitalisation responsable.',
-  },
-  {
-    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679639/rnj/group-482-365877a7.png',
-    year: '2024',
-    title: "Informations de base sur les garanties d'origine (GO).",
-    description: "Principes et fonctionnement des garanties d'origine dans le marché de l'énergie.",
-  },
-  {
-    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679639/rnj/group-484-04b278f7.png',
-    year: '2025',
-    title: 'Accélération de la transition énergétique en Tunisie',
-    description: 'Focus sur les initiatives et leviers pour accélérer la transition énergétique.',
-  },
-  {
-    src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679640/rnj/group-481-8071b8c8.png',
-    year: '2025',
-    title: 'CSR en Tunisie : cadre réglementaire',
-    description: "Analyse du cadre juridique et des enjeux liés à l'utilisation du CSR en Tunisie.",
-  },
-] as const;
+/**
+ * Les projets de chaque pays etaient dans l'ordre de saisie, qui melangeait
+ * plusieurs series : la Tunisie repartait a 2025 apres etre descendue a 2009.
+ * On les presente du plus recent au plus ancien.
+ */
+const countryPins: CountryPin[] = rawCountryPins.map((pin) => ({
+  ...pin,
+  projects: [...pin.projects].sort((a, b) => projectYear(b.pays) - projectYear(a.pays)),
+}));
+
+/**
+ * Region of interest used as the viewBox below `lg`, where the full canvas cannot be
+ * shown without cropping pins off-screen. It frames the African landmass as measured on
+ * the asset (x 700→1440, y 300→1190) and contains every pin (x 791→1338, y 349→920)
+ * with room for the badges. Anchored to the bottom of the viewport (`YMax`) so the
+ * leftover height on tall phones falls above the map — behind the title — instead of
+ * leaving a dead band under it.
+ */
+const MAP_ROI = { x: 700, y: 300, w: 740, h: 890 };
+
+/**
+ * Carries the stacked-layout copy over the pale landmass without a heavy scrim: a wide
+ * soft halo for contrast plus a tight one for edge definition. Cheaper visually than
+ * darkening the map, which was veiling the Tunisia badge.
+ */
+/** Frames 520/521/522 du Figma : carre de 44,7px, rayon 11,9744px. */
+const NAV_ICON_BUTTON =
+  'flex h-[44.7px] w-[44.7px] flex-none items-center justify-center rounded-[11.9744px]';
+
+const HERO_TEXT_SHADOW ='0 2px 18px rgba(14,67,79,0.9), 0 1px 4px rgba(14,67,79,0.85)';
 
 export default function AnalyseInstitutionnelleClient() {
   const [activePin, setActivePin] = useState<string | null>(null);
@@ -791,9 +816,14 @@ export default function AnalyseInstitutionnelleClient() {
   const [activeProjectIdx, setActiveProjectIdx] = useState(0);
 
   const [isMobile, setIsMobile] = useState(false);
-  const [isPhone, setIsPhone] = useState(false);
+  // Mirrors the `landscape-lg` CSS variant: false wherever the stacked hero is shown,
+  // so the map framing and the text layout can never disagree.
+  const [isWideLandscape, setIsWideLandscape] = useState(true);
   const [hasMounted, setHasMounted] = useState(false);
   const touchStartXRef = useRef<number | null>(null);
+  const mapWrapRef = useRef<HTMLDivElement>(null);
+  // CSS pixels per viewBox unit when the map is contained rather than cropped
+  const [mapScale, setMapScale] = useState(1);
   const activeCountry = countryPins.find((p) => p.id === activePin) ?? null;
   const activeProject = activeCountry ? (activeCountry.projects[activeProjectIdx] ?? activeCountry.projects[0]) : null;
 
@@ -829,8 +859,8 @@ export default function AnalyseInstitutionnelleClient() {
   }, []);
 
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 767px)');
-    const handler = () => setIsPhone(mq.matches);
+    const mq = window.matchMedia('(min-width: 1024px) and (orientation: landscape)');
+    const handler = () => setIsWideLandscape(mq.matches);
     handler();
     if (typeof mq.addEventListener === 'function') {
       mq.addEventListener('change', handler);
@@ -840,6 +870,17 @@ export default function AnalyseInstitutionnelleClient() {
     return () => mq.removeListener(handler);
   }, []);
 
+  // Track how small the contained map ends up, so the badges can compensate
+  useEffect(() => {
+    const el = mapWrapRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+      if (width && height) setMapScale(Math.min(width / MAP_ROI.w, height / MAP_ROI.h));
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     if (activePin) {
@@ -908,15 +949,17 @@ export default function AnalyseInstitutionnelleClient() {
     <main className="min-h-screen bg-[#F7FCFF]">
       {/* Compact centered navbar — responsive across all breakpoints */}
       <nav className="absolute left-1/2 top-3 z-50 -translate-x-1/2 flex flex-row items-center gap-1.5 sm:top-5 sm:gap-2 md:top-[30px] md:gap-[8px] lg:top-[47px] lg:gap-[10px]">
-        {/* Logo icon */}
-        <Image
-          src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779672853/rnj/layer-4-955dc651.png"
-          alt="RNJ"
-          width={35}
-          height={40}
-          className="h-[28px] w-[24px] flex-none sm:h-[32px] sm:w-[28px] md:h-[36px] md:w-[31px] lg:h-[40px] lg:w-[35px]"
-          priority
-        />
+        {/* Logo icon — ramene a l'accueil, comme la barre des autres pages. */}
+        <Link href="/" aria-label="RNJ Advisory — accueil" className="flex-none">
+          <Image
+            src="/optimized/Group 513.png"
+            alt="RNJ"
+            width={28}
+            height={32}
+            className="h-[28px] w-[24px] sm:h-[32px] sm:w-[28px] md:h-[36px] md:w-[31px] lg:h-[40px] lg:w-[35px]"
+            priority
+          />
+        </Link>
 
         {/* Search pill — hidden on small screens */}
         <div
@@ -932,64 +975,78 @@ export default function AnalyseInstitutionnelleClient() {
           </span>
         </div>
 
-        {/* 3 icon buttons */}
+        {/* 3 icon buttons — cotes Figma (Frames 520/521/522) : carre de 44,7px,
+            rayon 11,9744px, fond #002600. Les `strokeWidth` sont exprimes dans le
+            viewBox : avec un width/height explicite, le trace est mis a l'echelle
+            de min(w/vbW, h/vbH), et l'epaisseur suit. Elles sont donc divisees par
+            ce facteur pour retomber sur l'epaisseur Figma a l'ecran. */}
         <div className="flex flex-row items-center gap-1 sm:gap-1.5 lg:gap-[5px]">
           <Link
             href="/"
-            className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[10px] sm:h-[42px] sm:w-[42px] sm:rounded-[12px] md:h-[48px] md:w-[48px] lg:h-[56px] lg:w-[56px] lg:rounded-[15px]"
+            className={NAV_ICON_BUTTON}
             style={{ background: '#002600' }}
             aria-label="Retour"
           >
-            <svg width="8" height="15" viewBox="0 0 10 18" fill="none">
-              <path d="M9 1L1 9L9 17" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            {/* Vector 15,17 x 7,18 pivote de -90deg, trait 3,19318 */}
+            <svg width="7.18" height="15.17" viewBox="0 0 7.18 15.17" fill="none">
+              <path d="M5.58 1.6L1.6 7.585L5.58 13.57" stroke="white" strokeWidth="3.19318" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </Link>
 
           <Link
             href="/a-propos"
-            className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[10px] sm:h-[42px] sm:w-[42px] sm:rounded-[12px] md:h-[48px] md:w-[48px] lg:h-[56px] lg:w-[56px] lg:rounded-[15px]"
+            className={NAV_ICON_BUTTON}
             style={{ background: '#002600' }}
             aria-label="À propos"
           >
-            <svg width="22" height="24" viewBox="0 0 27 29" fill="none">
-              <path d="M9 7.5C9 9.71 7.21 11.5 5 11.5C2.79 11.5 1 9.71 1 7.5C1 5.29 2.79 3.5 5 3.5C7.21 3.5 9 5.29 9 7.5Z" stroke="white" strokeWidth="2.81"/>
-              <path d="M1 21.5C1 18.19 2.79 15.5 5 15.5" stroke="white" strokeWidth="2.81" strokeLinecap="round"/>
-              <path d="M18 12.5C18 14.71 16.21 16.5 14 16.5C11.79 16.5 10 14.71 10 12.5C10 10.29 11.79 8.5 14 8.5C16.21 8.5 18 10.29 18 12.5Z" stroke="white" strokeWidth="2.81"/>
-              <path d="M7 25.5C7 22.19 10.13 19.5 14 19.5C17.87 19.5 21 22.19 21 25.5" stroke="white" strokeWidth="2.81" strokeLinecap="round"/>
+            {/* Layer 1 : 21,43 x 22,46, trait 2,24321 -> 2,896 dans le viewBox */}
+            <svg width="21.43" height="22.46" viewBox="0 0 27 29" fill="none">
+              <path d="M9 7.5C9 9.71 7.21 11.5 5 11.5C2.79 11.5 1 9.71 1 7.5C1 5.29 2.79 3.5 5 3.5C7.21 3.5 9 5.29 9 7.5Z" stroke="white" strokeWidth="2.896"/>
+              <path d="M1 21.5C1 18.19 2.79 15.5 5 15.5" stroke="white" strokeWidth="2.896" strokeLinecap="round"/>
+              <path d="M18 12.5C18 14.71 16.21 16.5 14 16.5C11.79 16.5 10 14.71 10 12.5C10 10.29 11.79 8.5 14 8.5C16.21 8.5 18 10.29 18 12.5Z" stroke="white" strokeWidth="2.896"/>
+              <path d="M7 25.5C7 22.19 10.13 19.5 14 19.5C17.87 19.5 21 22.19 21 25.5" stroke="white" strokeWidth="2.896" strokeLinecap="round"/>
             </svg>
           </Link>
 
           <Link
             href="/contact"
-            className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[10px] sm:h-[42px] sm:w-[42px] sm:rounded-[12px] md:h-[48px] md:w-[48px] lg:h-[56px] lg:w-[56px] lg:rounded-[15px]"
+            className={NAV_ICON_BUTTON}
             style={{ background: '#002600' }}
             aria-label="Contact"
           >
-            <svg width="22" height="16" viewBox="0 0 27 20" fill="none">
-              <rect x="1.41" y="1.41" width="24.18" height="17.18" rx="2" stroke="white" strokeWidth="2.8125"/>
-              <path d="M1.41 5L13.5 12L25.59 5" stroke="white" strokeWidth="2.8125" strokeLinecap="round"/>
+            {/* Layer 1 : 21,55 x 15,26, trait 2,24521 -> 2,943 dans le viewBox */}
+            <svg width="21.55" height="15.26" viewBox="0 0 27 20" fill="none">
+              <rect x="1.41" y="1.41" width="24.18" height="17.18" rx="2" stroke="white" strokeWidth="2.943"/>
+              <path d="M1.41 5L13.5 12L25.59 5" stroke="white" strokeWidth="2.943" strokeLinecap="round"/>
             </svg>
           </Link>
         </div>
       </nav>
 
-      <section className="relative isolate w-full overflow-hidden bg-[#0E434F] min-h-screen min-h-[100svh] sm:min-h-[640px] md:min-h-[1120px] lg:h-[1180px] lg:min-h-[1180px]">
+      <section className="relative isolate w-full overflow-hidden bg-[#0E434F] min-h-screen min-h-[100svh] landscape-lg:min-h-[1180px]">
         {/* Single SVG: map background + interactive pins in one coordinate space */}
         <div
+          ref={mapWrapRef}
           className="absolute overflow-hidden"
-          style={{ inset: 0, transform: isPhone ? 'none' : 'scale(1.05)' }}
+          style={{ inset: 0, transform: isWideLandscape ? 'scale(1.05)' : 'none' }}
         >
+          {/* Below lg the viewport is too narrow/tall for a "slice" crop of the full
+              1440×1024 canvas — it would cut off the Tunisia and Congo pins. We frame
+              on the pin bounding box instead and let it "meet" (contain) the container. */}
           <svg
-            viewBox={isPhone ? '560 80 920 960' : '0 0 1440 1024'}
-            preserveAspectRatio="xMidYMid slice"
+            viewBox={isWideLandscape ? '0 0 1440 1024' : `${MAP_ROI.x} ${MAP_ROI.y} ${MAP_ROI.w} ${MAP_ROI.h}`}
+            preserveAspectRatio={isWideLandscape ? 'xMidYMid slice' : 'xMidYMax meet'}
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
           >
-            {/* Map background — always at full 1440×1024 coords */}
+            {/* Map background. The asset's own viewBox used to clip the artwork to
+                0 0 1440 1024, slicing the landmass flat mid-continent. It now exposes
+                -300 → 1200, and we draw it over the matching rect so the mapping stays
+                1:1 and every pin coordinate below remains valid. */}
             <image
               href="/optimized/map-africa.svg"
-              x="0" y="0" width="1440" height="1024"
+              x="0" y="-300" width="1440" height="1500"
               preserveAspectRatio="xMidYMid slice"
             />
             <defs>
@@ -1004,8 +1061,14 @@ export default function AnalyseInstitutionnelleClient() {
               const isHighlighted = isActive || pin.id === hoverPin;
               // Smaller badge for geographically small countries
               const isSmallCountry = ['tn', 'sn', 'gn', 'bj', 'bf'].includes(pin.id);
-              const r = isSmallCountry ? 19 : 25;
-              const fs = count >= 100 ? (isSmallCountry ? 9 : 12) : count >= 10 ? (isSmallCountry ? 11 : 15) : (isSmallCountry ? 15 : 20);
+              // Below lg the map is contained rather than cropped, so on a phone it renders
+              // small. Enlarge the badges just enough to keep a ~28px on-screen diameter,
+              // capped so tablets (where the map is already large enough) stay untouched.
+              // Capped at 1.9: the closest pair of pins (Burkina/Bénin) is 74 units apart,
+              // so a larger badge would make the two overlap on a phone.
+              const k = isWideLandscape ? 1 : Math.min(1.9, Math.max(1, 14 / (19 * mapScale)));
+              const r = (isSmallCountry ? 19 : 25) * k;
+              const fs = (count >= 100 ? (isSmallCountry ? 9 : 12) : count >= 10 ? (isSmallCountry ? 11 : 15) : (isSmallCountry ? 15 : 20)) * k;
               return (
                 <g
                   key={pin.id}
@@ -1018,6 +1081,8 @@ export default function AnalyseInstitutionnelleClient() {
                   onTouchStart={() => setHoverPin(pin.id)}
                   onTouchEnd={() => setTimeout(() => setHoverPin(null), 250)}
                 >
+                  {/* Invisible halo: keeps the tap target finger-sized once the map is scaled down */}
+                  <circle cx={pin.cx} cy={pin.tailY} r={r * 1.4} fill="transparent" />
                   <circle
                     cx={pin.cx}
                     cy={pin.tailY}
@@ -1044,8 +1109,22 @@ export default function AnalyseInstitutionnelleClient() {
           </svg>
         </div>
 
+        {/* Legibility scrims. In the stacked layout the map runs edge to edge, so the pale
+            landmass sits straight behind the white title and the CTA block. These fade the
+            background back to the section colour where the text sits, and vanish over the
+            middle so the map stays readable. Not needed in the two-column layout, where the
+            copy sits over the Atlantic. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 z-[5] h-[22%] bg-gradient-to-b from-[#0E434F] via-[#0E434F]/55 to-transparent landscape-lg:hidden"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[26%] bg-gradient-to-t from-[#0E434F] via-[#0E434F]/75 to-transparent landscape-lg:hidden"
+        />
+
         {/* ── Mobile/tablet hero layout: title top, button bottom, map visible middle ── */}
-        <div className="pointer-events-none relative z-10 mx-auto flex h-screen h-[100svh] w-full flex-col px-5 pb-[calc(2rem+env(safe-area-inset-bottom))] pt-[72px] sm:h-[640px] sm:px-6 sm:pb-[calc(3rem+env(safe-area-inset-bottom))] sm:pt-[80px] md:h-[1120px] md:px-12 md:pb-[calc(4rem+env(safe-area-inset-bottom))] md:pt-[100px] lg:hidden">
+        <div className="pointer-events-none relative z-10 mx-auto flex min-h-screen min-h-[100svh] w-full flex-col px-5 pb-[calc(2rem+env(safe-area-inset-bottom))] pt-[72px] sm:px-6 sm:pb-[calc(3rem+env(safe-area-inset-bottom))] sm:pt-[80px] md:px-12 md:pb-[calc(4rem+env(safe-area-inset-bottom))] md:pt-[100px] landscape-lg:hidden">
           {/* Top block: region selector + title */}
           <div className="flex flex-col gap-3 md:gap-6">
             <div className={`${geist.className} inline-flex items-center gap-2 md:gap-3 text-[#9CD5E6]`}>
@@ -1057,10 +1136,16 @@ export default function AnalyseInstitutionnelleClient() {
               </div>
               <span className="text-[13px] font-semibold leading-none md:text-[18px]">&gt;</span>
             </div>
-            <h1 className={`${ebGaramond.className} text-[clamp(36px,10vw,72px)] font-bold leading-[0.95] tracking-[-0.04em] text-white md:text-[clamp(56px,8vw,80px)]`}>
+            <h1
+              className={`${ebGaramond.className} text-[clamp(36px,10vw,72px)] font-bold leading-[0.95] tracking-[-0.04em] text-white md:text-[clamp(56px,8vw,80px)]`}
+              style={{ textShadow: HERO_TEXT_SHADOW }}
+            >
               Nos projets
             </h1>
-            <p className={`${geist.className} hidden md:block max-w-[560px] text-[15px] font-semibold leading-[1.5] text-white/50`}>
+            <p
+              className={`${geist.className} hidden md:block max-w-[560px] text-[15px] font-semibold leading-[1.5] text-white/75`}
+              style={{ textShadow: HERO_TEXT_SHADOW }}
+            >
               RNJ Advisory accompagne les entreprises, institutions et investisseurs dans l&rsquo;analyse des cadres institutionnels et réglementaires.
             </p>
           </div>
@@ -1076,7 +1161,7 @@ export default function AnalyseInstitutionnelleClient() {
               href="/contact?mode=message&subject=Analyse%20institutionnelle"
               className={`${geist.className} pointer-events-auto inline-flex h-[48px] w-auto items-center justify-between gap-2 self-start rounded-[105px] bg-[#839705] pl-5 pr-[3px] text-[14px] font-extrabold text-[#E7E7E7] shadow-[0_10px_24px_rgba(0,0,0,0.22)] transition hover:brightness-105 md:h-[60px] md:pl-8 md:text-[16px]`}
             >
-              <span>Contact us</span>
+              <span>Contactez-nous</span>
               <span className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#DDE597] md:h-[52px] md:w-[52px]">
                 <span className="inline-block h-[12px] w-[12px] border-r-[2px] border-t-[2px] border-[#839705] rotate-45 translate-x-[-2px] md:h-[16px] md:w-[16px]" />
               </span>
@@ -1085,8 +1170,8 @@ export default function AnalyseInstitutionnelleClient() {
         </div>
 
         {/* ── Desktop hero layout ── */}
-        <div className="pointer-events-none relative z-10 hidden w-full lg:block lg:h-full lg:min-h-[1048px] lg:max-w-[1544px] lg:px-0">
-          <div className="lg:absolute lg:left-[5.69%] lg:right-[39.79%] lg:top-[21.58%] lg:max-w-[min(765px,54vw)] lg:flex lg:flex-col lg:items-start lg:gap-[clamp(20px,2.62vw,37px)]">
+        <div className="pointer-events-none relative z-10 hidden w-full landscape-lg:block landscape-lg:h-full landscape-lg:min-h-[1048px] landscape-lg:max-w-[1544px] landscape-lg:px-0">
+          <div className="landscape-lg:absolute landscape-lg:left-[5.69%] landscape-lg:right-[39.79%] landscape-lg:top-[21.58%] landscape-lg:max-w-[min(765px,54vw)] landscape-lg:flex landscape-lg:flex-col landscape-lg:items-start landscape-lg:gap-[clamp(20px,2.62vw,37px)]">
             <div className={`${geist.className} inline-flex items-center gap-[clamp(6px,0.71vw,10px)] text-[#9CD5E6]`}>
               <span className="text-[clamp(14px,1.42vw,20px)] font-semibold leading-none">&lt;</span>
               <div className="flex flex-col items-center gap-[clamp(8px,1.13vw,16px)] leading-none">
@@ -1100,8 +1185,10 @@ export default function AnalyseInstitutionnelleClient() {
               Nos projets
             </h1>
             <div className="mt-[clamp(20px,2.62vw,38px)] flex w-full flex-col gap-[clamp(18px,2.29vw,33px)]">
-              <div className="inline-block w-full max-w-[min(700px,50vw)] bg-[#DDE597] px-[clamp(8px,0.99vw,14px)] py-[clamp(4px,0.5vw,7px)]">
-                <p className={`${geist.className} text-[clamp(9px,0.9vw,13px)] font-black uppercase leading-tight tracking-[0.03em] text-[#0E434F]`}>
+              {/* Group 496 du Figma : bande de 692,63 x 29,07 en #F5FAC7, texte
+                  Geist 900 de 12,5534/15px, retrait gauche de 28,53px. */}
+              <div className="inline-block h-[29.07px] w-full max-w-[692.63px] bg-[#F5FAC7] pl-[28.53px] pr-[10px] pt-[6.55px]">
+                <p className={`${geist.className} text-[12.5534px] font-black uppercase leading-[15px] tracking-[0.03em] text-[#0E434F]`}>
                   Comprendre les environnements publics pour sécuriser vos décisions stratégiques
                 </p>
               </div>
@@ -1112,11 +1199,19 @@ export default function AnalyseInstitutionnelleClient() {
               </p>
               <Link
                 href="/contact?mode=message&subject=Analyse%20institutionnelle"
-                className={`${geist.className} pointer-events-auto inline-flex h-[clamp(48px,4.41vw,64px)] w-[clamp(170px,15.56vw,224px)] items-center justify-between rounded-[89.6px] bg-[#839705] pl-[clamp(24px,2.85vw,41px)] pr-[clamp(3px,0.31vw,4px)] text-[clamp(13px,1.2vw,17px)] font-extrabold leading-[1.1] text-[#E7E7E7] shadow-[0_10px_24px_rgba(0,0,0,0.22)] transition hover:brightness-105`}
+                /* Frame 30 du Figma : 254,36 x 72,07, fond #BBCB2E, rayon 101,742px,
+                   retraits 46,63px a gauche / 5,09px a droite, texte Geist 800 de
+                   19,5744px en #003300, pastille #F5FAC7 de 61,89px. */
+                className={`${geist.className} pointer-events-auto inline-flex h-[72.07px] w-[254.36px] items-center justify-between rounded-[101.742px] bg-[#BBCB2E] pl-[46.63px] pr-[5.09px] text-[19.5744px] font-extrabold leading-[22px] text-[#003300] shadow-[0_10px_24px_rgba(0,0,0,0.22)] transition hover:brightness-105`}
               >
-                <span>Contact us</span>
-                <span className="flex aspect-square h-[clamp(40px,3.79vw,55px)] items-center justify-center rounded-full bg-[#DDE597]">
-                  <span className="inline-block h-[clamp(12px,1.32vw,19px)] w-[clamp(12px,1.32vw,19px)] border-r-[2px] border-t-[2px] border-[#839705] rotate-45 translate-x-[-2px]" />
+                <span>Contactez-nous</span>
+                <span className="flex aspect-square h-[61.89px] flex-none items-center justify-center rounded-full bg-[#F5FAC7]">
+                  {/* Group 453 : fleche de 25,21 x 21,63, hampe 24,74 (trait 2,969)
+                      et pointe (trait 3,111), en #003300. */}
+                  <svg width="25.21" height="21.63" viewBox="0 0 25.21 21.63" fill="none">
+                    <path d="M0.5 10.81H23.9" stroke="#003300" strokeWidth="2.96914" strokeLinecap="round"/>
+                    <path d="M15.1 2.6L23.3 10.81L15.1 19.03" stroke="#003300" strokeWidth="3.11149" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </span>
               </Link>
             </div>
@@ -1235,17 +1330,13 @@ export default function AnalyseInstitutionnelleClient() {
                   {activeProject!.sector}
                 </h3>
 
-                {/* Description */}
+                {/* Description. Shown in full: these are the substance of each project and
+                    several run well past five lines, so clamping them dropped the end of the
+                    text behind an ellipsis with no way to reveal it. The card itself is
+                    already `overflow-y-auto` under a max-height, so long entries scroll. */}
                 <p
                   className={`${geist.className} mb-4 text-[12px] font-medium leading-[1.6] sm:text-[13px]`}
-                  style={{
-                    color: cardTheme.text,
-                    opacity: 0.65,
-                    display: '-webkit-box',
-                    WebkitLineClamp: 5,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                  }}
+                  style={{ color: cardTheme.text, opacity: 0.65 }}
                 >
                   {activeProject!.description}
                 </p>
@@ -1273,99 +1364,13 @@ export default function AnalyseInstitutionnelleClient() {
                 </div>
                 </div>
 
-                {/* CTA */}
-                <div className="flex justify-end">
-                  <Link
-                    href="/contact"
-                    onClick={closePanel}
-                    className={`${geist.className} inline-flex items-center gap-[6px] rounded-full px-5 py-[10px] text-[12px] font-semibold shadow-sm transition hover:opacity-90`}
-                    style={{ background: cardTheme.btnBg, color: cardTheme.btnText }}
-                  >
-                    More Like This
-                    <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
-                      <path d="M3.75 9H14.25M14.25 9L10.5 5.25M14.25 9L10.5 12.75" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </Link>
-                </div>
               </div>
             </div>
           </div>
         , document.body)}
       </section>
 
-      <section
-        id="contenu-associe"
-        className="relative z-[60] w-full scroll-mt-28 bg-white py-10 sm:py-12 md:py-16 lg:min-h-[681px] lg:py-[86px]"
-      >
-        <div className="mx-auto w-full max-w-[2163px] px-5 sm:px-6 md:px-10 lg:px-[60px]">
-          <div className="mx-auto flex w-full max-w-[2043px] flex-col gap-6 sm:gap-8 lg:gap-[44px]">
-            <div className="flex flex-col gap-5 sm:gap-7 lg:h-[52px] lg:flex-row lg:items-center lg:justify-between lg:gap-[301px]">
-              <h2 className={`${geist.className} text-[24px] font-medium leading-[1] text-black/80 sm:text-[32px] md:text-[40px]`}>
-                Contenu associ&eacute;
-              </h2>
-
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:h-[52px] lg:gap-4">
-                {relatedCategories.map((category) => (
-                  <button
-                    key={category.label}
-                    type="button"
-                    className={`${geist.className} inline-flex h-[40px] items-center justify-center rounded-[160px] px-5 text-[14px] leading-[23px] transition sm:h-[46px] sm:px-6 sm:text-[16px] md:h-[52px] md:text-[20px] lg:${category.widthClass} ${
-                      category.active
-                        ? 'bg-[#BBCB2E] font-bold text-[#003300]/70'
-                        : 'bg-[rgba(187,203,46,0.2)] font-medium text-[#003300]/50'
-                    }`}
-                  >
-                    {category.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div className="flex gap-3 sm:gap-4 lg:gap-[20.24px]">
-                {relatedCards.map((card) => {
-                  const imageOnlyDesktopWidth =
-                    card.title === 'CSR en Tunisie : cadre réglementaire' ? 'lg:w-[391.6px]' : 'lg:w-[392.61px]';
-
-                  return (
-                    <div
-                      key={card.title}
-                      className={`relative h-[280px] w-[250px] shrink-0 sm:h-[340px] sm:w-[300px] md:h-[400px] md:w-[350px] lg:h-[447.25px] ${imageOnlyDesktopWidth}`}
-                    >
-                      <Image
-                        src={card.src}
-                        alt={card.title}
-                        fill
-                        sizes="(max-width: 640px) 250px, (max-width: 768px) 300px, (max-width: 1024px) 350px, 392px"
-                        className="object-cover"
-                      />
-                    </div>
-                  );
-                })}
-
-                <div className="h-[280px] w-[250px] shrink-0 rounded-[16px] bg-[#D9D9D9] sm:h-[340px] sm:w-[300px] sm:rounded-[18px] md:h-[400px] md:w-[350px] lg:h-[447.25px] lg:w-[392.61px] lg:rounded-[20.2377px]" />
-              </div>
-            </div>
-
-            <div className="flex items-center gap-[15px]">
-              <button
-                type="button"
-                aria-label="Precedent"
-                className="inline-flex h-[36px] w-[36px] items-center justify-center rounded-full bg-[#F1F5D5] sm:h-[40px] sm:w-[40px] md:h-[44px] md:w-[44px]"
-              >
-                <span className="inline-block h-[10px] w-[10px] border-b-[2.5px] border-l-[2.5px] border-[#003300] rotate-45 sm:h-[12px] sm:w-[12px] sm:border-b-[3px] sm:border-l-[3px]" />
-              </button>
-              <button
-                type="button"
-                aria-label="Suivant"
-                className="inline-flex h-[36px] w-[36px] items-center justify-center rounded-full bg-[#BBCB2E] sm:h-[40px] sm:w-[40px] md:h-[44px] md:w-[44px]"
-              >
-                <span className="inline-block h-[10px] w-[10px] border-b-[2.5px] border-l-[2.5px] border-[#003300] -rotate-[135deg] sm:h-[12px] sm:w-[12px] sm:border-b-[3px] sm:border-l-[3px]" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <RelatedContent />
 
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">

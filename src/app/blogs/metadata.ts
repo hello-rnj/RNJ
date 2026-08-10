@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Blog juridique et stratégique | RNJ Advisory',
+  title: 'Blog juridique et stratégique',
   description:
     'Analyses et insights RNJ Advisory sur la conformité réglementaire, le droit des affaires, l’ESG, la stratégie et les marchés en Belgique et à l’international.',
   alternates: {
     canonical: '/blogs',
   },
   openGraph: {
+    images: ['/opengraph-image.png'],
     title: 'Blog RNJ Advisory | Juridique, conformité et stratégie',
     description:
       'Découvrez nos publications sur les enjeux juridiques, réglementaires, ESG et stratégiques.',

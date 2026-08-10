@@ -3,13 +3,14 @@ import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 import ConseilJuridiqueClient from './ConseilJuridiqueClient';
 
 export const metadata: Metadata = {
-  title: 'Conseil juridique | RNJ Advisory',
+  title: 'Conseil juridique et réglementaire',
   description:
     "RNJ Advisory accompagne les entreprises, les institutions et les organisations dans leurs enjeux juridiques, réglementaires et stratégiques : droit des affaires, conformité réglementaire, contrats et gouvernance.",
   alternates: {
     canonical: '/services/conseil-juridique',
   },
   openGraph: {
+    images: ['/opengraph-image.png'],
     title: 'Conseil juridique | RNJ Advisory',
     description:
       "Sécurisez vos décisions. Accélérez vos projets. Un accompagnement juridique, réglementaire et stratégique fondé sur l'expertise et la confiance.",
@@ -26,7 +27,6 @@ export default function ConseilJuridiquePage() {
       <BreadcrumbStructuredData
         items={[
           { name: 'Accueil', item: 'https://rnj-advisory.be/' },
-          { name: 'Services', item: 'https://rnj-advisory.be/services' },
           {
             name: 'Conseil juridique',
             item: 'https://rnj-advisory.be/services/conseil-juridique',

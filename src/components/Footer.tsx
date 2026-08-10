@@ -9,36 +9,35 @@ const footerColumns = [
     items: ['Accueil', 'À propos', 'Notre approche'],
   },
   {
+    /* La colonne listait quatre intitules dont trois pointaient tous vers la
+       meme page /services. Elle mene desormais aux trois pages de services. */
     title: 'Expertise',
     items: [
-      'Conseil stratégique',
-      'Analyse institutionnelle',
-      'Conformité réglementaire',
-      "Structuration d'entreprise",
+      "Création d'entreprise",
+      'Accompagnement juridique',
+      'Accélérer mon business',
     ],
   },
   {
     title: 'Publications',
-    items: ['Articles'],
+    items: ['Blog'],
   },
 ];
 
 const socialIcons = [
-  { name: 'Instagram', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677785/rnj/mask-group-23-1ce30be9.png' },
-  { name: 'LinkedIn', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677785/rnj/mask-group-24-fd4f223e.png' },
-  { name: 'Telegram', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677786/rnj/mask-group-25-516d2f88.png' },
-  { name: 'Twitter', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677787/rnj/mask-group-26-a7a619cb.svg' },
-  { name: 'Facebook', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677788/rnj/mask-group-27-5870749d.png' },
+  { name: 'Instagram', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677785/rnj/mask-group-23-1ce30be9.png', href: 'https://instagram.com' },
+  { name: 'LinkedIn', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677785/rnj/mask-group-24-fd4f223e.png', href: 'https://www.linkedin.com/company/84297679/' },
+  { name: 'Facebook', src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677788/rnj/mask-group-27-5870749d.png', href: 'https://www.facebook.com/Nahlaaschijelalia/' },
 ];
 
 const footerItemLinks: Record<string, string> = {
   Accueil: '/',
   'À propos': '/a-propos',
   'Notre approche': '/a-propos#approche',
-  'Conseil stratégique': '/services',
-  'Analyse institutionnelle': '/services/analyse-institutionnelle',
-  'Conformité réglementaire': '/services',
-  "Structuration d'entreprise": '/services',
+  "Création d'entreprise": '/services/creation-entreprise',
+  'Accompagnement juridique': '/services/conseil-juridique',
+  'Accélérer mon business': '/services/accelerer-mon-business',
+  Blog: '/blogs',
 };
 
 type FooterProps = {
@@ -85,33 +84,33 @@ export default function Footer({ showTopRow = true }: FooterProps) {
         <div className="rounded-[29.9802px] bg-[rgba(0,0,0,0.17)] p-5 shadow-[1.99868px_3.99736px_39.5738px_rgba(0,0,0,0.69)] backdrop-blur-[10px] backdrop-saturate-150 sm:p-7 md:p-9 lg:min-h-[552.63px] lg:px-[34.98px] lg:pb-[39px] lg:pt-[85.94px]">
           <div className="flex h-full flex-col gap-10 lg:gap-12">
             <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
-              <div className="flex max-w-[351.77px] flex-col gap-[29.98px]">
+              <div className="flex max-w-[352px] flex-col gap-[30px]">
                 <Image src="/optimized/minimal horizontal logo white 1.png"
                   alt="Logo RNJ Advisory"
                   width={233}
                   height={58}
-                  className="h-auto w-[180px] sm:w-[232.85px]"
+                  className="h-auto w-[180px] sm:w-[233px]"
                  priority/>
-                <p className="font-[Geist] text-[15.9894px] font-medium leading-[16px] text-white opacity-50">
+                <p className="font-[Geist] text-[16px] font-medium leading-4 text-white opacity-50">
                   Cabinet de conseil stratégique et réglementaire accompagnant acteurs publics,
                   entreprises privées et investisseurs dans la sécurisation de leurs projets et la
                   maîtrise des environnements institutionnels complexes.
                 </p>
               </div>
 
-              <div className="grid w-full max-w-[915.39px] grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3 xl:gap-[19.99px]">
+              <div className="grid w-full max-w-[916px] grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-8 xl:grid-cols-4 xl:gap-5">
                 {footerColumns.map((column) => (
-                  <div key={column.title} className="flex flex-col gap-6">
-                    <span className="font-[Geist] text-[19.9868px] font-semibold leading-[16px] text-white">
+                  <div key={column.title} className="flex flex-col gap-4 sm:gap-6">
+                    <h3 className="font-[Geist] text-[20px] font-semibold leading-4 text-white">
                       {column.title}
-                    </span>
-                    <div className="flex flex-col items-start gap-[16.99px]">
+                    </h3>
+                    <div className="flex flex-col items-start gap-[6px] sm:gap-[17px]">
                       {column.items.map((item) => {
                         const href = footerItemLinks[item];
                         const content = (
                           <>
-                            <div className="h-[6px] w-[6px] rounded-full bg-white" />
-                            <span className="font-[Geist] text-[15.9894px] font-medium leading-[16px] text-white opacity-80">
+                            <span className="h-[6px] w-[6px] rounded-full bg-white" aria-hidden="true" />
+                            <span className="whitespace-nowrap font-[Geist] text-[16px] font-medium leading-4 text-white opacity-80">
                               {item}
                             </span>
                           </>
@@ -122,7 +121,7 @@ export default function Footer({ showTopRow = true }: FooterProps) {
                             <Link
                               key={item}
                               href={href}
-                              className="flex items-center gap-[13.99px] text-left transition-opacity hover:opacity-100"
+                              className="flex items-center gap-[8px] text-left transition-opacity hover:opacity-100 sm:gap-[14px]"
                             >
                               {content}
                             </Link>
@@ -133,7 +132,7 @@ export default function Footer({ showTopRow = true }: FooterProps) {
                           <button
                             key={item}
                             type="button"
-                            className="flex items-center gap-[13.99px] text-left transition-opacity hover:opacity-100"
+                            className="flex items-center gap-[8px] text-left transition-opacity hover:opacity-100 sm:gap-[14px]"
                           >
                             {content}
                           </button>
@@ -145,45 +144,71 @@ export default function Footer({ showTopRow = true }: FooterProps) {
               </div>
             </div>
 
-            <div className="mt-10 flex w-full flex-col items-center gap-6 md:flex-row md:items-center md:justify-between md:gap-8 lg:mt-auto lg:pt-8 lg:gap-[214.86px]">
+            {/* Rangee du bas, au style de la page d'accueil : icones sociales
+                cerclees a gauche, coordonnees a droite, et le copyright seul sur
+                sa propre ligne en dessous. Le sortir de la rangee evite qu'il
+                dispute la largeur aux trois coordonnees, ce qui cassait le
+                telephone et l'e-mail sur plusieurs lignes. */}
+            <div className="flex flex-col gap-5 pt-5 lg:flex-row lg:items-end lg:justify-between">
               {/* Frame 334 — social icons */}
-              <div className="flex flex-row flex-wrap items-center justify-center gap-[14px] sm:gap-[19.99px]">
+              <div className="flex flex-nowrap items-center justify-center gap-[12px] sm:gap-[14px]">
                 {socialIcons.map((social) => (
-                  <div key={social.name} className="relative h-[29.2px] w-[29.2px] overflow-hidden rounded-full">
-                    <Image src={social.src} alt={social.name} fill className="object-contain" />
-                  </div>
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative flex h-[40px] w-[40px] shrink-0 items-center justify-center overflow-hidden rounded-full border-[1.5px] border-white/20 transition-all duration-200 hover:border-white/40 hover:bg-white/5 sm:h-[44px] sm:w-[44px]"
+                    aria-label={social.name}
+                  >
+                    <Image src={social.src} alt={social.name} fill sizes="44px" loading="lazy" className="object-contain p-[8px]" unoptimized />
+                  </a>
                 ))}
               </div>
 
-              {/* Frame 345 — contact + copyright row */}
-              <div className="flex w-full flex-col items-center gap-4 md:w-auto md:flex-row md:items-end md:justify-end md:gap-8 lg:gap-[141.91px]">
-                {/* Frame 336 — phone + email */}
-                <div className="flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-5 lg:gap-[77.95px]">
-                  {/* Frame 201 — phone */}
-                  <div className="flex flex-row items-center gap-[19.99px]">
-                    <div className="relative h-[22px] w-[21.92px] shrink-0">
-                      <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-27-a0d86191.png" alt="Téléphone" fill className="object-contain"  loading="lazy"/>
-                    </div>
-                    <span className="font-[Geist] text-[13px] font-medium leading-[19px] tracking-[0.04em] text-white sm:text-[14px] sm:leading-[20px] lg:text-[15.3604px] lg:leading-[21px] lg:tracking-[0.05em] whitespace-nowrap">
-                      +32 474 03 22 66
-                    </span>
+              {/* Frame 336 — telephone + e-mail + adresse */}
+              <div className="flex w-full flex-col items-center gap-3 whitespace-nowrap sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-8 sm:gap-y-3 lg:flex-nowrap lg:gap-x-[40px]">
+                <div className="flex items-center gap-5">
+                  <div className="relative h-[22px] w-[22px] shrink-0">
+                    <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-27-a0d86191.png" alt="Téléphone" fill className="object-contain" loading="lazy"/>
                   </div>
-                  {/* Frame 202 — email */}
-                  <div className="flex max-w-full flex-row items-center gap-[12px] sm:gap-[19.99px]">
-                    <div className="relative h-[15.47px] w-[22px] shrink-0">
-                      <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-26-33e2a54e.png" alt="E-mail" fill className="object-contain"  loading="lazy"/>
-                    </div>
-                    <span className="break-words text-center font-[Geist] text-[13px] font-medium leading-[19px] tracking-[0.04em] text-white sm:text-left sm:text-[14px] sm:leading-[20px] lg:text-[15.3604px] lg:leading-[21px] lg:tracking-[0.05em]">
-                      info@rnj-advisory.be
-                    </span>
-                  </div>
+                  <span className="font-[Geist] text-[13px] font-medium leading-[18px] tracking-[0.03em] text-white sm:text-[15.37px] sm:leading-[21px] sm:tracking-[0.05em]">
+                    +32 474 03 22 66
+                  </span>
                 </div>
-                {/* Copyright */}
-                <span className="max-w-full text-center font-[Geist] text-[12px] font-medium leading-[18px] text-white opacity-50 sm:text-[13px] sm:leading-[19px] md:text-right lg:text-[15.3604px] lg:leading-[21px] lg:whitespace-nowrap">
-                  © 2026 RNJ Advisory. Tous droits réservés.
-                </span>
+
+                <div className="flex items-center gap-5">
+                  <div className="relative h-[15.47px] w-[22px] shrink-0">
+                    <Image src="https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677789/rnj/layer-1-26-33e2a54e.png" alt="E-mail" fill className="object-contain" loading="lazy"/>
+                  </div>
+                  <span className="text-center font-[Geist] text-[13px] font-medium leading-[18px] tracking-[0.03em] text-white sm:text-left sm:text-[15.37px] sm:leading-[21px] sm:tracking-[0.05em]">
+                    info@rnj-advisory.be
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-5">
+                  <div className="relative h-[22px] w-[18.76px] shrink-0">
+                    <Image src="/optimized/localisation%20icon.svg" alt="Adresse" fill className="object-contain [filter:brightness(0)_saturate(100%)_invert(100%)]" loading="lazy"/>
+                  </div>
+                  <span className="flex items-center gap-2 text-center font-[Geist] text-[13px] font-medium leading-[18px] tracking-[0.03em] text-white sm:text-left sm:text-[15.37px] sm:leading-[21px] sm:tracking-[0.05em] lg:whitespace-nowrap">
+                    Avenue Louise 500, Ixelles Bruxelles Belgique
+                    <Image
+                      src="/optimized/be-flag.png"
+                      alt=""
+                      aria-hidden
+                      width={38}
+                      height={44}
+                      unoptimized
+                      className="inline-block h-auto w-[20px] shrink-0"
+                    />
+                  </span>
+                </div>
               </div>
             </div>
+
+            <span className="block pt-4 text-center font-[Geist] text-[12px] font-medium leading-[18px] text-white opacity-50 sm:text-[15.37px] sm:leading-[21px]">
+              © 2026 RNJ Advisory. Tous droits réservés.
+            </span>
           </div>
         </div>
       </div>

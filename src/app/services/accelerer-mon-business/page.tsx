@@ -3,13 +3,14 @@ import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 import AccelererMonBusinessClient from './AccelererMonBusinessClient';
 
 export const metadata: Metadata = {
-  title: 'Accélérer mon business & Recruter | RNJ Advisory',
+  title: 'Accélérer mon business & recruter',
   description:
     "RNJ Advisory accompagne les entreprises dans leur développement stratégique : expansion internationale, recrutement de talents et partenariats stratégiques.",
   alternates: {
     canonical: '/services/accelerer-mon-business',
   },
   openGraph: {
+    images: ['/opengraph-image.png'],
     title: 'Accélérer mon business & Recruter | RNJ Advisory',
     description:
       "Chaque ambition mérite une stratégie adaptée. Nous accompagnons votre développement avec une expertise qui allie vision, structuration et accompagnement durable.",
@@ -26,7 +27,6 @@ export default function AccelererMonBusinessPage() {
       <BreadcrumbStructuredData
         items={[
           { name: 'Accueil', item: 'https://rnj-advisory.be/' },
-          { name: 'Services', item: 'https://rnj-advisory.be/services' },
           {
             name: 'Accélérer mon business & Recruter',
             item: 'https://rnj-advisory.be/services/accelerer-mon-business',

@@ -1,5 +1,6 @@
 'use client';
 
+import { partnerAssetLogos, logoHeightFactor, logoScrollSeconds, LOGO_WHITE_FILTER } from '@/data/partnerLogos';
 import { EB_Garamond, Poppins } from 'next/font/google';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -81,19 +82,6 @@ const teamMembers = [
   },
 ];
 
-const partnerAssetLogos = [
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678791/rnj/asset-14-1-cda0f5e7.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678792/rnj/asset-15-1-7f0249bf.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679416/rnj/asset-17-1-5077f95f.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678793/rnj/asset-22-1-ac5775de.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678793/rnj/asset-23-1-9c5664dc.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678793/rnj/asset-24-1-1c05ea09.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678794/rnj/asset-26-1-3d6250e2.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779678795/rnj/asset-27-1-8679f4ab.png',
-  'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779679414/rnj/asset-28-1-d6d25061.png',
-  '/optimized/Layer 1 (22).png',
-  '/optimized/Layer 1 (23).png',
-] as const;
 
 const approachSteps = [
   {
@@ -158,6 +146,50 @@ export default function AboutPage() {
             Sécuriser leurs projets et structurer leur croissance, c’est permettre à nos clients d’évoluer avec
             confiance dans des environnements juridiques et réglementaires complexes.
           </p>
+        </div>
+
+        {/* Bande de logos (Figma Frame 16), sur le fond noir voulu par le Figma :
+            logos blancs a opacity 0.6, padding vertical 26.662px, gap 82.53px,
+            hauteur de rangee 114.75 - 2x26.662 = 61.43px. Ces valeurs sont les
+            bornes hautes des clamp, le rendu est donc exact des que la page a la
+            largeur du Frame.
+            Le defilement s'impose : les 40 logos depassent tres largement les
+            1559,76px du Frame, une rangee figee deborderait.
+            La liste, les largeurs proportionnelles et la duree viennent de
+            `@/data/partnerLogos`, partages avec la page d'accueil. */}
+        {/* Pleine largeur : les marges negatives annulent le `px-4 / sm:px-6 /
+            lg:px-8` de la section, pour que la bande aille d'un bord a l'autre
+            de l'ecran au lieu de s'arreter a 1559,76px. */}
+        <div className="-mx-4 mt-12 py-[clamp(14px,2vw,26.662px)] sm:-mx-6 lg:-mx-8" style={{ opacity: 0.6 }}>
+          <div className="relative overflow-hidden">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-black to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-black to-transparent" />
+            <div
+              className="flex w-max items-center"
+              style={{ animation: `scroll ${logoScrollSeconds}s linear infinite`, willChange: 'transform' }}
+            >
+              {[...partnerAssetLogos, ...partnerAssetLogos].map((logo, index) => (
+                <div
+                  key={`partner-asset-logo-about-${index}-${logo.src}`}
+                  className="relative w-auto shrink-0 mr-[clamp(28px,5.5vw,82.53px)]"
+                  style={{
+                    aspectRatio: String(logo.ratio),
+                    height: `calc(clamp(34px, 4.9vw, 61.43px) * ${logoHeightFactor(logo).toFixed(3)})`,
+                  }}
+                >
+                  <Image
+                    src={logo.src}
+                    alt={`Logo partenaire ${index % partnerAssetLogos.length + 1}`}
+                    fill
+                    sizes="203px"
+                    loading="lazy"
+                    unoptimized={logo.src.endsWith('.svg')}
+                    className={`object-contain ${LOGO_WHITE_FILTER}`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -239,45 +271,6 @@ export default function AboutPage() {
                   <p className="max-w-[335px] font-[Geist] text-[13px] font-medium leading-[17px] text-black/50">{step.description}</p>
                 </article>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative z-[2] w-full bg-[#BBCB2E] py-3 sm:py-3 md:py-4">
-        <div className="w-full px-0">
-          <div className="relative min-h-[54px] overflow-hidden sm:min-h-[58px] md:min-h-[66px] lg:min-h-[74px]">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-r from-[#BBCB2E] to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-[clamp(24px,6vw,80px)] bg-gradient-to-l from-[#BBCB2E] to-transparent" />
-
-            {/* Left-anchored track with per-item right margin instead of a
-                centered track + flex gap — same seamless-loop setup as the
-                homepage band. A centered track slides its right edge into
-                view mid-animation (empty right half at the wrap), and a flex
-                gap gives 2N-1 gaps for a doubled N-item track so -50% lands
-                half a gap short. */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2">
-              <div
-                className="flex w-max items-center"
-                style={{
-                  animation: 'scroll 26s linear infinite',
-                  willChange: 'transform',
-                }}
-              >
-                {[...partnerAssetLogos, ...partnerAssetLogos].map((logo, index) => (
-                  <div
-                    key={`partner-asset-logo-about-${index}-${logo}`}
-                    className="relative h-[clamp(30px,4.6vw,52px)] w-[clamp(108px,15vw,190px)] shrink-0 mr-[clamp(24px,4.5vw,73px)]"
-                  >
-                    <Image
-                      src={logo}
-                      alt={`Logo partenaire ${index % partnerAssetLogos.length + 1}`}
-                      fill
-                      className="object-contain [filter:brightness(0)_saturate(100%)_invert(100%)]"
-                    />
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </div>

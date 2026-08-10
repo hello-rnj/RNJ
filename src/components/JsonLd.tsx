@@ -26,10 +26,12 @@ export default function JsonLd() {
       contactType: 'customer service',
       availableLanguage: ['French', 'English', 'Arabic'],
     },
+    /* `sameAs` sert a Google pour rattacher le site a des profils officiels : un
+       profil inexistant affaiblit le signal. twitter.com/rnjadvisory repondait
+       404, il a donc ete retire. */
     sameAs: [
-      'https://linkedin.com/company/rnj-advisory',
-      'https://twitter.com/rnjadvisory',
-      'https://facebook.com/rnjadvisory',
+      'https://www.linkedin.com/company/84297679/',
+      'https://www.facebook.com/Nahlaaschijelalia/',
     ],
     areaServed: [
       {

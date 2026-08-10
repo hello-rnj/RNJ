@@ -10,13 +10,32 @@ const SERVICES_LINKS = [
   { label: 'Accélérer mon business', href: '/services/accelerer-mon-business' },
 ];
 
-export default function Navbar({ dark = false, glass = false }: { dark?: boolean; glass?: boolean }) {
+export default function Navbar({
+  dark = false,
+  glass = false,
+  glassText = 'light',
+  logo,
+}: {
+  dark?: boolean;
+  glass?: boolean;
+  glassText?: 'light' | 'dark';
+  /** Force la version du logo, independamment de la couleur du texte. */
+  logo?: 'light' | 'dark';
+}) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
-  const navBg   = glass ? 'rgba(247, 252, 255, 0.1)' : dark ? '#002600' : '#F7FCFF';
-  const textCol = dark || glass ? '#FFFFFF' : '#003300';
+  // The glass panel is translucent, so the copy has to follow the hero showing through
+  // it: white over the dark heroes, dark green over a pale one (creation-entreprise).
+  const onLightGlass = glass && glassText === 'dark';
+  // Voile du panneau en verre ramene de 0.1 a 0.04 : le fond de la page transparait
+  // davantage. Attention, l'essentiel de l'effet « opaque » vient du flou ci-dessous,
+  // pas de cette teinte.
+  const navBg   = glass ? 'rgba(247, 252, 255, 0.04)' : dark ? '#002600' : '#F7FCFF';
+  const textCol = onLightGlass ? '#003300' : dark || glass ? '#FFFFFF' : '#003300';
+  // Par defaut le logo suit la couleur du texte ; `logo` permet de le forcer.
+  const useLightLogo = logo ? logo === 'light' : glass && !onLightGlass;
   const glassPanel = glass
     ? { border: '1px solid rgba(255, 255, 255, 0.34)', backdropFilter: 'blur(49.2px)', WebkitBackdropFilter: 'blur(49.2px)' }
     : {};
@@ -42,7 +61,7 @@ export default function Navbar({ dark = false, glass = false }: { dark?: boolean
         }}
       >
         <Link href="/" className="flex min-w-0 items-center gap-2 md:gap-2.5">
-          {glass ? (
+          {useLightLogo ? (
             <Image
               src="/optimized/Group (11).png"
               alt="RNJ Advisory"
@@ -53,26 +72,20 @@ export default function Navbar({ dark = false, glass = false }: { dark?: boolean
               unoptimized
             />
           ) : (
-            <>
-              <Image
-                src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672853/rnj/layer-4-955dc651.png"
-                alt="Logo icon"
-                width={32}
-                height={34}
-                className="h-[30px] w-[28px] sm:h-[34px] sm:w-[32px] md:h-[41px] md:w-[39px]"
-                priority
-                unoptimized
-              />
-              <Image
-                src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672854/rnj/group-73892e5a.png"
-                alt="Logo text"
-                width={162}
-                height={43}
-                className="h-auto w-[110px] sm:w-[150px] md:w-[162px]"
-                priority
-                unoptimized
-              />
-            </>
+            /* Logo fonce, recolore en #0E434F. Le fichier d'origine etait un
+               aplat vert #003300 : on l'a recolore en preservant la couche alpha,
+               a partir de la version 319x79 plutot que du 180x45 — le logo est
+               affiche jusqu'a 180 px de large, la source la plus fine reste donc
+               nette sur les ecrans a haute densite. */
+            <Image
+              src="/optimized/rnj-logo-navbar-blue.png"
+              alt="RNJ Advisory"
+              width={319}
+              height={79}
+              className="h-auto w-[130px] sm:w-[160px] md:w-[180px]"
+              priority
+              unoptimized
+            />
           )}
         </Link>
 
@@ -160,23 +173,34 @@ export default function Navbar({ dark = false, glass = false }: { dark?: boolean
             height={30}
             className="h-[26px] w-[18px] object-contain 2xl:h-[30px] 2xl:w-[20px]"
             loading="lazy"/>
+          {/* Ce bouton pointait vers /a-propos, en doublon du lien texte
+              « À propos » juste au-dessus. Il mene desormais au blog, qui
+              n'etait accessible depuis aucune entree de navigation. */}
           <Link
-            href="/a-propos"
+            href="/blogs"
             className="flex h-[39px] items-center justify-center rounded-[10px] border-[1.5px] px-4 text-center font-[Geist] text-[14px] font-semibold transition 2xl:h-[41px] 2xl:px-[17px] 2xl:text-[15px]"
             style={{ borderColor: textCol, color: textCol }}
           >
-            À propos
+            Blog
           </Link>
 
+          {/* Group 349012 du Figma : 100x41, rayon 10px. Le fond n'est pas un
+              aplat `#003300` mais un degrade d'ellipses floutees, fourni en image
+              (`Group 17.png`, deja aux cotes exactes du bouton). Elle est posee en
+              couche de fond, le libelle restant au-dessus. */}
           <Link
             href="/contact"
-            className="flex h-[41px] w-[100px] items-center justify-center rounded-[10px] px-4 text-center font-[Geist] text-[15.0249px] font-extrabold leading-[17px] text-white transition hover:opacity-90 relative overflow-hidden"
-            style={{
-              backgroundImage: "url('https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672854/rnj/group-349012-8572149e.png')",
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
+            className="relative flex h-[41px] w-[100px] items-center justify-center overflow-hidden rounded-[10px] bg-[#003300] px-4 text-center font-[Geist] text-[15.0249px] font-extrabold leading-[17px] text-white transition hover:opacity-90"
           >
+            <Image
+              src="/optimized/Group 17.png"
+              alt=""
+              aria-hidden
+              fill
+              sizes="100px"
+              className="object-cover"
+              unoptimized
+            />
             <span className="relative z-10">Contact</span>
           </Link>
         </div>
@@ -282,22 +306,19 @@ export default function Navbar({ dark = false, glass = false }: { dark?: boolean
             </Link>
 
             <div className="mt-2 flex flex-col gap-3">
+              {/* Idem version desktop : ce bouton doublait le lien texte
+                  « À propos » et mene maintenant au blog. */}
               <Link
-                href="/a-propos"
+                href="/blogs"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full rounded-xl border-[1.5px] py-3 text-center font-[Geist] font-semibold"
                 style={{ color: textCol, borderColor: textCol }}
               >
-                À propos
+                Blog
               </Link>
               <Link
                 href="/contact"
-                className="w-full rounded-xl py-3 text-center font-[Geist] font-extrabold text-white transition hover:opacity-90 relative overflow-hidden"
-                style={{
-                  backgroundImage: "url('https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672854/rnj/group-349012-8572149e.png')",
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
+                className="w-full rounded-xl bg-[#003300] py-3 text-center font-[Geist] font-extrabold text-white transition hover:opacity-90 relative overflow-hidden"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <span className="relative z-10">Contact</span>

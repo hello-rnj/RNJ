@@ -2,9 +2,9 @@
 
 import { FormEvent, useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowLeft, CalendarDays, CheckCircle2, Download, Home, XCircle } from 'lucide-react';
 import { EB_Garamond, Geist, Poppins } from 'next/font/google';
-import Navbar from '@/components/Navbar';
 import { BOOKING_FEE_LABEL } from '@/lib/booking';
 
 const ebGaramond = EB_Garamond({
@@ -1014,16 +1014,32 @@ export default function ContactPageClient({
   return (
     <>
       <main
-        className={`relative min-h-screen w-full overflow-x-hidden bg-[#BBCB2E] bg-cover bg-center bg-no-repeat ${
+        /* Group 391 du Figma : fond `#BBCB2E` surmonte du degrade
+           `Mask group (35).png` sur l'ecran d'accueil ET sur le formulaire de
+           message, qui partagent la meme carte blanche posee dessus. Seul le
+           tunnel de rendez-vous (`booking`) reste sur fond blanc.
+           La couleur reste en dessous : elle couvre le temps du chargement de
+           l'image et deborde si le cadrage ne remplit pas tout. */
+        className={`relative min-h-screen w-full overflow-x-hidden bg-[#BBCB2E] ${
           showSuccessModal ? 'pointer-events-none select-none' : ''
         }`}
-        style={{
-          backgroundImage:
-            'url("https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_800,h_600,c_limit/v1778032115/Group_391_euee0h.png")',
-        }}
       >
+        {/* Passe par next/image plutot qu'un `background-image` : le fichier pese
+            1,9 Mo, et il est ainsi reencode en WebP/AVIF a la taille de l'ecran. */}
+        <Image
+            src="/optimized/Mask group (35).png"
+            alt=""
+            aria-hidden
+            fill
+            priority
+            sizes="100vw"
+            className="pointer-events-none absolute inset-0 z-0 select-none object-cover"
+        />
+
         <div className="relative z-10">
-          <Navbar />
+          {/* Pas de barre de navigation sur cette page : le parcours de contact est
+              un tunnel en plusieurs etapes, avec ses propres boutons « Retour ».
+              La navigation principale reste accessible depuis le pied de page. */}
 
           {paymentNotice ? (
             <section className="relative z-20 px-4 pt-6 sm:px-6">
@@ -1056,7 +1072,7 @@ export default function ContactPageClient({
           <section className={`relative w-full overflow-hidden px-4 sm:px-6 ${view === 'initial' ? 'flex min-h-[calc(100vh-64px)] items-center justify-center py-10 sm:py-14' : 'h-0 p-0'}`}>
             <div className="relative z-10 flex w-full flex-col items-center">
               <div
-                className={`flex w-full max-w-[604px] flex-col items-center justify-center gap-[8px] rounded-[22px] bg-white px-5 py-8 shadow-[0px_3.42px_48px_rgba(0,0,0,0.25)] transition-all duration-700 ease-in-out sm:gap-[8.56px] sm:rounded-[32px] sm:px-8 sm:py-12 md:rounded-[42.78px] md:px-12 md:py-14 ${
+                className={`flex w-full max-w-[604px] flex-col items-center justify-center gap-[40px] rounded-[22px] bg-white px-5 py-8 shadow-[0px_3.42px_48px_rgba(0,0,0,0.25)] transition-all duration-700 ease-in-out sm:gap-[60px] sm:rounded-[32px] md:gap-[80px] sm:px-8 sm:py-12 md:rounded-[42.78px] md:px-12 md:py-14 ${
                   view === 'initial'
                     ? 'translate-x-0 opacity-100'
                     : '-translate-x-[200%] absolute opacity-0 pointer-events-none'
@@ -1064,12 +1080,16 @@ export default function ContactPageClient({
               >
                 <div className="flex flex-col items-center justify-center gap-[40px] sm:gap-[55px] md:gap-[68.45px]">
                   <div className="flex flex-col items-center justify-center gap-[18px] sm:gap-[22px] md:gap-[27.38px]">
-                    <Image src="/optimized/minimal horizontal logo white 1.png"
-                      alt="RNJ Advisory"
-                      width={199}
-                      height={49}
-                      className="h-auto w-[100px] brightness-0 sm:w-[140px] md:w-[199px]"
-                     priority/>
+                    {/* La barre de navigation est masquee sur cette page : le logo
+                        sert de retour vers l'accueil. */}
+                    <Link href="/" aria-label="Retour a l'accueil RNJ Advisory" className="transition hover:opacity-80">
+                      <Image src="/optimized/Group (13).png"
+                        alt="RNJ Advisory"
+                        width={199}
+                        height={49}
+                        className="h-auto w-[100px] sm:w-[140px] md:w-[199px]"
+                       priority/>
+                    </Link>
                     <h1
                       className={`${ebGaramond.className} max-w-[465px] text-center font-normal leading-[0.8] text-[#003300]`}
                       style={{ fontSize: 'clamp(28px, 8vw, 82.14px)' }}
@@ -1096,7 +1116,7 @@ export default function ContactPageClient({
                   <button
                     type="button"
                     onClick={() => openMessageView(undefined, { mode: 'contact', preferredDate: null })}
-                    className={`${poppins.className} flex h-[52px] w-full items-center justify-center rounded-[59.89px] bg-[#406640] text-[15px] font-medium text-[#BFCCBF] transition hover:opacity-90 sm:h-[64px] sm:text-[17px] md:h-[88.12px] md:text-[20.53px]`}
+                    className={`${poppins.className} flex h-[52px] w-full items-center justify-center rounded-[59.89px] bg-[#003300] text-[15px] font-medium text-[#BFCCBF] transition hover:opacity-90 sm:h-[64px] sm:text-[17px] md:h-[88.12px] md:text-[20.53px]`}
                   >
                     Message
                   </button>
@@ -1107,45 +1127,75 @@ export default function ContactPageClient({
 
 
           {view === 'booking' ? (
-            <section className="relative z-20 flex min-h-screen w-full items-center justify-center px-3 py-6 sm:px-6 md:py-12">
+            <section
+              /* Le fond de l'etape 2 est porte ici et non par le bloc interne :
+                 c'est le seul ancetre pleine largeur et `min-h-screen`. Plus bas,
+                 le `px-3/sm:px-6` de cette section et le `max-w-[1512px]` du
+                 conteneur du carrousel empechent toute image d'atteindre les bords.
+                 Un `w-screen` avec marge negative sur l'element du carrousel est
+                 exclu : la piste est en flex et se decalerait. */
+              className="relative z-20 flex min-h-screen w-full items-center justify-center bg-cover bg-center bg-no-repeat px-3 py-6 sm:px-6 md:py-12"
+              style={
+                bookingStep === 2
+                  ? {
+                      backgroundImage:
+                        'url("https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779671231/rnj/optimized/group-349091-1-144384f9.svg")',
+                    }
+                  : undefined
+              }
+            >
+              {/* `overflow-hidden` : la piste ci-dessous se contente de translater
+                  les diapositives hors du cadre, elle ne les demonte pas. Sans
+                  decoupe, l'etape voisine reste visible sur les cotes — la carte
+                  blanche de l'etape 1 debordait a gauche pendant l'etape 2. */}
               <div
-                className="relative mx-auto w-full max-w-[1512px]"
+                className="relative mx-auto w-full max-w-[1512px] overflow-hidden"
               >
                 <div
                   className="flex w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
                   style={{ transform: `translate3d(-${(bookingStep - 1) * 100}%, 0, 0)` }}
                 >
                   <article className="min-w-full px-3 py-6 sm:px-8 sm:py-10">
-                    <div className="mx-auto grid w-full max-w-[1350px] gap-5 rounded-[18px] bg-white p-3 sm:gap-7 sm:rounded-[28px] sm:p-6 md:gap-8 md:rounded-[30px] md:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center" style={{ minHeight: 'clamp(420px, 80vh, 730px)' }}>
+                    <div className="mx-auto grid w-full max-w-[1392px] gap-5 rounded-[24px] bg-white p-3 shadow-[0px_4px_57.4px_rgba(0,0,0,0.25)] sm:gap-7 sm:rounded-[36px] sm:p-6 md:gap-8 md:rounded-[50px] md:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center" style={{ minHeight: 'clamp(420px, 80vh, 730px)' }}>
                       <div className="max-w-[620px]">
-                        <Image src="/optimized/minimal horizontal logo white 1.png"
-                          alt="RNJ Advisory"
-                          width={199}
-                          height={49}
-                          className="h-auto w-[160px] brightness-0 sm:w-[210px]"
-                         priority/>
-                        <h2 className={`${ebGaramond.className} mt-4 leading-[0.95] text-[#003300] sm:mt-8`} style={{ fontSize: 'clamp(26px, 6vw, 74px)' }}>
+                        <Link href="/" aria-label="Retour a l'accueil RNJ Advisory" className="inline-block transition hover:opacity-80">
+                          {/* `Group (13).png` est deja le logo vert fonce : pas de
+                              `brightness-0` ici, ce filtre servait a assombrir la
+                              version blanche et l'aurait rendu noir. */}
+                          <Image src="/optimized/Group (13).png"
+                            alt="RNJ Advisory"
+                            width={180}
+                            height={45}
+                            className="h-auto w-[160px] sm:w-[210px]"
+                           priority/>
+                        </Link>
+                        {/* Frame 349032 : EB Garamond 500, 64/75px, ecart de 32,75px
+                            avec le groupe de pastilles. */}
+                        <h2
+                          className={`${ebGaramond.className} mt-4 font-medium leading-[1.17] text-[#003300] sm:mt-8`}
+                          style={{ fontSize: 'clamp(26px, 5.2vw, 64px)' }}
+                        >
                           Quel est le sujet de votre demande ?
                         </h2>
 
-                        <div className="mt-5 flex max-w-[520px] flex-wrap gap-2 sm:mt-8 sm:gap-3">
+                        <div className="mt-[24px] flex max-w-[520px] flex-wrap gap-[8px] sm:mt-[32.75px] sm:gap-[10.12px]">
                           {subjects.map((subject) => (
                             <button
                               key={subject.label}
                               type="button"
                               onClick={() => setSelectedSubject(subject.label)}
-                              className={`${poppins.className} flex min-h-[44px] w-full items-center justify-center rounded-[12px] px-3 text-[13px] font-medium transition sm:min-h-[52px] sm:w-auto sm:rounded-[14px] sm:px-4 sm:text-[16px] md:min-h-[62px] md:rounded-[17px] md:text-[21px] ${
+                              className={`${poppins.className} flex min-h-[52px] w-full items-center justify-center rounded-[19.4557px] px-[24.9px] text-[14px] font-medium leading-[19px] transition sm:min-h-[62px] sm:w-auto sm:text-[15px] md:min-h-[71.56px] md:text-[15.5646px] ${
                                 selectedSubject === subject.label
-                                  ? 'border-[2px] border-[#003300] bg-[#DDE597] text-[#003300]'
-                                  : 'bg-[#E8ECCE] text-[#748974]'
+                                  ? 'border-[1.5px] border-[#003300] bg-[#DDE597] text-[#003300]'
+                                  : 'border-[1.5px] border-transparent bg-[#DDE597]/50 text-[#003300]'
                               } ${
                                 subject.label === "Creation d'entreprise"
-                                  ? 'sm:min-w-[280px]'
+                                  ? 'sm:min-w-[211.8px]'
                                   : subject.label === 'Conseil reglementaire'
-                                    ? 'sm:min-w-[285px]'
+                                    ? 'sm:min-w-[211.8px]'
                                     : subject.label === 'Autre'
-                                      ? 'sm:min-w-[110px]'
-                                      : 'sm:min-w-[220px]'
+                                      ? 'sm:min-w-[90.11px]'
+                                      : 'sm:min-w-[173.29px]'
                               }`}
                             >
                               {subject.label}
@@ -1156,16 +1206,19 @@ export default function ContactPageClient({
                         <button
                           type="button"
                           onClick={() => nextBookingStep()}
-                          className={`${ebGaramond.className} mt-5 inline-flex h-[52px] min-w-[150px] items-center justify-center rounded-[24px] bg-[#BBCB2E] px-5 text-[26px] font-bold leading-none text-[#003300] shadow-[0px_4px_0px_#003300] transition hover:brightness-95 sm:mt-10 sm:h-[66px] sm:min-w-[190px] sm:rounded-[30px] sm:px-7 sm:text-[34px] md:mt-16 md:h-[74px] md:min-w-[220px] md:rounded-[34px] md:px-8 md:text-[42px]`}
+                          /* Frame 349030 : 183 x 64,05, rayon 290px, EB Garamond 700 22,5231/18px.
+                             Le Figma le donne a 30% d'opacite — c'est son etat inactif ;
+                             ici un sujet est toujours selectionne, il reste donc opaque. */
+                          className={`${ebGaramond.className} mt-[24px] inline-flex h-[54px] min-w-[160px] items-center justify-center rounded-[290px] bg-[#BBCB2E] px-6 text-[19px] font-bold leading-[18px] text-[#003300] transition hover:brightness-95 sm:mt-[32.75px] sm:h-[60px] sm:min-w-[175px] sm:text-[21px] md:h-[64.05px] md:min-w-[183px] md:text-[22.5231px]`}
                         >
                           Soumettre
                         </button>
                       </div>
 
-                      <div className="rounded-[22px] border-[2px] border-[#0E3F13] bg-[#F5F5F2] px-3 py-4 shadow-[4px_4px_0px_#0E3F13] sm:rounded-[38px] sm:px-6 sm:py-7">
+                      <div className="rounded-[22px] border-[2px] border-[#003300] bg-white px-3 py-4 shadow-[4px_4px_0px_#003300] sm:rounded-[30.8959px] sm:px-[33.37px] sm:py-[40px] md:py-[61px]">
                         <div className="mb-4 flex flex-wrap items-start justify-between gap-3 sm:mb-6">
                           <div>
-                            <p className={`${poppins.className} text-[24px] font-medium leading-none text-[#003300] sm:text-[34px] md:text-[44px]`}>
+                            <p className={`${poppins.className} text-[22px] font-normal leading-[31px] text-[#003300] sm:text-[26px] md:text-[29.66px]`}>
                               calendrier
                             </p>
                             <div className="mt-2 flex items-center gap-2">
@@ -1180,34 +1233,34 @@ export default function ContactPageClient({
                                   <path d="M2 12 L5.5 8.5 L9 12" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                               </button>
-                              <span className={`${geist.className} text-[16px] font-medium text-[#748974] sm:text-[22px] md:text-[30px]`}>
+                              <span className={`${poppins.className} text-[13px] font-semibold leading-[31px] text-[#003300]/40 sm:text-[14px] md:text-[14.83px]`}>
                                 {formatMonthLabel(displayedMonth)}
                               </span>
                             </div>
                           </div>
 
-                          <div className="relative flex items-center gap-1 rounded-[12px] bg-[#E3E5D7] px-2 py-1.5">
-                            <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#BEC888]">
-                              <span className={`${poppins.className} text-[20px] font-medium leading-none text-[#0E3F13]`}>
+                          <div className="relative flex items-center gap-[4.33px] rounded-[9.26877px] bg-[#E0E5C0]/50 px-[9.89px] py-[3.71px]">
+                            <div className="flex h-[39.55px] w-[40.16px] items-center justify-center rounded-[9.26877px] bg-[#C1CB82]">
+                              <span className={`${poppins.className} text-[19.7734px] font-normal leading-[15px] text-[#003300]`}>
                                 {selectedHourPart}
                               </span>
                             </div>
-                            <span className={`${poppins.className} text-[20px] text-[#0E3F13]`}>:</span>
-                            <div className="flex h-[40px] w-[40px] items-center justify-center rounded-[10px] bg-[#BEC888]">
-                              <span className={`${poppins.className} text-[20px] font-medium leading-none text-[#0E3F13]`}>
+                            <span className={`${poppins.className} text-[19.7734px] font-normal leading-[15px] text-[#003300]`}>:</span>
+                            <div className="flex h-[39.55px] w-[40.16px] items-center justify-center rounded-[9.26877px] bg-[#C1CB82]">
+                              <span className={`${poppins.className} text-[19.7734px] font-normal leading-[15px] text-[#003300]`}>
                                 {selectedMinutePart}
                               </span>
                             </div>
                             <div className="flex flex-col gap-1">
-                              <span className={`rounded-[8px] px-2 py-0.5 text-[10px] ${isMorningTime ? 'bg-[#BEC888]' : 'bg-[#BEC888]/50'} ${geist.className} text-[#6F876F]`}>AM</span>
-                              <span className={`rounded-[8px] px-2 py-0.5 text-[10px] ${isAfternoon ? 'bg-[#BEC888]' : 'bg-[#BEC888]/50'} ${geist.className} text-[#6F876F]`}>PM</span>
+                              <span className={`flex h-[18.54px] w-[31.51px] items-center justify-center rounded-[5.56126px] text-[12.3584px] leading-[15px] ${isMorningTime ? 'bg-[#C1CB82]' : 'bg-[#C1CB82]/50'} ${poppins.className} font-normal text-[#003300]`}>AM</span>
+                              <span className={`flex h-[18.54px] w-[31.51px] items-center justify-center rounded-[5.56126px] text-[12.3584px] leading-[15px] ${isAfternoon ? 'bg-[#C1CB82]' : 'bg-[#C1CB82]/50'} ${poppins.className} font-normal text-[#003300]`}>PM</span>
                             </div>
                             <div className="flex flex-col gap-1">
                               <button
                                 type="button"
                                 onClick={() => moveSelectedTime(-1)}
                                 disabled={selectedTimeIndex === 0}
-                                className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#BEC888] text-[#0E3F13] disabled:cursor-not-allowed disabled:opacity-45"
+                                className="flex h-[18.54px] w-[18.54px] items-center justify-center rounded-full bg-[#C1CB82] text-[#003300] disabled:cursor-not-allowed disabled:opacity-45"
                                 aria-label="Heure precedente"
                               >
                                 <svg width="8" height="5" viewBox="0 0 8 5" fill="none" stroke="currentColor" strokeWidth="1.4">
@@ -1218,7 +1271,7 @@ export default function ContactPageClient({
                                 type="button"
                                 onClick={() => moveSelectedTime(1)}
                                 disabled={selectedTimeIndex === timeOptions.length - 1}
-                                className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#BEC888] text-[#0E3F13] disabled:cursor-not-allowed disabled:opacity-45"
+                                className="flex h-[18.54px] w-[18.54px] items-center justify-center rounded-full bg-[#C1CB82] text-[#003300] disabled:cursor-not-allowed disabled:opacity-45"
                                 aria-label="Heure suivante"
                               >
                                 <svg width="8" height="5" viewBox="0 0 8 5" fill="none" stroke="currentColor" strokeWidth="1.4">
@@ -1244,7 +1297,7 @@ export default function ContactPageClient({
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-7 gap-1 sm:gap-2">
+                        <div className="grid grid-cols-7 gap-x-[4px] gap-y-[7px] sm:gap-x-[7.42px] sm:gap-y-[12.36px]">
                           {calendarRows.flat().map((day, index) => {
                             const isSelected = day.iso === selectedBookingDate;
                             const isDisabled = day.isUnavailable || day.isOutsideMonth;
@@ -1254,14 +1307,14 @@ export default function ContactPageClient({
                                 type="button"
                                 onClick={() => !isDisabled && setSelectedBookingDate(day.iso)}
                                 disabled={isDisabled}
-                                className={`${poppins.className} flex h-[32px] w-full items-center justify-center rounded-full text-[11px] font-medium transition sm:h-[40px] sm:text-[13px] md:h-[46px] md:text-[14px] lg:h-[52px] lg:text-[16px] ${
+                                className={`${poppins.className} flex aspect-square h-auto w-full items-center justify-center rounded-full text-[11px] font-normal leading-[10px] transition sm:text-[12px] md:text-[12.5686px] ${
                                   day.isOutsideMonth
-                                    ? 'bg-[#E6E6DA] text-[#A8B8A6] disabled:cursor-default'
+                                    ? 'bg-[#EEF2CA]/50 text-[#003300] disabled:cursor-default'
                                     : day.isUnavailable
-                                      ? 'border border-dashed border-[#A8B8A6] bg-transparent text-[#A8B8A6] disabled:cursor-not-allowed'
+                                      ? 'border-[1.23584px] border-dashed border-[#B3C2B3] bg-transparent text-[#B3C2B3] disabled:cursor-not-allowed'
                                       : isSelected
-                                        ? 'bg-[#BBCB2E] text-[#0E3F13]'
-                                        : 'bg-[#DADDBA] text-[#1A421F] hover:bg-[#CED4A4]'
+                                        ? 'bg-[#DDE597] text-[#003300]'
+                                        : 'bg-[#EEF2CA] text-[#003300] hover:bg-[#DDE597]'
                                 }`}
                               >
                                 {day.day}
@@ -1275,22 +1328,36 @@ export default function ContactPageClient({
 
                   <article className="min-w-full p-0">
                     <div
-                      className="mx-auto flex w-full max-w-[1360px] items-center justify-center rounded-[20px] bg-cover bg-center bg-no-repeat px-4 py-8 sm:rounded-[30px] sm:px-8 sm:py-10"
-                      style={{
-                        backgroundImage: 'url("https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779671231/rnj/optimized/group-349091-1-144384f9.svg")',
-                        minHeight: 'clamp(400px, 75vh, 730px)',
-                      }}
+                      /* Fond en pleine largeur : plus de `max-w-[1360px]` ni de coins
+                         arrondis, l'image occupe toute la largeur de la diapositive.
+                         Surtout pas de `w-screen` avec marge negative ici : le parent
+                         est une piste de carrousel en flex, et sortir du conteneur
+                         decalait la piste, laissant apparaitre la diapositive voisine.
+                         Le formulaire, lui, reste borne a 700px et centre. */
+                      /* La section parente fait `min-h-screen` et centre ses enfants,
+                         alors que ce bloc etait plafonne a 730px : il restait donc une
+                         bande de fond au-dessus et en dessous, qui donnait l'impression
+                         que l'illustration se coupait. On lui fait remplir la hauteur
+                         disponible, en retranchant le `py` de la section (24px, 48px a
+                         partir de md). */
+                      /* Fond desormais porte par la section : ce bloc ne fait plus
+                         que centrer le formulaire. */
+                      className="flex min-h-[calc(100svh-48px)] w-full items-center justify-center px-4 py-8 sm:px-8 sm:py-10 md:min-h-[calc(100svh-96px)]"
                     >
-                      <div className="w-full max-w-[700px]">
-                        <div className="mx-auto flex w-full max-w-[700px] flex-col items-center justify-center">
-                      <Image src="/optimized/minimal horizontal logo white 1.png"
-                        alt="RNJ Advisory"
-                        width={220}
-                        height={54}
-                        className="h-auto w-[110px] brightness-0 sm:w-[160px] md:w-[220px]"
-                       priority/>
+                      {/* Frame 349100 du Figma : colonne de 505px, gap de 50px entre
+                          le logo et le groupe de champs. */}
+                      <div className="w-full max-w-[505px]">
+                        <div className="mx-auto flex w-full flex-col items-center justify-center gap-[28px] sm:gap-[38px] md:gap-[50px]">
+                      <Link href="/" aria-label="Retour a l'accueil RNJ Advisory" className="transition hover:opacity-80">
+                        <Image src="/optimized/Group (13).png"
+                          alt="RNJ Advisory"
+                          width={233}
+                          height={58}
+                          className="h-auto w-[120px] sm:w-[170px] md:w-[233px]"
+                         priority/>
+                      </Link>
 
-                      <div className="mt-5 w-full space-y-2 sm:mt-8 sm:space-y-3 md:mt-10 md:space-y-4">
+                      <div className="flex w-full flex-col gap-[10px] sm:gap-[12px] md:gap-[14px]">
                         <input
                           type="text"
                           value={messageForm.name}
@@ -1298,7 +1365,7 @@ export default function ContactPageClient({
                             setMessageForm((current) => ({ ...current, name: event.target.value }))
                           }
                           placeholder="Nom"
-                          className={`${geist.className} h-[52px] w-full rounded-[14px] bg-[#E9EDCC] px-4 text-center text-[16px] font-medium text-[#7C9678] outline-none transition placeholder:text-[#7C9678] focus:bg-white sm:h-[70px] sm:rounded-[16px] sm:px-5 sm:text-[26px] md:h-[92px] md:rounded-[18px] md:px-6 md:text-[38px]`}
+                          className={`${geist.className} h-[64px] w-full rounded-[20px] bg-[#EEF2CA] px-4 text-center text-[18px] font-normal leading-[31px] text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:bg-white sm:h-[84px] sm:px-5 sm:text-[21px] md:h-[103px] md:px-6 md:text-[24px]`}
                           required
                         />
                         <input
@@ -1308,7 +1375,7 @@ export default function ContactPageClient({
                             setMessageForm((current) => ({ ...current, email: event.target.value }))
                           }
                           placeholder="Email"
-                          className={`${geist.className} h-[52px] w-full rounded-[14px] bg-[#E9EDCC] px-4 text-center text-[16px] font-medium text-[#7C9678] outline-none transition placeholder:text-[#7C9678] focus:bg-white sm:h-[70px] sm:rounded-[16px] sm:px-5 sm:text-[26px] md:h-[92px] md:rounded-[18px] md:px-6 md:text-[38px]`}
+                          className={`${geist.className} h-[64px] w-full rounded-[20px] bg-[#EEF2CA] px-4 text-center text-[18px] font-normal leading-[31px] text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:bg-white sm:h-[84px] sm:px-5 sm:text-[21px] md:h-[103px] md:px-6 md:text-[24px]`}
                           required
                         />
                         <input
@@ -1318,7 +1385,7 @@ export default function ContactPageClient({
                             setMessageForm((current) => ({ ...current, phone: event.target.value }))
                           }
                           placeholder="Telephone"
-                          className={`${geist.className} h-[52px] w-full rounded-[14px] bg-[#E9EDCC] px-4 text-center text-[16px] font-medium text-[#7C9678] outline-none transition placeholder:text-[#7C9678] focus:bg-white sm:h-[70px] sm:rounded-[16px] sm:px-5 sm:text-[26px] md:h-[92px] md:rounded-[18px] md:px-6 md:text-[38px]`}
+                          className={`${geist.className} h-[64px] w-full rounded-[20px] bg-[#EEF2CA] px-4 text-center text-[18px] font-normal leading-[31px] text-[#003300] outline-none transition placeholder:text-[#003300]/40 focus:bg-white sm:h-[84px] sm:px-5 sm:text-[21px] md:h-[103px] md:px-6 md:text-[24px]`}
                           required
                         />
                       </div>
@@ -1327,7 +1394,7 @@ export default function ContactPageClient({
                         type="button"
                         onClick={() => nextBookingStep()}
                         disabled={!messageForm.name.trim() || !messageForm.email.trim() || !messageForm.phone.trim()}
-                        className={`${ebGaramond.className} mt-3 flex h-[54px] w-full items-center justify-center rounded-[16px] bg-[#BBCB2E] text-[28px] font-bold leading-none text-[#003300] shadow-[0px_4px_0px_#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-55 sm:mt-4 sm:h-[70px] sm:rounded-[18px] sm:text-[40px] md:h-[92px] md:rounded-[20px] md:text-[52px]`}
+                        className={`${ebGaramond.className} flex h-[64px] w-full items-center justify-center rounded-[20px] bg-[#BBCB2E] text-[22px] font-bold leading-[42px] text-[#003300] shadow-[0px_5px_0px_#003300] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-55 sm:h-[84px] sm:text-[27px] md:h-[103px] md:text-[32px]`}
                       >
                         Soumettre
                       </button>
@@ -1337,16 +1404,29 @@ export default function ContactPageClient({
                   </article>
 
                   <article className="min-w-full p-0">
+                    {/* Property 1=Variant10 du Figma : carte blanche de 1392x883,
+                        rayon 50px, ombre 0 4px 57.4px. L'illustration (Group 349101,
+                        762,96 x 793,74) y est POSEE, centree et a 41px du haut — ce
+                        n'est pas un fond en `cover`. L'ancienne URL Cloudinary du
+                        compte `dmrtdo9z3` repondait 401 : rien ne s'affichait. */}
                     <div
-                      className="mx-auto flex w-full max-w-[1360px] items-center justify-center rounded-[20px] bg-cover bg-center bg-no-repeat px-4 py-8 sm:rounded-[30px] sm:px-8 sm:py-10"
-                      style={{
-                        backgroundImage:
-                          'url("https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive,w_800,h_600,c_limit/v1778038594/Group_349101_cbdiuf.png")',
-                        minHeight: 'clamp(400px, 75vh, 730px)',
-                      }}
+                      className="relative mx-auto flex w-full max-w-[1392px] items-center justify-center overflow-hidden rounded-[24px] bg-white px-4 py-8 shadow-[0px_4px_57.4px_rgba(0,0,0,0.25)] sm:rounded-[36px] sm:px-8 sm:py-10 md:rounded-[50px]"
+                      style={{ minHeight: 'clamp(400px, 75vh, 883px)' }}
                     >
+                      <Image
+                        src="/optimized/Group 349101 (1).png"
+                        alt=""
+                        aria-hidden
+                        width={763}
+                        height={795}
+                        priority
+                        className="pointer-events-none absolute left-1/2 top-[41px] w-[min(763px,90%)] -translate-x-1/2 select-none object-contain"
+                      />
+
+                      {/* `relative z-[1]` : l'illustration ci-dessus est en absolu et
+                          se peindrait par-dessus ce carton, qui est en flux. */}
                       <div
-                        className="w-full max-w-[560px] overflow-hidden rounded-[18px] bg-white shadow-[0px_18px_45px_rgba(0,0,0,0.16)] sm:rounded-[24px] md:rounded-[30px]"
+                        className="relative z-[1] w-full max-w-[560px] overflow-hidden rounded-[18px] bg-white shadow-[0px_18px_45px_rgba(0,0,0,0.16)] sm:rounded-[24px] md:rounded-[30px]"
                       >
                         <div className="bg-[#003300] px-4 py-5 sm:px-6 sm:py-7 md:px-8 md:py-9">
                           <p className={`${geist.className} text-[16px] font-medium text-white/55 sm:text-[20px] md:text-[24px]`}>Montant</p>
