@@ -42,7 +42,9 @@ type CountryPin = {
 
 const IMG_WINDMILL  = 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671380/rnj/optimized/windmill-bg-9a2625d0.webp';
 const IMG_CRANES    = 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671315/rnj/optimized/cranes-bg-2b71b295.webp';
-const IMG_SENSOR    = 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779671364/rnj/optimized/sensor-bg-280a37b8.webp';
+/* Servi en local et non plus depuis Cloudinary. IMG_WINDMILL et IMG_CRANES
+   ci-dessus dependent encore du compte externe, pour cinq projets au total. */
+const IMG_BENIN_EAU = '/optimized/benin-eau-potable.jpg';
 const IMG_RECHARGE       = '/optimized/electric-car-chargers-at-a-gas-station-with-a-par-2026-03-16-05-14-33-utc.jpg';
 const IMG_PHOTOVOLTAIQUE = '/optimized/Quest-ce-que-lautoconsommation-collective-1024x576.jpg';
 const IMG_AUTOPRODUCTION = '/optimized/Projet%20autoproduction%20.jpg';
@@ -103,11 +105,20 @@ const IMG_SNCFT_VOIES    = '/optimized/images%20(6).jpg';
 const IMG_CIMENTERIE     = '/optimized/cimentOmKelil-ciment-Tunisie.jpg';
 const IMG_SNCFT_LOCO     = '/optimized/sncft_locomotive_1480276453.jpg';
 const IMG_SENEGAL        = '/optimized/transition-energetique-afrique1-1170x570.jpg';
-const IMG_GUINEE         = '/optimized/DSC04537.jpg';
+const IMG_GUINEE         = '/optimized/guinee-code-energie.jpg';
 const IMG_BURKINA        = '/optimized/place_des_cineastes_ouaga.jpg';
 const IMG_BENIN_ENR      = '/optimized/Energie-Renouvelable-1.jpg';
 const IMG_BENIN_SONEB    = '/optimized/096580127520001657117147.jpg';
-const IMG_CONGO          = '/optimized/thumbs_b_c_2483eeb694635f08af61b04412f44a43.jpg';
+const IMG_CONGO          = '/optimized/kivu-methane-electricite.jpg';
+/* Le visuel d'origine faisait 5397x3455 pour 13 Mo : redimensionne a 1280px de
+   large comme le reste des cartes. Nom sans accent volontairement — la source
+   etait encodee en NFD, une forme qui ne correspond pas a celle qu'on ecrit
+   dans le code et qui aurait produit un 404. */
+const IMG_KFW_GARANTIE   = '/optimized/kfw-garantie-paiement.jpg';
+/* Les trois projets senegalais partageaient un meme visuel generique. Chacun a
+   desormais le sien ; `IMG_SENEGAL` ne sert plus qu'au projet biocarburant. */
+const IMG_PEAGE_SN       = '/optimized/senegal-peage-routier.jpg';
+const IMG_NEW_DAKAR      = '/optimized/senegal-new-dakar-city.jpg';
 
 
 const rawCountryPins: CountryPin[] = [
@@ -231,7 +242,7 @@ const rawCountryPins: CountryPin[] = [
         sector: 'Mécanisme de financement des projets énergétiques - Garantie de paiement',
         description: "Conseiller de KFW en relation avec la mise en place d'un mécanisme de financement pour le compte de la STEG à utiliser comme garantie de paiement des producteurs privés d'électricité à partir des énergies renouvelables dans le cadre des régimes des autorisations ou des concessions. Etude du cadre réglementaire tunisien en relation avec la mise en place et la gestion des comptes séquestres. Revue et modification de la structure contractuelle adoptée pour ce type de transaction.",
         pays: 'Tunisie — 2021',
-        image: IMG_SENSOR,
+        image: IMG_KFW_GARANTIE,
         tone: '#B5E0EC',
       },
       {
@@ -676,7 +687,7 @@ const rawCountryPins: CountryPin[] = [
         sector: 'Projet : Délégation de service public - Activité Péage routier sur route Nationale 1 – Sénégal',
         description: "Conseiller juridique dans le cadre de la réalisation d'une étude de faisabilité juridique et financière portant sur un projet pilote ayant pour objet de confier l'activité de péage routier sur la route nationale N1 (Dakar Diamniadio – Mbour – Kaolack – Tambacounda – Kidia) à un partenaire privé dans le cadre du régime de partenariat Public Privé. Proposition des solutions contractuelles pour la délégation du service public. Identification des limites du cadre réglementaire actuel. Préparation d'une feuille de route. Préparation de la documentation contractuelle pour la sélection de l'opérateur privé.",
         pays: 'Sénégal — 2022',
-        image: IMG_SENEGAL,
+        image: IMG_PEAGE_SN,
         tone: '#DDE597',
       },
       {
@@ -684,7 +695,7 @@ const rawCountryPins: CountryPin[] = [
         sector: 'Projet développement de la zone de New Dakar City',
         description: "Conseiller du Groupe Saoudien Oumranyoun dans le cadre de la réalisation du projet New Dakar City en partenariat avec le Gouvernement Sénégalais. Etablissement d'un MOU avec le Gouvernement Sénégalais. Rédaction des contrats de partenariat avec les investisseurs pour le développement des composantes du projet. Réalisation d'une feuille de route pour la mise en place du projet et la réalisation d'une étude de faisabilité juridique et financière pour le développement des différentes composantes du projet.",
         pays: 'Sénégal — 2014',
-        image: IMG_SENEGAL,
+        image: IMG_NEW_DAKAR,
         tone: '#839705',
       },
     ],
@@ -735,7 +746,7 @@ const rawCountryPins: CountryPin[] = [
         sector: 'Projet Gestion de l\'eau potable en zone rurale',
         description: "Conseiller de SONEDE International dans le cadre de la gestion d'un projet de distribution d'eaux potables dans les zones rurales sous le régime d'un contrat d'affermage. Assistance à la finalisation du Contrat d'affermage. Mise en place de mécanisme de financement du Projet. Création de la société de projet suivant le droit Béninois.",
         pays: 'Bénin — 2021',
-        image: IMG_SENSOR,
+        image: IMG_BENIN_EAU,
         tone: '#B5E0EC',
       },
       {
