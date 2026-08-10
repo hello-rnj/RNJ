@@ -6,10 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "assets:optimize-oversized-svg": "node scripts/optimize-oversized-svg-assets.mjs",
-    "cloudinary:migrate-assets": "node scripts/cloudinary-migrate-assets.mjs",
-    "cloudinary:scan-assets": "node scripts/cloudinary-migrate-assets.mjs --dry-run"
+    "lint": "eslint"
   },
   "dependencies": {
     "lucide-react": "^0.577.0",

@@ -50,8 +50,11 @@ test-results/
 *.bak
 *.orig
 
-# env files (can opt-in for committing if needed)
+# env files : les fichiers remplis contiennent des secrets et ne sont jamais
+# versionnes. `.env.example` fait exception : c'est le modele vide qui indique
+# quelles variables renseigner, il doit suivre le depot.
 .env*
+!.env.example
 
 # vercel
 .vercel
