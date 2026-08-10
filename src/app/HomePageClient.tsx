@@ -1357,23 +1357,28 @@ export default function Home() {
     const section = institutionalCarouselSectionRef.current;
     if (!section) return;
     const observer = new IntersectionObserver(
-      ([entry]) => setIsInstitutionalCarouselInView(entry.isIntersecting),
+      ([entry]) => {
+        const inView = entry.isIntersecting;
+        setIsInstitutionalCarouselInView(inView);
+        /* Remise a zero du carrousel quand la section revient a l'ecran. Ce
+           bloc vivait dans un effet separe qui reagissait a l'etat ci-dessus :
+           appeler setState pendant un effet declenche une cascade de rendus.
+           Ici on agit dans la callback qui produit l'evenement, au meme
+           moment et avec le meme resultat. */
+        if (inView && !prevInstitutionalInView.current) {
+          const carousel = institutionalCarouselRef.current;
+          if (carousel) {
+            carousel.scrollLeft = 0;
+            setActiveInstitutionalSlide(0);
+          }
+        }
+        prevInstitutionalInView.current = inView;
+      },
       { threshold: 0.2 }
     );
     observer.observe(section);
     return () => observer.disconnect();
   }, []);
-
-  useEffect(() => {
-    if (isInstitutionalCarouselInView && !prevInstitutionalInView.current) {
-      const carousel = institutionalCarouselRef.current;
-      if (carousel) {
-        carousel.scrollLeft = 0;
-        setActiveInstitutionalSlide(0);
-      }
-    }
-    prevInstitutionalInView.current = isInstitutionalCarouselInView;
-  }, [isInstitutionalCarouselInView]);
 
   useEffect(() => {
     if (isInstitutionalCarouselPaused) return;
@@ -1433,29 +1438,21 @@ export default function Home() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        console.log('Light bulb section intersecting:', entry.isIntersecting);
-        if (entry.isIntersecting) {
-          setIsLightBulbAnimated(true);
-        } else {
-          setIsLightBulbAnimated(false);
-        }
-      },
+      ([entry]) => setIsLightBulbAnimated(entry.isIntersecting),
       {
         threshold: 0.1,
         rootMargin: '-100px 0px -100px 0px',
       }
     );
 
-    if (lightBulbSectionRef.current) {
-      console.log('Observing light bulb section');
-      observer.observe(lightBulbSectionRef.current);
-    }
+    /* La reference est copiee ici : au moment ou le nettoyage s'execute,
+       `.current` peut deja avoir change, et l'on cesserait alors d'observer
+       un autre noeud que celui qu'on observe. */
+    const section = lightBulbSectionRef.current;
+    if (section) observer.observe(section);
 
     return () => {
-      if (lightBulbSectionRef.current) {
-        observer.unobserve(lightBulbSectionRef.current);
-      }
+      if (section) observer.unobserve(section);
     };
   }, []);
 
@@ -1901,12 +1898,13 @@ export default function Home() {
               </div>
 
               <div className="relative mx-auto h-[180px] w-full max-w-[280px] sm:h-[300px] sm:max-w-[380px] md:h-[360px] md:max-w-[430px] lg:h-[420px] lg:max-w-[464.65px] xl:mx-0 xl:ml-auto xl:h-[529.93px] xl:w-full xl:max-w-[464.65px]">
-                <img
+                <Image
                   src="https://res.cloudinary.com/dvyyce3ki/image/upload/v1779673027/rnj/mask-group-39-06a5eb07.png"
                   alt="Partenaires en réunion"
+                  fill
+                  sizes="(min-width: 1280px) 465px, (min-width: 1024px) 465px, (min-width: 768px) 430px, (min-width: 640px) 380px, 280px"
+                  className="object-contain"
                   loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-contain"
                 />
               </div>
             </div>

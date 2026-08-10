@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -815,6 +815,10 @@ const MAP_ROI = { x: 700, y: 300, w: 740, h: 890 };
  * soft halo for contrast plus a tight one for edge definition. Cheaper visually than
  * darkening the map, which was veiling the Tunisia badge.
  */
+/* Rien d'externe a ecouter : la valeur ne depend que du fait d'etre cote client
+   ou non, un etat qui ne change qu'une fois, a l'hydratation. */
+const subscribeNothing = () => () => {};
+
 /** Frames 520/521/522 du Figma : carre de 44,7px, rayon 11,9744px. */
 const NAV_ICON_BUTTON =
   'flex h-[44.7px] w-[44.7px] flex-none items-center justify-center rounded-[11.9744px]';
@@ -830,7 +834,11 @@ export default function AnalyseInstitutionnelleClient() {
   // Mirrors the `landscape-lg` CSS variant: false wherever the stacked hero is shown,
   // so the map framing and the text layout can never disagree.
   const [isWideLandscape, setIsWideLandscape] = useState(true);
-  const [hasMounted, setHasMounted] = useState(false);
+  /* Le portail du panneau exige `document.body`, absent au rendu serveur.
+     useSyncExternalStore renvoie false pendant le rendu serveur et l'hydratation,
+     puis true — meme resultat qu'un useState pose dans un effet, sans appeler
+     setState au sein d'un effet, ce que le compilateur React refusait. */
+  const hasMounted = useSyncExternalStore(subscribeNothing, () => true, () => false);
   const touchStartXRef = useRef<number | null>(null);
   const mapWrapRef = useRef<HTMLDivElement>(null);
   // CSS pixels per viewBox unit when the map is contained rather than cropped
@@ -853,9 +861,6 @@ export default function AnalyseInstitutionnelleClient() {
     srcs.forEach((src) => { const img = new window.Image(); img.src = src; });
   }, []);
 
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 1023px)');
@@ -915,14 +920,18 @@ export default function AnalyseInstitutionnelleClient() {
     setActivePin(null);
     setActiveProjectIdx(0);
   }, []);
-  const goToPrevProject = useCallback(() => {
+  /* Sans useCallback : leurs dependances changent a chaque ouverture de pays, et
+     le compilateur React ne pouvait pas preserver cette memoisation manuelle. Il
+     renoncait alors a optimiser tout le composant. En fonctions simples, c'est
+     lui qui les stabilise, y compris pour le tableau de dependances plus bas. */
+  const goToPrevProject = () => {
     if (!activeCountry || !canGoPrev) return;
     setActiveProjectIdx((idx) => Math.max(0, idx - 1));
-  }, [activeCountry, canGoPrev]);
-  const goToNextProject = useCallback(() => {
+  };
+  const goToNextProject = () => {
     if (!activeCountry || !canGoNext) return;
     setActiveProjectIdx((idx) => Math.min(activeCountry.projects.length - 1, idx + 1));
-  }, [activeCountry, canGoNext]);
+  };
   function onPanelTouchStart(event: React.TouchEvent<HTMLDivElement>) {
     touchStartXRef.current = event.changedTouches[0]?.clientX ?? null;
   }
@@ -939,22 +948,28 @@ export default function AnalyseInstitutionnelleClient() {
     else goToPrevProject();
   }
 
+  /* Les trois actions sont ecrites directement ici plutot que d'appeler les
+     fonctions du composant : en dependre obligeait a les memoiser a la main,
+     ce que le compilateur React refuse. Le comportement est identique — les
+     gardes canGoPrev / canGoNext etaient de toute facon redondantes, Math.max
+     et Math.min bornent deja l'index. */
   useEffect(() => {
     if (!activeCountry) return;
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        closePanel();
+        setActivePin(null);
+        setActiveProjectIdx(0);
         return;
       }
       if (event.key === 'ArrowLeft') {
-        goToPrevProject();
+        setActiveProjectIdx((idx) => Math.max(0, idx - 1));
       } else if (event.key === 'ArrowRight') {
-        goToNextProject();
+        setActiveProjectIdx((idx) => Math.min(activeCountry.projects.length - 1, idx + 1));
       }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [activeCountry, closePanel, goToNextProject, goToPrevProject]);
+  }, [activeCountry]);
 
   return (
     <main className="min-h-screen bg-[#F7FCFF]">
