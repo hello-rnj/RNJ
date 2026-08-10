@@ -1776,8 +1776,18 @@ export default function ContactPageClient({
       {showSuccessModal ? (
         <div className="fixed inset-0 z-[200] flex items-center justify-center bg-[rgba(0,0,0,0.22)] px-4 backdrop-blur-sm">
           <div className="w-full max-w-[360px] rounded-[44px] bg-white px-7 py-8 text-center shadow-[0px_20px_70px_rgba(0,0,0,0.22)] md:max-w-[520px] md:rounded-[70px] md:px-14 md:py-12">
-            <div className="relative mx-auto mb-6 h-[88px] w-[120px] md:mb-8 md:h-[150px] md:w-[205px]">
-              <Image src="https://res.cloudinary.com/dmrtdo9z3/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1776334091/rnj/layer-1-24-5765da83.svg" alt="Message envoye" fill className="object-contain"  loading="lazy"/>
+            {/* L'illustration venait du compte Cloudinary `dmrtdo9z3`, desactive :
+                elle repondait 401, la fenetre de confirmation affichait donc un
+                vide. Redessinee ici en SVG, aux couleurs du site — plus aucun
+                fichier ni service externe a charger. */}
+            <div className="mx-auto mb-6 h-[88px] w-[120px] md:mb-8 md:h-[150px] md:w-[205px]">
+              <svg viewBox="0 0 120 88" fill="none" className="h-full w-full" role="img" aria-label="Message envoyé">
+                <rect x="14" y="18" width="92" height="60" rx="8" fill="#BBCB2E" opacity="0.25" />
+                <rect x="14" y="18" width="92" height="60" rx="8" stroke="#003300" strokeWidth="3" />
+                <path d="M14 24l46 30 46-30" stroke="#003300" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="92" cy="66" r="20" fill="#003300" />
+                <path d="M83 66l6 6 12-13" stroke="#FFFFFF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </div>
 
             <h2

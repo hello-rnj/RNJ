@@ -27,7 +27,6 @@ type ImpactCountry = {
   years: string;
   focusYear: string;
   projects: string;
-  mapSrc: string;
   summary: string;
   description: string;
   tags: readonly string[];
@@ -125,8 +124,7 @@ function getImpactPopupVars(country: ImpactCountry): CSSProperties {
   } as CSSProperties;
 }
 
-// Local country-shape thumbnails (replaces the old mapSrc, which pointed at
-// the now-disabled dmrtdo9z3 Cloudinary account and 401'd).
+// Vignettes des pays, servies en local.
 const countryShapeSrc: Record<string, string> = {
   TN: '/optimized/TN.png',
   MR: '/optimized/MR.png',
@@ -150,7 +148,6 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '45 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132735/rnj/tn-map-7a9a40cd.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "En Tunisie, RNJ Advisory accompagne institutions, investisseurs et entrepreneurs sur des projets à forte composante réglementaire. Nos missions couvrent l'analyse institutionnelle, la structuration juridique, la conformité et l'intégration des critères ESG afin de sécuriser les décisions et renforcer la viabilité à long terme.",
     tags: ['energy', 'durability', 'gouvernance'],
@@ -175,7 +172,6 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '02 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132737/rnj/mr-f851e151.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "En Mauritanie, nous accompagnons les acteurs publics et privés sur la gouvernance de projet, le cadrage juridique et l'architecture institutionnelle. Notre approche aligne les initiatives d'investissement avec les obligations réglementaires et les objectifs de performance durable.",
     tags: ['energy', 'durability'],
@@ -200,7 +196,6 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '14 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132738/rnj/sn-fa0dd3fe.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "Au Sénégal, nous intervenons sur des dossiers à forte valeur stratégique : diagnostics institutionnels, analyse des risques réglementaires et mise en conformité opérationnelle. Notre objectif est de rendre les projets plus robustes, plus finançables et plus rapides à déployer.",
     tags: ['energy', 'durability'],
@@ -225,7 +220,6 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '05 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132739/rnj/gn-09d6746e.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "En Guinée, RNJ Advisory appuie la conception de cadres d'opération conformes, la coordination des parties prenantes et l'intégration des standards ESG. Nous facilitons le passage de la stratégie à une exécution opérationnelle mesurable.",
     tags: ['energy', 'durability'],
@@ -250,7 +244,6 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '02 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132741/rnj/bf-82043e17.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "Au Burkina Faso, nous accompagnons la structuration de projets complexes avec une approche juridique, institutionnelle et de durabilité. Nos recommandations couvrent la gouvernance, la conformité et la feuille de route de mise en oeuvre.",
     tags: ['energy', 'durability'],
@@ -275,7 +268,6 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '12 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132743/rnj/ne-27d79c5a.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "Au Niger, RNJ Advisory intervient sur la sécurisation des programmes d'investissement et des partenariats. Nous réalisons les analyses juridiques, réglementaires et institutionnelles nécessaires pour fiabiliser la décision et réduire les risques d'exécution.",
     tags: ['energy', 'durability'],
@@ -300,7 +292,6 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '11 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132742/rnj/bj-46e4c23a.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "Au Bénin, nous accompagnons la structuration des cadres de gouvernance, la clarté des responsabilités institutionnelles et l'alignement des dispositifs juridiques. L'objectif est de garantir la cohérence entre stratégie, exécution et impact.",
     tags: ['energy', 'durability'],
@@ -325,7 +316,6 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '12 Projets',
-    mapSrc: 'https://res.cloudinary.com/dmrtdo9z3/image/upload/v1777132745/rnj/cd-c076eecb.svg',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "En République démocratique du Congo, RNJ Advisory accompagne acteurs institutionnels et investisseurs dans la conception de projets durables et conformes. Nos interventions portent sur l'analyse réglementaire, les montages juridiques et les mécanismes de suivi de performance.",
     tags: ['energy', 'durability'],
@@ -350,7 +340,6 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '01 Projet',
-    mapSrc: '',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "Aux Émirats arabes unis, RNJ Advisory accompagne les acteurs institutionnels et privés sur des projets à forte composante réglementaire et stratégique.",
     tags: ['energy', 'durability'],
@@ -375,7 +364,6 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '01 Projet',
-    mapSrc: '',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "En Italie, RNJ Advisory accompagne les acteurs institutionnels et privés sur des projets à forte composante réglementaire et stratégique.",
     tags: ['energy', 'durability'],
@@ -400,7 +388,6 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '01 Projet',
-    mapSrc: '',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "En France, RNJ Advisory accompagne les acteurs institutionnels et privés sur des projets à forte composante réglementaire et stratégique.",
     tags: ['energy', 'durability'],
@@ -425,7 +412,6 @@ const impactCountries: readonly ImpactCountry[] = [
     years: '2024-2026',
     focusYear: '2026',
     projects: '01 Projet',
-    mapSrc: '',
     summary: 'Conseil Stratégique & Réglementaire',
     description: "En Belgique, RNJ Advisory accompagne les acteurs institutionnels et privés sur des projets à forte composante réglementaire et stratégique.",
     tags: ['energy', 'durability'],
@@ -2948,7 +2934,7 @@ export default function Home() {
                                 }}
                               >
                                 <Image
-                                  src={countryShapeSrc[activeImpactCountryData.code] ?? activeImpactCountryData.mapSrc}
+                                  src={countryShapeSrc[activeImpactCountryData.code]}
                                   alt={activeImpactCountryData.name}
                                   fill
                                   className="object-contain p-1"
