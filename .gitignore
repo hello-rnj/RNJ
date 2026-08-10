@@ -36,7 +36,6 @@ yarn-error.log*
 .next-dev*
 
 # editor / tooling
-.claude/
 .codex/
 .codex_tmp_*
 .windsurf/
