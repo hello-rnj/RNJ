@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import LandingFooter from '@/components/LandingFooter';
+import RelatedContent from '@/components/RelatedContent';
 
 const ebGaramond = EB_Garamond({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
 const geist      = Geist({ subsets: ['latin'], weight: ['500', '700'], display: 'swap' });
@@ -1072,7 +1073,7 @@ export default function CreationEntrepriseClient() {
 
           {/* Vision → réalité, 4 steps */}
           <h2 className={geist.className}
-            style={{ position: 'absolute', left: 'calc(50% - 621px/2 - 380.5px)', top: '1107px', width: '621px', fontWeight: 500, fontSize: '64px', lineHeight: '73px', letterSpacing: '-0.02em', textTransform: 'capitalize', color: '#003300', textAlign: 'center', margin: 0 }}>
+            style={{ position: 'absolute', left: 'calc(50% - 621px/2 - 380.5px)', top: '1107px', width: '621px', fontWeight: 500, fontSize: '64px', lineHeight: '73px', letterSpacing: '-0.02em', textTransform: 'capitalize', color: '#003300', textAlign: 'left', margin: 0 }}>
             De la vision à la Réalité en 3 étapes
           </h2>
 
@@ -1237,6 +1238,7 @@ export default function CreationEntrepriseClient() {
         </div>
       </section>
 
+      <RelatedContent />
       <LandingFooter />
     </main>
   );

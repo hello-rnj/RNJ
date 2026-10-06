@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import FooterWithCta from '@/components/FooterWithCta';
+import PillarBridge from '@/components/PillarBridge';
 import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 import ArticleStructuredData from '@/components/ArticleStructuredData';
+import { alternatesFor } from '@/lib/seo';
 
 const ebGaramond = EB_Garamond({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
 const geist = Geist({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
   title: SEO_TITLE,
   description:
     "Comment l'intelligence artificielle, la LegalTech et la justice prédictive transforment le métier d'avocat. Défis éthiques, confidentialité, innovation et rôle renforcé de la médiation à l'ère numérique.",
-  alternates: { canonical: '/blogs/avenir-metier-avocat-ere-ia-mediation' },
+  alternates: alternatesFor('/blogs/avenir-metier-avocat-ere-ia-mediation'),
   openGraph: {
     images: ['/optimized/avenir-metier-avocat-ia-cover.webp'],
     title: TITLE,
@@ -291,6 +293,8 @@ export default function AvenirMetierAvocatPage() {
           </Link>
         </div>
       </article>
+
+      <PillarBridge pillar="belgique" />
 
       <FooterWithCta />
     </main>

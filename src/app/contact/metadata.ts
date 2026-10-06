@@ -1,41 +1,46 @@
 import { Metadata } from 'next';
+import { alternatesFor } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Contact — cabinet de conseil à Bruxelles',
   description:
-    "Contactez RNJ Advisory pour votre projet de conseil stratégique et réglementaire. Notre équipe d'experts vous accompagne dans l'analyse institutionnelle, la conformité et le développement économique. Adresse : Avenue Louise 500, Ixelles, Bruxelles. Téléphone : +32 474 03 22 66.",
+    "Contactez RNJ Advisory, cabinet de conseil juridique et stratégique à Bruxelles. Avenue Louise 500, 1050 Ixelles. Premier échange de cadrage gratuit. Tél. : +32 474 03 22 66.",
   keywords: [
-    'contact RNJ Advisory',
-    'conseil stratégique contact',
-    'conformité réglementaire contact',
-    'analyse institutionnelle',
-    'développement économique',
-    'Bruxelles conseil',
-    'Europe Afrique du Nord',
-    'rendez-vous conseil',
-    'expertise réglementaire',
+    'contact cabinet conseil Bruxelles',
+    'rendez-vous conseil juridique Bruxelles',
+    'RNJ Advisory contact',
+    'Avenue Louise cabinet conseil',
+    'consultation juridique Bruxelles',
+    'conseil réglementaire rendez-vous',
+    'RGPD consultation Belgique',
+    'création entreprise Belgique rendez-vous',
+    'cabinet conseil Ixelles Bruxelles',
+    'premier entretien gratuit conseil',
   ],
-  alternates: {
-    canonical: '/contact',
-  },
+  alternates: alternatesFor('/contact'),
+  category: 'Business consulting',
   openGraph: {
-    title: 'Contactez RNJ Advisory | Conseil stratégique et réglementaire',
+    title: 'Contactez RNJ Advisory | Cabinet de conseil à Bruxelles',
     description:
-      'Prenez rendez-vous avec nos experts en conseil stratégique et conformité réglementaire pour sécuriser vos projets.',
+      "Prenez rendez-vous avec nos experts : conseil juridique, conformité RGPD/ESG, création d'entreprise et analyse institutionnelle. Premier cadrage gratuit.",
     url: 'https://rnj-advisory.be/contact',
+    type: 'website',
+    locale: 'fr_BE',
+    siteName: 'RNJ Advisory',
     images: [
       {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'Contact RNJ Advisory - Cabinet de conseil',
+        alt: 'Contactez RNJ Advisory — cabinet de conseil juridique à Bruxelles',
       },
     ],
   },
   twitter: {
-    title: 'Contactez RNJ Advisory',
+    card: 'summary_large_image',
+    title: 'Contactez RNJ Advisory | Bruxelles',
     description:
-      "Notre équipe d'experts vous accompagne dans vos projets stratégiques et réglementaires.",
+      "Conseil juridique, RGPD, ESG, création d'entreprise : premier échange de cadrage gratuit.",
     images: ['/opengraph-image.png'],
   },
 };

@@ -6,7 +6,7 @@ const ebGaramond = EB_Garamond({ subsets: ['latin'], weight: ['400', '500'], dis
 const geist = Geist({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
 
 /**
- * Bas de page complet de /projets : la grande image de fond, le bloc CTA
+ * Bas de page complet de /expertises : la grande image de fond, le bloc CTA
  * « Conseil stratégique » puis le pied de page lui-même. Extrait ici pour que les
  * pages du blog affichent exactement le même bas de page, sans le recopier dans
  * chacune d'elles.

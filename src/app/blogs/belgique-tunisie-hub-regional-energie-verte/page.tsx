@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import FooterWithCta from '@/components/FooterWithCta';
+import PillarBridge from '@/components/PillarBridge';
 import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 import ArticleStructuredData from '@/components/ArticleStructuredData';
+import { alternatesFor } from '@/lib/seo';
 
 const ebGaramond = EB_Garamond({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
 const geist = Geist({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
   title: SEO_TITLE,
   description:
     "Petit-déjeuner débat sur la stratégie de développement de l'hydrogène vert et de ses dérivés en Tunisie et ses impacts sur les échanges avec l'Union européenne, organisé par la CCTBL et le Conseil de Gouvernance Économique Belgo-Tunisien.",
-  alternates: { canonical: '/blogs/belgique-tunisie-hub-regional-energie-verte' },
+  alternates: alternatesFor('/blogs/belgique-tunisie-hub-regional-energie-verte'),
   openGraph: {
     images: ['/optimized/belgique-tunisie-energie-verte-cover.webp'],
     title: TITLE,
@@ -169,6 +171,8 @@ export default function BelgiqueTunisieEnergieVertePage() {
           </Link>
         </div>
       </article>
+
+      <PillarBridge pillar="international" />
 
       <FooterWithCta />
     </main>

@@ -447,20 +447,32 @@
   }
 }
 
+.backdrop-blur-\[10px\],
+.backdrop-blur-\[16px\],
+.backdrop-blur-md,
+.backdrop-blur-sm {
+  will-change: backdrop-filter;
+  contain: layout style paint;
+}
+
 .backdrop-blur-\[10px\] {
   -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .backdrop-blur-\[16px\] {
   -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
 }
 
 .backdrop-blur-md {
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 
 .backdrop-blur-sm {
   -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 /* Enhanced hover states for mobile compatibility */
@@ -1359,4 +1371,15 @@
 }
 @media (min-width: 1280px) {
   .bento-d3 { aspect-ratio: unset; height: 691px; }
+}
+
+@keyframes tnSubPinIn {
+  from {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.65);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }

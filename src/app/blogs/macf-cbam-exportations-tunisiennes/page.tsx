@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import FooterWithCta from '@/components/FooterWithCta';
+import PillarBridge from '@/components/PillarBridge';
 import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 import ArticleStructuredData from '@/components/ArticleStructuredData';
+import { alternatesFor } from '@/lib/seo';
 
 const ebGaramond = EB_Garamond({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
 const geist = Geist({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
   title: SEO_TITLE,
   description:
     "Impact du MACF (CBAM) sur les exportations tunisiennes de biens et sur le projet d'exportation d'électricité vers l'Europe via la ligne ELMED : cadre juridique, secteurs concernés et obligations déclaratives.",
-  alternates: { canonical: '/blogs/macf-cbam-exportations-tunisiennes' },
+  alternates: alternatesFor('/blogs/macf-cbam-exportations-tunisiennes'),
   openGraph: {
     images: ['/optimized/macf-cbam-cover-v2.webp'],
     title: TITLE,
@@ -303,6 +305,8 @@ export default function MacfCbamPage() {
           </Link>
         </div>
       </article>
+
+      <PillarBridge pillar="international" />
 
       <FooterWithCta />
     </main>

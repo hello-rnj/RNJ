@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import FooterWithCta from '@/components/FooterWithCta';
+import PillarBridge from '@/components/PillarBridge';
 import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 import ArticleStructuredData from '@/components/ArticleStructuredData';
+import { alternatesFor } from '@/lib/seo';
 
 const ebGaramond = EB_Garamond({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
 const geist = Geist({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
   title: SEO_TITLE,
   description:
     "Deux journées dédiées aux femmes souhaitant transformer une idée en projet d'entreprise à Bruxelles : tester son concept, cibler son public, découvrir les aides et apprendre à pitcher.",
-  alternates: { canonical: '/blogs/entrepreneuriat-feminin-bruxelles-idee-projet' },
+  alternates: alternatesFor('/blogs/entrepreneuriat-feminin-bruxelles-idee-projet'),
   openGraph: {
     images: ['/optimized/entrepreneuriat-feminin-cover.jpeg'],
     title: TITLE,
@@ -295,6 +297,8 @@ export default function EntrepreneuriatFemininPage() {
           </Link>
         </div>
       </article>
+
+      <PillarBridge pillar="belgique" />
 
       <FooterWithCta />
     </main>

@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
+import CookieNotice from "@/components/CookieNotice";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { alternatesFor } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,14 +40,18 @@ export const metadata: Metadata = {
   description:
     "Cabinet de conseil stratégique et réglementaire spécialisé dans l'analyse institutionnelle, la conformité réglementaire et le développement économique durable. Accompagnement des acteurs publics, entreprises privées et investisseurs.",
   keywords: [
-    "conseil stratégique",
-    "conformité réglementaire",
+    "conseil stratégique Bruxelles",
+    "conformité réglementaire Belgique",
     "analyse institutionnelle",
-    "développement économique",
-    "acteurs publics",
-    "entreprises privées",
-    "investisseurs",
+    "conseil juridique Bruxelles",
+    "RGPD Belgique",
+    "ESG conseil Belgique",
+    "création entreprise Belgique",
+    "PPP Tunisie",
+    "recrutement international",
+    "développement économique durable",
     "RNJ Advisory",
+    "cabinet conseil Bruxelles",
     "Tunisie",
     "Europe",
     "Afrique du Nord",
@@ -63,13 +70,11 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL("https://rnj-advisory.be"),
-  alternates: {
-    canonical: "/",
-  },
+  alternates: alternatesFor("/"),
   openGraph: {
     images: ['/opengraph-image.png'],
     type: "website",
-    locale: "fr_FR",
+    locale: "fr_BE",
     url: "https://rnj-advisory.be",
     title: "RNJ Advisory - Cabinet de conseil stratégique et réglementaire",
     description:
@@ -117,6 +122,8 @@ export default function RootLayout({
       >
         <JsonLd />
         {children}
+        <CookieNotice />
+        <GoogleAnalytics />
       </body>
     </html>
   );

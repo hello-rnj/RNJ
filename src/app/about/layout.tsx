@@ -1,14 +1,13 @@
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
 import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
+import { alternatesFor } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'À propos — cabinet de conseil à Bruxelles',
   description:
     'Découvrez RNJ Advisory, cabinet de conseil juridique et stratégique à Bruxelles, accompagnant entreprises, investisseurs et institutions en Belgique et à l’international.',
-  alternates: {
-    canonical: '/a-propos',
-  },
+  alternates: alternatesFor('/a-propos'),
   openGraph: {
     images: ['/opengraph-image.png'],
     title: 'À propos de RNJ Advisory | Conseil juridique et stratégique',

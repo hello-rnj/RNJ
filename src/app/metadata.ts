@@ -1,16 +1,15 @@
 import { Metadata } from 'next';
 import { homeSeoKeywords } from '@/lib/home-seo';
+import { alternatesFor } from '@/lib/seo';
 
 export const metadata: Metadata = {
   /* `absolute` court-circuite la template « %s | RNJ Advisory » du layout : la
      marque est deja dans le titre, sans quoi elle apparaissait deux fois. */
   title: { absolute: 'Conseil juridique et stratégique à Bruxelles | RNJ Advisory' },
   description:
-    "RNJ Advisory accompagne entrepreneurs, PME, ASBL, investisseurs et institutions à Bruxelles, en Belgique, en Tunisie et en Europe sur la conformité réglementaire, le RGPD, l'ESG, la structuration juridique, le recrutement international et l'analyse institutionnelle.",
+    "Cabinet de conseil à Bruxelles : conformité réglementaire, RGPD, ESG et structuration juridique pour entrepreneurs, PME, ASBL et institutions.",
   keywords: homeSeoKeywords,
-  alternates: {
-    canonical: '/',
-  },
+  alternates: alternatesFor('/'),
   category: 'Business consulting',
   openGraph: {
     type: 'website',

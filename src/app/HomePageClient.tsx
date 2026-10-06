@@ -1,7 +1,7 @@
 'use client';
 
 import { partnerAssetLogos, logoHeightFactor, logoScrollSeconds, LOGO_WHITE_FILTER } from '@/data/partnerLogos';
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { X } from 'lucide-react';
@@ -747,7 +747,6 @@ const faqItems = [
   },
 ];
 
-
 // Both carousels advance one card at this cadence, and both pause while the
 // pointer is held on them.
 const PROJECTS_AUTOPLAY_MS = 3000;
@@ -964,7 +963,7 @@ function EntrepreneuriatTabsSection() {
 
               <div className="mt-6 flex flex-col gap-6 sm:mt-8 sm:gap-8 md:mt-10 md:gap-10 lg:mt-12 lg:gap-12 xl:mt-[89px] xl:gap-[200px]">
                 <div className="flex max-w-[595px] flex-col gap-4 sm:gap-5 md:gap-6 lg:gap-[30px]">
-                  <h3
+                  <h2
                     className="font-[EB_Garamond] font-semibold"
                     style={{
                       fontSize: 'clamp(34px, 5.2vw, 64px)',
@@ -974,7 +973,7 @@ function EntrepreneuriatTabsSection() {
                     }}
                   >
                     {active.title}
-                  </h3>
+                  </h2>
                   <p
                     className="max-w-[572px] font-[Geist] font-medium text-[14px] leading-[1.25] sm:text-[15px] sm:leading-[1.2] md:text-[16px] md:leading-[17px]"
                     style={{
@@ -1057,7 +1056,10 @@ const PROJECT_SLOTS = [
 /** Meme courbe et meme duree que le carrousel de la page Creation d'entreprise. */
 const PROJECT_SLOT_TRANSITION = 'all 0.7s cubic-bezier(0.22, 1, 0.36, 1)';
 
-export default function Home() {
+/* `editorialSlot` recoit un composant serveur depuis `page.tsx` : le contenu
+   editorial de la page d'accueil est ainsi present dans le HTML initial, sans
+   passer par ce composant client. */
+export default function Home({ editorialSlot }: { editorialSlot?: ReactNode } = {}) {
   const [activeImpactCountry, setActiveImpactCountry] = useState<ImpactCountryId | null>(null);
   const impactPinsFrameRef = useRef<HTMLDivElement>(null);
   const mapFrameRef = useRef<HTMLDivElement>(null);
@@ -1525,14 +1527,10 @@ export default function Home() {
             <div className="flex flex-col items-center gap-4 md:gap-6 xl:items-start xl:gap-[32px]">
               <div className="flex w-full flex-col items-center gap-4 md:gap-[24px] xl:items-start xl:gap-[32px]">
                 <h1
-                  className="about-hero-title eb_garamond_e16653e1-module__s6IC3q__className w-full max-w-[744px] text-center font-bold leading-[0.95] text-[#003300] text-[clamp(34px,9.5vw,64px)] xl:text-left"
+                  className="about-hero-title font-[EB_Garamond] w-full max-w-[744px] text-center font-bold leading-[0.95] text-[#003300] text-[clamp(34px,9.5vw,64px)] xl:text-left"
                   style={{  color: '#003300' }}
                 >
-                  <span className="block sm:hidden">Conseil stratégique</span>
-                  <span className="block sm:hidden">pour une performance</span>
-                  <span className="block sm:hidden">durable</span>
-                  <span className="hidden sm:block">Conseil stratégique pour</span>
-                  <span className="hidden sm:block">une performance durable</span>
+                  Conseil stratégique<br className="sm:hidden" /> pour<br className="hidden sm:block" /> une performance<br className="sm:hidden" /> durable
                 </h1>
                 <p
                   className="w-full max-w-[680px] text-center font-[Geist] text-[14px] font-bold leading-[1.45] sm:text-[15px] md:text-[16px] md:leading-[20px] xl:max-w-[618px] xl:text-left"
@@ -1616,7 +1614,7 @@ export default function Home() {
                     {/* Ce lien s'intitule « Découvrez nos projets » mais menait
                         a la page de services : il mene desormais aux projets. */}
                     <Link
-                      href="/projets"
+                      href="/expertises"
                       className="w-fit font-[Geist] font-medium text-white underline underline-offset-4 transition-opacity hover:opacity-80"
                       style={{ fontSize: 'clamp(12px, 1.4vw, 20px)', lineHeight: 'clamp(14px, 1.5vw, 20px)' }}
                     >
@@ -1647,9 +1645,8 @@ export default function Home() {
                   }}
                 >
                   {[
-                    { src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672107/rnj/openai-jake-stangel-1-c442a239.webp', alt: 'Customer 1', left: '0' },
-                    { src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672107/rnj/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc-1-a731531a.webp', alt: 'Customer 2', left: 'clamp(28px, 3.7vw, 53px)' },
-                    { src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672108/rnj/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc-1-72edb5b8.webp', alt: 'Customer 3', left: 'clamp(56px, 7.5vw, 106px)' },
+                    { src: 'https://res.cloudinary.com/dvyyce3ki/image/upload/v1779672107/rnj/businesswoman-explaining-esg-strategy-during-meeti-2026-01-08-08-14-47-utc-1-a731531a.webp', alt: 'Customer 1', left: '0' },
+                    { src: 'https://res.cloudinary.com/dvyyce3ki/image_upload/v1779672108/rnj/that-makes-it-official-cropped-shot-of-two-uniden-2026-01-09-09-21-38-utc-1-72edb5b8.webp', alt: 'Customer 2', left: 'clamp(28px, 3.7vw, 53px)' },
                   ].map((c) => (
                     <div
                       key={c.alt}
@@ -1723,7 +1720,7 @@ export default function Home() {
                            excessivement les plus larges (plancher a 0,68). */
                         style={{
                           aspectRatio: String(logo.ratio),
-                          height: `calc(clamp(38px, 5.6vw, 66px) * ${logoHeightFactor(logo).toFixed(3)})`,
+                          height: `calc(clamp(28px, 4.2vw, 50px) * ${logoHeightFactor(logo).toFixed(3)})`,
                         }}
                       >
                         <Image
@@ -1951,12 +1948,12 @@ export default function Home() {
                loading="lazy"/>
             </div>
 
-            <h3
+            <h2
               className="max-w-[1006.97px] font-[EB_Garamond] text-[#003300] text-[42px] font-medium leading-[1.02] sm:text-[50px] md:text-[56px] lg:text-[64px] lg:leading-[58px]"
               style={{ transform: 'rotate(0.1deg)' }}
             >
               Des solutions juridiques adaptées à chaque étape
-            </h3>
+            </h2>
 
             <p
               className="max-w-[1215.08px] font-[Geist] text-[18px] font-medium leading-[20px] text-[#003300]/50 lg:text-[20px]"
@@ -2319,9 +2316,9 @@ export default function Home() {
                     </div>
 
                     <div className="max-w-[1139px]">
-                      <h2 className="mb-6 font-[Geist] font-normal text-white text-[40px] leading-[0.98] sm:text-[56px] md:mb-8 md:text-[88px] md:leading-[0.98] lg:text-[128px]">
+                      <h3 className="mb-6 font-[Geist] font-normal text-white text-[40px] leading-[0.98] sm:text-[56px] md:mb-8 md:text-[88px] md:leading-[0.98] lg:text-[128px]">
                         Interconnexion électrique Tunisie-Italie
-                      </h2>
+                      </h3>
 
                       <div className="flex flex-col gap-9 lg:gap-[46px]">
                         <div className="flex max-w-[650px] flex-col gap-1">
@@ -2412,9 +2409,9 @@ export default function Home() {
                     </div>
 
                     <div className="max-w-[1139px]">
-                      <h2 className="mb-6 font-[Geist] font-normal text-white text-[40px] leading-[0.98] sm:text-[56px] md:mb-8 md:text-[88px] md:leading-[0.98] lg:text-[128px]">
-                        Certificats d’Attribut d&apos;Énergie et Garanties d’origine
-                      </h2>
+                      <h3 className="mb-6 font-[Geist] font-normal text-white text-[40px] leading-[0.98] sm:text-[56px] md:mb-8 md:text-[88px] md:leading-[0.98] lg:text-[128px]">
+                        Certificats d&apos;Attribut d&apos;Énergie et Garanties d&apos;origine
+                      </h3>
 
                       <p className="font-[Geist] font-normal text-white text-[16px] leading-[1.18] sm:text-[18px] md:text-[24px] md:leading-[1.12] lg:text-[32px]">
                         <span className="block">
@@ -3600,7 +3597,7 @@ export default function Home() {
                             <div
                               className="w-full overflow-hidden transition-[max-height,opacity,margin-top] duration-300 ease-out"
                               style={{
-                                maxHeight: isExpanded ? `${answerHeight + 8}px` : '0px',
+                                maxHeight: isExpanded ? `${answerHeight + 24}px` : '0px',
                                 opacity: isExpanded ? 1 : 0,
                                 marginTop: isExpanded ? '2px' : '0px',
                               }}
@@ -3609,7 +3606,7 @@ export default function Home() {
                                 ref={(node) => {
                                   faqAnswerRefs.current[index] = node;
                                 }}
-                                className={`overflow-hidden font-[Geist] font-medium text-black/50 ${faqRowInnerMaxWidthClass}`}
+                                className={`font-[Geist] font-medium text-black/50 ${faqRowInnerMaxWidthClass}`}
                                 style={{ fontSize: 'clamp(14px, 3.5vw, 16px)', lineHeight: 'clamp(18px, 4.2vw, 19px)' }}
                               >
                                 {item.answer}
@@ -3654,6 +3651,8 @@ export default function Home() {
             </section>
           </div>
         </section>
+
+        {editorialSlot}
 
         {/* Footer Section */}
         <LandingFooter />

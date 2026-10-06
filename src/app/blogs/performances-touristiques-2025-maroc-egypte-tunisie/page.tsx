@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import FooterWithCta from '@/components/FooterWithCta';
+import PillarBridge from '@/components/PillarBridge';
 import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 import ArticleStructuredData from '@/components/ArticleStructuredData';
+import { alternatesFor } from '@/lib/seo';
 
 const ebGaramond = EB_Garamond({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
 const geist = Geist({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
   title: SEO_TITLE,
   description:
     "Maroc, Égypte et Tunisie en 2025 : nombre de touristes, recettes et dépense moyenne par visiteur. Une lecture comparée des dynamiques de marché en Afrique du Nord.",
-  alternates: { canonical: '/blogs/performances-touristiques-2025-maroc-egypte-tunisie' },
+  alternates: alternatesFor('/blogs/performances-touristiques-2025-maroc-egypte-tunisie'),
   openGraph: {
     images: ['/optimized/tourisme-2025-cover.webp'],
     title: TITLE,
@@ -299,6 +301,8 @@ export default function PerformancesTouristiquesPage() {
           </Link>
         </div>
       </article>
+
+      <PillarBridge pillar="international" />
 
       <FooterWithCta />
     </main>

@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Geist } from 'next/font/google';
-import { blogPosts, blogFilters } from '@/data/blogPosts';
+import { blogFilters, postsForFilter, ALL_FILTER } from '@/data/blogPosts';
 
 const geist = Geist({ subsets: ['latin'], weight: ['400', '500', '600', '700'], display: 'swap' });
 
@@ -19,11 +19,10 @@ const geist = Geist({ subsets: ['latin'], weight: ['400', '500', '600', '700'], 
  * suivent le Figma au pixel.
  */
 export default function RelatedContent() {
-  const [selectedFilter, setSelectedFilter] = useState('Tous');
+  const [selectedFilter, setSelectedFilter] = useState(ALL_FILTER);
   const railRef = useRef<HTMLDivElement>(null);
 
-  const visiblePosts =
-    selectedFilter === 'Tous' ? blogPosts : blogPosts.filter((post) => post.category === selectedFilter);
+  const visiblePosts = postsForFilter(selectedFilter);
 
   /* Fait defiler d'une carte + son gouttiere (392,61 + 20,24). */
   function scrollBy(direction: -1 | 1) {

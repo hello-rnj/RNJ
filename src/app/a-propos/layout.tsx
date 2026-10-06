@@ -1,14 +1,24 @@
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
 import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
+import { alternatesFor } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'À propos — cabinet de conseil à Bruxelles',
   description:
-    'Découvrez RNJ Advisory, cabinet de conseil juridique et stratégique à Bruxelles, accompagnant entreprises, investisseurs et institutions en Belgique et à l’international.',
-  alternates: {
-    canonical: '/a-propos',
-  },
+    'Découvrez RNJ Advisory, cabinet de conseil juridique et stratégique à Bruxelles. Plus de 30 ans d’expertise au service des entreprises, investisseurs et institutions en Belgique, en Tunisie et à l’international.',
+  keywords: [
+    'cabinet conseil Bruxelles',
+    'RNJ Advisory',
+    'conseil juridique Belgique',
+    'conseil stratégique Bruxelles',
+    'expertise réglementaire',
+    'accompagnement entreprises Belgique',
+    'investisseurs Tunisie Europe',
+    'Avenue Louise Bruxelles cabinet',
+  ],
+  alternates: alternatesFor('/a-propos'),
+  category: 'Business consulting',
   openGraph: {
     images: ['/opengraph-image.png'],
     title: 'À propos de RNJ Advisory | Conseil juridique et stratégique',

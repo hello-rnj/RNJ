@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import LandingFooter from '@/components/LandingFooter';
+import RelatedContent from '@/components/RelatedContent';
 
 const geist = Geist({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
 
@@ -42,6 +43,34 @@ const EXPERTISES = [
   { title: 'Gouvernance & Institutions', desc: 'Accompagner les acteurs publics et privés.', img: '/optimized/Group%20349379%20(4).png' },
 ];
 
+const FAQ_ITEMS = [
+  {
+    question: 'Quelle est la différence entre une consultation et une étude juridique ?',
+    answer:
+      "Une consultation répond à une question précise en quelques échanges. Une étude juridique est un document écrit, opposable, que vous pouvez produire devant un conseil d'administration, un financeur, un assureur ou une administration — réservée aux points de droit dont la réponse n'est pas évidente.",
+  },
+  {
+    question: 'En quoi consiste une revue contractuelle ?',
+    answer:
+      "Nous relisons vos contrats avant qu'ils ne vous engagent, en nous concentrant sur les clauses qui décident de l'issue d'un différend : limitation de responsabilité, résiliation, propriété intellectuelle, droit applicable et juridiction compétente. Vous recevez un document annoté et une hiérarchisation des points à négocier.",
+  },
+  {
+    question: 'Accompagnez-vous la mise en conformité RGPD et ESG ?',
+    answer:
+      "Oui. Nous intervenons sur la conformité réglementaire au sens large — RGPD, ESG, CSRD — en identifiant les obligations qui s'appliquent réellement à votre activité et en les traduisant en plan d'action concret, avec ses échéances.",
+  },
+  {
+    question: 'Intervenez-vous sur les partenariats public-privé ?',
+    answer:
+      "Oui, nous accompagnons entreprises, collectivités et institutions sur le montage juridique des projets PPP et concessions, la répartition des risques entre partenaires et la sécurisation des documents contractuels.",
+  },
+  {
+    question: 'Dans quels pays intervenez-vous ?',
+    answer:
+      'Basés Avenue Louise à Bruxelles, nous accompagnons des clients en Belgique, en Europe, en Tunisie et en Afrique.',
+  },
+];
+
 /* Chunky north-east arrow from Figma (Rectangle 839 + Line 11) */
 function ArrowIcon({ color, size = 38 }: { color: string; size?: number }) {
   return (
@@ -52,9 +81,18 @@ function ArrowIcon({ color, size = 38 }: { color: string; size?: number }) {
   );
 }
 
+function ChevronDown() {
+  return (
+    <svg width="22" height="11" viewBox="0 0 22 11" fill="none" style={{ opacity: 0.5, flexShrink: 0 }}>
+      <path d="M1.5 1.5 11 9.5l9.5-8" stroke="#003300" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export default function ConseilJuridiqueClient() {
   const [scale, setScale] = useState(1);
   const [openIndex, setOpenIndex] = useState(0); // Droit des affaires open by default
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   // Le Figma (Frame 349366) donne deux variantes du paragraphe : Default,
   // texte a top -2.4 avec fondu en bas, et Variant2, texte a top -154.5 avec
   // fondu en haut. C'est un defilement lent du texte dans sa fenetre.
@@ -836,6 +874,59 @@ export default function ConseilJuridiqueClient() {
           >
             Consulter un expert
           </Link>
+        </div>
+      </section>
+
+      <RelatedContent />
+
+      {/* ══════════════════════════════════════════════════════════════════
+          FAQ
+          ══════════════════════════════════════════════════════════════ */}
+      <section className="bg-[#F7FCFF] px-4 pb-16 sm:px-6 md:pb-20 lg:pb-24" style={{ paddingTop: `${170 * scale}px` }}>
+        <div
+          className="mx-auto flex w-full max-w-[1146px] flex-col items-center bg-white px-5 py-10 sm:px-9 sm:py-14 md:py-16"
+          style={{ borderRadius: '25px', boxShadow: '2px 4px 34px rgba(0,0,0,0.12)' }}
+        >
+          <div className="mb-10 flex w-full max-w-[725px] flex-col items-center gap-6 text-center md:mb-16">
+            <h2 className={geist.className} style={{ fontWeight: 600, fontSize: 'clamp(28px, 4vw, 40px)', color: '#003300', margin: 0 }}>
+              Questions fréquentes
+            </h2>
+            <p style={{ fontWeight: 400, fontSize: '16px', lineHeight: '158%', color: '#003300' }}>
+              Retrouvez ici les réponses aux interrogations les plus courantes concernant notre accompagnement
+              juridique et réglementaire.
+            </p>
+          </div>
+
+          <div className="flex w-full flex-col gap-2.5">
+            {FAQ_ITEMS.map((item, i) => {
+              const isOpen = openFaqIndex === i;
+              return (
+                <div key={item.question} style={{ background: 'rgba(187, 203, 46, 0.5)', borderRadius: '22px', overflow: 'hidden' }}>
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaqIndex(isOpen ? null : i)}
+                    className="flex w-full flex-col items-center justify-center gap-2.5 px-6 py-8 text-left sm:flex-row sm:justify-between sm:px-10"
+                    style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                  >
+                    <span className="text-center sm:text-left" style={{ fontWeight: 400, fontSize: '20.1055px', lineHeight: '125%', color: '#003300' }}>
+                      {item.question}
+                    </span>
+                    <span style={{ transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 250ms ease' }}>
+                      <ChevronDown />
+                    </span>
+                  </button>
+                  {isOpen && (
+                    <p
+                      className="px-6 pb-8 text-center sm:px-10 sm:text-left"
+                      style={{ fontWeight: 400, fontSize: '15px', lineHeight: '145%', color: '#003300', opacity: 0.75, margin: 0 }}
+                    >
+                      {item.answer}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 

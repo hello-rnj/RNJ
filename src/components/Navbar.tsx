@@ -37,7 +37,7 @@ export default function Navbar({
   // Par defaut le logo suit la couleur du texte ; `logo` permet de le forcer.
   const useLightLogo = logo ? logo === 'light' : glass && !onLightGlass;
   const glassPanel = glass
-    ? { border: '1px solid rgba(255, 255, 255, 0.34)', backdropFilter: 'blur(49.2px)', WebkitBackdropFilter: 'blur(49.2px)' }
+    ? { border: '1px solid rgba(255, 255, 255, 0.34)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }
     : {};
 
   return (
@@ -137,11 +137,11 @@ export default function Navbar({
           </div>
 
           <Link
-            href="/projets"
+            href="/expertises"
             className="text-center font-[Geist] text-[15px] font-semibold opacity-50 transition hover:opacity-75 2xl:text-[17px]"
             style={{ color: textCol }}
           >
-            Projets
+            Expertises &amp; Projets
           </Link>
 
           <Link
@@ -275,12 +275,12 @@ export default function Navbar({
             </div>
 
             <Link
-              href="/projets"
+              href="/expertises"
               onClick={() => setIsMobileMenuOpen(false)}
               className="border-b py-2 text-left font-[Geist] text-lg font-semibold"
               style={{ color: textCol, borderColor: `${textCol}1a` }}
             >
-              Projets
+              Expertises &amp; Projets
             </Link>
 
             <Link

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import LandingFooter from '@/components/LandingFooter';
+import RelatedContent from '@/components/RelatedContent';
 
 const geist = Geist({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
 const ebGaramond = EB_Garamond({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
@@ -74,45 +75,8 @@ const RECRUIT_CARDS = [
   { title: 'Intégration des talents', desc: "Facilitez l'arrivée et l'intégration de vos collaborateurs.", icon: '/optimized/Intégration%20des%20talents.png', iconW: 111, iconH: 79 },
 ];
 
-const FAQ_ITEMS = [
-  {
-    question: "Qu'est-ce que le permis unique ?",
-    answer:
-      "Le permis unique est le document qui autorise un ressortissant hors Union européenne à la fois à séjourner et à travailler en Belgique. Il regroupe en une seule procédure l'autorisation de travail et le titre de séjour, conformément à la directive européenne 2011/98/UE.",
-  },
-  {
-    question: 'Qui doit introduire la demande de permis unique ?',
-    answer:
-      "C'est l'employeur belge qui initie la demande auprès de l'administration régionale compétente (Wallonie, Flandre, Bruxelles ou Communauté germanophone), et non le travailleur lui-même. RNJ Advisory prépare et introduit le dossier pour le compte de votre entreprise.",
-  },
-  {
-    question: 'Quelles conditions faut-il remplir ?',
-    answer:
-      "L'employeur doit justifier d'un contrat de travail, respecter les seuils de rémunération applicables et, sauf exemption (métiers en pénurie, profils hautement qualifiés, carte bleue européenne), démontrer l'absence de candidat disponible sur le marché de l'emploi belge ou européen.",
-  },
-  {
-    question: 'Combien de temps dure la procédure ?',
-    answer:
-      "Le délai de traitement varie selon la région et la complexité du dossier, généralement entre 4 et 12 semaines. Un dossier complet et bien préparé dès le départ permet de limiter les risques de retard ou de refus.",
-  },
-  {
-    question: 'Le permis unique est-il renouvelable ?',
-    answer:
-      "Oui. Sa durée de validité est en principe alignée sur celle du contrat de travail, dans la limite de 3 ans, et il peut être renouvelé tant que la relation de travail se poursuit et que les conditions restent remplies.",
-  },
-];
-
-function ChevronDown() {
-  return (
-    <svg width="22" height="11" viewBox="0 0 22 11" fill="none" style={{ opacity: 0.5, flexShrink: 0 }}>
-      <path d="M1.5 1.5 11 9.5l9.5-8" stroke="#003300" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 export default function AccelererMonBusinessClient() {
   const [scale, setScale] = useState(1);
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   useEffect(() => {
     const onResize = () => setScale(window.innerWidth / W);
@@ -783,57 +747,32 @@ export default function AccelererMonBusinessClient() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════════
-          SECTION 6 — FAQ (Frame 75)
-          ══════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#F7FCFF] px-4 pb-16 sm:px-6 md:pb-20 lg:pb-24" style={{ paddingTop: `${170 * scale}px` }}>
-        <div
-          className="mx-auto flex w-full max-w-[1146px] flex-col items-center bg-white px-5 py-10 sm:px-9 sm:py-14 md:py-16"
-          style={{ borderRadius: '25px', boxShadow: '2px 4px 34px rgba(0,0,0,0.12)' }}
-        >
-          <div className="mb-10 flex w-full max-w-[725px] flex-col items-center gap-6 text-center md:mb-16">
-            <h2 className={ebGaramond.className} style={{ fontWeight: 400, fontSize: 'clamp(32px, 4.5vw, 61.3621px)', color: '#003300' }}>
-              Questions fréquentes
-            </h2>
-            <p style={{ fontWeight: 400, fontSize: '16px', lineHeight: '158%', color: '#003300' }}>
-              Retrouvez ici les réponses aux interrogations les plus courantes concernant nos services, notre
-              méthodologie et notre accompagnement stratégique.
-            </p>
-          </div>
-
-          <div className="flex w-full flex-col gap-2.5">
-            {FAQ_ITEMS.map((item, i) => {
-              const isOpen = openFaqIndex === i;
-              return (
-                <div key={item.question} style={{ background: 'rgba(187, 203, 46, 0.5)', borderRadius: '22px', overflow: 'hidden' }}>
-                  <button
-                    type="button"
-                    onClick={() => setOpenFaqIndex(isOpen ? null : i)}
-                    className="flex w-full flex-col items-center justify-center gap-2.5 px-6 py-8 text-left sm:flex-row sm:justify-between sm:px-10"
-                    style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                  >
-                    <span className="text-center sm:text-left" style={{ fontWeight: 400, fontSize: '20.1055px', lineHeight: '125%', color: '#003300' }}>
-                      {item.question}
-                    </span>
-                    <span style={{ transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 250ms ease' }}>
-                      <ChevronDown />
-                    </span>
-                  </button>
-                  {isOpen && (
-                    <p
-                      className="px-6 pb-8 text-center sm:px-10 sm:text-left"
-                      style={{ fontWeight: 400, fontSize: '15px', lineHeight: '145%', color: '#003300', opacity: 0.75, margin: 0 }}
-                    >
-                      {item.answer}
-                    </p>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+      {/* SEO — contenu editorial et liens croisés */}
+      <section className="w-full bg-[#F7FCFF] px-6 py-16 sm:px-10 md:py-20 lg:px-[84px]">
+        <div className="mx-auto max-w-[860px]">
+          <h2 className={`${geist.className} mb-6 text-[#003300]`} style={{ fontWeight: 600, fontSize: 'clamp(26px, 3.2vw, 36px)', lineHeight: '1.15em' }}>
+            Accélérer votre croissance et recruter les meilleurs talents
+          </h2>
+          <p className={`${geist.className} mb-5 text-[#003300]`} style={{ fontWeight: 400, fontSize: 'clamp(15px, 1.3vw, 18px)', lineHeight: '1.7em', opacity: 0.85 }}>
+            Votre entreprise est lancée et vous souhaitez passer à l&apos;échelle&nbsp;? RNJ Advisory accompagne les PME, ASBL et entreprises en croissance dans leur développement stratégique, leur expansion internationale et le recrutement de talents hors Union européenne. Nous sécurisons vos recrutements internationaux en gérant le cadre réglementaire belge : permis unique, autorisations de travail et conformité administrative.
+          </p>
+          <p className={`${geist.className} mb-8 text-[#003300]`} style={{ fontWeight: 400, fontSize: 'clamp(15px, 1.3vw, 18px)', lineHeight: '1.7em', opacity: 0.85 }}>
+            Notre approche intègre le{' '}
+            <Link href="/services/conseil-juridique" className="underline underline-offset-4" style={{ color: '#BBCB2E' }}>conseil juridique</Link> pour structurer vos opérations,{' '}
+            l&apos;<Link href="/expertises" className="underline underline-offset-4" style={{ color: '#BBCB2E' }}>analyse institutionnelle</Link> pour comprendre votre environnement réglementaire, et l&apos;accompagnement à la{' '}
+            <Link href="/services/creation-entreprise" className="underline underline-offset-4" style={{ color: '#BBCB2E' }}>création d&apos;entreprise</Link> pour les nouvelles implantations.
+          </p>
+          <Link
+            href="/contact?subject=Acc%C3%A9l%C3%A9rer+mon+business"
+            className={`${geist.className} inline-flex h-[46px] items-center justify-center rounded-full px-7`}
+            style={{ background: '#BBCB2E', color: '#003300', fontSize: '14px', fontWeight: 600 }}
+          >
+            Planifier un entretien stratégique
+          </Link>
         </div>
       </section>
 
+      <RelatedContent />
       <LandingFooter />
     </main>
   );

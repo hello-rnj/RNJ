@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import FooterWithCta from '@/components/FooterWithCta';
+import PillarBridge from '@/components/PillarBridge';
 import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 import ArticleStructuredData from '@/components/ArticleStructuredData';
+import { alternatesFor } from '@/lib/seo';
 
 const ebGaramond = EB_Garamond({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
 const geist = Geist({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
   title: SEO_TITLE,
   description:
     "Retour sur le workshop « Sustainable Digitalization » du 29 août 2025 à BeCentral, Bruxelles : comment conjuguer performance, inclusion et responsabilité dans la transformation numérique.",
-  alternates: { canonical: '/blogs/workshop-sustainable-digitalization-becentral' },
+  alternates: alternatesFor('/blogs/workshop-sustainable-digitalization-becentral'),
   openGraph: {
     images: ['/optimized/workshop-sustainable-digitalization-cover.webp'],
     title: TITLE,
@@ -202,6 +204,8 @@ export default function WorkshopSustainableDigitalizationPage() {
           </Link>
         </div>
       </article>
+
+      <PillarBridge pillar="belgique" />
 
       <FooterWithCta />
     </main>

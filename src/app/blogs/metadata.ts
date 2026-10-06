@@ -1,12 +1,23 @@
 import type { Metadata } from 'next';
+import { alternatesFor } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Blog juridique et stratégique',
   description:
-    'Analyses et insights RNJ Advisory sur la conformité réglementaire, le droit des affaires, l’ESG, la stratégie et les marchés en Belgique et à l’international.',
-  alternates: {
-    canonical: '/blogs',
-  },
+    'Analyses et insights RNJ Advisory sur la conformité réglementaire, le droit des affaires, l’ESG, la stratégie et les marchés en Belgique, en Tunisie et à l’international.',
+  keywords: [
+    'blog juridique Belgique',
+    'conformité réglementaire actualités',
+    'RGPD Belgique articles',
+    'ESG Belgique blog',
+    'droit des affaires Bruxelles',
+    'MACF CBAM Tunisie',
+    'création entreprise Belgique guide',
+    'analyse réglementaire Europe',
+    'RNJ Advisory blog',
+  ],
+  alternates: alternatesFor('/blogs'),
+  category: 'Legal blog',
   openGraph: {
     images: ['/opengraph-image.png'],
     title: 'Blog RNJ Advisory | Juridique, conformité et stratégie',

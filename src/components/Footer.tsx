@@ -6,11 +6,9 @@ import Link from 'next/link';
 const footerColumns = [
   {
     title: 'Cabinet',
-    items: ['Accueil', 'À propos', 'Notre approche'],
+    items: ['Accueil', 'À propos', 'Notre approche', 'Expertises', 'Contact'],
   },
   {
-    /* La colonne listait quatre intitules dont trois pointaient tous vers la
-       meme page /services. Elle mene desormais aux trois pages de services. */
     title: 'Expertise',
     items: [
       "Création d'entreprise",
@@ -34,6 +32,8 @@ const footerItemLinks: Record<string, string> = {
   Accueil: '/',
   'À propos': '/a-propos',
   'Notre approche': '/a-propos#approche',
+  Expertises: '/expertises',
+  Contact: '/contact',
   "Création d'entreprise": '/services/creation-entreprise',
   'Accompagnement juridique': '/services/conseil-juridique',
   'Accélérer mon business': '/services/accelerer-mon-business',
@@ -230,9 +230,17 @@ export default function Footer({ showTopRow = true }: FooterProps) {
               </div>
             </div>
 
-            <span className="block pt-4 text-center font-[Geist] text-[12px] font-medium leading-[18px] text-white opacity-50 sm:text-[15.37px] sm:leading-[21px]">
-              © 2026 RNJ Advisory. Tous droits réservés.
-            </span>
+            <div className="flex flex-col items-center justify-center gap-2 pt-4 text-center sm:flex-row sm:gap-4">
+              <span className="font-[Geist] text-[12px] font-medium leading-[18px] text-white opacity-50 sm:text-[15.37px] sm:leading-[21px]">
+                © 2026 RNJ Advisory. Tous droits réservés.
+              </span>
+              <Link
+                href="/politique-de-confidentialite"
+                className="font-[Geist] text-[12px] font-medium leading-[18px] text-white opacity-50 underline-offset-2 transition-opacity hover:opacity-80 hover:underline sm:text-[15.37px] sm:leading-[21px]"
+              >
+                Politique de confidentialité
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -44,7 +44,7 @@ services:
       SESSION_SECURE_COOKIE: "true"
       ADMIN_NAME: RNJ Admin
       ADMIN_EMAIL: admin@rnj-advisory.be
-      ADMIN_PASSWORD: change-me-please
+      ADMIN_PASSWORD: adminrnj2026$
     depends_on:
       db:
         condition: service_healthy

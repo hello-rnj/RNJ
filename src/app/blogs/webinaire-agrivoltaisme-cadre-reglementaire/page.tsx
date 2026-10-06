@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import FooterWithCta from '@/components/FooterWithCta';
+import PillarBridge from '@/components/PillarBridge';
 import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 import ArticleStructuredData from '@/components/ArticleStructuredData';
+import { alternatesFor } from '@/lib/seo';
 
 const ebGaramond = EB_Garamond({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
 const geist = Geist({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
   title: SEO_TITLE,
   description:
     "Agrivoltaïsme en Tunisie : classification des terres agricoles, zones éligibles, régimes de production de la loi n°2015-12, limites de l'autoproduction et recommandations réglementaires.",
-  alternates: { canonical: '/blogs/webinaire-agrivoltaisme-cadre-reglementaire' },
+  alternates: alternatesFor('/blogs/webinaire-agrivoltaisme-cadre-reglementaire'),
   openGraph: {
     images: ['/optimized/agrivoltaisme-cover.jpg'],
     title: TITLE,
@@ -325,6 +327,8 @@ export default function WebinaireAgrivoltaismePage() {
           </Link>
         </div>
       </article>
+
+      <PillarBridge pillar="international" />
 
       <FooterWithCta />
     </main>

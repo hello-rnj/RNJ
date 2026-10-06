@@ -20,7 +20,7 @@ const footerColumns: FooterColumn[] = [
     items: [
       { label: 'Accueil', href: '/' },
       { label: 'À propos', href: '/a-propos' },
-      { label: 'Projet', href: '/projets' },
+      { label: 'Expertises', href: '/expertises' },
     ],
   },
   {
@@ -430,9 +430,17 @@ export default function LandingFooter() {
                   </div>
                 </div>
 
-                <span className="block pt-4 text-center font-[Geist] text-[12px] font-medium leading-[18px] text-white opacity-50 sm:text-[15.37px] sm:leading-[21px]">
-                  © 2026 RNJ Advisory. Tous droits réservés.
-                </span>
+                <div className="flex flex-col items-center justify-center gap-2 pt-4 text-center sm:flex-row sm:gap-4">
+                  <span className="font-[Geist] text-[12px] font-medium leading-[18px] text-white opacity-50 sm:text-[15.37px] sm:leading-[21px]">
+                    © 2026 RNJ Advisory. Tous droits réservés.
+                  </span>
+                  <Link
+                    href="/politique-de-confidentialite"
+                    className="font-[Geist] text-[12px] font-medium leading-[18px] text-white opacity-50 underline-offset-2 transition-opacity hover:opacity-80 hover:underline sm:text-[15.37px] sm:leading-[21px]"
+                  >
+                    Politique de confidentialité
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

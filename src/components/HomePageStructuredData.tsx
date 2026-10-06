@@ -1,62 +1,19 @@
 import {
   homeSeoAudienceCatalog,
   homeSeoFaqCatalog,
-  homeSeoKeywords,
   homeSeoServiceCatalog,
 } from '@/lib/home-seo';
 
+/* La fiche d'entreprise (ProfessionalService / LocalBusiness) est emise une
+   seule fois, cote layout racine, par `JsonLd`. Cette page ne decrit donc que
+   ce qui lui est propre — la page elle-meme et sa FAQ — et pointe vers le
+   noeud d'entreprise par `@id`. */
 const organizationId = 'https://rnj-advisory.be/#organization';
 const websiteId = 'https://rnj-advisory.be/#website';
-const professionalServiceId = 'https://rnj-advisory.be/#professional-service';
 const homePageId = 'https://rnj-advisory.be/#webpage';
 const faqPageId = 'https://rnj-advisory.be/#faq';
 
-const servedAreas = ['Belgium', 'Brussels', 'Tunisia', 'Europe'];
-
 export default function HomePageStructuredData() {
-  const professionalServiceData = {
-    '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
-    '@id': professionalServiceId,
-    name: 'RNJ Advisory',
-    url: 'https://rnj-advisory.be/',
-    image: 'https://rnj-advisory.be/opengraph-image.png',
-    logo: 'https://res.cloudinary.com/dvyyce3ki/image/upload/f_auto,q_auto:best,dpr_auto,fl_progressive/v1779677463/rnj/minimal-horizontal-logo-white-1-317aafcc.png',
-    telephone: '+32 474 03 22 66',
-    email: 'info@rnj-advisory.be',
-    description:
-      "Cabinet de conseil juridique et stratégique à Bruxelles accompagnant entrepreneurs, PME, ASBL, investisseurs et institutions sur la conformité réglementaire, l'analyse institutionnelle, l'ESG, la structuration juridique et les appels à projets.",
-    keywords: homeSeoKeywords.join(', '),
-    areaServed: servedAreas,
-    availableLanguage: ['fr', 'en', 'ar'],
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Avenue Louise 500',
-      addressLocality: 'Ixelles',
-      addressRegion: 'Bruxelles',
-      postalCode: '1050',
-      addressCountry: 'BE',
-    },
-    audience: homeSeoAudienceCatalog.map((audienceType) => ({
-      '@type': 'Audience',
-      audienceType,
-    })),
-    serviceType: homeSeoServiceCatalog.map((service) => service.name),
-    provider: {
-      '@id': organizationId,
-    },
-    makesOffer: homeSeoServiceCatalog.map((service) => ({
-      '@type': 'Offer',
-      itemOffered: {
-        '@type': 'Service',
-        name: service.name,
-        description: service.description,
-        url: `https://rnj-advisory.be${service.path}`,
-        areaServed: servedAreas,
-      },
-    })),
-  };
-
   const webPageData = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -69,9 +26,19 @@ export default function HomePageStructuredData() {
     isPartOf: {
       '@id': websiteId,
     },
-    about: homeSeoServiceCatalog.map((service) => ({
-      '@type': 'Thing',
+    about: {
+      '@id': organizationId,
+    },
+    mentions: homeSeoServiceCatalog.map((service) => ({
+      '@type': 'Service',
       name: service.name,
+      description: service.description,
+      url: `https://rnj-advisory.be${service.path}`,
+      provider: { '@id': organizationId },
+    })),
+    audience: homeSeoAudienceCatalog.map((audienceType) => ({
+      '@type': 'Audience',
+      audienceType,
     })),
     primaryImageOfPage: {
       '@type': 'ImageObject',
@@ -92,6 +59,7 @@ export default function HomePageStructuredData() {
     '@type': 'FAQPage',
     '@id': faqPageId,
     url: 'https://rnj-advisory.be/#faq',
+    inLanguage: 'fr-BE',
     mainEntity: homeSeoFaqCatalog.map((item) => ({
       '@type': 'Question',
       name: item.question,
@@ -107,10 +75,6 @@ export default function HomePageStructuredData() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceData) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageData) }}

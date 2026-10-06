@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { EB_Garamond, Geist } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import FooterWithCta from '@/components/FooterWithCta';
+import PillarBridge from '@/components/PillarBridge';
 import BreadcrumbStructuredData from '@/components/BreadcrumbStructuredData';
 import ArticleStructuredData from '@/components/ArticleStructuredData';
+import { alternatesFor } from '@/lib/seo';
 
 const ebGaramond = EB_Garamond({ subsets: ['latin'], weight: ['400', '500'], display: 'swap' });
 const geist = Geist({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
   title: SEO_TITLE,
   description:
     "Définition, cadre légal en Tunisie et dans l'Union européenne (RED II, directive 2012/27/UE), fonctions, effet juridique et régime de commercialisation des garanties d'origine.",
-  alternates: { canonical: '/blogs/garanties-origine-informations-de-base' },
+  alternates: alternatesFor('/blogs/garanties-origine-informations-de-base'),
   openGraph: {
     images: ['/optimized/images-header-articles-1084-x-585-px-19.jpg'],
     title: TITLE,
@@ -252,6 +254,8 @@ export default function GarantiesOriginePage() {
           </Link>
         </div>
       </article>
+
+      <PillarBridge pillar="international" />
 
       <FooterWithCta />
     </main>

@@ -5,14 +5,13 @@ import Link from 'next/link';
 import { useState } from 'react';
 import BlogStructuredData from '@/components/BlogStructuredData';
 import Navbar from '@/components/Navbar';
-import { blogPosts, blogFilters } from '@/data/blogPosts';
+import { blogFilters, postsForFilter, ALL_FILTER } from '@/data/blogPosts';
 import FooterWithCta from '@/components/FooterWithCta';
 
 export default function BlogsPageClient() {
-  const [selectedFilter, setSelectedFilter] = useState('Tous');
+  const [selectedFilter, setSelectedFilter] = useState(ALL_FILTER);
 
-const visiblePosts =
-    selectedFilter === 'Tous' ? blogPosts : blogPosts.filter((post) => post.category === selectedFilter);
+  const visiblePosts = postsForFilter(selectedFilter);
 
   return (
     <main className="min-h-screen bg-[#F7FCFF]">
@@ -24,7 +23,7 @@ const visiblePosts =
       <div className="relative w-full">
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src="/optimized/blogs-hero-v2.webp"
+            src="/optimized/energie-180526-2-hero.webp"
             alt=""
             fill
             priority
@@ -63,12 +62,26 @@ const visiblePosts =
 
         {/* Social icons */}
         <div className="absolute left-4 sm:left-6 lg:left-[84px] bottom-[60px] sm:bottom-[80px] lg:top-[869px] lg:bottom-auto flex items-center gap-[12px] sm:gap-[16px] lg:gap-[20px]">
-          <div className="h-[56px] w-[56px] sm:h-[64px] sm:w-[64px] lg:h-[84px] lg:w-[84px] rounded-full bg-white flex items-center justify-center">
+          {/* Meme destination que l'icone Instagram du pied de page. */}
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="h-[56px] w-[56px] sm:h-[64px] sm:w-[64px] lg:h-[84px] lg:w-[84px] rounded-full bg-white flex items-center justify-center transition hover:brightness-95"
+          >
             <Image src="/optimized/Layer%201%20(25).png" alt="Vues" width={46} height={46} className="h-[28px] sm:h-[32px] lg:h-[40px] w-auto object-contain" loading="lazy"/>
-          </div>
-          <div className="h-[56px] w-[56px] sm:h-[64px] sm:w-[64px] lg:h-[84px] lg:w-[84px] rounded-full bg-white flex items-center justify-center">
+          </a>
+          {/* Meme destination que l'icone Facebook du pied de page. */}
+          <a
+            href="https://www.facebook.com/Nahlaaschijelalia/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            className="h-[56px] w-[56px] sm:h-[64px] sm:w-[64px] lg:h-[84px] lg:w-[84px] rounded-full bg-white flex items-center justify-center transition hover:brightness-95"
+          >
             <Image src="/optimized/Layer%201%20(26).png" alt="Mentions J’aime" width={24} height={46} className="h-[28px] sm:h-[32px] lg:h-[40px] w-auto object-contain" loading="lazy"/>
-          </div>
+          </a>
         </div>
       </div>
       </div>

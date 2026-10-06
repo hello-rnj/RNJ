@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState, type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, CalendarDays, CheckCircle2, Download, Home, XCircle } from 'lucide-react';
@@ -491,6 +491,9 @@ type ContactPageClientProps = {
   initialSubject?: string;
   initialPaymentState?: PaymentState | null;
   initialCheckoutSessionId?: string | null;
+  /* Presentation du cabinet rendue cote serveur (voir `ContactIntro`) : elle
+     doit exister dans le HTML initial, ce composant etant un composant client. */
+  introSlot?: ReactNode;
 };
 
 export default function ContactPageClient({
@@ -498,6 +501,7 @@ export default function ContactPageClient({
   initialSubject = '',
   initialPaymentState = null,
   initialCheckoutSessionId = null,
+  introSlot,
 }: ContactPageClientProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -1125,6 +1129,7 @@ export default function ContactPageClient({
             </div>
           </section>
 
+          {view === 'initial' ? introSlot : null}
 
           {view === 'booking' ? (
             <section
